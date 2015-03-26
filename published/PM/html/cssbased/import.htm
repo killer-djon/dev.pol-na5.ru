@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', '' )">
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+					<? if $step == 1 ?>
+
+						<? wbs_note noteType="tips" ?><? $pmStrings.icl_filetip_text|htmlsafe:true:true ?><? /wbs_note ?>
+
+						<? wbs_formLayout caption=$pageTitle ?>
+
+							<? wbs_formContent ?>
+								<tr>
+									<td><? wbs_label text=$pmStrings.icl_filefield_label for="file" fieldName="FILE" ?></td>
+									<td><input name=file type=file class="FormControl" id="file" size="40"></td>
+								</tr>
+							<? /wbs_formContent ?>
+
+							<? wbs_formButtonsPanel ?>
+
+								<? wbs_buttonSet ?>
+									<? wbs_buttonSetButton caption=$pmStrings.icl_continue_btn name="savebtn" ?>
+									<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+								<? /wbs_buttonSet ?>
+
+							<? /wbs_formButtonsPanel ?>
+
+						<? /wbs_formLayout ?>
+
+					<? elseif $step == 2 ?>
+
+						<? wbs_note noteType="tips" ?><? $pmStrings.icl_columntip_text|htmlsafe:true:true ?><? /wbs_note ?>
+
+						<table class="SimpleList">
+							<thead>
+								<tr>
+									<th scope="col"><? $pmStrings.icl_filecolumns_title ?></th>
+									<th scope="col"><? $pmStrings.icl_importchecks_title ?></th>
+									<th scope="col" width="250"><? $pmStrings.icl_icrsccols_title ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<? foreach from=$headers item=headerName key=headerIndex name=columnLoop ?>
+									<tr class="<? wbs_oddItem index=$smarty.foreach.columnLoop.iteration ?>">
+										<td><? wbs_label fieldName="column"|cat:$headerIndex skipColon=true text=$headerName ?></td>
+										<td align=center><input type=checkbox value=1 name="importColumn[<? $headerIndex ?>]" <? wbs_checkboxStatus val=$importColumn[$headerIndex] true_val=1 ?>/></td>
+										<td>
+											<select name="nameMap[<? $headerIndex ?>]" class="FormControl" style="width: 100%">
+												<? html_options values=$columnIDs selected=$nameMap.$headerIndex output=$columnNames ?>
+											</select>
+										</td>
+									</tr>
+								<? /foreach ?>
+							<tbody>
+						</table>
+
+						<table class="FormLayout">
+							<tr class="SeparatedRow">
+								<td><input type=checkbox name="importFirstLine" id="ImportFirstLine" value=1 <? wbs_checkboxStatus val=$csv_importfirstline true_val=1 ?>/></td>
+								<td><? wbs_label text=$pmStrings.icl_importfirst_label for="ImportFirstLine" skipColon=true?></td>
+							</tr>
+						</table>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton caption=$pmStrings.icl_import_btn name="importbtn" ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+						<? /wbs_buttonSet ?>
+
+					<? /if ?>
+
+			<? /if ?>
+
+			<input type="hidden" name="step" value="<? $step ?>"/>
+			<input type="hidden" name="headers_pack" value="<? $headers_pack ?>"/>
+			<input type="hidden" name="tmpFileName" value="<? $tmpFileName ?>"/>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

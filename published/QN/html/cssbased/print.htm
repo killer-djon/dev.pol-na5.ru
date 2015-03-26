@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	<script language="JavaScript" type="text/JavaScript">
+	<!--
+		function returnToAB()
+		{
+			location.href=location.href="quicknotes.php<? if $trans_sid ?><? "?"|cat:$session_name|cat:"="|cat:$session_id ?><? /if ?>";
+		}
+
+		function processForm( formObj )
+		{
+			formObj =  document.forms[0];
+
+			formObj.target="_blank";
+			formObj.submit();
+			returnToAB();
+		}
+
+		function cancelForm( formObj )
+		{
+			returnToAB();
+		}
+	-->
+	</script>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="print_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+				<? wbs_formContent ?>
+		<tr class="SeparatedRow">
+			<td class="FormSection"><? $qnStrings.ps_screen_print_label|cat:":" ?></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 20px">
+				<input class="FormControl" type=radio <? switchedOutput val=$printMode true_val=0 str1="checked " ?> name=printMode id=printMode value=0>
+				<? wbs_label for="printMode" fieldName="printMode" text=$qnStrings.ps_screen_selected_label|cat:" ("|cat:$showSelected|cat:")" skipColon=true ?>
+			</td>
+		</tr>
+		<? if $folderCount ?>
+			<tr>
+				<td style="padding-left: 20px">
+					<table cellpadding=0 cellspacing=0 border=0>
+						<tr>
+							<td><input class="FormControl" type=radio <? switchedOutput val=$printMode true_val=1 str1="checked " ?> name=printMode id=printMode2 value=1></td>
+							<td><? wbs_label for="printMode2" fieldName="printMode" text=$qnStrings.ps_screen_folder_label skipColon=false ?></td>
+							<td>
+								<select class="FormControl" name="curQNF_ID">
+									<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$currentFolder showAnyRights=true?>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		<? /if ?>
+		<tr class="SeparatedRow">
+			<td style="padding-left: 20px"><input class="FormControl" type=radio <? switchedOutput val=$printMode true_val=2 str1="checked " ?> name=printMode id=printMode3 value=2>&nbsp;<? wbs_label for="printMode3" fieldName="printMode" text=$qnStrings.ps_screen_entire_label skipColon=true ?></td>
+		</tr>
+		<tr>
+			<td>
+				<? wbs_label for="template_id" fieldName="template_id" text=$qnStrings.ps_screen_select_template skipColon=false ?>&nbsp;
+				<select class="FormControl"  name="template_id" id="template_id">
+					<? html_options values=$templates_ids selected=$current_template  output=$templates_names ?>
+				</select>
+			</td>
+		</tr>
+				<? /wbs_formContent ?>
+
+				<? wbs_formButtonsPanel ?>
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton name="savebtn" caption=$qnStrings.ps_screen_print_btn link="javascript:processForm(this.form);" ?>
+						<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn link="javascript:cancelForm(this.form);" ?>
+					<? /wbs_buttonSet ?>
+				<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout?>
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn link="javascript:cancelForm(this.form);"?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+			<input type="hidden" name="action" value="<?$action?>">
+			<input type="hidden" name="curFolderID" value="<?$curFolderID?>">
+			<input type="hidden" name="QNF_ID" value="<? $QNF_ID ?>">
+			<input type="hidden" name="currentPage" value="<?$currentPage?>">
+			<input type="hidden" name="doclist" value="<?$doclist?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>
+

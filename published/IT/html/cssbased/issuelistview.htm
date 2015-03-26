@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'viewdata' )">
+		<? wbs_pageLayout toolbar="issuelistview_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+					<? wbs_formLayout caption=$pageTitle ?>
+
+						<? wbs_formContent ?>
+
+							<tr>
+								<td>
+									<table class="FormLayout">
+										<tr class="SeparatedRow">
+											<td colspan="2"><? wbs_label text=$itStrings.cv_numrecs_label for="numperpage" ?></td>
+											<td>
+												<select name="viewdata[RECORSPERPAGE]" class="FormControl" id="numperpage">
+													<? html_options values=$recsPerPage output=$recsPerPage selected=$viewdata.RECORSPERPAGE ?>
+												</select>
+											</td>
+										</tr>
+									</table>
+
+									<table class="FormLayout">
+										<tr>
+											<td><input type="checkbox" id="restrict"  name="viewdata[RESTRICTDESCRIPTION]" value="1" <? wbs_checkboxStatus val= $viewdata.RESTRICTDESCRIPTION true_val=1 ?>/></td>
+											<td>
+												<? wbs_label skipColon=true text=$itStrings.cv_issuelen_label for="restrict" fieldName="DESCLENGTH" ?>
+												<input name="viewdata[DESCLENGTH]" type="text" class="FormControl" value="<? $viewdata.DESCLENGTH ?>" size="5"/>
+												<? wbs_label skipColon=true text=$itStrings.cv_characters_label  ?>
+											</td>
+										</tr>
+										<!--tr> 
+											<td valign="top"><input type="checkbox" id="links" name="viewdata[DISPLAYSENDLINKS]" value="1" <? wbs_checkboxStatus val= $viewdata.DISPLAYSENDLINKS true_val=1 ?>/></td>
+											<td valign="middle"><? wbs_label skipColon=true text=$itStrings.cv_displquickfw_label for="links" ?></td>
+										</tr>
+										<tr class="SeparatedRow"> 
+											<td valign="top"><input type="checkbox" id="history" name="viewdata[DISPLAYISSUEHISTORY]" value="1" <? wbs_checkboxStatus val= $viewdata.DISPLAYISSUEHISTORY true_val=1?>/></td>
+											<td valign="middle"><? wbs_label skipColon=true text=$itStrings.cv_showissuehistory_label for="history" ?></td>
+										</tr-->
+									</table>
+
+									<table class="FormLayout">
+										<tr class="SeparatedRow">
+											<td class="FormSection"><? wbs_note smallFont=false displayNoteMarker=false ?><? $itStrings.cv_listsettings_title ?><? /wbs_note ?></td>
+										</tr>
+										<tr>
+											<td class="Indent">
+												<input type="checkbox" name="viewdata[SHOWSTATUS]" value="1" id="showstatus" <? wbs_checkboxStatus val= $viewdata.SHOWSTATUS true_val=1 ?>/>
+												<? wbs_label for="showstatus" skipColon=true text=$itStrings.cv_showstatus_label ?>
+											</td>
+										</tr>
+										<tr>
+											<td class="Indent">
+												<input type="checkbox" id="showsender" name="viewdata[SHOWSENDER]" value="1" <? wbs_checkboxStatus val= $viewdata.SHOWSENDER true_val=1 ?>/>
+												<? wbs_label for="showsender" skipColon=true text=$itStrings.cv_showsender_label ?>
+											</td>
+										</tr>
+										<tr>
+											<td class="Indent">
+												<input type="checkbox" id="showassignee" name="viewdata[SHOWASSIGNEE]" value="1" <? wbs_checkboxStatus val= $viewdata.SHOWASSIGNEE true_val=1 ?>/>
+												<? wbs_label for="showassignee" skipColon=true text=$itStrings.cv_showassignee_label ?>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						<? /wbs_formContent ?>
+
+						<? wbs_formButtonsPanel ?>
+
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" onClick="fillSelectedLists( new Array( 'visibleColumnsIDs[]', 'hiddenColumnsIDs[]' ) );" ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+							<? /wbs_buttonSet ?>
+
+						<? /wbs_formButtonsPanel ?>
+
+					<? /wbs_formLayout ?>
+
+			<? /if ?>
+
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

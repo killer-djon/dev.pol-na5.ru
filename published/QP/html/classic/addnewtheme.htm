@@ -1,0 +1,92 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="white">
+<?strip?>
+<form name="form" method="post" action="<? $formLink ?>">
+
+	<? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+	<? include file="../../../common/html/classic/toppanel_fix.htm" nospace=1 noleftspace=1 ?>
+
+	<div style="padding-left: 20px;">
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+
+	<? if !$fatalError ?>
+
+	<table border=0 cellspacing=4 width=600>
+	<tr>
+		<td colspan=4>
+			<? conditionalOutput invalidField=$invalidField field=QPT_NAME text=#invalidFieldHighlight# ?><nobr><? $qpStrings.qpt_themename_title ?> : </nobr> <input type=text class="control" name="themeData[QPT_NAME]" value="<? $themeData.QPT_NAME ?>"><br><br>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top><input type=radio name=newtype value=1 checked></td>
+		<td valign=top><b><? $qpStrings.qp_publish_tree_title ?></b>
+			<br><? $qpStrings.pub_screen_tree_descr ?>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align=left><? $qpStrings.qp_publish_sample|cat:":<br>" ?><img src=../classic/images/tree.gif style="border: solid 1px Grey;"></td>
+	</tr>
+	<tr>
+		<td colspan=4>
+			&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td width=1 valign=top><input type=radio name=newtype value=0></td>
+		<td valign=top width=100%><b><? $qpStrings.qp_publish_plain_title ?></b>
+			<br><? $qpStrings.pub_screen_plain_descr ?>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align=left><? $qpStrings.qp_publish_sample|cat:":<br>" ?><img src=../classic/images/plain.gif style="border: solid 1px Grey;"></td>
+	</tr>
+	<tr>
+		<td colspan=4>
+			&nbsp;
+		</td>
+	</tr>
+	<? if $themesCount > 0 ?>
+	<tr>
+		<td valign=top><input type=radio name=newtype value="copy"></td>
+		<td valign=top><b><? $qpStrings.qpt_copyfrom_theme_label|cat:":&nbsp;" ?></b><br>
+
+		<select name="fromTheme">
+			<? foreach from=$themes item=theme ?>
+			<option value="<? $theme.QPT_ID ?>"><nobr><? $theme.QPT_NAME|htmlsafe:true:true ?> (<? if $theme.QPT_TYPE == 0 ?><? $qpStrings.qp_publish_plain_title ?><? else ?><? $qpStrings.qp_publish_tree_title ?><? /if ?>)</nobr>
+			<? /foreach ?>
+		</select>
+
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align=center>&nbsp;</td>
+	</tr>
+	<? /if ?>
+
+	<tr>
+		<td colspan=4>
+			<br><br>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="okbtn" caption=$kernelStrings.app_ok_btn formname="form" space_right=10 ?>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" space_right=10 ?>
+		</td>
+	</tr>
+	</table>
+	<br>
+	<? /if ?>
+	<input name="edited" type="hidden" value="1">
+	<input name="folder" type="hidden" value="<? $folder ?>">
+	<input name="sorting" type="hidden" value="<? $sorting?>">
+	<input type="hidden" name="btndummy">
+
+	</div>
+
+	<?include file="../../../common/html/classic/pagefooter.htm" norightspace=1 ?>
+</form>
+<br><br>
+<?/strip?>
+</body>
+</html>

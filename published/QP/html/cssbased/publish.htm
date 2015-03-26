@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	<script language="JavaScript">
+	<!--
+
+		function confirmPublishBtn()
+		{
+			return confirm( "<? $qpStrings.pub_screen_publ_msg ?>" );
+		}
+
+		function confirmUnPublishBtn()
+		{
+			return confirm( "<? $qpStrings.pub_screen_unpubl_msg ?>" );
+		}
+
+		function getRadioValue ( property )
+		{
+			var retVal;
+			var i=0;
+
+			if (document.form[property] )
+			while (i < 100) {
+				if (document.form[property][i] && document.form[property][i].checked )
+				{
+					return document.form[property][i].value;
+				}
+				i++;
+			}
+
+			return '';
+		}
+
+		function openpreview()
+		{
+			var theme;
+			theme = getRadioValue ( 'QPB_THEME' );
+
+			window.open( '<? $urlBook ?>'+'&previewTheme='+theme );
+		}
+
+	//-->
+	</script>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="publish_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+			<? wbs_formCaption text=$bookData.QPB_NAME ?>
+
+				<? wbs_formLayout ?>
+					<? wbs_formContent ?>
+					<tr>
+						<td width="20" valign=top>
+							<input class="FormControl" name="published" id="published0" type="radio" value="0" <? if !$published ?>checked<? /if ?> 	<? if !$rights ?> disabled <? /if ?> >
+						</td>
+						<td width=100%>
+							<b><? wbs_label for="published0" fieldName="published" text=$qpStrings.pub_screen_notpublished_label skipColon=true ?></b>
+						</td>
+					</tr>
+					<tr>
+						<td width="20" valign=top>
+							<input class="FormControl" name="published" id="published1" type="radio" value="1" <? if $published ?>checked<? /if ?> 	<? if !$rights ?> disabled <? /if ?> >
+						</td>
+						<td width=100%>
+							<b><? wbs_label for="published1" fieldName="published" text=$qpStrings.pub_screen_published_label skipColon=true ?></b>
+						</td>
+					</tr>
+					<tr class="SeparatedRow">
+						<td></td>
+						<td>
+							<? wbs_note displayNoteMarker=false smallFont=false ?><? $qpStrings.pub_screen_themes_title|cat:":" ?><? /wbs_note ?>
+						</td>
+					</tr>
+					<tr class="SeparatedRow">
+						<td></td>
+						<td>
+							<table class="FormLayout">
+							<tr>
+							<td>
+								<input class="FormControl" type=radio name="QPB_THEME" id="deftheme" value="DEFAULT" <? if "DEFAULT" == $QPB_THEME ?>checked<? /if ?>>
+							</td>
+								<td><nobr><? wbs_label for="deftheme" fieldName="QPB_THEME" text=$qpStrings.app_systemtheme_text|htmlsafe:true:true skipColon=true ?></nobr>
+							</td>
+							</tr>
+							<? foreach from=$themes item=theme ?>
+							<tr><td><input type=radio name="QPB_THEME" id="thm<? $theme.QPT_ID ?>" value="<? $theme.QPT_ID ?>" <? if $theme.QPT_ID == $QPB_THEME ?>checked<? /if ?>></td>
+							<td>
+								<? if $theme.QPT_TYPE == 0 ?>
+									<? assign var=thmType value="("|cat:$qpStrings.qp_publish_plain_title|cat:")" ?>
+								<? else ?>
+									<? assign var=thmType value="("|cat:$qpStrings.qp_publish_tree_title|cat:")" ?>
+								<? /if ?>
+								<nobr><? wbs_label for="thm"|cat:$theme.QPT_ID fieldName="QPB_THEME" text=$theme.QPT_NAME|htmlsafe:true:true|cat:$thmType skipColon=true ?></nobr>
+								</td></tr>
+							<? /foreach ?>
+							</table>
+						</td>
+					</tr>
+					<tr class="SeparatedRow">
+						<td colspan=2>
+							<? wbs_note width="500px" displayNoteMarker=true smallFont=false ?>
+								<? $qpStrings.pub_screen_theme_note ?>
+							<? /wbs_note ?>
+						</td>
+					</tr>
+					<tr class="SeparatedRow">
+						<td width="20" valign=top>
+							<input class="FormControl" name="properties[auth]" id="properties[auth]" type="checkbox" value="1" <? if $properties.auth ?>checked<? /if ?> 	<? if !$rights ?> disabled <? /if ?> >
+						</td>
+						<td width=100%>
+							<? wbs_label for="properties[auth]" fieldName="properties[auth]" text=$qpStrings.pub_screen_authrequired_label skipColon=true ?>
+						</td>
+					</tr>
+
+					<? if $rights ?>
+					<tr class="SeparatedRow">
+					<td colspan=2 align=left>
+
+						<table class="FormLayout">
+						<tr>
+							<td><? wbs_label for="properties[language]" fieldName="properties[language]" text=$qpStrings.pub_screen_lang_label skipColon=false ?></td>
+						<td>
+							<select class="FormControl" name="properties[language]" id="properties[language]" >
+								<? html_options values=$language_ids selected=$properties.language output=$language_names ?>
+							</select>
+						</td>
+						</tr>
+						<!--tr>
+							<td><? wbs_label for="properties[language]" fieldName="properties[language]" text=$qpStrings.pub_screen_codepage_label skipColon=false ?></td>
+						<td>
+							<select name="properties[codepage]" id="properties[codepage]" class="FormControl" style="width: 200px">
+							<? foreach from=$cpArray key=cKey item=cItem ?>
+								<? assign var=nameidx value=$cItem.NAME ?>
+								<option value="<? $cItem.VALUE ?>" <? conditionalOutput invalidField=$cItem.VALUE field=$properties.codepage text="selected"  ?>><? $qpStrings.$nameidx ?></option>
+							<? /foreach ?>
+							</select>
+						</td-->
+						</tr>
+						</table>
+					</td>
+					</tr>
+					<? /if ?>
+
+					<tr class="SeparatedRow">
+						<td colspan=2>
+							<? wbs_button link="javascript:openpreview()" caption=$qpStrings.pub_screen_preview_btn ?>
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan=2>
+							<? wbs_note width="500px" displayNoteMarker=false smallFont=false ?>
+								<? $qpStrings.pub_screen_url_label|cat:":" ?>
+							<? /wbs_note ?>
+							<textarea class="FormControl" style="font-size: 11px; width: 100%;" name="url" rows=3 cols=20 wrap="hard" readonly><? $urlHTML ?></textarea>
+						</td>
+					</tr>
+
+					<? /wbs_formContent ?>
+					<? wbs_formButtonsPanel ?>
+						<? wbs_buttonSet ?>
+							<? if $rights ?>
+								<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+							<? /if ?>
+							<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+						<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+				<? /wbs_formLayout ?>
+
+
+			<? else ?>
+				<? wbs_button caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+			<? /if ?>
+
+			<input type="hidden" name="currentBookID" value="<?$currentBookID?>">
+			<input type="hidden" name="opener" value="<?$opener?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

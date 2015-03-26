@@ -1,0 +1,157 @@
+<script language="JavaScript">
+<!--
+
+	window.CustomSplitterHeightHandler = function (splitterHeight)
+	{
+
+		if ( SplitterInfo.LeftPanelVisible )
+		{
+			var FoldersPanel = document.getElementById( 'FoldersHeadersPanel' );
+
+			var Content = document.getElementById( 'SplitterLeftScrollableContent' );
+
+			var TotalHeight = splitterHeight - FoldersPanel.offsetHeight;
+
+			var OffsetHeight = Content.offsetHeight;
+
+			SplitterInfo.LeftPanelContent.style.height = TotalHeight + 'px';
+		}
+
+		var RightPanelHeader = document.getElementById( 'RightPanelHeader' );
+		var ListHeader = document.getElementById( 'ListHeaderContainer' );
+		var ListFooter = document.getElementById( 'ListFooterContainer' );
+
+		var ListHeaderHeight = 0;
+		if ( ListHeader )
+			ListHeaderHeight = ListHeader.offsetHeight;
+
+		var ListFooterHeight = 0;
+		if ( ListFooter )
+		{
+			ListFooterHeight = ListFooter.offsetHeight;
+			ListFooter.style.visibility = 'visible';
+		}
+
+		rphHeight = (RightPanelHeader == null) ? 0 : RightPanelHeader.offsetHeight;
+		SplitterInfo.RightPanelContent.style.height = splitterHeight - rphHeight - ListHeaderHeight - ListFooterHeight + 'px';
+	}
+
+	function checkMinRights( rights )
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ )
+			if (thisForm.elements[i].type == 'checkbox')
+				if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked ) {
+					QN_ID = thisForm.elements[i].value;
+
+					var rightsObj = tree_MM_findObj( "noterights["+QN_ID+"]" );
+					if (!rightsObj)
+						return false;
+
+					if ( rightsObj.value < rights )
+						return false;
+				}
+
+		return true;
+	}
+
+	function confirmFolderDeletion()
+	{
+		return confirmDeletionAjax( '<? $qnStrings.qn_screen_flddelete_message ?>' );
+	}
+
+	function alertDelete()
+	{
+		 alert( '<? $kernelStrings.app_treenoflddelrights_message ?>' );
+		 return false;
+	}
+
+	function alertMove()
+	{
+		alert( '<? $kernelStrings.app_treenomovetosubfldrights_message ?>' );
+		return false;
+	}
+
+	function alertCopy()
+	{
+		alert( '<? $kernelStrings.app_treenocopyfldrights_message ?>' );
+		return false;
+	}
+
+	function alertAdd()
+	{
+		alert( '<? $kernelStrings.app_treenofldrights_message ?>' );
+		return false;
+	}
+
+	function alertAddRoot()
+	{
+		alert( '<? $kernelStrings.app_treenorootrights_message ?>' );
+		return false;
+	}
+
+	function alertModify()
+	{
+		alert( '<? $kernelStrings.app_treeinvcurfldrights_message ?>' );
+		return false;
+	}
+
+	function confirmCopy()
+	{
+		if ( !treeCheckSelection( '<? $qnStrings.qn_screen_emptycopy_message ?>' ) )
+			return false;
+
+		return true;
+	}
+
+	function confirmMove()
+	{
+		if ( !treeCheckSelection( '<? $qnStrings.qn_screen_emptymove_message ?>' ) )
+			return false;
+
+		if ( !checkMinRights( 1 ) ) {
+			alert( '<? $qnStrings.qn_screen_invrights_message ?>' );
+			return false;
+		}
+
+		return true;
+	}
+
+	function confirmDeletion()
+	{
+		if ( !treeCheckSelection( '<? $qnStrings.qn_screen_emptydel_message ?>' ) )
+			return false;
+
+		if ( !checkMinRights( 1 ) ) {
+			alert( '<? $qnStrings.qn_screen_invrights_message ?>' );
+			return false;
+		}
+
+		return confirm( '<? $qnStrings.qn_screen_confirmdel_message ?>' );
+	}
+
+	function submitFolder( obj )
+	{
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 ) {
+			return false;
+		}
+
+		obj.form.submit();
+	}
+
+
+	function findCurrentFolder()
+	{
+		obj = document.getElementById("<? $currentFolder ?>");
+		if ( obj ) {
+			obj.scrollIntoView();
+		}
+	}
+
+	RegisterOnLoad( function(){ SplitterScrollPanel( '<? $currentFolder ?>' ) } );
+
+//-->
+</script>
+

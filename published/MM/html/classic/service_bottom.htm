@@ -1,0 +1,10 @@
+<? if $curScreen == 0?>
+	<br>
+	<? foreach from=$senders item=sender key=id ?>
+		<a href=addmodsender.php?action=edit&MMS_ID=<? $sender.MMS_ID ?>><? $sender.MMS_FROM|htmlsafe:true:true ?> &lt; <? $sender.MMS_EMAIL|htmlsafe:true:true ?> &gt; </a><br>
+	<? foreachelse ?>
+		<? $mmStrings.sv_nosenders_text ?><br>
+	<? /foreach ?>
+	<br>
+	<? include file="../../../common/html/classic/button.htm" align="left" name="addsenderbtn" caption=$mmStrings.sv_addsender_btn formname="form" space_right=2 ?>
+<? /if ?>

@@ -1,0 +1,377 @@
+app_name_long	Common	Full Application Name	Photos
+app_name_short	Common	Short Application Name	Photos
+app_availablespace_text	Common	Available Storage Space	Available storage space: %s
+notify_onfolderupdate_name	Common	Email notification label On Album Update	Is notified on album update
+app_filename_field	Common	Filename field label	Filename
+app_desc_field	Common	Description field label	Description
+app_type_field	Common	Type field label	Type
+app_size_field	Common	Size field label	Size
+app_uploaddate_field	Common	Upload Date field label	Date
+app_addeddate_field	Common	Added Date field label	Added
+app_by_label	Common	Added by label	by
+app_owner_field	Common	Owner field label	Owner
+app_modifieddate_field	Common	Modified Date field label	Modified
+app_modifiedby_field	Common	Modified By field label	Modified By
+app_file_field	Common	Image field label	Image
+app_folder_field	Common	Album field label	Album
+app_nofolders_message	Common	Album absence message	There are no albums to perform this operation
+app_copyerr_message	Common	Image copying error message	Error copying file
+app_delerr_message	Common	Image deleting error message	Error deleting file
+app_mail_title	Common	E-mail header	Dear %s,
+app_mail_info	Common	E-mail text	This note is to inform you that Photo Depot album has been updated.
+app_mail_subject	Common	E-mail subject	Album Update
+app_mail_foldername	Common	Updated album mark	Updated album
+app_mail_addoperation	Common	Adding images message text	%s images(s) added
+app_mail_deleteoperation	Common	Deleting Images message text	%s images(s) deleted
+app_nozlib_message	Common	No Zlib library installed message	To upload/download archives your server must have Zlib Compression Functions installed
+app_treeavailalbums_name	Common	Available Albums label	Available Albums
+app_treeselfld_item	Common	<select album> item	<select album>
+app_treeaddalbum_title	Common	Modifying album page in Create Album mode name	Add Album
+app_treemodalbum_title	Common	Modifying album page in Modify Album mode name	Customize Access Rights
+app_treemovealbum_text	Common	Move Album text	Move Album
+app_treedelalbum_text	Common	Delete Album text	Delete Album
+app_treecopyalbum_text	Common	Copy Album text	Copy Album
+app_treerenamealbum_title	Common	Rename Album text	Rename Album
+app_album_title	Common	Album Tab Title	Album
+ama_albumname_label	Common	Album Name label	Album Name
+app_treefolder_label	Common	Label for "Full" book permissions	Full
+app_treealbumname_title	Common	Album Name column header on the Albums & Users Rights page	Album Name
+app_available_pages_name	Common	 Available Pages rights name	Available Pages
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Can create albums
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Can see other users' permissions
+app_treefolders_text	Common	Folders text	Available Actions with Albums
+app_treeavailflds_title	Common	Available Albums column header on the Folders & Users Rights page	Available Albums
+app_readaccess_name	Common	Read access	Read
+app_writeaccess_name	Common	Read/Write access	Write
+app_folderaccess_name	Common	Read/Write/Folder access	Full
+app_doclimit_message	Common	File numer limitation message	<b>ACCOUNT LIMIT</b>: Number of photos can not exceed %s.
+app_available_functions_name	Common	 Available Functions	Available Functions
+
+app_treenocopymoverights_message	Common	Lack of administrative rights to copy files in this folder message	You have no rights to copy or move entries into this album
+app_treenocopytorights_message	Common	Lack of administrative rights to copy files in this folder message	You have no rights to copy albums into this album
+app_treenomovetofldrights_message	Common	Lack of administrative rights to move a folder in the specified folder message	You have no rights to move albums into this album
+app_treesavecopymove_message	Common	Copying or moving files in the same folder message	Can not copy/move image(s) in the same album
+app_treeselectfolder_message	Common	Copying/moving without specifying the folder message	Please select album
+
+pd_screen_long_name	Photo Depot	Quick Notes page full name	Photos
+pd_screen_short_name	Photo Depot	Photo Depot page short name	Photos
+pd_screen_addfiles_menu	Photo Depot	Menu item Image/Add Image(s)	Add Image(s)
+pd_screen_viewdetails_menu	Photo Depot	Menu item Image/View Image Details	View
+pd_screen_copyfiles_menu	Photo Depot	Menu item Image/Copy Image(s)	Copy
+pd_screen_movefiles_menu	Photo Depot	Menu item Image/Move Image(s)	Move
+pd_screen_deletefiles_menu	Photo Depot	Menu item Image/Delete Image(s)	Delete
+pd_screen_thumbnaillist_menu	Photo Depot	Menu item View/Thumbnail List	Thumbnails & Descriptions
+pd_screen_thumbnailtile_menu	Photo Depot	Menu item View/Thumbnail Tile	Thumbnails Only
+pd_screen_custview_menu	Photo Depot	Menu item View/Customize View	Customize View
+pd_screen_summary_note	Photo Depot	Available Albums label under the table	%s image(s) in %s accessible album(s)
+pd_screen_emptydel_message	Photo Depot	Message when user tries to delete a file without selecting it	Please select objects you want to delete
+pd_screen_emptycheckin_message	Photo Depot	Message when user tries to check in a file without selecting it	Please select objects you want to Check In.
+pd_screen_invcheckinrights_message	Photo Depot	Message on the lack of rights to check in images	You have no rights to Check In some of selected images.
+pd_screen_confirmcheckin_message	Photo Depot	Check in confirmation	Do you really want to Check In selected images?
+pd_screen_checkinrighs_message	Photo Depot	Check in rights message	Some of selected images could not be Checked In because they have been Checked Out by other users or you may have not sufficient access rights in the album.
+pd_screen_invrights_message	Photo Depot	Message on the lack of rights to move/delete images	You have no rights to move/delete some of selected images.
+pd_screen_confirmdel_message	Photo Depot	Deleting Image(s) confirmation	Do you want to delete this file(s)?
+pd_screen_emptyrestore_message	Photo Depot	Image recovery without selecting the images message	Please select objects you want to restore.
+pd_screen_emptycheckout_message	Photo Depot	Image check out without selecting the images message	Please select objects you want to Check Out.
+pd_screen_emptycopy_message	Photo Depot	Image copying without selecting the images message	You must select file(s) for this operation first.
+pd_screen_emptymove_message	Photo Depot	Image moving without selecting the images message	You must select file(s) for this operation first.
+pd_screen_viewdet_message	Photo Depot	Not select image to view details	You must select one file for this operation first.
+pd_screen_emptyemail_message	Photo Depot	Sending email without selecting the images message	You must select file(s) for this operation first.
+pd_screen_flddelete_message	Photo Depot	Album deletion warning	Do you want to delete this album?
+pd_screen_folder_menu	Photo Depot	Menu Item Album	Album
+pd_screen_file_menu	Photo Depot	Menu Item Image	Image
+pd_screen_view_menu	Photo Depot	Menu Item View	View
+pd_screen_search_label	Photo Depot	Search bar label	Search
+pd_screen_search_btn	Photo Depot	Search button	Go
+pd_screen_showfolders_btn	Photo Depot	Show Albums button	Albums
+pd_sreen_searchresult_title	Photo Depot	Search Results header	Search Results
+pd_sreen_summarydoc_title	Photo Depot	Column in the Available Albums table	Images
+pd_screen_numdocs_label	Photo Depot	Text under notes list	Image(s)
+pd_screen_noaccess_message	Photo Depot	Album access denied message	Access denied.\n\nNOTE: To setup an access to Photo Depot albums please go to the "Image/Albums & User Rights" menu item. If you do not see this item in your menu - refer to your system administrator.
+pd_screen_norights_message	Photo Depot	Lack of rights on Image modifying message	You have no rights to work with this document
+pd_screen_editfile_hint	Photo Depot	Hint on the link to the Image modifying	Modify file name and description
+pd_screen_nofiles_text	Photo Depot	Empty album text	<no images>
+pd_screen_sorting_title	Photo Depot	Sorting bar header	Sorting
+pd_screen_namesorting_title	Photo Depot	Link to sort by Filename	Filename
+pd_screen_sendemail_menu	Photo Depot	Menu Send Email	Send Email...
+pd_screen_more_label	Photo Depot	More label	more...
+pd_screen_deletelocked_error	Photo Depot	Error deleting locked file message	Image %s could not be deleted because it have been Checked Out by %s. You must have F (Album) access rights to delete this file.
+pd_screen_adddescription_label	Photo Depot	Add description	add a description
+pd_screen_savedescription_label	Photo Depot	Save label	Save
+pd_screen_canceldescription_label	Photo Depot	Cancel label	Cancel
+app_pd_manage_collections	Common	comment	Can create and manage collections
+app_pd_modify_design	Common	comment	Can modify public gallery design and settings
+app_pd_manage_albums	Common	comment	Can manage albums (and see the list of all albums)
+
+
+cm_screen_copy_title	Copy/Move	Header of the Image copying in progress page	Copy Images
+cm_screen_move_title	Copy/Move	Header of the Image moving in progress page	Move Images
+cm_screen_copyfolder_title	Copy/Move	Header of the Album copying in progress page	Copy Album
+cm_screen_movefolder_title	Copy/Move	Header of the Album moving in progress page	Move Album
+cm_screen_copy_btn	Copy/Move	Copying in progress button	Copy
+cm_screen_move_btn	Copy/Move	Moving in progress button	Move
+cm_screen_filenum_label	Copy/Move	Text: number of images selected	file(s) selected
+cm_replace_error	Copy/Move	Replace error message	Image %s is checked out by %s and can not be replaced
+
+cv_screen_title	Customize View	Page header	Customize View
+cv_screen_notesnum_label	Customize View	 	Number of images on one page:
+cv_restrictdesc_label	Customize View	Restrict description label	Restrict visible image description to
+cv_characters_label	Customize View	Characters label	characters
+cv_restrict_note	Customize View	Restriction note	Leave this field blank to void restriction
+
+add_screen_norights_message	Add Image	Lack of administrative rights message	You have no rights to add images into this album
+add_screen_copyerr_message	Add Image	Error copying images message	Error copying images
+add_screen_long_name	Add Image	Page header	Add Images
+add_screen_nofiles_message	Add Image	Submitting without selecting any images message	You must select at least one file to add
+add_screen_morefiles_label	Add Image	 	Click here if you want to upload more images
+add_screen_apd_btn	Add Image	Add button	Add
+add_screen_upload_text	Add Image	Text displayed while images are being added	Adding images...
+add_screen_uploadwait_text	Add Image	Text displayed while images are being uploaded	Please wait while we are uploading your file(s)...
+add_screen_upload_err_success	Add Image	Message returned after successful file(s) uploading	Image(s) successfully uploaded
+add_screen_upload_err_maxfile_exceed	Add Image	Message returned if the size of file to be uploaded exceeds one allowed by UPLOAD_MAX_FILESIZE directive	Size of file to be uploaded exceeds the limit allowed by UPLOAD_MAX_FILESIZE directive in php.ini
+add_screen_upload_err_maxfilehtml_exceed	Add Image	Message returned if the size of file to be uploaded exceeds one allowed in HTML form	Size of file to be uploaded exceeds the limit allowed by MAX_FILE_SIZE directive in HTML form
+add_screen_upload_err_part	Add Image	Message returned if only a part of file was uploaded	The file was only partially uploaded
+add_screen_upload_err_nofile	Add Image	Message returned if file was not uploaded	Image was not uploaded
+add_screen_upload_err_tempmissed	Add Image	Message returned if temporary album is not available	Temporary album is not available
+add_screen_upload_error	Add Image	Message returned if error occurred when file has been uploading	Error uploading file <b>%s</b>. %s.
+add_screen_upload_success	Add Image	Message returned after successful file(s) uploading	Image <b>%s</b> successfully uploaded.
+add_screen_upload_locked	Add Image	Message returned if uploaded file was locked by another user	Image <b>%s</b> could not be added (checked out by %s).
+add_screen_upload_info	Add Image	Common file upload status message	Image <b>%s</b>: %s.
+add_screen_filename_title	Add Image	Image Name title	Image Name
+add_screen_comment_title	Add Image	Comment title	Comment
+add_screen_of	Add Image	Of string	of
+add_screen_bulk_link	Add File	Bulk message	New Bulk Uploader
+add_screen_bulk_requires	Add File	Bulk message	requires
+add_filenameasdesc_label	Add File	Filename as description label	Use file name as a description (if description is not added manually)
+
+addfld_screen_errorfld_message	Add Album	Error crating directory message	Error creating album directory
+
+ua_file_label	Upload Archive	Image label	Archive
+ua_selectfile_message	Upload Archive	Select file message	Please specify ZIP archive to upload
+ua_errorarchive_message	Upload Archive	Error reading archive message	Error reading archive
+ua_archivesnotsupported_message	Upload Archive	Archives not supported message	To be able to work with archives you must have ZLIB extension installed on your PHP server.\n\nPlease contact your server administrator for further details.
+ua_filefolders_label	Upload Archive	Images and albums label	%s contains %s file(s)
+ua_requiredspace_label	Upload Archive	Required disk space label	Required disk space: %s
+ua_availablespace_label	Upload Archive	Available disk space label	Available disk space: %s
+ua_imagesfound_label	Upload Archive	Images found label	%s image(s) found
+ua_arciveuploaded_message	Upload Archive	Archive uploaded message	Archive %s successfully uploaded
+ua_arciveuploaderror_message	Upload Archive	Archive uploading error message	Error uploading archive %s: %s.
+ua_filesextracted_label	Upload Archive	Images extracted label	Total images extracted
+ua_imagesextracted_label	Upload Archive	Images extracted label	Image images extracted
+ua_thumbscreated_label	Upload Archive	Thumbnails created label	Thumbnails created
+ua_thumberrors_label	Upload Archive	Thumbnail errors label	Errors creating thumbnail
+ua_fileformat_note	Upload Archive	Image format note	Only ZIP archive file can be uploaded
+ua_partialupload_message	Upload Archive	Partially uploaded archive message	Archive %s has been partially uploaded:
+ua_upload_note	Upload Archive	Upload archive note	Upload Archive function allows you to upload and automatically extract images from any ZIP file.
+ua_nospacerequired_note	Upload Archive	No required space note	Available disk space is not sufficient to extract all archive images. Your archive will be only partially extracted. To increase available disk space you must sign up for extra storage or delete some images and/or database entries.
+ua_uploadarchive_text	Upload Archive	Text displayed while archive are being uploaded	Uploading archive...
+ua_uploadwait_text	Upload Archive	Text displayed while archive are being uploaded	Please wait while we are uploading your archive...
+
+sm_page_title	Send Email	Page title	Send Email
+sm_to_label	Send Email	Label To	To
+sm_subject_label	Send Email	Label Subject	Subject
+sm_message_label	Send Email	Label Message	Message
+sm_send_btn	Send Email	Send button	Send
+sm_recnotset_message	Send Email	Error message	You must specify some recipients for this message.
+sm_recipientlimit_message	Send Email	Error message	Limit number of recipients has been exceeded: %s
+sm_included_label	Send Email	Included label	Included
+sm_notincluded_label	Send Email	Not included label	Not Included
+sm_tomore_label	Send Email	To (more) label	To (more)
+sm_attachments_label	Send Email	Attachments label	Attachments
+sm_totalfileinfo_label	Send Email	Total images information	Total: %s file(s) (%s)
+sm_filename_label	Send Email	Image name label	Imagename
+sm_invalidemail_message	Send Email	Invalid email message	Invalid email address format: %s
+sm_errorsending_message	Send Email	Error sending email message	Error sending email
+sm_from_label	Send Email	From label	From
+
+fd_page_title	Image	Page title	Image
+fd_close_btn	Image	Close button	Close
+fpp_page_title	Image	Page Title	Image Properties
+fpp_norights_message	Image	No rights message	You have no rights to modify this file
+fpp_editfile_hint	Image	Edit file hint	Edit file name and description
+fpp_comment_label	Image	Comment title	Comment
+fpp_back_btn	Image	Back button	Back to images list
+
+add_screen_simple_upload_title	Add Image	Simple Upload	One by one
+add_screen_advanced_upload_title	Add Image	Advanced Upload	Bulk Upload
+add_screen_zip_archive_upload_title	Add Image	Upload ZIP archive	ZIP archive
+add_screen_upload_error_wrong_file	Add Image	Message returned if error occurred when file has been uploading	Error uploading file <b>%s</b>. %s.
+add_screen_upload_not_valid_image	Add Image	Message descripted wrong images	File is not valid image
+
+add_screen_upload_image_count	Add Image	Message descripted uploaded images count	%s image(s) succesfully uploaded
+add_screen_not_upload_image_count	Add Image	Message descripted not uploaded images count 	%s image(s) not uploaded
+add_screen_not_supportedfiles_count	Add Image	Message descripted not supported files count 	%s file(s) of not supported format
+add_screen_simple_editbtn	Add Image	Edit uploaded images button	Edit Description
+add_screen_simple_goalbumbtn	Add Image	Go to my album button	Go to my album
+add_screen_simple_uploadmorebtn	Add Image	Upload more button	Upload More
+
+app_treesharealbum_title	Common	Share album by email	Share Slideshow
+pd_screen_emptyshare_message	Photo Depot	Image sharing without selecting the images message	You must select file(s) for share operation first.
+pd_share_album_page_title	Share Album	Page title	Share Slideshow
+pd_share_album_name_label	Share Album	Album name label	Album name
+pd_share_template_name_label	Share Album	Template name label	Template
+
+pd_share_album_text	Share Album	Send email text	Hello! Please check this link to view shared album "%s"
+pd_share_album_info_text	Share Album	Send email info text	Click the image above to view album or use the following address:
+pd_share_album_pd_text	Share Album	Send email PD text	Organize and share images with <a href="#">WebAsyst&trade; Photos</a>
+pd_share_album_info_text_alt	Share Album	Send email info alt text	To view album use the following address:
+pd_share_album_pd_text_alt	Share Album	Send email PD text	Organize and share images with WebAsyst&trade; Photos #
+pd_share_album_send_info_text	Share Album	Send email send info text	This message was sent to &lt;%s&gt; by %s
+pd_share_album_send_info_text_alt	Share Album	Send email send info text	This message was sent to %s by %s
+pd_share_album_send_compl_text	Share Album	Send email complete text	E-Mail has been sent to %s recipient(s).
+pd_share_album_goto_album_text	Share Album	Send email goto album text	Go to Album
+pd_share_album_againbtn_text	Share Album	Send email send more text	Send More
+pd_share_album_sendnoti_text	Share Album	Send email send noti text	Send E-Mail invitation to view your album.
+pd_share_album_sendimages_text	Share Album	Send email send images text	Send E-Mail with selected files attached.
+pd_share_album_help_text	Share Album	Send email help text	One E-Mail address per line or delimited by semicolon (;)
+
+pd_share_numfiles_label	Share	Text under files list	images
+pd_share_preview_label	Share	Text preview link	Preview
+pd_catalog_selected_label	Catalog	Selected images label	Selected
+
+pd_sendemail_resize_options_label	Send Email	Send email resize options label	Image size
+pd_sendemail_resize_options_keep_original	Send Email	Send email resize options keep in original label	Thumbnail (%s)
+pd_sendemail_resize_options_small_label	Send Email	Send email resize options small label	Small (%s)
+pd_sendemail_resize_options_medium_label	Send Email	Send email resize options medium label	Medium (%s)
+pd_sendemail_resize_options_large_label	Send Email	Send email resize options large label	Large (%s)
+
+pd_screen_rotate_left_menu	Photo Depot	Menu Rotate Left	Rotate Left
+pd_screen_rotate_right_menu	Photo Depot	Menu Rotate Right	Rotate Right
+pd_screen_emptyrotatelist_message	Photo Depot	rotate without selecting the images	You must select file(s) for this operation first.
+
+pd_screen_editfiles_menu	Photo Depot	Menu item Image/Edit Image(s)	Edit Description
+
+pd_screen_emptyedit_message	Photo Depot	Image editing without selecting the images message	You must select file(s) for this operation first.
+
+pd_left_panel_header	Photo Depot	Left panel header	Albums
+pd_toolbar_save_changes	Photo Depot	Message save changes	Saving Changes
+pd_toolbar_rotating_images	Photo Depot	Message rotating images	Rotating Images
+
+pd_button_extract_images	Upload Archive	Button extract images caption	Extract Images
+
+pd_editimages_button_save	Photo Depot	Button save caption	Save
+pd_editimages_caption_title	Photo Depot	Title caption	Title
+
+pd_app_treehidefld_hint	Photo Depot	Hide album title caption	Hide Albums
+pd_app_treeshowfld_hint	Photo Depot	Show album title caption	Show Albums
+
+pd_screen_editmode_name	Photo Depot	Edit mode screen header	Edit Description
+
+pd_screen_slideshow_caption	Photo Depot	Slide Show link caption	Slide Show
+
+sm_select_from_contacts_label	Send Email	Select from contacts label	Select from Contacts
+sm_available_folders_label	Send Email	Available folders label	Available folders
+sm_sel_contacts_note_text	Send Email	Select contacts note text	Use Ctrl+Click and Shift+Click to select multiple entries
+sm_select_button_label	Send Email	Select buttons label	Select
+sm_all_contacts_label	Send Email	All contacts label	<All Contacts>
+sm_page_not_load_label	Send Email	Page not load label	Loading contacts. Please wait...
+
+add_scr_adv_upl_add_btn_capt	Add Image	Advanced Upload add button caption	Add
+add_scr_adv_upl_rem_btn_capt	Add Image	Advanced Upload remove button caption	Remove
+add_scr_adv_upl_upload_btn_capt	Add Image	Advanced Upload upload button caption	Upload
+
+pd_screen_viewdetails_title	Photo Depot	Page View Image Details title	View
+
+app_close_caption	Common	Close button label	Close
+app_available_sizes_field	Common	Available sizes	Available sizes
+
+app_thumbnail_size	Common	Thumbnail size	Thumbnail (%s x %s)
+app_small_size	Common	Small size	Small (%s x %s)
+app_medium_size	Common	Medium size	Medium (%s x %s)
+app_large_size	Common	Large size	Large (%s x %s)
+
+pd_poppan_header_label	Popup Panel	Popup panel header label	Actions with selected images
+pd_poppan_close_label	Popup Panel	Popup panel close label	Close
+pd_poppan_upload_label	Popup Panel	Popup panel upload label	Add Images
+pd_poppan_slideshow_label	Popup Panel	Popup panel sldeshow label	Slideshow
+pd_poppan_viewdet_label	Popup Panel	Popup panel view details label	View
+pd_poppan_viewdet_dc_label	Popup Panel	Popup panel view details double click label	(double click)
+pd_poppan_edittitle_label	Popup Panel	Popup panel edit title and description label	Edit Description
+pd_poppan_sendemail_label	Popup Panel	Popup panel send email label	Send Email
+pd_poppan_copy_label	Popup Panel	Popup panel copy label	Copy to Another Album
+pd_poppan_move_label	Popup Panel	Popup panel move label	Move to Another Album
+pd_poppan_delete_label	Popup Panel	Popup panel delete label	Delete
+pd_poppan_rotate_left_label	Popup Panel	Popup panel rotate left label	Rotate Left
+pd_poppan_rotate_right_label	Popup Panel	Popup panel rotate right label	Rotate Right
+pd_poppan_note_text_label	Popup Panel	Popup panel note text	To select multiple images use Ctrl+Click or Shift+Click buttons
+pd_poppan_onclose_label	Popup Panel	Popup panel on close warning	To open Actions panel again, click View… button and select Show Actions panel command in the menu
+pd_screen_showactions_menu	Popup Panel	Popup panel show label	Show Actions Panel
+
+pd_poppan_share_label	Files	Create link label	Create a Link
+pd_screen_mylinks_label	Files	My Links title	My Links
+
+app_treerightslegend_text	Common	User rights legend	User access rights are designated as:\n\nR (Read) - can list and read files in this album\nW (Write) - can add/modify files in this album\nF (Full) - can add/modify files, albums and permissions
+
+pd_slideshow_size_label	Slideshow	Slideshow size label	Size:
+pd_slideshow_small_label	Slideshow	Slideshow small label	Small
+pd_slideshow_medium_label	Slideshow	Slideshow medium label	Medium
+pd_slideshow_large_label	Slideshow	Slideshow large label	Large
+pd_slideshow_hide_thumbs_label	Slideshow	Slideshow Hide Thumbnails label	Hide Thumbnails
+pd_slideshow_show_thumbs_label	Slideshow	Slideshow Show Thumbnails label	Show Thumbnails
+pd_slideshow_first_label	Slideshow	Slideshow first label	First
+pd_slideshow_prev_label	Slideshow	Slideshow previous label	Previous
+pd_slideshow_play_label	Slideshow	Slideshow play label	Play
+pd_slideshow_pause_label	Slideshow	Slideshow pause label	Pause
+pd_slideshow_next_label	Slideshow	Slideshow next label	Next
+pd_slideshow_last_label	Slideshow	Slideshow last label	Last
+pd_slideshow_nodesc_label	Slideshow	Slideshow no desc label	no description
+
+pd_slideshow_showdesc_label	Slideshow	Show Description label	Show Description
+pd_slideshow_hidedesc_label	Slideshow	Show Description label	Hide Description
+pd_slideshow_loading_label	Slideshow	Loading label	Loading Slideshow...
+pd_slideshow_close_label	Slideshow	Close label	Close Slideshow
+pd_slideshow_seconds_label	Slideshow	Seconds label	second
+
+app_appletnotload_text	Common	Applet not load text	Java Applet not loaded. <br>To run Java Applet again you must reopen your browser.
+app_loadnow_text	Common	Load now	Load now.
+
+app_treeaddfolderperms_text	Common	Text on the Album tab of the Add/Modify Album form	To customize access rights to this album use "Users" tab for personal permissions, and "Groups" tab for user group permissions.
+app_treeaddfolderuseraccess_text	Common	Add/Modify Folder users tab text	Customize personal access rights to this album
+app_treeaddfoldergroupaccess_text	Common	Add/Modify Folder groups tab text	Customize group access rights to this album
+
+app_error_usermail_text	Common	Error when user send email	You must set your email address before send mail
+sm_nosenderemail_label	Common	No sender email	no sender email
+
+pd_error_account_exc_limit	Errors	Error when user exceeded account limit	<b>ACCOUNT LIMIT:</b> Number of images can not exceed %s.
+pd_error_account_exc_db_size_limit	Errors	Error when user exceeded account db size limit	<b>ACCOUNT LIMIT:</b> Backend size can not exceed %s MB.
+pd_error_account_exc_limit_help	Errors	Error when user exceeded account limit help string	<a href="%s" target="_blank">Upgrade Your Account</a>. [<a href="%s" target="_blank">Help</a>]
+pd_error_account_exc_limit_archive_info	Errors	Error when user exceeded account limit archive information	%s has been partially uploaded.
+pd_error_cant_copy_into_same_album	Errors	Can not copy/move images message	Can not copy/move images to the same album
+
+
+shpd_linkwhatshare_label	Share Dialog	What share question	What do you want to create a link for?
+shpd_widgetwhatshare_label	Share Dialog	What share question	What do you want to create a widget for?
+shpd_selectedfiles_label	Share Dialog	Selected files	Selected images
+shpd_entirefolder_label	Share Dialog	Entire folder	Entire album
+shpd_morefiles_label	Share Dialog	more photos	more images
+shpd_morefile_label	Share Dialog	more photo	more image
+
+updlg_dialog_title	File upload dialog	dialog title	Upload Images
+updlg_file_error_unknown	File upload dialog	unknown error	Error upload file.
+updlg_file_error_userquota	File upload dialog	user quota error	Your personal storage space quota has been exceeded. 
+updlg_file_error_checkout	File upload dialog	file check out	Checked out by other user.
+updlg_file_error_systemquota	File upload dialog	file check out	Database size limit has been exceeded.
+updlg_file_error_fileslimit	File upload dialog	file check out	Maximum number of photos has been exceeded.
+updlg_nofilesselected_message	File upload dialog	no files selected	no photos selected
+updlg_selectmore_label	File upload dialog	select more	select more
+updlg_uploading_label	File upload dialog	uploading	Uploading...
+updlg_filesselected_label	File upload dialog	files selected	photo(s) selected
+updlg_filesuploaded_label	File upload dialog	files uploaded	photo(s) successfully uploaded
+updlg_filesnotuploaded_label	File upload dialog	files not uploaded	photo(s) not uploaded
+updlg_afterselectmore_label	File upload dialog	after select more link	select more photos to upload
+updlg_selectfiles_label	File upload dialog	select files	Select images
+updlg_oldlink1_message	File upload dialog	old link first part	If you experience problems with this uploader<BR>please
+updlg_oldlink2_message	File upload dialog	old link second part (link)	use the standard uploading form.
+updlg_startupload_btn	File upload dialog	start upload button	Start Upload
+
+updlg_statuscomplete_label	File upload dialog	complete	Complete.
+updlg_statusuploading_label	File upload dialog	uploading	Uploading...
+updlg_statuspending_label	File upload dialog	pending	Pending...
+updlg_statuscancel_label	File upload dialog	cancel	Cancel.
+updlg_filenameasdesc_label	File upload dialog	Filename as description label	Use file name as a description
+
+links_screen_name	Links	Links screen name	My Links
+links_description_text	Links	Links description text	<b>Link</b> – is a <b>web address</b> that you can create for a collection of photos or an entire album. You can then send this link by email to your friends, or just remember this link (yes, it can be friendly and easy to remember!) to access your photos from anywhere.
+links_sample_label	Links	Sample label	Sample
+links_create_text	Links	Create text	To create new link, go to any available album and use <b>Create a Link</b> button.
+links_availablelinks_label	Links	Availalbe links	Available Links

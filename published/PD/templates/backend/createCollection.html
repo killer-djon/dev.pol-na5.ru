@@ -1,0 +1,88 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.form.js"></script>
+<!-- 
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/backend.css'>
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/popup.css'>
+ -->
+ {{assign var="path1" value=$p->getCssUrl() }}
+{{csscombine file="`$path1`/popup-combine.css"  }}
+ {{$p->getCssUrl()}}/backend.css
+ {{$p->getCssUrl()}}/popup.css
+{{/csscombine}}
+<script>
+	$(function(){
+		$(window).keydown(function(e){
+	    	if (e.keyCode == 27) {		
+	    		window.parent.closePopup();
+	    	}
+	    });
+	    
+		window.parent.document.notSend = true;
+		
+		if ( $('input[name=imageList]').val().length == 0 ) {
+			$('#collectionPhotoSelect').attr( 'disabled', 'disabled');
+			$('.smalltext').show();
+		}
+		else {
+			$('#collectionPhotoSelect').attr( 'checked', 'checked');
+			$('.smalltext').hide();
+		}
+		
+		$('#createCollectionForm').bind('submit', function() {
+
+			window.parent.document.notSend = false;
+            $(this).ajaxSubmit({
+            	success: function(id){
+					window.parent.closePopup(false, id);
+				}
+            });
+
+            return false;            
+        });
+
+		$('#send').click(function(){
+			if ( $('#collection_name').val().length < 1 ) {
+				alert('[`Collection name should not be empty.`]');
+				return;
+			}
+			$('#createCollectionForm').submit();
+		});
+		
+	});	
+</script>
+
+<div class="window-header">
+	<h2>[`Create a collection`]:</h2>
+</div>
+<div class="popup-form-content">
+<form id="createCollectionForm" action="backend.php?controller=album&action=createCollectionSave" method="post">
+	<input type="hidden" value="{{ $albumId }}" name="albumId" />
+	<input type="hidden" value="{{ $imageList }}" name="imageList" />
+    <div class="content1">
+		<p><label><input type="radio" id="collectionPhotoAll" value="all" name="collectionPhoto" checked="checked"/>[`All photos in this album`]</label></p>
+		<p><label><input type="radio" id="collectionPhotoSelect" value="select" name="collectionPhoto"/>[`Selected photos`]</label></p>
+		<p class="smalltext">[`Switch to “Organize and share” mode to select certain photos.`]</p></div>
+	
+	<div class="type">
+		<p><label><input type="radio" name="type" value="links" checked="checked"/>[`Link`]</label><span class="move-to-top">[`email or IM direct link`]</span></p>
+		<p><label><input type="radio" name="type" value="widget"/>[`Widget`]</label>
+			<span class="inlineselect">
+				<select name="widget_type">
+					<option value="Gallery">[`Gallery`]</option>
+					<option value="Album">[`Slideshow`]</option>
+				</select>
+			</span>
+		<span class="select-subscr move-to-top">[`to embed to your website of blog`]</span></p>
+	</div>
+    <div class="name-header">
+		<label>[`Name your collection`]:</label>
+		<input id="collection_name" name="collectionName" type="text" value="{{ $collectionDesc }}"/>
+	</div>
+	
+	
+	<div><input id="send" value="[`Create a collection`]" type="button"/> [`or`] <a href="javascript:window.parent.closePopup();">[`close`]</a></div>
+</form>
+</div>
+<a href="javascript:window.parent.closePopup();"  id="album-settings-close" ><img src="img/close.gif" width="16" height="16" /></a>

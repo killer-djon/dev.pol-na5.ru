@@ -1,0 +1,91 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl(objName) {
+	 var obj = MM_findObj(objName); 
+	 if (obj)
+		obj.focus( );
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function updateFolderCb( element, folderID, right )
+{
+	if ( right == 0 ) {
+		obj = MM_findObj( "rights["+folderID+"][1]" );
+		
+		if ( !element.checked )
+			obj.checked = false;
+	}
+	if ( right == 1 ) {
+		obj = MM_findObj( "rights["+folderID+"][0]" );
+		
+		if ( element.checked )
+			obj.checked = true;
+	}	
+}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl('folderdata[QNF_NAME]');">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <p class=largeText_normal><? $userName ?></p>
+  <table border="0" cellspacing="0" cellpadding="0" class="list">
+      <tr> 
+        <th align="left">
+          <? $qn_loc_str[8] ?>
+        </th>
+        <th align="right">
+          <? $qn_loc_str[13] ?>
+        </th>
+        <th align="right">
+          <? $qn_loc_str[14] ?>
+        </th>
+      </tr>
+	<? foreach from=$folders key=curFolderID item=curFolderData name=folderLoop ?>
+    <tr <? if ($smarty.foreach.folderLoop.iteration % 2) == 0 ?>bgcolor="<? #oddRowsColor#?>"<?else?>bgcolor=#FFFFFF<? /if ?>> 
+      <td <? if $curFolderID != 0 ?>style="padding-left: 10px"<? /if ?> class="catalogRow"><img border="0" src="../../../common/html/classic/images/folder.gif" width="14" height="12" align="absmiddle"><a/>&nbsp;
+        <? $curFolderData.QNF_NAME ?>
+      </td>
+	  <? assign var=curentRights value=$rights.$U_ID ?>
+      <td align="center"><input onClick="updateFolderCb( this, <? $curFolderID ?>, 0 )" name="rights[<? $curFolderID ?>][0]" type="checkbox" value="1" <? switchedOutput val=$curentRights.$curFolderID.0 true_val=1 str1="checked" ?>></td>
+      <td align="center"><input onClick="updateFolderCb( this, <? $curFolderID ?>, 1 )" name="rights[<? $curFolderID ?>][1]" type="checkbox" value="1" <? switchedOutput val=$curentRights.$curFolderID.1 true_val=1 str1="checked" ?>></td>
+    </tr>
+	<? /foreach ?>
+  </table>
+  <table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	 <td colspan=3>&nbsp;</td>
+	</tr>
+  </table>
+    <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$loc_str[19] formname="form" space_right=10 ?>
+    <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$loc_str[20] formname="form"?>
+  <? /if ?>
+  <input type="hidden" name="action" value="<?$action?>">
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="firstIndex" value="<? $firstIndex ?>">
+  <input type="hidden" name="U_ID" value="<? $U_ID ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

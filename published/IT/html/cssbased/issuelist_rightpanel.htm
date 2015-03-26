@@ -1,0 +1,35 @@
+<? assign var=numDocumentsLabel value=$itStrings.il_records_label ?>
+
+<? assign var=rightPanelCaptionControls value=null ?>
+<? assign var=rightPanelControls value=null ?>
+
+<? if $hideLeftPanel && $searchString == "" ?>
+	<? assign var=rightPanelControls value="../../../IT/html/cssbased/filterSelector.htm" ?>
+	<? assign var=foldersImage value="javascript:processTextButton('showFoldersBtn', 'form')" ?>
+<? /if ?>
+
+<? assign var=rightPanelCaptionControls value="../../../common/html/cssbased/pageelements/ajax/catalog_folder.showbtn.notajax.htm" ?>
+
+<? assign var=showFoldersHint value=$itStrings.il_showfilters_hint ?>
+
+<? if !$noProjects ?><? assign var="template" value="issuelist_rightpanelheader.htm" ?><? assign var="height" value=75 ?><? /if ?>
+
+<? wbs_splitterPanelHeader 
+	caption=$curFilterName|truncate:30
+	active=true
+	id="RightPanelHeader"
+	captionControls=$rightPanelCaptionControls
+	headerControls=$rightPanelControls
+	captionTemplate=$template
+	height=$height
+?>
+
+<? wbs_splitterScrollableArea ?>
+<div id='IssuesWorksBlock' style='border-top: 1px solid white'>
+	<? if $viewMode == "LIST" ?>
+		<? include file="../../../IT/html/cssbased/ilist_list.htm" ?>
+	<? else ?>
+		<? include file="../../../IT/html/cssbased/ilist_grid.htm" ?>
+	<? /if ?>
+</div>
+<? /wbs_splitterScrollableArea ?>

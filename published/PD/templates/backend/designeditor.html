@@ -1,0 +1,70 @@
+
+<script>
+	$(function(){
+		var editor = CodeMirror.fromTextArea('code', {
+			width: "100%",
+		    height: "100%",
+		    parserfile: "parsecss.js",
+		    stylesheet: "css/codemirror/csscolors.css",
+		    path: "{{ $p->getJsUrl() }}/codemirror/"
+		  });	
+		$('#restore').click(function(){
+			if ( confirm( '[`This will discard all changes you have made to gallery CSS so far. Do you confirm resetting all changes?`]' ) ) {
+				$.get('backend.php?controller=design&action=restoredesign', function(){
+					window.location.reload(true);
+				});
+			}
+		});
+
+		$('#btn-save-name').click(function(){
+			$(this).attr('disabled', 'disabled');
+			$.post('backend.php?controller=design&action=saveGallaryName', {galleryName: $('.gallery-name').val() }, function(){
+				$('.save_complite').show().fadeOut(1500, function(){
+					$(this).removeAttr('disabled');
+				}.bind(this));
+			}.bind(this));
+			return false;
+		});
+
+		$('.gallery-name').keyup(function(e){
+			if (e.keyCode == 13) {
+				$(this).attr('disabled', 'disabled');
+				$.post('backend.php?controller=design&action=saveGallaryName', {galleryName: $('.gallery-name').val() }, function(){
+					$('.save_complite').show().fadeOut(1500, function(){
+						$(this).removeAttr('disabled');
+					}.bind(this));
+				}.bind(this));
+				return false;
+			}
+		});
+
+
+		$(window).resize(function(){
+			$('.resize').height($(window).height() -42);
+		});
+		$('.resize').height($(window).height() - 42);
+	});
+</script>
+<div id="main" class="resize">
+<div class="pos-rel-div" style="height:100%">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+<tr>
+<td><div class="color-top-panel">
+	[`Photo gallery name`]: <input   class="gallery-name" type="text" value="{{ $galery_name }}" />
+	<input id="btn-save-name" type="button" value="[`Save`]" /><span class="save_complite" style="display: none;">[`Saved`].</span>
+
+
+</div>
+<div class="reset-link">
+<a href="#" id="restore">[`Reset styles to default`]</a><span>[`Gallery name is displayed in the public part of your gallery along with the name of every published album.<br />Editing CSS (styles) below allows you to change the way your public gallery looks.`]</span></div></td></tr>
+<tr>
+<td class="code-conteiner" height="100%">
+<form  class="deding-css" action="backend.php?controller=design&action=savedesign" method="post">	
+		<textarea id="code" name="csscode">{{ $csscode }}</textarea>
+	
+<div class="des-save-bottom"><input value="[`Save`]"  type="submit" /></div>
+</form>
+</td></tr>
+</table>
+	</div>
+</div>

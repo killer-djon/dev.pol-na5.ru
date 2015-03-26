@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="css/pictures.css" />
+<script type="text/javascript" src="3rdparty/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/pictures.js"></script>
+
+{if $success}
+	<p>Уменьшение изображений прошло успешно</p>
+{/if}
+
+
+{if $pictures}
+	<div class="navigator-button">
+		<button class="selector" name="unselect_all">Отменить выбор...</button>
+		<button class="selector" name="select_all">Выбрать все...</button>
+	</div>
+	
+	<div class="pictures">
+		<form action="{''|set_query_html}" method="post">
+		<input type="submit" name="convert" value="Конвертировать" />
+		{section name=i loop=$pictures}
+			{if $pictures[i].src != ''}
+			<div class="img-thumb">
+				
+					<input type="checkbox" name="pic_select[]" value="{$pictures[i].src}" />
+					{if $pictures[i]._thumb}
+						<div class="thumbnail">_thumb</div>
+					{/if}
+					<a href="{$pictures[i].path}/{$pictures[i].src}">
+						<img src="{$pictures[i].path}/{$pictures[i].src}" alt="{$pictures[i].src}" />
+					</a>
+				
+			</div>
+			{/if}
+		{/section}
+		</form>
+	</div>
+{/if}
+
+<div class="paginate">
+
+{section name=foo start=1 loop=$pages}
+	{if $smarty.section.foo.index == $smarty.get.start}
+		<span class="active">{$smarty.section.foo.index}</span>
+	{else}
+		<a href='{"start=`$smarty.section.foo.index`"|set_query_html}'>{$smarty.section.foo.index}</a>
+	{/if}
+    
+{/section}
+	<a href='{"start=0&show_all=yes"|set_query_html}'>...все...</a>
+</div>

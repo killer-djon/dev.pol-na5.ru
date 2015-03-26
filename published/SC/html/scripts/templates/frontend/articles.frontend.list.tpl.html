@@ -1,0 +1,44 @@
+<h1 class="ArticleList-category-title">
+	{$Category.CategoryTitle|default:'pgn_articles'|translate}
+	<a href="{"?ukey=`$smarty.const.CONF_ARTCLE_URL`&rss=rss"|set_query_html}"><img src="{$smarty.const.URL_IMAGES_COMMON}/rss-feed.png" alt="RSS 2.0"  style="padding-left:10px;"></a>
+</h1>
+
+<div class="articles-list">
+	
+	{section name=i loop=$Articles}
+	
+		<div class="article">
+			<div class="article-date">
+				<div class="date-box">
+					{$Articles[i].ArticleDate|date_format:"<span class='day'>%e</span> <span class='month'>%B</span>"|replace:"January":"Янв"|replace:"February":"Фев"|replace:"March":"Мар"|replace:"April":"Апр"|replace:"May":"Мая"|replace:"June":"Июн"|replace:"July":"Июл"|replace:"August":"Авг"|replace:"September":"Сен"|replace:"October":"Окт"|replace:"November":"Ноя"|replace:"December":"Дек"}
+				</div>
+			</div>
+			
+			<div class="article-content">
+				<div class="article-img">
+					{if $Articles[i].ArticleDefaultSmallPicture}
+						<a href="{"?ukey=`$smarty.const.CONF_ARTCLE_URL`&CategoryID=`$Articles[i].CategoryID`&CategorySlug=`$Articles[i].CategorySlug`&postID=`$Articles[i].ArticleID`&postSlug=`$Articles[i].ArticleSlug`"|set_query_html}">
+						<img alt="{$Articles[i].ArticleTitle|escape:html}" src="{$smarty.const.URL_ARTICLES_PICTURES}/{$Articles[i].ArticleDefaultSmallPicture|escape:'url'}" align="left" style="margin:10" class="ArticleList-articles-img"/>
+						</a>
+					{/if}
+				</div>
+				
+				<div class="article-title">
+					<a href="{"?ukey=`$smarty.const.CONF_ARTCLE_URL`&CategoryID=`$Articles[i].CategoryID`&CategorySlug=`$Articles[i].CategorySlug`&postID=`$Articles[i].ArticleID`&postSlug=`$Articles[i].ArticleSlug`"|set_query_html}">{$Articles[i].ArticleTitle}</a>
+				</div>
+				
+				<div class="article-intro">
+					{$Articles[i].ArticleBriefDescription}
+				</div>
+				
+			</div>
+		</div>
+	{sectionelse}
+		<center>{"str_empty_list"|translate}</center>
+	{/section}
+	
+	
+	{*<!-- Листинг страниц -->*}	
+	{if $NavigatorHtml}<br><br><div>{$NavigatorHtml}</div>{/if}
+
+</div>

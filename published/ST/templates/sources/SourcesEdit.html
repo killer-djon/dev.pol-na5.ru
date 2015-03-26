@@ -1,0 +1,421 @@
+
+<div class="settings-title">{{if $info.name}}{{$info.name}}{{else}}[`Create email box`]{{/if}}</div>
+<form id="source-edit-form" action="" method="post">
+<div class="department-container">
+	<div class="tabs">
+    {{if $info.name}}
+       <a class="blacklink" id="delete-source-link" href="javascript:void(0)" style="float:right; z-index:10; margin:0.5em 20px 0 .5em">[`Delete this email box`]</a>
+	{{/if}}
+
+    <ul class="tabs-nav">
+		<li class="tab-info tabs-selected"><a>[`Name & Email`]</a></li>
+		<li class="tab-sign"><a>[`Signature`]</a></li>
+		<li class="tab-receipt"><a>[`Receipt`]</a></li>
+		<li class="tab-subscr"><a>[`Anti-spam`]</a></li></ul></div>
+		
+	<div class="tabs-body tab-info">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%" class="tab-settings">
+			<tr>
+				<td class="label">[`Name`]:</td>
+				<td><input type="text" name="info[name]" id="name" maxlength="50" value="{{$info.name|escape}}" class="longfield" /></td>
+			</tr>
+{{if (!$params.inner && !(!$info.name && $inner) )}}
+			<tr>
+				<td class="label">[`Email`]:</td>
+				<td><input type="text" name="params[email]" id="email" maxlength="50" value="{{$params.email}}" class="longfield" /></td>
+			</tr>
+{{else}}
+            <tr>
+                <td class="label">[`Email`]:</td>
+                <td><input type="hidden" name="params[inner]" value="1"/>
+                	<input type="text" name="params[email]" id="email" maxlength="50" {{if $params.email}}disabled="disabled"{{/if}} value="{{$params.email}}"/><span>@{{$hostname}}</span>
+                	<span id="email-error" style="display:none" class="error">[`This email address already exists (possibly create by WebAsyst Mail application).`]</span></td>
+            </tr>
+{{/if}}
+            <tr>
+                <td class="label" style="vertical-align:top">[`Language`]:</td>
+                <td>
+                    <select id="language" name="params[language]">
+                        <option{{if $params.language == 'eng' || (!$info.name && $user_lang == 'eng')}} selected="selected"{{/if}} value="eng">[`English`]</option>
+                        <option{{if $params.language == 'rus' || (!$info.name && $user_lang == 'rus')}} selected="selected"{{/if}} value="rus">[`Russian`]</option>
+                    </select>
+					<p class="small">[`Selection will be default language  for clients sending their first request to this email address.`]</p>
+{{if $info.name}}
+					<script>
+						$('#language').change(function(){
+							var $this =$(this);
+                            $('#isdefault').removeAttr('disabled');
+							if ($this.val() == "eng" && ('{{$default_email.eng}}'=='')){
+								$('#isdefault').attr('checked','checked')
+							} 
+                            if ($this.val() == "rus" && ('{{$default_email.rus}}'=='')){
+                                $('#isdefault').attr('checked','checked')
+                            } 
+						})
+					</script>
+{{/if}}	   
+                </td>
+            </tr>
+{{if $info.name}}
+            <tr>
+                <td class="label"></td>
+                <td><p><input type="checkbox" name="params[isdefault]" id="isdefault" value="1" {{if $params.isdefault eq 1}}checked="checked" disabled="disabled"{{/if}} /><label for="params[isdefault]">[`Default outgoing email for selected language`]</label></p>
+					<p class="small">[`Clients whose default language matches the above choice will receive responses to their requests from this email address.`]</p></td>
+            </tr>
+{{else}}
+<input type="hidden" name="params[isdefault]" id="isdefault" value="1"/>
+{{/if}}  
+{{if (!$params.inner && !(!$info.name && $inner) )}}
+			<tr><td colspan="2"><div class="table-delimeter"></div><h4 class="subtitle">[`Incoming mail server`]</h4></td></tr>
+			<tr>
+				<td class="label">[`My mail server is a`]</td>
+				<td>
+					<select name="params[protocol]">
+						<option{{if $params.protocol == 'pop3'}} selected="selected"{{/if}} value="pop3">POP3</option>
+					</select> [`server`].
+				</td>
+			</tr>
+			<tr>
+				<td class="label">[`Server`]: </td>
+				<td><input type="text" name="params[server]" value="{{$params.server}}" class="longfield" /></td>
+			</tr>
+			<tr>
+				<td class="label"></td>
+				<td>
+					<input type="checkbox" {{if !$ssl_support}}disabled="disabled"{{/if}} name="params[ssl]" value="1"{{if $params.ssl}} checked="checked"{{/if}} />
+					[`My server requires a secure connection (SSL)`]
+					{{if !$ssl_support}}<br />
+					<span style="color:red">[`SSL is disabled in your PHP configuration. Please contact your server administrator.`]</span>
+					{{/if}}					
+				</td>
+			</tr>
+			<tr>
+				<td class="label">[`Port`]:</td>
+				<td><input type="text" name="params[port]" value="{{if $params.port}}{{$params.port}}{{else}}110{{/if}}" class="ultrashort" /></td>
+			</tr>
+			<tr>
+				<td class="label">[`Username`]:</td>
+				<td><input type="text" name="params[login]" value="{{$params.login}}" class="longfield"></td>
+			</tr>
+			<tr>
+				<td class="label">[`Password`]:</td>
+				<td><input type="password" name="params[password]" value="{{$params.password}}" class="longfield"/></td>
+			</tr>
+{{/if}}
+{{if 0}}
+			<!--tr><td colspan="2"><div class="table-delimeter"></div><h4 class="subtitle">[`Outgoing mail server`]</h4></td></tr>
+			<tr><td class="label"></td>
+				<td>
+					<input type="checkbox" name="params[smtp_auth]" value="1"{{if $params.smtp_auth}} checked="checked"{{/if}} />
+					[`My server requires authentication`]
+				</td>
+			</tr>
+
+			{{if !$params.smtp_auth}}
+				{{assign var="class_disabled" value=" class_disabled"}}
+				{{assign var="input_disabled" value="disabled"}}
+			{{/if}}
+			<tr><td class="label"></td>
+				<td>
+					<label>
+					<input type="radio" name="params[use_incoming]" value="1" {{if $params.use_incoming}}checked="checked"{{/if}} {{if !$params.smtp_auth}}disabled="disabled"{{/if}} />
+					[`Use same settings as my incoming mail server`]
+					</label>
+				</td>
+			</tr>
+			<tr><td class="label"></td>
+				<td>
+					<label>
+					<input type="radio" name="params[use_incoming]" value="0" {{if !$params.use_incoming}}checked="checked"{{/if}} {{if !$params.smtp_auth}}disabled="disabled"{{/if}} />
+					[`Login using`]
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">[`Username`]:</td>
+				<td><input class="longfield" type="text" name="params[smtp_login]" value="{{$params.smtp_login}}" {{if !$params.smtp_auth}}disabled="disabled"{{/if}} /></td>
+			</tr>
+			<tr>
+				<td class="label">[`Password`]:</td>
+				<td><input  class="longfield" type="password" name="params[smtp_password]" value="{{$params.smtp_password}}" {{if !$params.smtp_auth}}disabled="disabled"{{/if}} /></td>
+			</tr-->
+{{/if}}
+		</table>
+		<div class="button-pane">
+            <button onclick="$('#source-edit-form').submit()">{{if $info.name}}[`Save changes`]{{else}}[`Save`]{{/if}}</button>
+			<button onclick="$.wbs.loadHash('#/sources/')">[`Cancel`]</button>
+		</div>
+	</div>
+
+	<div class="tabs-body tab-sign" style="display:none">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%" class="tab-settings">
+			<tr>
+                <td><span>[`This signature will appear on replies sent to clients from this email address:`]:</span></td>
+            </tr>
+			
+			<tr>
+				<td><textarea name="params[signature]" rows="10" style="width: 100%">
+{{if !$info.name}}
+[`Regards`], {MY_FIRSTNAME}.
+[`Support Team`]
+
+[`Please use`] <a href="{REQUEST_LIST_URL}">[`your personal page`]</a> [`to view, reopen or create new requests.`]
+
+{REQUEST_HISTORY_CLIENT}
+{{else}}
+{{$params.signature}}
+{{/if}}
+</textarea></td>
+			</tr>
+		</table>
+		<div class="button-pane">
+            <button onclick="$('#source-edit-form').submit()">{{if $info.name}}[`Save changes`]{{else}}[`Save`]{{/if}}</button>
+			<button onclick="$.wbs.loadHash('#/sources/')">[`Cancel`]</button>
+		</div>		
+	</div>
+
+	<div class="tabs-body tab-receipt" style="display:none">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%" class="tab-settings">
+            <tr>
+                <td colspan="2"><input type="checkbox" name="params[receipt]" value="1"{{if $params.receipt}} checked{{/if}} onclick="if (!$(this).is(':checked')) {$('.tab-receipt textarea').addClass('disabled');$('.tab-receipt-input').attr('disabled','disabled');} else {$('.tab-receipt-input').removeAttr('disabled');$('.tab-receipt textarea').removeClass('disabled');}" />
+                <label>[`Send a receipt to client upon receiving new request`]</label></td>
+            </tr>
+{{if (!$params.inner && !(!$info.name && $inner) )}}
+            <tr>
+                <td class="label">[`From`]: </td>
+                <td>
+                    <input name="params[receipt_email]" class="tab-receipt-input email-from" {{if !$params.receipt}}disabled="disabled"{{/if}} style="width: 100%" value="{{$params.receipt_email}}" />
+                </td>
+            </tr>
+{{else}}
+            <tr>
+                <td class="label">[`From`]:</td>
+                <td>                    
+				<input name="params[receipt_email]" class="tab-receipt-input email-from" {{if !$params.receipt}}disabled="disabled"{{/if}} value="{{$params.receipt_email}}" /><span>@{{$hostname}}</span></td>
+            </tr>
+{{/if}}
+
+			<tr>
+				<td class="label">[`Subject`]: </td>
+				<td>
+					<input name="params[receipt_subject]" class="tab-receipt-input" {{if !$params.receipt}}disabled="disabled"{{/if}} style="width: 100%" value="{{if $params.receipt_subject}}{{$params.receipt_subject|escape}}{{else}}[`Your message has been queued into our customer support tracking system`]{{/if}}" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<textarea name="params[receipt_body]" class="tab-receipt-input" {{if !$params.receipt}}class="disabled" disabled="disabled"{{/if}} rows="10" style="width: 100%">
+{{if !$info.name || !$params.receipt_body}}
+[`Your message has been received by our technical team and queued into our customer support tracking system.`]
+
+[`Your request ID:`] {REQUEST_ID}.
+
+[`Be assured that your request will be processed shortly, and you will receive a personal reply from one of our representatives soon.`]
+
+[`Thank you!`]
+
+-- 
+[`Support Team`]
+[`NOTE: This is an automated message to confirm receipt of your request. Please do not reply to this message!`]
+
+[`Please use`] <a href="{REQUEST_LIST_URL}">[`your personal page`]</a> [`to view, reopen or create new requests.`]
+{{else}}
+{{$params.receipt_body}}
+{{/if}}</textarea>
+				</td>
+			</tr>
+		</table>
+		<div class="button-pane">
+            <button onclick="$('#source-edit-form').submit()">{{if $info.name}}[`Save changes`]{{else}}[`Save`]{{/if}}</button>
+			<button onclick="$.wbs.loadHash('#/sources/')">[`Cancel`]</button>
+		</div>		
+	</div>
+
+	<div class="tabs-body tab-subscr" style="display:none">
+		<input type="checkbox" name="params[confirm]" value="1" {{if $params.confirm}}checked{{/if}} onclick="$('.tab-confirm textarea').toggleClass('disabled'); if ($(this).is(':checked')) {$('#confirm-container').find('input,textarea').removeAttr('disabled');} else {$('#confirm-container').find('input,textarea').attr('disabled','disabled');}" />
+		<label>[`Send an automatic confirmation reply to requests received from unknown email addresses`]</label>
+		<p class="small">
+		[`This automatic reply will be sent to senders of requests received from email addresses which do not exist in your client database. Such an auto-reply can contain a special link which a client should click to confirm his/her first request. You may include additional instructions for your clients in this message.`]
+		</p>
+		<div id="confirm-container">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" class="tab-settings">
+{{if (!$params.inner && !(!$info.name && $inner) )}}
+            <tr>
+                <td class="label">[`From`]: </td>
+                <td>
+                    <input name="params[confirm_email]" class="email-from" {{if !$params.confirm}}disabled="disabled"{{/if}} style="width: 100%" value="{{$params.confirm_email}}" />
+                </td>
+            </tr>
+{{else}}
+            <tr>
+                <td class="label">[`Email`]:</td>
+                <td>                    
+                <input name="params[confirm_email]" class="tab-receipt-input email-from" {{if !$params.confirm}}disabled="disabled"{{/if}} value="{{$params.confirm_email}}" /><span>@{{$hostname}}</span></td>
+            </tr>
+{{/if}}
+				<tr>
+					<td class="label">[`Subject`]: </td>
+					<td>
+						<input name="params[confirm_subject]" style="width: 100%" {{if !$params.confirm}}disabled="disabled"{{/if}} value="{{if $params.confirm_subject}}{{$params.confirm_subject|escape}}{{else}}[`Please confirm your request`]{{/if}}" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<textarea name="params[confirm_body]" rows="10" style="width: 100%" {{if !$params.confirm}}class="disabled" disabled="disabled"{{/if}}>
+{{if !$info.name || !$params.confirm_body}}
+[`We have just received a request from your email address.`]
+
+[`To confirm your request, please follow this link:`]
+{REQUEST_CONFIRM_URL}
+
+[`NOTE: Your request will be accepted only after confirmation.`]
+[`Confirmation is required due to high volume of SPAM we receive. This is one-time action. After you confirm, we will add your email address to our contact database, and all future requests from you will be automatically accepted and queued into our customer support tracking system.`]
+
+[`Thank you!`]
+
+-- 
+[`Support Team`]
+{{else}}
+{{$params.confirm_body}}
+{{/if}}
+</textarea>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="button-pane">
+            <button onclick="$('#source-edit-form').submit()">{{if $info.name}}[`Save changes`]{{else}}[`Save`]{{/if}}</button>
+			<button onclick="$.wbs.loadHash('#/sources/')">[`Cancel`]</button>
+		</div>		
+	</div>
+    <div class="tabs-body tab-delete" style="display:none">
+        <p>
+            [`New requests being sent to`] {{$params.email}}[` will not be delivered to Helpdesk application anymore.`]
+			[`But the email box itself will stay on its mail server and will be available through other mail client programs.`]
+			<br /><br />
+			[`Requests previously delivered to`] {{$params.email}} [`will stay in Helpdesk application.`] 
+            <br /><br />
+            <p><button onclick="$.wbs.loadHash('#/sources/delete/{{$info.id}}/')">[`Delete email box`]</button>
+			</p>
+        </p>   
+    </div>
+	<div id="templates-div" style="display:none;"><div class="ui-block-content">
+		<h5>[`You can add the variables provided below to the message text. Variables are automatically replaced with their values before being sent to a client.`]</h5>
+		<div id="templates-default-vars" class="templates-list">
+		{{foreach from=$templates.default item=template}}
+            <p class="default"><a class="templates-item" href="javascript:void(0)">{{$template.name}}</a><span>{{$template.descr}}</span></p>
+		{{/foreach}}
+        {{foreach from=$templates.subscr item=template}}
+            <p class="subscr"><a class="templates-item" href="javascript:void(0)">{{$template.name}}</a><span>{{$template.descr}}</span></p>
+        {{/foreach}}
+			<div id="templates-more-vars" style="display:none">
+            {{if $templates.fields}}
+                <p>[`Recipient variables`]</p>
+            {{/if}}
+	        {{foreach from=$templates.fields item=template}}
+	            <p><a class="templates-item" href="javascript:void(0)">{{$template.name}}</a><span>{{$template.descr}}</span></p>
+	        {{/foreach}}
+			{{if $templates.my_fields}}
+                <p>[`Sender (current user) variables`]</p>
+			{{/if}}
+            {{foreach from=$templates.my_fields item=template}}
+                <p><a class="templates-item" href="javascript:void(0)">{{$template.name}}</a><span>{{$template.descr}}</span></p>
+            {{/foreach}}
+	        </div>
+	        <a href="javascript:void(0)" id="templates-more-vars-link" class="blacklink more-vars">[`more variables`]</a>
+		</div></div>
+	</div>
+</div>
+</form>
+
+<script type="text/javascript">
+	
+{{if ($params.inner || (!$info.name && $inner) )}}
+$('#email, .email-from').keyup(function(){
+    var $this = $(this), val = $this.val(),
+    re = /\W/, wrongSymbol = re.exec(val);
+    if (wrongSymbol && wrongSymbol != '-'){
+        $this.addClass('error');
+        $('.button-pane button:first').button('disable');
+    } else {
+        $this.removeClass('error');
+        $('.button-pane button:first').button('enable');
+    }
+})
+{{else}}
+var setDefaultEmail = function(){
+    $('.email-from').each(function(){
+		var val = $('#email').val();
+		if ($(this).val().indexOf('@') == -1){
+            $(this).val('noreply' + val.substr(val.indexOf('@'), val.length))
+		} else {
+			$(this).val($(this).val().substr(0, $(this).val().indexOf('@')) + val.substr(val.indexOf('@'), val.length))
+		}
+    })
+};
+$('#email').keyup(function(){setDefaultEmail();});
+setDefaultEmail();
+{{/if}}
+$(".templates-item").click(function(){
+	$('.tabs-body textarea:visible').insertAtCaret($(this).text());
+    $('#pageContainer').scrollTo($('.tabs-body textarea:visible'));
+})
+$("#templates-more-vars-link").click(function(){
+    $(this).hide();
+	$("#templates-more-vars").show();
+})
+$('#name, #email').keyup(function(){
+    $(this).removeClass('error');
+    $('.button-pane button:first').button('enable');
+})
+$("#source-edit-form").submit(function () {
+	var params = $(this).serialize();
+	{{if $info}}
+	params +="&id={{$info.id}}"; 
+	{{/if}}
+	if ($('#isdefault').attr('checked')) params +="&params[isdefault]=1"; 
+	var hasErrors = false;
+	$('#name, #email').each(function(){
+		if ($(this).val() == '') {
+	        $(this).addClass('error');
+	        $('.button-pane button:first').button('disable');
+            hasErrors = true;
+		}
+	})
+	if (hasErrors) return false;
+	$.post("?m=sources&act=save", params, function (response) {
+		if (response.status == 'OK') {
+			$.wbs.loadHash('#/sources/');
+	        $('.alertmsg').hide();
+		} else {
+			{{if ($params.inner || (!$info.name && $inner) )}}
+				$("#email-error").show();
+			{{/if}}
+		}
+	}, "json");
+	return false;
+})
+
+$("ul.tabs-nav li").click(function () {
+	var cl = $(this).attr('class');
+	$("div.tabs-body").hide();
+	cl = cl.replace("tabs-selected",'');
+	if ($.wbs.in_array(cl,['tab-receipt','tab-sign','tab-subscr'])){
+		$('#templates-div').show()
+		if (cl=='tab-subscr') {
+			$('#templates-div .default').hide()
+            $('#templates-div .subscr').show()
+		} else {
+            $('#templates-div .default').show()
+            $('#templates-div .subscr').hide()
+		}
+	} else {
+        $('#templates-div').hide()
+	}
+	$("div.tabs-body." + cl).show();
+})
+$('#delete-source-link').click(function () {
+    $("div.tabs-body").hide();
+    $("div.tab-delete").show();
+	$(".tabs-selected").removeClass("tabs-selected");
+})
+</script>

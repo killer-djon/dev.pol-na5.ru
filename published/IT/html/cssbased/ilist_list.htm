@@ -1,0 +1,132 @@
+<? assign var="popupindex" value=0 ?>	
+
+<? assign var=issueCols value=5 ?>
+<? if $viewdata.SHOWSENDER || $viewdata.SHOWASSIGNEE ?>
+	<? math equation="x+1" x=$issueCols assign=issueCols ?>
+<? /if ?>
+<? if $viewdata.DISPLAYSENDLINKS ?>
+	<? math equation="x+1" x=$issueCols assign=issueCols ?>
+<? /if ?>
+
+<? if $manyProjects ?>
+<style>
+	table.it_TaskTable tr.ListSubheader td {border-bottom: 0px}
+</style>
+<? /if ?>
+
+<? assign var="prevoutProjectName" value="" ?>
+<? assign var=prevPW_ID value=-1 ?>
+
+<? if !$onlyIssues ?>
+	<input type='hidden' id='OffsetChange' value=0>
+	<div id='JustAddedIssues' style='display: none'>
+
+		<table class="it_TaskTable" width="100%">
+			<tr class="ListSubheader">
+				<td width="10">&nbsp;</td>
+				<td><font style='font-weight: normal'><? $itStrings.il_justadded_lbl ?></font></td>
+			</tr>
+		</table>
+	</div>
+<? /if ?>
+
+<? foreach from=$issueList item=listRecord name=issueLoop key=rowIndex ?>
+
+	<? assign var=listIndex value=$smarty.foreach.issueLoop.iteration ?>
+
+	<? if $listRecord.PW_ID != $prevPW_ID ?>
+		<? assign var="P_ID" value=$listRecord.P_ID ?>
+		<? assign var="PW_ID" value=$listRecord.PW_ID ?>
+		<? assign var="outProject" value=$outWorkList.$P_ID ?>
+		<? assign var="workRecord" value=$outProject.$PW_ID ?>
+		<? if isset($workRecord.userIsProjman) ?><? assign var=userIsProjman value=$workRecord.userIsProjman ?><? /if ?>
+		
+		<!-- task record -->
+		<? assign var=issueIndex value=0 ?>
+		
+		
+		<? if !(isset($hideP_ID) && $hideP_ID==$workRecord.P_ID && $hidePW_ID==$workRecord.PW_ID)  ?>
+			<? if $manyProjects && $workRecord.PROJECT_NAME != $prevoutProjectName && $workRecord.P_ID != 0 && ($hideP_ID != $workRecord.P_ID) ?>
+				<table class="it_TaskTable" width="100%">
+						<tr class="ListSuperheader">
+							<td><div style='padding: 5px'><? $workRecord.PROJECT_NAME ?></div></td>
+							<? assign var="prevoutProjectName" value=$workRecord.PROJECT_NAME ?>					
+						</tr>
+				</table>	
+			<? /if ?>
+
+		
+			<table class="it_TaskTable" width="100%">
+				<tbody>
+					<tr class="ListSubheader">
+						<?* if $manyProjects && $workRecord.P_ID != 0 ?>
+							<td style='background: #E9E9E9; width: 20px; padding: 0px'>&nbsp;</td>	
+						<? /if *?>
+						
+						<!-- checkbox -->
+						<td width="10" class="ValignTop"><!--input type=checkbox name="selectAllDocsCB" onClick="selectIssues(<? $workRecord.PW_ID ?>, this)"-->&nbsp;</td>
+						<!-- task description -->
+						<td>
+							<? if $workRecord.PW_ID != 0 ?>
+								<? if $workRecord.editWorkURL ?>
+									<a style='font-weight: normal' href="javascript:void(0)" onClick="openIssuesWork('<? $workRecord.P_ID|default:$P_ID ?>', '<? $workRecord.PW_ID ?>')"><? $itStrings.il_task_label|cat:" "|cat:$workRecord.PW_ID|cat:": "|cat:$workRecord.PW_DESC ?></a>
+								<? else ?>
+									<? $itStrings.il_task_label|cat:" "|cat:$workRecord.PW_ID|cat:": "|cat:$workRecord.PW_DESC ?>
+								<? /if ?>
+							<? else ?>
+								<? $itStrings.app_freeissues_label ?>
+							<? /if ?>
+							<!--<? makeLink text=$itStrings.il_task_label|cat:" "|cat:$workRecord.PW_ID|cat:": "|cat:$workRecord.PW_DESC href="javascript:void(0)" onClick='openIssuesWork('|cat:<? $workRecord.PW_ID|cat:')' oldHref=$workRecord.editWorkURL ?>-->
+							<?*<span class="NormalWeight">[<em><a onClick="AjaxLoader.loadPage(this.href); return false;" href="<? $workRecord.EXPANDLINK ?>"><small><? switchedOutput val=$workRecord.EXPANDSTATUS true_val="expanded" str2=$itStrings.il_showissues_label|cat:" ("|cat:$workRecord.issueNum|cat:")" str1=$itStrings.il_hideissues_label?></small></a></em>]</span>*?>
+						</td>
+						<!-- add issue link -->
+						<!--td class="AlignRight ValignBottom NoBreak NormalWeight">
+							<? if !$workRecord.CLOSED ?>
+									<? if $userIsProjman ?>
+										[<em><a href="<? $workRecord.ITSSETUPLINK ?>"><small><? $itStrings.il_workflow_btn ?></small></a></em>]
+									<? /if ?>
+									[<em><a onClick='return issueAddDialog("<? $workRecord.P_ID ?>-<? $workRecord.PW_ID ?>");' href="javascript:void(0)"><small><? $itStrings.il_addissue_btn ?></small></a></em>]
+							<? else ?>
+								[<small><? $itStrings.il_completetask_label ?></small>]
+							<? /if ?>
+						</td-->
+					</tr>
+				</tbody>
+			</table>
+			
+		<? /if ?>
+
+	<? /if ?>
+	
+	<!-- issue record -->
+	<? if !$smarty.foreach.issueLoop.last ?>
+		<? math equation="x+1" x=$rowIndex assign=nextRowIndex ?>
+		<? assign var=nextRecord value=$issueList[$nextRowIndex] ?>
+	<? /if ?>
+
+	<div id='ISSUEBLOCK_<? $listRecord.P_ID ?>_<? $listRecord.PW_ID ?>_<? $listRecord.I_ID ?>' class='it_IssueList'>
+		<? include file="ilist_oneissue.htm" ?>	
+	</div>
+	
+	<? math equation="x+1" x=$issueIndex assign=issueIndex ?>
+	
+	<? assign var=prevPW_ID value=$listRecord.PW_ID ?>
+
+<? foreachelse ?>
+	<table class="Grid it_IssueList" width="100%">
+		<tbody>
+			<tr class="NoRecords">
+				<td colspan="<? $visibleColumnNum ?>"><? $itStrings.il_noissues_text|htmlsafe:true:true ?></td>
+			</tr>
+		</tbody>
+	</table>
+<? /foreach ?>
+
+
+<? if $issueList ?>
+	<div id='NextRecordsBlock' style='width: 100%; padding-top: 20px; border-top: 1px solid #DDDDDD; padding-bottom: 30px; padding-left: 40px'>
+		<? $issuesCountMessage ?>
+		<BR>
+		<? $showMoreLink ?>
+	</div>
+<? /if ?>

@@ -1,0 +1,63 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+
+	function initFocus()
+	{
+		<? if $invalidField ?>
+			focusFormControl('vcSettings[<? $invalidField ?>]');
+		<? else ?>
+			focusFirstFormControl();
+		<? /if ?>
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="initFocus()">
+<? strip ?>
+	<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+		<? include file="../../../common/html/classic/header.htm"?>
+
+		<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr?>
+
+		<? if !$fatalError ?>
+
+			<table cellpadding=0 cellspacing=2 border=0>
+				<tr>
+					<td>
+						<? conditionalOutput invalidField=$invalidField field="maxVersionNum" text=#invalidFieldHighlight# ?>
+						<? $ddStrings.vc_maxversions_label|cat:": " ?>
+					</td>
+					<td><input type=text value="<? $vcSettings.maxVersionNum|htmlsafe:true:true ?>" name="vcSettings[maxVersionNum]" style="width: 50px"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class=smallFont width=300><? $ddStrings.vc_blankvalue_note ?></td>
+				</tr>
+			</table>
+
+			<p style="width: 500px"><b><? $kernelStrings.app_note_text|cat:": " ?></b><? $ddStrings.vc_maxversions_note ?></p>
+
+			<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_right=5?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+
+		<? else ?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+
+		<? /if ?>
+		<input type="hidden" name="btndummy">
+		<input type="hidden" name="edited" value="1">
+	<?include file="../../../common/html/classic/pagefooter.htm"?>
+	</form>
+<? /strip ?>
+</body>
+</html>

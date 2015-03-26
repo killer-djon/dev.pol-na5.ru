@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<WBSAPPLICATION>
+	<APPLICATION APP_ID="QP" SORTORDER="45" NAME="app_name_long" UI_NAME="app_name_short"/>
+         <ROBOTS>
+                 <ROBOT ID="WEBASYST_QUICKPAGES" PASSWORD="81dc9bdb52d04dc20036dbd8313ed055" SERVICES="public"/>
+         </ROBOTS>
+</WBSAPPLICATION>

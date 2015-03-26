@@ -1,0 +1,376 @@
+app_name_long	Common	Full Application Name	Фотоальбом
+app_name_short	Common	Short Application Name	Фотоальбом
+app_availablespace_text	Common	Available Storage Space	Доступное дисковое пространство: %s
+notify_onfolderupdate_name	Common	Email notification label On Folder Update	Уведомлять об обновлении папок
+app_filename_field	Common	Filename field label	Файл
+app_desc_field	Common	Description field label	Описание
+app_type_field	Common	Type field label	Тип
+app_size_field	Common	Size field label	Размер
+app_uploaddate_field	Common	Upload Date field label	Дата
+app_addeddate_field	Common	Added Date field label	Добавил
+app_by_label	Common	Added by label	
+app_owner_field	Common	Owner field label	Владелец
+app_modifieddate_field	Common	Modified Date field label	Изменен
+app_modifiedby_field	Common	Modified By field label	Изменил
+app_file_field	Common	File field label	Файл
+app_folder_field	Common	Folder field label	Альбом
+app_nofolders_message	Common	Folder absence message	Папок для выполнения операции не найдено
+app_copyerr_message	Common	File copying error message	Не удалось скопировать изображение
+app_delerr_message	Common	File deleting error message	Ошибка удаления изображения
+app_mail_title	Common	Email header	Уважаемый(ая) %s,
+app_mail_info	Common	Email text	Этим сообщением мы уведомляем вас, что один из альбомов был обновлена.
+app_mail_subject	Common	Email subject	Обновление альбома
+app_mail_foldername	Common	Updated folder mark	Обновленный альбом
+app_mail_addoperation	Common	Adding files message text	%s изображений добавлено
+app_mail_deleteoperation	Common	Deleting Files message text	%s изображений удалено
+app_nozlib_message	Common	No Zlib library installed message	Для работы с архивами на вашем сервере должна быть установлена библиотека Zlib Compression Functions
+app_treeavailalbums_name	Common	Available Albums label	Доступные альбомы
+app_treeselfld_item	Common	<select album> item	<выберите альбом>
+app_treeaddalbum_title	Common	Modifying album page in Create Album mode name	Добавить
+app_treemodalbum_title	Common	Modifying album page in Modify Album mode name	Изменить
+app_treemovealbum_text	Common	Move Album text	Переместить
+app_treedelalbum_text	Common	Delete Album text	Удалить
+app_treecopyalbum_text	Common	Copy Album text	Копировать
+app_treerenamealbum_title	Common	Rename Album text	Переименовать
+app_album_title	Common	Album Tab Title	Альбом
+ama_albumname_label	Common	Album Name label	Название альбома
+app_treefolder_label	Common	Label for "Full" book permissions	Полные
+app_treealbumname_title	Common	Album Name column header on the Albums & Users Rights page	Название альбома
+app_available_pages_name	Common	 Available Pages rights name	Доступные страницы
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Может создавать альбомы
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Возможность смотреть с правами другого пользователя
+app_treefolders_text	Common	Folders text	Допустимые действия с альбомами
+app_treeavailflds_title	Common	Available Albums column header on the Folders & Users Rights page	Доступные альбомы
+app_readaccess_name	Common	Read access	Чтение
+app_writeaccess_name	Common	Read/Write access	Запись
+app_folderaccess_name	Common	Read/Write/Folder access	Полные
+app_pd_manage_collections	Common	comment	Управление коллекциями
+app_pd_modify_design	Common	comment	Изменение дизайна и настроек
+app_pd_manage_albums	Common	comment	Управление альбомами
+app_available_functions_name	Common	 Available Functions	Доступные действия
+
+			
+app_treenocopymoverights_message	Common	Lack of administrative rights to copy files in this folder message	У вас нет прав копировать или перемещать изображения в этот альбом
+app_treenocopytorights_message	Common	Lack of administrative rights to copy files in this folder message	У вас нет прав копировать альбомы в этот альбом
+app_treenomovetofldrights_message	Common	Lack of administrative rights to move a folder in the specified folder message	У вас нет прав перемешать альбомы в этот альбом
+app_treesavecopymove_message	Common	Copying or moving files in the same folder message	Невозможно скопировать или переместить изображения в тот же альбом
+app_treeselectfolder_message	Common	Copying/moving without specifying the folder message	Пожалуйста выберите альбом
+			
+pd_screen_long_name	Photo Depot	Quick Notes page full name	Фотоальбом
+pd_screen_short_name	Photo Depot	Photo Depot page short name	Фотоальбом
+pd_screen_addfiles_menu	Photo Depot	Menu item File/Add File(s)	Добавить
+pd_screen_viewdetails_menu	Photo Depot	Menu item Image/View Image Detals	Просмотр
+pd_screen_copyfiles_menu	Photo Depot	Menu item File/Copy File(s)	Скопировать
+pd_screen_movefiles_menu	Photo Depot	Menu item File/Move File(s)	Переместить
+pd_screen_deletefiles_menu	Photo Depot	Menu item File/Delete File(s)	Удалить
+pd_screen_thumbnaillist_menu	Photo Depot	Menu item View/Thumbnail List	Эскизы и описания
+pd_screen_thumbnailtile_menu	Photo Depot	Menu item View/Thumbnail Tile	Только эскизы
+pd_screen_custview_menu	Photo Depot	Menu item View/Customize View	Настроить вид
+pd_screen_summary_note	Photo Depot	Available Folders label under the table	%s изображений в %s доступных альбомах
+pd_screen_emptydel_message	Photo Depot	Message when user tries to delete a file without selecting it	Пожалуйста, выберите изображения для удаления.
+pd_screen_emptycheckin_message	Photo Depot	Message when user tries to check in a file without selecting it	Пожалуйста, выберите изображения для разблокирования.
+pd_screen_invcheckinrights_message	Photo Depot	Message on the lack of rights to check in files	У вас нет прав разблокировать некоторые из выделенных изображений.
+pd_screen_confirmcheckin_message	Photo Depot	Check in confirmation	Вы действительно хотите разблокировать выбранные изображения?
+pd_screen_checkinrighs_message	Photo Depot	Check in rights message	Некоторые из выбранных изображений не могут быть разблокированы, так как они были заблокированы другими пользователями, либо вы не имеете прав на редактирование изображений в этом альбоме.
+pd_screen_invrights_message	Photo Depot	Message on the lack of rights to move/delete files	У вас нет прав перемещать/удалять некоторые из выделенных изображений
+pd_screen_confirmdel_message	Photo Depot	Deleting File(s) confirmation	Удалить выделенные изображения?
+pd_screen_emptyrestore_message	Photo Depot	File recovery without selecting the files message	Пожалуйста, выберите изображения для восстановления.
+pd_screen_emptycheckout_message	Photo Depot	File check out without selecting the files message	Пожалуйста, выберите изображения, которые вы хотите заблокировать.
+pd_screen_emptycopy_message	Photo Depot	File copying without selecting the files message	Пожалуйста, выберите изображения для копирования.
+pd_screen_emptymove_message	Photo Depot	File moving without selecting the files message	Пожалуйста, выберите хотя-бы одно изображение для перемещения.
+pd_screen_viewdet_message	Photo Depot	Not select image to view details	Пожалуйста, выберите хотя-бы одно изображение для детального просмотра
+pd_screen_emptyemail_message	Photo Depot	Sending email without selecting the files message	Пожалуйста, выберите хотя-бы одно изображение для отправки.
+pd_screen_flddelete_message	Photo Depot	Folder deletion warning	Удалить выделенный альбом?
+pd_screen_folder_menu	Photo Depot	Menu Item Folder	Альбом
+pd_screen_file_menu	Photo Depot	Menu Item File	Изображение
+pd_screen_view_menu	Photo Depot	Menu Item View	Вид
+pd_screen_search_label	Photo Depot	Search bar label	Поиск
+pd_screen_search_btn	Photo Depot	Search button	Искать
+pd_screen_showfolders_btn	Photo Depot	Show Folders button	Альбомы
+pd_sreen_searchresult_title	Photo Depot	Search Results header	Результат поиска
+pd_sreen_summarydoc_title	Photo Depot	Column in the Available Folders table	Файлы
+pd_screen_numdocs_label	Photo Depot	Text under notes list	Изображений
+pd_screen_noaccess_message	Photo Depot	Folder access denied message	Доступ запрещен.\n\nВНИМАНИЕ: Чтобы настроить доступ к альбомам, пожалуйста, воспользуйтесь функцией Альбом... -> Изменить. Если вы не видите указанного пункта в меню, то обратитесь к системному администратору.
+pd_screen_norights_message	Photo Depot	Lack of rights on File modifying message	У вас нет прав работать с этим изображением
+pd_screen_editfile_hint	Photo Depot	Hint on the link to the File modifying	Изменить имя и описание
+pd_screen_nofiles_text	Photo Depot	Empty folder text	<нет изображений>
+pd_screen_sorting_title	Photo Depot	Sorting bar header	Сортировка
+pd_screen_namesorting_title	Photo Depot	Link to sort by Filename	Имя
+pd_screen_sendemail_menu	Photo Depot	Menu Send Email	Отправить в письме
+pd_screen_more_label	Photo Depot	More label	подробнее...
+pd_screen_deletelocked_error	Photo Depot	Error deleting locked file message	Изображение %s не может быть удалено, так как он заблокировано пользователем %s.
+pd_screen_adddescription_label	Photo Depot	Add description	добавить описание
+pd_screen_savedescription_label	Photo Depot	Save label	Сохранить
+pd_screen_canceldescription_label	Photo Depot	Cancel label	Отмена
+			
+cm_screen_copy_title	Copy/Move	Header of the File copying in progress page	Копировать изображения
+cm_screen_move_title	Copy/Move	Header of the File moving in progress page	Переместить изображения
+cm_screen_copyfolder_title	Copy/Move	Header of the Folder copying in progress page	Копировать альбом
+cm_screen_movefolder_title	Copy/Move	Header of the Folder moving in progress page	Переместить альбом
+cm_screen_copy_btn	Copy/Move	Copying in progress button	Копировать
+cm_screen_move_btn	Copy/Move	Moving in progress button	Переместить
+cm_screen_filenum_label	Copy/Move	Text: number of files selected	изображений выбрано
+cm_replace_error	Copy/Move	Replace error message	Изображение %s заблокировано пользователем %s и не может быть заменено
+			
+cv_screen_title	Customize View	Page header	Настроить вид
+cv_screen_notesnum_label	Customize View	 	Количество изображений на одной странице:
+cv_restrictdesc_label	Customize View	Restrict description label	Ограничить видимую длину описания изображения до
+cv_characters_label	Customize View	Characters label	символов
+cv_restrict_note	Customize View	Restriction note	Оставьте это поле пустым чтобы отменить ограничение
+			
+add_screen_norights_message	Add File	Lack of administrative rights message	У вас нет прав добавлять изображения в этот альбом
+add_screen_copyerr_message	Add File	Error copying files message	Ошибка копирования изображений
+add_screen_long_name	Add File	Page header	Добавить изображения
+add_screen_nofiles_message	Add File	Submitting without selecting any files message	Вы должны выбрать хотя бы одно изображение
+add_screen_morefiles_label	Add File	 	Нажмите здесь, если хотите добавить больше изображений
+add_screen_apd_btn	Add File	Add button	Добавить
+add_screen_upload_text	Add File	Text displayed while files are being added	Добавление изображений...
+add_screen_uploadwait_text	Add File	Text displayed while files are being uploaded	Пожалуйста подождите пока мы загружаем ваши изображения.
+add_screen_upload_err_success	Add File	Message returned after successful file(s) uploading	Загрузка изображения прошла успешно.
+add_screen_upload_err_maxfile_exceed	Add File	Message returned if the size of file to be uploaded exceeds one allowed by UPLOAD_MAX_FILESIZE directive	Размер файла превышает разрешенный директивой UPLOAD_MAX_FILESIZE в файле php.ini
+add_screen_upload_err_maxfilehtml_exceed	Add File	Message returned if the size of file to be uploaded exceeds one allowed in HTML form	Размер файла превышает разрешенный в описании HTML формы
+add_screen_upload_err_part	Add File	Message returned if only a part of file was uploaded	Изображение загружен не полностью
+add_screen_upload_err_nofile	Add File	Message returned if file was not uploaded	Изображение не было загружено
+add_screen_upload_err_tempmissed	Add File	Message returned if temporary folder is not available	Каталог временных файлов не доступен
+add_screen_upload_error	Add File	Message returned if error occurred when file has been uploading	Ошибка загрузки файла <b>%s</b>. %s.
+add_screen_upload_success	Add File	Message returned after successful file(s) uploading	Файл <b>%s</b> успешно добавлен.
+add_screen_upload_locked	Add File	Message returned if uploaded file was locked by another user	Файл <b>%s</b> не может быть добавлен (заблокирован пользователем %s).
+add_screen_upload_info	Add File	Common file upload status message	Файл <b>%s</b>: %s.
+add_screen_filename_title	Add File	File Name title	Файл
+add_screen_comment_title	Add File	Comment title	Комментарий
+add_screen_of	Add Image	Of string	из
+add_screen_bulk_link	Add File	Bulk message	Новая загрузка файлов
+add_screen_bulk_requires	Add File	Bulk message	требуется
+add_filenameasdesc_label	Add File	Filename as description label	Использовать имя файла в качестве описания (если описание не указано)
+			
+addfld_screen_errorfld_message	Add Folder	Error creating directory message	Не удалось создать директорию
+			
+ua_file_label	Upload Archive	File label	Файл
+ua_selectfile_message	Upload Archive	Select file message	Пожалуйста, выберите архив ZIP для загрузки
+ua_errorarchive_message	Upload Archive	Error reading archive message	Ошибка чтения архива
+ua_archivesnotsupported_message	Upload Archive	Archives not supported message	Для работы с архивами на вашем сервере должны быть установлены следующие компоненты:\n\n1. Zlib Compression Functions\n\nПожалуйста обратитесь к вашему системному администратору
+ua_filefolders_label	Upload Archive	Files and folders label	Архив %s содержит %s файл(ов) in %s директории(ях)
+ua_requiredspace_label	Upload Archive	Required disk space label	Требуемое дисковое пространство: %s
+ua_availablespace_label	Upload Archive	Available disk space label	Доступное пространство: %s
+ua_imagesfound_label	Upload Archive	Images found label	Изображений найдено: %s
+ua_arciveuploaded_message	Upload Archive	Archive uploaded message	Архив %s успешно загружен
+ua_arciveuploaderror_message	Upload Archive	Archive uploading error message	Ошибка загрузки архива %s: %s.
+ua_filesextracted_label	Upload Archive	Files extracted label	Всего изображений извлечено
+ua_imagesextracted_label	Upload Archive	Images extracted label	Извлечено изображений
+ua_thumbscreated_label	Upload Archive	Thumbnails created label	Создано эскизов
+ua_thumberrors_label	Upload Archive	Thumbnail errors label	Ошибок создания эскизов
+ua_fileformat_note	Upload Archive	File format note	Могут быть загружены только архивы ZIP (возможны подпапки)
+ua_partialupload_message	Upload Archive	Partially uploaded archive message	Архив %s был частично загружен:
+ua_upload_note	Upload Archive	Upload archive note	Данная функция позволяет загрузить и автоматически извлечь файлы изображений из любого файла ZIP
+ua_nospacerequired_note	Upload Archive	No required space note	Доступное дисковое пространство недостаточно для извлечения всех файлов из архива. Ваш архив будет распакован только частично. Для увеличения доступного дискового пространства вы должны подписаться на дополнительное пространство, либо удалить некоторые файлы и/или записи базы данных.
+ua_uploadarchive_text	Upload Archive	Text displayed while archive are being uploaded	Загрузка архива...
+ua_uploadwait_text	Upload Archive	Text displayed while archive are being uploaded	Пожалуйста подождите пока мы загружаем ваш архив...
+			
+sm_page_title	Send Email	Page title	Отправить изображения в письме
+sm_to_label	Send Email	Label To	Кому
+sm_subject_label	Send Email	Label Subject	Тема
+sm_message_label	Send Email	Label Message	Сообщение
+sm_send_btn	Send Email	Send button	Отправить
+sm_recnotset_message	Send Email	Error message	Вы должны указать получателей для этого сообщения.
+sm_recipientlimit_message	Send Email	Error message	Превышено ограничение количества получателей: %s
+sm_included_label	Send Email	Included label	Включенные
+sm_notincluded_label	Send Email	Not included label	Не включенные
+sm_tomore_label	Send Email	To (more) label	Кому (еще)
+sm_attachments_label	Send Email	Attachments label	Вложения
+sm_totalfileinfo_label	Send Email	Total files information	Всего: %s изобр. (%s)
+sm_filename_label	Send Email	File name label	Имя Файла
+sm_invalidemail_message	Send Email	Invalid email message	Неверный формат электронного адреса: %s
+sm_errorsending_message	Send Email	Error sending email message	Ошибка отправки сообщения
+sm_from_label	Send Email	From label	От
+			
+fd_page_title	Image	Page title	Файл
+fd_close_btn	Image	Close button	Закрыть
+fpp_page_title	Image	Page Title	Свойства изображения
+fpp_norights_message	Image	No rights message	У вас нет прав редактировать это изображение
+fpp_editfile_hint	Image	Edit file hint	Изменить имя и описание
+fpp_comment_label	Image	Comment title	Комментарий
+fpp_back_btn	Image	Back button	Вернуться к списку изображений
+			
+add_screen_simple_upload_title	Add Image	Simple Upload	По одному
+add_screen_advanced_upload_title	Add Image	Advanced Upload	Сразу много
+add_screen_zip_archive_upload_title	Add Image	Upload ZIP archive	ZIP архив
+add_screen_upload_error_wrong_file	Add Image	Message returned if error occurred when file has been uploading	Ошибка загрузки файла <b>%s</b>. %s.
+add_screen_upload_not_valid_image	Add Image	Message descripted wrong images	Файл не является изображением
+			
+add_screen_upload_image_count	Add Image	Message descripted uploaded images count	%s успешно загружено
+add_screen_not_upload_image_count	Add Image	Message descripted not uploaded images count 	%s изображений не загружено
+add_screen_not_supportedfiles_count	Add Image	Message descripted not supported files count 	%s файл(ов) не поддерживаемого формата
+add_screen_simple_editbtn	Add Image	Edit uploaded images button	Изменить описание
+add_screen_simple_goalbumbtn	Add Image	Go to my album button	Вернуться в альбом
+add_screen_simple_uploadmorebtn	Add Image	Upload more button	Загрузить еще
+			
+app_treesharealbum_title	Common	Share album by email	Отправить слайдшоу
+pd_screen_emptyshare_message	Photo Depot	Image sharing without selecting the images message	Вы должны выбрать изображения для этого действия.
+pd_share_album_page_title	Share Album	Page title	Отправить слайдшоу
+pd_share_album_name_label	Share Album	Album name label	Имя альбома
+pd_share_template_name_label	Share Album	Template name label	Шаблон
+			
+pd_share_album_text	Share Album	Send email text	Привет, смотри что я тебе прислал...
+pd_share_album_info_text	Share Album	Send email info text	Щелкни по картинке, чтобы перейти к альбому или используй следующую ссылку:
+pd_share_album_pd_text	Share Album	Send email PD text	Храните и обменивайтесь фотографиями с <a href="#">ВебАсист™ Фотоальбом</a>
+pd_share_album_info_text_alt	Share Album	Send email info alt text	Чтобы перейти к альбому используй следующую ссылку:
+pd_share_album_pd_text_alt	Share Album	Send email PD text	Храните и обменивайтесь фотографиями с ВебАсист™ Фотоальбомом  #
+pd_share_album_send_info_text	Share Album	Send email send info text	Это сообщение было отправлено <%s> от %s
+pd_share_album_send_info_text_alt	Share Album	Send email send info text	Это сообщение было отправлено %s от %s
+pd_share_album_send_compl_text	Share Album	Send email complete text	Email сообщения были посланы %s получателю(-ям).
+pd_share_album_goto_album_text	Share Album	Send email goto album text	Вернуться в альбом
+pd_share_album_againbtn_text	Share Album	Send email send more text	Послать еще
+pd_share_album_sendnoti_text	Share Album	Send email send noti text	Послать Email приглашение для просмотра альбома.
+pd_share_album_sendimages_text	Share Album	Send email send images text	Послать Email с прикрепленными файлами изображений.
+pd_share_album_help_text	Share Album	Send email help text	Один Email адрес на строку или разделенные знаком ";"
+			
+pd_share_numfiles_label	Share	Text under files list	изображений
+pd_share_preview_label	Share	Text preview link	Предпросмотр
+pd_catalog_selected_label	Catalog	Selected images label	Выбрано
+			
+pd_sendemail_resize_options_label	Send Email	Send email resize options label	Изменение размера
+pd_sendemail_resize_options_keep_original	Send Email	Send email resize options keep in original label	эскиз (%s)
+pd_sendemail_resize_options_small_label	Send Email	Send email resize options small label	маленький (%s)
+pd_sendemail_resize_options_medium_label	Send Email	Send email resize options medium label	средний (%s)
+pd_sendemail_resize_options_large_label	Send Email	Send email resize options large label	большой (%s)
+			
+pd_screen_rotate_left_menu	Photo Depot	Menu Rotate Left	Повернуть влево
+pd_screen_rotate_right_menu	Photo Depot	Menu Rotate Right	Повернуть вправо
+pd_screen_emptyrotatelist_message	Photo Depot	rotate without selecting the images	Вы должны выбрать изображения для этого действия.
+			
+pd_screen_editfiles_menu	Photo Depot	Menu item Image/Edit Image(s)	Изменить описание
+			
+pd_screen_emptyedit_message	Photo Depot	Image editing without selecting the images message	Вы должны выбрать изображения для этого действия.
+			
+pd_left_panel_header	Photo Depot	Left panel header	Альбомы
+pd_toolbar_save_changes	Photo Depot	Message save changes	Сохранение изменений
+pd_toolbar_rotating_images	Photo Depot	Message rotating images	Выполняется поворот
+			
+pd_button_extract_images	Upload Archive	Button extract images caption	Извлечь изображения
+			
+pd_editimages_button_save	Photo Depot	Button save caption	Сохранить
+pd_editimages_caption_title	Photo Depot	Title caption	Заголовок
+			
+pd_app_treehidefld_hint	Photo Depot	Hide album title caption	Скрыть альбомы
+pd_app_treeshowfld_hint	Photo Depot	Show album title caption	Показать альбомы
+			
+pd_screen_editmode_name	Photo Depot	Edit mode screen header	Изменить описание
+			
+pd_screen_slideshow_caption	Photo Depot	Slide Show link caption	Показать слайдами
+			
+sm_select_from_contacts_label	Send Email	Select from contacts label	Выбрать из контактов
+sm_available_folders_label	Send Email	Available folders label	Доступные папки
+sm_sel_contacts_note_text	Send Email	Select contacts note text	Используйте Ctrl+клик и Shift+клик чтобы выбрать несколько записей
+sm_select_button_label	Send Email	Select buttons label	Выбрать
+sm_all_contacts_label	Send Email	All contacts label	<все контакты>
+sm_page_not_load_label	Send Email	Page not load label	Загрузка контактов. Пожалуйста подождите...
+			
+add_scr_adv_upl_add_btn_capt	Add Image	Advanced Upload add button caption	Добавить
+add_scr_adv_upl_rem_btn_capt	Add Image	Advanced Upload remove button caption	Удалить
+add_scr_adv_upl_upload_btn_capt	Add Image	Advanced Upload upload button caption	Загрузить
+			
+pd_screen_viewdetails_title	Photo Depot	Page View Image Detals title	Просмотр
+			
+app_close_caption	Common	Close button label	Закрыть
+app_available_sizes_field	Common	Available sizes	Доступные размеры
+			
+app_thumbnail_size	Common	Thumbnail size	эскиз (%s x %s) |
+app_small_size	Common	Small size	малый (%s x %s) |
+app_medium_size	Common	Medium size	средний (%s x %s) |
+app_large_size	Common	Large size	большой (%s x %s)
+			
+pd_poppan_header_label	Popup Panel	Popup panel header label	Действия с выбранными изображениями
+pd_poppan_close_label	Popup Panel	Popup panel close label	Закрыть
+pd_poppan_upload_label	Popup Panel	Popup panel upload label	Добавить изображения
+pd_poppan_slideshow_label	Popup Panel	Popup panel sldeshow label	Слайдшоу
+pd_poppan_viewdet_label	Popup Panel	Popup panel view details label	Просмотр
+pd_poppan_viewdet_dc_label	Popup Panel	Popup panel view details double click label	(двойной щелчок)
+pd_poppan_edittitle_label	Popup Panel	Popup panel edit title and description label	Редактировать описание
+pd_poppan_sendemail_label	Popup Panel	Popup panel send email label	Послать в письме
+pd_poppan_copy_label	Popup Panel	Popup panel copy label	Скопировать в другой альбом
+pd_poppan_move_label	Popup Panel	Popup panel move label	Переместить в другой альбом
+pd_poppan_delete_label	Popup Panel	Popup panel delete label	Удалить
+pd_poppan_rotate_left_label	Popup Panel	Popup panel rotate left label	Повернуть влево
+pd_poppan_rotate_right_label	Popup Panel	Popup panel rotate right label	Повернуть вправо
+pd_poppan_note_text_label	Popup Panel	Popup panel note text	Чтобы выделить несколько изображений используйте Ctrl+клик или Shift+клик
+pd_poppan_onclose_label	Popup Panel	Popup panel on close warning	Чтобы снова открыть Панель действий используйте меню Вид / Показать панель действий
+pd_screen_showactions_menu	Popup Panel	Popup panel show label	Показать панель действий
+			
+pd_poppan_share_label	Files	Create link label	Создать ссылку
+pd_screen_mylinks_label	Files	My Links title	Мои ссылки
+			
+app_treerightslegend_text	Common	User rights legend	Обозначения прав пользователя:\n\nЧ (Чтение) - может только открывать изображения в этом альбоме\nЗ (Запись) - может добавлять/перемещать/изменять/удалять изображения в этом альбоме\nП (Полные) - может добавлять/перемещать/удалять альбом целиком
+			
+pd_slideshow_size_label	Slideshow	Slideshow size label	Размер:
+pd_slideshow_small_label	Slideshow	Slideshow small label	малый
+pd_slideshow_medium_label	Slideshow	Slideshow medium label	средний
+pd_slideshow_large_label	Slideshow	Slideshow large label	большой
+pd_slideshow_hide_thumbs_label	Slideshow	Slideshow Hide Thumbnails label	Скрыть эскизы
+pd_slideshow_show_thumbs_label	Slideshow	Slideshow Show Thumbnails label	Показать эскизы
+pd_slideshow_first_label	Slideshow	Slideshow first label	Первый
+pd_slideshow_prev_label	Slideshow	Slideshow previous label	Предыдущий
+pd_slideshow_play_label	Slideshow	Slideshow play label	Старт
+pd_slideshow_pause_label	Slideshow	Slideshow pause label	Пауза
+pd_slideshow_next_label	Slideshow	Slideshow next label	Следующий
+pd_slideshow_last_label	Slideshow	Slideshow last label	Последний
+pd_slideshow_nodesc_label	Slideshow	Slideshow no desc label	нет описания
+			
+pd_slideshow_showdesc_label	Slideshow	Show Description label	Показать подписи
+pd_slideshow_hidedesc_label	Slideshow	Show Description label	Скрыть подписи
+pd_slideshow_loading_label	Slideshow	Loading label	Загрузка слайдшоу...
+pd_slideshow_close_label	Slideshow	Close label	Закрыть слайдшоу
+pd_slideshow_seconds_label	Slideshow	Seconds label	сек.
+			
+app_appletnotload_text	Common	Applet not load text	Java-апплет не загружен. <br>Чтобы запустить Java-апплет снова, вам нужно перезапустить браузер.
+app_loadnow_text	Common	Load now	Загрузить снова.
+			
+app_treeaddfolderperms_text	Common	Text on the Album tab of the Add/Modify Album form	Для настройки прав пользователей в этом альбоме, используйте закладки "Пользователи" для личных прав и "Группы" для прав пользовательских групп.
+app_treeaddfolderuseraccess_text	Common	Add/Modify Folder users tab text	Настройте персональные права доступа к этому альбому
+app_treeaddfoldergroupaccess_text	Common	Add/Modify Folder groups tab text	Настройте групповые права доступа к этому альбому
+			
+app_error_usermail_text	Common	Error when user send email	Вы должны указать ваш Email для того, чтобы отправлять письма
+sm_nosenderemail_label	Common	No sender email	не указан адрес отправителя
+			
+pd_error_account_exc_limit	Errors	Error when user exceeded account limit	<b>ОГРАНИЧЕНИЕ:</b> Количество изображений не может превышать %s.
+pd_error_account_exc_db_size_limit	Errors	Error when user exceeded account db size limit	<b>ОГРАНИЧЕНИЕ:</b> Размер базы данных не может превышать %s MB.
+pd_error_account_exc_limit_help	Errors	Error when user exceeded account limit help string	<a href="%s" target="_blank">Изменить параметры аккаунта</a>. [<a href="%s" target="_blank">Справка</a>]
+pd_error_account_exc_limit_archive_info	Errors	Error when user exceeded account limit archive information	%s был частично загружен.
+pd_error_cant_copy_into_same_album	Errors	Can not copy/move images message	Нельзя копировать/перемещать изображения в тот же самый альбом
+			
+shpd_linkwhatshare_label	Share Dialog	What share question	Создать ссылку для:
+shpd_widgetwhatshare_label	Share Dialog	What share question	Создать виджет для:
+shpd_selectedfiles_label	Share Dialog	Selected files	Выбранных изображений
+shpd_entirefolder_label	Share Dialog	Entire folder	Всего альбома
+shpd_morefiles_label	Share Dialog	more photos	еще
+shpd_morefile_label	Share Dialog	more photo	еще изображений
+
+
+updlg_dialog_title	File upload dialog	dialog title	Загрузка изображений
+updlg_file_error_unknown	File upload dialog	unknown error	Ошибка загрузки файла
+updlg_file_error_userquota	File upload dialog	user quota error	Вы превысили квоту на личное дисковое пространство.
+updlg_file_error_systemquota	File upload dialog	file check out	Превышен лимит доступного места на диске.
+updlg_file_error_fileslimit	File upload dialog	file check out	Превышено максимально допустимое количество файлов.
+
+updlg_nofilesselected_message	File upload dialog	no files selected	нет выбранных изображений
+updlg_selectmore_label	File upload dialog	select more	выбрать еще
+updlg_uploading_label	File upload dialog	uploading	Загрузка...
+updlg_filesselected_label	File upload dialog	files selected	изображений выбрано
+updlg_filesuploaded_label	File upload dialog	files uploaded	изображений успешно загружено
+updlg_filesnotuploaded_label	File upload dialog	files not uploaded	изображений не загружено
+updlg_afterselectmore_label	File upload dialog	after select more link	загрузить еще файлы
+updlg_selectfiles_label	File upload dialog	select files	Выберите изображения
+updlg_oldlink1_message	File upload dialog	old link first part	Если у вас возникли трудности при использовании этого загрузчика,
+updlg_oldlink2_message	File upload dialog	old link second part (link)	воспользуйтесь стандартной формой
+updlg_startupload_btn	File upload dialog	start upload button	Начать загрузку
+
+updlg_statuscomplete_label	File upload dialog	complete	Готов.
+updlg_statusuploading_label	File upload dialog	uploading	Загружается...
+updlg_statuspending_label	File upload dialog	pending	Ожидает...
+updlg_statuscancel_label	File upload dialog	cancel	Отменен.
+updlg_filenameasdesc_label	File upload dialog	Filename as description label	Использовать имя файла в качестве описания
+
+links_screen_name	Links	Links screen name	Мои ссылки
+links_description_text	Links	Links description text	<b>Ссылка</b> – это <b>веб-адрес</b>, который вы можете создать для коллекции фотографий или для целого альбома. После чего вы можете отправить ссылку по Email вашим друзьям, или просто запомнить адрес (да, вы можете создать простой запоминающийся адрес!), чтобы открыть свой фотоальбом с любого компьютера.
+links_sample_label	Links	Sample label	Пример
+links_create_text	Links	Create text	Чтобы создать новую ссылку, перейдите в любой доступный альбом и нажмите кнопку <b>Создать ссылку</b>.
+links_availablelinks_label	Links	Availalbe links	Доступные ссылки

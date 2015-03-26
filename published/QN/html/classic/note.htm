@@ -1,0 +1,83 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl(objName) {
+	 var obj = MM_findObj(objName); 
+	 if (obj)
+		obj.focus( );
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl('folderdata[QNF_NAME]');">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr> 
+		  <td class="pageTopPanel"> 
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$qnStrings.n_screen_return_btn formname="form" space_right=5 ?>
+		  </td>
+		</tr>
+	  </table>	  
+  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr> 
+      <td width="400" class="largeText_normal"> 
+        <? $noteData.QN_SUBJECT|htmlsafe:true:true ?>
+      </td>
+    </tr>
+    <tr> 
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="400"> 
+        <? $noteData.QN_CONTENT|htmlsafe:true:true ?>
+      </td>
+    </tr>
+	<? if $attachedFiles ?>
+    <tr> 
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><? $qnStrings.n_screen_files_label|cat:": " ?><? $attachedFiles ?></td>
+    </tr>
+	<? /if ?>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+    <tr>
+      <td class="smallFont"><hr width="100%" size="1" noshade>
+        <nobr><? $qnStrings.n_screen_lastmodified_label|cat:": "|cat:$noteData.QN_MODIFYUSERNAME|cat:" "|cat:$noteData.QN_MODIFYDATETIME ?></nobr>
+      </td>
+	</tr>
+  </table>
+  <? /if ?>
+  <input type="hidden" name="action" value="<?$action?>">
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="QNF_ID" value="<?$QNF_ID?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

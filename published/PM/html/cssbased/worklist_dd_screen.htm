@@ -1,0 +1,42 @@
+<? if $installedDD && $encDF_ID ?>
+	<iframe width="100%" height="100%" scrolling="no" name="sc_frame" src="../../../DD/2.0/backend.php?projectId=<? $projectData.P_ID ?>" frameborder="0"></iframe>
+<? else ?>
+	<input type='hidden' name='screenApp' value='<? $screenApp ?>'>
+	<input type='hidden' name='projectData[P_DESC]' value="<? $projectData.P_DESC|htmlsafe:true:true ?>">
+	
+	<? wbs_formCaption text=$pmStrings.pm_dd_empty_title ?>
+	
+	<? $pmStrings.pm_dd_empty_comonmessage ?>
+	<BR><BR>
+	
+	<? if !$installedDD ?>
+		<? wbs_note ?>
+			<? $pmStrings.pm_dd_notinstalled_note ?> 
+			<? if !$hasControlAccess ?>
+				<? $pmStrings.pm_dd_notinstalledadmin_note ?> 
+			<? else ?>
+				<BR><BR>
+				<? wbs_buttonSet ?>
+					<? if $onWebasystServer ?>
+						<? wbs_buttonSetButton caption=$pmStrings.pm_dd_installservice_link name="" link="../../../AA/html/scripts/cc.php?action=addapps" ?>
+					<? else ?>
+						<? wbs_buttonSetButton caption=$pmStrings.pm_dd_installservice_link name="" link="#" target='_blank' ?>
+					<? /if ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+		
+		<? /wbs_note ?>
+		
+	<? elseif !$encDF_ID ?>
+		<? wbs_errorBlock ?>
+	
+		<? if $fullProjectAccess ?>
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton caption=$pmStrings.pm_dd_createfolder_btn name="createddfolder"?>
+			<? /wbs_buttonSet ?>
+		<? else ?>
+			<? $pmStrings.pm_dd_notfolder_note ?>			
+		<? /if ?>
+
+	<? /if ?>
+<? /if ?>

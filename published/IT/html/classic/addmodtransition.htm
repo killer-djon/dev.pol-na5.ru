@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "styles/it.css"|stylesetitem:"classic":$styleSet:"IT" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl(objName) {
+	 var obj = MM_findObj(objName); 
+	 if (obj)
+		obj.focus( );
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" <? if $transdata.ITS_NUM  != 1 && !$isEndState ?>onLoad="focusControl('transdata[ITS_STATUS]');"<?/if?>>
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <table border="0" cellspacing="1" cellpadding="1" width=500>
+    <tr> 
+      <td align="left" valign="top"><strong><? $projName  ?></strong> </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top"> 
+        <? $itStrings.dws_task_label|cat:" #"|cat:$PW_ID|cat:":&nbsp;" ?>
+        <? $workDescr|wordwrap:50:"<br>" ?>
+      </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" class="smallFont">&nbsp;</td>
+    </tr>
+  </table>
+
+			<? include file="../../../common/html/classic/formframe_begin.htm"?>	
+				<table border="0" cellpadding="0" cellspacing="2" width=300>
+				  <? if $prevListItemCount && $transdata.ITS_NUM  != 1 && !$isEndState ?>
+				  <tr> 
+					<td align="right" class="label"> <nobr> 
+					  <? $itStrings.dws_placebefore_label|cat:":" ?>
+					  </nobr> </td>
+					<td  width="100%"><select name="transdata[ITS_PREVNUM]" class="control">
+							  <? html_options values=$prevnum_ids selected=$transdata.ITS_PREVNUM output=$prevnum_names ?>
+							</select></td>
+				  </tr>
+				  <? /if ?>
+				  <tr> 
+					<td align="right" class="label"><nobr> 
+					  <? conditionalOutput invalidField=$invalidField field=ITS_STATUS text=#invalidFieldHighlight#  ?>
+					  <? $itStrings.dws_statusname_label|cat:":" ?>
+					  </nobr> </td>
+					<td <? if $transdata.ITS_NUM  == 1 || $isEndState ?>class="readonly_control" width="100%"<? /if ?>> 
+					  <? if $transdata.ITS_NUM  != 1 && !$isEndState ?>
+					  <input name="transdata[ITS_STATUS]" type="text" class="control" value="<? $transdata.ITS_STATUS ?>" size="30" maxlength="20"> 
+					  <? else ?>
+					  <input type="hidden" name="transdata[ITS_STATUS]" value="<? $transdata.ITS_STATUS ?>" >
+					  <? $transdata.ITS_STATUS ?>
+					  <? /if ?>
+					</td>
+				  </tr>
+				  <? if $transdata.ITS_NUM  != 1 && !$isEndState ?>
+				  <tr> 
+					<td >&nbsp;</td>
+					<td >&nbsp;</td>
+				  </tr>
+				  <?/if?>
+				</table>
+				<? if $transdata.ITS_NUM  != 1 ?>
+				<? if !$isEndState ?>
+				<table width="100%" border="0" cellpadding="0" cellspacing="2">
+				  <tr> 
+					<td colspan="2" class="formSection"> 
+					  <? $itStrings.dws_issueoptions_title ?>
+					</td>
+				  </tr>
+				  <tr> 
+					<td width="15" >&nbsp;</td>
+					<td ><input type="checkbox" name="transdata[ITS_ALLOW_EDIT]" value="1" <? switchedOutput val=$transdata.ITS_ALLOW_EDIT true_val=1 str1="checked"?>> 
+					  <? $itStrings.dws_canedit_label?>
+					  <br> <input type="checkbox" name="transdata[ITS_ALLOW_DELETE]" value="1" <? switchedOutput val=$transdata.ITS_ALLOW_DELETE true_val=1 str1="checked"?>> 
+					  <? $itStrings.dws_candelete_label ?>
+					</td>
+				  </tr>
+				  <tr> 
+					<td width="15" >&nbsp;</td>
+					<td >&nbsp;</td>
+				  </tr>
+				</table>
+				<? /if ?>
+				<table border="0" cellspacing="2" cellpadding="0">
+				<? if !$isEndState ?>
+				  <tr> 
+					<td align="right" class="label"> 
+					  <? $itStrings.dws_assignoption_label|cat:":" ?>
+					</td>
+					<td ><select name="transdata[ITS_ASSIGNMENTOPTION]" class="control">
+						<? html_options values=$aopt_ids selected=$transdata.ITS_ASSIGNMENTOPTION output=$aopt_names ?>
+					  </select></td>
+				  </tr>
+				  <tr> 
+					<td align="right" class="label"> 
+					  <? conditionalOutput   invalidField=$invalidField field=U_ID_ASSIGNED text=#invalidFieldHighlight#  ?>
+					  <? $itStrings.dws_assigdefault_label|cat:":" ?>
+					</td>
+					<td ><select name="transdata[U_ID_ASSIGNED]" class="control">
+						<? html_options values=$assignmentListIDs selected=$transdata.U_ID_ASSIGNED output=$assignmentListNames ?>
+					  </select></td>
+				  </tr>
+				  <? /if ?>
+				  <tr> 
+					<td align="right" class="formField">&nbsp;</td>
+					<td >&nbsp;</td>
+				  </tr>
+				  <tr> 
+					<td align="right" class="label"> 
+					  <? $itStrings.dws_color_label|cat:":" ?>
+					</td>
+					<td ><select name="transdata[ITS_COLOR]" class="control">
+						<? html_options values=$color_ids selected=$transdata.ITS_COLOR output=$color_names ?>
+					  </select></td>
+				  </tr>
+				</table>
+				<? /if ?>
+				<? if !$isEndState ?>
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				  <tr>
+					<td>&nbsp;</td>
+				  </tr>
+				 </table>
+				 
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="simpleBorder">
+				  <tr> 
+					<td class="formSection"> 
+					  <? $itStrings.dws_allowedtransitions_title ?>
+					</td>
+				  </tr>
+				  <tr> 
+					<td><table border="0" cellspacing="0" cellpadding="0" width="100%">
+						<? foreach key=statusName item=statusData from=$possibleTransitions name=allowedStatuses ?>
+						<tr <? if ($smarty.foreach.allowedStatuses.iteration % 2) == 0 ?>bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+						  <td width="20">
+							<input type="checkbox" name="allowedTransitions[]" value="<? $statusData.ITS_STATUS_ENCODED ?>" <? switchedOutput val=$statusData.CHECKED true_val=1 str1="checked"?>>
+						  </td>
+						  <td width=20>
+							<input type="radio" name="transdata[ITS_DEFAULT_DEST_ENCODED]" value="<? $statusData.ITS_STATUS_ENCODED ?>" <? switchedOutput val=$transdata.ITS_DEFAULT_DEST_ENCODED true_val=$statusData.ITS_STATUS_ENCODED str1="checked"?>>&nbsp;
+						  </td>
+						  <td>
+							<? $statusData.ITS_COLOR ?>
+							<? $statusName ?>
+						  </td>
+						</tr>
+						<? /foreach ?>
+					  </table></td>
+				  </tr>
+				</table>
+				<? /if ?>
+			  </td>
+			<? include file="../../../common/html/classic/formframe_end.htm" extraLine=1?>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width=5><? #sep5_img# ?></td>
+								<td class="smallFont" valign=top>
+									<strong><? $kernelStrings.app_tips_label|cat:":&nbsp;" ?></strong>
+								</td>
+								<td class="smallFont" valign=top>
+									<? $itStrings.dws_note1_text|htmlsafe:true:true ?><br>
+									<? $itStrings.dws_note2_text|htmlsafe:true:true ?>
+								</td>
+							</td>
+						</table>
+					</td>
+				<tr ><td colspan=2">&nbsp;</td></tr>
+			</table>
+		<table border="0" cellspacing="0" cellpadding="0" width="330">
+			<tr>
+				<td> 
+					<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=5 space_right=10 ?>
+					<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+				</td>
+				<td align="right"> 
+					<? if $allowDelete && $transdata.ITS_NUM  != 1 && !$isEndState ?>
+						<? include file="../../../common/html/classic/button.htm" align="right" name="deletebtn" caption=$kernelStrings.app_delete_btn formname="form" onClick="return confirm('"|cat:$itStrings.dws_delstate_message|cat:"')"?>
+					<? /if ?>
+				</td>
+			</tr>
+		</table>
+  <? else ?>
+  <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <input name="edited" type="hidden" value="1">
+  <input name="action" type="hidden" value="<? $action ?>">
+  <input name="P_ID" type="hidden" value="<? $P_ID ?>">
+  <input name="PW_ID" type="hidden" value="<? $PW_ID ?>">
+  <input name="transdata[P_ID]" type="hidden" value="<? $transdata.P_ID ?>">
+  <input name="transdata[PW_ID]" type="hidden" value="<? $transdata.PW_ID ?>">
+  <input name="transdata[ITS_NUM]" type="hidden" value="<? $transdata.ITS_NUM ?>">
+  <input name="sorting" type="hidden" value="<? $sorting ?>">
+  <input name="transdata[PREV_PREVNUM]" type="hidden" value="<? $transdata.PREV_PREVNUM ?>">
+  <input name="searchCriteria" type="hidden" value="<? $searchCriteria ?>">
+  <input type="hidden" name="btndummy">
+  <input name="opener" type="hidden" value="<? $opener ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

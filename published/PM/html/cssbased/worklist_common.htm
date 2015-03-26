@@ -1,0 +1,69 @@
+<script>
+	var pmStrings = {
+		amt_taskstartdue_message : "<? $pmStrings.amt_taskstartdue_message ?>",
+		amt_taskstartcomplete_message : "<? $pmStrings.amt_taskstartcomplete_message ?>",
+		amt_taskcompletetoday_message : "<? $pmStrings.amt_taskcompletetoday_message ?>",
+		amt_assignmentstasks_caption: "<? $pmStrings.amt_assignmentstasks_caption ?>",
+		amt_tasks_caption: "<? $pmStrings.amt_tasks_caption ?>",
+		amt_assignments_caption: "<? $pmStrings.amt_assignments_caption ?>",
+		pm_hidecomplete_menu: "<? $pmStrings.pm_hidecomplete_menu ?>",
+		pm_id_title: "<? $pmStrings.pm_id_title ?>",
+		pm_description_title: "<? $pmStrings.pm_description_title ?>",
+		pm_start_title: "<? $pmStrings.pm_start_title ?>",
+		pm_due_title: "<? $pmStrings.pm_due_title ?>",
+		pm_complete_title: "<? $pmStrings.pm_complete_title ?>",
+		pm_billable_title: "<? $pmStrings.pm_billable_title ?>",
+		pm_cost_title: "<? $pmStrings.pm_cost_title ?>",
+		pm_gantt_title: "<? $pmStrings.pm_gantt_title ?>",
+		pm_assignments_title: "<? $pmStrings.pm_assignments_title ?>",
+		pm_loading_label: "<? $pmStrings.pm_loading_label ?>",
+		pm_addtask_title: "<? $pmStrings.pm_addtask_title ?>",
+		pm_edittask_title: "<? $pmStrings.pm_edittask_title ?>",
+		amr_notassigned_title: "<? $pmStrings.amr_notassigned_title ?>",
+		amr_assigned_title: "<? $pmStrings.amr_assigned_title ?>",
+		amr_taskcomplete_label: "<? $pmStrings.amr_taskcomplete_label ?>",
+		pm_summary_title: "<? $pmStrings.pm_summary_title ?>",
+		amr_startdate_label: "<? $pmStrings.amr_startdate_label ?>",
+		amr_duedate_label: "<? $pmStrings.amr_duedate_label ?>",
+		amr_completedate_label: "<? $pmStrings.amr_completedate_label ?>",
+		amr_billable_label: "<? $pmStrings.amr_billable_label ?>",
+		amr_cost_label: "<? $pmStrings.amr_cost_label ?>",
+		amr_costcur_label: "<? $pmStrings.amr_costcur_label ?>",
+		pm_showcomplete_menu: "<? $pmStrings.pm_showcomplete_menu ?>",
+		pm_hidecomplete_menu: "<? $pmStrings.pm_hidecomplete_menu ?>",
+		pm_week_label: "<? $pmStrings.pm_week_label ?>",
+		pm_noassignmentsshort_label: "<? $pmStrings.pm_noassignmentsshort_label ?>",
+		pm_noassignments_label: "<? $pmStrings.pm_noassignments_label ?>",
+		pm_assignmentsedit_label: "<? $pmStrings.pm_assignmentsedit_label ?>",
+		pm_notasks_title: "<? $pmStrings.pm_notasks_title ?>",
+		pm_status_title: "<? $pmStrings.pm_status_title ?>",
+		pm_status_pending: "<? $pmStrings.pm_status_pending ?>",
+		pm_status_overdue: "<? $pmStrings.pm_status_overdue ?>",		
+		pm_status_inprogress: "<? $pmStrings.pm_status_inprogress ?>",
+		pm_status_complete: "<? $pmStrings.pm_status_complete ?>",
+		pm_projectcompleted_error: "<? $pmStrings.pm_projectcompleted_error ?>",
+		amt_taskcompleteempty_message: "<? $pmStrings.amt_taskcompleteempty_message ?>",
+		amr_addanother_btn: "<? $pmStrings.amr_addanother_btn ?>",
+		pm_startsin_note: "<? $pmStrings.pm_startsin_note ?>",
+		pm_duein_note: "<? $pmStrings.pm_duein_note ?>",
+		pm_inprogress_note: "<? $pmStrings.pm_inprogress_note ?>",
+		pm_overdue_note: "<? $pmStrings.pm_overdue_note ?>",
+		pm_completed_note: "<? $pmStrings.pm_completed_note ?>",
+		pm_aheadschedule_note: "<? $pmStrings.pm_aheadschedule_note ?>",
+		pm_noassignments_label: "<? $pmStrings.pm_noassignments_label ?>",
+		pm_tasks_label: "<? $pmStrings.pm_tasks_label ?>",
+		pm_of_label: "<? $pmStrings.pm_of_label ?>"
+	};
+	var dateDisplayFormat = "<? $dateDisplayFormat ?>";
+	var localDate = new Date(<? $currentTimestamp|date_format:"%Y,%m,%d,%H,%M,%S" ?>);
+	localDate.setMonth(localDate.getMonth()-1);
+	var currenciesList = [<? $currenciesListStr ?>];
+	
+	var availableUsers = {
+  	<? foreach name=users from=$availableUsers item=user ?>"<? $user.id ?>": ["<? $user.id ?>","<? $user.name ?>"]<? if !$smarty.foreach.users.last ?>,<? /if ?><? /foreach ?>
+  };
+  
+  <? if $projectData.P_ID ?>document.projectId = "<? $projectData.P_ID ?>";<? /if ?>
+</script>
+
+<script src='../../../PM/html/cssbased/worklist_common.js'></script>

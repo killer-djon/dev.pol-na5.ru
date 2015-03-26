@@ -1,0 +1,73 @@
+
+{*<!-- Разделяем по категориям-->*}
+ {if $groupByCategory}	
+	{section name=c loop=$ShortArticles}
+	
+{*<!-- Кол-во столбцов -->*}
+	{if $smarty.section.c.index%$colomns==0}{/if}
+		<!-- <td valign=top style="padding-bottom:10px;" width='{math equation="100/x"  x=$colomns}%'> -->
+		
+{*<!-- Название категории -->*}
+			<h2 class="ArticleShort-category-title">
+			{if $ShortArticles[c].CategoryID}
+				{assign var=_category_url value="?ukey=`$smarty.const.CONF_ARTCLE_URL`&CategoryID=`$ShortArticles[c].CategoryID`&CategorySlug=`$ShortArticles[c].CategorySlug`"|set_query_html}
+			{else}
+				{assign var=_category_url value="?ukey=`$smarty.const.CONF_ARTCLE_URL`&CategoryID=1&CategorySlug=`$smarty.const.CONF_ARTCLE_ROOT_URL`"|set_query_html}
+			{/if}
+			<a href="{$_category_url}">{$ShortArticles[c].CategoryTitle|default:"pgn_articles"|translate}</a>
+			</h2>
+			
+{*<!-- Записи -->*}
+			
+			{foreach from=$ShortArticles[c].Articles item=Article name=a}	
+				<div class="news">
+					
+{*<!-- Дата записи -->*}
+					<div class="news-date">{$Article.ArticleDate|date_format:"%e %B %Y"|replace:"January":"Января"|replace:"February":"Февраля"|replace:"March":"Марта"|replace:"April":"Апреля"|replace:"May":"Мая"|replace:"June":"Июня"|replace:"July":"Июля"|replace:"August":"Августа"|replace:"September":"Сентября"|replace:"October":"Октября"|replace:"November":"Ноября"|replace:"December":"Декабря"}
+						
+					</div>
+				
+					<div class="news-title">
+{*<!-- Название записи -->*}
+						<a href="{"?ukey=`$smarty.const.CONF_ARTCLE_URL`&CategoryID=`$Article.CategoryID`&CategorySlug=`$Article.CategorySlug`&postID=`$Article.ArticleID`&postSlug=`$Article.ArticleSlug`"|set_query_html}" style="color: inherit; font-weight: inherit;" class="ArticleShort-articles-title">{$Article.ArticleTitle}</a>
+
+					</div>
+					
+{*<!-- Картинка записи -->*}
+					
+					<div class="news-intro">
+{*<!-- Краткое описание записи (сокращено до 300 символов) -->*}
+						{$Article.ArticleBriefDescription|strip_tags|truncate:300:'..':false:false}
+					</div>
+					
+					
+				</div>
+			{/foreach}
+
+	{/section}
+	
+ {else}
+ 
+ {*<!-- Без разделения по категориям-->*}
+	{section name=a loop=$ShortArticles}
+		<div class="news">
+{*<!-- Дата записи -->*}			
+			<div class="news-date">
+				{$ShortArticles[a].ArticleDate|date_format:"%e %B %Y"|replace:"January":"Января"|replace:"February":"Февраля"|replace:"March":"Марта"|replace:"April":"Апреля"|replace:"May":"Мая"|replace:"June":"Июня"|replace:"July":"Июля"|replace:"August":"Августа"|replace:"September":"Сентября"|replace:"October":"Октября"|replace:"November":"Ноября"|replace:"December":"Декабря"}
+			</div>
+{*<!-- Название записи -->*}			
+			<div class="news-title">
+				<a href="{"?ukey=`$smarty.const.CONF_ARTCLE_URL`&CategoryID=`$ShortArticles[a].CategoryID`&CategorySlug=`$ShortArticles[a].CategorySlug`&postID=`$ShortArticles[a].ArticleID`&postSlug=`$ShortArticles[a].ArticleSlug`"|set_query_html}" style="color: inherit; font-weight: inherit;" class="ArticleShort-articles-title">{$ShortArticles[a].ArticleTitle}</a>			
+				
+			</div>	
+{*<!-- Картинка записи -->*}				
+			
+{*<!-- Краткое описание записи (сокращено до 80 символов) -->*}			
+			<div class="news-intro">
+				{$ShortArticles[a].ArticleBriefDescription|strip_tags|truncate:80:'..':false:false}
+			</div>
+			
+		</div>
+	{/section}
+	
+{/if}

@@ -1,0 +1,143 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="../common/reports/print_styles.css" rel="stylesheet" type="text/css"> 
+
+<script src='../../common/html/res/ext/pr-prototype.js'></script>
+<script src='../../common/html/res/ext/pr-adapter.js'></script>
+<script src='../../common/html/res/ext/pr-effects.js'></script>
+<script src='../../common/html/res/ext/ext-all.js'></script>
+<script src='../../common/html/res/ext/build/locale/ext-lang-<? $language|substr:0:2 ?>.js'></script>
+
+
+<!--link rel='stylesheet' type='text/css' href='../../common/html/res/ext/resources/css/my-ext-all.css'>
+<link rel='stylesheet' type='text/css' href='../../common/html/res/ext/resources/css/menu.css'>
+<link rel='stylesheet' type='text/css' href='../../common/html/res/ext/resources/css/layout.css'-->
+<script>Ext.BLANK_IMAGE_URL = '../../common/html/res/ext/resources/images/default/s.gif'</script>
+
+<script>
+	var localDate = new Date(<? $currentTimestamp|date_format:"%Y,%m,%d,%H,%M,%S" ?>);
+	localDate.setMonth(localDate.getMonth()-1);
+	
+	document.printMode = true;
+	document.showComplete = "<? $showComplete ?>";
+	var currenciesList = [<? $currenciesListStr ?>];
+	
+	var pmStrings = {
+		pm_id_title: "<? $pmStrings.pm_id_title ?>",
+		pm_description_title: "<? $pmStrings.pm_description_title ?>",
+		pm_start_title: "<? $pmStrings.pm_start_title ?>",
+		pm_due_title: "<? $pmStrings.pm_due_title ?>",
+		pm_complete_title: "<? $pmStrings.pm_complete_title ?>",
+		pm_billable_title: "<? $pmStrings.pm_billable_title ?>",
+		pm_cost_title: "<? $pmStrings.pm_cost_title ?>",
+		pm_gantt_title: "<? $pmStrings.pm_gantt_title ?>",
+		pm_assignments_title: "<? $pmStrings.pm_assignments_title ?>",
+		pm_loading_label: "<? $pmStrings.pm_loading_label ?>",
+		pm_addtask_title: "<? $pmStrings.pm_addtask_title ?>",
+		pm_edittask_title: "<? $pmStrings.pm_edittask_title ?>",
+		amr_notassigned_title: "<? $pmStrings.amr_notassigned_title ?>",
+		amr_assigned_title: "<? $pmStrings.amr_assigned_title ?>",
+		amr_taskcomplete_label: "<? $pmStrings.amr_taskcomplete_label ?>",
+		pm_summary_title: "<? $pmStrings.pm_summary_title ?>",
+		amr_startdate_label: "<? $pmStrings.amr_startdate_label ?>",
+		amr_duedate_label: "<? $pmStrings.amr_duedate_label ?>",
+		amr_completedate_label: "<? $pmStrings.amr_completedate_label ?>",
+		amr_billable_label: "<? $pmStrings.amr_billable_label ?>",
+		amr_cost_label: "<? $pmStrings.amr_cost_label ?>",
+		amr_costcur_label: "<? $pmStrings.amr_costcur_label ?>",
+		pm_showcomplete_menu: "<? $pmStrings.pm_showcomplete_menu ?>",
+		pm_hidecomplete_menu: "<? $pmStrings.pm_hidecomplete_menu ?>",
+		pm_week_label: "<? $pmStrings.pm_week_label ?>",
+		pm_noassignmentsshort_label: "<? $pmStrings.pm_noassignmentsshort_label ?>",
+		pm_noassignments_label: "<? $pmStrings.pm_noassignments_label ?>",
+		pm_assignmentsedit_label: "<? $pmStrings.pm_assignmentsedit_label ?>",
+		pm_notasks_title: "<? $pmStrings.pm_notasks_title ?>",
+		pm_status_title: "<? $pmStrings.pm_status_title ?>",
+		pm_status_pending: "<? $pmStrings.pm_status_pending ?>",
+		pm_status_overdue: "<? $pmStrings.pm_status_overdue ?>",		
+		pm_status_inprogress: "<? $pmStrings.pm_status_inprogress ?>",
+		pm_status_complete: "<? $pmStrings.pm_status_complete ?>",
+		pm_projectcompleted_error: "<? $pmStrings.pm_projectcompleted_error ?>",
+		amt_taskcompleteempty_message: "<? $pmStrings.amt_taskcompleteempty_message ?>",
+		pm_startsin_note: "<? $pmStrings.pm_startsin_note ?>",
+		pm_duein_note: "<? $pmStrings.pm_duein_note ?>",
+		pm_inprogress_note: "<? $pmStrings.pm_inprogress_note ?>",
+		pm_overdue_note: "<? $pmStrings.pm_overdue_note ?>",
+		pm_completed_note: "<? $pmStrings.pm_completed_note ?>",
+		pm_aheadschedule_note: "<? $pmStrings.pm_aheadschedule_note ?>",
+		pm_noassignments_label: "<? $pmStrings.pm_noassignments_label ?>"
+	}
+</script>
+
+<script>
+	var dateDisplayFormat = "<? $dateDisplayFormat ?>";
+</script>
+<script src='../html/cssbased/worklist_common.js'></script>
+<script src='../html/cssbased/gantt_column.js'></script>
+
+<script src='print_worklist.js'></script>
+
+<style>
+	table{border-collapse: collapse;}
+	table{border-collapse: collapse;border-width: 5px;}
+	table{border-collapse: collapse;border-spacing: 5px;} 
+	
+	#works-grid {border: 1px solid #999; width: 100%}
+	#works-grid td {font-family: "Trebuchet MS"; font-size: 13px; padding: 3px}
+	#works-grid thead {font-weight: bold}
+	#works-grid thead td {border-bottom: 1px solid #999; background: #D0D0D0; padding: 0px; height: 35px; border-left: 1px solid #999}
+	#works-grid thead td {padding: 3px}
+	
+	#works-grid td {border: 1px solid #CCC; border-bottom: 0px; border-right: 0px}
+	#works-grid td.cell-gantt {border: 0px}
+	
+	#works-grid thead td div div {overflow-x: hidden}
+	
+	#works-grid .bar {text-align: center; color: #EEE; font-weight: bold; font-size: 8pt; float: left}
+	#works-grid .bar.green {background: #6ABD2D}
+	#works-grid .bar.blue {background: #0EA0F4}
+	#works-grid .bar.red {background: #FF5D00}
+	
+	#works-grid tr td.cell-gantt {padding: 0px; border-left: 1px solid #BBB; background-repeat: repeat-y; background-image: URL(../html/img/line.gif); background-position: 0% 0%;}
+	
+	#works-grid td.td-id {text-align: center}
+	#works-grid td.td-assigned {text-align: center}
+	#works-grid td.td-estimate {white-space:nowrap;overflow: visible; text-align: right}
+	
+	
+	#works-grid thead #x-grid3-td-value-gantt {padding: 0px}
+	#works-grid thead #x-grid3-td-value-gantt div div div {text-align: center; background-repeat: repeat-y; background-image: URL(../html/img/line-gray.gif); background-position: left top; padding: 0px; margin: 0px; text-overflow: clip; }
+	#works-grid thead #x-grid3-td-value-gantt div div div.first {background-image: none}
+	
+	#works-grid .status {white-space: nowrap}
+	#works-grid .status.pending {color: green}
+	#works-grid .status.inprogress {color: blue}
+	#works-grid .status.overdue {color: red}
+	#works-grid .status.complete {color: #444}
+</style>
+
+
+
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default" bgcolor="white" style='margin: 5px; padding: 0px'>
+<? if !$fatalError ?>
+	<!--table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td class=title><? $projData.C_NAME|truncate:30|cat:". "|cat:$projData.P_DESC|htmlsafe:true:true ?></td>
+		</tr>
+		<tr>
+			<td><? $pmStrings.pl_manager_title|cat:": "|cat:$managerName?></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table-->
+	<h3><? $projData.C_NAME|truncate:30|cat:". "|cat:$projData.P_DESC|htmlsafe:true:true ?></h3>
+	
+	<div id="works-grid-div" style='width: 100%'><span style='background: #BBB; font-weight: bold'><? $pmStrings.pm_loading_label ?>...</span></div>
+	<input type='hidden' id='project' value="<? $projData.P_ID ?>">
+<? /if ?>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<div class="catalog">
+	
+	{section name=i loop=$related_categories}
+		{assign var=_subcat value=`$related_categories[i].category`}
+		{assign var=_subcat_photo value=`$related_categories[i].pictures`}
+		
+		<div class="block-catalog">
+			
+			<a href='{"?categoryID=`$_subcat.categoryID`&category_slug=`$_subcat.slug`"|set_query_html}' class="img-catalog">
+				
+				{foreach from=$_subcat_photo item=_photoID}
+					{category_picture limit=5 categoryID=$_photoID}
+					
+				{/foreach}
+				
+				<div class="product-name">
+					<div class="title">{$_subcat.name|escape:'html'}</div>	
+					<!-- <div>{$_subcat.countryName}</div> -->
+				</div>
+			</a>
+		</div>
+		
+	{/section}
+	
+</div>

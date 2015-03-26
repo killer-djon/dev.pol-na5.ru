@@ -1,0 +1,85 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+ function MM_findObj(n, d) { //v4.0
+   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+   if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+   for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+   if(!x && document.getElementById) x=document.getElementById(n); return x;
+ }
+ 
+ function focusControl(objName) {
+   var obj = MM_findObj(objName); 
+   if (obj) {
+   obj.focus( );
+  }
+ }
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl('fileData[DL_FILENAME]')">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<? include file="../../../common/html/classic/header.htm"?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+
+	<table border=0 cellpadding=0 cellspacing=0>
+		<tr>
+			<td valign=top><a href="<? $file.ROW_URL ?>" target="_blank"><img border=0 style="margin-right: 5px; margin-top: 5px; margin-left: 1px" src="<? thumbnail fileName=$file.DL_FILENAME size=32 os=win ?>" align=absmiddle></a></td>
+			<td valign=top class=largeText_normal style="padding-top: 1px">
+				<div style="padding-bottom: 5px"><a href="<? $file.ROW_URL ?>" target="_blank" class=largeText_normal><? $file.DL_FILENAME|htmlsafe:true:true|wordwrap:40:"<br>":1 ?></a></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="width: 700px">
+				<? $file.DL_DESC|htmlsafe:true:true ?>
+			</td>
+		</tr>
+		<tr>
+			<td height=5>&nbsp;</td>
+			<td height=5 style="border-bottom: 1px solid #CCCCCC;">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td class=treeDocumentListViewContent style="padding-left: 0px!important; padding-top: 5px; ">
+				<? $ddStrings.app_type_field ?>: <? $file.DL_FILETYPE|htmlsafe:true:true ?>&nbsp;
+				<? $ddStrings.app_size_field ?>: <? $file.DL_FILESIZE|htmlsafe:true:true ?>&nbsp;
+				<? $ddStrings.app_uploaddate_field ?>: <? $file.DL_UPLOADDATETIME|htmlsafe:true:true ?>&nbsp;
+				<? $ddStrings.app_owner_field ?>: <? $file.DL_UPLOADUSERNAME|htmlsafe:true:true ?>
+			</td>
+		</tr>
+	</table>
+
+	<table border=0 cellpadding=0 cellspacing=0>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+	<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$ddStrings.fd_close_btn formname="form"?>
+	<? else ?>
+	<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+	<? /if ?>
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="currentPage" value="<? $currentPage ?>">  
+	<input type="hidden" name="DL_ID" value="<? $DL_ID ?>">  
+	<input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

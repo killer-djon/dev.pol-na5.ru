@@ -1,0 +1,119 @@
+app_name_long	Common	Application full name	Блокнот
+app_name_short	Common	Application short name	Блокнот
+app_subject_field	Common	Subject field label	Тема
+app_content_field	Common	Content field label	Содержимое
+app_file_field	Common	File field label	Файл
+app_author_field	Common	Author field label	Автор
+app_date_field	Common	Date field label	Дата
+app_folder_field	Common	Folder field label	Папка
+app_notelimit_message	Common	Note number limitation message	<b>ОГРАНИЧЕНИЕ</b>: Количество записей не может превышать %s.
+app_treefolders_text	Common	Folders text	Управление папками
+app_treefurfldname_title	Common	Folder Name column header on the Folders & Users Rights page	Папка
+app_readaccess_name	Common	Read access	чтение
+app_writeaccess_name	Common	Read/Write access	запись
+app_folderaccess_name	Common	Read/Write/Folder access	полный
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Может создавать папки в корне
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Может видеть список других пользователей, имеющих доступ к его/ее папкам
+app_available_pages_name	Common	 Available Pages rights name	Страницы приложения
+app_available_functions_name	Common	 Available Functions	Функции приложения
+app_notifications_section_name	Common	 Notifications section rights name	Уведомления
+app_treeavailflds_title	Common	Available Folders column header on the Folders & Users Rights page	Доступные папки
+app_cantools_label	Common	Can use tools rights	Доступ к инструментам
+app_canreports_label	Common	Can use reports rights	Доступ к отчетам
+qn_screen_long_name	Quick Notes	Quick Notes page full name	Блокнот
+qn_screen_short_name	Quick Notes	Quick Notes page short name	Блокнот
+qn_screen_addnote_menu	Quick Notes	Menu item Notes/Add Note(s)	Добавить
+qn_screen_copynote_menu	Quick Notes	Menu item Notes/Copy Note(s)	Скопировать
+qn_screen_movenote_menu	Quick Notes	Menu item Notes/Move Note(s)	Переместить
+qn_screen_deletenote_menu	Quick Notes	Menu item Notes/Delete Note(s)	Удалить
+qn_screen_print_menu	Quick Notes	Menu item Notes/Print	Печать
+qn_screen_grid_menu	Quick Notes	Menu item View/Grid	Таблица
+qn_screen_list_menu	Quick Notes	Menu item View/List	Список
+qn_screen_custview_menu	Quick Notes	Menu item View/Customize View	Настроить вид
+qn_screen_summary_note	Quick Notes	Label under Available Folders table	%s запись(ей) в %s доступных папках
+qn_screen_flddelete_message	Quick Notes	Folder deletion conformation	Все записи содержащиеся во вложенных папках будут удалены. Вы уверены?
+qn_screen_emptycopy_message	Quick Notes	File copying without selecting the files message	Пожалуйста, выберите запись(и) для копирования.
+qn_screen_emptymove_message	Quick Notes	File moving without selecting the files message	Пожалуйста, выберите запись(и) для перемещения.
+qn_screen_invrights_message	Quick Notes	Lack of administrative rights to move/delete files	У вас нет прав перемещать/удалять некоторые из выделенных записей
+qn_screen_emptydel_message	Quick Notes	File deletion without selecting any files message	Пожалуйста, выберите запись(и) для удаления.
+qn_screen_confirmdel_message	Quick Notes	File deletion conformation	Удалить выделенные записи?
+qn_screen_notes_menu	Quick Notes	Notes menu	Записи
+qn_screen_view_menu	Quick Notes	View menu	Вид
+qn_screen_search_label	Quick Notes	Search bar label	Поиск
+qn_screen_search_btn	Quick Notes	Search button	Искать
+qn_sreen_searchresult_title	Quick Notes	Search results header	Результат поиска
+qn_sreen_summarydoc_title	Quick Notes	Column in Available Folders table	Записи
+qn_screen_numdocs_label	Quick Notes	Text under the list of notes	Записей
+qn_screen_noaccess_message	Quick Notes	No access to folders message	Доступ запрещен.&bsl;n&bsl;nВНИМАНИЕ: Чтобы настроить доступ к папкам Блокнота, пожалуйста, воспользуйтесь пунктом меню "Папки... -> Изменить". Если вы не видите указанного пункта в меню, то обратитесь к системному администратору.
+qn_screen_folder_menu	Quick Notes	Folder menu	Папка
+qn_screen_showfolders_btn	Quick Notes	Show Folders button	Папки
+qn_screen_files_label	Quick Notes	Files label	Файл(ы)
+qn_screen_sorting_title	Document Depot	Sorting bar header	Сортировка
+qnp_screen_files_label	Note	Header on top of file list	Файл(ы)
+qnp_screen_norecords_label	Note	File list text if there no notes	<нет записей>
+n_screen_rights_message	Note	Lack of administrative rights message	У вас нет прав просматривать эту запись
+n_screen_title	Note	Page header	Запись
+n_screen_return_btn	Note	Back to list button	Блокнот
+n_screen_files_label	Note	Header above file list	Файл(ы)
+n_screen_lastmodified_label	Note	Text last modified by	Последние изменения сделал
+amn_screen_norights_message	Add/Modify Note	Lack of administrative rights to modify notes message	У вас нет прав работать с этой записью
+amn_screen_add_title	Add/Modify Note	Add Note page header	Добавить запись
+amn_screen_modify_title	Add/Modify Note	Modify Note page header	Изменить запись
+amn_screen_notedel_message	Add/Modify Note	Deleting Note conformation	Удалить запись?
+amn_screen_addanother_btn	Add/Modify Note	Save and Add Another button	Сохранить и добавить новую
+amn_screen_files_field	Add/Modify Note	Attached files field label	Прикрепленные файлы
+amn_screen_delnote_btn	Add/Modify Note	Delete Note button	Удалить запись
+amn_screen_noaddrights_message	Add/Modify Note	Lack of administrative rights to add notes message	У вас нет прав добавлять записи в эту папку
+amn_screen_nodelrights_message	Add/Modify Note	Lack of administrative rights to delete notes message	У вас нет прав изменять или удалять эту запись
+ps_screen_select_template	Print Settings	Tempate listbox label text	Шаблон печати
+ps_screen_default_template	Print Settings	Default template name	<по-умолчанию>
+ps_screen_cut_label	Print Settings	Checkbox text	Обрезать текст записки до %s символов
+ps_screen_print_title	Print Settings	Page header	Печать
+ps_screen_print_label	Print Settings	Text above form	Напечать
+ps_screen_selected_label	Print Settings	Selected Notes radio button text	выбранные записи
+ps_screen_folder_label	Print Settings	Folder radio button text	папка
+ps_screen_entire_label	Print Settings	Entire Quick Notes radio button text	блокнот полностью
+ps_screen_print_btn	Print Settings	Print button	Печать
+cm_screen_copy_title	Copy/Move	File Copying in progress page header	Копировать записи
+cm_screen_move_title	Copy/Move	File Moving in progress page header	Переместить записи
+cm_screen_copyfolder_title	Copy/Move	Folder Copying in progress page header	Копировать папку
+cm_screen_movefolder_title	Copy/Move	Folder Moving in progress page header	Переместить папку
+cm_screen_copy_btn	Copy/Move	Copying in progress button	Копировать
+cm_screen_move_btn	Copy/Move	Moving in progress button	Переместить
+cm_screen_form_label	Copy/Move	Label above the form	запись(ей) выбрано
+cm_screen_copyerr_message	Copy/Move	Error copying file message	Ошибка копирования файла
+cm_screen_makedirerr_message	Copy/Move	Error creating folder message	Ошибка создания директории
+rights_screen_long_name	Folders & Users Rights	Folders & User Rights page full name	Папки и права пользователей
+rights_screen_short_name	Folders & Users Rights	Folders & User Rights page short name	Папки и права пользователей
+cv_screen_title	Customize View	Page header	Настроить вид
+cv_screen_form_label	Customize View	Label above the form	Выберите видимые колонки для отображения в режиме Таблица (колонка Тема всегда видима):
+cv_screen_visible_list	Customize View	Visible Columns list header	Видимые колонки
+cv_screen_hidden_list	Customize View	Hidden Columns list header	Скрытые колонки
+cv_screen_notesnum_label	Customize View	Number of notes on one page selection label	Количество записей на одной странице:
+cv_screen_notelen_label	Customize View	Limit number of characters in notes label (part 1)	Ограничить видимый текст до
+cv_screen_notelenend_label	Customize View	Limit number of characters in notes label (part 2)	символов
+qnt_screen_long_name	Templates	Template page full name	Шаблоны печати
+qnt_screen_short_name	Templates	Template page short name	Шаблоны печати
+qnt_template_name_title	Templates	Name column header in template list table	Название шаблона
+qnt_template_author_title	Templates	Author column header in template list table	Автор
+qnt_template_lastmodified_title	Templates	Last modified column header in template list table	Дата изменения
+qnt_addtpl_btn	Templates	Add button	Добавить шаблон
+qnt_name_field	Templates	Name field label	Название
+qnt_html_field	Templates	Content field label	HTML шаблон
+qnt_use_editor	Templates	Use Internal Editor radio button label	Редактировать шаблон используя встроенный редактор
+qnt_upload_file	Templates	Upload HTML template file radio button label	Загрузить HTML шаблон
+qnt_screen_delnote_btn	Templates	Delete Template button	Удалить шаблон
+qnt_screen_notedel_message	Templates	Template deletion conformation message	Вы действительно хотите удалить шаблон?
+qnt_screen_add_title	Templates	Add Print Template page header	Добавить шаблон печати
+qnt_screen_modify_title	Templates	Modify Print Template page header	Редактировать шаблон печати
+qnt_variables	Templates	Template variables section header	Переменные шаблона
+qnt_variable_name	Templates	Variable column name	Переменная
+qnt_variable_descr	Templates	Description column name	Описание
+qnt_variable_folder	Templates	Folder variable description	Название папки в которой хранится запись
+qnt_variable_subject	Templates	Subject variable description	Заголовок записи
+qnt_variable_content	Templates	Content variable description	Содержимое записи
+qnt_variable_filelist	Templates	Filelist variable description	Список файлов присоединенных к записи
+qnt_variable_username	Templates	Username variable description	Пользователь добавивший/обновивший шаблон
+qnt_variable_datetime	Templates	Day time variable description	Дата и время последнего изменения записи
+qnt_variable_note	Templates	Templates variables note	Для вставки переменной в шаблон либо напечатайте ее имя (символы процента % обязательны) либо кликните по названию переменной в списке.
+qnt_tplnum_label	Templates	Templates number label	Шаблонов

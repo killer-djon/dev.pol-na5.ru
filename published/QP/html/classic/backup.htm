@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function MM_findObj(n, d) { //v4.01
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+		d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+
+	function onCreateArchive()
+	{
+		thisForm = document.forms[0];
+
+		if ( document.getElementById ) {
+			var addFileCell = document.getElementById( 'optionscell' );
+			if (addFileCell)
+				addFileCell.style.display = "none";
+
+			var attachMessageCell = document.getElementById( 'waitingcell' );
+			if (attachMessageCell)
+				attachMessageCell.style.display = "inline";
+		}
+
+		processTextButton( 'savebtn', 'form' );
+
+		return false;
+	}
+
+	function initFocus()
+	{
+		<? if $invalidField ?>
+			focusFormControl('<? $invalidField ?>');
+		<? else ?>
+			focusFirstFormControl();
+		<? /if ?>
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+<? include file="../../../common/html/classic/header.htm"?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+<? if !$fatalError ?>
+	<? if $archiveSupported ?>
+		<? if !$archiveCreated ?>
+			<table cellpadding="0" cellspacing="0" border="0">
+			<!-- Add file form -->
+			<tr>
+			<td ID="optionscell">
+
+				<table border=0 cellspacing=5 cellpadding=0>
+				<tr>
+					<td><? $qpStrings.bak_book_name_title ?>:</td><td><? $bookData.QPB_NAME|htmlsafe:true:true ?></td>
+				</tr>
+				<tr>
+					<td><? $qpStrings.bak_pages_count_title ?>:</td><td><? $folderCount ?></td>
+				</tr>
+				</table>
+				<table cellpadding=0 cellspacing=5 border=0>
+				<tr>
+					<td><b><? $kernelStrings.app_note_text|cat:": " ?></b> <? $qpStrings.bak_creating_note ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				</table>
+
+				<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_ok_btn formname="form" space_left=5 onClick="return onCreateArchive()" ?>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" space_left=10?>
+			</td>
+			</tr>
+			<tr>
+				<td ID="waitingcell" style="display:none">
+					<p class="header2"><? $qpStrings.bak_createarchive_text ?></p>
+					<p><? $qpStrings.bak_createwait_text ?></p>
+					<p><img src="<? "images/progress.gif"|stylesetitem:"classic":$styleSet:"DD" ?>" ></p>
+					<p><? include file="../../../common/html/classic/button.htm" align="left" link="quickpages.php" caption=$kernelStrings.app_cancel_btn formname="form"?></p>
+				</td>
+			</tr>
+			</table>
+		<? else ?>
+				<input type=hidden name=archiveName value="<? $archiveName ?>">
+				<input type=hidden name=fileNumber value="<? $fileNumber ?>">
+				<input type=hidden name=fileSize value="<? $fileSize ?>">
+				<input type=hidden name=filesAddedMessage value="<? $filesAddedMessage|htmlsafe:true:true ?>">
+				<input type=hidden name=downloadArchiveLink value="<? $downloadArchiveLink|htmlsafe:true:true ?>">
+				<input type=hidden name=archiveCreated value=1>
+				<input type=hidden name=addMode value="<? $addMode ?>">
+				<input type=hidden name=fileSizeInBytes value="<? $fileSizeInBytes ?>">
+
+				<table border=0 cellpadding=0 cellspacing=2>
+					<tr>
+						<td><? $qpStrings.bak_archivecreated_label ?></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<td><? $qpStrings.bak_filesize_label|cat:": "|cat:$fileSize ?></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr><td><hr size=1 noshade width="100%"></td></tr>
+					</tr>
+					<tr><td height=5></td></tr>
+					<tr>
+						<td>
+							<? include file="../../../common/html/classic/button.htm" align="left" link=$downloadArchiveLink caption=$qpStrings.bak_downloadarchive_btn formname="form"?>
+						</td>
+					<tr><td height=5></td></tr>
+					<tr><td><hr size=1 noshade width="100%"></td></tr>
+					<tr><td height=5></td></tr>
+					<tr>
+						<td>
+							<? include file="../../../common/html/classic/button.htm" align="left" name="closebtn" caption=$qpStrings.bak_close_btn formname="form"?>
+						</td>
+					</tr>
+				</table>
+			<? /if ?>
+		<? else ?>
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td><? $qpStrings.app_archivesnotsupported_message|htmlsafe:true:true ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+		<? /if ?>
+
+<? /if ?>
+
+
+<input type="hidden" name="btndummy">
+<input type="hidden" name="currentBookID" value="<?$currentBookID?>">
+
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+<? wbs_initLayout splitter=true  toolbar=true needExt=true ?>
+	
+	 
+	
+<script language="JavaScript">
+<!--
+
+	document.afterPageLoad = function () 
+		{
+		var direct_start = document.getElementById('direct_start').value;
+		
+		//alert(direct_start);
+		if(direct_start!='')
+		    	onPrepareArchive('proceedbtn');
+		else
+			{
+		
+			if ( document.getElementById ) {
+			var addFileCell = document.getElementById( 'optionscell' );
+			if (addFileCell)
+				addFileCell.style.display = "inline";
+	
+			var attachMessageCell = document.getElementById( 'creatingceller' );
+			if (attachMessageCell)
+				attachMessageCell.style.display = "none";
+			}
+			}
+		
+		 
+		template = ' '+document.getElementById('fileNumber_d').value+' ' + loadingImgHTML;
+		document.getElementById('body_dialog').innerHTML = '0'+template;
+		
+		max_button = 3;
+		for(var i = 0; i < max_button; i++)
+			{
+			if($('B'+i))
+				{
+				RoundElem($('B'+i), ''); 
+				$('B'+i).className = $('B'+i).className + ' Tab';	
+				}
+
+			}
+
+		niftyOk=true;
+		DoRCorners (); 
+		
+    		}
+		
+	function onCreateArchive(button)
+	{	
+		thisForm = document.forms[0];
+
+		if ( document.getElementById ) {
+			var addFileCell = document.getElementById( 'optionscell' );
+			if (addFileCell)
+				addFileCell.style.display = "none";
+
+			var attachMessageCell = document.getElementById( 'waitingcell' );
+			if (attachMessageCell)
+				attachMessageCell.style.display = "inline";
+		}
+		
+		niftyOk = false;
+		
+		processAjaxButton('savebtn');
+		
+		//RoundElem($('B1'), ''); 
+		
+
+		
+		return false;
+	}
+
+	function initFocus()
+	{
+		<? if $invalidField ?>
+			focusFormControl('<? $invalidField ?>');
+		<? else ?>
+			focusFirstFormControl();
+		<? /if ?>
+	}
+	
+	
+	var url_dd = '../../../DD/html/scripts/create_archive/maintenance_connection.php?activeFile=<? $activeFile|default:'0' ?>';
+	
+	
+	var url_dd_up ='../../../DD/html/scripts/create_archive/get_count_of_files.php?activeFile=<? $activeFile|default:'0' ?>_up';
+
+	var conn_dd = new Ext.data.Connection();
+	var stop_connect = false;
+	var fileNumber = <? $fileNumber|default:'0' ?>;
+	
+	var loadingImg = new Image ();
+	loadingImg.src = "../../../common/html/res/images/progress.gif";	
+	var loadingImgHTML = "<img src='" + loadingImg.src + "'>";
+	
+	var template = ' <? '0'|string_format:$ddStrings.ca_compressed_text ?> '+loadingImgHTML;
+	 
+	function maintenance_connection()
+		{
+	
+		if (!stop_connect) 
+			{
+			conn_dd.request(
+				{
+					method: 'POST',
+					url: url_dd
+				});
+			}
+		}
+		
+	function get_progress()
+		{
+		if (!stop_connect) 
+			{
+			
+			conn_dd.request(
+				{
+					method: 'POST',
+					url: url_dd_up ,
+					success : upgrade_complite_files
+				});
+				
+			}
+		}
+
+		
+	function upgrade_complite_files(response, options)
+		{
+		document.getElementById('body_dialog').innerHTML = response.responseText+template;
+		}
+	//-->
+
+
+	function onPrepareArchive(button)
+		{
+		
+		if ( document.getElementById ) {
+		var addFileCell = document.getElementById( 'optionscell' );
+		if (addFileCell)
+			addFileCell.style.display = "none";
+
+		var attachMessageCell = document.getElementById( 'creatingceller' );
+		if (attachMessageCell)
+			attachMessageCell.style.display = "inline";
+		}
+		
+		document.getElementById('body_dialog').innerHTML = '0'+template;
+
+		window.setInterval("maintenance_connection()",10000); //FIXME	
+		window.setInterval("get_progress()",5000); //FIXME	
+
+		setTimeout('processTextButton( \'proceedbtn\' );', 2000);
+		 
+		return false;
+				
+		}
+		
+	function stop_conn()
+		{
+		document.getElementById('body_dialog').innerHTML = '<? $ddStrings.ca_canselwait_text ?> '+loadingImgHTML;
+		stop_connect = true;	
+		}
+	
+	function afterLoad()
+		{	
+	<? if $direct_start == true and $fileNumber > 0 and !$accessDenied ?>
+		
+		onPrepareArchive('proceedbtn');
+	<? elseif $prepareArchive ?>
+		document.getElementById('optionscell').style.display = "inline";
+		document.getElementById('creatingceller').style.display = "none";
+	<? /if ?>
+	}	
+		
+
+		
+	
+</script>
+
+	<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' );afterLoad()">
+	
+	 <? strip ?>
+		<? wbs_pageLayout toolbar="createarchive_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+				<input type="hidden" name="DF_ID" value="<? $DF_ID?>">
+				<input type="hidden" name="doclist" value="<? $doclist?>">
+
+			<? if !$fatalError ?>
+
+			<? if $archiveSupported ?>
+			
+				<? if $prepareArchive ?>
+					
+					<? include file="../../../DD/html/cssbased/createarchive_process.htm" ?>
+						 
+				<? elseif !$archiveCreated ?>
+
+					<div id="SplitterRightScrollableContent">
+					 
+						<div id="optionscell">
+	
+						<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+							<? $ddStrings.ca_createarchive_note ?>
+						<? /wbs_note ?>
+	
+						<? wbs_formLayout caption=$pageTitle ?>
+	
+							<? wbs_formContent ?>
+	
+								<tr class="SeparatedRow">
+									<td><? $ddStrings.ca_add_label|cat:":" ?></td>
+								</tr>
+								<tr>
+									<td class="Indent"><input type=radio <? switchedOutput val=$addMode true_val=0 str1="checked " ?> name=addMode id=addMode1 value=0 onclick="document.getElementById('addMode2').value=0; document.getElementById('addsubfolders').disabled = this.checked">
+									<? wbs_label for="addMode1" text=$ddStrings.ca_selectedfiles_label|cat:" ("|cat:$selectedDocsNum|cat:")"  skipColon=true ?>
+
+									</td>
+								</tr>
+								<tr>
+									<td class="Indent">
+										<table cellpadding=0 cellspacing=0 border=0 class="FormLayout">
+											<tr>
+												<td><input type=radio <? switchedOutput val=$addMode true_val=1 str1="checked " ?> name=addMode id=addMode2 value=1 onclick="document.getElementById('addMode2').value=1;document.getElementById('addMode1').value=1; document.getElementById('addsubfolders').disabled = !this.checked"></td>
+												<td>
+													<? wbs_label for="addMode2" text=$ddStrings.ca_folder_label skipColon=false ?>
+													<select class="control" name="folderID">
+														<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$folderID showAnyRights=true?>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+												<td colspan=2>
+													<input type=checkbox name=addsubfolders  onclick="if(this.checked) document.getElementById('addsubfolders').value=1; else document.getElementById('addsubfolders').value=0;" id=addsubfolders value=0 <? switchedOutput val=$addsubfolders true_val=1 str1="checked "?> >
+													<? wbs_label for="addsubfolders" text=$ddStrings.ca_includesubfolders_label skipColon=true ?>
+												</td>
+											</tr>
+										</table>
+									<script language="JavaScript">
+										if(document.getElementById('addMode1').checked)
+											document.getElementById('addMode2').value = 0;
+										document.getElementById('addsubfolders').disabled = document.getElementById('addMode1').checked;
+										if($('addsubfolders').checked) $('addsubfolders').value=1;
+									</script>
+									</td>
+								</tr>
+	
+								<tr>
+									<td>
+										<? wbs_note displayNoteMarker=true width="500px" smallFont=false ?>
+											<? $ca_creating_note ?>
+										<? /wbs_note ?>
+									</tr>
+								</tr>
+							<? /wbs_formContent ?>
+	
+							<? wbs_formButtonsPanel ?>
+									<? wbs_buttonSet ?>
+										<? wbs_buttonSetButton link="" caption=$ddStrings.ca_createarchive_btn name="savebtn" onClick="return onCreateArchive('savebtn')" ?>
+										<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+									<? /wbs_buttonSet ?>
+							<? /wbs_formButtonsPanel ?>
+	
+						<? /wbs_formLayout?>
+	
+						</div>
+		
+						<div ID="waitingcell" style="display:none">
+							<span class="FormCaption"><? $ddStrings.ca_createarchive_text ?></span>
+							
+								<? $ddStrings.ca_createwait_text ?> <img src="../../../common/html/res/images/progress.gif">
+									
+							<br/><br/>							
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"  onClick="return stop_conn()"  ?>
+							<? /wbs_buttonSet ?>
+							
+						</div>
+					
+					</div>
+			
+				<? else ?>
+				
+					<input type=hidden name=archiveName value="<? $archiveName ?>">
+					<input type=hidden name=fileNumber value="<? $fileNumber ?>">
+					<input type=hidden name=fileSize value="<? $fileSize ?>">
+					<input type=hidden name=filesAddedMessage value="<? $filesAddedMessage|htmlsafe:true:true ?>">
+					<input type=hidden name=downloadArchiveLink value="<? $downloadArchiveLink|htmlsafe:true:true ?>">
+					<input type=hidden name=archiveCreated value=1>
+					<input type=hidden name=addMode value="<? $addMode ?>">
+					<input type=hidden name=fileSizeInBytes value="<? $fileSizeInBytes ?>">
+
+					<table border=0 cellpadding=0 cellspacing=2>
+						<tr>
+							<td><? $ddStrings.ca_archivecreated_label ?></td>
+						</tr>
+						<tr>
+							<td><? $filesAddedMessage ?></td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+							<td><? $ddStrings.ca_filesize_label|cat:": "|cat:$fileSize ?></td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td><hr size=1 noshade width="100%"></td></tr>
+						</tr>
+						<tr>
+							<td>
+									<? wbs_buttonSet ?>
+										<? wbs_buttonSetButton caption=$ddStrings.ca_downloadarchive_btn link=$downloadArchiveLink ?>
+									<? /wbs_buttonSet ?>
+							</td>
+						</tr>
+						<tr><td><hr size=1 noshade width="100%"></td></tr>
+						<tr><td height=5></td></tr>
+						<tr>
+							<td>
+
+								<!-- Save form -->
+
+								<? wbs_formLayout caption=$pageTitle ?>
+
+									<? wbs_formContent ?>
+
+										<tr>
+											<td>
+												<? wbs_label for="targetID" fieldName="targetID" text=$ddStrings.ca_saveinfolder_label skipColon=false ?>
+											</td>
+											<td>
+												<select class="control" name="targetID" id="targetID">
+													<option value=""><? $ddStrings.ca_selectfolder_item|htmlsafe:true:true ?></option>
+													<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$targetID showAnyRights=true?>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<? wbs_label for="fileName" fieldName="fileName" text=$ddStrings.ca_filename_label skipColon=false ?>
+											</td>
+											<td><input type=text class=control name=fileName id=fileName value="<? $fileName|htmlsafe:true:true ?>"></td>
+										</tr>
+										<tr class="SeparatedRow">
+											<td valign=top><? $ddStrings.ca_description_label|cat:":" ?></td>
+											<td><textarea style="width: 400px" rows="3" class="control" name="fileDescription"><? $fileDescription|htmlsafe_textarea:$edited ?></textarea></td>
+										</tr>
+
+								<? /wbs_formContent ?>
+
+								<? wbs_formButtonsPanel ?>
+										<? wbs_buttonSet ?>
+											<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savearchivebtn" ?>
+										<? /wbs_buttonSet ?>
+								<? /wbs_formButtonsPanel ?>
+
+								<? /wbs_formLayout?>
+								<!-- /Save form -->
+
+							</td>
+						</tr>
+					</table>
+				<? /if ?>
+
+			<? else ?>
+
+				<? wbs_note smallFont=false displayNoteMarker=false ?><? $ddStrings.ua_archivesnotsupported_message|htmlsafe:true:true ?><? /wbs_note?>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+		<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+				<? /wbs_buttonSet ?>
+		<? /if ?>
+
+		<input type="hidden" name="DF_ID" value="<? $DF_ID?>">
+
+		<? /wbs_pageLayout ?>
+		<? /strip ?>
+	</body>
+</html>

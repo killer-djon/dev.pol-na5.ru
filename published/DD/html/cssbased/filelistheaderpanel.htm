@@ -1,0 +1,39 @@
+<div>
+    <b id='RightPanelHeaderCaption'>
+        <? if $searchString != "" ?>
+        	<? $kernelStrings.cm_searchresult_title ?>: <? $searchString ?>
+        <? elseif $statisticsMode ?> 
+        	<? $ddStrings.app_treeavailflds_title ?>
+        <? else ?>
+            <? $curFolderName ?>
+        <? /if ?>
+    </b>
+</div>
+<table border="0" cellpadding="0" cellspacing="5" class='HeaderLinks'>
+<tr>
+    <? if $uploadLink ?>
+	    <td valign="top">
+	        <a <? if $uploadMethod == "FLASHFORM" ?>onClick='ShowUploadDialog()' href="javascript:void(0)" <? else ?>href="<? $uploadLink ?>"<? /if ?>><img src="../../../common/html/res/images/upload.gif" border="0"></a>&nbsp;
+	    </td>
+	    <td valign="top">
+	        <a <? if $uploadMethod == "FLASHFORM" ?>onClick='ShowUploadDialog()' href="javascript:void(0)" <? else ?>href="<? $uploadLink ?>"<? /if ?>><? $ddStrings.dd_poppan_upload_label ?></a>&nbsp;
+	    </td>
+	   <? /if ?>
+	   <? if $currentFolder && $currentFolder != TREE_AVAILABLE_FOLDERS && !$disableServiceFunctions ?>
+		   <td valign="top">
+		        <a href="javascript:void(0)" onClick='CreateDDListLink(this)'><img src="../../../common/html/res/images/share.gif" border="0"></a>&nbsp;
+		    </td>
+		    <td valign="top">
+		        <a href="javascript:void(0)" onClick='CreateDDListLink(this)'><? $kernelStrings.app_createlink_link ?></a>&nbsp;
+		    </td>
+		    <? if $canWidgets ?>
+			    <td valign="top">
+			        <a href="javascript:void(0)" onClick='createWidgetDialog(this);'><img src="../../../common/html/res/images/wgcreate.gif" border="0"></a>&nbsp;
+			    </td>
+			    <td valign="top">
+			    	<a href="javascript:void(0)" onClick='createWidgetDialog(this);'><? $kernelStrings.app_createwidget_link ?></a>&nbsp;
+			  	</td>
+			  <? /if ?>
+	   <? /if ?>
+</tr>
+</table>

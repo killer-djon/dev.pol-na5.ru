@@ -1,0 +1,25 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<link href="../../common/reports/print_styles.css" rel="stylesheet" type="text/css"> 
+<link href="gantt.css" rel="stylesheet" type="text/css">
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default" bgcolor="white">
+<? if !$fatalError ?>
+	<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td class=title><? $projData.C_NAME|truncate:30|cat:". "|cat:$projData.P_DESC|htmlsafe:true:true ?></td>
+		</tr>
+		<tr>
+			<td><? $pmStrings.pm_manager_label|cat:": "|cat:$managerName?></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+	<? include file="textganttchart.htm" ?>
+<? /if ?>
+</body>
+</html>

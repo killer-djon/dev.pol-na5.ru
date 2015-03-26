@@ -1,0 +1,170 @@
+<?assign var=dw value=2 ?>
+<? assign var=firstMonth value=1 ?>
+
+<? assign var=holiday_pic value="../cssbased/res/images/day_pic_holiday.gif" ?>
+<? assign var=day_pic value="../cssbased/res/images/day_pic.gif" ?>
+<? assign var=day_pic_actual value="../cssbased/res/images/day_pic_actual.gif" ?>
+<? assign var=day_pic_planned value="../cssbased/res/images/day_pic_planned.gif" ?>
+<? assign var=day_pic_overdue value="../cssbased/res/images/day_pic_overdue.gif" ?>
+<? assign var=spacer10 value="../cssbased/res/images/spacer10.gif" ?>
+
+<? assign var=day_pic_complete value="../cssbased/res/images/day_pic_complete.gif" ?>
+<? assign var=day_pic_normal value=$day_pic ?>
+
+<? assign var=day_pic_actual_complete value="../cssbased/res/images/day_pic_actual_complete.gif" ?>
+<? assign var=day_pic_actual_normal value=$day_pic_actual ?>
+
+<? assign var=day_pic_planned_complete value="../cssbased/res/images/day_pic_planned_complete.gif" ?>
+<? assign var=day_pic_planned_normal value=$day_pic_planned ?>
+
+<? assign var=day_pic_overdue_complete value="../cssbased/res/images/day_pic_overdue_complete.gif" ?>
+<? assign var=day_pic_overdue_normal value=$day_pic_overdue ?>
+
+<table class="SimpleList pm_ganttChart" id="GanttChart" width="100%">
+	<thead>
+		<tr>
+			<th rowspan="3" width="10px">&nbsp;</th>
+			<th rowspan="3" width="15px"><? $pmStrings.pm_id_title ?></th>
+			<th rowspan="3" class="SimpleList_BorderRight" id="SummaryCol"><? $pmStrings.pm_summary_title ?></th>
+			<th class="pm_noBottomBorder AlignCenter" colspan="<? $ganttSettings.DAY_COUNT ?>" class="NoBreak"><? $ganttSettings.INTERVAL_TITLE?></th>
+			<th rowspan="3" class="pm_noBottomBorder AlignCenter SimpleList_BorderLeft" width="55px"><? $pmStrings.pm_days_title ?></th>
+		</tr>
+
+		<tr>
+			<? if !$ganttSettings.DISPLAY_DAYS ?>
+				<? foreach from=$ganttSettings.MONTHS item=monthData ?>
+					<? assign var=monthNum value=$monthData.key ?>
+					<td class="SimpleList_BorderLeft SimpleList_BorderRight AlignCenter" colspan="<? $monthData.cnt ?>"><? $monthData.name ?></td>
+					<? assign var=firstMonth value=0 ?>
+				<? /foreach ?>
+			<? else ?>
+				<? assign var=firstDay value=1 ?>
+				<? foreach from=$ganttSettings.DATE_INDEX item=dateData ?>
+					<td class="AlignCenter SimpleList_BorderTop SimpleList_BorderLeft"><? $dateData.INDEX ?></td>
+					<? assign var=firstDay value=0 ?>
+				<? /foreach ?>
+			<? /if ?>
+		</tr>
+
+		<tr class="pm_ganttIntervalBar pm_normalLineHeight">
+			<? assign var=firstDay value=1 ?>
+			<? foreach from=$ganttSettings.DATE_INDEX item=dateData name=dateLoop ?>
+				<? assign var=cellName value="gantCell"|cat:$smarty.foreach.dateLoop.index ?>
+				<th id="<? $cellName ?>" class="SimpleList_BorderTop SimpleList_BorderLeft SimpleList_BorderBottom" <? if $dateData.HOLIDAY ?>background="<? $holiday_pic ?>"<? else ?>background="<? $day_pic ?>"<? /if ?>><? if $dateData.HOLIDAY ?><img width="<? $dw ?>" height="5" src="<? $holiday_pic ?>"><? else ?><img width="<? $dw ?>" height="5" src="<? $day_pic ?>"><? /if ?></th>
+				<script type="text/javascript">registerCell('<? $cellName ?>');</script>
+				<? assign var=firstDay value=0 ?>
+			<? /foreach ?>
+		</tr>
+	</thead>
+
+	<tbody>
+		<? foreach from=$project_works item=work name=rowLoop ?>
+
+			<? if !$work.COMPLETE?>
+				<? assign var=day_pic value=$day_pic_normal ?>
+				<? assign var=day_pic_actual value=$day_pic_actual_normal ?>
+				<? assign var=day_pic_planned value=$day_pic_planned_normal ?>
+				<? assign var=day_pic_overdue value=$day_pic_overdue_normal ?>
+			<? else ?>
+				<? assign var=day_pic value=$day_pic_normal ?>
+				<? assign var=day_pic_actual value=$day_pic_actual_complete ?>
+				<? assign var=day_pic_planned value=$day_pic_planned_normal ?>
+				<? assign var=day_pic_overdue value=$day_pic_overdue_normal ?>
+			<? /if ?>
+
+			<? assign var=workSpan value=1 ?>
+			<? if ($work.DUE_SPAN != "" && $work.DUE_SPAN > 0) || ($work.OVERDUE_SPAN != "" && $work.OVERDUE_SPAN > 0) ?>
+				<? assign var=workSpan value=2 ?>
+			<? /if ?>
+
+			<? assign var=cell_style value="" ?>
+			<? assign var=mid_cell_style value="" ?>
+
+			<tr>
+				<td width="10" valign="top" rowspan="<? $workSpan ?>"><input type="checkbox" name="tasks[]" value="<? $work.PW_ID ?>"></td>
+				<td valign="top" rowspan="<? $workSpan ?>"><a href="<? $work.ROW_URL ?>"><? $work.PW_ID ?></a></td>
+				
+
+				<td valign=top <? $cell_style ?> rowspan="<? $workSpan ?>" class="SimpleList_BorderRight"><a href="<? $work.ROW_URL ?>"><? $work.PW_DESC|htmlsafe:true:true ?></a></td>
+				<? assign var=startOffset value = 0 ?>
+				<? if $work.START_SPAN > 0 ?>
+					<? assign var=src value=$day_pic ?>
+					<? include file="../../../PM/html/cssbased/ganttrecord.htm" duration=$work.START_SPAN complete=$work.COMPLETE ?>
+
+					<? math equation="x + y" x=$startOffset y=$work.START_SPAN assign=startOffset ?>
+				<? /if ?>
+
+				<? if $work.ACTUAL_SPAN > 0 ?>
+					<? assign var=src value=$day_pic_actual ?>
+					<? include file="../../../PM/html/cssbased/ganttrecord.htm" duration=$work.ACTUAL_SPAN ?>
+					<? math equation="x + y" x=$startOffset y=$work.ACTUAL_SPAN assign=startOffset ?>
+				<? /if ?>
+
+				<? if $work.END_SPAN > 0 ?>
+					<? assign var=src value=$day_pic ?>
+					<? include file="../../../PM/html/cssbased/ganttrecord.htm" duration=$work.END_SPAN ?>
+				<? /if ?>
+
+				<td rowspan=<? $workSpan ?> <? $cell_style ?> class="AlignCenter ValignMiddle SimpleList_BorderLeft ">
+					<? if $work.ACTUAL_LENGTH && !$work.DUMMY_DAY ?><? $work.ACTUAL_LENGTH ?><? else ?>1<? /if ?><? if ( $work.DUE_SPAN != "" && $work.DUE_SPAN > 0) || ($work.OVERDUE_SPAN != "" && $work.OVERDUE_SPAN > 0) ?><? "/"|cat:"<font color='#289E00'>"|cat:$work.ACTUAL_DUE|cat:"</font>" ?><? if $work.ACTUAL_OVERDUE > 0 ?><? "/<font color='#FF0000'>"|cat:$work.ACTUAL_OVERDUE|cat:"</font>" ?><? /if ?>
+					<? /if ?>
+				</td>
+			</tr>
+
+			<? if $smarty.foreach.rowLoop.iteration == $ganttSettings.ROW_COUNT ?>
+				<? assign var=mid_cell_style value=$cell_style ?>
+			<? /if ?>
+			<? if ($work.DUE_SPAN != "" && $work.DUE_SPAN > 0) || ($work.OVERDUE_SPAN != "" && $work.OVERDUE_SPAN > 0) ?>
+				<tr class="pm_ganttBar pm_normalLineHeight">
+					<? assign var=startOffset value = 0 ?>
+
+					<? assign var=endspan value = $ganttSettings.DAY_COUNT ?>
+					<? if $work.START_SPAN > 0 ?>
+						<? assign var=src value=$day_pic ?>
+						<? include file="../../../PM/html/cssbased/ganttrecord.htm" duration=$work.START_SPAN ?>
+
+						<? math equation="x + y" x=$startOffset y=$work.START_SPAN assign=startOffset ?>
+						<? math equation="x - y" x=$endspan y=$work.START_SPAN assign=endspan ?>
+					<? /if ?>
+
+					<? if $work.DUE_SPAN != "" && $work.DUE_SPAN > 0 ?>
+						<? assign var=src value=$day_pic_planned ?>
+						<? include file="../../../PM/html/cssbased/ganttrecord.htm" duration=$work.DUE_SPAN ?>
+						<? math equation="x + y" x=$startOffset y=$work.DUE_SPAN assign=startOffset ?>
+						<? math equation="x - y" x=$endspan y=$work.DUE_SPAN assign=endspan ?>
+					<? /if ?>
+
+					<? assign var=src value=$day_pic_overdue ?>
+					<? if $work.OVERDUE_SPAN > 0 ?>
+						<? include file="../../../PM/html/cssbased/ganttrecord.htm" duration=$work.OVERDUE_SPAN ?>
+						<? math equation="x + y" x=$startOffset y=$work.OVERDUE_SPAN assign=startOffset ?>
+						<? math equation="x - y" x=$endspan y=$work.OVERDUE_SPAN assign=endspan ?>
+					<? /if ?>
+
+					<? if $endspan > 0 ?>
+						<? assign var=src value=$day_pic ?>
+						<? include file="../../../PM/html/cssbased/ganttrecord.htm" duration=$endspan ?>
+					<? /if ?>
+				</tr>
+			<? /if ?>
+		<? foreachelse ?>
+			<tr class="NoRecords">
+				<? math equation="x + 4" x=$ganttSettings.DAY_COUNT assign=duration ?>
+				<td colspan="<? $duration ?>"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+			</tr>
+		<? /foreach ?>
+	</tbody>
+	<tfoot>
+		<tr>
+			<? assign var=startOffset value = -2 ?>
+			<? math equation="x+1" x=$ganttSettings.DAY_COUNT assign=duration ?>
+			<? assign var=src value=$spacer10 ?>
+			<? include file="../../../PM/html/cssbased/gantttodayrecord.htm"?>
+		</tr>
+	</tfoot>
+</table>
+
+<? wbs_note smallFont=false displayNoteMarker=false ?><? $rightsStr ?><? /wbs_note ?>
+<? wbs_note ?><? $pmStrings.app_rightslegend_text|nl2br ?><? /wbs_note ?>
+
+<script type="text/javascript">arangeCells();</script>

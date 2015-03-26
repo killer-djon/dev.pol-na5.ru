@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+
+	</head>
+	<body>
+		<? wbs_pageLayout toolbar="issue_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_note smallFont=false displayNoteMarker=false ?>
+					<? $projName ?><br>
+					<? $itStrings.is_task_label|cat:" #"|cat:$PW_ID|cat:":&nbsp;" ?>
+					<? $workName|wordwrap:50:"<br>" ?>
+				<? /wbs_note ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td>
+								<table class="NameValueList">
+									<tr>
+										<td><? $itStrings.is_issue_label|cat:" #:" ?></td>
+										<th scope="col" style="width: 50px"><? $issuedata.DISPLAY_NUM ?></tg>
+										<td><? $itStrings.is_curstatus_label|cat:":" ?></td>
+										<td>
+											<? mime_decode  string=$issuedata.STATUS_COLOR ?>
+											<? $issuedata.I_STATUSCURRENT|htmlsafe:true:true ?>
+										</td>
+									</tr>
+
+									<tr class="SeparatedRow">
+										<td><? $itStrings.is_priority_label|cat:":" ?></td>
+										<th scope="col"><? $issuedata.I_PRIORITY|htmlsafe:true:true ?></th>
+										<td colspan=2></td>
+									</tr>
+
+									<tr>
+										<td><? $itStrings.is_dateopen_label|cat:":" ?></td>
+										<th scope="col"><? $issuedata.I_STARTDATE ?></th>
+										<? if $issuedata.I_CLOSEDATE ?>
+											<td><? $itStrings.is_closedate_label|cat:":" ?></td>
+											<th scope="col"><? $issuedata.I_CLOSEDATE ?></th>
+										<? /if ?>
+									</tr>
+
+									<tr class="SeparatedRow">
+										<td><? $itStrings.is_assignedto_label|cat:":" ?></td>
+										<th scope="col"><? mime_decode  string=$issuedata.U_ID_ASSIGNED?></th>
+										<td colspan=2></td>
+									</tr>
+								</table>
+								<table class="NameValueList">
+									<tr>
+										<td><b><? $itStrings.is_description_label ?></b></td>
+									</tr>
+									<tr <? if $attachedFiles != ""?>class="SeparatedRow"<? /if ?>>
+										<td><? wbs_note displayNoteMarker=false width="600px" ?><? $issuedata.I_DESC?><? /wbs_note ?></td>
+									</tr>
+
+									<? if $attachedFiles != ""?>
+										<tr>
+											<th scope="col"><? $itStrings.is_attachments_label?></th>
+										</tr>
+										<tr>
+											<td><em><? $attachedFiles?></em></td>
+										</tr>
+									<? /if ?>
+								</table>
+							</td>
+						</tr>
+					<? /wbs_formContent ?>
+
+				<? /wbs_formLayout ?>
+
+				<table class="SimpleList ReportTable">
+					<thead>
+						<tr>
+							<th scope="col" colspan=3><? $itStrings.il_issuehistory_label ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<? foreach from=$logData item=transLogData ?>
+							<? if !$transLogData.MODIFYRECORD ?>
+								<tr>
+									<td><? $transLogData.ITL_ID ?></td>
+									<td class="NoBreak">&nbsp;[<? $transLogData.ITL_DATETIME ?>]&nbsp;</td>
+									<td>
+										<nobr>[<? mime_decode string=$transLogData.STATUS_COLOR ?><? $transLogData.DISPLAY_STATUS|htmlsafe:true:true ?></b></font>]:
+										<? $transLogData.U_ID_SENDER ?> <img src="../../../common/html/classic/images/small_arrow.gif" width="9" height="8"> <? $transLogData.U_ID_ASSIGNED ?></nobr>
+									</td>
+								</tr>
+								<? if $transLogData.ITL_DESC != "" ?>
+									<tr>
+										<td colspan=2>&nbsp;</td>
+										<td><? $itStrings.il_comments_text|cat:": "|cat:$transLogData.ITL_DESC|htmlsafe:true:true ?></td>
+									<tr>
+								<? /if ?>
+								<? if $transLogData.FILE_DATA ?>
+									<tr>
+										<td colspan=2>&nbsp;</td>
+										<td><em><? $transLogData.FILE_DATA ?></em></td>
+									<tr>
+								<? /if ?>
+							<? else ?>
+								<tr>
+									<td><? $transLogData.ITL_ID ?></td>
+									<td class="NoBreak">&nbsp;[<? $transLogData.ITL_DATETIME ?>]&nbsp;</td>
+									<td>
+										[<? $itStrings.is_modified_text ?>]: <? $transLogData.U_ID_SENDER ?><br>
+										<? $transLogData.ITL_OLDCONTENT|htmlsafe:true:true ?>
+									</td>
+								</tr>
+							<? /if ?>
+						<? /foreach ?>
+					<tbody>
+				</table>
+
+			<? /if ?>
+
+			<input name="edited" type="hidden" id="edited" value="1">
+			<input name="I_ID" type="hidden" value="<? $I_ID ?>">
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>">
+			<input name="listPW_ID" type="hidden" value="<? $listPW_ID ?>">
+			<input name="PW_ID" type="hidden" value="<? $PW_ID ?>">
+			<input name="searchCriteria" type="hidden" value="<? $searchCriteria ?>">
+			<input type="hidden" name="btndummy">
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

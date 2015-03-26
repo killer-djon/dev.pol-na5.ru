@@ -1,0 +1,14 @@
+<? if $hierarchy ?>
+<ul class="treeCatalogRow">
+<? foreach from=$hierarchy key=level item=data ?>
+<? assign var=folderData value=$folders.$level ?>
+	<? if $folderData->TYPE == "REGULAR" ?>
+		<li <? if !$topLevel ?>style="padding-left: 50px;"<? /if ?> ID="<? $folderData->ID ?>" ><? conditionalLink title==$folderData->NAME|htmlsafe:true:true href="#"|cat:$folderData->QPF_TEXTID text=$folderData->NAME|htmlsafe:true:true|trunc_str:50 ?>
+		<? if ( !$collapsed ) ?>
+			<? include file="../../../QP/html/classic/plain_tableofcontent.htm" hierarchy=$data topLevel=false ?>
+		<? /if ?>
+		</li>
+	<? /if ?>
+<? /foreach ?>
+</ul>
+<? /if ?>

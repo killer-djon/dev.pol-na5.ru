@@ -1,0 +1,152 @@
+body { padding: 0; margin: 0; font-family: 'Trebuchet MS'; font-size: 14px;}
+table  { border:collapse;}
+td, p, div, li { font-family: 'Trebuchet MS'; font-size: 14px;}
+img { border:none;}
+input { }
+textarea { margin:0; }
+#wbs-main-form { background:#f7fafc;}
+.Loading {font-family: 'Trebuchet MS'; font-weight: bold; color: gray}
+.deleteFile {text-decoration: underline; cursor: pointer; color: indianred; padding-left: 0.5em}
+.ErrorStr {font-weight: bold; color: indianred;}
+.OverList {background-color: #f5f0bb; cursor: pointer}
+.OutList {background-color: white}
+.Link {text-decoration: underline; color: #0043A7; cursor: pointer; line-height:150%;}
+.Close { font-size:12px; color:#686a6c;}
+.PopUpMenu {border-collapse:collapse; border-spacing:0; padding:0; margin:0}
+.HeaderLine {font-family: 'Trebuchet MS'; background-color: lavender; border-bottom: 1px solid gray;}
+.ErrorStr {font-weight: bold; color: indianred;}
+.searchResults {background: gold;}
+.compose_td_conteiner { position:relative; margin:5px 0;}
+.sendConfirmText {color: indianred;}
+
+.control_btn {
+	background:url(../../../common/html/res/images/control.gif) no-repeat;
+	position:absolute; right:-18px; //right:-22px;
+	bottom:0px; //bottom:1px;
+	height:17px; width:17px; text-indent:-5000px;}
+.control_btn_down {
+	background:url(../../../common/html/res/images/control_down.gif) no-repeat;
+	position:absolute; right:-18px; //right:-22px;
+	bottom:0px; //bottom:1px;
+	height:17px; width:17px; text-indent:-5000px;}
+
+div.fileInputContainer {
+	position: relative;
+	overflow:hidden;
+	height: 1.5em;
+}
+div.visibleFileInput {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+	text-decoration:underline;
+	color:#0044AA;
+	cursor:pointer !important;
+}
+input.file {
+	position: relative;
+	right: 11em;
+	text-align: right;
+	font-size:2em;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+ 	z-index: 2;
+}
+
+#uploadImageDiv, #InsertVariableDiv, #contactsForInclude, #SendSubContacts { background:#fff; }
+#SendSubContacts {
+	border-width:1px; border-style:solid; border-left-color:#b6bbbf!important; border-top-color:#d0d5d9!important; border-right-color:#86898d!important; border-bottom-color:#86898d!important; background-color:#dfe4e8 !important;
+}
+/*
+.htmlarea .toolbar, .button {
+	border-width:1px; border-style:solid; border-left-color:#fcfeff !important; border-top-color:#fcfeff !important; border-right-color:#b4b8bb !important; border-bottom-color:#b4b8bb !important;background-color:#f0f4f7 !important;
+}
+*/
+.popupBackground {background-color:#f0f4f7 !important}
+#contactsForInclude, .top_form_compose input, textarea, .popupList {
+	border-width:1px; border-style:solid;
+	border-top-color:#abadb3!important; border-right-color:#dbdfe6!important; border-bottom-color:#dbdfe6!important; border-left-color:#dbdfe6!important;
+}
+#ssc_contacts, #ssc_lists { background:#ebeff2; margin:5px; // margin:5px 0px 5px 5px;//width:100%; zoom:1;  }
+#ssc_contacts  { padding:5px 0 3px 5px;}
+#ssc_lists { //margin-right:-5px;}
+#SendSubContacts { position: absolute; z-index: 2400; zoom:1; //padding-right:10px; }
+#contactsForInclude, #ssc_lists { //width: 100%; height: 125px; overflow: auto}
+#contactsForInclude table, #ssc_lists table { width:100%; border-collapse:collapse; border-spacing:0; padding:0; margin:0; border:0; background:#fff;}
+#contactsForInclude td, #ssc_lists td { height: 25px; padding: 0 4px; }
+#sendFormDiv { background: #f7fafc;//width:100%; }
+.top_form_compose { padding: 10px 10px 0 10px; //width:100%; zoom:1; }
+.Htmlarea_container { padding: 10px;//width:100%; zoom:1; }
+#ssc_lists input { //border:none;}
+#searchSendContact { float:left; vertical-align:middle; margin:0;}
+.contactsForInclude td { padding:1px 3px;}
+.SearchSend { padding:3px 0;}
+.wbs-btn { margin:0 2px; }
+.wbs-btn-content { color:#333;}
+.even { background:#fff;}
+.odd { background:#f7fafc;}
+.checked { background:#f5f0bb;}
+.send_labels { text-align:right; padding-right:5px; padding-left:10px; color:#333; font-size:13px;}
+
+.sendButton {
+	border: 1px solid #BDBCBD; text-decoration: none;
+	color:black; background:whitesmoke;
+	padding:0 15px; margin:0 5px 0 0;
+	height:24px; line-height:24px; display:block; float:left; width:auto
+}
+.sendButton:hover {background: #CCC}
+
+#sendMoreSubmenu ul, #sendMoreSubmenu ul li { padding:0; margin:0; list-style:none;}
+.menuItem { padding:0; margin:0; }
+.menuItem a {  text-decoration:none; line-height: 25px; height: 25px; display:block; padding: 0 10px 0 10px; cursor: pointer; color: black}
+.menuItem a:hover { background-color: lightblue}
+
+.btnTopSubmenu {
+	background-color:white;
+	border:1px solid gray;
+	overflow:hidden;
+	position:absolute;
+	text-align:left;
+	left:0px;
+	top:-26px;
+}
+
+.popupItemHeader {font-weight: bold;}
+.popupLink {color: #0044AA; cursor: pointer; line-height:150%; padding: 0 5px;}
+
+ul.autocomplete {
+    position: absolute !important;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid ButtonShadow;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    color: #000;
+	display:none;
+	z-index:10000;
+}
+ul.autocomplete li {
+	display: block; 
+	padding: 0.3em; 
+	overflow: hidden;
+	width: 100%;
+	cursor:pointer;
+}
+
+ul.autocomplete li.selected { background-color: skyblue;}
+
+.selectTemplateContainer { background:#fafafa; overflow:hidden;  zoom:1; padding:10px; }
+.selectTemplateDiv h4 { margin:10px 20px; color:#222; font-size:1.1em;}
+.selectCommonTemplate, .selectCommonTemplate li, .selectMyTemplate, .selectMyTemplate li { list-style:none; margin:0; padding:0;}
+.selectCommonTemplate, .selectMyTemplate { display:block;  padding:10px; margin-bottom:15px;}
+.selectCommonTemplate li  { background:#fff; position:relative; width:120px; height:130px; float:left; text-align:center; color:#0043A7;cursor: pointer;  padding-top:8px;  padding:8px 5px 8px 5px;}
+.selectCommonTemplate li img { display:block; margin:3px auto;}
+.selectCommonTemplate li p { margin:0; font-size:0.9em;line-height:1em;}
+.selectCommonTemplate li.templateItem { margin:5px 10px 10px 5px; border:solid 1px #eee;} 
+.selectCommonTemplate li.templateOver { border:3px solid #FDCA1B;  left:-2px; top:-2px; margin:5px 6px 6px 5px; _left:-2px; _top:-2px; _margin:5px 6px 6px 5px; }
+.selectMyTemplate { margin-bottom:10px;}
+.selectMyTemplate li a { color:#0043A7; margin:0 0 0 30px; line-height:1.5em; }
+.selectMyTemplate li a:hover { color:#0043A7; text-decoration:underline;}

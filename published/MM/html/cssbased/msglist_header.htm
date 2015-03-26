@@ -1,0 +1,35 @@
+<? if $numFiles != 0 ?>
+<!-- List header table -->
+<div>
+<table class="ListHeader" id="ListHeaderContainer">
+	<tr>
+		<td><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"/></td>
+		<td align=right>
+			<? $ddStrings.dd_screen_sorting_title|cat:":&nbsp;" ?>
+			<? wbs_sortColumn ajax=true status=$sorting field="DL_FILENAME" ?><? $ddStrings.dd_screen_namesorting_title ?><? /wbs_sortColumn ?>
+			<? if $numVisibleColumns ?> | <? /if ?>
+			<? assign var=numVisibleHeaderColumns value=$numVisibleColumns ?>
+
+			<? if $descriptionVisible ?>
+				<? assign var=nameIndex value=$dd_columnNames.DL_DESC ?>
+				<? assign var=columnName value=$ddStrings[$nameIndex] ?>
+				<? wbs_sortColumn ajax=true status=$sorting field=DL_DESC ?><? $columnName ?><? /wbs_sortColumn ?>
+				<? if $numVisibleColumns > 1 ?> | <? /if ?>
+				<? math equation="x - 1" x=$numVisibleColumns assign=numVisibleHeaderColumns ?>
+			<? /if ?>
+
+			<? assign var=index value=0 ?>
+			<? foreach from=$visibleColumns item=columnID name=columnLoop ?>
+				<? if $columnID != "DL_DESC" ?>
+					<? math equation="x + 1" x=$index assign=index ?>
+					<? assign var=nameIndex value=$dd_columnNames[$columnID] ?>
+					<? assign var=columnName value=$ddStrings[$nameIndex] ?>
+					<? wbs_sortColumn ajax=true status=$sorting field=$columnID ?><? $columnName ?><? /wbs_sortColumn ?>
+					<? if $index < $numVisibleHeaderColumns ?> | <? /if ?>
+				<? /if ?>
+			<? /foreach ?>
+		</td>
+	</tr>
+</table>
+</div>
+<? /if ?>

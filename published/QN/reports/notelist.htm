@@ -1,0 +1,83 @@
+<? if $viewMode == 1 ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="treeDocumentListViewTable">
+		<? foreach from=$notes key=note_ID item=noteData ?>
+			<tr>
+				<td width="100%"><? $noteData.QN_SUBJECT|htmlsafe:true:true|truncate:150 ?></td>
+				<td align="right" valign=top><nobr><? $noteData.QN_MODIFYUSERNAME|cat:" " ?><? $noteData.QN_MODIFYDATETIME?>&nbsp;</nobr></td>
+			</tr>
+			<? if $noteData.QN_CONTENT || $noteData.ATTACHEDFILES ?>
+				<tr> 
+					<td colspan="2" class=treeDocumentListViewContent>
+						<? if $cutNotes ?>
+							<span class=smallFont><? $noteData.QN_CONTENT|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?></span>
+						<? else ?>
+							<span class=smallFont><? $noteData.QN_CONTENT|htmlsafe:true:true|sureecho ?></span>
+						<? /if ?>
+						<? if $noteData.ATTACHEDFILES ?>
+							<? if $noteData.QN_CONTENT ?><br><? /if ?>
+							<span class=smallFont><? $qnStrings.qnp_screen_files_label|cat:": " ?><? $noteData.ATTACHEDFILES_NOLINK|strip|htmlsafe:true:true ?></span>
+						<? /if ?>
+					</td>
+				</tr>
+			<? /if ?>
+			<tr>
+				<td width="100%" style="height=10px"></td>
+				<td align="right" valign=top style="height=10px"></td>
+			</tr>
+		<? foreachelse ?>
+			<tr>
+				<td align="center" valign="middle" height=40><? $qnStrings.qnp_screen_norecords_label|htmlsafe:true:true ?></td>
+			</tr>
+		<? /foreach ?>
+	</table>
+
+<? else ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="treeDocumentListTable">
+		<? foreach from=$folders key=QNF_ID item=folderData ?>
+			<? assign var=numDocuments value=$folderData.docnum ?>
+			<? assign var=notes value=$folderData.LIST ?>
+
+			<? if $numDocuments ?>
+				<tr><td height=40 valign=middle colspan=<? $numVisibleColumns ?> class=largeText_normal><? $folderData.NAME|htmlsafe:true:true ?></td></tr>
+
+				<tr height=20>
+					<? assign var=firstCol value=1 ?>
+					<? foreach from=$visibleColumns item=columnID ?>
+						<? assign var=nameIndex value=$qn_columnNames[$columnID] ?>
+						<? assign var=columnName value=$qnStrings[$nameIndex] ?>
+						<? if $columnID != "ATTACHEDFILES" ?>
+							<th <? if $firstCol ?>style="padding-left: 20px"<? /if ?> align="left"><? $columnName ?></th>
+						<? else ?>
+							<th <? if $firstCol ?>style="padding-left: 20px"<? /if ?> align="left"><? $columnName ?></th>
+						<? /if ?>
+						<? assign var=firstCol value=0 ?>
+					<? /foreach ?>
+
+				</tr>
+				<? foreach from=$notes key=note_ID item=noteData name=noteLoop ?>
+					<tr>
+						<? assign var=firstCol value=1 ?>
+						<? foreach from=$visibleColumns item=columnID ?>
+							<? if $columnID == "QN_CONTENT" ?>
+								<? if $cutNotes ?>
+									<td <? if $firstCol ?>style="padding-left: 20px"<? /if ?> valign=top><? $noteData.$columnID|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?></td>
+								<? else ?>
+									<td <? if $firstCol ?>style="padding-left: 20px"<? /if ?> valign=top><? $noteData.$columnID|htmlsafe:true:true|sureecho ?></td>
+								<? /if ?>
+							<? elseif $columnID == "ATTACHEDFILES" ?>
+								<td <? if $firstCol ?>style="padding-left: 20px"<? /if ?> valign=top><? $noteData.ATTACHEDFILES_NOLINK|strip|htmlsafe:true:true ?></td>
+							<? else ?>
+								<td <? if $firstCol ?>style="padding-left: 20px"<? /if ?> valign=top><? $noteData.$columnID|strip|htmlsafe:true:true|sureecho ?></td>
+							<? /if ?>
+							<? assign var=firstCol value=0 ?>
+						<? /foreach ?>
+					</tr>
+				<? foreachelse ?>
+					<tr>
+						<td align="center" valign="middle" height=40 colspan="<? $numVisibleColumns ?>"><? $qnStrings.qnp_screen_norecords_label|htmlsafe:true:true ?></td>
+					</tr>
+				<? /foreach ?>
+			<? /if ?>
+		<? /foreach ?>
+	</table>
+<? /if ?>

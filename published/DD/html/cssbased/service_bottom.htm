@@ -1,0 +1,569 @@
+<? if $curScreen == 0 ?>
+	<table class="SimpleList" width="100%">
+	<thead>
+	<tr>
+		<th scope="col" width="10"><? if $totalItemCount ?><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"><? else ?>&nbsp;<?/if?></th>
+		<th scope="col" width="auto"><? wbs_sortColumn status=$sorting field=DL_FILENAME ?><? $ddStrings.app_file_field ?><? /wbs_sortColumn ?></th>
+		<th scope="col" width="50"><? wbs_sortColumn status=$sorting field=DL_FILETYPE ?><? $ddStrings.app_type_field ?><? /wbs_sortColumn ?></th>
+		<th scope="col" width="auto"><? wbs_sortColumn status=$sorting field=DL_FILESIZE ?><? $ddStrings.app_size_field ?><? /wbs_sortColumn ?></th>
+		<th scope="col" width="0"><? wbs_sortColumn status=$sorting field=DL_UPLOADDATETIME ?><? $ddStrings.app_uploaddate_field ?><? /wbs_sortColumn ?></th>
+		<th scope="col" width="auto"><? wbs_sortColumn status=$sorting field=DL_UPLOADUSERNAME ?><? $ddStrings.app_owner_field ?><? /wbs_sortColumn ?></th>
+		<th scope="col" width="auto"><? wbs_sortColumn status=$sorting field=DL_MODIFYDATETIME ?><? $ddStrings.sv_screen_deletedcol_title ?><? /wbs_sortColumn ?></th>
+		<th scope="col" width="auto"><? wbs_sortColumn status=$sorting field=DL_MODIFYUSERNAME ?><? $ddStrings.sv_screen_deletedbycol_title ?><? /wbs_sortColumn ?></th>
+	</tr>
+	</thead>
+	<tbody>
+
+	<!-- Folders -->
+	<? foreach from=$folders item=folder name=folderLoop ?>
+		<tr class="<? wbs_oddItem index=$smarty.foreach.folderLoop.iteration ?>">
+			<td width=10><input type="checkbox" name="folder[<? $folder->DF_ID ?>]" value="<? $folder->DF_ID ?>"></td>
+			<td><img style="margin-right: 2px" src="../../../common/html/classic/images/folder_open.gif" width=14 height=12 align=left border=0><? $folder->DF_NAME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $kernelStrings.app_treefolder_text ?></td>
+			<td><? $folder->DF_SIZE ?></td>
+			<td><? $folder->DF_CREATEDATETIME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $folder->DF_CREATEUSERNAME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $folder->DF_MODIFYDATETIME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $folder->DF_MODIFYUSERNAME|htmlsafe:true:true|sureecho ?></td>
+		</tr>
+	<? /foreach ?>
+	<!-- Files -->
+	<? foreach from=$files item=file name=fileLoop ?>
+		<? math equation="((i+o-1) % 2)" i=$smarty.foreach.fileLoop.iteration o=$folderCount assign=parity ?>
+
+		<tr  class="<? wbs_oddItem index=$parity ?>">
+			<td width=10><input type="checkbox" name="document[<? $file.DL_ID ?>]" value="<? $file.DL_ID ?>"><input type=hidden name="filerights[<?$file.DL_ID?>]" value="<? $file.TREE_ACCESS_RIGHTS ?>"></td>
+			<td><img src="<? thumbnail fileName=$file.DL_FILENAME size=16 os=win ?>" style="margin-right: 2px" align=left border=0><a href="<? $file.ROW_URL ?>" target="_blank"><? $file.DL_FILENAME|htmlsafe:true:true|sureecho ?></a></td>
+			<td><? $file.DL_FILETYPE|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_FILESIZE|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_UPLOADDATETIME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_UPLOADUSERNAME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_DELETE_DATETIME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_DELETE_USERNAME|htmlsafe:true:true|sureecho ?></td>
+		</tr>
+	<? /foreach ?>
+
+	<? if !$totalItemCount ?>
+			<tr class="NoRecords">
+				<td colspan="8" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+			</tr>
+	<? /if ?>
+
+	</tbody>
+</table>
+
+					
+<? elseif $curScreen == 1 ?>
+	<? if $thumbnailsSupported ?>
+		<? if $thumbnailEnabled == "ENABLED" ?>
+
+			<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+				<? $ddStrings.sv_screen_thumbenabled_label|cat:"<font color=#009900><b>"|cat:$ddStrings.sv_screen_enabled_label|cat:"</b></font>." ?>
+			<? /wbs_note ?>
+
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="disablethumbs" caption=$ddStrings.sv_screen_disablethumb_btn onClick="return confirmDisabling()" ?>
+			<? /wbs_buttonSet ?>
+
+			<? wbs_note displayNoteMarker=true width="500px" smallFont=false ?>
+				<? $ddStrings.sv_disabledthumbs_note ?>
+			<? /wbs_note ?>
+
+			<? wbs_hr  width="500px" ?>
+
+			<table class="NameValueList">
+			<tr>
+				<td><? $ddStrings.sv_totalimagesnum_label ?></td>
+				<th scope="col"><? $totalImageNum ?></th>
+			</tr>
+			</table>
+
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="updatethumbs" caption=$ddStrings.sv_updatethumbs_btn ?>
+			<? /wbs_buttonSet ?>
+
+			<? wbs_note displayNoteMarker=true width="500px" smallFont=false indented=true ?>
+				<? $ddStrings.sv_updatethumbs_note|htmlsafe:true:true ?>
+			<? /wbs_note ?>
+
+			<? if $thumbnailsGenerated ?>
+				<table class="NameValueList">
+				<tr>
+					<td><? $ddStrings.sv_filesprocessed_label|cat:": " ?></td>
+					<th scope="col"><? $filesProcessed ?></th>
+				</tr>
+				</table>
+
+				<? wbs_scrollableArea width=580 height=250 ?>
+					<? foreach from=$messageStack key=folderKey item=folderData ?>
+						<? assign var=files value=$folderData.files ?>
+							<? foreach from=$files key=fileName item=fileData ?>
+								<nobr><? "<b>"|cat:$fileName|cat:"</b>: "|cat:$fileData|cat:"." ?><nobr><br>
+							<? /foreach ?>
+					<? /foreach ?>
+				<? /wbs_scrollableArea ?>
+
+			<? /if ?>
+		<? else ?>
+			<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+				<? $ddStrings.sv_screen_thumbenabled_label|cat:"<font color=#FF0000><b>"|cat:$ddStrings.sv_screen_disabled_label|cat:"</b></font>." ?>
+			<? /wbs_note ?>
+
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="enablethumbs" caption=$ddStrings.sv_screen_enablethumb_btn ?>
+			<? /wbs_buttonSet ?>
+
+			<? wbs_note displayNoteMarker=true width="500px" smallFont=false ?>
+				<? $ddStrings.sv_enablethumbs_note ?>
+			<? /wbs_note ?>
+		<? /if ?>
+	<? else ?>
+		<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+			<? $ddStrings.sv_nogdmessage_message|htmlsafe:true:true ?>
+		<? /wbs_note ?>
+	<? /if ?>
+<? elseif $curScreen == 2 ?>
+	<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td>
+				<? if $versionControlEnabled ?>
+
+					<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+						<? $ddStrings.sv_vcenabled_label|cat:" <font color=#009900><b>"|cat:$ddStrings.sv_vcstatusenabled_label|cat:"</b></font>." ?>
+					<? /wbs_note ?>
+
+					<table class="NameValueList">
+					<tr>
+						<td><? $ddStrings.sv_maxversionnum_label|cat:": " ?></td>
+						<th scope="col">
+							<? if $versionOverrideEnabled ?>
+								<? $maxVersionNum|cat:"." ?>
+							<? else ?>
+								<? $ddStrings.sv_unlimited_label|cat:"." ?>
+							<? /if ?>
+						</th>
+						<td>
+							<? wbs_button name="changeversionoverride" caption=$ddStrings.sv_change_btn ?>
+						</td>
+					</tr>
+					</table>
+
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton name="disableversioncontrol" caption=$ddStrings.sv_disablevc_btn ?>
+					<? /wbs_buttonSet ?>
+
+				<? else ?>
+
+					<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+						<? $ddStrings.sv_vcenabled_label|cat:" <font color=#FF0000><b>"|cat:$ddStrings.sv_vcstatusdisabled_label|cat:"</b></font>." ?>
+					<? /wbs_note ?>
+
+					<? if !$duplicateFilesFound ?>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name="enableversioncontrol" caption=$ddStrings.sv_enablevc_btn ?>
+						<? /wbs_buttonSet ?>
+
+					<? else ?>
+
+						<? wbs_note displayNoteMarker=true width="500px" smallFont=false indented=true ?>
+							<? $ddStrings.sv_duplicatefilesfound_message ?><br>
+							<? $ddStrings.sv_duplicatefiles_note ?>
+						<? /wbs_note ?>
+
+						<? wbs_scrollableArea width=580 height=250 class="standardPadding" ?>
+
+							<? foreach from=$duplicates item=duplicateItem name=folderIterator ?>
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<b><? $duplicateItem.PATH|htmlsafe:true:true ?></b>
+								<? /wbs_note ?>
+
+								<table class="SimpleList" width=100%>
+								<thead>
+								<tr>
+									<th></th>
+									<th><b><? $ddStrings.sv_filename_column ?></b>&nbsp;</th>
+									<th><b><? $ddStrings.sv_created_column ?></b></th>
+								</tr>
+								</thead>
+								<tbody>
+									<? foreach from=$duplicateItem.files item=nameList name=nameIterator ?>
+										<? foreach from=$nameList item=fileData name=fileIterator ?>
+										<tr>
+											<td style="padding-left: 20px">
+												<? if $smarty.foreach.fileIterator.iteration == 1 ?>
+													<? $smarty.foreach.nameIterator.iteration|cat:"." ?>
+												<? /if ?>
+											</td>
+											<td style="padding-right: 5px"><? $fileData->DL_FILENAME|htmlsafe:true:true ?></td>
+											<td>
+												<? $fileData->DL_UPLOADDATETIME ?>
+												<? " "|cat:$ddStrings.app_by_label|cat:" " ?>
+												<? $fileData->DL_UPLOADUSERNAME ?>
+											</td>
+										</tr>
+										<? /foreach ?>
+
+										<? if !$smarty.foreach.nameIterator.last ?>
+										<tr>
+											<td colspan=3 height=5></td>
+										</tr>
+										<? /if ?>
+									<? /foreach ?>
+								</tbody>
+								</table>
+							<? /foreach ?>
+						<? /wbs_scrollableArea ?>
+					<? /if ?>
+				<? /if ?>
+			</td>
+		</tr>
+	</table>
+
+<? elseif $curScreen == 4 ?>
+
+				<script language="JavaScript" type="text/JavaScript">
+				<!--
+					function checkFolderRights( operation )
+					{
+						if ( !treeCheckSelection( '<? $ddStrings.dd_screen_emptycopy_message ?>' ) )
+							return false;
+
+						obj = findObj("DF_ID");
+						if ( !obj )
+							return true;
+
+						selected = obj.selectedIndex;
+						if ( obj.options[selected].value == -1 ||  obj.options[selected].value == 0 ) {
+							switch ( operation ) {
+								case 0 :
+								case 1 : alert( '<? $kernelStrings.app_treenocopymoverights_message ?>' ); break;
+								case 3 : alert( '<? $kernelStrings.app_treenocopytorights_message ?>' ); break;
+								case 4 : alert( '<? $kernelStrings.app_treenomovetofldrights_message ?>' ); break;
+							}
+
+							return false;
+						}
+
+						if ( obj.options[selected].value == -2 ) {
+							alert( '<? $kernelStrings.app_treesavecopymove_message ?>' );
+							return false;
+						}
+
+						if ( obj.options[selected].value == -3 ) {
+							alert( '<? $kernelStrings.app_treeselectfolder_message ?>' );
+							return false;
+						}
+
+						return true;
+					}
+
+					function treeCheckSelection( text )
+					{
+						thisForm = document.forms[0];
+
+						checkedFound = false;
+
+						for ( i = 0; i < thisForm.elements.length; i++ )
+							if (thisForm.elements[i].type == 'checkbox')
+								if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked ) {
+									checkedFound = true;
+									break;
+								}
+
+						if ( !checkedFound ) {
+							alert( text );
+							return false;
+						}
+
+						return true;
+					}
+
+					var descriptions = new Array();
+
+					function checkDescriptions()
+					{
+						var i = 0;
+
+						for ( i = 0; i < this.descriptions.length; i++ ) {
+							var description = this.descriptions[i];
+							var obj = document.getElementById(description);
+
+							if ( obj.value.length > 255 ) {
+								obj.focus();
+								alert( "<? $kernelStrings.app_textlen_message ?>" );
+								return false;
+							}
+						}
+
+						return true;
+					}
+
+					//-->
+				</script>
+
+		<? if $masterStep == 0 ?>
+
+			<? if $showMessages == 0 ?>
+
+				<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+					<? $ddStrings.sv_ftp_contains_text|cat:": " ?>
+				<? /wbs_note ?>
+
+				<table class="SimpleList" width=100%>
+				<thead>
+					<? if $num_ftp_files ?>
+						<th align="left" width="10px" style="width: 10px;"><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"></th>
+					<? /if ?>
+					<th>
+						<nobr>
+						<? $ddStrings.sv_ftp_filename_title ?>
+						</nobr>
+					</th>
+					<th>
+						<nobr>
+						<? $ddStrings.sv_ftp_filesize_title ?>
+						</nobr>
+					</th>
+					<th>
+						<nobr>
+						<? $ddStrings.sv_ftp_datetime_title ?>
+						</nobr>
+					</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				<? foreach from=$ftp_files item=file key=ftpIndex name=tpl ?>
+				<tr <? if ($smarty.foreach.tpl.iteration % 2) == 0 ?> bgcolor="<? #oddRowsColor# ?>"<? /if ?>>
+					<td align=left valign=top width="10px" style="width: 10px"><input type="checkbox" name="ftpfile[<? $ftpIndex ?>]" value="<? $file.DL_ID ?>"></td>
+					<td><? $file.NAME|htmlsafe:true:true ?></a></td>
+					<td><? $file.SIZESTR ?></td>
+					<td><? $file.DATETIME ?></td>
+				<?foreachelse?>
+					<tr class="NoRecords">
+					<td colspan="3" class="default">
+						<? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?>
+					</td>
+					</tr>
+				<?/foreach ?>
+				</tbody>
+				</table>
+
+				<? if $num_ftp_files > 0 ?>
+					<? wbs_note displayNoteMarker=true width="500px" smallFont=false ?>
+						<? $ddStrings.sv_ftp_selectfiles_note ?>
+					<? /wbs_note ?>
+
+					<? wbs_formLayout ?>
+
+						<? wbs_formContent ?>
+
+							<? if $folderCount ?>
+
+								<? assign var=rowClass value="" ?>
+								<tr class="<? $rowClass ?>">
+									<td><? wbs_label for="CUR_ID" fieldName="CUR_ID" text=$ddStrings.sv_ftp_copy2folder_label ?></td>
+									<td>
+										<select id="CUR_ID" class="control" name="DF_ID" style="width: 300px">
+											<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm"
+													selectedID=$currentFolder
+													showAnyRights=true
+													denyNoAccess=true
+													showPromt=true ?>
+										</select>
+									<td>
+								</tr>
+
+							<? else ?>
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<? $kernelStrings.app_treenofolders_message ?>
+								<? /wbs_note ?>
+							<? /if ?>
+						<? /wbs_formContent ?>
+
+						<? wbs_formButtonsPanel ?>
+
+							<? wbs_buttonSet ?>
+								<? if $folderCount ?>
+									<? wbs_buttonSetButton caption=$ddStrings.sv_ftp_copy_btn name="copyftp_btn" onClick="return checkFolderRights("|cat:$operation|cat:")" ?>
+								<? /if ?>
+							<? /wbs_buttonSet ?>
+
+						<? /wbs_formButtonsPanel ?>
+
+					<? /wbs_formLayout ?>
+				<? /if ?>
+
+		<? else ?>
+			<table cellpadding=2 cellspacing=0 border=0>
+				<tr>
+					<td><? $messageStack ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name=cancelbtn caption=$ddStrings.sv_ftp_back_btn ?>
+			<? /wbs_buttonSet ?>
+		<? /if ?>
+
+	<? elseif $masterStep == 1 ?>
+
+ 			<input type="hidden" name="DF_ID" value="<? $DF_ID ?>">
+  			<input type="hidden" name="fileListPacked" value="<? $fileListPacked ?>">
+			<input type="hidden" name="existingFilesPacked" value="<? $existingFilesPacked ?>">
+
+			<? if !$showMessages ?>
+
+				<input type="hidden" name="masterStep" value="<? $masterStep ?>">
+
+				<table border=0 cellpadding=0 cellspacing=0>
+					<tr>
+						<td><? $ddStrings.add_screen_filesexists_label|cat:":" ?></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+
+				<div style="padding-left: 20px">
+					<table border=0 cellpadding=2 cellspacing=0>
+						<tr>
+							<td colspan=2 class=bottomBorder><b><? $ddStrings.add_screen_filename_title ?></b></td>
+							<td style="padding-left: 5px" class=bottomBorder><b><? $ddStrings.add_screen_comment_title ?></b></td>
+						</tr>
+						<? foreach from=$existingFiles item=fileInfo key=fileKey ?>
+							<tr>
+								<td valign=top>
+									<? if $fileInfo.LOCKED ?>
+										<img style="margin-right: 1px; margin-top: 3px" align=baseline src="<? "images/lock.gif"|stylesetitem:"classic":$styleSet:"DD" ?>" >
+									<? /if ?>
+								</td>
+								<td valign=top>
+									<? $fileInfo.DL_FILENAME|htmlsafe:true:true|sureecho|trunc_str:50 ?>
+								</td>
+								<td style="padding-left: 5px" valign=top>
+									<? if $fileInfo.LOCKED ?>
+										<? "("|cat:$ddStrings.add_screen_checkout_label|cat:": "|cat:$fileInfo.DL_CHECKUSERID|cat:" "|cat:$fileInfo.DL_CHECKDATETIME|cat:")" ?>
+									<? else ?>
+										<textarea name="DL_VERSIONCOMMENT[<? $fileKey ?>]" class="FormControl" style="width: 350px" ID="<? "description"|cat:$fileKey ?>"><? $fileInfo.DL_VERSIONCOMMENT|htmlsafe_textarea:0 ?></textarea>
+										<script language=JavaScript>
+												descriptions.push('<? "description"|cat:$fileKey ?>');
+										</script>
+									<? /if ?>
+								</td>
+							</tr>
+						<? /foreach ?>
+					</table>
+				</div>
+
+				<table border=0 cellpadding=1 cellspacing=0>
+					<tr>
+						<td colspan=2>&nbsp;</td>
+					</tr>
+					<tr>
+							<td>
+							<input class="FormControl" type=radio name="existingFileOperation" value="replace" <? switchedOutput val=$existingFileOperation true_val=replace str1="checked" ?>>
+						</td>
+						<td>
+							&nbsp;<? $ddStrings.add_screen_replace_label?>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="FormControl" type=radio name="existingFileOperation" value="skip" <? switchedOutput val=$existingFileOperation true_val=skip str1="checked" ?>>
+						</td>
+						<td>
+							&nbsp;<? $ddStrings.add_screen_skip_label?>
+						</td>
+					</tr>
+					<tr>
+						<td colspan=2>&nbsp;</td>
+					</tr>
+				</table>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name=copyftp_btn caption=$kernelStrings.app_ok_btn  onClick="return checkDescriptions()" ?>
+					<? wbs_buttonSetButton name=cancelbtn caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+
+				<? else ?>
+						<table cellpadding=2 cellspacing=0 border=0>
+							<tr>
+								<td><? $messageStack ?></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+						<input type="hidden" name="masterStep" value="0">
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name=cancelbtn caption=$ddStrings.sv_ftp_back_btn ?>
+						<? /wbs_buttonSet ?>
+				<? /if ?>
+
+	<? /if ?>
+	<input type=hidden name=finished value=1>
+
+<? elseif $curScreen == 5 ?>
+	<div style="padding-bottom: 5px">
+		<input name='enableZohoedit' type='hidden' value='0'>
+		<table class="FormLayout">
+		<tbody><tr><td colspan="2"><input name='enableZohoedit' value='1' <? if $zohoeditEnabled ?>checked<? /if ?> type='checkbox' onclick="javascript:document.form.zohokey.disabled=!this.checked"> 
+		<? $ddStrings.sv_zohoeditenable_label ?></td></tr>
+		<tr><td><label for="zohokey"><?$ddStrings.sv_zohoeditKey_label?>:</label></td>
+		<td><input class="FormControl" name='zohokey' id='zohokey' type="text" value='<? $zohokey ?>' size="32" <? if !$zohoeditEnabled ?>disabled<? /if ?>>&nbsp;<? $ddStrings.sv_zohokey_note_label ?>
+		</td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+	<? if $zohoeditStatusChanged ?>
+<script>
+	window.parent.document.ddApplication.config.canZohoEdit=<? $zohoeditEnabled ?>;
+	window.parent.document.ddApplication.config.hasZohoKey=<? $zohoeditEnabled ?>;
+</script>
+	<? /if ?>
+	
+	<? wbs_note width="500px" smallFont=false ?>
+		<? $ddStrings.sv_zohoeditnote_label ?>
+	<? /wbs_note ?>
+	
+	<? wbs_buttonSet ?>
+		<? wbs_buttonSetButton name=setZohoedit caption=$kernelStrings.app_save_btn ?>
+		<? wbs_buttonSetButton name=cancelbtn caption=$kernelStrings.app_cancel_btn ?>
+	<? /wbs_buttonSet ?>
+	
+
+<? else ?>
+
+	<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+		<? $ddStrings.sv_emailsettings_label|cat:":" ?>
+	<? /wbs_note ?>
+
+
+	<div style="padding-left: 15px">
+		<? if $emailMode == 'GLOBAL' ?>
+			<table class="NameValueList">
+			<tr>
+				<td><? $ddStrings.sv_emailname_label|cat:": " ?></td>
+				<th scope="col"><? $emailName|htmlsafe:true:true ?></th>
+			</tr>
+			<tr>
+				<td><? $ddStrings.sv_emailaddress_label|cat:": " ?></td>
+				<th scope="col"><? $emailAddress|htmlsafe:true:true ?></th>
+			</tr>
+			</table>
+		<? else ?>
+			<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+				<b><? $ddStrings.emp_usermode_note|cat:"." ?></b>
+			<? /wbs_note ?>
+		<? /if ?>
+	</div>
+
+	
+
+<? /if ?>

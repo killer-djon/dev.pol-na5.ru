@@ -1,0 +1,25 @@
+<? if $archiveSupported ?>
+	<? if !$fileLoaded && !$operationFinished ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton caption=$ddStrings.ua_upload_btn onClick="return onUpload()" ?>
+		<? /wbs_toolbarItem ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+		<? /wbs_toolbarItem ?>
+	<? elseif !$operationFinished ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton caption=$kernelStrings.app_ok_btn name="savebtn" ?>
+		<? /wbs_toolbarItem ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+		<? /wbs_toolbarItem ?>
+	<? elseif $operationFinished ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_ok_btn  ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+<? else ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>

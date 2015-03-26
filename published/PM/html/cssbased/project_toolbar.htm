@@ -1,0 +1,24 @@
+<? if !$fatalError ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+	<? /wbs_toolbarItem?>
+<? else ?>
+	<? wbs_toolbarItem?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$pmStrings.app_name_short link=$currentAppData.mainURL ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+<!--
+<? if $action != ACTION_NEW ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$pmStrings.amp_complete_btn name="clspbtn" onClick="return confirm('"|cat:$pmStrings.amp_projcomplete_message|cat:"')" ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$pmStrings.amp_delete_btn name="delpbtn" onClick="return confirmDeletion()" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+-->

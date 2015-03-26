@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="styles/qn_print_styles.css" rel="stylesheet" type="text/css">
+<link href="../../common/reports/print_styles.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<? $errorStr ?>
+<? if !$fatalError ?>
+	<? if $viewMode == 1 ?>
+		<table cellpadding=0 cellspacing=0 border=0>
+			<? foreach from=$folders key=QNF_ID item=folderData ?>
+				<? assign var=numDocuments value=$folderData.docnum ?>
+				<? assign var=notes value=$folderData.LIST ?>
+				<? if $numDocuments ?>
+					<tr><td height=40 valign=middle class=largeText_normal><? $folderData.NAME|htmlsafe:true:true ?></td></tr>
+					<tr><td style="height: 5px"></td></tr>
+					<tr><td><? include file="notelist.htm" ?></td></tr>
+				<? /if ?>
+			<? /foreach ?>
+		</table>
+	<? else ?>
+			<? include file="notelist.htm" ?>
+	<? /if ?>
+<? /if ?>
+<? /strip ?>
+<script>
+	window.print ();
+</script>
+</body>
+</html>

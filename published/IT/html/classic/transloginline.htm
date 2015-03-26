@@ -1,0 +1,40 @@
+<? if $addTransitionsData ?>
+	<div class=issueList_transitionLog style="border-left: 2px solid #CCCCCC;">
+		<table cellpadding=0 cellspacing=1 border=0>
+			<? foreach from=$listRecord.TRANSITION_LOG item=transLogData ?>
+				<? if !$transLogData.MODIFYRECORD ?>
+					<tr>
+						<td valign=top><? $transLogData.DISPLAY_NUM ?></td>
+						<td valign=top><nobr>[<? $transLogData.ITL_DATETIME ?>]</nobr></td>
+						<td valign=top>
+							<nobr>[<? $transLogData.STATUS_COLOR ?><? $transLogData.ITL_STATUS|htmlsafe:true:true ?></b></font>]:
+							<? $transLogData.SENDER_NAME ?> <img src="../../../common/html/classic/images/small_arrow.gif" width="9" height="8"> <? $transLogData.ASSIGNED_NAME ?></nobr>
+						</td>
+					</tr>
+					<? if $transLogData.ITL_DESC != "" ?>
+						<tr>
+							<td valign=top colspan=2>&nbsp;</td>
+							<td valign=top><? $itStrings.il_comments_text|cat:": "|cat:$transLogData.ITL_DESC|htmlsafe:true:true ?></td>
+						<tr>
+					<? /if ?>
+					<? if $transLogData.FILE_DATA ?>
+						<tr>
+							<td valign=top colspan=2>&nbsp;</td>
+							<td valign=top><? $transLogData.FILE_DATA ?></td>
+						<tr>
+					<? /if ?>
+				<? else ?>
+					<tr>
+						<td valign=top><? $transLogData.DISPLAY_NUM ?></td>
+						<td valign=top><nobr>[<? $transLogData.ITL_DATETIME ?>]</nobr></td>
+						<td valign=top>
+							[<? $itStrings.is_modified_text ?>]: <? $transLogData.SENDER_NAME ?><br>
+							<? $transLogData.ITL_OLDCONTENT|htmlsafe:true:true ?>
+						</td>
+					</tr>
+
+				<? /if ?>
+			<? /foreach ?>
+		</table>
+	</div>
+<? /if ?>

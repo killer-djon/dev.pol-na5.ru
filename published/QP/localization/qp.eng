@@ -1,0 +1,350 @@
+app_name_long	Common	Application full name	Pages
+app_name_short	Common	Application short name	Pages
+
+app_name_field	Common	Name field label	Name
+app_title_field	Common	Title field label	Title
+app_content_field	Common	Content field label	Content
+app_file_field	Common	File field label	File
+app_author_field	Common	Author field label	Author
+app_date_field	Common	Date field label	Date
+app_folder_field	Common	Folder field label	Folder
+app_keywords_field	Common	Keywords field label	Keywords
+app_description_field	Common	Description field label	Description
+app_aux1_field	Common	Aux 1 field label	Aux1
+app_aux2_field	Common	Aux 2 field label	Aux2
+app_aux3_field	Common	Aux 3 field label	Aux3
+
+app_add_copy_label	Common	Additional name label to copied pages	Copy
+
+app_book_title	Common	Book Tab label	Book
+
+app_treeaddfolderperms_text	Common	Text on the Book tab of the Add/Modify Book form	To customize access rights to this book use "Users" tab for personal permissions, and "Groups" tab for user group permissions.
+app_treeaddfolderuseraccess_text	Common	Add/Modify Folder users tab text	Customize personal access rights to this book
+app_treeaddfoldergroupaccess_text	Common	Add/Modify Folder groups tab text	Customize group access rights to this book
+app_treefolder_label	Common	Label for "Full" book permissions	Full
+app_folders_hint	Common	Folders hint	Show TOC
+app_hidefolders_hint	Common	Folders hint	Hide TOC
+app_archivesnotsupported_message	Common	Archives not supported message	To be able to work with archives you must have ZLIB extension installed on your PHP server.\n\nPlease contact your server administrator for further details.
+app_nozlib_message	Common	No Zlib library installed message	To upload/download archives your server must have Zlib Compression Functions installed
+app_treeinvfoldername_message	Common	Invalid characters in the folder name entered message	Name/Title field can not contain following characters: / \ ? : * < >
+app_treeinvfolderlenname_message	Common	Invalid characters or name exceeds length in folder name entered message	Name/Title field  name is limited by 255 characters and can not contain following symbols: / \ ? : * < >
+app_bookdelete_message	Common	Book deletion conformation	This BOOK will be permanently removed. Continue?
+app_norights_book_message	Common	Lack of administrative rights to modify book message	You have no rights to edit this book.
+app_page_norights_message	Common	Lack of administrative rights to modify notes message	You have no rights to view this page.
+app_search_norecords_label	Common	Empty search message	Your search did not match any pages.
+app_text_id_note	Common	Page/book unique identifier note	Enter unique identifier; must contain only latin characters and/or numbers.
+app_textid_exists_error	Common	Error message if a page/book identifier is not unique	The entered ID value already exists in the Quick Pages. Enter a new ID.
+app_textid_wrong_error	Common	Error message if a page/book identifier consists invalid characters	ID must contain only latin characters and/or numbers and dash
+app_iso8859_1_codepage	Common	iso-8859-1 сodepage name	Western (iso-8859-1)
+app_cp1251_codepage	Common	windows-1251 сodepage name	Cyrilic (windows-1251)
+app_screen_search_result_title	Common	Search result title	Search Results
+app_screen_pagedel_message	Quick Pages	Page deletion confirmation	This page will be permanently deleted. Are you sure?
+app_screen_subpages_delete_message	Quick Pages	Page(s) deletion conformation	This page contains subpages. All pages will be permanently removed and you won't be able to restore them. Do you really want to delete this page with all included subpages?
+app_pageslimit_message	Common	Pages number limitation message	<b>ACCOUNT LIMIT</b>: Number of pages can not exceed %s.
+
+app_prev_link	Common	Previous link	Previous
+app_next_link	Common	Previous link	Next
+
+app_systemtheme_text	Common	Default System theme name	<default>
+
+app_pagesfound_title	Common	Pages found	%s page(s) found.
+
+qp_rootrights	Quick Pages Rights	Can create books	Can create books
+qp_item	Quick Pages Rights	Books item label	Books
+qp_itemnames	Quick Pages Rights	Books name	Book name
+qp_readrights	Quick Pages Rights	Read rights	Read
+qp_writerights	Quick Pages Rights	Write rights	Write
+qp_folderrights	Quick Pages Rights	Full rights	Full
+
+qp_treepages_text	Quick Pages	Table of content	Contents
+
+qp_screen_long_name	Quick Pages	Quick Pages screen full name	Pages
+qp_screen_short_name	Quick Pages	Quick Pages screen short name	Pages
+qp_screen_page_menu	Quick Pages	Page menu	Page
+qp_screen_book_menu	Quick Pages	Book menu	Book
+qp_screen_treeaddpage_menu	Quick Pages	Add page menu item	Add Page
+qp_screen_treemodpage_menu	Quick Pages	Modify page menu item	Edit Page
+qp_screen_treedelpage_menu	Quick Pages	Delete page menu item	Delete Page
+qp_screen_treeorganize_menu	Quick Pages	Organize page menu item	Organize Pages
+qp_screen_jumpbook_menu	Quick Pages	Jump to book menu item	Jump To Book
+qp_screen_booklist_menu	Quick Pages	Book List menu item	Book List
+qp_screen_bookprop_menu	Quick Pages	Book properties menu item	Properties
+qp_screen_createbook_menu	Quick Pages	Create book menu item	Create New Book
+qp_screen_renamebook_menu	Quick Pages	Rename book menu item	Rename Book
+qp_screen_deletebook_menu	Quick Pages	Delete book menu item	Delete Book
+qp_screen_accessbook_menu	Quick Pages	Access book menu item	Access Rights
+qp_screen_publish_menu	Quick Pages	Publish menu item	Publication Setup
+qp_screen_backup_menu	Quick Pages	Backup menu item	Backup
+qp_screen_restore_menu	Quick Pages	Restore menu item	Restore
+qp_screen_copy_menu	Quick Pages	Copy page into current level	Copy Page
+qp_screen_search_label	Quick Pages	Search bar label	Search
+qp_screen_search_btn	Quick Pages	Search button	Go
+qp_screen_meta_title	Quick Pages	Page view meta tags section title	META tags
+qp_screen_info_title	Quick Pages	Page view additional info section title	Information
+qp_sсreen_searchresult_title	Quick Pages	Search results header	Search Results
+qp_screen_noaccess_message	Quick Pages	Access prohibited message	Access denied.\n\nNOTE: To setup an access to Quick Pages folders please go to the "Pages/Folders & User Rights" menu item. If you do not see this item in your menu - refer to your system administrator.
+qp_screen_showbook_btn	Quick Pages	Show Book button	Book
+qp_screen_published_title	Quick Pages	Pulbished title	published
+qp_screen_notpublished_title	Quick Pages	Not published title	not published
+qp_screen_nobooks_error	Quick Pages	No books error message	There are no books defined.
+qp_sсreen_summarydoc_title	Quick Pages	Column in Available Pages table	Pages
+qp_screen_numdocs_label	Quick Pages	Text under the list of Pages	Pages
+qp_screen_lastmodified_label	Quick Pages	Last modified field label in the pageview panel	Last modified by
+
+qp_treeavailpages_name	Quick Pages	Available pages message	Pages List
+
+amn_screen_add_title	Add/Modify Page	Add Page page header	Add Page
+amn_screen_modify_title	Add/Modify Page	Modify Page page header	Edit Page
+amn_deleteimages_btn	Add/Modify Page	Attached images delete label	Delete Image(s)
+amn_addimages_btn	Add/Modify Page	Attached images label	Add Image
+amn_screen_delnote_btn	Add/Modify Page	Delete Page button	Delete Page
+amn_screen_meta_section	Add/Modify Page	Meta tags section title	META tags
+amn_screen_aux_section	Add/Modify Page	Aux Meta tags section title	Auxiliary META tags
+amn_screen_images_message	Add/Modify Page	Add images info message appearing on the unsaved page	To add images to this page you must save it first.
+amn_screen_images_title	Add/Modify Page	Image section title	Images
+amn_screen_close_btn	Add/Modify Page	Save and Add Another button	Save and Close
+amn_treeparentlevel_text	Add/Modify Page	Parent level	Parent Level
+amn_copyimages_btn	Add/Modify Page	Copy images button	Copy image(s)
+amn_textid_label	Add/Modify Page	Page unique identifier field label	Page ID
+
+amb_bookname_label	Add/Modify Book	Book name field label	Book Name
+amb_textid_label	Add/Modify Book	Book unique identifier field label	Book ID
+
+cm_screen_copypage_title	Copy/Move	Page Copying page header	Copy Pages
+cm_screen_movepage_title	Copy/Move	Page Moving page header	Move Pages
+cm_screen_copy_btn	Copy/Move	Copying in progress button	Copy
+cm_screen_move_btn	Copy/Move	Moving in progress button	Move
+cm_screen_form_label	Copy/Move	Label above the form	page(s) selected
+cm_screen_copyerr_message	Copy/Move	Error copying file message	Error copying file
+cm_screen_makedirerr_message	Copy/Move	Error creating folder message	Error creating directory
+cm_copymove_selected	Quick Pages	Count of selected pages	page(s) selected
+cm_moveto_message	Quick Pages	Move To message	Move to level
+cm_copyto_message	Quick Pages	Copy To message	Copy to level
+
+qpo_screen_title	Organize pages	Organize pages screen title	Organize Pages
+qpo_current_page_field	Organize pages	Current level field	Level
+qpo_delete_btn	Organize pages	Delete button	Delete
+qpo_move_btn	Organize pages	Move button	Move
+qpo_copy_btn	Organize pages	Copy button	Copy
+qpo_mark_pub_btn	Organize pages	Publish button	Mark as Published
+qpo_mark_unpub_btn	Organize pages	UnPublish button	Mark as Unpublished
+qpo_nobooks_notice	Organize pages	Level consists no book message	This level consists no pages.
+qpo_screen_emptyaction_message	Organize pages	Empty selection message	You must select page(s) for this operation first.
+qpo_screen_delete_message	Organize pages	Page(s) deletion conformation	Selected page(s) (with possible subpages) will be permanently removed and you won't be able to restore them. Do you really want to delete selected pages with subpages?
+
+ai_screen_addimage_title	Add images Page	Screen title	Add Image
+ai_screen_addimagefile_title	Add images Page	Add image from file	Add image from file
+ai_screen_moreimages_label	Add images	More images label	Click here if you want to upload more files
+ai_screen_add_btn	Add images	Add images button	Add
+ai_screen_upload_text	Add images	More images label	Adding images
+ai_screen_uploadwait_text	Add images	More images label	Please wait while we are adding images...
+ai_screen_nofiles_message	Add Images	Submitting without selecting any images message	You must select at least one image file to add
+
+qp_publish_screen_plain_title	Publish setup	Plain Publish setup title	Customize Plain View
+qp_publish_screen_tree_title	Publish setup	Tree Publish setup title	Customize Tree View
+
+qp_publish_url_title	Publish setup	Published url title	URL
+qp_publish_sample	Publish setup	Sample label	Sample
+qp_publish_plain_title	Publish setup	Plain	Plain
+qp_publish_tree_title	Publish setup	Tree	Tree
+qp_publish_hidden_label	Publish setup	Hidden	Hidden
+qp_publish_visible_label	Publish setup	Visible	Visible
+qp_publish_wrap_label	Publish setup	Wrap	Wrap headers
+qp_publish_pageicons_label	Publish setup	Show page icons label	Show page icons
+qp_publish_font_label	Publish setup	Font	Font
+qp_publish_fontweight_label	Publish setup	Font weight	Font weight
+qp_publish_fontsize_label	Publish setup	Font size	Font size
+qp_publish_fontcolor_label	Publish setup	Font color	Font color
+qp_publish_color_label	Publish setup	Color	Color
+qp_publish_bgcolor_label	Publish setup	Background color	Background color
+qp_publish_justify_label	Publish setup	Justify	Justify
+qp_publish_position_label	Publish setup	Position	Position
+qp_publish_panelbg_label	Publish setup	Background color	Panel Background
+qp_publish_buttonbg_label	Publish setup	Background color	Button Background
+
+qp_publish_settings_edittop_title	Publish setup	Edit top frame	Book Header
+qp_publish_settings_pagetext_title	Publish setup	Page Body	Page Body
+qp_publish_settings_links_title	Publish setup	Links (default)	Links
+qp_publish_settings_topframe_title	Publish setup	Book Header	Book Header
+qp_publish_settings_bookname_title	Publish setup	Book name	Book Name
+qp_publish_settings_tocheader_title	Publish setup	Table of Content header	TOC Header
+qp_publish_settings_tocheader_brief_title	Publish setup	Table of Content header (brief label)	TOC Header
+qp_publish_settings_tocbody_title	Publish setup	Table of content body	TOC Body
+qp_publish_settings_tocbody_brief_title	Publish setup	Table of content body (brief label)	TOC Body
+qp_publish_settings_curtocrow_title	Publish setup	Current page	TOC (selected)
+qp_publish_settings_toclink_title	Publish setup	Link to the table of content	TOC Link
+qp_publish_settings_toclink_brief_title	Publish setup	Link to the table of content (brief label)	TOC
+qp_publish_settings_pagetitle_title	Publish setup	Page title	Page Title
+qp_publish_settings_pagedelim_title	Publish setup	Page delimiter	Page delmiter
+qp_publish_settings_searchpanel_title	Publish setup	Search panel	Search Panel
+qp_publish_settings_button_title	Publish setup	Button	Button
+qp_publish_settings_splitter_title	Publish setup	Splitter	S (Splitter)
+qp_publish_settings_splitter_brief_title	Publish setup	Splitter (brief label)	S
+qp_publish_settings_h1_title	Publish setup	Heading 1	Heading 1
+qp_publish_settings_h2_title	Publish setup	Heading 2	Heading 2
+qp_publish_settings_h3_title	Publish setup	Heading 3	Heading 3
+qp_publish_settings_pn_title	Publish setup	Previous|Next	Previous | Next
+
+jmp_screen_title	Jump to book	Jump to book	Jump To Book
+jmp_screen_bookcount_msg	Jump to book	Book count label	accessible book(s)
+
+pub_screen_title	Publish	Screen title	Publication Setup
+pub_screen_viewoption_title	Publish	Two View label	There are two view options
+pub_screen_plain_descr	Publish	Plain view description	Entire book will appear on one page with the Table of Contents on top.
+pub_screen_tree_descr	Publish	Tree view description	Table of Contents will appear on the left in separate pane.
+pub_screen_preview_btn	Publish	Preview label	Preview
+pub_screen_customize_btn	Publish	Customize	Customize
+pub_screen_notpublished_label	Publish	Not Published radio button label	Not Published
+pub_screen_published_label	Publish	Published radio button label	Published
+pub_screen_plainview_label	Publish	Plain View label	Plain View
+pub_screen_treeview_label	Publish	Tree View label	Tree View
+pub_screen_publ_msg	Publish	Publish confirmation	Do you really want to allow public access to this book?
+pub_screen_unpubl_msg	Publish	Unpublish confirmation	Public access to this book will be prohibited. Continue?
+pub_screen_lang_title	Publish	Language settings title	Language Settings
+pub_screen_lang_label	Publish	Language selector label	Language
+pub_screen_codepage_label	Publish	Codepage selector label	Encoding
+pub_screen_setcp_btn	Publish	Set codepage button	Set localization parameters
+pub_screen_themes_title	Publish	Theme	Theme
+pub_screen_theme_note	Publish	Theme	To create custom or modify existing theme click Pages / Publication Themes in the main menu.
+pub_screen_url_label	Publish	Published book URL	Use following address to access published Book
+pub_screen_preview_title	Publish	Preview pane title	Preview
+pub_screen_authrequired_label	Publish	User authorization required	User authorization required
+
+pub_screen_top_tip	Publish	Book Header tips	This section appears on the top of your published book. To enable/disable Book Header appearance use "Visible" checkbox below. To create your own design, click Customize Book Header button.
+pub_screen_bname_tip	Publish	Book Name tips	This section appears under Book Header. To enable/disable Book Name appearance and customize its style and color use the form below.
+pub_screen_spanel_tip	Publish	Search Panel tips	Search Panel appears under Book Name. To enable/disable Search Panel appearance and customize its style and color use the form below.
+pub_screen_tochdr_tip	Publish	TOC Header tips	Table of Contents (TOC) Header appears on top of Contents section of your published book. To customize TOC Header appearance, use the form below.
+pub_screen_tocbody_tip	Publish	TOC Body tips	 Table of Contents (TOC) Body is an area occupied by Contents section of your published book. To customize TOC Body look & feel use the form below.
+pub_screen_tocs_tip	Publish	TOC (selected) tips	Table of Contents (TOC) selected row is a highlighted entry in Contents tree. To customize its font and background colors use the form below.
+pub_screen_splitter_tip	Publish	Splitter tips	Splitter is a movable bar that separates Table of Contents and Page Body areas. To customize its color use the form below.
+pub_screen_body_tip	Publish	Body tips	Page Body is a main area where most of your published content appears. To customize its style and color use the form below.
+pub_screen_links_tip	Publish	Links tips	Use the menu below to set the color of web links and links to other pages that may appear in your page content.
+pub_screen_pn_tip	Publish	Prev|Next tips	Previous | Next navigation links allow easy paging of your published book. To enable/disable these links and customize its style, color and position, use the form below.
+pub_screen_h1_tip	Publish	Heading 1 tips	Heading 1 is a text marked by &lt;h1&gt; tags (e.g. &lt;h1&gt;Heading&lt;/h1&gt;) in your page content. To customize its appearance use the form below.
+pub_screen_h2_tip	Publish	Heading 2 tips	Heading 2 is a text marked by &lt;h2&gt; tags (e.g. &lt;h2&gt;Heading&lt;/h2&gt;) in your page content. To customize its appearance use the form below.
+pub_screen_h3_tip	Publish	Heading 3 tips	Heading 3 is a text marked by &lt;h3&gt; tags (e.g. &lt;h3&gt;Heading&lt;/h3&gt;) in your page content. To customize its appearance use the form below.
+pub_screen_pagetitle_tip	Publish	Page Title tips	Page Title is a line that appears on top of page content (Page Body section). To customize Page Title style and color use the form below.
+pub_screen_toclink_tip	Publish	TOC Link tips	Link to Table of Contents appears at the bottom of each page and allows quick jump to the Contents area. To enable/disable this link and customize its style, color and position, use the form below.
+pub_screen_modtheme_note	Publish	Modify theme note	To select content's element just click it in Preview section or in the tab list.
+
+bak_screen_title	Backup	Backup Screen title 	Backup
+bak_book_name_title	Backup	Book name title 	Book
+bak_pages_count_title	Backup	Total pages label	Pages total
+bak_creating_note	Backup	Text displayed before archive creation	Large number of pages may take a lot of time to be added to backup.
+bak_createarchive_text	Backup	Text displayed while archive are being created	Creating backup...
+bak_createwait_text	Backup	Text displayed while archive are being create	Please wait while we are creating backup...
+bak_filesadded_label	Create Archive	Files added label	%s file(s) were added.
+bak_archivecreated_label	Create Archive	Archive created message	Backup file has been successfully created.
+bak_downloadarchive_btn	Create Archive	Download archive button	Download Backup file
+bak_close_btn	Create Archive	Close button	Close
+bak_filesize_label	Create Archive	File size label	File Size
+
+rst_screen_title	Backup	Backup Screen title 	Restore Book
+rst_file_label	Backup	Backup Screen title 	Backup file
+rst_selectfile_message	Upload Archive	Select file message	Please specify ZIP archive to upload
+rst_nofolderrights_message	Upload Archive	No folder rights message	You have no rights to create subfolders in this folder
+rst_archivesnotsupported_message	Upload Archive	Archives not supported message	To be able to work with archives you must have ZLIB extension installed on your PHP server.\n\nPlease contact your server administrator for further details.
+rst_errorbackup_message	Restore	Archive does not contain backup file	Uploaded file is not Quick Pages backup file.
+rst_fileopen_error	Restore	Archive does not contain backup file	Unable to open backup file.
+rst_errorarchive_message	Upload Archive	Error reading archive message	Unable to read backup file.
+rst_restorearchive_text	Upload Archive	Error reading archive message	Restore backed-up book...
+rst_restorewait_text	Upload Archive	Error reading archive message	Please wait while we are restoring book...
+rst_restore_btn	Restore	Restore Button	Restore
+
+qpb_screen_long_name	Book List	Book List page full name	Book List
+qpb_screen_short_name	Book List	Book List page short name	Books
+qpb_books_menu_btn	Book List	Book menu	Books
+qpb_addbook_btn	Book List	Add book button	Add book
+qpb_delbook_btn	Book List	Delete book button	Delete Book(s)
+qpb_name_title	Book List	Book name title	Book Name
+qpb_id_title	Book List	Book id title	ID
+qpb_rights_title	Book List	Rights	Rights
+qpb_published_title	Book List	Published	Published
+qpb_publishedtheme_title	Book List	Published	Publication Theme
+qpb_title_title	Book List	Book Title	Book Title
+qpb_name_field	Book List	Book name field	Book Name
+qpb_title_field	Book List	Book title fiels	Book Title
+qpb_keywords_field	Book List	Meta keywords fields	META Keywords
+qpb_description_field	Book List	Description field	Description META
+qpb_published_field	Book List	Published field	Published
+qpb_screen_add_title	Book List	Add book title	Add Book
+qpb_screen_modify_title	Book List	Modify book title	Book Properties
+qpb_screen_bookdel_message	Book List	Book deletion confirmation message	This book will be permanently removed. Continue?
+qpb_additionalinfo_section	Book List	Book's additional info	Additional Info
+
+qp_published_toc_title	Published	Table Of Content	Table of Contents
+
+gl_screen_page_title	HTML plugin	Get link screen title	Insert link
+gl_screen_select_page_label	HTML plugin	Get link label	Insert link to page
+
+qpt_screen_long_name	Themes	Themes screen name	Publication Themes
+qpt_screen_short_name	Themes	Themes screen name	Publication Themes
+
+qpt_addtheme_btn	Themes	Add New Theme button	Add New Theme
+
+qpt_viewmodify_title	Themes	How to view or edit theme message	Click Theme Name to view and customize it.
+
+qpt_name_title	Themes	Theme Name table title	Theme Name
+qpt_type_title	Themes	Theme Type table title	Type
+qpt_books_title	Themes	Books applied by theme	Books
+
+qpt_enabled_title	Themes	Theme Enabled table title	Enabled
+qpt_default_title	Themes	If theme is default	default
+
+qpt_setdefault_title	Themes	Set As default	Set as default
+
+qpt_themename_title	Themes	Theme Name	Name
+
+qpt_enable_link	Themes	Enable link	Enable
+qpt_disable_link	Themes	Disable link	Disable
+qpt_delete_link	Themes	Delete link	Delete
+
+qpt_themedelete_message	Themes	Theme deletion confirmation	This theme is used by %s book(s). If you delete this theme, default theme will be applied to affected books. Are you sure?
+qpt_themedelete_nobook_message	Themes	Theme deletion confirmation	The theme will be permanently removed. Are you sure?
+qpt_themeunshare_message	Themes	Theme disable confirmation	This theme is used by %s book(s). If you disable this theme, default theme will be applied to affected books. Are you sure?
+
+qpt_add_screen_long_name	Themes	Themes screen name	Add New Theme
+qpt_add_screen_short_name	Themes	Themes screen name	Add New Theme
+qpt_add_select_title	Themes	Please select type of new theme	Please select type of new theme
+
+qpt_variable_note	Themes	Variables Note	To insert variable into your Book Header content either type its name (percent symbol % is required) or just click it in the list below.
+qpt_variable_name	Themes	Value Variable	Variable
+qpt_variable_descr	Themes	Value Description	Description
+
+qpt_variable_bookname	Themes	%BOOKNAME% variable's description	Full Book Name
+
+qpt_screen_topmodify_title	Themes	Customize Book Header screen title	Customize Book Header
+
+qpt_top_position_label	Publish setup	Top Position	top
+qpt_bottom_position_label	Publish setup	Bottom Position	bottom
+qpt_topbottom_position_label	Publish setup	Top And Bottom Position	top & bottom
+
+qpt_wrong_theme_message	Themes	Theme is not available	Theme is not available
+
+qpt_topframe_empty	Themes	"Empty" string	(empty)
+
+qpt_screen_customizetheme_title	Themes	Customize Theme screen title	Customize Theme
+
+qpt_themename_exists_error	Themes	Error message if a theme name is not unique	Theme with this name already exists. Please enter another name.
+
+qpt_copyfrom_theme_label	Themes	Copy from Theme label	Copy from Theme
+
+qpt_screen_choosecolor_title	Themes	Choose Color window title	Choose Color
+
+app_treefolders_text	Common	Folders text	Available Actions with Books
+app_treefurfldname_title	Common	Folder Name column header on the Folders & Users Rights page	Book Name
+app_readaccess_name	Common	Read access	Read
+app_writeaccess_name	Common	Read/Write access	Write
+app_folderaccess_name	Common	Read/Write/Folder access	Full
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Can create books
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Can see other users' permissions
+
+app_available_pages_name	Common	 Available Pages rights name	Available Pages
+app_available_functions_name	Common	 Available Functions	Available Functions
+app_notifications_section_name	Common	 Notifications section rights name	Notifications
+app_treeavailflds_title	Common	Available Folders column header on the Folders & Users Rights page	Available Books
+
+app_cantools_label	Common	Can use tools rights	Can use Tools
+app_canreports_label	Common	Can use reports rights	Can use Reports
+
+app_hasaccessbooklist_label	Common	Has access to BookList	Has access to Book List

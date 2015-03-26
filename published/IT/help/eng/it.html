@@ -1,0 +1,192 @@
+<html>
+<head>
+<title>
+WebAsyst Issue Tracker Manual
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href=" ../../../common/html/classic/help_generated.css" rel="stylesheet" type="text/css"></head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<p class="bookName">WebAsyst Issue Tracker Manual</p><a name="TOC"></a><p class="tocHdr">Table of Contents</p><ul class="treeCatalogRow">
+			<li  ID="653." ><a href="#webasyst-issue-tracker-at-a-glance" class=""  title="WebAsyst Issue Tracker at a glance">WebAsyst Issue Tracker at a glance</a>
+									</li>
+				<li  ID="654." ><a href="#adding-a-new-issue" class=""  title="Adding a new issue">Adding a new issue</a>
+									</li>
+				<li  ID="655." ><a href="#understanding-workflow" class=""  title="Understanding workflow">Understanding workflow</a>
+					<ul class="treeCatalogRow">
+			<li  ID="655.1." ><a href="#customizing-workflow" class=""  title="Customizing workflow">Customizing workflow</a>
+									</li>
+				<li  ID="655.2." ><a href="#workflow-templates" class=""  title="Workflow templates">Workflow templates</a>
+									</li>
+	</ul>
+				</li>
+				<li  ID="658." ><a href="#working-with-your-issue-list" class=""  title="Working with your issue list">Working with your issue list</a>
+					<ul class="treeCatalogRow">
+			<li  ID="658.1." ><a href="#forwarding-issues-to-another-state" class=""  title="Forwarding issues to another state">Forwarding issues to another state</a>
+									</li>
+				<li  ID="658.2." ><a href="#editing-issues" class=""  title="Editing issues">Editing issues</a>
+									</li>
+				<li  ID="658.3." ><a href="#copying-moving-deleting-issues" class=""  title="Copying/Moving/Deleting issues">Copying/Moving/Deleting issues</a>
+									</li>
+				<li  ID="658.4." ><a href="#sending-reminders" class=""  title="Sending reminders">Sending reminders</a>
+									</li>
+				<li  ID="658.5." ><a href="#customizing-issue-list-view" class=""  title="Customizing issue list view">Customizing issue list view</a>
+									</li>
+				<li  ID="658.6." ><a href="#viewing-issue-history" class=""  title="Viewing issue history">Viewing issue history</a>
+									</li>
+				<li  ID="658.7." ><a href="#printing-issue-list" class=""  title="Printing issue list">Printing issue list</a>
+									</li>
+	</ul>
+				</li>
+				<li  ID="659." ><a href="#filtering-issue-list" class=""  title="Filtering issue list">Filtering issue list</a>
+					<ul class="treeCatalogRow">
+			<li  ID="659.1." ><a href="#organizing-filters" class=""  title="Organizing filters">Organizing filters</a>
+									</li>
+	</ul>
+				</li>
+				<li  ID="660." ><a href="#reports" class=""  title="Reports">Reports</a>
+									</li>
+	</ul>
+<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td height=0><a name="webasyst-issue-tracker-at-a-glance"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>WebAsyst Issue Tracker at a glance</h2>
+  <p>Here is your WebAsyst Issue Tracker main window:</p>
+  <p><img src="images/issue-tracker-at-a-glance.gif" /></p>
+  <ol>
+    <li><strong>Toolbar</strong>: Click a button (e.g. Issue, View, Filters, Reports) to open a pull down menu and access main functional buttons to add/copy/move issues, customize view options and run reports. </li>
+    <li><strong>Project selector</strong>: All issues are grouped by projects and tasks. Click and choose the project you wish to work with. Only issues linked to this project will be displayed. </li>
+    <li><strong>Task selector</strong>: Tasks are linked to projects. Once you have a project selected, you can choose the task to work with. Only issues linked to this task will be displayed. </li>
+    <li><strong>Customize Workflow</strong>: Workflow is a route compliant with your business process. For every state in this route you can specify default assignee, allowed transition to other states, and other options. You can customize workflow separately for every project and task.</li>
+    <li><strong>Add Issue</strong>: Click to open Add Issue dialog and create a new issue linked to the current task. </li>
+    <li><strong>Filter pane</strong>: Select a filter to restrict visible issue list by a certain criteria, e.g. you can leave only issues assigned by you (or to you), recent issues added today or in last X days, etc. Filters are fully customizable and you can add your own filters. </li>
+    <li><strong>Issue list</strong>: This is the main working area where you can browse the list of issues satisfied to selected filter, forward, edit, and organize filters, and etc. </li>
+  </ol></td></tr></table></td></tr><tr><td height=0><a name="adding-a-new-issue"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Adding a new issue</h2>
+  <p>Click <strong>Issue -&gt; Add Issue</strong> in the toolbar or use <strong>Add Issue</strong> link displayed on the right of the task description in the issue list.</p>
+  <p><img src="images/add-issue.gif" /></p><blockquote dir="ltr" >
+    <p><strong>NOTE</strong>: Adding issues is possible only in the context of the selected project and task. In other words, before adding issues you must have available at least one project and one task. Refer to WebAsyst Projects manual to learn how to create projects and tasks.</p></blockquote>
+  <p>In the <strong>Add Issue</strong> form:</p>
+  <ol>
+    <li>Enter issue description in the text area. </li>
+    <li>Select <strong>Priority</strong>: Low, Normal, or High. Issues with high priority will appear on the top of the issue list. </li>
+    <li>Choose available <strong>Status</strong> (State) from the pull down menu. States depend on your workflow and are fully customizable by your project manager. Customizing workflow is described in details later in this manual. </li>
+    <li><strong>Assign to</strong>: Select user responsible for implementation of this issue. You can select only from the users assigned to this project/task. </li>
+    <li>Click <strong>Attached files</strong> link to open an area where you can attach files to this issue. </li>
+    <li>Click <strong>Save</strong> button to add the issue and return to the issue list, or click <strong>Save and Add Another</strong> button to add another issue. </li>
+  </ol></td></tr></table></td></tr><tr><td height=0><a name="understanding-workflow"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Understanding workflow</h2>
+  <p>WebAsyst Issue Tracker allows you to track issue implementation from start to completion using a workflow mechanism based on states and transitions. For every project/task you can customize workflow separately.</p>
+  <p>A sample of workflow diagram is shown below:</p>
+  <p><img src="images/workflow.gif" /></p>
+  <ol>
+    <li><strong>Start</strong>:&nbsp; This is an initial point in every issue history.&nbsp;When you add a new issue&nbsp;you must expressly specify it's state from a list of available states defined by the project manager. In the workflow diagram sample shown above there is only one state, «In Progress», which you can set for a new issue. </li>
+    <li><strong>States</strong>: In your workflow you can define as many states as you need to meet your business process requirements. In the sample above there are three states defined; e.g. In Progress, Done, and Final Approval. This might be a suitable workflow for a software bug hunting process: a/. A Tester locates a bug and adds a bug report (issue) In Progress state to Sue; b/. Sue fixes the bug and forwards the issue to Done state assigning this issue back to Tester (<sender /> in the diagram); c/. Tester checks implementation and forwards the issue further to Jeff for Final Approval. </li>
+    <li><strong>Transitions</strong>: Workflow assumes that issues can be forwarded (transited) from one state to another. These possible transitions are shown on the diagram by arrows. In this sample one can send issue from In Progress state to Done only, from Done to Final Approval (default transitions designated by bold arrow) or back to In Progress, etc. </li>
+    <li><strong>Complete</strong>: The final state for every issue. This state is mandatory for every workflow. There is no way to go further; i.e., Complete state in the workflow diagram can have only inward arrows and no outward arrows, nor can you assign a user at the Complete state. </li>
+  </ol></td></tr></table></td></tr><tr><td height=0><a name="customizing-workflow"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Customizing workflow</h2>
+  <p>Click <strong>Tools -&gt; Workflow Manager</strong>. Select a project in the pull down menu and a task in the list below for which you want to customize workflow. Alternatively, you can click <strong>Customize Workflow</strong> link in the issue list located next to the task description.</p><blockquote dir="ltr" >
+    <p><strong>NOTE</strong>: Customizing workflow is the prerogative of the project manager or the user who has Full access rights to this project.</p></blockquote>
+  <p dir="ltr">In the workflow diagram each state is designated by a rectangle with a name of state (status) inside, e.g. In Progress, Done, etc. Click a name of state to customize it or click <strong>Add State</strong> to open <strong>Define Workflow State</strong> form:</p>
+  <p><img src="images/define-workflow-state.gif" /></p>
+  <ol>
+    <li><strong>Place before</strong>: Defines relative position of the current state in your workflow sequence. </li>
+    <li><strong>Status name</strong>: Brief description of the current state. </li>
+    <li><strong>Can edit</strong>: Enable this flag if you want to permit issues in this state to be edited. In the issue list for issues in this state users will see Edit button. </li>
+    <li><strong>Can delete</strong>: Enable this flag if want to allow deleting issues in this state. In the issue list for issues in this state users will see Delete button. </li>
+    <li><strong>Assignment options</strong>: Select one of the following: 
+      <ul >
+        <li><strong>required/selectable</strong> - assignment is mandatory; user adding/forwarding issue into this state must select a person from the list of users assigned to the task </li>
+        <li><strong>required/not selectable</strong> - assignment is mandatory and predefined in Assignee property as described below </li>
+        <li><strong>not required</strong> - issue in this state can be assigned to a person but assignment is optional </li>
+        <li><strong>not applicable</strong> - personnel assignment is not applicable </li>
+      </ul>
+    </li>
+    <li><strong>Assignee (default)</strong>: Select user you want to assign by default to every issue in this state. Use &quot;sender&quot; option if you want to assign the user who has forwarded this issue from its previous state. 
+      <p><u>Sample</u>: User James has created new issue in the state “In Progress” and assigned Sue. Sue has done her job and forwarded the issue to “Done”. If “Done” state has been designed to have &quot;sender&quot; as the default assignee, then Sue should not bother to assign someone when forwarding the issue to “Done”. James will be assigned by default as he was the &quot;sender&quot; of the original issue.</p>
+    </li>
+    <li><strong>Color</strong>: This color will be used to display issues of this state in the issue list. </li>
+    <li><strong>Allowed transitions</strong>: Select the states to which an issue from the current states are allowed. Click radio button for the state that should be default destination state for any transition from the current state. </li>
+    <li>Click <strong>Save</strong> button to save settings for the current state and return to the workflow diagram. </li>
+  </ol></td></tr></table></td></tr><tr><td height=0><a name="workflow-templates"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Workflow templates</h2>
+  <p>Every time you customize a workflow, you can save it as a template for repeat usage. To do so, click <strong>Save as Template</strong> button in Customize Workflow window. Alternatively, you can select a previously saved template while customizing a workflow for a new task by using <strong>Select from Template</strong> button.</p>
+  <p>To manage previously saved templates click <strong>Tools -&gt; Workflow Templates</strong>. Click a template in the list and then 1). click <strong>Delete</strong> button to delete obsolete templates or 2). click <strong>Set as Default</strong> to make this template the default for new tasks you will create in future. You can not modify existing templates; if you need to do so, create a new workflow and save it as a new template.</p><blockquote dir="ltr" >
+    <p><strong>NOTE</strong>: Access to Tools button is customizable. You must have access to Users &amp; Groups section to customize access rights for yourself or other users.</p></blockquote></td></tr></table></td></tr><tr><td height=0><a name="working-with-your-issue-list"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Working with your issue list</h2>
+  <p>Issue list is your main working area from where you can add new issues, navigate between projects and tasks, forward issues from one state to another, modify or delete issues, customize list view, etc.</p>
+  <p>Issue list appears grouped by projects and tasks. Inside each task, issues are sorted by priority (High, Normal, Low) and then by date of creation (older issues on top).</p>
+  <p>Most common operations in the issue list are outlined below.</p></td></tr></table></td></tr><tr><td height=0><a name="forwarding-issues-to-another-state"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Forwarding issues to another state</h2>
+  <p>You can forward issues from one state (status) to another according to the workflow customized for the current task.</p>
+  <p>Point your mouse over this issue and click <strong>Forward</strong> link that appears beneath the issue description, or click <strong>Issue -&gt; Forward Issue</strong> from the toolbar. In the Forward Issue dialog select the state to which you want to forward this issue, choose assignee, add optional comment and click Forward button.</p>
+  <p>You can forward issues in <strong>bulk mode</strong>. Select multiple issues from the list and follow the same steps as described above for a single issue.</p><blockquote dir="ltr" >
+    <p><strong>NOTE</strong>: Project manager or user with Full access rights to this project can forward issues from a state to any other state, even if this kind of transition is not specified by the workflow definition for this task.</p></blockquote></td></tr></table></td></tr><tr><td height=0><a name="editing-issues"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Editing issues</h2>
+  <p>Point your mouse over the issue you want to modify and click <strong>Edit</strong> link that appears beneath the issue description. In the <strong>Edit Issue</strong> dialog you can edit issue description, priority, change assigned person, and add/delete attached files.</p>
+  <p>All changes are logged. You will be able to see all issue modifications in the issue history.</p>
+  <p>Not every issue can be modified. You cannot edit issues if “Can edit” flag is expressly disabled for the current issue state in the workflow definition. You cannot edit issues that have Complete status.</p><blockquote dir="ltr" >
+    <p><strong>NOTE</strong>: Project manager or user with Full access rights to this project can edit issues at any state even if editing is disabled by the workflow definition for this task.</p></blockquote></td></tr></table></td></tr><tr><td height=0><a name="copying-moving-deleting-issues"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Copying/Moving/Deleting issues</h2>
+  <p>Select issues and click <strong>Issue -&gt; Copy Issue(s)</strong> to copy or <strong>Issue -&gt; Move Issue(s)</strong> to move.</p>
+  <p>Issues can be copied and moved from one task to another in the same project or even between different projects. If there is not such a state (status) in the workflow definition of the destination task, then you will be offered the opportunity to select new available status for copied/moved issues.</p>
+  <p>To delete an issue, point your mouse over this issue and click <strong>Delete</strong> link that appears beneath the issue description. To delete multiple issues at once, select them and click <strong>Issue -&gt; Delete Issue(s)</strong>. Deleting issues is an irreversible operation.</p>
+  <p>You can not move or delete issues if “Can delete” flag is expressly disabled for the current issue state in the workflow definition.</p><blockquote dir="ltr" >
+    <p><strong>NOTE</strong>: Project manager or user with Full access rights to this project can move/delete issues at any state even if deleting is disabled by the workflow definition for this task.</p></blockquote></td></tr></table></td></tr><tr><td height=0><a name="sending-reminders"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Sending reminders</h2>
+  <p>Issue reminders are Email notifications that can be sent to users assigned to these issues. Select one or more issues from the list and click <strong>Issue –&gt; Remind</strong>. In the Reminder form enter an optional note and enable “Headers only” flag if you wish to skip full issue description in the message.</p><blockquote dir="ltr" >
+    <p><strong>NOTE</strong>: If you send reminders to multiple issues assigned to different persons, then each person will receive reminders only for those issues to which he/she is assigned.</p></blockquote></td></tr></table></td></tr><tr><td height=0><a name="customizing-issue-list-view"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Customizing issue list view</h2>
+  <p>There are two issue list view options:</p>
+  <p><strong>List</strong> (default view): Issue description occupies the major part of the issue list area, while additional information (e.g. issue status, sender, assignee, etc.) is moved to the right side of your screen.</p>
+  <p><img src="images/view-list.gif" /></p>
+  <p><strong>Grid</strong>: Tabular format where issue attributes are displayed in different columns.</p>
+  <p><img src="images/view-grid.gif" /></p>
+  <p>To change view, click <strong>View</strong> button in the toolbar and select <strong>Grid</strong> or <strong>List</strong>.</p>
+  <p>Click <strong>View -&gt; Customize View</strong> to customize certain options for both formats; e.g., number of issues you want to display on one page, number of visible characters in issue description (you will see [more...] link to display all description), visible/hidden columns for Grid view, and some visible options for List view. </p></td></tr></table></td></tr><tr><td height=0><a name="viewing-issue-history"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Viewing issue history</h2>
+  <p>The history for every issue is logged; e.g. date of creation and issue author, issue transitions from one state to another, modifications of issue description and priorities, etc.</p>
+  <p>To view history of a single issue, point your mouse over this issue and click <strong>View History</strong> link beneath the issue description. Issue history section will appear right under this issue in the issue list.</p>
+  <p>If you want to display history for all issues in your list all the time, click <strong>View -&gt; Display Issue History</strong> in the toolbar. To hide history for all issues, click <strong>View -&gt; Hide Issue History</strong>.</p></td></tr></table></td></tr><tr><td height=0><a name="printing-issue-list"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Printing issue list</h2>
+  <p>Click <strong>Issues -&gt; Print</strong> and select what you want to print:</p>
+  <ol>
+    <li>Selected issues</li>
+    <li>Current page</li>
+    <li>Entire issue list – all issues that satisfy to selected filter</li>
+  </ol>
+  <p>Click <strong>Print</strong> button. A new window will open with printer-friendly black-and-white issue list that you can send to printer.</p></td></tr></table></td></tr><tr><td height=0><a name="filtering-issue-list"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Filtering issue list</h2>
+  <p>Filtering allows you to display your issue list with different restrictions that meet some specific criteria. This feature is useful for large lists that contain many issues created and assigned to different users at different times, ranging from one day to one year ago, in different states, of high and low priority, etc.</p>
+  <p>WebAsyst Issue Tracker includes a list of predefined filters accessible in the Filters pane:</p>
+  <ul>
+    <li><strong>Open Issues</strong> – shows all issues that are not yet completed</li>
+    <li><strong>Last Week</strong> – shows all issues, whether open or complete, that were created in last week</li>
+    <li><strong>Assigned to Me</strong> – shows issues assigned to the current user</li>
+    <li><strong>I am Sender</strong> – shows open issues forwarded by the current user to others</li>
+    <li><strong>Pending 1 Week +</strong> - shows issues that were not forwarded for a week (7 days) or more</li>
+  </ul>
+  <p>Clicking on a filter will automatically run your issue list through the selected criteria and display the filtered issue list.</p></td></tr></table></td></tr><tr><td height=0><a name="organizing-filters"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Organizing filters</h2>
+  <p>Filters are fully customizable: you can create new filters, modify or delete existing filters.</p>
+  <p>To create new filter, click <strong>Filters -&gt; Add Filter</strong>. In the <strong>Add Filter</strong> form specify following parameters:</p>
+  <p>Show Issues section:</p>
+  <ul >
+    <li><strong>Created By</strong>: only issues created by selected person will pass the filter </li>
+    <li><strong>Sent By</strong>: only issues forwarded by selected person will pass the filter </li>
+    <li><strong>Assigned To</strong>: only issues assigned to selected person will pass the filter </li>
+    <li><strong>Open &amp; Complete</strong>: all issues, open and complete, will pass the filter </li>
+    <li><strong>Open Only</strong>: only open issues (not complete) will pass the filter </li>
+    <li><strong>Complete Only</strong>: only complete issues will pass the filter </li>
+  </ul>
+  <p>Filter Issues by creating date section:</p>
+  <ul >
+    <li><strong>Do not filter by creating date</strong>: issue create date will not effect the filter </li>
+    <li><strong>Show issues created in last ___ days</strong>: specify an integer value, e.g. 1 – will leave only issues created today in your issue list; 7 – will leave all issues created in the last week </li>
+    <li><strong>Show issues created ___ days ago or earlier</strong>: allows you to select “old” issues; specify an integer value, e.g. 30 – will leave only issues created 30 days ago or earlier in your issue list </li>
+  </ul>
+  <p>Other filtering options:</p>
+  <ul >
+    <li><strong>Select visible issue statuses</strong>: allows you to set detailed filtering of open (not complete) issues by specified statuses </li>
+    <li><strong>No forwarding for ___ days or more</strong>: allows you to find “forgotten” issues which are open and do not “move” for a specified period of time </li>
+    <li><strong>Issue description contains following text</strong>: enter a key phrase contained in issue description for issue to pass the filter </li>
+  </ul>
+  <p>Every filter must have a name. Enter filter name in <strong>Save As</strong> box (e.g. My Issues).</p>
+  <p>Click <strong>Save</strong> button.</p>
+  <p>To modify a filter, select it in the list and click <strong>Filters -&gt; Modify Filter</strong>. You can add or modify any criteria in filter’s options list.</p><blockquote>
+    <p><strong>NOTE</strong>: “All Issues” filter is special and can not be modified.</p></blockquote>
+  <p>To delete a filter, click <strong>Filters -&gt; Organize Filters</strong>, select the filter you wish to delete, and click <strong>Delete</strong>.</p></td></tr></table></td></tr><tr><td height=0><a name="reports"></a></td></tr><tr><td align=center><table border="0" cellspacing="0" cellpadding="0" width="98%"><tr><td><h2>Reports</h2>
+  <p>Click <strong>Reports -&gt; Issue Statistics</strong> from the toolbar to run the following statistics reports:</p>
+  <ul>
+    <li>Project vs. Issue Status</li>
+    <li>Project vs. Assigned Person</li>
+    <li>Project vs. Priority</li>
+    <li>Assigned Person vs. Issue Status</li>
+    <li>Assigned Person vs. Priority </li>
+  </ul>
+  <p>To access the list of all files attached to different issues, click <strong>Reports -&gt; File Attachments</strong>.</p></td></tr></table></td></tr></table>
+</body>
+</html>

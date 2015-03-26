@@ -1,0 +1,78 @@
+<table class="FormLayout" width="100%">
+    <colgroup>
+        <col width="10%" />
+        <col width="90%" />
+    </colgroup>
+    <tr>
+        <td colspan="2" align="left"><? $pmStrings.export_tasks_select_source ?></td>
+    </tr>
+    <tr>
+        <td align="right">
+            <input type="radio" name="export_from" value="selected" <? if $exporter_state.export_from eq 'selected' ?>checked="checked"<? /if ?> />
+        </td>
+        <td>
+            <? $selected_msg ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <input type="radio" name="export_from" value="project" <? if $exporter_state.export_from eq 'project' ?>checked="checked"<? /if ?> />
+        </td>
+        <td>
+            <? $pmStrings.export_tasks_source_project ?>
+        </td>
+    </tr>
+</table>
+
+<table class="FormLayout">
+    <tr>
+        <td>    
+            <? wbs_fieldset legend=$pmStrings.export_tasks_exportfields_label ?>
+                <? wbs_dualComboBox
+                    leftCaption=$pmStrings.export_tasks_included_label
+                    rightCaption=$pmStrings.export_tasks_notincluded_label
+
+                    leftVariableName="included_fields"
+                    rightVariableName="excluded_fields"
+
+                    leftValues=$includedFields
+                    rightValues=$excludedFields
+
+                    leftNames=$includedFieldNames
+                    rightNames=$excludedFieldNames
+
+                    showUpDown=true
+                    separated=true
+
+                    rows=12
+                    width=285
+                ?>
+            <? /wbs_fieldset ?>
+        </td>
+    </tr>
+</table>
+
+<table class="FormLayout">
+    <tr>
+        <td>
+            <? $pmStrings.export_tasks_delimiter ?>:
+        </td>
+        <td>
+            <select name="csv_delimiter">
+                <option value="0"><? $pmStrings.import_tasks_csv_delim_semi ?></option>
+                <option value="1"><? $pmStrings.import_tasks_csv_delim_comma ?></option>
+                <option value="2"><? $pmStrings.import_tasks_csv_delim_tab ?></option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <? $pmStrings.export_tasks_out_encoding ?>:
+        </td>
+        <td>
+            <select name="file_encoding">
+                <? html_options values=$iconv_encoding_charsets output=$iconv_encoding_charsets selected=$exporter_state.file_encoding ?>
+            </select>
+        </td>
+    </tr>
+</table>

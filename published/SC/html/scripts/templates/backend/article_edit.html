@@ -1,0 +1,353 @@
+
+<script type="text/javascript" src="{$smarty.const.URL_JS}/JsHttpRequest.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/niftycube.js"></script>
+{include file="backend/tiny_mce_config.html"}
+
+
+<h1 class="breadcrumbs"><a href='{"?ukey=articles_admin&CategoryID="|set_query_html}'>Статьи</a>
+&raquo;
+{if $Article.ArticleID}
+	{$CurrentDivision.name|translate}: {$Article.ArticleTitle|escape:'html'}
+{else}
+	{"pgn_add_article"|translate}
+{/if}
+</h1>
+
+{$MessageBlock}
+
+<div>
+<ul id="edmod">
+	<li class="tab" id="tab-simple-options"><a href='#simple' id="lnk-simple-options">{"pgn_main"|translate}</a></li>
+	<li class="tab" id="tab-advanced-options"><a href='#advanced' id="lnk-advanced-options">{"pgn_additionally"|translate}</a></li>
+	<li class="tab" id="tab-products-options"><a href='#products' id="lnk-products-params">{"pgn_catalog"|translate}</a></li>
+	<li class="tab" id="tab-articles-options"><a href='#articles' id="lnk-articles-params">{"pgn_posts"|translate}</a></li>
+</ul>
+</div>
+<br />
+
+<form enctype="multipart/form-data" action="{''|set_query_html}" method="post" name="MainForm" id="product-settings-form" target="_self">
+<input type="hidden" name="action" id="action-name" value="save_article" />
+<input type="hidden" name="ArticleID" value="{$Article.ArticleID|escape:'html'}" />
+
+
+
+<div id="container-simple-options" style="display:none;">
+	
+<table width="50%">
+	<tr>
+		<td width="1%" nowrap><strong>{"pgn_post_title"|translate}: </strong></td>
+		<td>
+			{html_text name="ArticleTitle" values=$Article  style="width:100%"}
+		</td>
+	</tr>
+	<tr>
+		<td nowrap>{"pgn_category"|translate}: </td>
+		<td>
+			<div id="parent-category-name">
+			{foreach from=$parent_category.calculated_path item=_crumb name=_frcrumbs}
+				{if $_crumb.CategoryID ne 1 && $parent_category.CategoryID ne $_crumb.CategoryID}{$_crumb.CategoryTitle|escape:'html'}&nbsp;&gt;{/if}
+			{/foreach}
+			{$parent_category.CategoryTitle|default:'Root'|escape:'html'}
+			</div>
+			<input name="ArticleCategoryID" id="parent-category-categoryID" value="{$parent_category.CategoryID|default:1}" type="hidden" />
+			<a href="#choose_category" id="choose-parentcategory-handler">{lbl_prdset_lnk_choose_parentcategory}</a>		
+		</td>
+	</tr>
+	<tr>
+		<td>{"pgn_date"|translate}: </td>
+		<td>
+	
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+			<link type="text/css" href="{$smarty.const.URL_CSS}/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+			<script type="text/javascript" src="{$smarty.const.URL_JS}/jquery-ui-1.8.18.custom.min.js"></script>
+			<script>
+			{literal}
+			$(function() {
+				$( "#datepicker" ).datepicker({
+					showOn: "button",
+					buttonImage: "{/literal}{$smarty.const.URL_IMAGES_DEF}{literal}/b_calendar.png",
+					buttonImageOnly: true,
+					changeMonth: true,
+					changeYear: true,
+					gotoCurrent: true,
+					currentText: 'Сегодня',
+					firstDay: 1,
+					dateFormat:"yy-mm-dd",
+					prevText: 'Назад',
+					nextText: 'Вперед',
+					monthNamesShort: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+					monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+					dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
+				});
+			});
+			
+			
+			{/literal}
+			</script>
+			<input type="text" name="ArticleDate" value="{$Article.ArticleDate|default:$CurrentDate}" size="10"  id="datepicker"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="1%" nowrap>{"pgn_enabled"|translate}:</td>
+		<td>
+			<input type="checkbox" class="checknomarging" name="ArticleEnable"	value="1" {if !$Article.ArticleID}checked="checked"{elseif $Article.ArticleEnable eq 1}checked="checked"{/if} />
+		</td>
+	</tr>
+	<tr>
+		<td class="lcolumnr">{"pgn_main_image"|translate}:</td>
+		<td>
+			<input type="file" name="ArticleDefaultBigPicture" />
+			<br />
+			{if $Article.ArticleDefaultBigPicture}
+				<font class="average"></font><a class="small" href="#" onclick="{$Article.picture_href}" >{$Article.ArticleDefaultBigPicture}</a> - 
+				<a href='{"ArticleID=`$Article.ArticleID`&action=remove_article_picture"|set_query}' title='{"cnfrm_delete_picture"|translate}' class="confirm_action">{"btn_delete"|translate}</a>
+			{elseif $Article.ArticleID}
+				<font class="average">{"str_image_not_uploaded"|translate}</font>
+			{/if}
+		</td>
+	</tr> 
+
+	<tr>
+		<td colspan="2">
+				{"pgn_post_brief"|translate}:<br />
+				{html_textarea name="ArticleBriefDescription" values=$Article rows=1 cols=40 style="width:100%" class="mceEditor"}
+			<br />
+			<div>
+				{"pgn_post_text"|translate}:<br />
+				{html_textarea name="ArticleDescription" values=$Article rows=3 cols=40 style="width:100%" class="mceEditor"}
+			</div>
+			<br />
+			<fieldset>
+				<legend>{lbl_prdset_str_meta}</legend>
+				<table width="100%">
+				<tr>
+					<td width="1%" nowrap="nowrap">{lbl_prdset_meta_title}: </td>
+					<td>
+						{html_text name="ArticleMetaTitle" values=$Article style="width:100%"}
+					</td>
+				</tr>
+				<tr>
+					<td width="1%" nowrap="nowrap">{lbl_prdset_str_metakeywords}: </td>
+					<td>
+						{html_text name="ArticleMetaKey" values=$Article style="width:100%" class="prd_metakeywords"}
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="1%" nowrap="nowrap">{lbl_prdset_str_metadescription}: </td>
+					<td>
+						{html_textarea name="ArticleMetaDescription" values=$Article rows=2 cols=35 style="width:100%;" class="prd_metadescription"}
+					</td>
+				</tr>
+				</table>
+			</fieldset>
+		</td>
+	</tr>
+</table>
+</div>
+
+
+<div id="container-advanced-options" style="display:none;">
+	<table width="50%">
+		<tr>
+			<td width="30%" nowrap>{"pgn_post_author"|translate}:</td>
+			<td>
+				{html_text name="ArticleAuthor" values=$Article  style="width:100%"}
+			</td>
+		</tr>
+		<tr>
+			<td>{"pgn_sort"|translate}: </td>
+			<td><input type="text" name="ArticleSort" value="{$Article.ArticleSort|default:'0'|escape:'html'}" /></td>
+		</tr>	
+		<tr>
+			<td>{"pgn_post_slug"|translate}: </td>
+			<td><input type="text" name="ArticleSlug" value="{$Article.ArticleSlug|escape:'html'}" /></td>
+		</tr>
+			
+	</table>	
+</div>
+
+
+<div id="container-products-options" style="display:none;">
+	
+	<table width="50%">
+		<tr>
+			<td valign="top">{"pgn_featured_products"|translate}: </td>
+			<td>
+				<script type="text/javascript">
+					translate.prdset_msg_choosen_relatedproduct = '{"prdset_msg_choosen_relatedproduct"|transcape}';
+					translate.prdset_msg_loading_products = '{"prdset_msg_loading_products"|transcape}';
+					translate.prdset_btn_hide_products = '{"prdset_btn_hide_products"|transcape}';
+					translate.prdset_btn_next_products = '{"prdset_btn_next_products"|transcape}';
+					translate.prdset_btn_prev_products = '{"prdset_btn_prev_products"|transcape}';
+					translate.btn_delete = '{"btn_delete"|transcape}';
+				</script>
+				<input type="hidden" name="productID" id="product-id" value="0" />
+				<div id="related-products-container">
+				{section name=j loop=$Article.ArticleProducts}
+					<div id="related-product-{$Article.ArticleProducts[j].productID|escape:'html'}">
+						{$Article.ArticleProducts[j].name|escape:'html'}
+						<input name="related_products[]" value="{$Article.ArticleProducts[j].productID|escape:'html'}" type="hidden" />
+						<a href='#remove_relatedproduct' class="remove_relatedproduct_handler" productID="{$Article.ArticleProducts[j].productID|escape:'html'}">
+						<img src="images/remove.gif" border="0" hspace="6" alt="{"btn_delete"|translate}" /></a>
+					</div>
+				{/section}
+				</div>
+				<div><a href="javascritp:void(0);" id="add-related-product-handler">{"btn_add"|transcape}</a></div>
+				<script type="text/javascript" src="{$smarty.const.URL_JS}/articles_product_list.js"></script>
+			</td>
+		</tr>
+	</table>	
+</div>
+
+
+<div id="container-articles-options" style="display:none;">
+	<table width="50%">
+		<tr>
+			<td valign="top">{"pgn_recommended_reading"|translate}: </td>
+			<td>
+				<script type="text/javascript">
+					translate.prdset_msg_choosen_relatedproduct = '{"prdset_msg_choosen_relatedproduct"|transcape}';
+					translate.prdset_msg_loading_products = '{"prdset_msg_loading_products"|transcape}';
+					translate.prdset_btn_hide_products = '{"prdset_btn_hide_products"|transcape}';
+					translate.prdset_btn_next_products = '{"prdset_btn_next_products"|transcape}';
+					translate.prdset_btn_prev_products = '{"prdset_btn_prev_products"|transcape}';
+					translate.btn_delete = '{"btn_delete"|transcape}';
+				</script>
+				<input type="hidden" name="ArticleID" id="ArticleID" value="{if $Article.ArticleID}{$Article.ArticleID}{else}0{/if}" />
+				<div id="related-posts-container">
+				<!-- ArticleArticles -->
+				{section name=j loop=$Article.ArticleArticles}
+					<div id="related-posts-{$Article.ArticleArticles[j].ArticleID|escape:'html'}">
+						{$Article.ArticleArticles[j].ArticleTitle|escape:'html'}
+						<input name="ArticleArticles[]" value="{$Article.ArticleArticles[j].ArticleID|escape:'html'}" type="hidden" />
+						<a href='#remove_relatedpost' class="remove_relatedpost_handler" ArticleID="{$Article.ArticleArticles[j].ArticleID|escape:'html'}">
+						<img src="images/remove.gif" border="0" hspace="6" alt="{"btn_delete"|translate}" /></a>
+					</div>
+				{/section}
+				</div>
+
+				<div><a href="javascritp:void(0);" id="add-related-posts-handler">{"btn_add"|transcape}</a></div>
+				<script type="text/javascript" src="{$smarty.const.URL_JS}/articles_product_list.js"></script>
+			</td>
+		</tr>
+	</table>	
+</div>
+
+
+
+
+<input type="submit" class="button" id="btn-save-product" name="save_article" value="{'btn_save'|transcape}" />
+</form>
+
+
+<script type="text/javascript" src="{$smarty.const.URL_JS}/product_settings.js"></script>
+<script type="text/javascript">
+	var product_id = "0";
+	var conf_full_shop_url = "{$smarty.const.CONF_FULL_SHOP_URL|escape:'html'}";
+{literal}
+	if(getCookie('prdset_tab') && getCookie('prdset_prd_id') == product_id){
+		prdset_selectTab(getCookie('prdset_tab'));
+		getLayer('lnk-products-params').onclick = function(){prdset_selectTab('products');};
+		getLayer('lnk-articles-params').onclick = function(){prdset_selectTab('articles');};
+	}else{	
+		prdset_selectTab('simple');
+	}
+	setCookie('prdset_prd_id', product_id);
+	ProductIsProgramHandler();
+{/literal}
+</script>
+
+
+
+<script type="text/javascript">
+var categoryID = '{$Article.ArticleCategoryID}';
+{literal}
+getLayer('choose-parentcategory-handler').onclick = function(){categoryTreeManager.show_tree('choose_parentcategory');}
+getLayer('add-related-product-handler').onclick = function(){categoryTreeManager.show_tree_products('add_relatedproducts');};
+getLayer('add-related-posts-handler').onclick = function(){categoryTreeManager.show_tree_posts('add_relatedposts');};
+
+var categoryTreeManager = {
+
+	'appended_categories': {},
+	'isAppendedCategory': function(node, wnd){
+		var catID = node.getSetting('categoryID');
+		if(this.appended_categories[catID]){
+			var objEnd = getLayer(node.ID+'_begin', wnd);
+			objEnd.innerHTML = '<img src="images_common/checked.gif" alt="" />&nbsp;';
+		}
+	},	
+	'show_tree_products': function(action){
+		if(action == 'add_appendedcategory'){
+			this.appended_categories = {};
+			var objInput = getElementsByClass('', getLayer('appendedcategories-block'),'input');
+			for(var k=objInput.length-1; k>=0; k--){
+				this.appended_categories[objInput[k].value] = 1;
+			}		
+		}
+		var url = set_query('?ukey=category_tree&js_action='+action+'&productID='); 	
+		sswgt_CartManager.shop_url = conf_full_shop_url;
+		sswgt_CartManager.show(url, 550, 500); 	
+	},
+	'show_tree_posts': function(action){
+		var url = set_query('?ukey=articles_category_tree&js_action='+action); 	
+		sswgt_CartManager.shop_url = conf_full_shop_url;
+		sswgt_CartManager.show(url, 550, 500); 	
+	},
+	'show_tree': function(action){	
+		var url = set_query('?ukey=articles_category_tree&js_action='+action);
+		sswgt_CartManager.shop_url = "{/literal}{$smarty.const.CONF_FULL_SHOP_URL|escape:'html'}{literal}";
+		sswgt_CartManager.show(url, 550, 500); 	
+	},
+	'hide_tree': function(){
+		sswgt_CartManager.hide();
+	},
+	'actions': {
+		'choose_parentcategory': {
+			'onclick': function(node){		
+				var breadCrumbs = node.getSetting('name');
+				var p = node.ParentNode;
+				while(p){
+					breadCrumbs = p.getSetting('name')+"&nbsp;&gt;&nbsp;"+breadCrumbs;
+					p = p.ParentNode;
+				}
+				getLayer('parent-category-categoryID').value = node.getSetting('categoryID');
+				getLayer('parent-category-name').innerHTML = breadCrumbs;
+				beforeUnloadHandler_contentChanged = true;		
+				categoryTreeManager.hide_tree();
+			}
+		},
+		'add_appendedcategory': {
+			'onclick': function(node, wnd){
+				var breadCrumbs = node.getSetting('name');
+				var p = node.ParentNode;
+				while(p){
+					breadCrumbs = p.getSetting('name')+"&nbsp;&gt;&nbsp;"+breadCrumbs;
+					p = p.ParentNode;
+				}
+				var res = prdset_addAppendedCategory(node.getSetting('categoryID'), breadCrumbs);
+				var objEnd = getLayer(node.ID+'_begin', wnd);
+				objEnd.innerHTML = res?'<img src="images_common/checked.gif" alt="" />&nbsp;':'';
+				beforeUnloadHandler_contentChanged = true;
+			}
+		},
+		'add_relatedproducts': {
+			'onclick': function(node, wnd){
+				loadProductList(node, wnd, 0);
+			}
+		},
+		'add_relatedposts': {
+			'onclick': function(node, wnd){
+				loadPostList(node, wnd, 0);
+			}
+		}
+	},
+	'eval': function(action, handler, node, wnd){
+		this.actions[action][handler](node, wnd);
+	}
+}
+{/literal}
+</script>
+
+
+<script type='text/javascript' src='{$smarty.const.URL_JS}/widget_checkout.js'></script>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script language="JavaScript">
+		<!--
+
+			function fillSelected()
+			{
+				arr = new Array('visibleColumnsIDs[]', 'hiddenColumnsIDs[]' );
+				fillSelectedLists( arr );
+			}
+
+		//-->
+		</script>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', '' )">
+		<? wbs_pageLayout toolbar="view_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+				<? wbs_formContent ?>
+					<tr class="SeparatedRow">
+						<td>
+							<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+								<? $ddStrings.cv_screen_form_label ?>
+							<? /wbs_note ?>
+						</td>
+					</tr>
+					<tr class="SeparatedRow">
+						<td>
+							<? wbs_dualComboBox leftCaption=$qnStrings.cv_screen_visible_list rightCaption=$qnStrings.cv_screen_hidden_list leftVariableName="visibleColumnsIDs" rightVariableName="hiddenColumnsIDs" leftValues=$visibleColumnsIDs leftNames=$visibleColumnsNames rightValues=$hiddenColumnsIDs rightNames=$hiddenColumnsNames showUpDown=true separated=true width=240 rows=5 ?>
+						</td>
+					</tr>
+					<tr>
+					<td>
+						<table class="FormLayout">
+						<tr>
+							<td><? $qnStrings.cv_screen_notesnum_label ?></td>
+							<td>
+								<select  class="FormControl" name="recordsPerPage">
+									<? html_options values=$recordsPerPageIDs selected=$recordsPerPage output=$recordsPerPageIDs ?>
+								</select>
+							</td>
+						</tr>
+						<tr class="SeparatedRow">
+							<td><? wbs_label for="contentLimit" fieldName="contentLimit" text=$qnStrings.cv_screen_notelen_label skipColon=false ?>
+							<td>
+								<input type=text name="contentLimit" id="contentLimit" style="width: 50px" class="FormControl" value="<? $contentLimit|htmlsafe ?>">
+							</td>
+							<td><? $qnStrings.cv_screen_notelenend_label ?></td>
+						</tr>
+						</table>
+					</td>
+					</tr>
+
+					<? /wbs_formContent ?>
+
+							<? wbs_formButtonsPanel ?>
+									<? wbs_buttonSet ?>
+										<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" onClick="fillSelected()" ?>
+										<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+									<? /wbs_buttonSet ?>
+							<? /wbs_formButtonsPanel ?>
+
+					<? /wbs_formLayout?>
+
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+			<input type="hidden" name="currentPage" value="<? $currentPage ?>">
+			<input name="searchString" type="hidden" value="<? $searchString ?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

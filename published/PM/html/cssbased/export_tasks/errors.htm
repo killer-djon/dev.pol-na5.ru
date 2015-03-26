@@ -1,0 +1,7 @@
+<? if $errors_list ?>
+<ul>
+    <? foreach from=$errors_list item=error_item ?>
+        <? $pmStrings.$error_item ?>
+    <? /foreach ?>
+</ul>
+<? /if ?>

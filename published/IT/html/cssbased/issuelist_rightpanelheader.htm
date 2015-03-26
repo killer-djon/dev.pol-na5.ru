@@ -1,0 +1,26 @@
+<div>
+    <b id='RightPanelHeaderCaption'>
+        <? $curFilterName|truncate:30 ?>
+    </b>
+</div>
+<? if $project_ids ?>
+<table border="0" cellpadding="0" cellspacing="5" class='HeaderLinks'>
+<tr>
+  <td valign="top">
+      <a href='javascript:void(0)'><img src="../img/add-issue.gif" border="0"></a>
+  </td>
+  <td>
+  	&nbsp;<a onClick='issueAddDialog()' href='javascript:void(0)'><? $itStrings.ami_addissue_title ?></a>
+  </td>
+  <td width="10">&nbsp;</td>
+  
+  <!--td valign="top">
+      <a href='javascript:void(0)'><img src="../img/customize-workflow.gif" border="0"></a>
+  </td>
+  <td>
+  	&nbsp;<a href='javascript:void(0)'>Customize Workflow</a>
+  </td-->
+</tr>
+</table>
+<? /if ?>
+

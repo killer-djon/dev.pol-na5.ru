@@ -1,0 +1,54 @@
+{{ if $action != 'forward' }}
+
+<span id="reloadContent">{{ $message.MMM_CONTENT }}</span>
+
+<script language="JavaScript">
+
+{{ if $message.MMM_TO }}
+	parent.document.getElementById('messageData[MMM_TO]').value = '{{ $message.MMM_TO }}';
+{{ /if }}
+
+{{ if $message.MMM_CC }}
+	parent.document.getElementById('messageData[MMM_CC]').value = '{{ $message.MMM_CC }}';
+	parent.document.getElementById('SendCC').style.display = '';
+	parent.document.getElementById('showCCLink').style.display = 'none';
+{{ /if }}
+
+{{ if $message.MMM_BCC }}
+		parent.document.getElementById('messageData[MMM_BCC]').value = '{{ $message.MMM_BCC }}';
+		parent.document.getElementById('SendBCC').style.display = '';
+		parent.document.getElementById('showBCCLink').style.display = 'none';
+{{ /if }}
+
+{{ if $message.MMM_LISTS }}
+	parent.document.getElementById('SendLists').style.display = '';
+	parent.document.getElementById('showListsLink').style.display = 'none';
+	{{ foreach from=$lists item=item }}
+		parent.switchList('{{ $item }}', 0);
+	{{ /foreach }}
+{{ /if }}
+
+	parent.document.getElementById('messageData[MMM_SUBJECT]').value = '{{ $message.MMM_SUBJECT }}';
+
+	var obj = document.getElementById('reloadContent');
+	if(obj) {
+		if(parent.parent.editorIsLoaded) {
+			parent.xinha_editors[parent._editor_textarea].setHTML(obj.innerHTML);
+		} else {
+			parent.parent.msgParams = Array();
+			parent.parent.msgParams['content'] = obj.innerHTML;
+		}
+	}
+
+	parent.document.getElementById('status').value = '{{ $message.MMM_STATUS }}';
+	parent.document.getElementById('currentMID').value = '{{ $message.MMM_ID }}';
+
+{{ if $message.MMF_ID }}
+	parent.document.getElementById('currentFID').value = '{{ $message.MMF_ID }}';
+{{ /if }}
+
+</script>
+
+{{ /if }}
+
+{{ include file="files_list.html" }}

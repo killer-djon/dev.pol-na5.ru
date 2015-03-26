@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<? wbs_initLayout ?>
+</head>
+<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'accountData' )">
+<? wbs_pageLayout ?>
+
+	<? wbs_errorBlock ?>
+
+	<? if !$fatalError ?>
+
+		<? wbs_formLayout ?>
+			<? wbs_formContent ?>
+
+				<tr>
+					<td>
+						<input type="radio" name="onServer" id="ch1" value=1 checked>
+					</td>
+					<td>
+						<label for="ch1"><? $mmStrings.acc_internal_label ?></label>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="color: gray">
+						<? $mmStrings.app_example_comment ?>:
+						<b><? $mmInternalComment ?></b>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="radio" name="onServer" id="ch0" value=0>
+					</td>
+					<td>
+						<label for="ch0"><? $mmStrings.acc_external_label ?></label>
+					</td>
+				<tr>
+				</tr>
+					<td></td>
+					<td style="color: gray">
+						<? $mmStrings.app_example_comment ?>:
+						<b><? $mmStrings.acc_external_comment ?></b>
+					</td>
+				</tr>
+
+			<? /wbs_formContent ?>
+
+			<tr><td style="background: url(../../../common/img/info.gif) left center no-repeat; padding: 5px 10px 0 40px">
+				<p style="color: gray; font-size: 0.8em; width: 50%; min-width: 400px"><? $mmStrings.acc_add_info ?></p>
+			</td></tr>
+
+			<? wbs_formButtonsPanel ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="nextbtn" caption=$mmStrings.acc_next_btn ?>
+					<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn link=$mainPageURL ?>
+				<? /wbs_buttonSet ?>
+			<? /wbs_formButtonsPanel ?>
+		<? /wbs_formLayout ?>
+
+	<? else ?>
+		<? wbs_buttonSet ?>
+			<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$mmStrings.mm_screen_long_name link=$mainPageURL ?>
+		<? /wbs_buttonSet ?>
+	<? /if ?>
+
+<? /wbs_pageLayout ?>
+</body>
+</html>

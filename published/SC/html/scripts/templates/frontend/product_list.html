@@ -1,0 +1,77 @@
+<script type="text/javascript" src="/published/SC/html/scripts/js/category.js"></script>
+<div class="catalog">
+	{foreach from=$__products item=_product}
+	
+		{if $_product.slug}
+			{assign var=_product_url value="?productID=`$_product.productID`&product_slug=`$_product.slug`"|set_query_html}
+		{else}
+			{assign var=_product_url value="?productID=`$_product.productID`"|set_query_html}
+		{/if}
+		{if $widget}{assign var=_form_action_url value="&view=noframe&external=1"}{/if}
+		
+		<div class="block-catalog-brief">
+			<form class="product_brief_block" action='{"?ukey=cart`$_form_action_url`"|set_query_html}' method="post" rel="{$_product.productID}" {if $widget}target="_blank"{/if}>
+			<input name="action" value="add_product" type="hidden">
+			<input name="productID" value="{$_product.productID}" type="hidden">
+			<input class="product_price" value="{$_product.Pricet|escape:'html'}" type="hidden">
+			<input type="hidden" name="product_qty" class="product_qty" value="10" />
+			
+			<div class="prdbrief_thumbnail">
+			<!-- Thumbnail -->
+						
+				{if $_product.thumbnail}
+				<a {$target} href='{$_product_url}'>
+									<img src="{$smarty.const.URL_PRODUCTS_PICTURES}/{$_product.thumbnail|escape:'url'}" alt="{$_product.name|escape:'html'}" title="{$_product.name|escape:'html'}"></a>
+				{elseif $_product.filename}
+				<a {$target} href='{$_product_url}'>
+									<img src="{$smarty.const.URL_PRODUCTS_PICTURES}/{$_product.filename|escape:'url'}" alt="{$_product.name|escape:'html'}" title="{$_product.name|escape:'html'}"></a>
+				{else}
+					<a {$target} href='javascript:void()' class="no-photo"><img src="{$smarty.const.URL_IMAGES}/no_photo.png" alt="{$_product.name|escape:'html'}" /></a>					
+				{/if}
+						
+			</div>
+			
+			<div class="prdbrief_name">
+				<a {$target} href='{$_product_url}'>{$_product.name|escape:'html'}</a>
+				{* product code (SKU) *}
+				{if $_product.product_code && $smarty.const.CONF_ENABLE_PRODUCT_SKU}
+						<br><i>{$_product.product_code|escape:'html'}</i>
+				{/if}
+			</div>
+			
+			<div class="prdbrief_price">
+				Цена: 
+				{if $_product.Price > 0}<span class="totalPrice2">{$_product.Price}</span> 
+					<span class="unit">Руб/м<sup>2</sup></span>
+				{else}
+					<span class="totalPrice">&mdash;</span>
+				{/if}
+				
+			</div>
+			{if $PAGE_VIEW ne 'mobile' && ($PAGE_VIEW ne 'vkontakte') && ($PAGE_VIEW ne 'facebook')} 
+			<div class="prdbrief_comparison">
+				<input id="ctrl-prd-cmp-{$_product.productID}" class="checknomarging ctrl_products_cmp" type="checkbox" value='{$_product.productID}'>
+				<label for="ctrl-prd-cmp-{$_product.productID}">{"prd_select_to_comparison"|translate}</label>
+			</div>
+			{/if}
+			
+			{if $_product.ordering_available && $_product.Price>0 && ( $smarty.const.CONF_SHOW_ADD2CART eq 1 ) && ( $smarty.const.CONF_CHECKSTOCK==0 || $_product.in_stock > 0 ) }
+			<div class="prdbrief_add2cart">		
+				<div class="carttext">
+				<input value="" rel="{$_product.name|escape:'html'}" type="submit" alt="{'str_add_to_cart_string'|translate}" title="{"str_add_to_cart_string"|translate}" class="add2cart_handler" />
+			</div>
+			</div>
+		{elseif $smarty.const.CONF_SHOW_ADD2CART eq 1 && $smarty.const.CONF_CHECKSTOCK && !$_product.in_stock && $_product.ordering_available}
+			<div class="prd_out_of_stock">{lbl_prd_out_of_stock}</div>
+		{/if}
+			</form>
+		</div>
+	{/foreach}
+	
+	<div class="comparison">
+		<form action='{"?categoryID=&category_slug=&ukey=product_comparison"|set_query}' method="post">
+			<input type="hidden" value='' class="comparison_products" name='comparison_products' >
+			<input value='' class="hndl_submit_prds_cmp compar-button" onclick='submitProductsComparison();' type="button" >
+		</form>
+	</div>
+</div>

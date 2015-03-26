@@ -1,0 +1,216 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script> 
+<script language="JavaScript">
+<!--
+	function MM_findObj(n, d) { //v4.0
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && document.getElementById) x=document.getElementById(n); return x;
+	}
+ 
+    function focusControl(objName) {
+      var obj = MM_findObj(objName); 
+      if (obj) {
+      obj.focus( );
+     }
+    }
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default" onLoad="focusControl('customerData[C_NAME]'); markArrayField( '<? $invalidField ?>', 'customerData' )">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+<? if $action != "new" ?>
+	<?assign var=noSpace value=1?>
+<? else ?>
+	<?assign var=noSpace value=0?>
+<? /if ?>
+<? include file="../../../common/html/classic/header.htm" nospace=$noSpace?>
+<? if $action != "new" ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+      <td class="pageTopPanel"> 
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="inactivatebtn" caption=$pmStrings.amc_inactivate_btn formname="form" space_right=#toolbarSmallSpace# onClick="return confirm('"|cat:$pmStrings.amc_confirminactivate_message|cat:"')"?>
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="delcbtn" caption=$pmStrings.amc_delete_btn formname="form" onClick="return confirm('"|cat:$pmStrings.amc_deleteconfirm_message|cat:"')"?>
+      </td>
+	</tr>
+</table>
+<? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+<? /if ?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+<? if !$fatalError ?>
+	  <table width="500" border="0" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td> <table width="100%" border="0" cellpadding="0" cellspacing="0">
+			  <tr> 
+				<td class="default" colspan="2"> 
+				<? include file="../../../common/html/classic/formframe_begin.htm"?>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr> 
+                        <td width="100%" colspan="3"><table border="0" cellspacing="2" cellpadding="0" width="100%">
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_NAME text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_custname_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default" width="100%"><input name="customerData[C_NAME]" type="text" class="control" value="<? $customerData.C_NAME?>"  style="width: 100%" maxlength="250"></td>
+                            </tr>
+							<tr> 
+							  <td colspan="2" align="right" class="default">&nbsp;</td>
+							</tr>
+							</table>
+						  </td>
+						 </tr>
+						 <tr>
+						  <td><table border="0" cellspacing="2" cellpadding="0">
+							<tr>
+							  <td colspan="2" align="right" class="formSection">
+                                <nobr><? $pmStrings.amc_address_title ?></nobr>
+                              </td>
+							</tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_ADDRESSSTREET text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_streetaddress_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_ADDRESSSTREET]" type="text" class="control" value="<? $customerData.C_ADDRESSSTREET|htmlsafe:true:true ?>" size="20" maxlength="30"></td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_ADDRESSCITY text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_city_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_ADDRESSCITY]" type="text" class="control" value="<? $customerData.C_ADDRESSCITY|htmlsafe:true:true ?>" size="20" maxlength="30"></td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_ADDRESSSTATE text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_state_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_ADDRESSSTATE]" type="text" class="control" value="<? $customerData.C_ADDRESSSTATE|htmlsafe:true:true ?>" size="20" maxlength="30"></td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_ADDRESSZIP text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_zip_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_ADDRESSZIP]" type="text" class="control" value="<? $customerData.C_ADDRESSZIP|htmlsafe:true:true ?>" size="20" maxlength="30"></td>
+                            </tr>
+                            <tr> 
+							  <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_ADDRESSCOUNTRY text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_country_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_ADDRESSCOUNTRY]" type="text" class="control" value="<? $customerData.C_ADDRESSCOUNTRY|htmlsafe:true:true ?>" size="20" maxlength="30"></td>
+                            </tr>
+                          </table></td>
+						<td valign="top"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+						<td valign="top"> <table border="0" cellpadding="0" cellspacing="2">
+						  <tr>
+							<td colspan="2" align="right" class="formSection">
+							  <nobr><? $pmStrings.amc_contperson_title ?></nobr>
+                            </td>
+						  </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_CONTACTPERSON text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_contname_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_CONTACTPERSON]" type="text" class="control" value="<? $customerData.C_CONTACTPERSON|htmlsafe:true:true ?>" size="20" maxlength="30"></td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_EMAIL text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_email_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_EMAIL]" type="text" class="control" value="<? $customerData.C_EMAIL|htmlsafe:true:true ?>" size="20" maxlength="50"></td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_PHONE text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_phone_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_PHONE]" type="text" class="control" value="<? $customerData.C_PHONE|htmlsafe:true:true ?>" size="20" maxlength="30"></td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_FAX text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amc_fax_title|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default"><input name="customerData[C_FAX]" type="text" class="control" value="<? $customerData.C_FAX|htmlsafe:true:true ?>" size="20" maxlength="30"></td>
+                            </tr>
+						</table>
+                      </tr>
+                    </table>
+					<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true?>
+				</td>
+			  </tr>
+			  <tr>
+			    
+            <td colspan="2" class="default"> 
+              <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=5 space_right=10 ?>
+              <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+            </td>
+			  </tr>
+			<? if $action != "new" ?>
+			  <tr>
+			    <td colspan="2" class="smallFont">&nbsp;</td>
+			  </tr>
+			  <tr>
+			    <td colspan="2" class="smallFont">
+				    <hr width="100%" size="1" noshade>
+					<nobr>
+				    <? $pmStrings.amc_lastmodified_text ?>&nbsp;<? $customerData.C_MODIFYUSERNAME ?>&nbsp;
+				    <? $customerData.C_MODIFYDATETIME ?>
+					</nobr>
+				</td>
+			  </tr>
+			<? /if ?>
+			</table></td>
+		</tr>
+	  </table> 
+  <? else ?>
+  <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <input name="edited" type="hidden" id="edited" value="1">
+  <input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>">
+  <input name="action" type="hidden" id="sorting" value="<? $action ?>">
+  <input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>">
+  <? if $action != "new" ?>
+  <input name="customerData[C_ID]" type="hidden" id="customerData[C_ID]"  value="<? $customerData.C_ID ?>">
+  <? /if ?>
+  <input name="customerData[C_MODIFYUSERNAME]" type="hidden" id="customerData[C_MODIFYUSERNAME]" value="<? $customerData.C_MODIFYUSERNAME|htmlsafe:true:true ?>">
+  <input name="customerData[C_MODIFYDATETIME]" type="hidden" id="customerData[C_MODIFYDATETIME]" value="<? $customerData.C_MODIFYDATETIME|htmlsafe:true:true ?>">
+  <input type="hidden" name="btndummy">
+  <?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+  
+  <? /strip ?>
+</body>
+</html>

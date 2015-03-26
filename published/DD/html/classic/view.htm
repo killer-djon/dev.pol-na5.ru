@@ -1,0 +1,194 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl() {
+	<? if $invalidField != "" ?>
+	 var obj = MM_findObj('<? $invalidField ?>') 
+	 if (obj)
+		obj.focus( );
+	<? /if ?>
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function fillSelected() {
+	var Object = MM_findObj("hiddenColumnsIDs[]");
+	var selObj = Object.options;
+	
+	for (var i=0; i<selObj.length; i++)
+		selObj[i].selected = true;
+
+	var Object = MM_findObj("visibleColumnsIDs[]");
+	var selObj = Object.options;
+
+	for (var i=0; i<selObj.length; i++)
+		selObj[i].selected = true;
+}
+
+function moveIt( src, dest ) {
+
+	srcObj = MM_findObj(src);
+	destObj = MM_findObj(dest);
+
+	if (srcObj.selectedIndex>=0) {
+		selObj = srcObj.options[srcObj.selectedIndex];
+		newPos = destObj.length;
+
+		destObj.options[newPos] = new Option(selObj.text, selObj.value);
+		srcObj.options[selObj.index] = null;
+	}
+}
+
+function changePosition( obj, direction ) {
+	srcObj = MM_findObj(obj);
+	
+	if (srcObj.selectedIndex>=0) {
+	
+		selected = srcObj.selectedIndex;
+		len = srcObj.options.length;
+	
+		if ( (selected == 0 && direction == -1) || (selected == (len-1) && direction == 1)  )
+			return;
+		
+		selObj = srcObj.options[selected];
+		obj1 = srcObj.options[selected+direction];
+		
+		srcObj.options[selected+direction] = new Option(selObj.text, selObj.value);
+		srcObj.options[selected] = obj1;
+		
+		srcObj.selectedIndex = selected+direction;
+	}	
+}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr?>
+  <? if !$fatalError ?>   
+	<? $ddStrings.cv_screen_form_label ?>
+	<div style="padding-left: 20px">
+			<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr><td>&nbsp;</td>	
+					<td>
+						<table border="0" cellspacing="2" cellpadding="0">
+							<tr> 
+							<td class="readonly_control"><? $ddStrings.cv_screen_visible_list ?></td>
+							<td></td><td class="readonly_control"><? $ddStrings.cv_screen_hidden_list ?></td>
+							</tr>
+							<tr> 
+							<td><select name="visibleColumnsIDs[]" size="8" style="width: 250px; height: 150px" class="control" multiple ondblclick="moveIt('visibleColumnsIDs[]', 'hiddenColumnsIDs[]')">
+								<? html_options values=$visibleColumnsIDs output=$visibleColumnsNames ?>
+								</select></td>
+							<td width="40" align="center"><a href="javascript: changePosition('visibleColumnsIDs[]', -1)" title="<? $kernelStrings.app_upbtn_hint ?>"><img src="<? "images/buttons/moveUp.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a><br><a href="javascript: changePosition('visibleColumnsIDs[]', 1)" title="<? $kernelStrings.app_downbtn_hint ?>"><img src="<? "images/buttons/moveDown.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a><br><br><a href="javascript: moveIt('hiddenColumnsIDs[]', 'visibleColumnsIDs[]' )" title="<? $kernelStrings.app_leftbtn_hint ?>"><img src="<? "images/buttons/moveLeft.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a><br><a href="javascript: moveIt('visibleColumnsIDs[]', 'hiddenColumnsIDs[]' )" title="<? $kernelStrings.app_rightbtn_hint ?>"><img src="<? "images/buttons/moveRight.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a></td>
+							<td><select name="hiddenColumnsIDs[]" size="8" style="width: 250px; height: 150px" class="control" multiple onDblClick="moveIt('hiddenColumnsIDs[]', 'visibleColumnsIDs[]')">
+								<? html_options values=$hiddenColumnsIDs output=$hiddenColumnsNames ?>
+								</select></td>
+							</tr>
+						</table>
+					</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+		</table>
+	</div>
+
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td><input type=checkbox value=1 name='displayIcons' <? switchedOutput val=$displayIcons true_val=1 str1="checked" ?>></td>
+				<td><? $ddStrings.cv_screen_displayicons_label ?></td>
+			</tr>
+			<tr>
+				<td colspan=2>&nbsp;</td>
+			</tr>
+		</table>
+
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td><? $ddStrings.cv_screen_notesnum_label ?>&nbsp;</td>
+			<td><select name="recordsPerPage" class="control">
+						<? html_options values=$recordsPerPageIDs selected=$recordsPerPage output=$recordsPerPageIDs ?>
+					</select></td></tr>
+			<tr>
+				<td colspan=2>&nbsp;</td>
+			</tr>
+		</table>
+
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td><? $ddStrings.cv_restrictdesc_label ?>&nbsp;</td>
+				<td><input name="restrictDescLen" type="text" class="control" value="<? $restrictDescLen ?>" size="5"></td>
+				<td><? conditionalOutput invalidField=$invalidField field=restrictDescLen  text=#invalidFieldHighlight#  ?><? "&nbsp;"|cat:$ddStrings.cv_characters_label ?></td>
+			</tr>
+			<tr><td height=5 colspan=3></td></tr>
+		</table>
+
+		<span class=smallFont>
+			<b><? $kernelStrings.app_note_text|cat:": " ?></b>
+			<? $ddStrings.cv_restrict_note ?>
+		</span>
+
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td colspan=2>&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan=2><? $ddStrings.cv_screen_viewopt_label ?></td>
+			</tr>
+			<tr>
+				<td colspan=2>&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<table cellpadding=2 cellspacing=0 border=0 style='margin-left: 20px'>
+						<tr>
+							<td><input type=radio name="folderViewMode" value=local <? switchedOutput val=$folderViewMode true_val=local str1="checked" ?>></td>
+							<td><? $ddStrings.cv_screen_applutocurrent_label ?></td>
+						</tr>
+						<tr>
+							<td><input type=radio name="folderViewMode" value=global <? switchedOutput val=$folderViewMode true_val=global str1="checked" ?>></td>
+							<td><? $ddStrings.cv_screen_applutoall_label ?></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>&nbsp;</td>
+			</tr>
+		</table>
+		
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_right=10 onClick="fillSelected()"?>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+				</td>
+			</tr>
+		</table>
+  <? /if ?>
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="currentPage" value="<? $currentPage ?>">
+  <input type="hidden" name="DF_ID" value="<? $DF_ID ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

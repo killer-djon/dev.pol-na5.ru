@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="<? $preproc->getCommonUrl('html/res/swfupload_new/swfupload.css') ?>" type="text/css"/>
+<script type="text/javascript" src="<? $preproc->getCommonUrl('html/res/swfupload_new/swfupload.min.js') ?>"></script>
+<script type="text/javascript" src="templates/frm_upload.js"></script>
+<style>
+	.progressWrapper {width: auto; }
+	.progressContainer {background: white !important; border: 0 !important; padding: 0px !important; margin: 0px !important; width: 250px; }
+	a.progressCancel {display: none !important;}
+	
+	.swfupload {
+		position:absolute;
+		z-index:1; cursor: pointer;
+	}
+</style>
+
+
+<script>
+	document.sessionId = "<? $sessionId ?>";	
+	
+	WbsUploadDlg.prototype.onAfterInit = function() {
+		this.uploader.messages = new Array ();
+		this.uploader.messages[500] = "<? lbl_dd->updlg_file_error_unknown ?>";
+		this.uploader.messages[502] = "<? lbl_dd->updlg_file_error_fileslimit ?>";
+		this.uploader.messages[503] = "<? lbl_dd->updlg_file_error_systemquota ?>";
+		this.uploader.messages[504] = "<? lbl_dd->updlg_file_error_userquota ?>";
+		this.uploader.messages[505] = "<? lbl_dd->updlg_file_error_checkout ?>";
+		
+		this.fullMessages = new Array ();
+		//this.fullMessages[502] = '<? lbl_dd->app_doclimit_message|escape:quotes ?>';
+		this.fullMessages[502] = '<? lbl_dd->updlg_file_error_fileslimit ?>';
+		this.fullMessages[503] = '<? lbl_dd->updlg_file_error_systemquota ?>';
+		this.fullMessages[504] = '<? lbl_dd->updlg_file_error_userquota ?>';
+		
+		this.uploader.strings.pendingStr = "<? lbl_dd->updlg_statuspending_label ?>";
+		this.uploader.strings.uploadingStr = "<? lbl_dd->updlg_statusuploading_label ?>";
+		this.uploader.strings.completeStr = "<? lbl_dd->updlg_statuscomplete_label ?>";
+	}
+</script>
+
+<style>
+	#FilesArea {background: #FFF; border: 1px solid #DDD; text-align: left; padding-left: 20px; padding-right: 20px; height: 50px; overflow: hidden; width: 300px; }
+	#FilesArea #blockSelectedFiles {margin-top:5px;}
+	#FilesArea #blockNoSelectedFiles {margin-top: 0px; }
+	#FilesArea #blockAfterUpload {margin-top:5px; text-align: left}
+	#blockLimitError b {color: red; }
+	#errorFilesBlock {color: red; font-weight: bold}
+	
+	#completeStatusLabel {color: red; font-weight: bold; font-size: 15pt; padding-top: 10px; text-align: center}
+</style>
+
+
+<div id='frm-upload-block' style='display: none; background: #F0F0F0; border-top: 1px solid #BBB; clear: both; overflow: hidden; zoom: 1; padding: 10px; margin-bottom: -3px'>
+	<div class="content-inner" id='dlg-upload-content'>
+		<div id='FilesArea' style='float: left'>
+			<div id='blockNoSelectedFiles'>
+				
+			</div>
+			
+			<div id='completeStatusLabel'></div>
+			
+			<div id='blockSelectedFiles' style='display: none'>
+				<!--a style='float:right' id='selectMoreLink' href='javascript:void(0)' onClick='document.ddApplication.getUploadDlg().selectFiles()'><? lbl_dd->updlg_selectmore_label ?></a-->
+				<div id="flashUI1">
+					<div class="flash" id="fsUploadProgress1">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id='uploaderFooter' style='padding-left: 10px; padding-right: 50px; float: left; '>
+				<div>
+					<div id='blockLimitError' style='padding-bottom: 5px'>
+						<div id='limitErrorMessage' style='font-weight: bold; padding-bottom: 5px'></div>
+						<div id="limitErrorActions">
+						<? if $currentUser->hasAccessToApp("AA") ?>
+							<input type='button' onClick='location.href = "../../AA/html/scripts/change_plan.php"' value='<? lbl_template_common->lbl_upgrade_account ?>'>
+							<? lbl_template_common->lbl_or ?> <a href='javascript:void(0)' onClick='document.ddApplication.getUploadDlg().close();'><? lbl_template_common->action_cancel ?></a>
+						<? else ?>
+							<b style='color: black'><? lbl_template_common->lbl_upgrade_account ?><? lbl_template_common->lbl_contact_administrator ?></b>
+						<? /if ?>
+						</div>
+					</div>
+					
+					<div style='height: 20px; '>
+						<div id='errorFilesBlock'>
+							<span id='errorFilesCount'>0</span> <? lbl_dd->updlg_filesnotuploaded_label ?>
+						</div>
+					</div>
+				</div>
+				
+				<div id='uploadingBlock'><span id='filesUploadingStr'><? lbl_dd->updlg_uploading_label ?></span> <span id='queueFilesCount'></span>&nbsp;<span id='filesSelectedStr'><? lbl_dd->updlg_filesselected_label ?></span> <input id='btnCancel' style='font-size: 1em'  value='<? lbl_template_common->action_cancel ?>' type='button'></div>
+				<div style='margin-top: 3px' id='blockAfterUpload'>
+					<span id='completedFilesCount'>0</span> <? lbl_dd->updlg_filesuploaded_label ?> <a href='javascript:void(0)' style='padding-left: 50px; color: blue' onClick='document.ddApplication.getUploadDlg().close();'><? lbl_template_common->action_close ?></a>
+					<BR>
+				</div>
+				<input id='btnStart' style='font-size: 1.3em; display: none' type='button' value='Start'> 
+				<!--span style='float:left' id='btnStart'></span>
+				<span style='float:left; margin-left: 10px' id='btnCancel'></span-->
+		</div>
+	</div>
+</div>

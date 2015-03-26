@@ -1,0 +1,71 @@
+
+<div class="chooser-block">
+	<h3>Подбор товара <span class="small"> / Выберите материал</span></h3>
+	<div class="top-menu">
+		<ul class="topmenu horizontal">
+			{section name=i loop=$root_categories}
+				{if $root_categories[i].categoryID ne 1}
+					{assign var=_category_url value="/chooser/?categoryID=`$root_categories[i].categoryID`"}
+					<li class="menu-point {if $categoryID == $root_categories[i].categoryID}active{/if}"><a href="{$_category_url}" alt="{$root_categories[i].name}">{$root_categories[i].name}</a></li>
+				{/if}
+			{/section}
+		</ul>
+	</div>
+	
+	{if ! $categoryID || $categoryID eq 0}
+	
+		<div class="filter-block">
+			Необходимо выбрать категорию 
+		</div>
+	
+	{else}
+		
+		<div class="filter-block">
+			<h3>Фильтр <a href="#" class="show">Свернуть</a></h3>
+			<form name="choose" id="choose" method="POST" action='{"?ukey=chooser"|set_query_html}'>
+			<div class="filter option">
+				{section name=i loop=$options}
+				
+					{if $options[i].count_variants}
+						<div class="options-row">
+							<label for="optionRow_{$options[i].optionID}">{$options[i].name_ru}</label>
+							<select name="optionRow_{$options[i].optionID}" id="optionRow_{$options[i].optionID}">
+								{section name=j loop=$options[i].variants}
+									<option value="{$options[i].variants[j].variantID}">{$options[i].variants[j].option_value_ru}</option>
+								{/section}
+							</select>
+							<span class="info-question"></span>
+							<div class="option-description">
+								{$options[i].description_text_ru}
+							</div>
+						</div>
+					{/if}
+					
+				{/section}
+			</div>
+			
+			<div class="price option">
+				<div class="blockoption label">Цена, в руб.: </div>
+				<div class="blockoption input">
+					<label for="priceFrom">от</label>
+					<input name="priceFrom" type="text" size="6" pattern="[\d]+" placeholder="0" value="" />
+				</div>
+				<div class="blockoption input">
+					<label for="priceFrom">до</label>
+					<input name="priceTo" type="text" size="6" pattern="[\d]+" placeholder="1000" value="" />
+				</div>
+				<div class="blockoption submit">
+					<input type="submit" name="submit_filter" value="Подобрать" />
+				</div>
+			</div>
+			
+		</div>
+		
+		</form>
+	{/if}
+	
+	<div class="result-products catalog">
+		
+	</div>
+	
+</div>

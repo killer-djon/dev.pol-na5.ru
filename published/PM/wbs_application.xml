@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<WBSAPPLICATION>
+	<APPLICATION APP_ID="PM" SORTORDER="30" NAME="app_name_long" UI_NAME="app_name_short">
+		<PARENTS>
+			<PARENT APP_ID="AA"/>
+		</PARENTS>
+		<EVENTS>
+			<EVENT ID="onNewWork"/>
+			<EVENT ID="onDeleteWork"/>
+			<EVENT ID="onCloseWork"/>
+			<EVENT ID="onDeleteAssignment"/>
+			<EVENT ID="onDeleteProject"/>
+			<EVENT ID="onUpdateWorkStartDate"/>
+			<EVENT ID="onCompleteRequest"/>
+			<EVENT ID="onCompleteTaskRequest"/>
+			<EVENT ID="onUninstallService"/>
+		</EVENTS>
+		<EVENT_HANDLERS>
+			<HANDLER APP_ID="AA" NAME="onDeleteUser" HANDLER_PROC="pm_onDeleteUser" HANLDER_SCRIPT="pm_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="AA" NAME="onRemoveUser" HANDLER_PROC="pm_onRemoveUser" HANLDER_SCRIPT="pm_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="AA" NAME="onDeleteCurrency" HANDLER_PROC="pm_onDeleteCurrency" HANLDER_SCRIPT="pm_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onDeleteProject" HANDLER_PROC="pm_onDeleteProject" HANLDER_SCRIPT="pm_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="DD" NAME="onDeleteFolder" HANDLER_PROC="pm_onDeleteDDFolder" HANLDER_SCRIPT="pm_dbfunctions_cmn.php"/>
+		</EVENT_HANDLERS>
+	</APPLICATION>
+</WBSAPPLICATION>

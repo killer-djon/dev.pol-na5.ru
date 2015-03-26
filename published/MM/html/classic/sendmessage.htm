@@ -1,0 +1,540 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="../../../MM/html/classic/stylesets/default/mm_options.css" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/includes/modules/JsHttpRequest/JsHttpRequest.js"></script>
+<script language="JavaScript">
+<!--
+
+	function moveDeleteComboItems( src, dest, del )
+	{
+		srcObj = findObj(src);
+
+		if (dest != null )
+			destObj = findObj(dest);
+
+		if ( dest != null )
+			for ( i = 0; i < srcObj.options.length; i++ )
+			{
+				selObj = srcObj.options[i];
+				if ( selObj.selected )
+				{
+					curPos = destObj.length;
+					destObj.options[curPos] = new Option(selObj.text, selObj.value);
+
+					if ( selObj.className )
+						destObj.options[curPos].className = selObj.className;
+				}
+			}
+
+		deletedNum = 0;
+		first = 1;
+
+		if ( del )
+			while ( deletedNum || first )
+			{
+				deletedNum = 0;
+				for ( i = 0; i < srcObj.options.length; i++ )
+				{
+					selObj = srcObj.options[i];
+
+					if ( selObj.selected ) {
+						srcObj.options[selObj.index] = null;
+						deletedNum ++;
+					}
+				}
+				first = 0;
+			}
+	}
+
+	function initFocus()
+	{
+		<? if $invalidField ?>
+			focusFormControl('messageData[<? $invalidField ?>]');
+		<? else ?>
+			focusFirstFormControl();
+		<? /if ?>
+	}
+
+	function fillSelected()
+	{
+		arr = new Array('includedContacts[]');
+		fillSelectedLists( arr );
+	}
+
+	function onSendingMesages( btnid, fill )
+	{
+		if ( fill )
+			fillSelected();
+
+		thisForm = document.forms[0];
+
+		if ( document.getElementById )
+		{
+
+			var timemsg = document.getElementById( 'timeMessage' );
+			if ( timemsg )
+				timemsg.style.display = "none";
+
+			var error = document.getElementById( 'errorMessage' );
+			if ( error )
+				error.style.display = "none";
+
+			var addFileCell = document.getElementById( 'optionscell' );
+			if (addFileCell)
+				addFileCell.style.display = "none";
+
+			var attachMessageCell = document.getElementById( 'waitingcell' );
+			if (attachMessageCell)
+				attachMessageCell.style.display = "inline";
+		}
+
+		processTextButton(  btnid, 'form' );
+
+		return false;
+	}
+
+	function toggleVisibility( id )
+	{
+		var el = document.getElementById(id)
+
+		if ( el )
+		{
+			if ( el.style.display == 'none' )
+				el.style.display = '';
+			else
+				el.style.display = 'none';
+		}
+
+		return false;
+	}
+
+	function getRadioValue ( property )
+	{
+	         var retVal;
+	         var i=0;
+
+	         if (document.form[property] )
+	         while (i < 48) {
+	                 if (document.form[property][i] && document.form[property][i].checked )
+	                 {
+	                         return document.form[property][i].value;
+	                 }
+	                 i++;
+	         }
+
+	         return '';
+	}
+
+	function getTextValue( property )
+	{
+	         var retVal;
+	         var i=0;
+
+	         var p = document.getElementById( property );
+
+	         if ( p!=null )
+	                 return p.value;
+
+	         return '';
+	}
+
+	function getListboxValue ( property )
+	{
+	         var p = document.getElementById( property );
+
+	         if ( p==null )
+	                 return '';
+
+	         return p[p.selectedIndex].value;
+	}
+
+	function escape(s)
+	{
+		return s.replace(new RegExp('\\/','g'), '%2F');
+	}
+
+	function checkDate()
+	{
+
+		var req = new Subsys_JsHttpRequest_Js();
+
+		if ( getRadioValue( 'messageData[WHEN]' )  != 'later' )
+		{
+			onSendingMesages('sendbtn', true);
+			return false;
+		}
+
+		var timemsg = document.getElementById( 'timeMessage' );
+		if ( timemsg )
+			timemsg.style.display = "none";
+
+		req.onreadystatechange = function()
+		{
+			if (req.readyState == 4)
+			{
+				if (req.responseJS)
+				{
+					if ( req.responseJS.state == "OK" )
+						onSendingMesages('sendbtn', true);
+					else
+					{
+						var timemsg = document.getElementById( 'timeMessage' );
+						if ( timemsg )
+							timemsg.style.display = "";
+					}
+
+				}
+			}
+		}
+
+		req.open('POST', 'time.php', true);
+
+		var dt = getTextValue( 'messageData[WHENDATE]' );
+		var tm = getListboxValue( 'messageData[WHENTIME]' );
+
+		req.send( { DB_KEY: '<? $DB_KEY ?>', DATE: dt, TIME: tm, FORMAT: '<?$dateformat?>' } );
+
+		return false;
+	}
+
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+
+  <table width="500" border="0" cellspacing="0" cellpadding="0" <? if $margins ?>style="margin-left: <?$margins|cat:"px"?>; margin-top: <?$margins|cat:"px"?>"<?/if?> id='timeMessage' style="display: none;">
+  <tr>
+    <td class="errorMessage">
+		<p class="errorMessageHeader">
+			<strong>
+					<? $kernelStrings.app_error_text ?>
+			</strong>
+		</p>
+		<p><? $mmStrings.sm_date_select_error ?></p>
+    </td>
+  </tr>
+  <tr>
+    <td class="default">&nbsp;</td>
+  </tr>
+  </table>
+
+  <? if !$fatalError ?>
+
+	  <? if !$messagesSent ?>
+
+		  <? if !$informationGathered ?>
+			  <table border="0" cellspacing="0" cellpadding="0" width=80%>
+			  <tr>
+			    <td ID="optionscell">
+					<table cellpadding=0 cellspacing=2 border=0>
+							<tr>
+								<td colspan=2>
+									<? if $doclistCount != 1?>
+										<? $messageCount ?> <? $mmStrings.sm_messages_label ?>	<? if $messageCount != $doclistCount ?> (<? $mmStrings.sm_tplsent_excluded_text ?>) <? /if ?> <p>
+									<? /if ?>
+
+									<? foreach from=$messageList item=message ?>
+										<? if $messageCount == 1 && $doclistCount == 1?>
+											<h1>
+										<? else ?>
+											<b>
+										<? /if ?>
+
+										<? $message.MMM_SUBJECT|htmlsafe:true:true ?>
+
+										<? if $messageCount == 1 && $doclistCount == 1 ?>
+											</h1>
+										<? else ?>
+											</b><br>
+										<? /if ?>
+									<? /foreach ?>
+									<? if $doclistCount != 1?>
+										<br>
+									<? /if ?>
+								</td>
+							</tr>
+							<tr>
+								<td colspan=2 height=5></td>
+							</tr>
+						<? if !$noSenderEmail ?>
+							<tr>
+								<td><? $mmStrings.sm_priority_label|cat:": " ?></td>
+								<td>
+										<table cellpadding=0 cellspacing=0 border=0>
+											<tr>
+												<td>
+													<select name="messageData[PRIORITY]" class="control">
+														<? html_options values=$priorityValues selected=$messageData.PRIORITY output=$priorityNames ?>
+													</select>
+												</td>
+											</tr>
+										</table>
+								</td>
+							</tr>
+							<tr>
+								<td colspan=2 height=5></td>
+							</tr>
+						<? /if ?>
+						<tr>
+							<td><? $mmStrings.sm_from_label|cat:": " ?></td>
+							<td><? if $noSenderEmail ?><font color=red><? $mmStrings.sm_nosenderemail_label ?></font><? else ?>
+									<select name="messageData[SENDER]" class="control">
+										<? html_options values=$senderIds selected=$messageData.SENDER output=$senderNames ?>
+									</select>
+								<? /if ?>
+								</td>
+						</tr>
+
+						<? if !$noSenderEmail ?>
+						<tr>
+							<td colspan=2 height=5></td>
+							</tr>
+							<tr>
+								<td valign=top><? conditionalOutput invalidField=$invalidField field='recipients' text=#invalidFieldHighlight# ?><? $mmStrings.sm_to_label|cat:": " ?></td>
+								<td>
+									<table cellpadding=1 cellspacing=0 border=0>
+										<tr>
+											<td class=readonly_control><? $mmStrings.sm_included_label ?></td>
+											<td>&nbsp;</td>
+											<td>
+													<select name="currentObject" class="control"  style="background: url( <?  $currentObjectProp.BGIMAGE ?> ) no-repeat; background-color: #fff; background-position: 2px 2px; padding-left: 18px; color: <? $currentObjectProp.COLOR ?>; width: 300px;"  onChange="fillSelected(); this.form.submit()">
+													<? assign var=optshown value=0 ?>
+													<? foreach from=$FGL item=fgl_item key=ID ?>
+														<? if $fgl_item.TYPE == 'FOLDERS' && $optshown == 0?> <optgroup label="<? $mmStrings.sm_folders_text ?>" style="color: #000;"> <? assign var=optshown value=1 ?> <? /if ?>
+														<option value='<?  $fgl_item.ID ?>' style="background: url( <? $fgl_item.BGIMAGE ?> ) no-repeat; background-color: #fff; background-position: 2px 2px; padding-left: 18px; color: <? $fgl_item.COLOR ?>;" <?  if $fgl_item.ID == $currentObject ?>selected<? /if ?>><? $fgl_item.OFFSET ?><? $fgl_item.NAME|htmlsafe:true:true|truncate:47:"..."|sureecho  ?></option>
+													<? /foreach ?>
+													<? if $optshown == 1?> </optgroup> <? /if ?>
+													</select>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<select name="includedContacts[]" size="8" style="width: 300px" class="control" multiple  ondblclick="moveDeleteComboItems('includedContacts[]', null, true )">
+													<? foreach from=$includedContactsItems item=contact key=ID ?>
+														<option value='<?  $ID ?>' class=<? $contact.STYLE ?> ><? $contact.OFFSET ?><? $contact.NAME|htmlsafe:tru:true ?></option>
+													<? /foreach ?>
+												</select>
+											</td>
+											<td>
+												<p><a href="javascript: moveDeleteComboItems('contactsForInclude[]', 'includedContacts[]', false)"><img src="<? "images/buttons/moveLeft.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a><br>
+												<a href="javascript: moveDeleteComboItems(  'includedContacts[]', null, true  )"><img src="<? "images/buttons/moveRight.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a>
+												</p>
+											</td>
+											<td>
+												<select name="contactsForInclude[]"  size="8" style="width: 300px" class="control" multiple ondblclick="moveDeleteComboItems('contactsForInclude[]', 'includedContacts[]', false )">
+													<? foreach from=$contactsForInclude item=contact key=ID ?>
+														<option value='<?  $ID ?>'  class=<? $contact.STYLE ?> ><? $contact.OFFSET ?><? $contact.NAME|htmlsafe:tru:true ?></option>
+													<? /foreach ?>
+												</select><br>
+											</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td width=300><? if $showContactsNote ?><small><b><? $kernelStrings.app_note_text|cat:":"?></b> <? $mmStrings.sm_contacts_email_text ?></small><? /if ?></td>
+									</table>
+								</td>
+							</tr>
+<?*
+							<tr>
+								<td valign=top><? conditionalOutput invalidField=$invalidField field='TOMORE' text=#invalidFieldHighlight# ?><? $mmStrings.sm_tomore_label|cat:": " ?></td>
+								<td>
+									<textarea name="messageData[TOMORE]" cols="30" rows="2" class="control" style="width: 100%"><? $messageData.TOMORE|htmlsafe_textarea:$edited ?></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td colspan=2 height=5></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input type=checkbox name='messageData[IMAGES]' value='1' <? if $messageData.IMAGES=='1' ?>checked<? /if ?> > <? $mmStrings.sm_emebedding_imgs_label ?><br>
+	 							</td>
+							</tr>
+*?>
+							<tr>
+								<td colspan=2 height=5>&nbsp;</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<table cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td>
+											<input type=radio name='messageData[WHEN]' value='now' <? if $messageData.WHEN=='now' ?>checked<? /if ?> >
+										</td>
+										<td>
+											<? $mmStrings.sm_sendnow_label ?><br>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type=radio name='messageData[WHEN]' value='later' <? if $messageData.WHEN=='later' ?>checked<? /if ?> >
+										</td>
+										<td>
+											<? $mmStrings.sm_sendlater_label ?>
+										</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>
+											<br>
+											<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+											<td>
+												<? $mmStrings.sm_senddate_label ?>: <input type=text style="width: 100px" class=control id="messageData[WHENDATE]" name="messageData[WHENDATE]" value="<? $messageData.WHENDATE ?>" maxlength="15" > <?include file="../../../common/html/classic/calendar.tpl"  style="margin-left: 2px" name="messageData[WHENDATE]"?>
+											</td>
+											<td>
+												&nbsp; &nbsp; <? $mmStrings.sm_sendtime_label ?>:
+												<select style="width: 100px" class=control name="messageData[WHENTIME]" id="messageData[WHENTIME]" >
+												<? foreach from=$timeArray item=time ?>
+													<option value='<?  $time ?>' <? if $messageData.WHENTIME == $time?>selected<? /if ?>><? $time ?></option>
+												<? /foreach?>
+												</select>
+											</td>
+											</tr>
+											<tr>
+											<td colspan=2><br><small><b><? $kernelStrings.app_note_text|cat:":"?></b> <? $serverTimeNote ?></small></td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td colspan=2 height=5></td>
+							</tr>
+
+
+							<? /if ?>
+			        	</table>
+						<BR><BR>
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			                <tr>
+			                  <td>
+
+			                    <? include file="../../../common/html/classic/button.htm" align="left" name="sendbtn" caption=$mmStrings.app_send_btn formname="form" space_left=5 space_right=10  onClick="return checkDate();"?>
+			                    <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+			                  </td>
+			                  <td align="right">
+			                  </td>
+			                </tr>
+			              </table>
+				   </td>
+			    </tr>
+			    <tr>
+						<td ID="waitingcell" style="display:none">
+							<p class="header2"><? $mmStrings.sm_recipientslist_label ?></p>
+							<p><? $mmStrings.sm_gathering_info_wait_text ?></p>
+							<p><img src="<? "images/progress.gif"|stylesetitem:"classic":$styleSet:"MM" ?>" ></p>
+							<?* <p><? include file="../../../common/html/classic/button.htm" align="left" link="mailmaster.php" caption=$kernelStrings.app_cancel_btn formname="form"?></p> *?>
+						</td>
+			    </tr>
+			  </table>
+
+			<? else ?>
+					<table border="0" cellspacing="0" cellpadding="0" width=80%>
+					<tr>
+						<td ID="optionscell">
+							<table border="0" cellspacing="0" cellpadding="0" width=80%>
+							<tr>
+							<td>
+
+								<p><? $numText ?>
+
+								<? if $recSendNowExceededText ?>
+									<p><font style="color: red"><? $recSendNowExceededText ?></font><br>
+										<? $mmStrings.sm_sendnow_limitation_text ?>
+								<? /if ?>
+
+								<p><? $mmStrings.sm_send_datetime_label|cat:":" ?><? if $messageData.WHEN == 'now' ?><? $mmStrings.sm_send_now_text ?><? else ?><? $messageData.WHENDATE ?><? $messageData.WHENTIME ?><? /if ?>
+
+								<br><br>&nbsp;
+
+							</td>
+					    		</tr>
+							<tr>
+							<td>
+
+								<? if $showSendBtn ?>
+									<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$mmStrings.app_send_btn formname="form" space_left=0 space_right=10 onClick="return onSendingMesages('savebtn', false);" ?>
+								<? /if?>
+								<? include file="../../../common/html/classic/button.htm" align="left" name="sendcancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+							</td>
+					    		</tr>
+					    		</table>
+						</td>
+			    		</tr>
+					<tr>
+						<td ID="waitingcell" style="display:none">
+							<p class="header2"><? $mmStrings.sm_sending_info_wait_text ?></p>
+							<p><? $mmStrings.sm_sendingwait_text ?></p>
+							<p><img src="<? "images/progress.gif"|stylesetitem:"classic":$styleSet:"MM" ?>" ></p>
+							<?* <p><? include file="../../../common/html/classic/button.htm" align="left" link="mailmaster.php" caption=$kernelStrings.app_cancel_btn formname="form"?></p> *?>
+						</td>
+					</tr>
+					</table>
+			<? /if ?>
+	  <? else ?>
+	  			<p class="header2"><? $mmStrings.sm_sending_stat_text ?></p>
+
+				<table border="0" cellspacing="0" cellpadding="0" WIDTH=500>
+				<? foreach from=$statArray item=stat ?>
+					<tr>
+						<td colspan=3><B><? $stat.MESSAGE.MMM_ID ?>.&nbsp;<? $stat.MESSAGE.MMM_SUBJECT|htmlsafe:true:true ?></B></td>
+					</tr>
+					<? if $stat.NOTSENT ?>
+						<tr><td colspan=3><? $stat.NOTSENT ?></td></tr>
+					<? else ?>
+						<tr><td>&nbsp;&nbsp;</td><td>Sent:</td><td><? $stat.SENTCOUNT ?></td></tr>
+						<tr>
+							<td WIDTH=10></td><td><? if $stat.BOUNCEDCOUNT != 0 ?><a href=# onClick="return toggleVisibility('bounced<? $stat.MESSAGE.MMM_ID ?>');"><? /if ?>Bounced<? if $stat.BOUNCEDCOUNT != 0 ?><a href=# onClick="return toggleVisibility('bounced<? $stat.MESSAGE.MMM_ID ?>');"></a><? /if ?>:</td><td><? $stat.BOUNCEDCOUNT ?></td>
+						</tr>
+					    <tr>
+					    <td></td>
+					    <td style="display:none" id="bounced<? $stat.MESSAGE.MMM_ID ?>" colspan=2>
+					    	<small>
+					    	<? foreach from=$stat.BOUNCED item=bounced ?>
+					    	<? $bounced|htmlsafe:true:true ?><br>
+					    	<? /foreach ?>
+					    	</small>
+					    </td>
+					    </tr>
+					 <? /if ?>
+				    <tr><td>&nbsp;</td></tr>
+				<? /foreach ?>
+
+				</table>
+
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_ok_btn formname="form"?>
+	  <? /if ?>
+
+  <? else ?>
+  	<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_ok_btn formname="form"?>
+  <? /if ?>
+
+  <input type="hidden" name="action" value="<?$action?>">
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="opener" value="<? $opener ?>">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="doclist" value="<? $doclist?>">
+  <input type="hidden" name="MMF_ID" value="<? $MMF_ID ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

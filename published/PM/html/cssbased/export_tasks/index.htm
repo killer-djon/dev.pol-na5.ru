@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <? wbs_initLayout toolbar=true ?>
+    </head>
+    <body>
+        <? wbs_pageLayout toolbar="export_tasks/"|cat:$current_step_name|cat:"_toolbar.htm" ?>
+            <? include file="export_tasks/$step_tpl" ?>
+            <input type="hidden" name="export_step" value="<? $next_step_name ?>" />
+
+<script language="JavaScript">
+<? literal ?>
+
+var et_win_ol_back = window.onload;
+
+window.onload = function() {
+    if(et_win_ol_back) et_win_ol_back();
+    document.getElementById('wbs-main-form').action = '<? /literal ?><? $base_uri ?><? literal ?>';
+};
+
+<? /literal ?>
+</script>
+            
+        <? /wbs_pageLayout ?>
+    </body>
+</html>

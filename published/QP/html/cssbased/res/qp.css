@@ -1,0 +1,56 @@
+.mm_columnsTable
+{
+	border: none;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+* html .mm_columnsTable
+{
+	width: 98%;
+}
+
+.mm_columnsTable tr td, .mm_Table tr td
+{
+	vertical-align: top;
+	text-align: left;
+}
+
+.mm_Table tr td
+{
+	padding: 0!important;
+	margin: 0!important;
+}
+
+.mm_Table
+{
+	border: none;
+	border-collapse: collapse;
+}
+
+td.mm_rightColumn
+{
+	width: 167px;
+	padding-left: 10px!important;
+}
+
+.mm_ImageSetScroller
+{
+	margin: 0!important;
+	border-left: none!important;
+	border-right: none!important;
+	border-top: none!important;
+}
+
+.mm_ImageSetBlock
+{
+	padding: 0!important;
+	margin: 0!important;
+	border: none!important;
+}
+
+.mm_thumbnail
+{
+	padding: 5px;
+	margin: 0;
+}

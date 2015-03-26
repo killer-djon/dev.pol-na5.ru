@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="../../common/reports/print_styles.css" rel="stylesheet" type="text/css">
+<link href="../styles/print_styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body leftmargin="5" topmargin="5" marginwidth="5" marginheight="5">
+<p class="header1"><? $pageTitle ?></p>
+<? strip ?>
+<? if !$fatalError ?>
+<? if $projName != ""?>
+      <? $itStrings.iss_project_label|cat:": "|cat:$projName  ?><br>
+<? /if ?>
+<? $rowName|cat:": "|cat:$row_title ?>
+<br>
+<? $colName|cat:": "|cat:$col_title ?>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td height="5"><span class="separator" style="height: 2; width: 2 px">&nbsp;</span></td>
+  </tr>
+  <? section name=issueSec loop=$issueList ?>
+  <? if $issueList[issueSec].ROW_TYPE == 2 ?>
+  <tr> 
+    <td height="5"><span class="separator" style="height: 2; width: 2 px">&nbsp;</span></td>
+  </tr>
+  <tr> 
+    <td ><strong> 
+      <? $issueList[issueSec].displayData ?>
+      </strong></td>
+  </tr>
+  <tr> 
+    <td height="5"><span class="separator" style="height: 2; width: 2 px">&nbsp;</span></td>
+  </tr>
+  <? /if ?>
+  <? if $issueList[issueSec].ROW_TYPE == 1 ?>
+  <tr> 
+    <td bgcolor="#F0F0F0" style="<? if $issueList[issueSec].index == 1 ?>border-top: 1px solid B1B1B1; <? /if ?>border-bottom: 1px solid B1B1B1; border-left: 1px solid B1B1B1; border-right: 1px solid B1B1B1; padding: 2px"> 
+      <? $issueList[issueSec].PW_ID|cat:". "?>
+      <? $issueList[issueSec].PW_DESC ?>
+    </td>
+  </tr>
+  <? /if ?>
+  <? if $issueList[issueSec].ROW_TYPE == 0 ?>
+  <tr> 
+    <td style="border-bottom: 1px solid B1B1B1; border-left: 1px solid B1B1B1; border-right: 1px solid B1B1B1; padding: 2px"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="20" align="right" valign="top" class="smallFont"> <strong> 
+            <? $issueList[issueSec].PRIORITY_NAME ?>
+            &nbsp;</strong> </td>
+          <td width="5" valign="top" class="smallFont"> 
+            <? $issueList[issueSec].DISPLAY_NUM|cat:". " ?>
+          </td>
+          <td width="5" valign="top" class="smallFont"><span class="separator" style="height: 2; width: 2 px">&nbsp;</span></td>
+          <td valign="top" class="smallFont"> 
+            <? "["|cat:$issueList[issueSec].I_STATUSCURRENT|cat:"] " ?>
+            <? "["|cat:$issueList[issueSec].I_STARTDATE|cat:"] " ?>
+            <? $issueList[issueSec].I_DESC?>
+		  <? $listRecord.I_DESC|cat:" ("|cat:$itStrings.il_authorfield_title|cat:": "|cat:$issueList[issueSec].U_ID_AUTHOR|cat:")" ?>
+          </td>
+          <td align="right" valign="top" class="smallFont"> <nobr> 
+            <? $issueList[issueSec].U_ID_SENDER?>
+            <img src="images/small_arrow.gif" width="9" height="8"></nobr> 
+            <nobr> 
+            <? $issueList[issueSec].U_ID_ASSIGNED?>
+            </nobr> </td>
+        </tr>
+      </table></td>
+  </tr>
+  <? /if ?>
+  <? /section ?>
+</table>
+  <? /if ?>
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<div class="sidebar-wrapper sc-orders">
+<h2>
+{{if $orders}}
+<a title="[`Open in new window`]" target="_blank" href="../SC/html/scripts/index.php?did=93&amp;userID={{$customer.SC_ID}}">[`Orders`]</a>
+{{else}}
+[`Orders`]
+{{/if}}
+</h2>
+{{if $customer}}
+    {{foreach from=$orders item=order name=orders_list}}
+<!--order-item-->
+<div class="order-item">
+<h3><a title="[`Open in new window`]" style="{{$order.status_style}}" target="_blank" href="../SC/html/scripts/index.php?ukey=admin_order_detailed&amp;orderID={{$order.orderID}}">
+<span class="order-num">{{$order.OrderIDView}}</span>
+</a>
+<span class="order-price" style="text-decoration: none;font-weight: bold;">{{$order.currency_code}}&nbsp;{{$order.order_amount}}</span>
+</h3>
+
+<p class="order-time">[`Order time`] {{$order.order_time}}</p>
+<p class="order-status">[`Order status`]: <span style="{{$order.status_style}}">{{$order.status_name}}</span></p>
+<p>{{$order.shipping_type}}, {{$order.payment_type}}<br/>
+{{$order.shipping_address}}
+</p>
+<p>{{$order.order_content}}</p></div>
+<!--/order-item-->
+    {{foreachelse}}
+<div class="order-item">
+<p><i>[`This person did not place orders in the store yet`]</i></p>
+</div>
+    {{/foreach}}
+{{else}}
+<div class="order-item">
+<p><i>[`This person is not a customer of the online store`]</i></p>
+</div>
+{{/if}}
+</div>

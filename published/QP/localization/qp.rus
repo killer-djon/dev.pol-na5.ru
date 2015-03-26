@@ -1,0 +1,350 @@
+app_name_long	Common	Application full name	Страницы
+app_name_short	Common	Application short name	Страницы
+			
+app_name_field	Common	Name field label	Название
+app_title_field	Common	Title field label	Заголовок
+app_content_field	Common	Content field label	Содержание
+app_file_field	Common	File field label	Файл
+app_author_field	Common	Author field label	Автор
+app_date_field	Common	Date field label	Дата
+app_folder_field	Common	Folder field label	Папка
+app_keywords_field	Common	Keywords field label	Keywords
+app_description_field	Common	Description field label	Description
+app_aux1_field	Common	Aux 1 field label	Доп1
+app_aux2_field	Common	Aux 2 field label	Доп2
+app_aux3_field	Common	Aux 3 field label	Доп3
+			
+app_add_copy_label	Common	Additional name label to copied pages	Копия
+			
+app_book_title	Common	Book Tab label	Книга
+			
+app_treeaddfolderperms_text	Common	Text on the Book tab of the Add/Modify Book form	Для настройки параметров доступа к этой книге нажмите на закладку "Пользователи" для персональных прав или "Группы" для настройки прав доступа для групп.
+app_treeaddfolderuseraccess_text	Common	Add/Modify Folder users tab text	Настроить персональные права доступа к этой книге.
+app_treeaddfoldergroupaccess_text	Common	Add/Modify Folder groups tab text	Настроить права доступа к этой книге для групп.
+app_treefolder_label	Common	Label for "Full" book permissions	Полный
+app_folders_hint	Common	Folders hint	Показать оглавление
+app_hidefolders_hint	Common	Folders hint	Скрыть оглавление
+app_archivesnotsupported_message	Common	Archives not supported message	Для работы с архивами на вашем сервере должны быть установлены следующие компоненты:\n\n1. Zlib Compression Functions\n\nПожалуйста обратитесь к вашему системному администратору
+app_nozlib_message	Common	No Zlib library installed message	Для работы с архивами на вашем сервере должна быть установлена библиотека Zlib Compression Functions
+app_treeinvfoldername_message	Common	Invalid characters in the folder name entered message	Поле названия не может содержать эти символы: / \ ? : * < >
+app_treeinvfolderlenname_message	Common	Invalid characters or name exceeds length in folder name entered message	Поле названия не может содержать более 255 символов и не может содержать эти символы: / \ ? : * < >
+app_bookdelete_message	Common	Book deletion conformation	Вся книга будет удалена? Продолжить?
+app_norights_book_message	Common	Lack of administrative rights to modify book message	У Вас недостаточно прав для редактирования этой книги.
+app_page_norights_message	Common	Lack of administrative rights to modify notes message	У Вас недостаточно прав для доступа к этой странице.
+app_search_norecords_label	Common	Empty search message	Поиск не дал результатов
+app_text_id_note	Common	Page/book unique identifier note	Введите уникальный идентификатор состоящий из латинских символов и/или цифр.
+app_textid_exists_error	Common	Error message if a page/book identifier is not uinque	Введенное значение ID уже есть в базе данных. Введите новый ID.
+app_textid_wrong_error	Common	Error message if a page/book identifier consists invalid characters	ID должен содержать только латинские символы и/или цифры и/или символ 'минус'
+app_iso8859_1_codepage	Common	iso-8859-1 сodepage name	Западноевропейская (iso-8859-1)
+app_cp1251_codepage	Common	windows-1251 сodepage name	Кириллица (windows-1251)
+app_screen_search_result_title	Common	Search result title	Результат поиска
+app_screen_pagedel_message	Quick Pages	Page deletion confirmation	Страница будет удалена без возможности восстановления. Продолжить?
+app_screen_subpages_delete_message	Quick Pages	Page(s) deletion conformation	Эта страница содержит вложенные страницы. Все страницы будут удалены и вы не сможете их восстановить. Вы действительно хотите удалить эту страницу и все вложенные страницы?
+app_pageslimit_message	Common	Pages number limitation message	<b>ОГРАНИЧЕНИЕ</b>: Количество страниц не может превышать %s.
+			
+app_prev_link	Common	Previous link	Назад
+app_next_link	Common	Previous link	Вперед
+			
+app_systemtheme_text	Common	Default System theme name	<по умолчанию>
+			
+app_pagesfound_title	Common	Pages found	Найдено страниц: %s.
+			
+qp_rootrights	Quick Pages Rights	Can create books	Можно создавать книги
+qp_item	Quick Pages Rights	Books item label	Книги
+qp_itemnames	Quick Pages Rights	Books name	Название книги
+qp_readrights	Quick Pages Rights	Read rights	Чтение
+qp_writerights	Quick Pages Rights	Write rights	Запись
+qp_folderrights	Quick Pages Rights	Full rights	Полные
+			
+qp_treepages_text	Quick Pages	Table of content	Содержание
+			
+qp_screen_long_name	Quick Pages	Quick Pages screen full name	Страницы
+qp_screen_short_name	Quick Pages	Quick Pages screen short name	Страницы
+qp_screen_page_menu	Quick Pages	Page menu	Страница
+qp_screen_book_menu	Quick Pages	Book menu	Книга
+qp_screen_treeaddpage_menu	Quick Pages	Add page menu item	Добавить
+qp_screen_treemodpage_menu	Quick Pages	Modify page menu item	Редактировать
+qp_screen_treedelpage_menu	Quick Pages	Delete page menu item	Удалить
+qp_screen_treeorganize_menu	Quick Pages	Organize page menu item	Упорядочить
+qp_screen_jumpbook_menu	Quick Pages	Jump to book menu item	Перейти к Книге
+qp_screen_booklist_menu	Quick Pages	Book List menu item	Список Книг
+qp_screen_bookprop_menu	Quick Pages	Book properties menu item	Свойства
+qp_screen_createbook_menu	Quick Pages	Create book menu item	Создать Книгу
+qp_screen_renamebook_menu	Quick Pages	Rename book menu item	Переименовать Книгу
+qp_screen_deletebook_menu	Quick Pages	Delete book menu item	Удалить Книгу
+qp_screen_accessbook_menu	Quick Pages	Access book menu item	Права доступа
+qp_screen_publish_menu	Quick Pages	Publish menu item	Публикация
+qp_screen_backup_menu	Quick Pages	Backup menu item	Резервная копия
+qp_screen_restore_menu	Quick Pages	Restore menu item	Восстановить копию
+qp_screen_copy_menu	Quick Pages	Copy page into current level	Копировать
+qp_screen_search_label	Quick Pages	Search bar label	Поиск
+qp_screen_search_btn	Quick Pages	Search button	Искать
+qp_screen_meta_title	Quick Pages	Page view meta tags section title	META тэги
+qp_screen_info_title	Quick Pages	Page view additional info section title	Информация
+qp_sсreen_searchresult_title	Quick Pages	Search results header	Результат поиска
+qp_screen_noaccess_message	Quick Pages	Access prohibited message	Доступ запрещен.
+qp_screen_showbook_btn	Quick Pages	Show Book button	Перейти к книге
+qp_screen_published_title	Quick Pages	Pulbished title	опубликовано
+qp_screen_notpublished_title	Quick Pages	Not published title	не опубликовано
+qp_screen_nobooks_error	Quick Pages	No books error message	Не определено ни одной книги.
+qp_sсreen_summarydoc_title	Quick Pages	Column in Available Pages table	Страницы
+qp_screen_numdocs_label	Quick Pages	Text under the list of Pages	Страница(ы)
+qp_screen_lastmodified_label	Quick Pages	Last modified field label in the pageview panel	Последняя модификация
+			
+qp_treeavailpages_name	Quick Pages	Available pages message	Список страниц
+			
+amn_screen_add_title	Add/Modify Page	Add Page page header	Добавить страницу
+amn_screen_modify_title	Add/Modify Page	Modify Page page header	Редактировать страницу
+amn_deleteimages_btn	Add/Modify Page	Attached images delete label	Удалить
+amn_addimages_btn	Add/Modify Page	Attached images label	Добавить
+amn_screen_delnote_btn	Add/Modify Page	Delete Page button	Удалить страницу
+amn_screen_meta_section	Add/Modify Page	Meta tags section title	МЕТА тэги
+amn_screen_aux_section	Add/Modify Page	Aux Meta tags section title	Дополнительные МЕТА тэги
+amn_screen_images_message	Add/Modify Page	Add images info message appearing on the unsaved page	Для добавления изображений на страницу сначала сохраните ее.
+amn_screen_images_title	Add/Modify Page	Image section title	Изображения
+amn_screen_close_btn	Add/Modify Page	Save and Add Another button	Сохранить и закрыть
+amn_treeparentlevel_text	Add/Modify Page	Parent level	Родительский уровень
+amn_copyimages_btn	Add/Modify Page	Copy images button	Копировать
+amn_textid_label	Add/Modify Page	Page unique identifier field label	ID страницы
+			
+amb_bookname_label	Add/Modify Book	Book name field label	Название
+amb_textid_label	Add/Modify Book	Book unique identifier field label	ID книги
+			
+cm_screen_copypage_title	Copy/Move	Page Copying page header	Скопировать страницы
+cm_screen_movepage_title	Copy/Move	Page Moving page header	Переместить страницы
+cm_screen_copy_btn	Copy/Move	Copying in progress button	Копировать
+cm_screen_move_btn	Copy/Move	Moving in progress button	Переместить
+cm_screen_form_label	Copy/Move	Label above the form	выбрано страниц
+cm_screen_copyerr_message	Copy/Move	Error copying file message	Ошибка копирования файла
+cm_screen_makedirerr_message	Copy/Move	Error creating folder message	Ошибка создания папки
+cm_copymove_selected	Quick Pages	Count of selected pages	страниц выбрано
+cm_moveto_message	Quick Pages	Move To message	Переместить в уровень
+cm_copyto_message	Quick Pages	Copy To message	Копировать в уровень
+			
+qpo_screen_title	Organize pages	Organize pages screen title	Упорядочить страницы
+qpo_current_page_field	Organize pages	Current level field	Уровень
+qpo_delete_btn	Organize pages	Delete button	Удалить
+qpo_move_btn	Organize pages	Move button	Переместить
+qpo_copy_btn	Organize pages	Copy button	Копировать
+qpo_mark_pub_btn	Organize pages	Publish button	Опубликовать
+qpo_mark_unpub_btn	Organize pages	UnPublish button	Отменить публикацию
+qpo_nobooks_notice	Organize pages	Level consists no book message	Этот уровень не содержит страниц.
+qpo_screen_emptyaction_message	Organize pages	Empty selection message	Вы должны сначала выбрать страницы для этой операции.
+qpo_screen_delete_message	Organize pages	Page(s) deletion conformation	Выбранные страницы ( включая вложенные страницы ) будут удалены без возможности их восстановления. Вы действительно хотите удалить выбранные станицы, включая вложенные в них страницы?
+			
+ai_screen_addimage_title	Add images Page	Screen title	Добавить изображение(я)
+ai_screen_addimagefile_title	Add images Page	Add image from file	Файл
+ai_screen_moreimages_label	Add images	More images label	Нажмите здесь, если хотите добавить больше изображений
+ai_screen_add_btn	Add images	Add images button	Добавить
+ai_screen_upload_text	Add images	More images label	Добавление изображений
+ai_screen_uploadwait_text	Add images	More images label	Подождите пока добавляются изображения
+ai_screen_nofiles_message	Add Images	Submitting without selecting any images message	Вы должны выбрать как минимум одно изображение для данной операции
+			
+qp_publish_screen_plain_title	Publish setup	Plain Publish setup title	Настройка плоского вида
+qp_publish_screen_tree_title	Publish setup	Tree Publish setup title	Настройка вида "дерево"
+			
+qp_publish_url_title	Publish setup	Published url title	URL
+qp_publish_sample	Publish setup	Sample label	Пример
+qp_publish_plain_title	Publish setup	Plain	плоский
+qp_publish_tree_title	Publish setup	Tree	древовидный
+qp_publish_hidden_label	Publish setup	Hidden	Скрытый
+qp_publish_visible_label	Publish setup	Visible	Видимый
+qp_publish_wrap_label	Publish setup	Wrap	Переносить по словам
+qp_publish_pageicons_label	Publish setup	Show page icons label	Показывать значки
+qp_publish_font_label	Publish setup	Font	Шрифт
+qp_publish_fontweight_label	Publish setup	Font weight	Вес шрифта
+qp_publish_fontsize_label	Publish setup	Font size	Размер шрифта
+qp_publish_fontcolor_label	Publish setup	Font color	Цвет шрифта
+qp_publish_color_label	Publish setup	Color	Цвет
+qp_publish_bgcolor_label	Publish setup	Background color	Цвет фона
+qp_publish_justify_label	Publish setup	Justify	Выключка
+qp_publish_position_label	Publish setup	Position	Позиция
+qp_publish_panelbg_label	Publish setup	Background color	Основа панели
+qp_publish_buttonbg_label	Publish setup	Background color	Основа кнопки
+			
+qp_publish_settings_edittop_title	Publish setup	Edit top frame	Заголовок книги
+qp_publish_settings_pagetext_title	Publish setup	Page text (default)	Текст страницы
+qp_publish_settings_links_title	Publish setup	Links (default)	Ссылки
+qp_publish_settings_topframe_title	Publish setup	Top Panel	Заголовок книги
+qp_publish_settings_bookname_title	Publish setup	Book name	Название книги
+qp_publish_settings_tocheader_title	Publish setup	Table of Content header	Заголовок оглавления
+qp_publish_settings_tocheader_brief_title	Publish setup	Table of Content header (brief label)	Заголовок оглавления
+qp_publish_settings_tocbody_title	Publish setup	Table of content body	Тело оглавления
+qp_publish_settings_tocbody_brief_title	Publish setup	Table of content body (brief label)	Тело оглавления
+qp_publish_settings_curtocrow_title	Publish setup	Current page	Текущий пункт
+qp_publish_settings_toclink_title	Publish setup	Link to the table of content	Ссылка на оглавление
+qp_publish_settings_toclink_brief_title	Publish setup	Link to the table of content (brief label)	Оглавление
+qp_publish_settings_pagetitle_title	Publish setup	Page title	Название страницы
+qp_publish_settings_pagedelim_title	Publish setup	Page delimiter	Разделитель страниц
+qp_publish_settings_searchpanel_title	Publish setup	Search panel	Панель поиска
+qp_publish_settings_button_title	Publish setup	Button	Кнопка
+qp_publish_settings_splitter_title	Publish setup	Splitter	Р (Разделитель)
+qp_publish_settings_splitter_brief_title	Publish setup	Splitter (brief label)	Р
+qp_publish_settings_h1_title	Publish setup	Heading 1	Заголовок H1
+qp_publish_settings_h2_title	Publish setup	Heading 2	Заголовок H2
+qp_publish_settings_h3_title	Publish setup	Heading 3	Заголовок H3
+qp_publish_settings_pn_title	Publish setup	Previous|Next	Назад | Вперед
+			
+jmp_screen_title	Jump to book	Jump to book	Список книг
+jmp_screen_bookcount_msg	Jump to book	Book count label	доступных книг
+			
+pub_screen_title	Publish	Screen title	Публикация
+pub_screen_viewoption_title	Publish	Two View label	Существует два вида опубликованной версии книги
+pub_screen_plain_descr	Publish	Plain view description	Вся книга на одной странице с необязательным оглавлением
+pub_screen_tree_descr	Publish	Tree view description	Оглавление на отдельной панели
+pub_screen_preview_btn	Publish	Preview label	Просмотр
+pub_screen_customize_btn	Publish	Customize	Настройка
+pub_screen_notpublished_label	Publish	Not Published radio button label	Не опубликована
+pub_screen_published_label	Publish	Published radio button label	Опубликована
+pub_screen_plainview_label	Publish	Plain View label	Плоский вид
+pub_screen_treeview_label	Publish	Tree View label	Вид с деревом оглавления
+pub_screen_publ_msg	Publish	Publish confirmation	Вы действительно хотите дать публичный доступ к этой книге?
+pub_screen_unpubl_msg	Publish	Unpublish confirmation	Публичный доступ к книге будет зарыт. Продолжить?
+pub_screen_lang_title	Publish	Language settings title	Языковые настройки
+pub_screen_lang_label	Publish	Language selector label	Язык интерфейса
+pub_screen_codepage_label	Publish	Codepage selector label	Кодовая страница документа
+pub_screen_setcp_btn	Publish	Set codepage button	Установить параметры языка
+pub_screen_themes_title	Publish	Theme	Тема
+pub_screen_theme_note	Publish	Theme	Для создания новой или редактирования существующей темы нажмите Страницы / Темы в главном меню.
+pub_screen_url_label	Publish	Published book URL	Используйте следующий адрес для доступа к опубликованной книге
+pub_screen_preview_title	Publish	Preview pane title	Просмотр
+pub_screen_authrequired_label	Publish	User authorization required	Необходима авторизация пользователя
+			
+pub_screen_top_tip	Publish	Book Header tips	Эта секция появляется в самом верху опубликованной книги. Включайте и выключайте его галочкой "Видимый". Для редактирования Заголовка нажмите кнопку "Редактировать Заголовок"
+pub_screen_bname_tip	Publish	Book Name tips	Эта секция идет за "Заголовком книги". Для включения/выключения "Названия книги" и изменения его стиля и цвета используйте эту форму.
+pub_screen_spanel_tip	Publish	Search Panel tips	Панель поиска появляется под "Название Книги". Для включения/выключения "Панели Поиска" и изменения его стиля и цвета используйте эту форму.
+pub_screen_tochdr_tip	Publish	TOC Header tips	Заголовок обновления размещается на верху панели оглавления. Для изменения параметров "Заголовка обновления" используйте эту форму.
+pub_screen_tocbody_tip	Publish	TOC Body tips	Тело оглавления - область занятая оглавлением книги. Для изменения параметров "Тело оглавления" используйте эту форму.
+pub_screen_tocs_tip	Publish	TOC (selected) tips	Текущий пункт это подсвеченный пункт в дереве оглавления. Для изменения параметров используйте эту форму.
+pub_screen_splitter_tip	Publish	Splitter tips	Разделитель это перемещаемая область, которая отделяет Тело оглавления от Текста страницы. Для изменения параметров используйте эту форму.
+pub_screen_body_tip	Publish	Body tips	Текст страницы это главная область книги, где появляется большая часть опубликованной информации. Для изменения параметров используйте эту форму.
+pub_screen_links_tip	Publish	Links tips	Используйте эту форму для изменения цвета веб ссылок и ссылок на другие станицы, которые находятся в содержимом страницы.
+pub_screen_pn_tip	Publish	Prev|Next tips	Назад | Вперед навигационные ссылки, которые позволяют легко перелистывать страницы опубликованной книги.  Для изменения параметров используйте эту форму.
+pub_screen_h1_tip	Publish	Heading 1 tips	Заголовок H1 заключенный в тэги &lt;h1&gt;Заголовок&lt;/h1&gt; в содержимом страницы. Для изменения параметров используйте эту форму.
+pub_screen_h2_tip	Publish	Heading 2 tips	Заголовок H2 заключенный в тэги &lt;h2&gt;Заголовок&lt;/h2&gt; в содержимом страницы. Для изменения параметров используйте эту форму.
+pub_screen_h3_tip	Publish	Heading 3 tips	Заголовок H3 заключенный в тэги &lt;h3&gt;Заголовок&lt;/h3&gt; в содержимом страницы. Для изменения параметров используйте эту форму.
+pub_screen_pagetitle_tip	Publish	Page Title tips	Заголовок страницы - строка появляющаяся над содержимым страницы. Для изменения параметров используйте эту форму.
+pub_screen_toclink_tip	Publish	TOC Link tips	Ссылка на оглавлении располагается внизу каждой страницы и позволяет легко переместиться к оглавлению книги. Для изменения параметров используйте эту форму.
+pub_screen_modtheme_note	Publish	Modify theme note	Для выбора элемента контента просто кликните на него в секции предпросмотра или по закладке с его именем.
+			
+bak_screen_title	Backup	Backup Screen title 	Резервное копирование
+bak_book_name_title	Backup	Book name title 	Книга
+bak_pages_count_title	Backup	Total pages label	Всего страниц
+bak_creating_note	Backup	Text displayed before archive creation	Создание резервной копии большой книги может занять много времени
+bak_createarchive_text	Backup	Text displayed while archive are being created	Создание резервной копии книги...
+bak_createwait_text	Backup	Text displayed while archive are being create	Пожалуйста подождите пока мы создаем резервную копию...
+bak_filesadded_label	Create Archive	Files added label	%s файл(ов) было добавлено.
+bak_archivecreated_label	Create Archive	Archive created message	Резервная копия была успешно создана.
+bak_downloadarchive_btn	Create Archive	Download archive button	Скачать архив
+bak_close_btn	Create Archive	Close button	Закрыть
+bak_filesize_label	Create Archive	File size label	Размер файла
+			
+rst_screen_title	Backup	Backup Screen title 	Восстановление резервной копии
+rst_file_label	Backup	Backup Screen title 	Файл резервной копии книги
+rst_selectfile_message	Upload Archive	Select file message	Пожалуйста, выберите архив ZIP для загрузки
+rst_nofolderrights_message	Upload Archive	No folder rights message	У вас нет прав создавать подпапки в этой папке
+rst_archivesnotsupported_message	Upload Archive	Archives not supported message	Для работы с архивами на вашем сервере должны быть установлены следующие компоненты:\n\n1. Zlib Compression Functions\n\nПожалуйста обратитесь к вашему системному администратору
+rst_errorbackup_message	Restore	Archive does not contain backup file	Файл не является резервной копией ВебАсист Книги
+rst_fileopen_error	Restore	Archive does not contain backup file	Невозможно открыть файл резервной копии.
+rst_errorarchive_message	Upload Archive	Error reading archive message	Ошибка чтения файла резервной копии.
+rst_restorearchive_text	Upload Archive	Error reading archive message	Восстановление книги из резервной копии...
+rst_restorewait_text	Upload Archive	Error reading archive message	Пожалуйста подождите пока мы восстанавливаем книгу из резервной копии...
+rst_restore_btn	Restore	Restore Button	Восстановить
+			
+qpb_screen_long_name	Book List	Book List page full name	Список книг
+qpb_screen_short_name	Book List	Book List page short name	Книги
+qpb_books_menu_btn	Book List	Book menu	Книги
+qpb_addbook_btn	Book List	Add book button	Создать
+qpb_delbook_btn	Book List	Delete book button	Удалить
+qpb_name_title	Book List	Book name title	Название
+qpb_id_title	Book List	Book id title	ID
+qpb_rights_title	Book List	Rights	Права
+qpb_published_title	Book List	Published	Опубликована
+qpb_publishedtheme_title	Book List	Published	Тема для публикации
+qpb_title_title	Book List	Book Title	Заголовок
+qpb_name_field	Book List	Book name field	Название
+qpb_title_field	Book List	Book title fiels	Заголовок
+qpb_keywords_field	Book List	Meta keywords fields	META Keywords
+qpb_description_field	Book List	Description field	Description META
+qpb_published_field	Book List	Published field	Опубликована
+qpb_screen_add_title	Book List	Add book title	Создать книгу
+qpb_screen_modify_title	Book List	Modify book title	Свойства книги
+qpb_screen_bookdel_message	Book List	Book deletion confirmation message	Эта книга будет удалена. Продолжить?
+qpb_additionalinfo_section	Book List	Book's additional info	Дополнительная информация
+			
+qp_published_toc_title	Published	Table Of Content	Оглавление
+			
+gl_screen_page_title	HTML plugin	Get link screen title	Вставить ссылку
+gl_screen_select_page_label	HTML plugin	Get link label	Вставить ссылку на страницу
+			
+qpt_screen_long_name	Themes	Themes screen name	Темы
+qpt_screen_short_name	Themes	Themes screen name	Темы
+			
+qpt_addtheme_btn	Themes	Add New Theme button	Добавить новую тему
+			
+qpt_viewmodify_title	Themes	How to view or edit theme message	Для просмотра или изменения темы нажмите на ее имя
+			
+qpt_name_title	Themes	Theme Name table title	Имя
+qpt_type_title	Themes	Theme Type table title	Тип
+qpt_books_title	Themes	Books applied by theme	Книги
+			
+qpt_enabled_title	Themes	Theme Enabled table title	Разрешена
+qpt_default_title	Themes	If theme is default	основная
+			
+qpt_setdefault_title	Themes	Set As default	Назначить основной
+			
+qpt_themename_title	Themes	Theme Name	Название темы
+			
+qpt_enable_link	Themes	Enable link	Разрешить
+qpt_disable_link	Themes	Disable link	Запретить
+qpt_delete_link	Themes	Delete link	Удалить
+			
+qpt_themedelete_message	Themes	Theme deletion confirmation	Тема применена к %s книгам. Если вы удалите тему, к этим книгам будет применяться основная тема.
+qpt_themedelete_nobook_message	Themes	Theme deletion confirmation	Тема будет полностью удалена. Продолжить?
+qpt_themeunshare_message	Themes	Theme disable confirmation	Тема применена к %s книгам. Если вы запретите тему, к этим книгам будет применяться основная тема.
+			
+qpt_add_screen_long_name	Themes	Themes screen name	Добавить новую тему
+qpt_add_screen_short_name	Themes	Themes screen name	Добавить новую тему
+qpt_add_select_title	Themes	Please select type of new theme	Выберите тип темы
+			
+qpt_variable_note	Themes	Variables Note	Для того чтобы поместить переменную в "Заголовок книги" либо наберите его имя (знаки процента необходимы) или просто щелкните на ее имени в списке.
+qpt_variable_name	Themes	Value Variable	Переменная
+qpt_variable_descr	Themes	Value Description	Описание
+			
+qpt_variable_bookname	Themes	%BOOKNAME% variable's description	Полное название книги
+			
+qpt_screen_topmodify_title	Themes	Top Panel Customize screen title	Редактировать заголовок
+			
+qpt_top_position_label	Publish setup	Top Position	сверху
+qpt_bottom_position_label	Publish setup	Bottom Position	снизу
+qpt_topbottom_position_label	Publish setup	Top And Bottom Position	сверху и снизу
+			
+qpt_wrong_theme_message	Themes	Theme is not available	Такой темы не существует.
+			
+qpt_topframe_empty	Themes	Empty string	(пусто)
+			
+qpt_screen_customizetheme_title	Themes	Customize Theme screen title	Редактирование темы
+			
+qpt_themename_exists_error	Themes	Error message if a theme name is not unique	Введенное имя уже существует. Введите другое имя.
+			
+qpt_copyfrom_theme_label	Themes	Copy from Theme label	Копировать тему
+			
+qpt_screen_choosecolor_title	Themes	Choose Color window title	Выбрать цвет
+			
+app_treefolders_text	Common	Folders text	Доступные действия с книгами
+app_treefurfldname_title	Common	Folder Name column header on the Folders & Users Rights page	Книга
+app_readaccess_name	Common	Read access	Чтение
+app_writeaccess_name	Common	Read/Write access	Запись
+app_folderaccess_name	Common	Read/Write/Folder access	Полный
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Может создавать книги
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Может видеть права других пользователей
+			
+app_available_pages_name	Common	 Available Pages rights name	Страницы приложения
+app_available_functions_name	Common	 Available Functions	Функции приложения
+app_notifications_section_name	Common	 Notifications section rights name	Уведомления
+app_treeavailflds_title	Common	Available Folders column header on the Folders & Users Rights page	Доступные книги
+			
+app_cantools_label	Common	Can use tools rights	Имеет доступ к Инструментам
+app_canreports_label	Common	Can use reports rights	Имеет доступ к Отчетам
+			
+app_hasaccessbooklist_label	Common	Has access to BookList	Имеет доступ к Списку книг

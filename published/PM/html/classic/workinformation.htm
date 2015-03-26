@@ -1,0 +1,389 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script> 
+<script language="JavaScript">
+<!--
+	function MM_findObj(n, d) { //v4.0
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && document.getElementById) x=document.getElementById(n); return x;
+	}
+ 
+    function focusControl(objName) {
+      var obj = MM_findObj(objName); 
+      if (obj) {
+      obj.focus( );
+     }
+    }
+
+	function fillSelected() {
+		var Object = MM_findObj("assigned_users[]");
+		var selObj = Object.options;
+ 
+		for (var i=0; i<selObj.length; i++)
+			selObj[i].selected = true;
+
+		var Object = MM_findObj("available_users[]");
+		var selObj = Object.options;
+
+		for (var i=0; i<selObj.length; i++)
+			selObj[i].selected = true;
+	}
+
+	function moveIt(x) {
+		// if x=1 remove, if x=0 add
+
+		p_statusObj = MM_findObj("workData[P_STATUS]");
+		pw_statusObj = MM_findObj("workData[PW_STATUS]");
+
+		p_status = p_statusObj.value;
+		pw_status = pw_statusObj.value;
+
+		if ( p_status == 0 && pw_status == 0 ) {
+
+		if (x==1) {
+			srcObj = MM_findObj("assigned_users[]");
+			destObj = MM_findObj("available_users[]");
+		} else if (x==0) {
+			srcObj = MM_findObj("available_users[]");
+			destObj = MM_findObj("assigned_users[]");
+		}
+
+		if (srcObj.selectedIndex>=0) {
+
+			selObj = srcObj.options[srcObj.selectedIndex];
+			newPos = destObj.length;
+
+			destObj.options[newPos] = new Option(selObj.text, selObj.value);
+			srcObj.options[selObj.index] = null;
+		}
+
+		}
+	}
+
+	function fillArray(button_pressed) {
+		// button_pressed : 
+		// 1 - save button clicked
+		// 0 - cancel button clicked
+		if ( button_pressed )
+			fillSelected();
+
+		this.lastButtonPressed = 0;
+	}
+
+	function confirmFinish()
+	{
+		if ( confirm( "<? $pmStrings.amt_complete_message ?>" ) ) {
+			fillSelected();		
+			return true;
+		}
+			
+		return false;
+	}
+
+	function confirmReopen()
+	{
+		if ( confirm( "<? $pmStrings.amt_resume_message ?>" ) ) {
+			fillSelected();
+			return true;
+		}
+		
+		return false;
+	}
+
+	function confirmDelete()
+	{
+		if ( confirm( "<? $pmStrings.amt_delete_message ?>" ) ) {		
+			fillSelected();
+			return true;
+		}
+		
+		return false;
+	}
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default" onLoad="focusControl('workData[PW_DESC]'); markArrayField( '<? $invalidField ?>', 'workData' )">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+<? if $action != "new" ?>
+	<?assign var=noSpace value=1?>
+<? else ?>
+	<?assign var=noSpace value=0?>
+<? /if ?>
+<? include file="../../../common/html/classic/header.htm" nospace=$noSpace?>
+<? if $action != "new" ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>		
+      <td class="pageTopPanel">
+        <? if $workData.U_STATUS || $workData.P_STATUS?>
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="clsbtn" caption=$pmStrings.amt_return_btn formname="form"?>
+        <? /if ?>
+        <? if $action != "new" && !$workData.P_STATUS ?>
+        <? if !$workData.PW_STATUS ?>
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="finwbtn" caption=$pmStrings.amt_complete_btn formname="form" onClick="return confirmFinish()" space_right=#toolbarSmallSpace#?>
+        <? else ?>
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$pmStrings.amt_return_btn formname="form" space_right=#toolbarSmallSpace#?>
+        <img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="rpnwbtn" caption=$pmStrings.amt_resume_btn formname="form" onClick="return confirmReopen()" space_left=#toolbarSmallSpace# space_right=#toolbarSmallSpace#?>
+        <? /if ?>
+        <img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+        <? /if ?>
+        <? if $action != "new" && !$workData.U_STATUS && !$workData.P_STATUS ?>
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="delwbtn" caption=$pmStrings.amt_delete_btn formname="form" onClick="return confirmDelete()" space_left=#toolbarSmallSpace# space_right=#toolbarSmallSpace#?>
+        <? /if ?>
+      </td>
+	</tr>
+</table>
+<? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+<? /if ?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+<? if !$fatalError ?>
+	  <table border="0" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td> <table width="100%" border="0" cellpadding="0" cellspacing="0">
+		      <tr>
+			    <td colspan="2">
+				    <table width="100%" border="0" cellspacing="2" cellpadding="0">
+						  <tr>
+						    <td width="5">
+			  				  <img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5" border="0">
+							</td>
+						    <td class="default" width="530">
+							  <strong>
+						       <? $workData.P_DESC ?>
+							  </strong>
+							  <input name="workData[P_DESC]" type="hidden" id="workData[P_DESC]" value="<? $workData.P_DESC ?>">
+						    </td>
+						  </tr>
+						  <tr>
+						    <td align="left" class="default" colspan="2"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5" border="0"></td>
+						  </tr>
+					</table>
+				</td>
+			  </tr>
+			  <tr> 
+				<td colspan="2" class="default"> 
+				<? include file="../../../common/html/classic/formframe_begin.htm"?>	
+				 <table border="0" cellspacing="0" cellpadding="0">
+                      <tr> 
+					    <td colspan="3">
+						 <table width="100%" border="0" cellpadding="0" cellspacing="2">
+						  <tr>
+							<td width="100%" height="22" align="right" class="formSection">
+							    <nobr><? conditionalOutput invalidField=$invalidField field=PW_DESC text=#invalidFieldHighlight# ?>
+                                <? $pmStrings.amt_summary_label ?></nobr>
+                            </td>
+						  </tr>
+                          <tr>
+							  <? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+                              <td>
+							  	<textarea name="workData[PW_DESC]" rows="5" class="control" style="width: 550px"><? $workData.PW_DESC|htmlsafe_textarea:$edited ?></textarea>
+							  </td>
+							  <? else ?>
+							  <td class="readonly_control" width="530">
+							    <? $workData.PW_DESC ?>
+							  </td>
+							  <? /if ?>
+                          </tr>
+						 </table>
+						</td>
+					  </tr>
+					  <tr>
+					    <td colspan="3">&nbsp;</td>
+					  </tr>
+					  <tr>
+                        <td valign="top">
+						  <table width="100%" border="0" cellspacing="2" cellpadding="0">
+                            <tr> 
+                              <td colspan="2" align="right" class="formSection"> 
+                                <nobr><? $pmStrings.amt_general_label ?></nobr>
+                              </td>
+                            </tr>
+							<? if ( $action != "new" ) ?>
+								<tr>
+									<td align=right class=label><? $pmStrings.amr_it_label|cat:":" ?></td>
+									<td align=left class=readonly_control><? $workData.PW_ID|sureecho ?></td>
+								</tr>
+							<? /if ?>
+                            <tr> 
+                              <td align="right" class="label"> 
+                               <nobr> <? conditionalOutput invalidField=$invalidField field=PW_BILLABLE
+								text=#invalidFieldHighlight#  ?>
+								<? if $action != "new" ?>
+									<input name="workData[PW_ID]" type="hidden" id="workData[PW_ID]" value="<? $workData.PW_ID ?>">
+								<? /if ?>
+                                <? $pmStrings.amr_billable_label|cat:":" ?></nobr>
+                              </td>
+                              <td class="default" width="100%">
+							    <? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+  			  		              <input type="checkbox" name="workData[PW_BILLABLE]" value="1"
+								  <? switchedOutput str1="checked" str2="" val=$workData.PW_BILLABLE true_val=1 ?>>
+								<? else ?>
+								  <? switchedOutput str1=#checkedImg# str2="" val=$workData.PW_BILLABLE true_val=1 ?>
+								<? /if ?>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? conditionalOutput invalidField=$invalidField field=PW_COSTESTIMATE
+								text=#invalidFieldHighlight#  ?><? $pmStrings.amr_cost_label|cat:":" ?></nobr>
+							  </td>
+							  <? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+                              <td width="100%">
+							    <input name="workData[PW_COSTESTIMATE]" type="text" class="control" value="<? $workData.PW_COSTESTIMATE ?>"  maxlength="15"  size="10" >
+							  </td>
+							  <? else ?>
+							  <td class="readonly_control" width="100%">
+								<nobr><? $workData.PW_COSTESTIMATE|sureecho ?></nobr>
+							  </td>
+							  <? /if ?>
+                            </tr>
+							<tr>
+							  <td align="right" class="label">
+							    <nobr><? conditionalOutput invalidField=$invalidField field=PW_COSTCUR text=#invalidFieldHighlight# ?><? $pmStrings.amr_costcur_label|cat:":" ?></nobr>
+							  </td>
+							  <? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+							  <td width="100%">
+							    <select name="workData[PW_COSTCUR]"  class="control" style="width: 100%">
+								  <? html_options values=$currency_ids selected=$workData.PW_COSTCUR output=$currency_ids ?>
+								</select>
+							  </td>
+							  <? else ?>
+							  <td class="readonly_control" width="100%">
+							    <nobr><? $workData.PW_COSTCUR|sureecho ?></nobr>
+							  </td>
+							  <? /if ?>
+							</tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? conditionalOutput invalidField=$invalidField field=PW_STARTDATE text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amr_startdate_label|cat:":" ?></nobr>
+                                 </td>
+							<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+                              <td width="100%">
+							  	<table width="100%" cellspacing="0" cellpadding="0">
+									<tr>
+										<td><input name="workData[PW_STARTDATE]" type="text" class="control" value="<? $workData.PW_STARTDATE ?>" maxlength="10" size="10" > </td>
+										<td><?include file="../../../common/html/classic/calendar.tpl" name=workData[PW_STARTDATE] style="margin-left: 2px"?></td>
+									</tr>
+								</table>
+								</td>
+  							  <? else ?>
+							  <td class="readonly_control" width="100%">
+							    <nobr><? $workData.PW_STARTDATE|sureecho ?>
+								<input name="workData[PW_STARTDATE]" type="hidden" value="<? $workData.PW_STARTDATE?>">
+								</nobr>
+							  </td>
+							  <? /if ?>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                 <nobr><? conditionalOutput invalidField=$invalidField field=PW_DUEDATE text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amr_duedate_label|cat:":" ?></nobr>
+                              </td>
+							  <? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+                              <td>
+								<table width="100%" cellspacing="0" cellpadding="0">
+									<tr>
+										<td><input name="workData[PW_DUEDATE]" type="text" class="control" value="<? $workData.PW_DUEDATE ?>" size="10" maxlength="10"></td>
+										<td><?include file="../../../common/html/classic/calendar.tpl" name=workData[PW_DUEDATE] style="margin-left: 2px"?></td>
+									</tr>
+								</table>										
+							  </td>
+							  <? else ?>
+							  <td class="readonly_control" width="100%">
+							    <nobr><? $workData.PW_DUEDATE|sureecho ?></nobr>
+							  </td>
+							  <? /if ?>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr><? conditionalOutput invalidField=$invalidField field=PW_ENDDATE text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amr_completedate_label|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control" width="100%">
+							    <nobr><? $workData.PW_ENDDATE|sureecho ?>
+								<input name="workData.PW_ENDDATE" type="hidden" id="workData.PW_ENDDATE" value="<? $workData.PW_ENDDATE ?>"></nobr>
+							  </td>
+                            </tr>
+                          </table></td>
+						<td valign="top"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+						<td valign="top">
+						  <table width="100%" border="0" cellspacing="2" cellpadding="0">
+                             <tr> 
+                               <td colspan="3" align="right" class="formSection"> 
+                                 <nobr><? $pmStrings.amr_personnel_label ?></nobr>
+                               </td>
+                             </tr>
+							 <tr>
+							   <td class="readonly_control">
+							     <nobr><? $pmStrings.amr_assigned_title ?></nobr>
+							   </td>
+							   <td>&nbsp;</td>
+							   <td class="readonly_control">
+							     <nobr><? $pmStrings.amr_notassigned_title ?></nobr>
+							   </td>
+							 </tr>
+							 <tr>
+							   <td align="center">
+ 			     			     <select name="assigned_users[]" class="control" multiple="true" size="8" style="width:148px" onDblClick="moveIt(1)">
+			                       <? html_options values=$assigned_users output=$assigned_users_names?>
+			                     </select>
+							   </td>
+							   <td align="center" valign="middle">
+									<a href="javascript: moveIt(1)"><img src="<? "images/buttons/moveRight.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a><br><br>
+									<a href="javascript: moveIt(0)"><img src="<? "images/buttons/moveLeft.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a><br>
+							   </td>
+							   <td align="middle">
+			                     <select name="available_users[]" class="control" multiple="true" size="8" style="width:148px"
+								 onDblClick="moveIt(0)">
+			                       <? html_options values=$available_users output=$available_users_names ?>
+			                     </select>
+							   </td>
+							 </tr>
+					       </table>
+					    </td>
+                       </tr>
+                    </table>
+					<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true?>
+					</td>
+			  </tr>
+			  <tr>
+			    
+            <td align="left" colspan="2" class="default"> 
+              <? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+			     <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=5 space_right=10 onClick="fillArray(1);" ?>
+			     <? include file="../../../common/html/classic/button.htm" align="left" name="saveaddbtn" caption=$pmStrings.amr_addanother_btn formname="form" space_right=10 onClick="fillArray(1);" ?>
+			    <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" onClick="fillArray(0);"?>
+              <? /if ?>
+            </td>
+			  </tr>
+			</table></td>
+		</tr>
+	  </table> 
+  <? else ?>
+  <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <input name="edited" type="hidden" id="edited" value="1">
+  <input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>">
+  <input name="action" type="hidden" id="action" value="<? $action ?>">
+  <input name="opener" type="hidden" id="opener" value="<? $opener ?>">
+  <input name="firstIndex" type="hidden" id="firstIndex" value="<? $firstIndex ?>">
+  <input name="list_action" type="hidden" id="list_action" value="<? $list_action ?>">
+  <input name="workData[P_STATUS]" type="hidden" id="workData[P_STATUS]" value="<? $workData.P_STATUS ?>">
+  <input name="workData[PW_STATUS]" type="hidden" id="workData[PW_STATUS]" value="<? $workData.PW_STATUS ?>">
+  <input name="workData[P_ID]" type="hidden" id="workData[P_ID]" value="<? $workData.P_ID ?>">
+  <input name="workData[PW_ID]" type="hidden" id="workData[PW_ID]" value="<? $workData.PW_ID ?>">
+  <input type="hidden" name="btndummy">
+  <?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+  
+  <? /strip ?>
+</body>
+</html>

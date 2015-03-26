@@ -1,0 +1,9 @@
+<Connector>
+	<Class>
+		<Name>Phones</Name>
+		<File>class.phones.php</File>
+		<Title>Перезвонить мне</Title>
+		<Description></Description>
+		<SingleInstallation>true</SingleInstallation>
+	</Class>
+</Connector>

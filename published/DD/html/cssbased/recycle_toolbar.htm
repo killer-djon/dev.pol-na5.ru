@@ -1,0 +1,16 @@
+<? if $curScreen == 0 ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$ddStrings.sv_screen_restore_btn name="restorebtn" onClick="return confirmRestore()" ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$ddStrings.sv_screen_delete_btn name="deletebtn" onClick="return confirmDeletion()" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+
+<? if $curScreen == 3 ?>
+	<? wbs_toolbarItem?>
+		<? wbs_buttonSetButton name="changeemailsettings" caption=$ddStrings.sv_change_btn ?>
+	<? /wbs_toolbarItem?>
+<? /if ?>

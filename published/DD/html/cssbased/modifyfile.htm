@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script language="JavaScript">
+		<!--
+			function confirmDelete()
+			{
+				return confirm( "<? $qnStrings.amn_screen_notedel_message ?>" );
+			}
+
+		//-->
+		</script>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'fileData' )">
+
+		<? wbs_pageLayout toolbar="modifyfile_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+
+				<? wbs_formLayout ?>
+
+					<? wbs_formContent ?>
+						<tr class="SeparatedRow">
+							<td colspan=2>
+								<ul class="Stack">
+									<li><img src="<? thumbnail fileName=$fileData.DL_FILENAME size=32 os=win ?>" align="left"></li>
+									<li><a href="<? $fileData.ROW_URL ?>" target="_blank"><? wbs_formCaption text=$fileData.DL_FILENAME|htmlsafe:true:true|wordwrap:40:"<br>":1 ?></a></li>
+								</ul>
+
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<? wbs_label for="fileData[DL_FILENAME]" fieldName="DL_FILENAME" text=$ddStrings.mf_screen_filename_label skipColon=false ?>
+							</td>
+							<td>
+								<input type="text" class="FormControl" style="width: 400px;" name="fileData[DL_FILENAME]" id="fileData[DL_FILENAME]" value="<? $fileData.DL_FILENAME|htmlsafe:true:true ?>" maxlength="255">
+							</td>
+						</tr>
+
+						<tr class="SeparatedRow">
+							<td valign="top">
+								<? wbs_label for="fileData[DL_DESC]" fieldName="DL_DESC" text=$ddStrings.mf_screen_description_label skipColon=false ?>
+							</td>
+							<td>
+								<textarea class="FormControl" style="width: 400px; height: 180px" name="fileData[DL_DESC]" id="fileData[DL_DESC]"><? $fileData.DL_DESC|htmlsafe_textarea:$edited ?></textarea>
+							</td>
+						</tr>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+							<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+						<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+				<? /wbs_formLayout ?>
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+	<input type=hidden name=DL_FILETYPE value="<? $DL_FILETYPE|htmlsafe:true:true ?>">
+	<input type=hidden name=DL_FILESIZE value="<? $DL_FILESIZE|htmlsafe:true:true ?>">
+	<input type=hidden name=DL_UPLOADDATETIME value="<? $DL_UPLOADDATETIME|htmlsafe:true:true ?>">
+	<input type=hidden name=DL_UPLOADUSERNAME value="<? $DL_UPLOADUSERNAME|htmlsafe:true:true ?>">
+	<input type=hidden name=fileName value="<? $fileName|htmlsafe:true:true ?>">
+	<input type="hidden" name="currentPage" value="<? $currentPage ?>">
+	<input type="hidden" name="DL_ID" value="<? $DL_ID ?>">
+
+	<? /wbs_pageLayout ?>
+
+</body>
+</html>

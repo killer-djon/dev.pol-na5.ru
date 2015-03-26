@@ -1,0 +1,265 @@
+<div style="overflow: auto; width: 100%; height: 100%" id="rightscrolldiv">
+	<? assign var="popupindex" value=0 ?>	
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="issueList">
+
+		<? assign var=issueIndex value=0 ?>
+
+		<!-- header -->
+		<tr class=issueList_gridHeader>
+			<? foreach from=$columnNames item=colName key=colID name=headerLoop ?>
+				<? assign var=headerClass value="" ?>
+				<? if !$smarty.foreach.headerLoop.last || $viewdata.DISPLAYSENDLINKS  ?>
+					<? assign var=headerClass value="issueList_gridHeader_rightBorder" ?>
+				<? /if ?>
+				<td width="<? $it_list_columns_widths.$colID ?>" class="<? $headerClass ?>"><? if $colID != I_PRIORITY ?><? $colName ?><? else ?><? #prImg# ?><? /if ?></td>
+			<? /foreach ?>
+			<? if $viewdata.DISPLAYSENDLINKS ?>
+				<td width=11>&nbsp;</td>
+			<? /if ?>
+		</tr>
+
+		<? foreach from=$issueList item=listRecord name=issueLoop key=rowIndex ?>
+
+			<? assign var=listIndex value=$smarty.foreach.issueLoop.iteration ?>
+
+			<? if $listRecord.ROW_TYPE == 1 ?>
+				<!-- task record -->
+
+				<? assign var=issueIndex value=0 ?>
+
+				<? assign var=taskClass value="issueList_task" ?>
+
+				<? if !$smarty.foreach.issueLoop.last ?>
+					<? if $listIndex != 1 ?>
+						<? math equation="x-1" x=$rowIndex assign=prevRowIndex ?>
+						<? assign var=prevRecord value=$issueList[$prevRowIndex] ?>
+						<? math equation="x+1" x=$rowIndex assign=nextRowIndex ?>
+						<? assign var=nextRecord value=$issueList[$nextRowIndex] ?>
+
+						<? if $prevRecord.ROW_TYPE == 0 && $nextRecord.ROW_TYPE == 1 ?>
+							<? assign var=taskClass value=$taskClass|cat:" issueList_task_middle" ?>
+						<? elseif $prevRecord.ROW_TYPE == 0 && $nextRecord.ROW_TYPE == 0  ?>
+							<? assign var=taskClass value=$taskClass|cat:" issueList_task_middle" ?>
+						<? elseif $prevRecord.ROW_TYPE == 1 && $nextRecord.ROW_TYPE == 1  ?>
+							<? assign var=taskClass value=$taskClass|cat:" issueList_task" ?>
+						<? elseif $prevRecord.ROW_TYPE == 1 && $nextRecord.ROW_TYPE == 0  ?>
+							<? assign var=taskClass value=$taskClass|cat:" issueList_task" ?>
+						<? /if ?>
+
+					<? /if ?>
+				<? else ?>
+					<? if $listIndex == 1 ?>
+						<? assign var=taskClass value=$taskClass|cat:" issueList_task_bottom" ?>
+					<? else ?>
+						<? math equation="x-1" x=$rowIndex assign=prevRowIndex ?>
+						<? assign var=prevRecord value=$issueList[$prevRowIndex] ?>
+
+						<? if $prevRecord.ROW_TYPE == 0 ?>
+							<? assign var=taskClass value=$taskClass|cat:" issueList_task_bottom" ?>
+						<? else ?>
+							<? assign var=taskClass value=$taskClass|cat:" issueList_task_nobord" ?>
+						<? /if ?>
+					<? /if ?>
+				<? /if ?>
+
+				<? if $listRecord.CLOSED ?>
+					<? assign var=taskClass value=$taskClass|cat:" issueList_task_complete" ?>
+				<? /if ?>
+
+				<tr>
+					<td colspan=<? $visibleColumnNum ?>>
+						<table cellspacing="0" cellpadding="0" border=0 width="100%">
+							<tr>
+								<!-- checkbox -->
+								<td width=10 class="<? $taskClass ?>" valign=top><input type=checkbox name="selectAllDocsCB" onClick="selectIssues(<? $listRecord.PW_ID ?>, this)"></td>
+								<!-- task description -->
+								<td class="<? $taskClass ?>">
+									<? makeLink text=$itStrings.il_task_label|cat:" "|cat:$listRecord.PW_ID|cat:": "|cat:$listRecord.PW_DESC href=$listRecord.editWorkURL ?>
+									[<a href="<? $listRecord.EXPANDLINK ?>"><span class=issueList_link_smallfont_a><? switchedOutput val=$listRecord.EXPANDSTATUS true_val="expanded" str2=$itStrings.il_showissues_label|cat:" ("|cat:$listRecord.issueNum|cat:")" str1=$itStrings.il_hideissues_label?></span></a>]
+								</td>
+								<!-- add issue link -->
+								<td class="<? $taskClass ?>" align=right valign=bottom>
+									<? if !$listRecord.CLOSED ?>
+										<nobr>
+											<? if $userIsProjman ?>
+												[<a href="<? $listRecord.ITSSETUPLINK ?>"><span class=issueList_link_smallfont_a><? $itStrings.il_workflow_btn ?></span></a>]
+											<? /if ?>
+											[<a href="<? $listRecord.addIssueLink ?>"><span class=issueList_link_smallfont_a><? $itStrings.il_addissue_btn ?></span></a>]
+										</nobr>
+									<? else ?>
+										<nobr>[<span class=issueList_link_smallfont><? $itStrings.il_completetask_label ?></span>]</nobr>
+									<? /if ?>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			<? else ?>
+			<!-- issue record -->
+
+				<? if !$smarty.foreach.issueLoop.last ?>
+					<? math equation="x+1" x=$rowIndex assign=nextRowIndex ?>
+					<? assign var=nextRecord value=$issueList[$nextRowIndex] ?>
+
+					<? if $nextRecord.ROW_TYPE == 0 ?>
+						<? assign var=issueClass value="issuelist_issue_bottom" ?>
+					<? else ?>
+						<? assign var=issueClass value="issuelist_issue_middle" ?>
+					<? /if ?>
+
+				<? else ?>
+					<? assign var=issueClass value="issuelist_issue_middle" ?>
+				<? /if ?>
+
+				<? assign var=originalClass value=$issueClass ?>
+
+				<tr class=issueList_issue <? if ($issueIndex % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>>
+
+					<? if $listRecord.dummy ?>
+						<td class=<? $issueClass ?>  valign=top align=center colspan=<? $visibleColumnNum ?>><? $itStrings.il_noissues_text|htmlsafe:true:true ?></td>
+					<? else ?>
+						<? foreach from=$columnNames item=colName key=colID name=columnLoop ?>
+
+							<? if !$smarty.foreach.columnLoop.last || $viewdata.DISPLAYSENDLINKS ?>
+								<? assign var=issueClass value=$originalClass|cat:"_rightBorder" ?>
+							<? /if ?>
+
+							<td class=<? $issueClass ?> valign=top>
+
+								<!-- checkbox -->
+								<? if $colID == CHECKBOX ?>
+									<input type=checkbox name="document[<? $listRecord.I_ID ?>]" value=1>
+									<input type=hidden name="PW[<? $listRecord.I_ID ?>]" value='<? $listRecord.P_ID|cat:"|"|cat:$listRecord.PW_ID ?>'>
+									<input type=hidden name="TS[<? $listRecord.I_ID ?>]" value='<? $listRecord.CTATUS_CODE ?>'>
+									<input type=hidden name="ADC[<? $listRecord.I_ID ?>]" value='<? $listRecord.ALLOWED_DESTS_COUNT ?>'>
+									<input type=hidden name="TASK[<? $listRecord.I_ID ?>]" value='<? $listRecord.PW_ID ?>'>
+								<? /if ?>
+
+								<!-- priority marker -->
+								<? if $colID == I_PRIORITY ?>
+									<div class=issuelist_issue_cell>
+										<? if $listRecord.I_PRIORITY == 0 ?><? #pr_lowImg# ?><? elseif $listRecord.I_PRIORITY == 2 ?><? #pr_highImg# ?><? else ?><? #sep5_img# ?><? /if ?>
+									</div>
+								<? /if ?>
+
+								<!-- issue content -->
+								<? if $colID == I_DESC ?>
+									<div class=issuelist_issue_cell>
+										<a href="<? $listRecord.ROW_URL ?>">
+										<? $listRecord.ROW_COLOR?>
+										<? if $viewdata.RESTRICTDESCRIPTION ?>
+											<? $listRecord.I_DESC|trunc_str:$descLen?>
+											<? if $listRecord.DESC_LEN > $descLen?>
+												<? "["|cat:$itStrings.il_more_text|cat:"]" ?>
+											<? /if ?>
+										<? else ?>
+											<? $listRecord.I_DESC?>
+										<? /if ?>
+										</a>
+										<? if $listRecord.ATTACHEDFILES ?>
+											</b></font>
+											<br>
+											<span class=issueList_files>
+												<? $listRecord.ATTACHEDFILES ?>
+											</span>
+										<? /if ?>
+										<? if $listRecord.I_TRANSITION_DESC != "" ?>
+											</b></font>
+											<br><br>
+											<? "<strong>"|cat:$itStrings.il_comments_text|cat:"</strong>: "|cat:$listRecord.I_TRANSITION_DESC|trunc_str:$descLen ?>
+										<? /if ?>
+									</div>
+									<? include file="../../../IT/html/classic/transloginline.htm" ?>
+								<? /if ?>
+
+								<!-- sender -->
+								<? if $colID == U_ID_AUTHOR ?>
+									<div class=issuelist_issue_cell>
+										<a href="<? $listRecord.ROW_URL ?>">
+											<nobr><? $listRecord.U_ID_AUTHOR|htmlsafe:true:true ?></nobr>
+										</a>
+									</div>
+								<? /if ?>
+
+								<!-- sender -->
+								<? if $colID == U_ID_SENDER ?>
+									<div class=issuelist_issue_cell>
+										<a href="<? $listRecord.ROW_URL ?>">
+											<nobr><? $listRecord.U_ID_SENDER|htmlsafe:true:true?></nobr>
+										</a>
+									</div>
+								<? /if ?>
+
+								<!-- assignee -->
+								<? if $colID == U_ID_ASSIGNED ?>
+									<div class=issuelist_issue_cell>
+										<a href="<? $listRecord.ROW_URL ?>">
+											<nobr><? $listRecord.U_ID_ASSIGNED?></nobr>
+										</a>
+									</div>
+								<? /if ?>
+
+								<!-- status -->
+								<? if $colID == I_STATUSCURRENT ?>
+									<div class=issuelist_issue_cell>
+										<a href="<? $listRecord.ROW_URL ?>">
+											<nobr><? $listRecord.I_STATUSCURRENT ?></nobr>
+										</a>
+									</div>
+								<? /if ?>
+
+								<!-- ID -->
+								<? if $colID == I_NUM ?>
+									<div class=issuelist_issue_cell>
+										<a href="<? $listRecord.ROW_URL ?>">
+											<nobr><? $listRecord.DISPLAY_NUM ?></nobr>
+										</a>
+									</div>
+								<? /if ?>
+
+								<!-- date -->
+								<? if $colID == I_STARTDATE ?>
+									<div class=issuelist_issue_cell>
+										<a href="<? $listRecord.ROW_URL ?>">
+											<nobr><? $listRecord.I_STARTDATE ?></nobr>
+										</a>
+									</div>
+								<? /if ?>
+
+							</td>
+						<? /foreach ?>
+
+						<!-- forward menu -->
+						<? if $viewdata.DISPLAYSENDLINKS ?>
+							<td class=<? $originalClass ?> valign=top width=11>
+								<div class=issuelist_issue_cell>
+									<? math equation="x+1" x=$popupindex assign=popupindex ?>
+									<? if $listRecord.ALLOWED_DESTS_COUNT ?>
+										<? assign var=menuContent value="images/buttons/forwardicon.gif"|stylesetitem:"classic":$styleSet:"IT" ?>
+
+										<a href="<? $listRecord.SEND_URL ?>"><img alt="<? $itStrings.il_forwardissue_hint?>" src="<? $menuContent ?>" width=15 height=13 border=0></a>
+									<? else ?>
+										<img alt="<? $itStrings.il_cantforwardissue_hint ?>" src="<? 'images/buttons/forbiddenicon.gif'|stylesetitem:"classic":$styleSet:"IT" ?>" border=0>
+									<? /if ?>
+								</div>
+							</td>
+						<? /if ?>
+					<? /if ?>
+				</tr>
+
+				<? math equation="x+1" x=$issueIndex assign=issueIndex ?>
+
+			<? /if ?>
+
+		<? foreachelse ?>
+			<tr>
+				<td colspan=<? $visibleColumnNum ?> align=center><div class="noentries"><? $itStrings.il_noissues_text|htmlsafe:true:true ?></div></td>
+			</tr>
+		<? /foreach ?>
+
+	</table>
+
+	<? include file="../../../IT/html/classic/ul_pages.htm" ?>
+
+</div>

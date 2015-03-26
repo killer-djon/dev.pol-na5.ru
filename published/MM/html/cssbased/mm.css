@@ -1,0 +1,52 @@
+body { padding: 0; margin: 0;}
+.Button {padding: 20px 10px; border: 1px solid gray; text-decoration: none}
+.Button:hover {background: #CCC}
+.DeleteFile {text-decoration: underline; cursor: pointer; color: indianred;}
+.ErrorStr {font-weight: bold; color: indianred;}
+.OverList {background-color: #E6E6FA; cursor: pointer}
+.OutList {background-color: white}
+.Link {text-decoration: underline; color: #0044AA; cursor: pointer}
+.PopUpMenu {border-collapse:collapse; border-spacing:0; padding:0; margin:0}
+.HeaderLine {font-family: Trebuchet MS; background-color: lavender; border-bottom: 1px solid gray}
+.ErrorStr {font-weight: bold; color: indianred}
+.searchResults {background: gold}
+.sendConfirmText {color: indianred}
+.comboControl {padding: 2px 4px; vertical-align: top}
+
+div.fileInputContainer {
+	position: relative;
+	overflow:hidden;
+	height: 1.5em;
+}
+div.visibleFileInput {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+	text-decoration:underline;
+	font-weight:bold;
+	color:#1352D2;
+	cursor:pointer !important;
+}
+input.file {
+	position: relative;
+	right: 11em;
+	text-align: right;
+	font-size:2em;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+ 	z-index: 2;
+	cursor:pointer !important;
+}
+
+#UploadImageDiv, #contactsForInclude, #SendSubContacts { border: 1px solid gray; background: white}
+#SendSubContacts {position: absolute; z-index: 2400}
+#contactsForInclude, #ssc_lists {width: 100%; height: 125px; overflow: auto}
+#contactsForInclude table, #ssc_lists table {
+	width:100%; border-collapse:collapse; border-spacing:0; padding:0; margin:0; border:0
+}
+#contactsForInclude td, #ssc_lists td {height: 25px; padding: 0 4px}
+.top_form_compose {  background: #edeffc; padding: 10px;}
+.editor_table { background: #f7fafc; border: 3px solid #edeffc; padding:3px; }
+.popup_div { padding: 5px;}

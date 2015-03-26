@@ -1,0 +1,123 @@
+<? if $viewMode == 1 ?>
+
+	<table class="List">
+
+			<? assign var=index value=0 ?>
+
+			<? foreach from=$notes key=note_ID item=noteData name=noteLoop ?>
+				<tr>
+					<td width="10" >
+						<input type="checkbox" name="document[<?$noteData.QN_ID?>]" value="<?$noteData.QN_ID?>">
+						<input type=hidden name="noterights[<?$noteData.QN_ID?>]" value="<? $noteData.TREE_ACCESS_RIGHTS ?>">
+					</td>
+					<td>
+						<table class="ListItem">
+						<thead>
+							<tr>
+								<th scope="col" class="<? $subscrClass ?>">
+									<a href="<? $noteData.ROW_URL ?>"><? $noteData.QN_SUBJECT|htmlsafe:true:true|truncate:150 ?></a>
+								</th>
+								<td class="AlignRight NoBreak"><? $noteData.QN_MODIFYUSERNAME|cat:" " ?><? $noteData.QN_MODIFYDATETIME?></td>
+							</tr>
+						</thead>
+						<tbody>
+
+						<? if $noteData.ATTACHEDFILES || $noteData.QN_CONTENT ?>
+						<tr>
+							<td colspan=2>
+								<? if $noteData.QN_CONTENT ?>
+									<span class=smallFont>
+										<? if $contentLimit != 0 ?>
+											<? $noteData.QN_CONTENT|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?>
+										<? else ?>
+											<? $noteData.QN_CONTENT|htmlsafe:true:true|sureecho ?>
+										<? /if ?>
+									</span>
+								<? /if ?>
+								<? if $noteData.ATTACHEDFILES ?>
+									<? if $noteData.QN_CONTENT ?><br><?/if?>
+									<span class=smallFont><? $qnStrings.qn_screen_files_label|cat:": " ?><? $noteData.ATTACHEDFILES ?></span>
+								<? /if ?>
+							</td>
+						</tr>
+						<? /if ?>
+						</table>
+					</td>
+				</tr>
+		<? foreachelse ?>
+			<tr class="NoRecords">
+				<td colspan="3">
+					<? $qnStrings.qnp_screen_norecords_label|htmlsafe:true:true ?>
+				</td>
+			</tr>
+		<? /foreach ?>
+
+		</table>
+
+<? else ?>
+		<table class="Grid">
+		<thead>
+			<tr>
+				<? if $numDocuments ?>
+					<th align="left" width="10px" style="width: 10px"><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"></th>
+				<? /if ?>
+
+				<? foreach from=$visibleColumns item=columnID ?>
+					<? assign var=nameIndex value=$qn_columnNames[$columnID] ?>
+					<? assign var=columnName value=$qnStrings[$nameIndex] ?>
+
+					<? if $columnID != "ATTACHEDFILES" ?>
+						<th align="left">
+							<? wbs_sortColumn ajax=true status=$sorting field=$columnID ?><? $columnName ?><? /wbs_sortColumn ?>
+						</th>
+					<? else ?>
+						<th align="left"><? $columnName ?></th>
+					<? /if ?>
+				<? /foreach ?>
+
+			</tr>
+		</thead>
+		<tbody>
+
+			<? foreach from=$notes key=note_ID item=noteData name=noteLoop ?>
+				<tr class="<? wbs_oddItem index=$smarty.foreach.noteLoop.iteration ?>">
+					<? if $numDocuments ?>
+						<td align=left valign=top width="10px" style="width: 10px"><input type="checkbox" name="document[<?$noteData.QN_ID?>]" value="<?$noteData.QN_ID?>"><input type=hidden name="noterights[<?$noteData.QN_ID?>]" value="<? $noteData.TREE_ACCESS_RIGHTS ?>"></td>
+					<? /if ?>
+
+					<? foreach from=$visibleColumns item=columnID ?>
+						<? if $columnID == "QN_CONTENT" ?>
+							<td valign=top>
+								<a href="<? $noteData.ROW_URL ?>">
+									<? if $contentLimit != 0 ?>
+										<? $noteData.QN_CONTENT|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?>
+									<? else ?>
+										<? $noteData.QN_CONTENT|htmlsafe:true:true|sureecho ?>
+									<? /if ?>
+								</a>
+							</td>
+						<? elseif $columnID == "ATTACHEDFILES" ?>
+							<td valign=top class=InlineLinks><? $noteData.$columnID|sureecho ?></td>
+						<? elseif $columnID == "QNF_NAME" ?>
+							<td valign=top>
+								<a href="<? $noteData.FOLDER_URL ?>">
+									<? if $contentLimit != 0 ?>
+										<? $noteData.$columnID|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?>
+									<? else ?>
+										<? $noteData.$columnID|htmlsafe:true:true|sureecho ?>
+									<? /if ?>
+								</a>
+							</td>
+						<? else ?>
+							<td valign=top><a href="<? $noteData.ROW_URL ?>"><? $noteData.$columnID|strip|htmlsafe:true:true|sureecho ?></a></td>
+						<? /if ?>
+					<? /foreach ?>
+				</tr>
+			<? foreachelse ?>
+				<tr class="NoRecords">
+						<td colspan="<? $numVisibleColumns ?>" class="default"><? $qnStrings.qnp_screen_norecords_label|htmlsafe:true:true ?></td>
+				</tr>
+			<? /foreach ?>
+		</tbody>
+		</table>
+<? /if ?>

@@ -1,0 +1,78 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="../../../DD/html/classic/stylesets/dd.css" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+	<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+		<? include file="../../../common/html/classic/header.htm"?>
+
+		<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr?>
+
+		<? if !$fatalError ?>
+
+			<? include file="../../../common/html/classic/button.htm" name="cancelbtn" caption=$ddStrings.rep_backtorepors_btn formname="form"?>
+
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<div style='padding-left: 1px'>
+				<table border="0" cellspacing="0" cellpadding="0" class="dd_report_table dd_strongBorder">
+					<tr class=dd_report_head>
+						<td align=left width=300><? $ddStrings.rep_ftsfiletype_title ?></td>
+						<td align=right><? $ddStrings.rep_ftsfilesize_title ?></td>
+						<td align=right><? $ddStrings.rep_ftsfiles_title ?></td>
+					</tr>
+
+					<? foreach from=$reportData key=fileType item=typeData name=reportLoop ?>
+						<tr>
+							<td class="dd_bottomBorder" valign=top><? $fileType|htmlsafe:true:true|sureecho ?></td>
+							<td class="dd_bottomBorder" align=right valign=top><? $typeData.SIZE|htmlsafe:true:true ?>&nbsp;</td>
+							<td class="noRightBorder dd_bottomBorder" align=right valign=top><? $typeData.CNT|htmlsafe:true:true|sureecho ?></td>
+						</tr>
+					<? foreachelse ?>
+						<tr>
+							<td colspan=3 height=20 align=center valign=middle>
+								<? $ddStrings.rep_norecords_label|htmlsafe:true:true ?>
+							</td>
+						</tr>
+					<? /foreach ?>
+
+					<? if $reportDataCount ?>
+						<tr>
+							<td><b><? $ddStrings.rep_totals_label ?></b></td>
+							<td align=right><b><? $totals.size|htmlsafe:true:true|sureecho ?></b></td>
+							<td align=right class="noRightBorder"><b><? $totals.files|htmlsafe:true:true|sureecho ?></b></td>
+						</tr>
+					<? /if ?>
+				</table>
+			</div>
+
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$ddStrings.rep_backtorepors_btn formname="form"?>
+		<? else ?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+		<? /if ?>
+		<input type="hidden" name="btndummy">
+		<input type="hidden" name="edited" value="1">
+	<?include file="../../../common/html/classic/pagefooter.htm"?>
+	</form>
+<? /strip ?>
+</body>
+</html>

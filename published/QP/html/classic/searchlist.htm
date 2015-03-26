@@ -1,0 +1,53 @@
+	<div style="overflow: auto; width: 100%; height: 100%" id="rightscrolldiv">
+		<br>
+		<? if ( $showPageSelector ) ?>
+		<table width="98%" border="0" cellspacing="0" cellpadding="0" align=center>
+			<tr>
+			<td align="right"><table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="right" valign="middle">
+					<? $kernelStrings.ul_page_label|cat:":&nbsp;" ?>
+					</td>
+					<td><select name="currentPage" class="control" onChange="this.form.submit()">
+						<? html_options values=$pages selected=$currentPage output=$pages ?>
+					</select></td>
+					<td align="right" valign="middle">
+					<? "&nbsp;"|cat:$kernelStrings.ul_of_label|cat:" "|cat:$pagesNum ?>
+					</td>
+				</tr>
+				</table></td>
+			</tr>
+			<tr>
+			<td align="right"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+			</tr>
+		</table>
+		<? else?>
+			<? assign var=currentPage value=1 ?>
+		<? /if ?>
+		<table width="100%" border="0" cellspacing="10" cellpadding="10">
+		<tr>
+		<td>
+		<? if $searchCount ?>
+
+				<ol>
+				<? $pagesFound ?><br>&nbsp;
+				<? assign var=tempA value=$currentPage-1 ?>
+				<? counter start=$tempA*30 print=false?>
+				<? foreach from=$searchResult item=searchRow key=tplIndex ?>
+					<li value=<? counter ?>>
+
+					<p><a <? if !isset( $publicSearch ) ?>style="font-size: 10pt; color: #0000ff; text-decoration: none;"<? /if ?> href=<? $searchRow->ROW_URL ?>><? $searchRow->NAME  ?></a>
+					<BR><? $searchRow->TEXT ?>
+					<br>&nbsp;
+					</li>
+
+				<? /foreach ?>
+				</ol>
+			<? else ?>
+				<? $qpStrings.app_search_norecords_label|htmlsafe:true:true ?></td>
+			<? /if ?>
+		</td>
+		</tr>
+		</table>
+
+	</div>

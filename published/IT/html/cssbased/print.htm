@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script type="text/JavaScript">
+			function returnToIL() 
+			{
+				location.href="issuelist.php<? if $trans_sid ?><? "?"|cat:$session_name|cat:"="|cat:$session_id ?><? /if ?>";
+			}
+
+			function processForm( formObj ) 
+			{
+				formObj =  document.forms[0];
+
+				formObj.target="_blank";
+				formObj.submit(); 
+//				returnToIL();
+			}
+
+			function cancelForm( formObj ) 
+			{
+				returnToIL();
+			}
+		</script>
+
+	</head>
+	<body>
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr class="SeparatedRow">
+							<td><? wbs_label text=$itStrings.pr_formtext_label ?></td>
+						</tr>
+						<tr>
+							<td class="Indent">
+
+								<table class="FormLayout">
+									<tr>
+										<td><input type=radio <? wbs_checkboxStatus val=$printMode true_val=0 ?> name=printMode id="mode0" value=0/></td>
+										<td><? wbs_label for="Mode0" text=$itStrings.pr_selected_label|cat:" ("|cat:$selectedNum|cat:")" skipColon=true ?></td>
+									</tr>
+
+									<tr>
+										<td><input type=radio <? wbs_checkboxStatus val=$printMode true_val=1 ?> name=printMode id="mode1" value=1/></td>
+										<td><? wbs_label for="Mode1" text=$itStrings.pr_curpage_label skipColon=true ?></td>
+									</tr>
+
+									<tr>
+										<td><input type=radio <? wbs_checkboxStatus val=$printMode true_val=2 ?> name=printMode id="mode2" value=2/></td>
+										<td><? wbs_label for="Mode2" text=$itStrings.pr_entire_label skipColon=true ?></td>
+									</tr>
+								</table>
+
+							</td>
+						</tr>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton caption=$itStrings.pr_print_btn name="savebtn" link="javascript:processForm(this.form);" ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" link="javascript:cancelForm(this.form);" ?>
+							<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout?>
+			<? /if ?>
+
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+			<input name="PW_ID" type="hidden" value="<? $PW_ID ?>"/>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

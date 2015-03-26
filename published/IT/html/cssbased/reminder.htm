@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'data' )">
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_note smallFont=false displayNoteMarker=false ?><? $itStrings.rem_sendto_label|cat:":" ?><? /wbs_note ?>
+
+				<ul class="List">
+					<? foreach from=$userIssueData key=cur_id item=userData ?>
+						<li><? $userData.USER_NAME|cat:"&nbsp;"?><? "("|cat:$itStrings.rem_issues_label|cat:":&nbsp;"|cat:$userData.count|cat:")"?></li>
+					<? /foreach ?>
+				</ul>
+
+				<? wbs_note smallFont=false ?><? $itStrings.rem_note_text ?><? /wbs_note ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td><? wbs_label text=$itStrings.rem_note_label for="comment" ?></td>
+						</tr>
+						<tr class="SeparatedRow">
+							<td>
+								<textarea name="data[comment]" id="comment" rows="5" class="FormControl" style="width: 400px"><? $data.comment|htmlsafe_textarea:$edited ?></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type=checkbox value=1 name="headersonly" id="headers">
+								<? wbs_label text=$itStrings.rem_headersonly_label skipColon=true for="headers" ?>
+							</td>
+						</tr>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton caption=$itStrings.rem_send_btn name="savebtn" ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+						<? /wbs_buttonSet ?>
+
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+			<? else ?>
+				<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+			<? /if ?>
+
+			<input type="hidden" name="issues" value=<? $issues ?>/>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

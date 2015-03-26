@@ -1,0 +1,61 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	translate.btn_delete = '{"prfilter_delete"|transcape}';
+	var conf_full_shop_url = "{$smarty.const.CONF_FULL_SHOP_URL|escape:'html'}";
+	{if $template.template_json}var template_load = '{$template.template_json}';{else}var template_load = false;{/if}
+</script>				
+<script type="text/javascript" src="{$smarty.const.URL_JS}/JsHttpRequest.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/niftycube.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/prfilter/prfilter_admin.js"></script>
+<script type='text/javascript' src='{$smarty.const.URL_JS}/widget_checkout.js'></script>
+<link href="{$smarty.const.URL_CSS}/prfilter_admin.css" rel="stylesheet" type="text/css" />
+
+
+<h1 class="breadcrumbs">{"prfilter_export"|translate}</h1>
+
+<p></p>
+<ul id="edmod">
+	<li class="tab" style="float:right;" ><a href='{"?ukey=prfilter_admin&action=delete_all"|set_query_html}' class="confirm_action" title='{"prfilter_removeallQ"|translate}'>{"prfilter_removeall"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_admin"|set_query_html}'>{"prfilter_menu_options"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_templates"|set_query_html}'>{"prfilter_menu_templates"|translate}</a></li>
+	<li class="tab current" ><a href='{"?ukey=prfilter_export_excel"|set_query_html}'>{"prfilter_menu_export"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_import_excel"|set_query_html}'>{"prfilter_menu_import"|translate}</a></li>
+</ul>
+<script type="text/javascript">Nifty("li.tab","top same-height");</script>	
+
+{$MessageBlock}
+
+
+{if $excel_errormsg ne NULL}<font color=red><b>{$excel_errormsg}</b></font>{/if}
+
+<form action="" method="post">
+<input type="hidden" name="action" value="excel_export">
+	<p>{"prfilter_export_desc"|translate}</p>
+	<table>
+	<tr>
+		<td>{"prfilter_delimiter"|translate}</td>
+		<td>
+			<select name="delimiter">
+				<option value=";">{"prdimport_csv_delimeter_semicolon"|translate} (;)</option>
+				<option value=",">{"prdimport_csvl_delimeter_comma"|translate} (,)</option>
+				<option value="\t">{"prdimport_csvl_delimeter_tab"|translate}</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>{"prfilter_charset"|translate}:</td>
+		<td>
+			<select name="charset">
+			{foreach from=$charsets item=_charset}
+			<option value="{$_charset|escape:'html'}" {if $default_charset eq $_charset}selected="selected"{/if}>{$_charset|escape:'html'}</option>
+			{/foreach}
+			</select>
+		</td>
+	</tr>
+	</table>
+
+	<div class="prfilter-save"><input value="{'prfilter_export_save'|translate}" type="submit"/></div>
+	
+</form>
+

@@ -1,0 +1,206 @@
+<script src='../../../common/html/res/ext/ext-small.js'></script>
+<script>Ext.BLANK_IMAGE_URL = '../../../common/html/res/ext/resources/images/default/s.gif'</script>
+<link rel='stylesheet' type='text/css' href='../../../common/html/res/ext/resources/css/tree.css'>
+<link rel='stylesheet' type='text/css' href='../../../common/html/res/ext/resources/css/core.css'>
+<link rel='stylesheet' type='text/css' href='../../../common/html/res/ext/resources/css/window.css'>
+<script src='<? $preproc->getTemplatesUrl("js/common.js") ?>'></script>
+
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_tree.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_reader.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_data_store.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_viewmode_selector.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_table.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_footer.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_pager.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_scroll_page.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_popmenu.js"></script>
+<script src="<? $smarty.const.TEMPLATES_URL ?>/elements/js/wbs_dlg.js"></script>
+<script src="../cssbased/catalognew.js"></script>
+
+<style>
+	img {border:0px}
+	table {border-collapse: collapse; }
+	body {overflow-y: hidden}
+	
+	.viewmode-selector .mode-elem {float: left; }
+	.viewmode-selector .mode-elem img {cursor: pointer}
+	
+	.records-list .columns {width: 100%}
+	.records-list .columns thead tr th {text-align: left;}
+	.records-list .columns {border-width: 0px; border-top-width: 0px; border-color: #CCC; border-style: solid}
+	.records-list .columns tr td, .records-list .columns tr th {border-width: 0px; border-color: #DDD; border-bottom-width: 1px; border-style: solid}
+	.records-list .columns tr td, .records-list .columns tr th {padding: 1px 3px}
+	.records-list .columns .fsize {text-align: right; white-space: nowrap}
+	
+	.records-list .columns thead tr {
+		background:white url(../../../common/html/cssbased/themes/simplelist-background-gradient-gray.gif) repeat-x scroll center bottom;
+	}
+	.records-list .columns thead tr th {
+		border-bottom:1px solid #DCDCDC;
+		border-right:1px solid #DCDCDC !important;
+		font-weight: normal
+	}
+	
+	.records-list .header {background:white url(../../../common/html/cssbased/themes/simplelist-background-gradient-gray.gif) repeat-x scroll center bottom; border-bottom:1px solid #DCDCDC; padding: 0px 3px; margin-bottom: 5px}
+	.records-list .header .sorting-panel {float: right; margin-right: 5px; font-size: 0.9em; padding-top: 3px; line-height: 15px}
+	.records-list .header .sorting-panel .sort-column {padding-right: 7px; border-right: 1px solid #CCC; padding-left: 7px; float: left}
+	.records-list .header .sorting-panel .sort-column.last {border-right: 0px}
+	.records-list .header .sorting-panel .label {float: left}
+	
+	
+	.records-list .list .item {margin-left: 3px; padding-bottom: 10px; overflow: hidden; zoom: 1; margin-bottom: 10px}
+	.records-list .list .item .name {font-size: 1.2em; }
+	.records-list .list .item a.wrap-image img.icon {float: left; margin-right: 10px}
+	
+	.records-list .list input.shared-url  {background: #FFF}
+	.records-list .list.bigicons input.shared-url  {display: block; }
+	*html .records-list .list.bigicons input.shared-url  {margin-left: -60px}
+	
+	.records-list .list .controls {float: left}
+	
+	.records-list .list .controls .control-icon {margin-left: 3px}
+	.records-list .list input.wbs-table-checkbox {display: block}
+	.records-list .list.smallicons input.wbs-table-checkbox {margin-top: 2px; }
+	*html .records-list .list .controls .control-icon {margin-left: 2px; display: block}
+	*html .records-list .list.smallicons input.wbs-table-checkbox {margin-top: -2px}
+	
+	
+	.records-list .list.smallicons .item {border-bottom: 1px solid #EEE}
+	.records-list .list.smallicons .item .content {float: left; margin: 0px; width: 87%}
+	.records-list .list.smallicons a.wrap-image {display: block; margin-left: 5px; float: left}
+	.records-list .list.bigicons .item .content {margin: 0px; margin-left: 140px; }
+	.records-list .list.bigicons input.wbs-table-checkbox {margin-top: 0px}
+	.records-list .list.bigicons a.wrap-image {width: 100px; height: 100px; display: block; float: left; text-align: center}
+	.records-list .list.bigicons a.wrap-image img {float: none; }
+	
+	.records-list .list .shared-info {overflow: hidden; zoom: 1}
+	.records-list .list .shared-info img, .records-list .list .shared-info input {float: left; margin-right: 4px}
+	.records-list .list .shared-info img {margin-top: 2px}
+	.records-list .list .checked-info img {margin-top: 3px; margin-right: 4px}
+	
+	.records-list .tile .item {text-align: center; float: left; width: 110px; height: 130px; margin: 8px; font-size: 0.9em;}
+	.records-list .tile .item .name {font-size: 1em; overflow: hidden; white-space: nowrap; }
+	* html .records-list .tile .item .name {width: 100%}
+	
+	.records-list .list .item .name {overflow: hidden; zoom: 1}
+		.records-list .list .item .name a {float: left}
+		.records-list .tile .item input.wbs-table-checkbox {float: left; margin-left: 1px}	
+		*html .records-list .tile .item input.wbs-table-checkbox {margin-left: -3px}
+		.records-list .tile .item .controls div.control-icon {float: left;}	
+		.records-list .tile .item .controls {text-align: center}
+		.records-list .tile .item .controls img {float: right}
+		.records-list .tile .item .controls img {margin-left: -3px; }
+	
+	.records-list .item .desc {font-size: 0.9em; cursor: pointer}
+	.records-list .item .addinfo {font-size: 0.9em}
+	.records-list .item .small-gray {padding-top: 3px; margin-top: 3px}
+	.records-list .item .small-gray span {padding-right: 10px; font-size: 0.8em; color: #999; }
+	
+	.control-icon {float: left; cursor: pointer; width: 15px; height: 15px; background: URL("../../../common/templates/img/arr.gif"); background-repeat: no-repeat }
+	
+	.records-list {overflow: auto}
+	
+	* html  .screen-left-block {margin-right: -3px}
+	.screen-content-block {overflow-y: auto; padding: 0px; height: 100%;}
+	
+	.wbs-scroll-page {height: 100%; }
+		.wbs-scroll-page .wbs-header {padding: 0px 10px; border-bottom: 1px solid #DCDCDC}
+		.wbs-scroll-page .wbs-scroll-page-content {overflow: hidden; }
+		.wbs-scroll-page .wbs-footer {border-top: 1px solid #CCC; background: #F0F0F0; padding: 3px; font-size: 0.9em}
+	.wbs-header {overflow: hidden; zoom: 1}
+	.wbs-header .title {font-size: 1.4em; font-weight: bold; display: inline; margin-bottom: 5px}
+	.wbs-header #viewmode-selector-wrapper {float: right; margin-top: 15px; width: 120px}
+	
+	#wbs-table-controls {padding: 10px; overflow: hidden; zoom: 1; padding-bottom: 5px; padding-right: 0px}
+	
+	.icon-btn {float: left}
+	.icon-btn .icon {float: left; }
+	.icon-btn .label {float: left; margin-top: 10px; font-weight: bold; color: black; margin-left: 5px; text-decoration: none}
+	.icon-btn .label:hover {text-decoration: underline}
+	
+	input.shared-url {color: black; background: #E7E7E7; border: 1px solid #DDD; width: 400px}
+	
+	.wbs-popmenu ul, .wbs-popmenu ul li {list-style-image:none; list-style-position:outside; list-style-type:none; margin:0px; padding:0px;}
+	
+	.wbs-popmenu ul li .label {color: #8C8C8C}
+	.wbs-popmenu ul li .smalllabel {color: #8C8C8C; }
+	.wbs-popmenu input.shared-url {width: 250px}
+	
+	.wbs-popmenu {background: #FFF; }
+	.wbs-popmenu ul {display: block; border: 1px solid #5A5A5A}
+	.wbs-popmenu ul li {margin:0px; padding: 3px;display: block; cursor: pointer; padding-left: 12px; padding-right: 30px; }
+	.wbs-popmenu ul li.nopadding {padding-right: 10px}
+	.wbs-popmenu ul li.nopadding-nolink {padding-right: 10px; cursor: default}
+	.wbs-popmenu ul li.separator {padding: 0px 10px;}
+	.wbs-popmenu ul li.separator div {border-top: 1px solid #5A5A5A; margin-bottom: 3px}
+	.wbs-popmenu ul li.highlight {background: #F0F0F0}
+	.wbs-popmenu ul li.hidden {display: none}
+	.wbs-popmenu ul li.disabled {cursor: default}
+	.wbs-popmenu ul li.disabled a {color: #8C8C8C; cursor: default}
+	.wbs-popmenu ul li a {color: #333; text-decoration: none}
+	
+	.wbs-dlg {position: absolute; width: 400px; height: 200px; border: 1px solid #555; padding: 0px; z-index: 1002}
+	.wbs-dlg {background: #FFF }
+	.wbs-dlg .header {overflow: hidden; color: black; zoom: 1; padding: 3px}
+	.wbs-dlg .header .label {float: left; font-weight: bold; font-size: 1.4em; color: black; padding-top: 10px; padding-left: 15px}
+	.wbs-dlg .content {overflow-y: auto; }
+	.wbs-dlg .content-inner {padding: 0px 10px; }
+	.wbs-dlg .close-btn {float: right; cursor: pointer; padding-right: 5px; color: blue; font-size: 1.2em}
+	.black-overlay{display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black;z-index:1001;-moz-opacity: 0.10;opacity:.10;filter: alpha(opacity=10);}
+	
+	.upload-dlg {width: 500px; height: 400px}
+	* html .upload-dlg {width: 500px; height: 300px}
+	
+	.hidden {display: none;}
+	
+	.thumbnail {width: 110px; height: 110px; background: URL("../../../common/html/cssbased/themes/thumbnail.gif") no-repeat; }
+	.thumbnail table {width: 100%; height: 100%}
+	.thumbnail table tr td {vertical-align: middle; text-align: center; padding: 0px}
+	.thumbnail table tr td img {margin: 0px; }
+	
+	.desc-editor textarea {width: 100%; font-family:"Trebuchet MS"}
+	.desc-editor a {margin-right: 5px; color: blue;}
+</style>
+
+<script>
+	document.treeNodes = <? $foldersJs ?>;
+	document.sessionId = "<? $sessionId ?>";
+	
+	registerOnLoad(function() {
+		// Run Script
+		document.ddApplication = new DDApplication();
+		document.ddApplication.init();
+		<? if $viewParams.currentFolderId ?>
+			document.ddApplication.tree.selectFolder("<? $viewParams.currentFolderId ?>");
+		<? /if ?>
+	});
+	
+</script>
+
+<? include file="dlg_uploadnew.htm" ?>
+
+<div style='height: 100%'>
+	<div class='screen-left-block' style='height: 100%; '>
+		<div class='acc-block'>
+			<div class='title'>Folders</div>			
+			<div id='folders-tree'></div>
+		</div>
+	</div>
+	<div class='screen-main-block' style='margin-left: 0; height: 100%; overflow-y: auto; '>
+		<div class='screen-content-block' id='screen-content-block' style='overflow-y: hidden; overflow-x: hidden'>
+			<div id='wbs-table-controls'>
+				<div class='icon-btn'>
+					<a class='icon' href='javascript:void(0)' onClick='return document.ddApplication.openUploadDlg();'><img src='../../../common/html/res/images/upload.gif'></a>
+					<a class='label' href='javascript:void(0)' onClick='return document.ddApplication.openUploadDlg();'>Upload files</a>
+				</div>
+				
+				<div id='wbs-table-title'></div>
+				
+				<div id='viewmode-selector-wrapper'><div style='float: left; padding-right: 3px'>View:</div> </div>
+			</div>
+			<div id='files-list' class='records-list'>
+				
+			</div>
+		</div>
+	</div>
+</div>

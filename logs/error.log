@@ -1,0 +1,9 @@
+[Fri Sep 06 12:38:39 2013] [error] [client 127.0.0.1] client denied by server configuration: /home/djon/htdocs/dev.pol-na5.ru/includes/
+[Fri Sep 06 12:38:41 2013] [error] [client 127.0.0.1] client denied by server configuration: /home/djon/htdocs/dev.pol-na5.ru/includes/
+[Mon Sep 09 14:23:50 2013] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/djon/htdocs/dev.pol-na5.ru/help/
+[Mon Sep 09 14:23:52 2013] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/djon/htdocs/dev.pol-na5.ru/help/
+[Fri Sep 13 14:30:18 2013] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/djon/htdocs/dev.pol-na5.ru/published/publicdata/POLNA5/attachments/SC/products_pictures/, referer: http://dev.pol-na5.ru/chooser/?categoryID=1526
+[Fri Sep 13 14:33:08 2013] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/djon/htdocs/dev.pol-na5.ru/published/publicdata/POLNA5/attachments/SC/products_pictures/, referer: http://dev.pol-na5.ru/chooser/?categoryID=1526
+[Tue Sep 24 11:51:00 2013] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/djon/htdocs/dev.pol-na5.ru/published/publicdata/POLNA5/attachments/SC/products_pictures/, referer: http://dev.pol-na5.ru/shop/product/dub-vuven-1436/
+[Tue Sep 24 12:03:56 2013] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/djon/htdocs/dev.pol-na5.ru/published/publicdata/POLNA5/attachments/SC/products_pictures/, referer: http://dev.pol-na5.ru/product/dub-shervud-chernyj-m1035/
+[Sun Jun 01 10:58:49 2014] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/djon/htdocs/dev.pol-na5.ru/published/publicdata/POLNA5/attachments/SC/products_pictures/

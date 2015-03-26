@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout splitter=true toolbar=true ?>
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+		
+		<script src="../../../common/html/res/ext/ext-base.js"></script>
+		<script src="../../../common/html/res/ext/ext-all.js"></script>
+		<link rel='stylesheet' type='text/css' href="../../../common/html/res/ext/resources/css/my-ext-all.css">
+		<link rel='stylesheet' type='text/css' href="../../../common/html/res/ext/resources/css/menu.css">
+		<link rel='stylesheet' type='text/css' href="../../../common/html/res/ext/resources/css/layout.css">
+
+		<? include file="../../../DD/html/cssbased/catalog_js.htm" ?>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+
+	<? wbs_pageLayout toolbar="dd_toolbar.htm" ?>
+
+	<? wbs_errorBlock ?>
+
+		<? if !$fatalError ?>
+
+			<? assign var=numDocumentsLabel value=$ddStrings.dd_screen_numdocs_label ?>
+			<? assign var=leftPanelLinkTitle value=$kernelStrings.app_treeavailfolders_name ?>
+
+			<div style='width: 100%; height: 300px' id='SplitterWrapper'>
+			<div id='ex-splitter'>
+				<div id="ex-spliiter-content" class="x-layout-inactive-content"></div>
+				<div id='ex-splitter-left-panel' class='x-layout-inactive-content'>
+						<? include file="../../../DD/html/cssbased/catalog_panel.htm" ?>
+				</div>
+				
+				<div id='ex-splitter-right-panel' class='x-layout-inactive-content'>
+					<? include file="catalog_rightpanel.htm" ?>
+				</div>
+				
+			</div>
+			</div>
+		<? /if ?>
+
+	<? /wbs_pageLayout ?>
+	</body>
+</html>

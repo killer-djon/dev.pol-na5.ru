@@ -1,0 +1,318 @@
+<html>
+<head>
+<title>
+<? $folderData.QPF_NAME|htmlsafe:true:true ?> - <? $bookData.QPB_NAME|htmlsafe:true:true ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $bookProperties.codepage ?>">
+<meta name="description" content="<? $folderData.QPF_DESCRIPTION ?>">
+<meta name="keywords" content="<? $folderData.QPF_KEYWORDS ?>">
+<style>
+<!--
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-color: <? $properties.tree_body_bg ?>;
+}
+
+body, td {
+	font-family: <? $properties.tree_body_ff ?>;
+	font-size: <? $properties.tree_body_fsz ?>;
+	font-weight: <? $properties.tree_body_fs ?>;
+	color: <? $properties.tree_body_fg ?>;
+}
+
+a {
+	color: <? $properties.tree_link_fg ?>;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul.treeCatalogRow {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+ul.treeCatalogRow li {
+	list-style: none
+}
+
+.pageHeader {
+	font-family: <? $properties.tree_bname_ff ?>;
+	font-size: <? $properties.tree_bname_fsz ?>;
+	color: <? $properties.tree_bname_fg ?>;
+	background-color: <? $properties.tree_bname_bg ?>;
+	font-weight: <? $properties.tree_bname_fs ?>;
+	margin-top: 0px;
+	padding-left: 13px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+}
+
+.pageTopPanel {
+	font-family: <? $properties.tree_srch_ff ?>;
+	font-size: <? $properties.tree_srch_fsz ?>;
+	color: <? $properties.tree_srch_fg ?>;
+	background-color: <? $properties.tree_srch_bg ?>;
+	font-weight: <? $properties.tree_srch_fs ?>;
+	margin-top: 0px;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.treeHeaderPanelText {
+	font-family: <? $properties.tree_tochdr_ff ?>;
+	font-size: <? $properties.tree_tochdr_fsz ?>;
+	color: <? $properties.tree_tochdr_fg ?>;
+	background-color: <? $properties.tree_tochdr_bg ?>;
+	font-weight: <? $properties.tree_tochdr_fs ?>;
+	padding-left: 13px;
+}
+
+.treeLeftPanelHeader {
+	font-family: <? $properties.tree_tochdr_ff ?>;
+	font-size: <? $properties.tree_tochdr_fsz ?>;
+	color: <? $properties.tree_tochdr_fg ?>;
+	background-color: <? $properties.tree_tochdr_bg ?>;
+	font-weight: <? $properties.tree_tochdr_fs ?>;
+	padding-left: 13px;
+}
+.treeCatalogRowTbl{
+	color: <? $properties.tree_cr_fg ?>;
+	background-color: <? $properties.tree_toc_bg ?>;
+}
+.pnLink {
+	font-family: <? $properties.tree_pn_ff ?>;
+	font-size: <? $properties.tree_pn_fsz ?>;
+	color: <? $properties.tree_pn_fg ?>;
+	background-color: <? $properties.tree_pn_bg ?>;
+	font-weight: <? $properties.tree_pn_fs ?>;
+	text-align: <? $properties.tree_pn_adjust ?>;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.treeCatalogRow {
+	font-family: <? $properties.tree_toc_ff ?>;
+	font-size: <? $properties.tree_toc_fsz ?>;
+	color: <? $properties.tree_toc_fg ?>;
+	background-color: <? $properties.tree_toc_bg ?>;
+	font-weight: <? $properties.tree_toc_fs ?>;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.treeCatalogRowCurrent {
+	font-family: <? $properties.tree_toc_ff ?>;
+	font-size: <? $properties.tree_toc_fsz ?>;
+	color: <? $properties.tree_tocs_fg ?>;
+	background-color: <? $properties.tree_tocs_bg ?>;
+	font-weight: <? $properties.tree_tocs_fs?>;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.treeCatalogRow a {
+	color: <? $properties.tree_toc_fg ?>;
+}
+.treeCatalogRowCurrent a {
+	color: <? $properties.tree_tocs_fg ?>;
+}
+.restdv_splitter {
+	background-color: <? $properties.tree_splitter_fg ?>;
+	font-size: 1px;
+	width: 6px;
+	cursor: e-resize;
+}
+.restdv_splitterBtn img {
+	position: relative;
+	cursor: pointer;
+	top: 45%;
+	z-index: 100;
+}
+
+.restdv_treetd {
+	width: 200px;
+}
+
+.restdv_leftpanel {
+	width: 200px;
+	vertical-align:top;
+	overflow-x: hidden;
+}
+
+.restdv_rightpanel {
+	vertical-align:top;
+	font-size: 85%;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.noOverflow {
+	overflow:hidden!important;
+}
+.control {
+         color: <? $properties.tree_srch_fg ?>;
+	background-color: <? $properties.tree_btn_bg ?>;
+	border: 1px solid <? $properties.tree_srch_fg ?>;
+	margin: 0px;
+	padding-left: 1px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	text-align: left;
+}
+.btnText {
+	font-family: <? $properties.tree_srch_ff ?>;
+	font-size: <? $properties.tree_srch_fsz ?>;
+	color: <? $properties.tree_srch_fg ?>;
+	font-weight: <? $properties.tree_srch_fs ?>;
+}
+.toolbarButton {
+}
+
+.toolbarButton a {
+	color: <? $properties.tree_srch_fg ?>;
+	background-color: <? $properties.tree_btn_bg ?>;
+	border: 1px solid <? $properties.tree_srch_fg ?>;
+	font-weight: <? $properties.tree_srch_fs ?>;
+	padding-left: 	8px;
+	padding-right: 8px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	vertical-align: middle;
+	height:100%;
+}
+
+.restdv_main {
+	width:100%;
+	height:100%;
+}
+
+H1 {
+	font-family: <? $properties.tree_h1_ff ?>;
+	font-size: <? $properties.tree_h1_fsz ?>;
+	color: <? $properties.tree_h1_fg ?>;
+	background-color: <? $properties.tree_h1_bg ?>;
+	background: <? $properties.tree_h1_bg ?>;
+	font-weight: <? $properties.tree_h1_fs ?>;
+}
+
+H2 {
+	font-family: <? $properties.tree_h2_ff ?>;
+	font-size: <? $properties.tree_h2_fsz ?>;
+	color: <? $properties.tree_h2_fg ?>;
+	background-color: <? $properties.tree_h2_bg ?>;
+	background: <? $properties.tree_h2_bg ?>;
+	font-weight: <? $properties.tree_h2_fs ?>;
+}
+
+H3 {
+	font-family: <? $properties.tree_h3_ff ?>;
+	font-size: <? $properties.tree_h3_fsz ?>;
+	color: <? $properties.tree_h3_fg ?>;
+	background-color: <? $properties.tree_h3_bg ?>;
+	background: <? $properties.tree_h3_bg ?>;
+	font-weight: <? $properties.tree_h3_fs ?>;
+}
+
+-->
+</style>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+	function submitFolder( obj )
+	{
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 ) {
+			return false;
+		}
+		obj.form.submit();
+	}
+
+	function findCurrentFolder()
+	{
+		setElementsHeight();
+		obj = document.getElementById("<? $currentFolder ?>");
+		if ( obj ) {
+			obj.scrollIntoView();
+		}
+	}
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class=noOverflow onLoad="initTreeDocumentView(); findCurrentFolder()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+	<input type="hidden" name="btndummy">
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="BookID" value="<? $currentBookID ?>">
+	<input type="hidden" name="DB_KEY" value="<? $DB_KEY ?>">
+
+	<? assign var=toolbar value="../../../QP/html/classic/public_toolbar.htm" ?>
+	<? assign var=headerHeight value=10 ?>
+
+	<? if !$fatalError ?>
+		<? if !$noAccessGranted ?>
+		<script language="javascript">
+			document.treeViewName = "<? $treeViewName ?>";
+		</script>
+
+			<? assign var=hideBottomPanel value=1 ?>
+			<? assign var=hideFoldersHint value=$qpStrings.app_hidefolders_hint ?>
+
+			<? assign var=rightPanelContent value="../../../QP/html/classic/public_view.htm" ?>
+
+			<? if $searchString != "" ?>
+				<? assign var=rightPanelHeader value=$qpStrings.qp_screen_searchresult_title ?>
+				<? assign var=publicSearch value=1 ?>
+				<? assign var=rightPanelContent value="../../../QP/html/classic/searchlist.htm" ?>
+			<? else ?>
+				<? assign var=rightPanelHeader value=$curFolderName ?>
+			<? /if ?>
+
+			<? if $statisticsMode ?>
+				<? if $searchString == "" ?>
+					<?* <? assign var=rightPanelHeader value=$kernelStrings.app_treeavailfolders_name ?> *?>
+					<? assign var=rightPanelContent value="../../../QP/html/classic/public_view.htm" ?>
+					<? assign var=hidePages value=1 ?>
+					<? assign var=docsColumnName value=$qpStrings.qp_screen_summarydoc_title ?>
+				<? /if ?>
+			<? /if ?>
+
+			<? if $hideLeftPanel && $searchString == "" ?>
+				<? assign var=topPanelFile value="../../../QP/html/classic/publicfolderselector.htm" ?>
+				<? assign var=foldersImage value="javascript:processTextButton('showFoldersBtn', 'form')" ?>
+			<? /if ?>
+
+			<? assign var=topLevel value=true ?>
+			<? assign var=leftPanel value="../../../QP/html/classic/catalog_public_panel.htm" ?>
+			<? assign var=rightTopPanel value=$rightPanelContent ?>
+			<? assign var=leftPanelHeader value=$qpStrings.qp_treepages_text?>
+			<? assign var=numDocumentsLabel value=$qpStrings.qp_screen_numdocs_label?>
+			<? assign var=leftPanelLinkTitle value=$qpStrings.qp_treeavailpages_name?>
+
+			<? assign var=showFoldersHint value=$qpStrings.app_folders_hint ?>
+
+			<? include file="../../../QP/html/classic/public/tree_templates/folder_document_resizable_view.htm" ?>
+
+		<? else ?>
+			<? include file="../../../common/html/classic/header.htm" ?>
+			<? $qpStrings.qp_screen_noaccess_message|nl2br ?>
+			<?include file="../../../common/html/classic/pagefooter.htm" ?>
+		<? /if ?>
+	<? else ?>
+		<? include file="../../../common/html/classic/header.htm" ?>
+		<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+		<?include file="../../../common/html/classic/pagefooter.htm" ?>
+	<? /if ?>
+</form>
+<? /strip ?>
+</body>
+</html>

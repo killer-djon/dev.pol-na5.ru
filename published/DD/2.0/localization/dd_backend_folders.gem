@@ -1,0 +1,104 @@
+lbl_files	Dateien
+lbl_n_files	%d Dateien
+lbl_file	Datei
+
+tab_folders	Ordner
+tab_tools	Einstellungen
+tab_search	Suchen
+tab_reports	Reporte
+
+lbl_add_description	<Beschreibung hinzufügen>
+lbl_empty_description	<keine Beschreibung>
+btn_upload_files	Dateien hochladen
+lbl_view	Ansicht
+
+action_folder_new	Erstellen
+
+column_filename	Dateiname
+column_date	Datum
+column_type	Typ
+column_size	Grösse
+column_owner	Hinzugefügt durch
+column_folder	Ordner
+
+menu_selected_files	Aktion
+selected_files_count	%d Dateien sind ausgewählt
+action_create_link_to_files	Erstellen Sie einen Link zu den ausgewählten Dateien.
+
+action_link_create	Link zu diesem Ordner
+lbl_link_to_this_folder	Link zu diesem Ordner
+lbl_nolink_to_this_folder	Kein Link zu diesem Ordner
+lbl_createlink	Erstellen
+action_link_delete	Link zurücksetzen
+action_customize_rights	Anpassen der Zugangsrechte
+action_create_widget	Erstellen Sie ein Widget
+
+title_copy_files	Daetien kopieren
+title_move_files	Dateien verschieben
+
+lbl_file_description	Dateibeschreibung
+
+action_edit_online	Bearbeitung Online (Zoho)
+action_send_by_email	Als Anhang senden
+action_version_history	Ältere Versionen
+action_lock	Sperren
+action_unlock	Entsperren
+
+lbl_link_to_file	Link zu dieser Datei
+lbl_locked_by	Gesperrt durch %s
+action_get_link_to_file	Link zu dieser Datei
+action_remove_link_to_file	Link zurücksetzen
+lbl_none_versions	keine
+
+action_open	Öffnen
+action_download	Herunterladen
+
+screen_recycle	Papierkorb
+lbl_no_files	<Keien Dateien in diesem Ordner>
+lbl_no_finded_files	<keine Dateien gefunden>
+
+lbl_root_folder	Neuen Ordner
+lbl_subfolder	Neuen Unterordner
+
+title_version_history	Ältere Versionen
+action_delete_selected	Löschen der ausgewählten
+message_delete_versions_confirm	Sollen diese Dateien wirklich gelöscht werden?
+message_notselected_versions	Bitte Dateien auswählen.
+lbl_version_info	%s hinzugefügt durch: %s %s
+
+title_send_by_email	Als Anhang senden
+text_enter_message	<Geben Sie hier Ihre Nachricht ein>
+lbl_and_files	und Weitere
+lbl_send_files_attachments	%d Datei(en) (%s)
+lbl_attachments	Anhänge
+field_send_to	Senden an
+field_send_to_comment	"Eine Emailaddresse pro Zeile, oder getrennt durch Semicolon (;)"
+field_subject	Betreff
+field_message	Nachricht
+field_compress_files	Dateien komprimieren
+
+action_send	Senden
+
+lbl_current_folder	Aktueller Ordner
+lbl_selected_files	Ausgewählte Dateien (%d)
+
+message_empty_search_string	Bitte geben Sie den Suchbegriff ein
+
+lbl_viewsettings_records_on_page	Anzahl Dateien pro Seite
+lbl_viewsettings_truncate_description	Beschränkung der sichtbaren Dateibeschreibung auf
+lbl_viewsettings_symbols	Zeichen
+lbl_viewsettings_apply_viewmode	Änderung der Ordneransicht
+lbl_viewsettings_current_folder	Für aktuellen Ordner übernehmen
+lbl_viewsettings_all_folders	Für alle Ordner übernehmen
+
+lbl_upload_complete	Upload abgeschlossen
+lbl_account_limit	ACCOUNT LIMIT
+
+lbl_actions_with_file	Aktion
+
+message_confirm_delete_files	Sollen diese Dateien wirklich gelöscht werden?
+
+compress_as_zip_and_save	als ZIP-komprimierte Datei speichern
+extract_from_zip	aus ZIP entpacken
+wait	Bitte warten…
+action_save	Speichern

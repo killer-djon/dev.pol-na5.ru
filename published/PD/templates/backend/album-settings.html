@@ -1,0 +1,184 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/jquery-1.3.2.min.js"></script>
+<!-- 
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.form.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.wbs.tabs.js"></script>
+ -->
+{{assign var="path1" value=$p->getJsUrl() }}
+{{jscombine file="`$path1`/album-settings-combine.js"  }}
+ {{$p->getJsUrl()}}/jquery.form.js
+ {{$p->getJsUrl()}}/jquery.wbs.tabs.js
+{{/jscombine}}
+<!-- 
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/backend.css'>
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/popup.css'>
+-->
+{{assign var="path2" value=$p->getCssUrl() }}
+{{csscombine file="`$path2`/popup-combine.css"  }}
+ {{$p->getCssUrl()}}/backend.css
+ {{$p->getCssUrl()}}/popup.css
+{{/csscombine}}
+
+<script>
+	$(function(){
+		$(window).keydown(function(e){
+	    	if (e.keyCode == 27) {
+	    		window.parent.closePopup();
+	    	}
+	    });
+	    
+		$("#usual2").idTabs({
+			start: "#tabs{{ $frontend }}"
+		});
+
+		$('#album-setting-form').bind('submit', function() {
+			$('.usual > div:hidden').remove();
+						
+            $(this).ajaxSubmit({
+            	success: function(){
+					window.parent.closePopup();
+				}
+            });
+            
+            return false;            
+        });
+
+		var $check = $('.publish_setting input');
+		$check.click(function(){
+			$('.publish_setting label').removeClass('check_sett1')
+				.removeClass('check_sett2')
+				.removeClass('check_sett3');
+			$(this).parent().addClass('check_sett' + $(this).parent().attr('uid'));
+
+			if ( $(this).hasClass('share-private') ) {
+				$('.public-link').hide();
+				$('.private-link').show();
+			}
+			else {
+				$('.public-link').show();
+				$('.private-link').hide();
+			}
+		});
+
+		
+		if ( $('.share-private').attr('checked')  ) {
+
+			$('.share-private').parent().removeClass();
+			$('.share-public').attr('checked', 'checked');
+			$('.share-public').parent().addClass('check_sett1');
+		}
+		
+		
+	});	
+</script>
+
+<div class="window-header">
+	{{ assign var=name value=$album.PF_NAME }}
+	<h2>{{ $name|string_format:'[`Album “%s” publication settings`]' }}</h2>
+</div>
+
+
+<form id="album-setting-form" method="post" action="backend.php?controller=album&action=albumSettingSave&albumId={{ $album.PF_ID }}">
+<div class="popup-form-content">
+<ul class="settings">
+	<li>
+		<div class="publish_setting">
+			<label uid="1" {{ if $album.PF_STATUS == 1 }}class="check_sett1"{{ /if }}> <input class="share-public" name="album-published" value="1" type="radio" {{ if $album.PF_STATUS == 1 }}checked="checked"{{ /if }} /> [`Published`]</label>
+			<label uid="2" {{ if $album.PF_STATUS == 3 }}class="check_sett2"{{ /if }}> <input name="album-published" value="3" type="radio" {{ if $album.PF_STATUS == 3 }}checked="checked"{{ /if }} /> [`Published privately`]</label>
+			<label uid="3"{{ if $album.PF_STATUS == 2 }}class="check_sett3"{{ /if }}> <input class="share-private" name="album-published" value="2" type="radio" {{ if $album.PF_STATUS == 2 }}checked="checked"{{ /if }} /> [`Not published`]</label>	
+		</div>
+	</li>
+	<li class="public-link"><div class="link-sett">
+    <img src="img/shared-link.gif" width="16" height="16" alt="link"/>{{ $mainUrl }}<input id="album-link-setting" name="album-link" type="text" value="{{ $link }}"></div></li>
+    
+	<li class="private-link" style="display: none;"><div class="link-sett"><span class="noaccess">[`Album can be viewed and managed only inside your WebAsyst account by users with sufficient access permissions.`]</span></div></li>
+	
+	<li><span class="itemname">[`View:`]</span>
+		<div id="usual2" class="usual">
+		  <ul class="view_tabs">
+		    <li><a href="#tabs1"><img src="{{ $p->getImageUrl() }}/view1.gif"></a></li> 
+		    <li><a href="#tabs2"><img src="{{ $p->getImageUrl() }}/view2.gif"></a></li> 
+		    <li><a href="#tabs3"><img src="{{ $p->getImageUrl() }}/view3.gif"></a></li> 
+		  </ul> 
+		  <div id="tabs1" class="tabs_content">
+		  	<input type="hidden" name="foto1" value="1">
+            <div class="setting-details">
+		  	<p>[`Photo size`]:</p> 
+		  	<p><label><input name="foto-size1" type="radio" {{ if $foto_size == 970 || empty($foto_size) }}checked="checked"{{ /if }} value="970"/>970</label></p>
+		  	<p><label><input name="foto-size1" type="radio" {{ if $foto_size == 750 }}checked="checked"{{ /if }} value="750"/>750</label></p>
+		  	<p><label><input name="foto-size1" type="radio" {{ if $foto_size == 512 }}checked="checked"{{ /if }} value="512"/>512</label></p>
+		  	</div>
+            <div class="setting-details">
+		  	<p><p>[`Number of photos on one page`]:</p><p><select name="foto-count1">
+		  		<option {{ if $foto_count == 5 }}selected="selected"{{ /if }}>5</option>
+		  		<option {{ if $foto_count == 10 }}selected="selected"{{ /if }}>10</option>
+		  		<option {{ if $foto_count == 20 || empty($foto_count) }}selected="selected"{{ /if }}>20</option>
+		  		<option {{ if $foto_count == 50 }}selected="selected"{{ /if }}>50</option>
+		  		<option value="all" {{ if $foto_count == 'all' }}selected="selected"{{ /if }}>[`all`]</option>
+		  	</select></p>
+            </div>
+		  	<div class="setting-details clearleft">
+		  		<p>
+		  			<label><input type="checkbox" {{ if $view_oreginal == 1 }}checked="checked"{{ /if }} value="1" name="view-oreginal">[`Can view and download original images from public gallery`]</label>
+		  		</p>
+		  	</div>
+		  </div> 
+		  <div id="tabs2" class="tabs_content">
+		  	<input type="hidden" name="foto2" value="1">
+		  	<div class="setting-details">
+			  	<p>[`Photo size`]:</p>
+			  	<p><label><input name="foto-size2" type="radio" {{ if $foto_size == 750 || empty($foto_size) || $foto_size == 970 }}checked="checked"{{ /if }} value="750"/>750</label></p>
+			  	<p><label><input name="foto-size2" type="radio" {{ if $foto_size == 512 }}checked="checked"{{ /if }} value="512"/>512</label></p>
+		  	</div>
+		  	
+            <div class="setting-details">
+		  	<p>[`Thumbnail size`]:</p>
+		  	<p><label><input name="foto-thumb2" type="radio" {{ if $foto_thumb == 144 }}checked="checked"{{ /if }} value="144"/>144</label></p>
+		  	<p><label><input name="foto-thumb2" type="radio" {{ if $foto_thumb == 96 }}checked="checked"{{ /if }} value="96"/>96</label></p>
+		  	<p><label><input name="foto-thumb2" type="radio" {{ if $foto_thumb == 48 || empty($foto_thumb) }}checked="checked"{{ /if }} value="48"/>48</label></p>
+            </div>
+            <div class="setting-details">
+		  	<p>[`Number of photos on one page`]:</p>
+		  	<p><select name="foto-count2">
+		  		<option {{ if $foto_count == 5 }}selected="selected"{{ /if }}>5</option>
+		  		<option {{ if $foto_count == 10 }}selected="selected"{{ /if }}>10</option>
+		  		<option {{ if $foto_count == 20 || empty($foto_count) }}selected="selected"{{ /if }}>20</option>
+		  		<option {{ if $foto_count == 50 }}selected="selected"{{ /if }}>50</option>
+		  		<option value="all" {{ if $foto_count == 'all' }}selected="selected"{{ /if }}>[`all`]</option>
+		  	</select></p></div>
+		  	<div class="setting-details clearleft">
+		  		<p>
+		  			<label><input type="checkbox" {{ if $view_oreginal == 1 }}checked="checked"{{ /if }} value="1" name="view-oreginal">[`Can view and download original images from public gallery`]</label>
+		  		</p>
+		  	</div>
+		  </div> 
+		  <div id="tabs3" class="tabs_content">
+		  	<input type="hidden" name="foto3" value="1">
+            <div class="setting-details">
+		  	<p>[`Thumbnail size`]:</p>
+		  	<p><label><input name="foto-thumb3" type="radio" {{ if $foto_thumb == 144 || empty($foto_thumb) || $foto_thumb == 48 }}checked="checked"{{ /if }} value="144"/>144</label></p>
+		  	<p><label><input name="foto-thumb3" type="radio" {{ if $foto_thumb == 96 }}checked="checked"{{ /if }} value="96"/>96</label></p>
+            </div>
+            <div class="setting-details">
+		  	<p>[`Number of photos on one page`]:</p>
+		  	<p><select name="foto-count3">
+		  		<option {{ if $foto_count == 5 }}selected="selected"{{ /if }}>5</option>
+		  		<option {{ if $foto_count == 10 }}selected="selected"{{ /if }}>10</option>
+		  		<option {{ if $foto_count == 20 || empty($foto_count) }}selected="selected"{{ /if }}>20</option>
+		  		<option {{ if $foto_count == 50 }}selected="selected"{{ /if }}>50</option>
+		  		<option value="all" {{ if $foto_count == 'all' }}selected="selected"{{ /if }}>[`all`]</option>
+		  	</select></p></div>
+		  	<div class="setting-details clearleft">
+		  		<p>
+		  		</p>
+		  	</div>
+		  </div> 
+		</div> 
+	</li>
+	
+</ul></div>
+<div class="setting-btns">
+<input type="submit" value="[`Save`]" id="album-settings-save" /> [`or`] <a href="javascript:window.parent.closePopup(); "  >[`close`]</a></div>
+</form>
+<a href="javascript:window.parent.closePopup(); "  id="album-settings-close" ><img src="img/close.gif" width="16" height="16" /></a>

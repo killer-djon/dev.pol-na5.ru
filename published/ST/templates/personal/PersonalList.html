@@ -1,0 +1,246 @@
+{{if $smarty.get.iframe != 'true'}}
+</form>
+{{/if}}
+<link rel="stylesheet" type="text/css" href="{{$url_published}}UG/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="{{$url_published}}UG/css/users-edit.css" />
+<link rel="stylesheet" type="text/css" href="{{$url_published}}UG/css/client.css" />
+
+<script type="text/javascript" src="{{$url_published}}ST/js/source/lib/jquery/jquery-1.4.2.min.js"></script>
+<link type="text/css" rel="stylesheet" href="{{$url_published}}ST/css/base/ui.all.css">
+<link type="text/css" rel="stylesheet" href="{{$url_published}}ST/css/base/wbs-theme.css"/>
+<link type="text/css" rel="stylesheet" href="{{$url_published}}ST/css/style.css">
+
+<script type="text/javascript" src="{{$url.js}}lib/jquery-ui/ui/jquery.ui.core.js"></script>
+<script type="text/javascript" src="{{$url.js}}lib/jquery-ui/ui/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="{{$url.js}}lib/jquery-ui/ui/jquery.ui.button.js"></script>
+<script type="text/javascript" src="{{$url.js}}wbs/wbs.core.js"></script>
+<script type="text/javascript" src="{{$url.js}}wbs/wbs.ui.popup.js"></script>
+<script type="text/javascript" src="{{$url.js}}wbs/wbs.ui.menu.js"></script>
+<script type="text/javascript" src="{{$url.js}}wbs/wbs.ui.colorpicker.js"></script>
+<script type="text/javascript" src="{{$url.js}}wbs/wbs.ui.editor.js"></script>
+<div id="tickets-wrapper">
+<div id="tickets-list">
+<input type="hidden" value="{{$user_id}}" name="user_id"/>
+{{if $smarty.get.iframe != 'true'}}
+<h1><a href="#" id="add-request-link"><i></i>[`Add a new request`]</a>[`My requests`]</h1>
+{{else}}
+<div class="frame-top-panel">
+<h1><a href="#" id="add-request-link"><i></i>[`Add a new request`]</a>[`My requests`]</h1>
+</div>
+<div class=frame-bottom-content">
+{{/if}}
+{{if $requests|@sizeof > 0}}
+<table id="requests-table">
+	<thead>
+		<tr>
+			<th width="5%" style="text-align:center">[`Id`]</th>
+			<th width="15%" nowrap="nowrap" style="text-align:center">[`Sent`] <sup>*</sup></th>
+			<th width="50%">[`Subject`]</th>
+			<th width="30%">[`Status`]</th>
+		</tr>
+	</thead>
+	<tbody>
+    {{foreach from=$requests key=id item=request}}
+    <tr class="{{if $id is odd}}odd{{else}}even{{/if}}   {{if $request.state_id eq 0}}open{{else}}closed{{/if}}">
+        <td style="text-align:center">
+            <a href="#id={{$request.id}}" class="request-link" rel="{{$request.id}}">{{$request.id}}</a>
+        </td>
+        <td nowrap="nowrap" style="text-align:center">
+            <a href="#id={{$request.id}}" class="request-link" rel="{{$request.id}}">{{$request.datetime}}</a>
+        </td>
+        <td>
+            <a href="#id={{$request.id}}" class="request-link" rel="{{$request.id}}">{{$request.subject}}</a>
+        </td>
+        <td>
+            {{if $request.state_id eq 0}}
+			{{if $request.justsent}}
+			[`Just sent!`]
+			{{else}}
+            [`We are working on this.`]<br/>[`Thank you for your patience!`]
+			{{/if}}
+			{{else}}[`Closed`]
+			{{/if}}
+        </td>
+    </tr>   
+    {{/foreach}}
+    <tr><td colspan="4" class="top-border">
+<p>
+<small><sup>*</sup> [`Sending date/time is designated as GMT (Greenwich Mean Time)`]</small></p>
+    </td></tr>
+	</tbody>
+</table>
+{{else}}
+<p>[`No requests.`]</p>
+{{/if}}
+</div>
+{{if $smarty.get.iframe eq 'true'}}
+</div>
+{{/if}}
+<div id="request" style="display:none" >
+	
+</div>
+
+<style>
+#ticket{
+	margin-top:0px;
+}
+tr.open td{
+	color: #003A89;
+}
+tr.closed td, tr.closed a{
+    color: black !important;
+}
+#tickets-list h1 {
+    margin-bottom: 1em;
+}
+#requests-table {
+    width: 100%;
+}
+#requests-table { border-collapse:separate;/*border-left:solid 1px #ddd;border-top:solid 1px #ddd;*/}
+#requests-table th {
+	border-bottom:solid 2px #D8E0EB;
+    text-align:left;
+    padding:7px 3px 4px 3px;
+    font-size:0.9em;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    color:#59789E;
+
+}
+#requests-table td {
+	background:#fff;
+    padding:0.35em 6px;
+    text-align:left;
+    font-size:0.9em;
+    line-height:16px;
+	border-bottom:dotted 1px #D8E0EB;
+}
+#requests-table tr.odd td { background:#f5f7fa;}
+#requests-table tr:hover td { background:#feffc8;}
+.error{
+    color: red;
+}
+input.error, textarea.error, .error iframe {
+    border: 1px solid red;
+}
+.longfield {
+    width:400px;
+    margin-right:3px;
+}
+div.tab-content, #ticket, #tickets-wrapper {
+    background:#fff;
+}
+#ticket {
+    background: #fff;
+}
+#request {	overflow:hidden;}
+
+#add-request-link{
+	float:right;
+}
+sup{
+	position:relative;
+	top:-3px;
+}
+small{
+    font-size:0.8em;
+}
+#add-request h1 {
+	margin-bottom: 1.4em;
+}
+#add-request .error-msg {
+    color: red;
+	display:none;
+}
+.wa-st-signature-wrap{
+	display:none
+}
+
+#ticket .ticket-log-container .header * { font-family:Arial, Helvetica, sans-serif; font-size:0.95em;}
+#ticket .ticket-container .text, #ticket .ticket-container .text td { font-size:1em;}
+#ticket .date { font-size:0.85em!important;}
+.backlink { margin-left:20px;}
+</style>
+
+<div id="add-request">
+    <form id="add-request-form" enctype="multipart/form-data" method="post" action="?key={{$smarty.get.key}}&DK_KEY={{$smarty.get.DK_KEY}}&t=requests&iframe={{$smarty.get.iframe}}&a=save" style="display:none">
+        <h1>[`Add a new request`]</h1>
+        <p class="error-msg">[`Please fill summary and text fields.`]</p>
+		<p><label>[`Summary`]</label></p>
+        <p><input type="text" class="longfield" id="summary" name="summary" /></p>
+        <p><label>[`Text`]</label></p>
+        <div id="text"></div>
+        <input type="submit" id="add-request-submit" value="[`Send`]" />
+        <input type="button" id="add-request-cancel" value="[`Cancel`]" />
+	</form>
+</div>
+</div>
+<script>
+{{if $smarty.get.iframe != 'true'}}
+	$('body').addClass('requests');
+{{else}}
+    $('body').addClass('requests-iframe');
+{{/if}}
+	$('#text').wbsEditor({
+		name: 'text',
+		withFrame: true,
+		fill:false,
+        attachFiles: true,
+		height: 350,
+		menuOffset: true
+	})
+	
+	$('#add-request-form').submit(function(){
+		var summary = $('#summary').val(), text = $('[name=text]').val();
+		if (text=="<br>") text = false;
+		if (!summary) {
+			$('#summary').addClass('error');
+		}
+        if (!text) {
+            $('#text').addClass('error');
+        } else {
+            $('#text').removeClass('error');
+		}
+		if (!summary || !text){ 
+		    $('.error-msg').show();
+            return false;
+		}
+		
+        /*$.post("ST/?m=personal&act=save", {'summary': summary,'text': text}, function(response){
+			location.reload();
+		});
+		return false;*/
+    })
+	$('#summary.error, .error iframe').live('keyup', function(){
+		$(this).removeClass('error');
+	})
+	$('#add-request-link').click(function(){
+        $('#tickets-list').toggle();
+        $('#add-request-link').toggle();
+		$('#request').toggle();
+        $('#add-request-form').toggle();
+		$('#summary').focus();
+    })
+    $('#add-request-cancel').click(function(){
+        $('#tickets-list').toggle();
+        $('#add-request-link').show();
+        $('#request').show();
+        $('#add-request-form').hide();
+    })
+	$('.request-link').click(function(){
+		$('#requests-table').hide();
+		$('#request').show().append("<img src='ST/img/ajax-loader-w.gif'/> <span>[`Loading`]&hellip;</span>");
+		$('#request').load("?key={{$smarty.get.key}}&DK_KEY={{$smarty.get.DK_KEY}}&t=requests&iframe={{$smarty.get.iframe}}&id=" + $(this).attr('rel')+"&a=info",function(){
+{{if $smarty.get.sb == 'y'}}
+        $('body').scrollTop($('body').height());
+{{/if}}
+		});
+		
+		//return false;
+	})
+	var hash = location.hash, hash_id = parseInt(hash.substring(hash.indexOf('id')+3),10);
+    
+    if(hash_id > 0){
+        $('a[href="#id='+hash_id+'"]:first').click();
+    }
+</script>

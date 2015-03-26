@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'templatedata' )">
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td> 
+								<? wbs_label text=$itStrings.svt_templatename_label for="name" fieldName="ITT_NAME" ?>
+							</td>
+							<td>
+								<input name="templatedata[ITT_NAME]" type="text" id="name" class="FormControl" value="<? $templatedata.ITT_NAME ?>" size="30" maxlength="100"/>
+							</td>
+						</tr>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+						<? /wbs_buttonSet ?>
+
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+
+			<? /if ?>
+
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+			<input name="PW_ID" type="hidden" value="<? $PW_ID ?>"/>
+			<input name="opener" type="hidden" value="<? $opener ?>"/>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

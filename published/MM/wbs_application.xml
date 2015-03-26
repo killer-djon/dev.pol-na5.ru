@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<WBSAPPLICATION>
+	<APPLICATION APP_ID="MM" SORTORDER="25" NAME="app_name_long" UI_NAME="app_name_short">
+		<PARENTS>
+			<PARENT APP_ID="CM"/>
+		</PARENTS>
+	</APPLICATION>
+</WBSAPPLICATION>

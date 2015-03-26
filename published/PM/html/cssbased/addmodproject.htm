@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+		<script src="../../../common/html/classic/styles/calendar.js" type="text/javascript"></script>
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js" type="text/javascript"></script>
+
+		<script language="JavaScript">
+		<!--
+			function focusControl()
+			{
+				<? if !$invalidField ?>
+					focusFirstFormControl();
+				<? else ?>
+					focusFormControl( 'projectData[<? $invalidField ?>]' );
+				<? /if ?>
+			}
+
+			function confirmDelete( string )
+			{
+				return confirm( string );
+			}
+
+			function confirmDeletion()
+			{
+				var Object = findObj( "works_count" );
+				var count = Object.value;
+
+				return !( !confirmDelete( "<? $pmStrings.amp_projdel_message ?>" ) || ( count > 0 && !confirmDelete( "<? $confirmation_string ?>" )) );			
+			}
+
+			var managerChanged = false;
+			var locked = false;
+			var tabsLocked = false;
+
+			function triggerManagerChange()
+			{
+				this.managerChanged = true;
+			}
+
+			function setLastTab( tabName )
+			{
+				var obj = findObj( "lastTab" );
+
+				if ( obj )
+					obj.value = tabName;
+			}
+
+			function onActivateUsers()
+			{
+				if ( managerChanged ) {
+					this.tabsLocked = true;
+					this.locked = true;
+					setLastTab( "USERS" );
+
+					document.form.submit();
+				}
+			}
+
+		//-->
+		</script>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'projectData' )">
+		<? wbs_pageLayout toolbar="project_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formCaption text=$projectName|htmlsafe:true:true ?>
+				<input type="hidden" name="projectName" value="<? $projectName|htmlsafe:true:true ?>" />
+
+				<? wbs_tabForm activeTab=$activeTab hideOneCaption=true basePath="../../../PM/html/cssbased" tabs=$tabs width="530px" ?>
+
+					<? wbs_formButtonsPanel ?>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+						<? /wbs_buttonSet ?>
+
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_tabForm ?>
+
+				<? if $action != "new" ?>
+					<? wbs_note displayNoteMarker=false width="530px" ?>
+						<? $pmStrings.amp_lastmidified_label ?>&nbsp;<? $projectData.P_MODIFYUSERNAME ?>&nbsp;<? $projectData.P_MODIFYDATETIME ?>
+					<? /wbs_note ?>
+				<? /if ?>
+
+			<? /if ?>
+
+			<input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>">
+			<input name="action" type="hidden" id="action" value="<? $action ?>">
+			<input name="opener" type="hidden" value="<? $opener ?>">
+			<input name="folder" type="hidden" id="folder" value="<? $folder ?>">
+			<input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>">
+			<input name="works_count" type="hidden" id="works_count" value="<? $works_count ?>">
+			<? if $pageRights ?>
+				<input name="projectData[U_ID_MANAGER]" type="hidden" id="projectData[U_ID_MANAGER]" value="<? $projectData.U_ID_MANAGER ?>">
+			<? /if ?>
+			<input name="projectData[P_ID]" type="hidden" id="projectData[P_ID]" value="<? $projectData.P_ID ?>">
+			<input name="projectData[P_MODIFYUSERNAME]" type="hidden" id="projectData[P_MODIFYUSERNAME]" value="<? $projectData.P_MODIFYUSERNAME|htmlsafe:true:true ?>">
+			<input name="projectData[P_MODIFYDATETIME]" type="hidden" id="projectData[P_MODIFYDATETIME]" value="<? $projectData.P_MODIFYDATETIME ?>">
+			<input name="lastTab" type="hidden" value="">
+			<input name="pageRights" type="hidden" value="<? $pageRights ?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

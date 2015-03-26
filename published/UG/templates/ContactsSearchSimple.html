@@ -1,0 +1,55 @@
+<script type="text/javascript">
+	document.app.search_type = 'simple';
+	document.createList = function () {
+		document.app.doSearch(document.getElementById('simple_search').value, -1);
+	}
+	{{if !$smarty.get.list}}
+	$(document).ready(function () {
+		$("#simple_search").focus();
+	});	
+	{{/if}}
+	$("#form_simple_search").submit(function () {
+		if (document.getElementById('simple_search').value) {
+			$("#loading_content").show();
+			$("#search_header").add(".wbs-table-footer").add("#view-settings-block").hide();			
+			document.app.doSearch(document.getElementById('simple_search').value, 
+			{{if $smarty.get.list}}{{if $smarty.get.id}}1{{else}}-1{{/if}}{{else}}0{{/if}}, {{$smarty.get.id+0}});
+			results_load = function () {
+				$("#loading_content").hide();
+				if (document.app.mode == 'search') {
+					$("#search_header").add(".wbs-table-footer").add("#view-settings-block").show();
+				}
+			}
+		}
+		return false;
+	});		
+</script>
+<div id="search_content">
+	<form id="form_simple_search">
+	{{if !$smarty.get.list}}
+	<h1>[`Simple search`]</h1> 
+	{{/if}}
+	<table>
+	<tr>
+		<td>[`Name`]: </td>
+		<td> <input id="simple_search" type="text" value="{{if $search}}{{$search}}{{/if}}"/></td>
+		{{if !$list && !$smarty.get.list}}
+		<td> <input type="submit" value="[`Search`]" /></td>
+		{{/if}}
+	</tr>
+	{{if $list || $smarty.get.list}}
+	<tr>
+		<td></td>
+		<td><br />
+	<input type="submit" value="[`Save`]" />
+	<input type="button" value="[`Cancel`]" onClick="back()" />
+		</td>	
+	{{/if}}	
+
+	</tr>
+	</table>
+	</form>	
+</div>
+{{if $search && !$list}}
+	<script type="text/javascript">document.app.doSearch("{{$search}}", 1);</script>
+{{/if}}

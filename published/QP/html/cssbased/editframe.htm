@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true htmlArea=true ?>
+
+			<link href="../../../QP/html/cssbased/res/qp.css" rel="stylesheet" type="text/css"/>
+
+			<script language="JavaScript">
+			<!--
+			function focusControl(objName) {
+				var obj = MM_findObj(objName);
+				if (obj)
+					obj.focus( );
+			}
+
+			function MM_findObj(n, d) { //v4.01
+				var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+				d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+				if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+				for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+				if(!x && d.getElementById) x=d.getElementById(n); return x;
+			}
+
+				function confirmDelete()
+				{
+					var ret;
+
+					ret = confirm( "<? $qpStrings.app_screen_pagedel_message ?>" );
+
+					<? if $hasItChilds ?>
+						if ( ret )
+							return confirm( "<? $qpStrings.app_screen_subpages_delete_message ?>" );
+						else
+							return ret;
+					<? else ?>
+						return ret;
+					<? /if ?>
+				}
+
+			//-->
+			</script>
+
+	</head>
+	<body onLoad="initEditor(); autoFocusFormControl( '<? $invalidField ?>', 'messageData' );">
+
+	<? wbs_pageLayout toolbar="edt_toolbar.htm" ?>
+
+	<? wbs_errorBlock ?>
+
+		<? if !$fatalError ?>
+
+
+<? assign var=folderNameLabel value=$kernelStrings.app_treefurfldname_title ?>
+<? assign var=selectedID value=$parentFolderID ?>
+<? assign var=showAnyRights value=true ?>
+<? assign var=denyNoAccess value=true ?>
+<? assign var=parentFolderLabel value=$qpStrings.amn_treeparentlevel_text ?>
+<? assign var=folderSelectorEvent value="changeFolder(this)" ?>
+<? assign var=denyNoAccess value=true ?>
+
+<table class="mm_columnsTable">
+	<tr>
+		<td>
+
+			<table class="FormLayout" width="100%">
+			<tr>
+				<td >
+					<textarea class="FormControl" name="themeData[QPT_HEADER]" id="themeData[QPT_HEADER]"  class="FormControl" rows="25" style="width: 99%; visibility: hidden;"><? $themeData.QPT_HEADER|htmlsafe_textarea:$edited ?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+
+
+					<? wbs_note displayNoteMarker=true width="100%" smallFont=false ?>
+						<? $qpStrings.qpt_variable_note ?>
+					<? /wbs_note ?>
+
+					<? include file="../../../common/html/cssbased/pageelements/varlist.htm" width='100%' varList=$qpVars targetControl="" onClick="insertHTML" scrolling=false?>
+
+				</td>
+			</tr>
+			</table>
+
+	</td>
+	<td class="mm_rightColumn ValignTop" align=right width="160px" >
+		<? if $action == "edit" ?>
+			<? wbs_noteBlock width="160px" caption=$qpStrings.amn_screen_images_title class=mm_ImageSetBlock ?>
+
+				<? wbs_scrollableArea height="350px" width="160px" class="mm_ImageSetScroller SimpleReport_BorderBottom"?>
+
+					<? assign var="flag" value=0 ?>
+
+					<? foreach from=$attachedFiles item=fileData  key=fileName?>
+						<? assign var="flag" value=1 ?>
+
+						<div class="mm_thumbnail">
+							<table class="mm_Table">
+								<tr>
+									<td rowspan=2><input name="<? $fileData.delcbName ?>[]" type="checkbox" value="<? $fileData.delcbValue ?>"></td>
+									<td>
+										<? if $fileData.old == 1 ?>
+											<a href="#" onclick="insertHTML('<? $fileData.URL ?>');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">
+										<? /if ?>
+											<img src="<? $fileData.THUMB_URL?>" border=0 style="border: black 1px dotted;">
+										<? if $fileData.old == 1 ?>
+											</a>
+										<? /if ?>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<? if $fileData.old == 1 ?>
+											<a href="#" onclick="insertHTML('<? $fileData.URL ?>');" style="font-size: 8pt; text-decoration: none;">
+										<? else ?>
+											<small>
+										<? /if ?>
+											<? $fileName|truncate:20:"..." ?><br> <? $fileData.DIMS.0 ?>x<? $fileData.DIMS.1 ?> (<? $fileData.size?>)
+											<? " <br>("|cat:|cat:")" ?>
+											<? if $fileData.old == 1 ?></a><? else ?></small><? /if ?>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+					<? /foreach ?>
+
+				<? /wbs_scrollableArea ?>
+
+			<? /wbs_noteBlock ?>
+
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="addfilesbtn" caption=$qpStrings.amn_addimages_btn onClick="onSubmitEditor();" ?>
+				<? if $flag == 1 ?>
+					<? wbs_buttonSetButton name="deletefilesbtn" caption=$qpStrings.amn_deleteimages_btn onClick="onSubmitEditor();" ?>
+				<? /if ?>
+			<? /wbs_buttonSet ?>
+
+		<? else ?>
+			<? wbs_noteBlock width="160px" caption=$qpStrings.amn_screen_images_title ?>
+				<? wbs_note displayNoteMarker=false ?><? $qpStrings.amn_screen_images_message ?><? /wbs_note ?>
+			<? /wbs_noteBlock ?>
+		<? /if ?>
+	</td>
+</tr>
+</table>
+
+		<? /if ?>
+
+		<input type="hidden" name="action" value="<?$action?>">
+		<input type="hidden" name="QPT_ID" value="<?$QPT_ID?>">
+		<input name="themeData[QPT_ID]" type="hidden" value="<? $themeData.QPT_ID ?>">
+		<input name="themeData[QPT_UNIQID]" type="hidden" value="<? $themeData.QPT_UNIQID ?>">
+		<input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>">
+		<input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>">
+		<input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>">
+
+	<? /wbs_pageLayout ?>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+
+.pictures{
+	position: relative;
+	display: block;
+	clear: both;
+	margin: 0;
+}
+
+.pictures .img-thumb{
+	border: 2px solid rgb(204, 153, 153);
+    display: block;
+    float: left;
+    height: 100px;
+    margin: 5px;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+}
+
+.pictures .img-thumb input[type="checkbox"]{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.pictures .img-thumb a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.pictures .img-thumb a img{
+	width: 100%;
+	height: 100%;
+}
+
+.navigator-button{
+	position: relative;
+	display: block;
+	width: 100%;
+	text-align: right;
+	margin-bottom: 10px;
+	
+}
+
+.pictures .thumbnail{
+	background: none repeat scroll 0 0 rgb(255, 255, 255);
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    padding:2px;
+    
+}
+
+.navigator-button a{
+	display: block;
+	float: right;
+	padding-right: 10px;
+
+}
+
+.pictures input[type="submit"]{
+	left: 5px;
+    position: absolute;
+    top: -30px;
+}
+
+.paginate{
+	clear: both;
+    display: block;
+    margin: 10px 0 0 5px;
+    padding-top: 10px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.paginate a, .paginate span{
+	padding: 0 5px;
+}
+
+.paginate span{
+	font-weight: bold;
+}

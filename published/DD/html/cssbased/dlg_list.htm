@@ -1,0 +1,65 @@
+<script src='../../../common/html/cssbased/pageelements/ajax/share_dialog.js'></script>
+
+<script>
+	var linkDialog = new CommonShareDialog("ddlistlink-dlg-content");
+	linkDialog.strings.title = "<? $kernelStrings.wg_createlink_title ?>";
+	linkDialog.strings.nextBtn = "<? $kernelStrings.wg_next_btn ?>";
+	linkDialog.strings.cancelBtn = "<? $kernelStrings.wg_cancel_btn ?>";
+	linkDialog.strings.createBtn = "<? $kernelStrings.wg_create_btn ?>";
+	linkDialog.strings.andLabel = "<? $kernelStrings.wg_and_label ?>";
+	linkDialog.strings.moreItemLabel = "<? $ddStrings.ddlist_morefile_label ?>";
+	linkDialog.strings.moreItemsLabel = "<? $ddStrings.ddlist_morefiles_label ?>";
+	linkDialog.strings.emptyNameError = "<? $kernelStrings.wg_linkemptyname_error ?>";
+	linkDialog.modal = "true";
+	
+	linkDialog.start("ddlistlink");
+	document.dialogs["DDListLink"] = linkDialog;
+	
+	var inplaceDialog = new CommonShareDialog("ddlistinplace-dlg-content");
+	
+	inplaceDialog.strings.title = "<? $kernelStrings.wg_createwidget_title ?>";
+	inplaceDialog.strings.nextBtn = "<? $kernelStrings.wg_next_btn ?>";
+	inplaceDialog.strings.cancelBtn = "<? $kernelStrings.wg_cancel_btn ?>";
+	inplaceDialog.strings.createBtn = "<? $kernelStrings.wg_create_btn ?>";
+	inplaceDialog.strings.andLabel = "<? $kernelStrings.wg_and_label ?>";
+	inplaceDialog.strings.moreItemLabel = "<? $ddStrings.ddlist_morefile_label ?>";
+	inplaceDialog.strings.moreItemsLabel = "<? $ddStrings.ddlist_morefiles_label ?>";
+	inplaceDialog.strings.emptyNameError = "<? $kernelStrings.wg_widgetemptyname_error ?>";	
+	inplaceDialog.start("ddlistinplace");
+		
+	document.dialogs["DDListInplace"] = inplaceDialog;	
+</script>
+
+<div class="x-dlg-bd" style='display:none' id='ddlistlink-dlg-content'>
+  <div id='ddlistlink-select-tab' style='padding: 10px'>
+		<? $ddStrings.ddlistlink_whatshare_label ?>
+		<BR><BR>
+		<input id='ddlistlink-type-files' name='shareType' value='files' style='margin-right: 10px' type='radio'>
+		<label style='display:inline' for='ddlistlink-type-files'><? $ddStrings.ddlist_selectedfiles_label ?>(<span id='ddlistlink-files-count'>3</span>)</label>
+		<BR>
+		<input id='ddlistlink-type-folder' name='shareType' value='folder' style='margin-right: 10px' type='radio'>
+		<label style='display:inline' for='ddlistlink-type-folder'><? $ddStrings.ddlist_entirefolder_label ?></label>
+	</div>
+	<div id='ddlistlink-create-tab' style='padding: 10px; display: none'>
+		<? $kernelStrings.wg_linkcreatename_label ?>:
+		<BR>
+		<textarea id='ddlistlink-name-input' style='width: 95%;' rows=2></textarea>
+	</div>
+</div>
+
+<div class="x-dlg-bd" style='display:none' id='ddlistinplace-dlg-content'>
+  <div id='ddlistinplace-select-tab' style='padding: 10px'>
+		<? $ddStrings.ddlistinplace_whatshare_label ?>
+		<BR><BR>
+		<input id='ddlistinplace-type-files' name='shareType' value='files' style='margin-right: 10px' type='radio'>
+		<label style='display:inline' for='ddlistinplace-type-files'><? $ddStrings.ddlist_selectedfiles_label ?>(<span id='ddlistinplace-files-count'>3</span>)</label>
+		<BR>
+		<input id='ddlistinplace-type-folder' name='shareType' value='folder' style='margin-right: 10px' type='radio'>
+		<label style='display:inline' for='ddlistinplace-type-folder'><? $ddStrings.ddlist_entirefolder_label ?></label>
+	</div>
+	<div id='ddlistinplace-create-tab' style='padding: 10px; display: none'>
+		<? $kernelStrings.wg_widgetcreatename_label ?>:
+		<BR>
+		<textarea id='ddlistinplace-name-input' style='width: 95%;' rows=2></textarea>
+	</div>
+</div>

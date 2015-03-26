@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+
+		<? wbs_initLayout noScroll=false ?>
+		<link rel='stylesheet' type='text/css' href='../../../common/html/cssbased/2.0.adapter.css'>
+		<style>
+			#ToolbarIn {display: block; padding-left: 10px}
+		</style>
+
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+		<script language="JavaScript">
+		<!--
+			function confirmDeletion()
+			{
+				if ( !treeCheckSelection( '<? $ddStrings.sv_screen_emptydel_message ?>' ) )
+					return false;
+
+				return confirm( '<? $ddStrings.sv_screen_confirmdel_message ?>' );
+			}
+
+			function confirmRestore()
+			{
+				if ( !treeCheckSelection( '<? $ddStrings.dd_screen_emptyrestore_message ?>' ) )
+					return false;
+
+				return true;
+			}
+
+			function confirmDisabling()
+			{
+				return confirm( '<? $ddStrings.sv_screen_disablethumb_message ?>' );
+			}
+
+			function confirmEnabling()
+			{
+				return confirm( '<? $ddStrings.sv_screen_enablethumb_message ?>' );
+			}
+
+		//-->
+		</script>
+
+	</head>
+
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+
+			<? wbs_pageLayout toolbar="recycle_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+					<? include file="service_bottom.htm" ?>
+					
+			<? /if ?>
+
+			<input type=hidden name=edited value=1>
+			<input type=hidden name=curScreen value=<? $curScreen ?>>
+			<input type="hidden" name="btndummy">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

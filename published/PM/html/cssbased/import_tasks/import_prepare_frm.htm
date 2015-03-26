@@ -1,0 +1,37 @@
+<table class="SimpleList">
+    <colgroup>
+        <col width="20%" />
+        <col width="20%" />
+        <col width="40%" />
+        <col width="20%" />
+    </colgroup>
+    <tr>
+        <th scope="col" style="font-weight: bold;"><? $pmStrings.import_tasks_column_in_data ?></td>
+        <th scope="col" style="font-weight: bold;"><? $pmStrings.import_tasks_import_column ?></td>
+        <th scope="col" style="font-weight: bold;"><? $pmStrings.import_tasks_column_in_tasks ?></td>
+        <th></th>
+    </tr>
+    <? foreach from=$importer_state.columns item=column key=column_index name=columnLoop ?>
+    <tr class="<? wbs_oddItem index=$smarty.foreach.columnLoop.iteration ?>">
+        <td><? wbs_label text=$column|nl2br skipColon=true ?></td>
+        <td align="center"><input type="checkbox" name="columns_to_import[<? $column_index ?>]" <? if $importer_state.columns_to_import[$column_index] eq 'on' ?>checked="checked"<? /if ?> /></td>
+        <td>
+            <select name="column_map[<? $column_index ?>]" class="FormControl" style="width: 100%" onChange="toogleAdditionalInput(<? $column_index ?>);">
+                <? html_options values=$task_column_names output=$task_column_labels selected=$importer_state.column_map.$column_index ?>
+            </select>
+        </td>
+        <td>
+            <select name="format_input[<? $column_index ?>]" class="FormControl" style="width: 100%; display: none;">
+                <? html_options values=$date_formats output=$date_formats selected=$importer_state.format_input.$column_index ?>
+            </select>
+        </td>
+    </tr>
+    <? /foreach ?>
+</table>
+
+<table class="FormLayout">
+    <tr class="SeparatedRow">
+        <td><input type=checkbox name="import_first_line" id="import_first_line" <? if $importer_state.import_first_line eq 'on' ?>checked="checked"<? /if ?> /></td>
+        <td><? wbs_label text=$pmStrings.icl_importfirst_label for="ImportFirstLine" skipColon=true?></td>
+    </tr>
+</table>

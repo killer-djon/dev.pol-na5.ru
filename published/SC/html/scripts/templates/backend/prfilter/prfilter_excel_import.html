@@ -1,0 +1,102 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	translate.btn_delete = '{"prfilter_delete"|transcape}';
+	var conf_full_shop_url = "{$smarty.const.CONF_FULL_SHOP_URL|escape:'html'}";
+	{if $template.template_json}var template_load = '{$template.template_json}';{else}var template_load = false;{/if}
+</script>				
+<script type="text/javascript" src="{$smarty.const.URL_JS}/JsHttpRequest.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/niftycube.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/prfilter/prfilter_admin.js"></script>
+<script type='text/javascript' src='{$smarty.const.URL_JS}/widget_checkout.js'></script>
+<link href="{$smarty.const.URL_CSS}/prfilter_admin.css" rel="stylesheet" type="text/css" />
+
+
+<h1 class="breadcrumbs">{"prfilter_import"|translate}&nbsp;&raquo;&nbsp;{if $excel_import_configurator ne NULL || $excel_import_result eq "ok"}{"prfilter_import_step2"|translate}{else}{"prfilter_import_step2"|translate}{/if}</h1>
+
+<p></p>
+<ul id="edmod">
+	<li class="tab" style="float:right;" ><a href='{"?ukey=prfilter_admin&action=delete_all"|set_query_html}' class="confirm_action" title='{"prfilter_removeallQ"|translate}'>{"prfilter_removeall"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_admin"|set_query_html}'>{"prfilter_menu_options"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_templates"|set_query_html}'>{"prfilter_menu_templates"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_export_excel"|set_query_html}'>{"prfilter_menu_export"|translate}</a></li>
+	<li class="tab current" ><a href='{"?ukey=prfilter_import_excel"|set_query_html}'>{"prfilter_menu_import"|translate}</a></li>
+</ul>
+<script type="text/javascript">Nifty("li.tab","top same-height");</script>
+
+
+{if $excel_import_result eq "ok"}
+	<div class="success_block" ><span class="success_message">{"msg_update_successful"|translate}</span></div>
+	{$limit_msg}
+	<h2>{"prfilter_import_addedinfo"|translate}</h2>
+	<ul class="prfilter-import-resultinfo">
+		<li>{"prfilter_import_addcategory"|translate}: <b>{$category_added}</b></li>
+		<li>{"prfilter_import_updatecategory"|translate}: <b>{$category_modify}</b></li>
+		<li>{"prfilter_import_addoptions"|translate}: <b>{$option_added}</b></li>
+		<li>{"prfilter_import_updateoptions"|translate}: <b>{$option_modify}</b></li>
+		<li>{"prfilter_import_addparams"|translate}: <b>{$variant_added}</b></li>
+		<li>{"prfilter_import_updateparams"|translate}: <b>{$variant_modify}</b></li>
+	</ul>
+{else}
+		
+	{if $excel_import_configurator ne NULL}
+		{"prfilter_import_desc2"|translate}
+		<p>{$source_column_count}</p>
+		
+		
+		<div class="prfilter-import-sourcecolumns">
+		{foreach from=$source_columns item=source_column key=source_column_key name=source_columns}
+			<span>{$source_column}</span>{if !$smarty.foreach.source_columns.last}, {/if}
+		{/foreach}
+		</div>
+
+	  <form action="{'msg='|set_query_html}" method="post">
+		<input type="hidden" name="action" value="excel_import_step2">
+		<input type="hidden" name="number_of_titles_line" value="$notl">
+		<input type="hidden" name="delimeter" value="{$delimeter}">
+		<input type="hidden" name="filename" value="{$file_excel_name}">
+		{$excel_import_configurator}
+		<div class="prfilter-save"><input value="{'prfilter_continue'|translate}" type="submit" /></div>
+	  </form>
+	  
+	{else}
+		
+		{$MessageBlock}
+		<p>
+			{if $excel_import_result eq "upload_file_error"}{"err_failed_to_upload_file"|translate}{/if}
+			{if $excel_import_result eq "update_column_error"}<p><b><font color=red>{"err_csvimport_update_column_is_not_set"|translate}</font></b>{/if}
+		</p>
+		{"prfilter_import_desc"|translate}
+		
+		<form enctype="multipart/form-data" action="{'msg='|set_query_html}" method="POST">
+		<input type="hidden" name="action" value="excel_import_step1">		
+			<table cellpadding=3>
+			<tr>
+				<td>{"prfilter_import_file"|translate}:</td>
+				<td><input type="file" name="csv" /></td>
+			</tr>
+			<tr>
+				<td>{"prfilter_delimiter"|translate}</td>
+				<td>
+					<select name="delimeter">
+						<option value=";">{"prdimport_csv_delimeter_semicolon"|translate} (;)</option>
+						<option value=",">{"prdimport_csvl_delimeter_comma"|translate} (,)</option>
+						<option value="	">{"prdimport_csvl_delimeter_tab"|translate}</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>{"prfilter_charset"|translate}:</td>
+				<td>
+					<select name="charset">
+					{foreach from=$charsets item=_charset}
+					<option value="{$_charset|escape:'html'}" {if $default_charset eq $_charset}selected="selected"{/if}>{$_charset|escape:'html'}</option>
+					{/foreach}
+					</select>
+				</td>
+			</tr>
+			</table>
+			<div class="prfilter-save"><input value="{'prfilter_import_load'|translate}" type="submit" /></div>
+		</form>
+	{/if}
+{/if}

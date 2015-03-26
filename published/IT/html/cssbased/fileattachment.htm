@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="it_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<table class="FormLayout">
+					<tr class="SeparatedRow">
+						<td><? wbs_label text=$itStrings.fa_project_label for="project" ?></td>
+						<td>
+							<select name="P_ID" class="FormControl" id="project" style="width: 400px" onChange="this.form.submit()">
+								<? html_options values=$project_ids selected=$P_ID output=$project_names ?>
+							</select>
+						</td>
+					</tr>
+				</table>
+
+				<table class="SimpleList" width="100%">
+					<thead>
+						<tr>
+							<th class="NoBreak"><? wbs_sortColumn status=$sorting field="screenname" ?><? $itStrings.fa_filename_title ?><? /wbs_sortColumn ?></th>
+							<th width="60" class="NoBreak"><? wbs_sortColumn status=$sorting field="size" ?><? $itStrings.fa_size_title ?><? /wbs_sortColumn ?></th>
+							<th width="80" class="NoBreak"><? wbs_sortColumn status=$sorting field="filedate" ?><? $itStrings.fa_date_title ?><? /wbs_sortColumn ?></th>
+							<th class="NoBreak"><? wbs_sortColumn status=$sorting field="dispnum" ?><? $itStrings.fa_issuenum_title ?><? /wbs_sortColumn ?></th>
+							<th class="NoBreak"><? wbs_sortColumn status=$sorting field="I_SUMMARY" ?><? $itStrings.fa_issuedesc_title ?><? /wbs_sortColumn ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<? foreach from=$fileList item=cur_fileData?>
+						<tr class="<? wbs_oddItem index=$cur_fileData.index ?>">
+							<td><? $cur_fileData.FILE_LINK ?></td>
+							<td><? $cur_fileData.FILE_INFO.size ?></td>
+							<td><? $cur_fileData.FILE_INFO.filedate ?></td>
+							<td><? $cur_fileData.DISP_NUM ?></td>
+							<td><?  $cur_fileData.I_DESC|trunc_str:60?></td>
+						</tr>
+						<? foreachelse ?>
+							<tr class="NoRecords">
+								<td  colspan=6><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+							</tr>
+						<? /foreach ?>
+					</tbody>
+				</table>
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

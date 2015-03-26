@@ -1,0 +1,147 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+
+<script language="JavaScript">
+<!--
+	function focusControl()
+	{
+		<? if !$invalidField ?>
+			focusFirstFormControl();
+		<? else ?>
+			focusFormControl( 'projectData[<? $invalidField ?>]' );
+		<? /if ?>
+	}
+
+	function confirmDelete( string )
+	{
+		return confirm( string );
+	}
+
+	function confirmDeletion()
+	{
+		var Object = findObj( "works_count" );
+		var count = Object.value;
+
+		return !( !confirmDelete( "<? $pmStrings.amp_projdel_message ?>" ) || ( count > 0 && !confirmDelete( "<? $confirmation_string ?>" )) );			
+	}
+
+	var managerChanged = false;
+	var locked = false;
+	var tabsLocked = false;
+
+	function triggerManagerChange()
+	{
+		this.managerChanged = true;
+	}
+
+	function setLastTab( tabName )
+	{
+		var obj = findObj( "lastTab" );
+
+		if ( obj )
+			obj.value = tabName;
+	}
+
+	function onActivateUsers()
+	{
+		if ( managerChanged ) {
+			this.tabsLocked = true;
+			this.locked = true;
+			setLastTab( "USERS" );
+
+			document.form.submit();
+		}
+	}
+
+//-->
+</script>
+
+
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<? if $action != "new" ?>
+		<?assign var=noSpace value=1?>
+	<? else ?>
+		<?assign var=noSpace value=0?>
+	<? /if ?>
+	<? include file="../../../common/html/classic/header.htm" nospace=$noSpace?>
+	<? if $action != "new" ?>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="pageTopPanel"> 
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="clspbtn" caption=$pmStrings.amp_complete_btn formname="form" onClick="return confirm('"|cat:$pmStrings.amp_projcomplete_message|cat:"')" space_right=#toolbarSmallSpace#?>
+				<img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="delpbtn" caption=$pmStrings.amp_delete_btn formname="form" onClick="return confirmDeletion()" space_left=#toolbarSmallSpace#?>
+				</td>
+			</tr>
+		</table>
+		<? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+	<? /if ?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+
+	<? if !$fatalError ?>
+		<p><b><? $projectName|htmlsafe:true:true ?></b></p>
+		<input type="hidden" name="projectName" value="<? $projectName|htmlsafe:true:true ?>" >
+
+		<table cellpadding=0 cellspacing=0 border=0>
+			<tr>
+				<td>
+					<?include file="../../../common/html/classic/formtabs_templates/formtabs.htm" 
+						width=600
+						height=400
+						basePath="../../../PM/html/classic"
+						tabsID="projecttabs"
+						extraLine=true ?>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=0 space_right=10 ?>
+					<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+				</td>
+			</tr>
+
+			<? if $action != "new" ?>
+				<tr>
+					<td colspan=2>&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="smallFont">
+						<hr width="100%" size="1" noshade>
+						<nobr>
+							<? $pmStrings.amp_lastmidified_label ?>&nbsp;<? $projectData.P_MODIFYUSERNAME ?>&nbsp;
+							<? $projectData.P_MODIFYDATETIME ?>
+						</nobr>
+					</td>
+				</tr>
+			<? /if ?>
+		</table>
+	<? else ?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+	<? /if ?>
+	<input name="edited" type="hidden" id="edited" value="1">
+	<input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>">
+	<input name="action" type="hidden" id="action" value="<? $action ?>">
+	<input name="opener" type="hidden" value="<? $opener ?>">
+	<input name="folder" type="hidden" id="folder" value="<? $folder ?>">
+	<input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>">
+	<input name="works_count" type="hidden" id="works_count" value="<? $works_count ?>">
+	<input name="projectData[P_ID]" type="hidden" id="projectData[P_ID]" value="<? $projectData.P_ID ?>">
+	<input name="projectData[P_MODIFYUSERNAME]" type="hidden" id="projectData[P_MODIFYUSERNAME]" value="<? $projectData.P_MODIFYUSERNAME|htmlsafe:true:true ?>">
+	<input name="projectData[P_MODIFYDATETIME]" type="hidden" id="projectData[P_MODIFYDATETIME]" value="<? $projectData.P_MODIFYDATETIME ?>">
+	<input name="lastTab" type="hidden" value="">
+	<input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

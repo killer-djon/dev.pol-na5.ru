@@ -1,0 +1,233 @@
+<? if $statData.SCREEN == 0 ?>
+	<table width="100%" class="SimpleList">
+		<thead>
+			<tr>
+				<th scope="col" rowspan="2" class="ValignMiddle SimpleList_BorderRight"><? $pmStrings.prs_project_title ?></th>
+				<th scope="col" colspan="4" class="AlignCenter"><? $pmStrings.prs_taskcount_title ?></th>
+			</tr>
+			<tr>
+				<td class="AlignCenter"><? $pmStrings.prs_total_title ?></td>
+				<td class="AlignCenter"><? $pmStrings.prs_inprogress_title ?></td>
+				<td class="AlignCenter"><? $pmStrings.prs_complete_title ?></td>
+				<td class="AlignCenter"><? $pmStrings.prs_overdue_title ?></td>
+			</tr>
+		</thead>
+		<tbody>
+			<?section name=projectSec loop=$projects?>
+				<? if $projects[projectSec].CLOSED != $prevType ?>
+					<? assign var=prevType value=$projects[projectSec].CLOSED ?>
+					<? if $prevType ?>
+						<tr class="ListSubheader">
+							<td colspan="5"><? $pmStrings.prs_complete_separator ?></td>
+						<tr>
+					<? else ?>
+						<tr class="ListSubheader">
+							<td scope="row" colspan="5"><? $pmStrings.prs_open_separator ?></td>
+						<tr>
+					<? /if ?>
+				<? /if ?>
+
+				<tr class="<? wbs_oddItem index=$smarty.section.projectSec.index ?>">
+					<td class="ValignMiddle"><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].PROJECT_NAME ?></a></td>
+					<td class="AlignCenter ValignMiddle">
+						<? switchedOutput str1=&nbsp; str2=$projects[projectSec].TOTAL_WORKS val=$projects[projectSec].TOTAL_WORKS true_val=0 ?>
+					</td>
+					<td class="AlignCenter ValignMiddle">
+						<? switchedOutput str1=&nbsp; str2=$projects[projectSec].IN_PROGRESS_WORKS val=$projects[projectSec].IN_PROGRESS_WORKS true_val=0 ?>
+					</td>
+					<td class="AlignCenter ValignMiddle">
+						<? switchedOutput str1=&nbsp; str2=$projects[projectSec].CLOSED_WORKS val=$projects[projectSec].CLOSED_WORKS true_val=0 ?>
+					</td>
+					<td class="AlignCenter ValignMiddle">
+						<? switchedOutput str1=&nbsp; str2=$projects[projectSec].OVERDUE_WORKS val=$projects[projectSec].OVERDUE_WORKS true_val=0 ?>
+					</td>
+				</tr>
+				<?sectionelse?>
+					<tr class="NoRecords">
+						<td colspan="5"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+					</tr>
+			<?/section?>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th class="listFooter"><? $pmStrings.prs_totalrow_title ?></th>
+				<th class="AlignCenter"><? switchedOutput str1=&nbsp; str2=$statData.TOTAL_WORKS val=$statData.TOTAL_WORKS true_val=0 ?></th>
+				<th class="AlignCenter"><? switchedOutput str1=&nbsp; str2=$statData.IN_PROGRESS_WORKS val=$statData.IN_PROGRESS_WORKS  true_val=0 ?></th>
+				<th class="AlignCenter"><? switchedOutput str1=&nbsp; str2=$statData.CLOSED_WORKS val=$statData.CLOSED_WORKS  true_val=0 ?></th>
+				<th class="AlignCenter"><? switchedOutput str1=&nbsp; str2=$statData.OVERDUE_WORKS val=$statData.OVERDUE_WORKS true_val=0 ?></th>
+			</tr>
+		</tfoot>
+	</table>
+<? elseif $statData.SCREEN == 1 ?>
+	<? assign var=prevType value="no" ?>
+	<table width="100%" class="SimpleList">
+		<thead>
+			<tr>
+				<th scope="col" rowspan="2" class="ValignMiddle SimpleList_BorderRight"><? $pmStrings.prs_project_title ?></th>
+				<th scope="col" colspan="5" class="AlignCenter"><? $pmStrings.prs_estcost_title ?></th>
+			</tr>
+			<tr>
+				<td class="AlignCenter"><? $pmStrings.prs_billable_title ?></td>
+				<td class="AlignCenter"><? $pmStrings.prs_totalcost_title ?></td>
+				<td class="AlignCenter"><? $pmStrings.prs_inprogress_title ?></td>
+				<td class="AlignCenter"><? $pmStrings.prs_complete_title ?></td>
+				<td class="AlignCenter"><? $pmStrings.prs_overdue_title ?></td>
+			</tr>
+		</thead>
+
+		<tbody>
+			<? section name=projectSec loop=$projects ?>
+				<? if $projects[projectSec].CLOSED != $prevType ?>
+					<? assign var=prevType value=$projects[projectSec].CLOSED ?>
+					<? if $prevType ?>
+						<tr class="ListSubheader">
+							<td colspan=6><? $pmStrings.prs_complete_separator ?></td>
+						<tr>
+					<? else ?>
+						<tr class="ListSubheader">
+							<td colspan=6><? $pmStrings.prs_open_separator ?></td>
+						<tr>
+					<? /if ?>
+				<? /if ?>
+
+				<tr class="<? wbs_oddItem index=$smarty.section.projectSec.index ?>">
+					<td class="ValignMiddle"><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].PROJECT_NAME ?></a></td>
+					<td class="AlignCenter ValignMiddle"><? wbs_statusImage align=center value=$projects[projectSec].BILLABLE onValue=1 ?></td>					
+					<td class="AlignRight ValignCenter">
+						<? foreach key=totalId item=totalArray from=$projects[projectSec].TOTAL_COST ?>
+						<? if $totalArray.COST != "" ?>
+							<? $totalArray.COST?>&nbsp;<? $totalArray.CURRENCY ?><br>
+						<? /if ?>
+						<? /foreach ?>
+					</td>
+					<td class="AlignRight ValignCenter">
+						<? foreach key=progressId item=progressArray from=$projects[projectSec].IN_PROGRESS_COST ?>
+						<? if $progressArray.COST != "" ?>
+							<? $progressArray.COST?>&nbsp;<? $progressArray.CURRENCY ?><br>
+						<? /if ?>
+						<?/foreach ?>
+					</td>
+					<td class="AlignRight ValignCenter">
+						<? foreach key=closedId item=closedArray from=$projects[projectSec].CLOSED_COST ?>
+						<? if $closedArray.COST != "" ?>
+							<? $closedArray.COST?>&nbsp;<? $closedArray.CURRENCY ?><br>
+						<? /if ?>
+						<?/foreach ?>
+					</td>
+					<td class="AlignRight ValignCenter">
+						<? foreach key=overdueId item=overdueArray from=$projects[projectSec].OVERDUE_COST ?>
+						<? if $overdueArray.COST != "" ?>
+							<? $overdueArray.COST?>&nbsp;<? $overdueArray.CURRENCY ?><br>
+						<? /if ?>
+						<?/foreach ?>
+					</td>
+				</tr>
+			<?sectionelse?>
+				<tr class="NoRecords">
+					<td colspan="5"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+				</tr>
+			<?/section?>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th align="AlignLeft"><? $pmStrings.prs_totalcost_title ?></th>
+				<th class="AlignCenter"><? switchedOutput str1=&nbsp; str2=$statData.BILLABLE val=$statData.BILLABLE true_val=0 ?></th>
+				<th class="AlignRight">
+				<? foreach key=currency item=totalCost from=$statData.TOTAL_COST ?>
+				<? if $totalCost ?>
+					<? $totalCost ?>&nbsp;<? $currency ?><br>
+				<? /if ?>
+				<? foreachelse ?>&nbsp;
+				<? /foreach ?>
+				</th>
+				<th class="AlignRight">
+				<? foreach key=currency item=in_progressCost from=$statData.IN_PROGRESS_COST ?>
+				<? if $in_progressCost ?>
+					<? $in_progressCost ?>&nbsp;<? $currency ?><br>
+				<? /if ?>
+				<? foreachelse ?>&nbsp;
+				<? /foreach ?>
+				</th>
+				<th class="AlignRight">
+				<? foreach key=currency item=closedCost from=$statData.CLOSED_COST ?>
+				<? if $closedCost ?>
+					<? $closedCost ?>&nbsp;<? $currency ?><br>
+				<? /if ?>
+				<? foreachelse ?>&nbsp;
+				<? /foreach ?>
+				</th>
+				<th class="AlignRight">
+				<? foreach key=currency item=overdueCost from=$statData.OVERDUE_COST ?>
+				<? if $overdueCost ?>
+					<? $overdueCost ?>&nbsp;<? $currency ?><br>
+				<? /if ?>
+				<? foreachelse ?>&nbsp;
+				<? /foreach ?>
+				</th>
+			</tr>
+		</foot>
+	</table>
+<? elseif $statData.SCREEN == 2 ?>
+	<? assign var=prevType value="no" ?>
+
+	<table width="100%" class="SimpleList">
+		<thead>
+			<tr>
+				<th class="ValignMiddle"><? $pmStrings.prs_project_title ?></th>
+				<th width="100" class="AlignCenter ValignMiddle"><? $pmStrings.prs_totalcost_title ?></th>
+				<? if $prevLink ?>
+					<th width="15" class="ValignMiddle">
+						<? wbs_iconButton link=$prevLink iconClass=Left hint=$pmStrings.prs_moreusers_label?>
+					</th>
+				<? /if?>
+				<? foreach name="userSec" from=$users item=user key=userID ?>
+					<th width="70" class="AlignCenter ValignMiddle"><? $user ?></th>
+				<? /foreach ?>
+				<? if $nextLink ?>
+					<th width="15" class="AlignRight ValignMiddle" ?>
+						<? wbs_iconButton link=$nextLink iconClass=Right hint=$pmStrings.prs_moreusers_label?>
+					</th>
+				<? /if ?>
+			</tr>
+		</thead>
+		<tbody>
+			<? section name=projectSec loop=$projects ?>
+
+			<? if $projects[projectSec].CLOSED != $prevType ?>
+				<? assign var=prevType value=$projects[projectSec].CLOSED ?>
+				<? if $prevType ?>
+					<tr class="ListSubheader">
+						<td colspan=<? $totalColCount ?>><? $pmStrings.prs_complete_separator ?></td>
+					<tr>
+				<? else ?>
+					<tr class="ListSubheader">
+						<td colspan=<? $totalColCount ?>><? $pmStrings.prs_open_separator ?></td>
+					<tr>
+				<? /if ?>
+			<? /if ?>
+
+			<tr  class="<? wbs_oddItem index=$smarty.section.projectSec.index ?>"> 
+				<td class="ValignMiddle"><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].PROJECT_NAME ?></a></td>
+				<td class="AlignCenter ValignMiddle">
+					<? switchedOutput str1=&nbsp; str2=$projects[projectSec].TOTAL_ASSIGNMENTS val=$projects[projectSec].TOTAL_ASSIGNMENTS true_val=0 ?>
+				</td>
+				<? if $prevLink ?>
+					<td width="15" class="ValignMiddle">&nbsp;</td>
+				<? /if?>
+				<? foreach key=userId item=userData from=$users ?>
+				<td class="ValignMiddle AlignCenter">
+					<? wbs_statusImage align=center value=$projects[projectSec].ASGN.$userId onValue=1 ?>
+				</td>
+				<? /foreach ?>
+				<? if $nextLink ?>
+					<td width="15" class="ValignMiddle">&nbsp;</td>
+				<? /if?>
+			</tr>
+			<? sectionelse ?>
+				<tr class="NoRecords">
+					<td colspan="<? $totalColCount ?>"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+				</tr>
+			<?/section?>
+		</tbody>
+	</table>
+<? /if ?>

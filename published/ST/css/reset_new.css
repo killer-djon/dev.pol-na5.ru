@@ -1,0 +1,119 @@
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, hr { margin: 0; padding: 0; border: none; outline: none; font-size: 100%; background: transparent; }
+table { border-collapse: collapse; border-spacing: 0; }
+/*
+h1, h2, h3, h4, h5, h6, th { font-weight: normal; }
+*/
+ul, ol { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+:focus { outline: 0; }
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+
+html, body { height: 100%;}
+
+body { color: #333; background: #fff; font: 0.825em/1.3 "Trebuchet MS", Geneva, Arial, Helvetica, sans-serif; }
+
+input, textarea, select { color: #333; font-size: 100%; font-family:"Trebuchet MS", Geneva, Arial, Helvetica, sans-serif; }
+
+a { color: #0043A7; text-decoration:none;}
+a:hover {  text-decoration:underline; }
+
+sup { font-size: 75%; vertical-align: baseline; position: relative; top: -0.5em; }
+sub { font-size: 75%; vertical-align: baseline; position: relative; bottom: -0.3em; }
+
+.m-noscreen { display: none; }
+
+.g-br { clear: both; display: block; height: 0; overflow: hidden; }
+
+input[type="text"],
+input[type="password"] { padding: 1px 2px 2px; border: 1px solid #c3d4de; background: #ffffff; }
+input.ie-type-text,
+input.ie-type-password { padding: 1px 2px 2px; border: 1px solid #777; background: #ffffff; }
+input[type="text"]:focus,
+input[type="password"]:focus { border-color: #0980c4; background: #fff; color: #333333; }
+input.ie-type-text.ie-focus,
+input.ie-type-password.ie-focus { border-color: #0980c4; background: #fff; color: #333333; }
+textarea { padding: 1px 2px 2px; border-width: 1px; border-style: solid; border-color:#c3d4de; background: #ffffff; overflow: auto; resize: none; }
+textarea:focus,
+textarea.ie-focus { border-color: #0980c4; background: #fff; color: #333333; }
+select { padding: 0; border: 1px solid #c3d4de; background: #ffffff; }
+/*input[type="image"] { padding: 0; border: none; }
+input.ie-type-image { padding: 0; border: none; }
+input[type="submit"],
+input[type="reset"],
+input[type="button"] { padding: 2px 5px 3px; border: 1px solid #000000; background: #ffffff; color: #000000; cursor: pointer; }
+input[type="submit"],
+input[type="reset"],
+input[type="button"], x:-moz-any-link { padding: 1px 5px 2px; }
+input.ie-type-submit,
+input.ie-type-reset,
+input.ie-type-button { padding: 1px 4px 1px; border: 1px solid #000000; background: #ffffff; color: #000000; cursor: pointer; }
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover { border-color: #666666; background: #f0f0f0; color: #333333; }
+input.ie-type-submit.ie-hover,
+input.ie-type-reset.ie-hover,
+input.ie-type-button.ie-hover { border-color: #666666; background: #f0f0f0; color: #333333; }
+
+*/.ui-block-content { padding:0 20px;}
+.ui-block-content .c-clear { overflow: hidden; width: 100%; margin: 0; }
+.ui-block-content .c-br { clear: both; margin: 0; }
+
+.ui-block-content img {}
+.ui-block-content img.c-withborder { background: #ffffff; border: 4px solid #eeeeee; padding: 1px; }
+.ui-block-content img[align="left"] { margin: 0 20px 1.2em 0; }
+.ui-block-content img.ie-align-left { margin: 0 20px 1.2em 0; }
+.ui-block-content img[align="right"] { margin: 0 0 1.2em 20px; }
+.ui-block-content img.ie-align-right { margin: 0 0 1.2em 20px; }
+ h1,
+.ui-block-content h2{ margin: 0 0 0.5em; }
+.ui-block-content h3,
+.ui-block-content h4,
+.ui-block-content h5,
+.ui-block-content h6, 
+.ui-block-content p,
+.ui-block-content ul,
+.ui-block-content ol,
+.ui-block-content dl,
+.ui-block-content table,
+.ui-block-content object { margin: 0 0 0.5em; }
+.ui-block-content table p,
+.ui-block-content li p,
+.ui-block-content blockquote p { margin-bottom: 0; }
+h1 { font-size: 2em; }
+.ui-block-content h2 { font-size: 1.5em; }
+.ui-block-content h3 { font-size: 1.4em; }
+.ui-block-content h4 { font-size: 1.4em; }
+.ui-block-content h5 { font-size: 1.2em; }
+.ui-block-content h6 { font-size: 1em; }
+.ui-block-content ul { margin-left: 20px; }
+.ui-block-content ol { margin-left: 34px; }
+.ui-block-content li ul,
+.ui-block-content li ol { margin-bottom: 0; }
+.ui-block-content ul li { padding: 0; }
+.ui-block-content ol { counter-reset: item; }
+.ui-block-content ol>li { padding: 0 !important; background: none; }
+.ui-block-content ol>li:before { content: counter(item) ". "; counter-increment: item; font-weight: bold; display: block; width: 50px; float: left; height: 0; margin: 0 0 0 -54px; text-align: right; }
+.ui-block-content li .ie-marker { font-weight: bold; display: inline; width: 50px; float: left; margin: 0 0 0 -54px; text-align: right; }
+.ui-block-content hr, .ui-block-content .ie-hr { clear: both; display: block; height: 1px; overflow: hidden; width: 60%; margin: 0 auto 1.2em; background: url(/i/decor_dotline.gif) repeat-x 0 0; }
+.ui-block-content a {}
+.ui-block-content strong {}
+.ui-block-content em {}
+.ui-block-content abbr,
+.ui-block-content acronym { border-bottom: dotted 1px #666666; cursor: help; }
+.ui-block-content blockquote { margin: 0 34px 1.2em; padding: 0.2em 1.5em; border-left: 3px solid #666666; }
+.ui-block-content table { margin: 0 auto 1.2em; }
+.ui-block-content table caption { font-size: 1.2em; font-weight: bold; padding: 0 20px 10px; text-align: center; }
+.ui-block-content table th { padding: 2px 10px 4px; border: 1px solid #aaa; }
+.ui-block-content table td { padding: 2px 10px 4px; /*border: 1px solid #aaa;*/ vertical-align: top; }
+.ui-block-content table tr.c-tr-bg th,
+.ui-block-content table tr.c-tr-bg td { background-color: #e0e0e0; }
+.ui-block-content table[border="0"] th,
+.ui-block-content table[border="0"] td { padding: 0; border: none; }
+.ui-block-content table.ie-border-0 th,
+.ui-block-content table.ie-border-0 td { padding: 0; border: none; }
+.ui-block-content table td[valign="middle"] { vertical-align: middle; }
+.ui-block-content table td.ie-valign-middle { vertical-align: middle; }

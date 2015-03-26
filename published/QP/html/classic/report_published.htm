@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="styles/qp_print_styles.css" rel="stylesheet" type="text/css">
+<link href="../../common/reports/print_styles.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<? $errorStr ?>
+<? if !$fatalError ?>
+		<table cellpadding=0 cellspacing=0 border=0>
+			<? foreach from=$pages key=QPF_ID item=pageData ?>
+					<tr><td height=40 valign=middle class=largeText_normal><h1><? $pageData.QPF_TITLE|htmlsafe:true:true ?><h1></td></tr>
+					<tr><td style="height: 5px"></td></tr>
+					<tr><td><? $pageData.QPF_CONTENT ?></td></tr>
+			<? /foreach ?>
+		</table>
+<? /if ?>
+<? /strip ?>
+</body>
+</html>

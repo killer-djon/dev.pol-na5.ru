@@ -1,0 +1,1661 @@
+msgid ""
+msgstr ""		
+"Project-Id-Version: webasyst\n"
+"POT-Creation-Date: 2010-08-27 02:59-0400\n"
+"PO-Revision-Date: 
+"
+"Last-Translator:  webasyst\n"
+"Language-Team:  webasyst Team\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: de\n"
+"X-Poedit-Country: de\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:233
+msgid "Loading"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/page.js:130
+msgid "ID"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:118
+msgid "Source"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsSidebar.html:9
+msgid "Date"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/page.js:130
+msgid "Client"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:258
+msgid "Subject"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsSidebar.html:13
+msgid "Status"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/page.js:130
+msgid "Assigned user"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:104
+msgid "Helpdesk"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:112
+msgid "Search results for "
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:463
+msgid "Search results"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/layouts/Back.html:5
+msgid "Support Tracker"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:116
+msgid "and"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:112
+msgid "client name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:113
+msgid "client email"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:113
+msgid "client Id"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:114
+msgid "words"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:115
+msgid "in"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:115
+msgid "subject"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:115
+msgid "request text"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:115
+msgid "replies and discussion"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:115
+msgid "user"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "replied to request"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "performed other actions"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:116
+msgid "or"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:118
+msgid "Empty trash"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:118
+msgid "Empty this folder"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:118
+msgid "All requests will be removed and you will not be able to restore them."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:118
+msgid "Remove requests?"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:119
+msgid "Folder is empty"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:119
+msgid "Confirmation"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:118
+msgid "Yes"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:119
+msgid "No"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:122
+msgid "New form"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:99
+msgid "Field"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:99
+msgid "is required"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:100
+msgid "One of this fields should not be empty"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:181
+msgid "hide details"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:40
+msgid "show details"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:126
+msgid "Loading..."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:127
+msgid "Minimize"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:127
+msgid "Expand"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:130
+msgid "oldest entries first"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:130
+msgid "newest entries first"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:130
+msgid "Sort request history"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:133
+msgid "Display original message"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:133
+msgid "Hide original message"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:139
+msgid "Select contact"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:192
+msgid "To"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:139
+msgid "Copy"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:198
+msgid "Bcc"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:174
+msgid "Send"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:289
+msgid "Cancel"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbs.request.js:342
+msgid "Find answer in Knowledge base"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:140
+msgid "Send notification"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsAdd.html:9
+msgid "Add"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:143
+msgid "Attach file"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:144
+msgid "Delete file"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:148
+msgid "Error"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:149
+msgid "Please, fill required fields."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:151
+msgid "Change assigment"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:151
+msgid "Assign"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:154
+msgid "Request has been deleted."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:67
+msgid "Bold"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:67
+msgid "Italic"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:67
+msgid "Underline"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Strikeout"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbs.ui.editor.js:21
+msgid "Font"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbs.ui.editor.js:22
+msgid "Font size"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Font Color"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Background Color"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Left Justify"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Center"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Right Justify"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Numbered List"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Bullets"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Insert Link"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Remove Link"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Horizontal Rule"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:66
+msgid "Remove Format"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:67
+msgid "Font color"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:67
+msgid "Background color"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:71
+msgid "Enter link address:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:83
+msgid "Edit link"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/contacts/ContactsRequests.html:1
+msgid "Requests"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsst.min.js:270
+msgid "Show"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsst.min.js:270
+msgid "open"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsst.min.js:270
+msgid "all"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbs.ui.grid.js:255
+msgid "Pages"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbs.ui.grid.js:263
+msgid "requests on page"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsst.min.js:273
+msgid "end of the list"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsHeader.html:32
+msgid "Open in new window"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:42
+msgid "Id"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:245
+msgid "From"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsSidebar.html:17
+msgid "Assigned"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:197
+msgid "no contacts"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:12
+msgid "Search"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:198
+msgid "Search by name or email"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:199
+msgid "All folders"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:200
+msgid "Select"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:200
+msgid "Use Ctrl+click or Shift+click to select multiple contacts"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsHeader.html:33
+msgid "Close"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:162
+msgid "All open"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:29
+msgid "My requests"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbs.widgets.js:760
+msgid "Unread"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:163
+msgid "Waiting verification"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:163
+msgid "Trash"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:162
+msgid "Not assigned"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:163
+msgid "by status"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:163
+msgid "Archive (closed requests)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbs.widgets.js:167
+msgid "Assignments"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/Sources.html:1
+msgid "Email boxes"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/Forms.html:1
+msgid "Forms"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:77
+msgid "Classifiers"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:164
+msgid "Settings"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:166
+msgid "Folders"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:168
+msgid "Search by request number or client1s name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:170
+msgid "Advanced search"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:170
+msgid "&lt;anyone&gt;"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "Client name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "Client email"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "Client Id"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "Words"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "in subject"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "in request text"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "in replies and discussions"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:171
+msgid "User"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:178
+msgid "Refresh"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:2
+msgid "Add a new request"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:179
+msgid "requests"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:182
+msgid "Maximize"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsSidebar.html:54
+msgid "Reload page"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/users/Users.html:7
+msgid "Save"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbs.widgets.js:917
+msgid "not specified"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/js/source/wbs/wbsstlite.min.js:194
+msgid "Change classifiers"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/requests/STRequestsCheck.controller.php:25
+msgid "Error occurred while checking"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/requests/STRequestsHeader.action.php:101
+msgid "$1"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/requests/STRequestsInfo.action.php:237
+msgid "Contact Id"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/requests/STRequestsSave.controller.php:27
+msgid "Action can not be accomplished because another user has changed this request status."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/requests/STRequestsSave.controller.php:176
+msgid "Original request"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/sources/STSourcesAdd.action.php:8
+msgid "Add a new source"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/sources/STSourcesEdit.action.php:73
+msgid "Link to 'My requests' tab in client's personal cabinet."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/sources/STSourcesEdit.action.php:77
+msgid "Request number"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/sources/STSourcesEdit.action.php:79
+msgid "Request subject"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:87
+msgid "Request text"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/sources/STSourcesEdit.action.php:78
+msgid "Email box where request was received"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/sources/STSourcesEdit.action.php:72
+msgid "Request history available for client. Includes original request, reply, reopening and following replies."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/sources/STSourcesEdit.action.php:76
+msgid "Confirmation link"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/actions/sources/STSourcesEdit.action.php:11
+msgid "Edit source"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:22
+msgid "Request not found."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:234
+msgid "no subject"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:252
+msgid "%ds"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:254
+msgid "%dm"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:263
+msgid "%dh %dm"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:265
+msgid "%dd %dh"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:267
+msgid "%dd"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:269
+msgid "%dm %dd"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/lib/classes/STRequest.class.php:272
+msgid "%dy %dd"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:3
+msgid "Data from MT"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:19
+msgid "Name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:252
+msgid "Email"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:9
+msgid "Company"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:13
+msgid "Phone"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:17
+msgid "Address"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:21
+msgid "Juridical address"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:25
+msgid "Details"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:27
+msgid "INN"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:29
+msgid "KPP"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:32
+msgid "Bank account"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:35
+msgid "Bank name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:38
+msgid "BIK"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/CustomerInfo/templates/Info.html:41
+msgid "Bank coraccount"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Notes/templates/Notes.html:3
+msgid "Notes about client"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Notes/templates/Notes.html:150
+msgid "Add a note"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Notes/templates/Notes.html:108
+msgid "added by"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/Sources.html:16
+msgid "Edit"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/Sources.html:16
+msgid "Delete"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Notes/templates/Notes.html:150
+msgid "Notes about this client: none"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:3
+msgid "Back to request #"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:8
+msgid "Orders by"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:114
+msgid "Created"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Orders/templates/Orders.html:12
+msgid "Description"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Orders/templates/Orders.html:12
+msgid "Payment"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Amount"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Shipped"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:33
+msgid "Total (PAID only)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Shop/templates/Shop.html:6
+msgid "Orders"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Orders/templates/OrdersInfo.html:10
+msgid "Show order list"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Orders/templates/OrdersInfo.html:34
+msgid "Orders: none"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Shop/templates/Shop.html:19
+msgid "Order time"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Shop/templates/Shop.html:20
+msgid "Order status"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Shop/templates/Shop.html:28
+msgid "This person did not place orders in the store yet"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Shop/templates/Shop.html:33
+msgid "This person is not a customer of the online store"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:4
+msgid "Add new classifier"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:367
+msgid "allow multiple selection (check boxes)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:547
+msgid "single selection only (radio buttons)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:38
+msgid "requests are linked to element"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:50
+msgid "Link requests with other element after deletion"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:41
+msgid "Delete element and leave requests unlinked"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:49
+msgid "requests are linked to elements of this classifier"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:52
+msgid "Delete classifier and leave requests unlinked"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:60
+msgid "Classifier name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:76
+msgid "Add element"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/classes/Classes.html:454
+msgid "Select element"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/Forms.html:5
+msgid "WebAsyst Help Desk allows you to quickly create a form and using couple of html code lines embed it into your website."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/Forms.html:6
+msgid "A message which visitors of your site will send via this form will be added to the list of requests in the same way as requests received by email."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/Forms.html:19
+msgid "Create a new request form"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsAdd.html:2
+msgid "Add a new form"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsAdd.html:7
+msgid "Form name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:288
+msgid "Save changes"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:17
+msgid "Fields"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:18
+msgid "View"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:19
+msgid "After submit"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:26
+msgid "Client's name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:30
+msgid "Email address"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:35
+msgid "Select classifiers you want to include in the form"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:52
+msgid "Request summary"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:61
+msgid "CAPTCHA"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:71
+msgid "Caption"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:75
+msgid "Caption text color"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:101
+msgid "change"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:84
+msgid "Caption background color"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:94
+msgid "Form width"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:98
+msgid "Form background color"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:106
+msgid "Button"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:36
+msgid "Language"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:119
+msgid "System messages and default field names will appear in this language."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:126
+msgid "Once user clicks submission button in this form:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:127
+msgid "Stay on the form page and display this message:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:132
+msgid "Redirect to another page:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:136
+msgid "Incorrect URL"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:140
+msgid "To enable \"Send email\" function you have to add Email field in this form."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:141
+msgid "Send email to user"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:161
+msgid "From (Name)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:165
+msgid "From (Email)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:171
+msgid "Choose email box from which return messages will be sent"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsEdit.html:194
+msgid "Insert a confirmation link into this message"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:44
+msgid "Delete form"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:6
+msgid "Customize"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:17
+msgid "Link to this form"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:17
+msgid "open in new window"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:20
+msgid "HTML to embed in website or blog"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:21
+msgid "Method 1 (&lt;iframe&gt;)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:24
+msgid "Method 2 (javascript and &lt;form&gt;)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:50
+msgid "Please note that after you delete the form, link and HTML code associated with this form will stop functioning."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/forms/FormsInfo.html:51
+msgid "Make sure all references to this form from your website or blog are also deleted."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/layouts/RequestSingle.html:5
+msgid "Help Desk"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:119
+msgid "ACCOUNT LIMIT"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:119
+msgid "Number of requests can not exceed"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:134
+msgid "To receive requests by email:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:135
+msgid "Send an email to"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:135
+msgid "and it will appear in request list on this page."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:136
+msgid "In <a href=\"#/sources/\">Settings / Email boxes</a> section you can setup other email addresses to receive requests."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:137
+msgid "To receive requests via web form:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:138
+msgid "In <a href=\"#/forms/\">Settings / Forms</a> section create a web form and embed it into your website."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/index/Index.html:155
+msgid "You have no sources to get new requests: email box or web form"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:170
+msgid "Knowledge Base"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:13
+msgid "Browse"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:178
+msgid "Add a page"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:291
+msgid "Main"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:200
+msgid "Select Knowledge Base"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:202
+msgid "All internal Knowledge Bases"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:216
+msgid "Search text"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:232
+msgid "Add answer on frequently asked questions to Knowledge Base"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:235
+msgid "Knowledge Base Book"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:246
+msgid "Title"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:54
+msgid "Text"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:259
+msgid "Check this page as \"Published\""
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:268
+msgid "The page has been successfully added"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:270
+msgid "Add another page"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:373
+msgid "no pages found"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:402
+msgid "Attachments"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:452
+msgid "Show more..."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:455
+msgid "no search results"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:483
+msgid "Please select a book"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:485
+msgid "Please enter a title"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/knowledge/Knowledge.html:487
+msgid "Please enter a text"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/layouts/Back.html:17
+msgid "Back to requests list"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/layouts/Back.html:23
+msgid "Tickets"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/layouts/Back.html:24
+msgid "Tools and Settings"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Order ID"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Product ID"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Order structure"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Payment option"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Status ID"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:45
+msgid "No access"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalInfo.html:87
+msgid "Back to request list"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:207
+msgid "Attachment(s)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalInfo.html:72
+msgid "Reopen request"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:38
+msgid "Sent"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:58
+msgid "Just sent!"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:60
+msgid "We are working on this."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:60
+msgid "Thank you for your patience!"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:62
+msgid "Closed"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:69
+msgid "Sending date/time is designated as GMT (Greenwich Mean Time)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:74
+msgid "No requests."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:169
+msgid "Please fill summary and text fields."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/personal/PersonalList.html:170
+msgid "Summary"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:8
+msgid "client not specified"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:14
+msgid "Create"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:59
+msgid "This field is required"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:64
+msgid "Assign to"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:110
+msgid "Add request"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:135
+msgid "Search by name"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsAdd.html:264
+msgid "Request was created succefully"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsHeader.html:5
+msgid "Back to list"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsHeader.html:13
+msgid "more actions"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsHeader.html:31
+msgid "Toggle bottom panel"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsHeader.html:44
+msgid "select"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:29
+msgid "Total requests from this client"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:29
+msgid "show all"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:31
+msgid "Other requests from this client: none"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:195
+msgid "Cc"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:124
+msgid "added manually by user"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:127
+msgid "added manually by user from cabinet"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:133
+msgid "Form"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:223
+msgid "Contacts"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:224
+msgid "Users"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:225
+msgid "<span>Search</span>"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsSidebar.html:5
+msgid "Number"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsSidebar.html:10
+msgid "ago"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsSidebar.html:44
+msgid "Change"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsSidebar.html:48
+msgid "Knowledge base"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsTabs.html:3
+msgid "Request"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsTabs.html:14
+msgid "Other requests"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/settings/Settings.html:1
+msgid "General"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/settings/Settings.html:4
+msgid "Manual adding"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/settings/Settings.html:6
+msgid "Allow \"Add a new request\" button to add new requests manually."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:39
+msgid "English"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:40
+msgid "Russian"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/Sources.html:18
+msgid "default for outgoing messages"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/Sources.html:25
+msgid "you have no email boxes to receive requests by email"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:2
+msgid "Create email box"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/Sources.html:31
+msgid "Create a new email box"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/Sources.html:32
+msgid "Connect to existing email box"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/Sources.html:32
+msgid "(e.g. youraddress@gmail.com)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:7
+msgid "Delete this email box"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:11
+msgid "Name & Email"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:12
+msgid "Signature"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:13
+msgid "Receipt"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:14
+msgid "Anti-spam"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:32
+msgid "This email address already exists (possibly create by WebAsyst Mail application)."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:42
+msgid "This language will be set as default language for new clients sending their requests to this email box."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:62
+msgid "Default outgoing email for selected language"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:63
+msgid "This email box will be used as \"From\" box to send messages to clients speaking in selected language if we have received requests from these clients from their personal cabinets (not via email)."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:69
+msgid "Incoming mail server"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:71
+msgid "My mail server is a"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:75
+msgid "server"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:77
+msgid "SSL is disabled in your PHP configuration. Please contact your server administrator."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:82
+msgid "Server"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:89
+msgid "My server requires a secure connection (SSL)"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:93
+msgid "Port"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:135
+msgid "Username"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:139
+msgid "Password"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:106
+msgid "Outgoing mail server"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:110
+msgid "My server requires authentication"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:122
+msgid "Use same settings as my incoming mail server"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:130
+msgid "Login using"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:153
+msgid "This signature will be added at the bottom of every message outgoing from this email address"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:159
+msgid "Regards"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:278
+msgid "Support Team"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:220
+msgid "Please use"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:220
+msgid "your personal page"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:220
+msgid "to view, reopen or create new requests."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:181
+msgid "Send a receipt to client upon receiving new request"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:201
+msgid "Your message has been queued into our customer support tracking system"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:208
+msgid "Your message has been received by our technical team and queued into our customer support tracking system."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:210
+msgid "Your request ID:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:212
+msgid "Be assured that your request will be processed shortly, and you will receive a personal reply from one of our representatives soon."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:275
+msgid "Thank you!"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:218
+msgid "NOTE: This is an automated message to confirm receipt of your request. Please do not reply to this message!"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:235
+msgid "Send automatic confirmation request on messages received from unknown addresses"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:237
+msgid "Every time you receive a message from an unknown email address which does not exist in your Contacts database,"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:238
+msgid "an automatic confirmation request will be sent to this email address."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:239
+msgid "This request can contain a special link for sender to confirm his/her original message as well as additional confirmation instructions you provide."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:260
+msgid "Please confirm your request"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:267
+msgid "We have just received a request from your email address."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:269
+msgid "To confirm your request, please follow this link:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:272
+msgid "NOTE: Your request will be accepted only after confirmation."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:273
+msgid "Confirmation is required due to high volume of SPAM we receive. This is one-time action. After you confirm, we will add your email address to our contact database, and all future requests from you will be automatically accepted and queued into our customer support tracking system."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:294
+msgid "New requests being sent to"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:294
+msgid " will not be delivered to Helpdesk application anymore."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:295
+msgid "But the email box itself will stay on its mail server and will be available through other mail client programs."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:297
+msgid "Requests previously delivered to"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:297
+msgid "will stay in Helpdesk application."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:299
+msgid "Delete email box"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:304
+msgid "You can use following variables. These variables will be replaced in every outgoing message with their corresponding values."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:314
+msgid "Recipient variables"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:320
+msgid "Sender (current user) variables"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:326
+msgid "more variables"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/users/Users.html:2
+msgid "Assignment template"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:192
+msgid "Whom"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Activity/templates/Activity.html:3
+msgid "Assets"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Partners/templates/Partners.html:21
+msgid "no"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Activity/templates/Activity.html:39
+msgid "expired"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Activity/templates/Activity.html:39
+msgid "not registered"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Partners/templates/Partners.html:3
+msgid "Partner"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Partners/templates/Partners.html:5
+msgid "REFERRAL:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Partners/templates/Partners.html:7
+msgid "orders:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Partners/templates/Partners.html:8
+msgid "total earnings:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Partners/templates/Partners.html:10
+msgid "current balance:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Partners/templates/Partners.html:17
+msgid "RESELLER:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/plugins/Partners/templates/Partners.html:19
+msgid "licenses transferred to others:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:42
+msgid "Selection will be default language  for clients sending their first request to this email address."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:63
+msgid "Clients whose default language matches the above choice will receive responses to their requests from this email address."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:153
+msgid "This signature will appear on replies sent to clients from this email address:"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:235
+msgid "Send an automatic confirmation reply to requests received from unknown email addresses"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:237
+msgid "This automatic reply will be sent to senders of requests received from email addresses which do not exist in your client database. Such an auto-reply can contain a special link which a client should click to confirm his/her first request. You may include additional instructions for your clients in this message."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/sources/SourcesEdit.html:302
+msgid "You can add the variables provided below to the message text. Variables are automatically replaced with their values before being sent to a client."
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:192
+msgid "<span class=\"assign\">To</span>"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:103
+msgid "noname"
+msgstr ""

@@ -1,0 +1,9 @@
+<Connector>
+	<Class>
+		<Name>Body AuxPage</Name>
+		<File>class.bodyaux.php</File>
+		<Title>Содержимое текстовой страницы</Title>
+		<Description></Description>
+		<SingleInstallation>true</SingleInstallation>
+	</Class>
+</Connector>

@@ -1,0 +1,450 @@
+app_name_long	Common	Application full name	Задания
+app_name_short	Common	Application short name	Задания
+app_onissueassignment_name	Common	On Issue Assignment notification name	Уведомлять о назначениях на задания
+app_errloadingprojects_message	Common	Error loading project list message	Не удалось загрузить список проектов
+app_errloadingmanager_message	Common	Error loading project manager data message	Не удалось загрузить сведения о менеджере проекта
+app_errloadingtasks_message	Common	Error loading task list message	Не удалось загрузить список заданий
+app_errloadingissue_message	Common	Error loading issue data message	Не удалось загрузить информацию о задании
+app_errloadingworkflow_message	Common	Error loading workflow message	Не удалось загрузить процесс
+app_invissuerights_message	Common	Lack of administrative rights to work with the current issue message	У вас нет прав работать с этим заданием
+app_errloadingasgnmt_message	Common	Error loading issue assignment list message	Ошибка получения списка назначений
+app_issuelow_text	Common	Low assignment priority	Низкий
+app_issuenormal_text	Common	Normal assignment priority	Средний
+app_issuehigh_text	Common	High assignment priority	Высокий
+app_issuelowshort_text	Common	Low assignment priority short name	Н
+app_issuenormalshort_text	Common	Normal assignment priority short name	С
+app_issuehighshort_text	Common	High assignment priority short name	В
+app_tasknotfound_message	Common	Task not found message	Работа не найдена
+app_isstylebrown_name	Common	Brown assignment style name	Коричневый, полужирный
+app_isstylebrownb_name	Common	Brown bold assignment style name	Коричневый, полужирный
+app_isstyledarkgreen_name	Common	Dark green assignment style name	Темно-зеленый
+app_isstyledarkgreenb_name	Common	Dark green bold assignment style name	Темно-зеленый, полужирный
+app_isstyleblack_name	Common	Black assignment style name	Черный
+app_isstyleblackb_name	Common	Black, bold assignment style name	Черный, полужирный
+app_isstylehazel_name	Common	Hazel assignment style name	Светло-коричневый
+app_isstylehazelb_name	Common	Hazel bold assignment style name	Светло-коричневый, полужирный
+app_isstyleblue_name	Common	Blue assignment style name	Синий
+app_isstyleblueb_name	Common	Blue bold assignment style name	Синий, полужирный
+app_isstyred_name	Common	Red assignment style name	Красный
+app_isstyredb_name	Common	Red bold assignment style name	Красный, полужирный
+app_freeissues_label	Common	Free issues label	<не связанные с проектами>
+app_errloadingtaskasgnmt_message	Common	Error reading assignment list message	Ошибка получения списка назначений
+app_templnotfound_message	Common	Accessing not existing template message	Шаблон не найден
+app_errloadingrights_message	Common	Error loading user rights message	Не удалось прочитать права пользователя
+app_errloadingitl_message	Common	Error reading transition log message	Не удалось прочитать запись в журнале переходов задания
+app_errloadingtrlist_message	Common	Allowed transition list error message	Ошибка получения списка разрешенных переходов
+app_errloadingtmpls_message	Common	Error reading template list message	Не удалось загрузить список шаблонов
+app_delassignee_message	Common	Deleting user with issue assignment message	Невозможно удалить пользователя, так как он назначен на задание. Проект "%s", задание %s.%s
+app_delsender_message	Common	Deleting issue sender message	Невозможно удалить пользователя, так как он является постановщиком задания. Проект "%s", задание %s.%s
+app_delworkflowuser_message	Common	Deleting user assigned in Workflow message	Невозможно удалить пользователя, так как он выбран исполнителем в Процессе. Проект "%s", работа %s, состояние "%s"
+app_delitluser_message	Common	Deleting user, whose name is recorded in Issue Transition message	Невозможно удалить пользователя, так как на него имеются ссылки в журнале работы с заданием. Проект "%s", работа %s, состояние "%s"
+app_dellinkedtask_message	Common	Deleting task with linked issues message	Невозможно удалить работу, с которой связаны задания
+app_delusedassignment_message	Common	Active assignment deletion message	Невозможно удалить назначение, так как пользователь %s назначен на задание. Проект "%s", задание %s.%s
+app_dellinkedproj_message	Common	Deleting project with linked issues message	Невозможно удалить проект, с которым связаны задания
+app_complissuesproj_message	Common	Closing project with open issues confirmation	Проект имеет открытые задания. Вы действительно хотите закрыть проект?
+app_complissuestask_message	Common	Closing task with open issues confirmation	Работа имеет открытые задания. Вы действительно хотите завершить работу?
+app_return_btn	Common	Return button	Вернуться
+app_issueslimit_message	Common	Issue number limitation message	<b>ОГРАНИЧЕНИЕ</b>: Количество заданий не может превышать %s.
+il_screen_long_name	Issue List	Issue List page full name	Список заданий
+il_screen_short_name	Issue List	Issue List page short name	Задания
+il_errloadingviewopt_message	Issue List	Error reading Issue List view options message	Не удалось загрузить настройки вида списка заданий
+il_idfield_title	Issue List	ID column name	Код
+il_priorityfield_title	Issue List	Priority column name	Приоритет
+il_datefield_title	Issue List	Date column name	Дата
+il_statusfield_title	Issue List	Status column name	Статус
+il_descfield_title	Issue List	Description column name	Описание
+il_authorfield_title	Issue List	Author column name	Автор
+il_senderfield_title	Issue List	Sender column name	Отправитель
+il_assignedfield_title	Issue List	Assigned column name	Исполнитель
+il_pendingfield_title	Issue List	Pending column name	Ожидание
+il_compltask_text	Issue List	Complete text in the assigned tasks list	завершена
+il_groupissues_item	Issue List	<group issues by tasks> item in the tasks list	<сгруппировать задания по работам> 
+il_groupissuesbyproject_item	Issue List	<group issues by projects> item in the projects list	<сгруппировать задания по проектам> 
+il_noprojects_item	Issue List	<no projects> item if there are not tasks	<нет проектов>
+il_nofilter_text	Issue List	no filter applied text at the tasks list header	фильтрация отключена
+il_copyissues_menu	Issue List	Copy Issue(s) menu item	Копировать
+il_moveissues_menu	Issue List	Move Issue(s)... menu item	Переместить
+il_deleteissues_menu	Issue List	Delete Issue(s)... menu item	Удалить
+il_forwardissues_menu	Issue List	Forward Issue(s)... menu item	Отправить
+il_remind_menu	Issue List	Remind menu item	Напомнить
+il_customizeworkflow_menu	Issue List	Customize workflow menu item	Настроить процесс
+il_workflowtemplates_menu	Issue List	Workflow Templates menu item	Шаблоны процессов
+il_workflow_btn	Issue List	Setup workflow button	настроить процесс
+il_print_menu	Issue List	Print menu item	Печать
+il_grid_menu	Issue List	Grid menu item	Таблица
+il_list_menu	Issue List	List menu item	Список
+
+it_Comment_Confirm	Issue List	confirm	Комментарий будет удалён. Продолжить?
+it_Comment_Add	Issue List	add comment	Добавить
+it_Comment_Add_Title	Issue List	add comment title	Добавить комментарий
+it_Comment_Cancel	Issue List	cancel comment	Отмена
+it_Comment_Save	Issue List	save comment	Сохранить
+it_Comment	Issue List	Comment	Комментарий
+
+il_custview_menu	Issue List	Customize View menu item	Настроить вид
+il_displayhistory_menu	Issue List	Display Issue History menu item	Показать историю
+il_hidehistory_menu	Issue List	Hide Issue History menu item	Скрыть историю
+il_addfilter_menu	Issue List	Add Filter menu item	Добавить
+il_modfilter_menu	Issue List	Modify Filter menu item	Настройка
+il_orgfilters_menu	Issue List	Organize Filters... menu item	Упорядочить
+il_emptycopy_message	Issue List	Copying issues without selecting any message	Выберите задания для копирования
+il_emptymove_message	Issue List	Moving issues without selecting any message	Выберите задания для перемещения
+il_emptyremind_message	Issue List	Reminding issues without selecting any message	Выберите задания для напоминания
+il_emptydelete_message	Issue List	Deleting issues without selecting any message	Выберите задания для удаления
+il_deleteconfirm_message	Issue List	Issue deletion confirmation	Вы действительно хотите удалить выбранные задания?
+il_emptysend_message	Issue List	Attempt to work with issues without selecting them	Выберите задания для отправки
+il_invtaskssend_message	Issue List	Incorrect operation on the list of issues	Вы можете отправлять множественные задания, только если они принадлежат одной работе.
+il_invissuestatussend_message	Issue List	Incorrect operation on the list of issues	Вы должны выбрать задания в одинаковом состоянии для множественной отправки
+il_invissuesforbsend_message	Issue List	Incorrect operation on the list of issues	Отправка некоторых из выбранных заданий не разрешена
+il_addcompltask_message	Issue List	Attempt to adding issue to a completed task	Невозможно добавить задание в закрытой работе
+il_invworkflissuedel_message	Issue List	Trying to delete issues, which are prohibited for deletion	Настройки процесса не позволяют удалять некоторые из выбранных заданий.
+il_deleteforbconfirm_message	Issue List	Confirmation when deleting issues	Удалить эти задания?
+il_unabletodelissues_message	Issue List	Issues could not be deleted message	Некоторые из выбранных заданий не могут быть удалены
+il_addissue_btn	Issue List	Add Issue button	Добавить
+il_issue_menu	Issue List	Issue menu	Задание
+il_view_menu	Issue List	View menu	Вид
+il_filters_menu	Issue List	Filters menu	Фильтры
+il_workflow_menu	Issue List	Workflow menu	Процесс
+il_hidefilters_hint	Issue List	Hide Filters popup hint	Скрыть фильтры
+il_showfilters_hint	Issue List	Show Filters popup hint	Показать фильтры
+il_records_label	Issue List	Record(s) label	Записи
+il_filters_title	Issue List	Filters list header	Фильтры
+il_task_label	Issue List	Task label	Работа
+il_showissues_label	Issue List	show issues label	показать задания
+il_hideissues_label	Issue List	hide issues label	скрыть задания
+il_completetask_label	Issue List	This task is Complete label	Работа завершена
+il_more_text	Issue List	more text	еще...
+il_comments_text	Issue List	Comments text	Комментарий
+il_from_text	Issue List	From text	От
+il_to_text	Issue List	To text	Кому
+il_tasks_label	Issue List	Task(s) label	Работ
+il_issues_label	Issue List	Issue(s) label	Заданий
+il_project_label	Issue List	Project label	Проект
+il_completeproj_text	Issue List	complete text in closed projects	закрыт
+il_allissuesfilter_title	Issue List	All Issues filter name	Все задания
+il_openissuesfilter_title	Issue List	Open Issues filter name	Открытые задания
+il_imauthorfilter_title	Issue List	I am Author filter name	Я автор
+il_imsenderfilter_title	Issue List	I am Sender filter name	Я отправил
+il_imassigneefilter_title	Issue List	Assigned To Me filter name	Назначенные мне
+il_todayfilter_title	Issue List	Today filter name	Сегодня
+il_lastweekfilter_title	Issue List	Last Week filter name	Последняя неделя
+il_pendweekfitler_title	Issue List	Pending 1 Week + filter name	Ожидающие неделю
+il_completefitler_title	Issue List	Complete Issues filter name	Завершенные задания
+il_pendmonthfitler_title	Issue List	Pending 1 Month + filter name	Ожидающие месяц
+il_errfilterloading_message	Issue List	Error loading filter message	Не удалось загрузить фильтр
+il_errloadinglist_message	Issue List	Error loading issue list message	Не удалось загрузить список заданий
+il_norights_message	Issue List	Lack of administrative rights to view the report	У вас нет прав просматривать этот список
+il_filter_label	Issue List	FILTER label in the report	ФИЛЬТР
+il_manager_label	Issue List	Manager label in the report	Менеджер
+il_noissues_text	Issue List	No issues in the list text	<нет заданий соответствующих выбранному фильтру>
+il_forwardissue_hint	Issue List	Forward this issue popup hint	Отправить это задание
+il_issuehistory_label	Issue List	Issue History Label	История задания
+il_cantforwardissue_hint	Issue List	This issue can not be forwarded popup hint	Это задание не может быть отправлено
+il_refresh_btn	Issue List	Refresh button	Обновить
+il_show_history	Issue List	Show history	История и комментарии
+il_hide_history	Issue List	Hide history	История и комментарии
+il_dlgforward_title	Issue List 	Dialog Forward title	Отправить
+il_dlgforwardmany_title	Issue List 	Forward Many issues Dialog title	Отправить
+il_adddescription_text	Issue List	Add description text	<добавьте описание>
+il_dlgeditnofiles_label	Issue List 	no files label	&lt;нет файлов&gt;
+il_dlgedit_addfile_btn	Issue List	add file	Добавить файл
+il_dlgedit_deletefile_btn	Issue List	add file	 Удалить файлы
+il_nofilesselected_message	Issue List	No files selected message	Пожалуйста, выберите файлы
+il_notaskselected_message	Issue List	Task no selected message	Пожалуйста, выберите работу
+il_statuscurrent_text	Issue List	Status Current text	Это задание было отправлено в состояние %state% %date%
+il_addcoment_text	Issue List	Forward Dialog add comment	<добавить комментарий>
+il_issueforward_label	Issue List	Issue Forward link	Отправить
+il_issueedit_label	Issue List	Issue Edit link	Редактировать
+il_issuedelete_label	Issue List	Issue Delete link	Удалить
+ami_noopentasks_message	Add/Modify Issue	Trying to add issues when no open tasks are present message	Чтобы добавить задание, вы должны иметь хотя бы одну открытую работу по этому проекту
+ami_notassigned_item	Add/Modify Issue	Not Assigned item	<не назначен>
+ami_addissue_title	Add/Modify Issue	Adding Issue page header	Добавить задание
+ami_modissue_title	Add/Modify Issue	Modifying Issue page header	Изменить задание
+ami_task_label	Add/Modify Issue	Task label	Работа
+ami_priority_label	Add/Modify Issue	Priority label	Приоритет
+ami_assignto_label	Add/Modify Issue	Assign to label	Исполнитель
+ami_status_label	Add/Modify Issue	Status label	Статус
+ami_description_label	Add/Modify Issue	Description label	Описание
+ami_files_label	Add/Modify Issue	Attached files label	Прикрепленные файлы
+ami_addanother_btn	Add/Modify Issue	Save and Add Another button	Сохранить и добавить новое
+ami_sender_label	Add/Modify Issue	Sender label	Отправитель
+ami_issue_label	Add/Modify Issue	Issue label	Задание
+ami_dateopen_label	Add/Modify Issue	Date open label	Дата начала
+ami_assignedto_label	Add/Modify Issue	Assigned to label	Исполнитель
+ami_erreditingstate_message	Add/Modify Issue	Modifying forbidden issue message	Изменения задания в этом состоянии запрещены
+ami_erreditcompltask_message	Add/Modify Issue	Modifying issue in a closed task	Невозможно редактировать задание для закрытой работы
+ami_attachments_label	Add/Modify Issue	Attachments label in the notification text	Вложения
+ami_na_label	Add/Modify Issue	n/a label in the notification text	нет
+ami_mailheader_text	Add/Modify Issue	Notification header	Этим сообщением мы уведомляем вас, что вы назначены на новое задание.
+ami_mailproject_label	Add/Modify Issue	Project label in the notification text	Проект
+ami_mailnewedition_label	Add/Modify Issue	New edition label in the notification text	Новая редакция
+ami_mailstatus_label	Add/Modify Issue	Status label in the notification text	Состояние
+ami_mailoldedition_label	Add/Modify Issue	Old edition label in the notification text	Старая редакция
+ami_mailsubject_text	Add/Modify Issue	Issue modification notification subject	Изменение задания
+ami_mailsentby_text	Add/Modify Issue	Sent by in the notification text	Отправлено
+ami_mailasgngreetings_text	Add/Modify Issue	Name text in the notification text	Уважаемый %s,
+ami_mailasgncomment_label	Add/Modify Issue	Comment label in the notification text	<br><br><span style="font-size: 11px">Комментарий: %s</span>
+ami_mailasgnsubject_text	Add/Modify Issue	Issue assignment notification subject	Назначение  на  задание
+wfm_notdefined_text	Workflow Manager	Not Defined text for not defined processes	<не определен>
+wfm_page_title	Workflow Manager	Workflow Manager page header	Список процессов
+wfm_return_btn	Workflow Manager	Back to Issue List button	Список заданий
+wfm_note1_text	Workflow Manager	Hint first line above form	1. Для настройки процесса, щелкните в колонке Описание процесса.
+wfm_note2_text	Workflow Manager	Hint second line above form	2. Завершенные работы не показаны в с списке.
+wfm_id_title	Workflow Manager	ID column header	Код
+wfm_task_title	Workflow Manager	Task column header	Работа
+wfm_summary_title	Workflow Manager	Workflow Summary column header	Описание процесса
+wfm_templatelist_title	Workflow Manager	Workflow Template List column header	Шаблоны процессов
+wfm_templatename_title	Workflow Manager	Template Name column header	Название шаблона
+wfm_default_text	Workflow Manager	Default text for templates by default	по умолчанию
+wfm_project_label	Workflow Manager	Project label	Проект
+wfm_selectproject_item	Workflow Manager	Select project item	<выберите проект>
+wfm_page_hint	Workflow Manager	Page hint	Вы можете настроить процесс только для тех проектов, на которые вы назначены менеджером.
+fa_screen_long_name	File Attachments	File Attachments page full name	Прикрепленные файлы
+fa_screen_short_name	File Attachments	File Attachments page short name	Файлы
+fa_noprojects_item	File Attachments	No Projects item if there are no projects	<нет проектов>
+fa_project_label	File Attachments	Project label	Проект
+fa_filename_title	File Attachments	File name column header	Имя файла
+fa_size_title	File Attachments	Size column header	Размер
+fa_date_title	File Attachments	Date column header	Дата
+fa_issuenum_title	File Attachments	Issue # column header	Задание
+fa_issuedesc_title	File Attachments	Issue Description column header	Описание задания
+dws_errloadtrans_message	Define Workflow State 	Error loading transition message	Не удалось загрузить состояние
+dws_notapplicableopt_name	Define Workflow State 	Not Applicable status option name	не разрешено
+dws_notrequiredopt_name	Define Workflow State 	Not Required status option name	не обязательно
+dws_reqselopt_name	Define Workflow State 	Required/Selectable  status option name	обязательно
+dws_reqnotselopt_name	Define Workflow State 	Required/Not Selectable status option name	обязательно/фиксировано
+dws_notassigned_item	Define Workflow State 	Not Assigned item	<не назначен>
+dws_sender_item	Define Workflow State 	Sender item	отправитель
+dws_page_title	Define Workflow State 	Page header	Добавление состояния
+dws_task_label	Define Workflow State 	Task label	Работа
+dws_placebefore_label	Define Workflow State 	Place before label	Поместить перед
+dws_statusname_label	Define Workflow State 	Status name label	Название состояния
+dws_issueoptions_title	Define Workflow State 	Issues options header	Действия, разрешенные в этом состоянии
+dws_canedit_label	Define Workflow State 	Can edit label	Можно редактировать
+dws_candelete_label	Define Workflow State 	Can delete label	Можно удалять
+dws_assignoption_label	Define Workflow State 	Assignment option label	Возможность назначения
+dws_assigdefault_label	Define Workflow State 	Assignee (default) label	Исполнитель по умолчанию
+dws_color_label	Define Workflow State 	Color label	Цвет
+dws_allowedtransitions_title	Define Workflow State 	Allowed transitions list header	Разрешенные переходы
+dws_note1_text	Define Workflow State 	First hint text above form	Включите флажки для тех состояний, в которые разрешено делать переход из текущего состояния. 
+dws_note2_text	Define Workflow State 	Second hint text above form	Щелкните кнопку выбора для состояния, в которое по умолчанию будет предлагаться переход из текущего состояния. 
+dws_delstate_message	Define Workflow State 	State deletion confirmation	Удалить состояние?
+dws_delstatissues_message	Define Workflow State 	Deleting transition, which is assigned to issues message	Невозможно удалить состояние: обнаружены задания с таким статусом
+dws_startendname_message	Define Workflow State 	Modifying Start and Complete states name message	Невозможно изменить название первого или последнего состояния
+dws_statenameexists_message	Define Workflow State 	Creating a state with a duplicate name message	Состояние с таким именем уже существует
+cw_selectable_label	Customize Workflow 	selectable label	выбор
+cw_notselectable_label	Customize Workflow 	not selectable label	фиксировано
+cw_none_label	Customize Workflow 	none label	нет
+cw_sender_label	Customize Workflow 	sender label	отправитель
+cw_page_title	Customize Workflow 	Page header	Настройка процесса
+cw_returntowm_btn	Customize Workflow 	Back to Workflow Manager page button	Назад в Список процессов
+cw_saveastemplate_btn	Customize Workflow 	Save as Template button	Сохранить как шаблон
+cw_selectemplates_btn	Customize Workflow 	Select from Templates button	Выбрать из шаблонов
+cw_task_label	Customize Workflow 	Task label	Работа
+cw_candelete_label	Customize Workflow 	Can delete label	Можно удалять
+cw_cannotdelete_label	Customize Workflow 	Can not delete label	Нельзя удалять
+cw_canedit_label	Customize Workflow 	Can edit label	Можно редактировать
+cw_cannotedit_label	Customize Workflow 	Editing prohibited message	Нельзя редактировать
+cw_asgntallowed_label	Customize Workflow 	Assignments allowed message	Можно назначать исполнителей
+cw_asgntnotallowed_label	Customize Workflow 	Assignments not allowed message	Нельзя назначать исполнителей
+cw_to_label	Customize Workflow 	To label	Назн.
+cw_addstate_btn	Customize Workflow 	Add State button	Добавить состояние
+cw_noworkflow_message	Customize Workflow 	Workflow not defined message	Процесс не определен
+wt_none_label	Workflow Template	none label	нет
+wt_sender_item	Workflow Template	sender item	отправитель
+wt_page_title	Workflow Template	Page name	Шаблон процесса
+wt_return_btn	Workflow Template	Back to Workflow Manager page button	Настройка процесса
+wt_setasdefault_btn	Workflow Template	Set as Default button	По умолчанию
+wt_candelete_label	Workflow Template	Can delete label	Можно удалять
+wt_cannotdelete_label	Workflow Template	Can not delete label	Нельзя удалять
+wt_canedit_label	Workflow Template	Can edit label	Можно редактировать
+wt_cannotedit_label	Workflow Template	Performer setting allowed	Нельзя редактировать
+wt_asgntallowed_label	Workflow Template	Assignments allowed	Можно назначать исполнителей
+wt_asgntnotallowed_label	Workflow Template	Assignments not allowed	Нельзя назначать исполнителей
+wt_to_label	Workflow Template	To label	Назн.
+wt_defdel_message	Workflow Template	Deleting default template message	Нельзя удалить шаблон по умолчанию
+pr_page_title	Print	Page header	Печать
+pr_formtext_label	Print	Text above form	Печать
+pr_selected_label	Print	Selected Issues label	Выбранные задания
+pr_curpage_label	Print	Current Page label	Текущая страница
+pr_entire_label	Print	Entire Project (filtered) label	Проект полностью (с применением фильтра)
+pr_print_btn	Print	Print button	Печать
+mf_any_item	Modify Filter	any item	любой
+mf_notassigned_item	Modify Filter	not assigned item	не назначен
+mf_editfilter_title	Modify Filter	Modifying Filter page header	Настройка фильтра
+mf_newfilter_title	Modify Filter	Adding Filter page header	Добавить фильтр
+mf_showissues_label	Modify Filter	Show Issues label	Показать задания
+mf_createdby_label	Modify Filter	Created By label	Создал
+mf_sentby_label	Modify Filter	Sent By label	Отправил
+mf_assignedto_label	Modify Filter	Assigned To label	Исполнитель
+mf_openonly_label	Modify Filter	Open only label	Только открытые
+mf_completeonly_label	Modify Filter	Complete only label	Только закрытые
+mf_opencomplete_label	Modify Filter	Open & Complete label	Открытые и закрытые
+mf_visiblestates_title	Modify Filter	Visible issues lists header	Выберите видимые состояния заданий
+mf_shownissues_title	Modify Filter	Visible issues list header	Показать состояния
+mf_hiddenissues_title	Modify Filter	Hidden issues list header	Скрыть состояния
+mf_createdatefilter_title	Modify Filter	Filter Issues by Date section header	Фильтровать по дате создания
+mf_nocreatedateflt_label	Modify Filter	Do not filter by creating date label	Не фильтровать по дате создания
+mf_createdinlast_label	Modify Filter	Show issues created in last label	Показать задания, созданные в течение последних
+mf_days_label	Modify Filter	Days label	дней
+mf_daysago_label	Modify Filter	Created more than label	Показать задания, созданные
+mf_overdue_label	Modify Filter	days ago (overdue) label	дней назад или ранее
+mf_findforgotten_label	Modify Filter	Find "forgotten" issues label	Найти "забытые" задания
+mf_notforwarding_label	Modify Filter	No forwarding for more than label	Без изменений
+mf_dysormore_label	Modify Filter	days or more (open issues only) label	дней или более (только открытые)
+mf_containstext_label	Modify Filter	Issue description contains following text label	Содержат в тексте описания образец
+mf_saveas_label	Modify Filter	Save as (this filter name) label	Сохранить фильтр как (название фильтра)
+iss_screen_long_name	Issue Statistics	Issue Statistics page full name	Статистика заданий
+iss_screen_short_name	Issue Statistics	Issue Statistics page short name	Статистика
+iss_complproj_separator	Issue Statistics	Projects list splitter	<завершенные проекты>
+iss_projstatus_view	Issue Statistics	Project - Status item name	Проект – Состояние
+iss_projperson_view	Issue Statistics	Project - Assigned Person item name	Проект – Назначение
+iss_projprior_view	Issue Statistics	Project - Priority item name	Проект – Приоритет
+iss_taskstatus_view	Issue Statistics	Task - Status item name	Работа – Состояние
+iss_taslperson_view	Issue Statistics	Task - Assigned Person item name	Работа – Назначение
+iss_taskprior_view	Issue Statistics	Task - Priority item name	Работа – Приоритет
+iss_personstatus_view	Issue Statistics	Assigned Person - Status item name	Назначение – Состояние
+iss_personprior_view	Issue Statistics	Assigned Person - Priority item name	Назначение – Приоритет
+iss_project_title	Issue Statistics	Project column header	Проект
+iss_status_title	Issue Statistics	Status column header	Состояние
+iss_person_title	Issue Statistics	Assigned Person column header	Назначение
+iss_priority_title	Issue Statistics	Priority column header	Приоритет
+iss_description_title	Issue Statistics	Task description column header	Работа
+iss_page_title	Issue Statistics	Page header	Статистика Заданий
+iss_project_label	Issue Statistics	Project label	Проект
+iss_view_label	Issue Statistics	View label	Вид
+iss_find_label	Issue Statistics	Find label	Найти
+iss_noreport_message	Issue Statistics	Report not found message	Отчет не найден
+iss_noassignee_text	Issue Statistics	N/A text	<Б/Н>
+iss_invstatparams_message	Issue Statistics	Invalid parameters for statistics report generator set message	Переданы неправильные параметры
+iss_allprojects_item	Issue Statistics	All Projects item in projects list	все проекты
+iss_complproj_text	Issue Statistics	Complete project marker	завершен
+rem_page_title	Reminder	Page name	Напоминание
+rem_sendto_label	Reminder	Send to label	Отправить
+rem_issues_label	Reminder	Issues label	Заданий
+rem_note_label	Reminder	NOTE label	ПРИМЕЧАНИЕ
+rem_addnote_label	Reminder	Add Note label	Добавить комментарий
+rem_headersonly_label	Reminder	Headers only checkbox label	Только заголовки (опустить полное описание заданий)
+rem_note_text	Reminder	Note text	Каждый исполнитель получит напоминание только по тем заданиями, на которые он назначен
+rem_send_btn	Reminder	Send Notification button	Отправить
+rem_emptysend_message	Reminder	Sending reminders without selecting any issues message	Не выбраны задания
+rem_remindheader_text	Reminder	Name in the reminder message text	Уважаемый %s,
+rem_remindertitle_text	Reminder	Reminder header	Этим сообщением мы напоминаем вам, что вы назначены на следующие задания
+rem_remindersubject_text	Reminder	Reminder notification subject	Напоминание
+rem_sentby_text	Reminder	Sent By text in the notification	Отправлено
+rem_errloadingsettings_message	Reminder	Error loading reminder settings message	Не удалось загрузить настройки отчета
+rem_task_label	Reminder	Task label	Работа
+rem_issue_label	Reminder	Issue label	Задание
+rem_dayswaiting_text	Reminder	Days Waiting text	дней ожидания
+rem_all_item	Reminder	The "All" item in the project list	все
+cm_noprojects_message	Copy/Move	No finished projects message	Нет проектов для этой операции
+cm_select_item	Copy/Move	Finished issue checkbox select item	выберите
+cm_pagecopy_title	Copy/Move	Copying Issue page header	Копировать задание
+cm_pagemove_title	Copy/Move	Moving Issue page header	Переместить задание
+cm_copytotask_label	Copy/Move	Copy to Task label	Копировать в работу
+cm_movetotask_label	Copy/Move	Move to Task label	Переместить в работу
+cm_form_text	Copy/Move	Text above form	Пожалуйста, выберите конечную работу
+cm_note1_text	Copy/Move	First comment reminder text	1. Показаны только те проекты, в которых вы являетесь менеджером 
+cm_note2_text	Copy/Move	Second comment reminder text	2. Завершенные проекты и работы скрыты
+cm_replacementform_text	Copy/Move	Replacing missed status form comments	Пожалуйста, укажите замены следующим состояниям, которые не определены в конечном процессе:
+cm_status_label	Copy/Move	Status label	Состояние
+cm_replacewith_label	Copy/Move	Replace with label	заменить на
+is_notassigned_text	Issue	Not Assigned text	<не назначен>
+is_na_text	Issue	N/A text	б/н
+is_modified_text	Issue	Modified text	Изменено
+is_comment_text	Issue	Comment text	Комментарий
+is_files_label	Issue	File(s) label	Файлы
+is_openedby_label	Issue	opened by label	Открыл
+is_sentby_label	Issue	sent by label	Отправил
+is_page_title	Issue	Page header	Задание
+is_deletetask_message	Issue	Deleting issue confirmation	Удалить задание?
+is_return_btn	Issue	back to Issue List page button	Список заданий
+is_modify_btn	Issue	Modify button	Изменить
+is_delete_btn	Issue	Delete button	Удалить
+is_forward_btn	Issue	Forward button	Отправить
+is_task_label	Issue	Task label	Работа
+is_issue_label	Issue	Issue label	Задание
+is_curstatus_label	Issue	Current status label	Состояние
+is_priority_label	Issue	Priority label	Приоритет
+is_dateopen_label	Issue	Date open label	Дата начала
+is_closedate_label	Issue	Close date label	Дата окончания
+is_assignedto_label	Issue	Assigned to label	Исполнитель
+is_description_label	Issue	Description label	Описание
+is_attachments_label	Issue	Attachments label	Файлы
+is_comment_label	Issue	Comment label	Комментарий
+is_olddesc_text	Issue	Old Description Text in transition logs	Прежнее описание
+is_prchanged_text	Issue	Priority changed text	Изменился приоритет
+is_fromto_text	Issue	Text From Е to Е in transition log	с %s на %s
+is_asmtchanged_text	Issue	Assignment changed text in transition log	Изменилось назначение
+is_newfiles_text	Issue	New file(s) attached text in transition log	Прикреплены новые файлы
+is_filesremoved_text	Issue	Attachment(s) removed text in transition log	Удалены файлы
+is_erraddinglog_message	Issue	Error creating issue transition log record message	Ошибка добавления записи в историю переходов
+is_errordelcompltask_message	Issue	Deleting issue from a closed task message	Невозможно удалить задание для закрытой работы
+is_errordelworkflow_message	Issue	Deletion issue in forbidden state message	Удаление задания в этом состоянии запрещено
+fwi_issuesnotfound_message	Forward Issue	Issues not found text	Задания не найдены
+fwi_invissuesforbsend_message	Forward Issue	Selected issues in forwarding forbidden state message	Отправка некоторых из выбранных заданий не разрешена
+fwi_notassigned_item	Forward Issue	Not Assigned item	<не назначен>
+fwi_selectedissuesnum_text	Forward Issue	Number of Issues selected text	Заданий выбрано: %s
+fwi_page_title	Forward Issue	Page header	Изменить состояние
+fwi_task_label	Forward Issue	Task label	Работа
+fwi_issuedesc_label	Forward Issue	Issue Description label	Описание задания
+fwi_id_label	Forward Issue	ID label	Код
+fwi_curstatus_label	Forward Issue	Current status label	Состояние
+fwi_sendtostatus_label	Forward Issue	Send to status label	Отправить в
+fwi_assignto_label	Forward Issue	Assign to label	Исполнитель
+fwi_comment_label	Forward Issue	Comments to this  Transition label	Комментарий к переходу
+fwi_files_label	Forward Issue	Attached files label	Прикрепленные файлы
+fwi_send_btn	Forward Issue	Send button	Отправить
+fwi_errsend_message	Forward Issue	Forwarding issue from a closed task message	Невозможно изменить статус задания для закрытой работы
+fwi_errsendnostate_message	Forward Issue	Sending issue in the transition forbidden state message	Переход запрещен
+fwi_difftasks_message	Copy/Move	Selected issues located in different tasks message	Выбранные задания принадлежат разным работам
+ogf_page_title	Organize Filters	Page header	Упорядочить фильтры
+ogf_emptydel_message	Organize Filters	Deleting filters without selecting any	Пожалуйста, выберите фильтр(ы) для удаления
+ogf_return_btn	Organize Filters	Back to Issue List page button	Список заданий
+ogf_addfilter_btn	Organize Filters	Add Filter button	Добавить
+ogf_delete_btn	Organize Filters	Delete button	Удалить
+ogf_tip_text	Organize Filters	Text above filter list	Для изменения фильтра щелкните по его названию
+ogf_filter_title	Organize Filters	Filter button header	Фильтр
+cv_page_title	Customize View	Page header	Настроить вид
+cv_numrecs_label	Customize View	Number of records per page checkbox label	Количество записей на странице
+cv_issuelen_label	Customize View	Issue description limit label	Ограничить длину описания задания до
+cv_characters_label	Customize View	characters label	символов
+cv_displquickfw_label	Customize View	Display link for quick issue forwarding option label	Показывать значок для быстрого изменения статуса
+cv_visiblecolumns_title	Customize View	Visible columns section header	Выберите колонки для отображения в режиме таблицы
+cv_visiblelist_title	Customize View	Visible columns list header	Видимые
+cv_hiddenlist_title	Customize View	Hidden columns list header	Скрытые
+cv_listsettings_title	Customize View	List format section header	Настройка вида в формате списка
+cv_showstatus_label	Customize View	Show status checkbox label	Показывать статус и время ожидания
+cv_showsender_label	Customize View	Show sender checkbox label	Показывать отправителя
+cv_showassignee_label	Customize View	Show assignee checkbox label	Показывать исполнителя
+cv_showissuehistory_label	Customize View	Show issue histury label	Показывать историю заданий
+st_page_title	Select Template	Page header	Выбрать шаблон
+st_template_label	Select Template	Template list header	Шаблон
+st_incomptemplate_message	Define Workflow State 	Loading invalid template to the process message	Шаблон "%s" несовместим с текущей схемой. Вы должны использовать шаблон имеющий следующие состояния: %s
+dt_form_text	Delete Transition	Text above form	Обнаружены задания (%s) в состоянии "%s". Пожалуйста выберите состояние для перевода этих заданий
+df_page_title	Delete Transition	Page header	Удаление состояния
+df_transferto_label	Delete Transition	Transfer to label	Перевести в
+svt_page_title	Save Template	Page header	Сохранить шаблон
+svt_templatename_label	Save Template	Template name label	Название шаблона
+svt_templateexists_message	Save Template	Saving template with duplicate name message	Шаблон с таким именем уже существует
+tl_screen_long_name	Template List	Page long name	Шаблоны процессов
+tl_screen_short_name	Template List	Page short name	Шаблоны процессов
+tl_tips_text	Template List	Tips text	1. Шаблоны процессов появляются в списке ниже после того как вы нажимаете кнопку “Сохранить как шаблон” в форме “Настройка процесса”.\n2. Чтобы увидеть детали шаблона, установить шаблон по умолчанию или удалить устаревший шаблон, щелкните по нему.
+			
+app_available_pages_name	Common	 Available Pages rights name	Страницы сервиса
+app_available_functions_name	Common	 Available Functions	Функции сервиса
+app_notifications_section_name	Common	 Notifications section rights name	Уведомления
+			
+app_cantools_label	Common	Can use tools rights	Может настраивать процесс
+app_canreports_label	Common	Can use reports rights	Доступ к отчетам
+
+
+il_justadded_lbl	Issue List	just added	Только что добавленные
+il_issuescount_label	Issue List	Issues count label	%s из %s заданий соответствующих выбранному фильтру
+il_commenttoolong_error	Issue List	Added comment is too long error message	Длина комментария не может превышать 10000 символов.
+il_desctoolong_error	Issue List	Added comment is too long error message	Описание задания не может превышать %s символов.
+il_showmore_link	Issue List	Show more link	Показать еще
+il_loading_label	Issue List	Loading label	Загрузка
+il_assignments_label	Issue List	Assignments label	Назначения
+il_manage_btn	Issue List	Manage button	Изменить
+il_issuesnotlinkedtoproject_label	Issue list	Issues not linked to project	Задания, не связанные с Проектами

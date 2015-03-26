@@ -1,0 +1,23 @@
+<? wbs_toolbarItem?>
+	<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$itStrings.app_name_short link=$currentAppData.mainURL ?>
+<? /wbs_toolbarItem ?>
+
+<? if $rights ?>
+	<? if $ALLOW_MODIFY ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$itStrings.is_modify_btn name="modifybtn" ?>
+		<? /wbs_toolbarItem ?>
+	<?/if ?>
+
+	<? if $ALLOW_DELETE ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$itStrings.is_delete_btn name="deletebtn" onClick="return confirm('"|cat:$itStrings.is_deletetask_message|cat:"')" ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+
+	<? if $sendURL ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$itStrings.is_forward_btn link=$sendURL ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+<? /if ?>

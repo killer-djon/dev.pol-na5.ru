@@ -1,0 +1,39 @@
+<div id="UploadFilesDiv">
+
+	<? if $list ?>
+		<b><? $mmStrings.mm_msgbody_attach_label ?>:</b>
+		<table style="border-collapse:collapse; border-spacing:0; padding:0; margin:0; border:0">
+			<? foreach from=$list item=file ?>
+				<tr>
+					<td nowrap><? $file.name ?> (<? $file.size ?>)</td>
+					<td>
+						<span class="DeleteFile" onClick="deleteUploadedFile('<? $file.name ?>')">
+							<? $mmStrings.amn_screen_delnote_btn ?>
+						</span>
+					</td>
+				</tr>
+			<? /foreach ?>
+		</table>
+	<? /if ?>
+
+	<? if $errorStr ?>
+		<span class="ErrorStr"><? $errorStr ?></span>
+	<? /if ?>
+
+	<div id="UploadFileInput" style="width: 20em">
+		<div class="fileInputContainer">
+			<input type="file" name="file" class="file" onChange="uploadFile()">
+			<div class="visibleFileInput"><? $mmStrings.app_attach_file_label ?></div>
+		</div>
+	</div>
+
+	<span id="UploadFilePgBar" style="display: none"></span>
+
+</div>
+
+<script>
+	parent.document.getElementById('UploadFilesDiv').innerHTML =
+		document.getElementById('UploadFilesDiv').innerHTML;
+	parent.document.getElementById('UploadFilePgBar').style.display = 'none';
+	parent.document.getElementById('UploadFileInput').style.display = '';
+</script>

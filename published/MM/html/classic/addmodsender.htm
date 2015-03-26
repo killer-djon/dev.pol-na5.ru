@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl(objName) {
+	var obj = MMM_findObj(objName);
+	if (obj)
+		obj.focus( );
+}
+
+function MMM_findObj(n, d) { //v4.01
+	var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MMM_findObj(n,d.layers[i].document);
+	if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function confirmDelete()
+{
+	return confirm( "<? $mmStrings.ams_senderdel_message ?>" );
+}
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+	<? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+	<? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+
+	<table border="0" cellspacing="0" cellpadding="0" width=500>
+	<tr>
+		<td>
+
+		<? include file="../../../common/html/classic/formframe_begin.htm" frameWidth="100%" ?>
+		<table border="0" cellspacing="2" cellpadding="2" >
+		<tr>
+			<td valign="top" class="label" width=10%>
+			<? conditionalOutput invalidField=$invalidField field=MMS_FROM text=#invalidFieldHighlight#  ?>
+			<nobr><? $mmStrings.ams_name_label|cat:": " ?>
+			</td>
+			<td width=90%><input name="senderData[MMS_FROM]" type="text" class="control" value="<? $senderData.MMS_FROM ?>" maxlength="50" style="width: 100%"></td>
+		</tr>
+		<tr>
+			<td valign="top" class="label">
+			<? conditionalOutput invalidField=$invalidField field=MMS_EMAIL text=#invalidFieldHighlight#  ?>
+			<nobr><? $mmStrings.ams_from_label|cat:": " ?>
+			</td>
+			<td><input name="senderData[MMS_EMAIL]" type="text" class="control" value="<? $senderData.MMS_EMAIL ?>" maxlength="50" style="width: 100%"></td>
+		</tr>
+		<tr>
+			<td valign="top" class="label">
+			<? conditionalOutput invalidField=$invalidField field=MMS_REPLYTO text=#invalidFieldHighlight#  ?>
+			<nobr><? $mmStrings.ams_replyto_label|cat:": " ?>
+			</td>
+			<td><input name="senderData[MMS_REPLYTO]" type="text" class="control" value="<? $senderData.MMS_REPLYTO ?>" maxlength="50" style="width: 100%"></td>
+		</tr>
+		<tr>
+			<td valign="top" class="label">
+			<? conditionalOutput invalidField=$invalidField field=MMS_RETURNPATH text=#invalidFieldHighlight#  ?>
+			<nobr><? $mmStrings.ams_returnpath_label|cat:": " ?>
+			</td>
+			<td><input name="senderData[MMS_RETURNPATH]" type="text" class="control" value="<? $senderData.MMS_RETURNPATH ?>" maxlength="50" style="width: 100%"></td>
+		</tr>
+		<tr>
+			<td valign="top" class="label">
+			<? conditionalOutput invalidField=$invalidField field=MMS_LANGUAGE text=#invalidFieldHighlight#  ?>
+			<nobr><? $mmStrings.ams_language_label|cat:": " ?>
+			</td>
+			<td>
+				<select name="senderData[MMS_LANGUAGE]" class="control" style="width: 100">
+					<? html_options values=$language_ids selected=$senderData.MMS_LANGUAGE output=$language_names ?>
+				</select>
+				<BR><small><? $mmStrings.ams_language_comment ?></small>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" class="label">
+			<? conditionalOutput invalidField=$invalidField field=MMS_ENCODING text=#invalidFieldHighlight#  ?>
+			<nobr><? $mmStrings.ams_encoding_label|cat:": " ?>
+			</td>
+			<td><input name="senderData[MMS_ENCODING]" type="text" class="control" value="<? $senderData.MMS_ENCODING ?>" maxlength="50" style="width: 100%"></td>
+		</tr>
+		</table>
+		<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true?>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+					<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=5 space_right=10 ?>
+					<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+					</td>
+					<td align="right">
+					<? if $action == 'edit' ?>
+					<? include file="../../../common/html/classic/button.htm" align="right" name="deletebtn" caption=$mmStrings.ams_delete_btn formname="form" onClick="return confirmDelete()" ?>
+					<? /if ?>
+				</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<? /if ?>
+	<input type="hidden" name="action" value="<?$action?>">
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="currentPage" value="<?$currentPage?>">
+
+	<input name="MMS_ID" type="hidden" value="<? $MMS_ID ?>">
+
+	<input type="hidden" name="btndummy">
+
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

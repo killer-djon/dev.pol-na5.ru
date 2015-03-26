@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="PRAGMA" content="NO-CACHE">
+	<title>Edit File</title>
+<style type="text/css">
+#zohoEdit {
+	display:block;
+}
+</style>
+<script>
+function submitform() {
+	<?if $hasZohoKey ?>
+		document.forms["myform"].submit();
+	<? else ?>
+		alert('<? $message_zohokey_not_found ?>');
+		window.close();
+	<?/if ?>
+}
+</script>
+</head>
+
+<body onload="submitform()">
+	<form id="zohoEdit" method="POST" name="myform" action="<?$REMOTE?>" target="_self">
+
+<div style="height:100%;width:100%;display:table;text-align:center;">
+	<div style="vertical-align:middle;display:table-cell; font-family: 'Trebuchet MS'; font-size: 16pt; font-weight: bold">
+	<?if $hasZohoKey ?>
+		Loading...
+	<?/if ?>
+	</div>
+</div>
+
+		<input type="hidden" id="url" name="url" value="<?$HOST?>/getfolderfile_zoho.php?ID=<?$FID?>&DL_ID=<?$FILE.SRC?>&DB_KEY=<?$DBKEY?>&ftype=.<?$FILE.DL_FILETYPE?>">
+		<input type="hidden" name="saveurl" value="<?$HOST?>/setfolderfile_zoho.php?DB_KEY=<?$DBKEY?>">
+		<input type="hidden" id="filename" name="filename" value="<?$FILE.DL_FILENAME?>">
+		<input type="hidden" id="id" name="id" value="<?$B64SCFD?>">
+		<input type="hidden" id="format" name="format" value="<?$FILE.DL_FILETYPE?>">
+		<input type="hidden" name="persistence" value="true">
+	</form>
+</body>
+</html>

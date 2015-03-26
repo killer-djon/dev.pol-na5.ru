@@ -1,0 +1,11 @@
+<? wbs_toolbarItem?>
+	<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$pmStrings.app_name_short link=$currentAppData.mainURL ?>
+<? /wbs_toolbarItem ?>
+
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$pmStrings.amp_resume_btn name="rpnpbtn" onClick="return confirm('"|cat:$pmStrings.amp_resume_message|cat:"')" ?>
+<? /wbs_toolbarItem ?>
+
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$pmStrings.amp_delete_btn name="delpbtn" onClick="return confirmDeletion()" ?>
+<? /wbs_toolbarItem ?>

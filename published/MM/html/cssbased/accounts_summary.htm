@@ -1,0 +1,46 @@
+<table class="Grid">
+	<thead>
+	<tr>
+		<th><? $mmStrings.app_inbox_summary_namecol ?></th>
+		<th class="AlignCenter"><nobr><? $mmStrings.app_inbox_summary_msgcol ?></nobr></th>
+		<th class="AlignCenter"><? $mmStrings.app_inbox_summary_newcol ?></th>
+		<th class="AlignCenter"></th>
+		<th class="AlignCenter"></th>
+	</tr>
+	</thead>
+<? assign var=index value=0 ?>
+<? foreach from=$accountsInfo item=statisticsAccount key=curAccount name=statisticsLoop ?>
+	<? assign var=nodeText value=$curAccount|htmlsafe:true:true ?>
+	<tr id="SummInboxTR" class="<? wbs_oddItem index=$smarty.foreach.statisticsLoop.iteration ?>">
+		<td id="SummInboxAcc_<? $nodeText ?>" style="padding-left: 10px!important;<? if $statisticsAccount.new ?> font-weight: bold<? /if ?>">
+			<? conditionalLink href="mailmaster.php?action=msgList&mailbox=$nodeText"
+				text=$curAccount|sureecho|htmlsafe:true:true|cat:" ("|cat:$statisticsAccount.name|htmlsafe:true:true|cat:")" ?>
+		</td>
+		<td id="SummInboxMsg_<? $nodeText ?>" class="AlignCenter">
+			<? $statisticsAccount.count ?>
+		</td>
+		<td id="SummInboxNew_<? $nodeText ?>" class="AlignCenter"<? if $statisticsAccount.new ?> style="font-weight: bold"<? /if ?>>
+			<? $statisticsAccount.new ?>
+		</td>
+		<td class="AlignCenter">
+			<a href=<? $accountPage ?>?action=edit&MMA_ID=<? $statisticsAccount.id ?>
+				style="color: green"><? $mmStrings.acc_edit_btn ?></a>
+		</td>
+		<td class="AlignCenter">
+			<a href=<? $accountPage ?>?action=delete&MMA_ID=<? $statisticsAccount.id ?>
+				style="color: red"
+				onClick="return confirm('<? $mmStrings.acc_confirm_delete ?>\n<? if $statisticsAccount.internal ?><? $mmStrings.acc_int_delete_note ?><? else ?><? $mmStrings.acc_ext_delete_note ?><? /if ?>')">
+				<? $mmStrings.acc_delete_btn ?>
+			</a>
+		</td>
+	</tr>
+	<? math equation="x + 1" x=$index assign=index ?>
+<? /foreach ?>
+<? if $index == 0 ?>
+	<tr class="NoRecords">
+		<td colspan="4">
+			<? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?>
+		</td>
+	</tr>
+<? /if ?>
+</table>

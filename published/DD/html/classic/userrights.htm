@@ -1,0 +1,70 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+	<? if $action == "new" && $nonDDUserCount == 0 ?>
+		<table border="0" cellpadding="0" cellspacing="">
+			<tr><td><? $kernelStrings.app_treenousers_message ?></td></tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr><td><? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?></td></tr>
+			<tr><td>&nbsp;</td></tr>
+		</table>  			
+	<? else ?>  
+		<table cellpadding="0" cellspacing="0" border="0">
+			<? if $action == "edit" ?>
+				<tr><td class="largeText_normal"><? $userName ?></td><td>&nbsp;</td></tr>
+			<? else ?>
+				<tr>
+					<td><? $kernelStrings.app_treeadduser_title|cat:":&nbsp;" ?></td>
+					<td>
+						<select name="selectedU_ID">
+							<? html_options values=$newUsersIDs output=$newUsersNames selected=$selectedU_ID ?>
+						</select>
+					</td>
+				</tr>
+			<? /if ?>
+			<tr><td colspan="2">&nbsp;</td></tr>
+		</table>
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr><td><input name="canCreateRoot" type="checkbox" value=1 <? switchedOutput val=$canCreateRoot true_val=1 str1="checked"?>>&nbsp;<?$kernelStrings.app_treerootfolders_label?></td></tr>
+			<tr><td><input name="notifyUser" type="checkbox" value=1 <? switchedOutput val=$notifyUser true_val=1 str1="checked"?>>&nbsp;<?$ddStrings.ur_screen_onfolderupdate_label?></td></tr>
+			<tr><td><input type="checkbox" name="showSharedPanel" value="1" <? switchedOutput val=$showSharedPanel true_val=1 str1="checked" ?>>&nbsp;<?$kernelStrings.app_treeflduserscb_label?></td></tr>
+			<tr><td>&nbsp;</td></tr>
+		</table>
+		<?include file="../../../common/html/classic/tree_templates/tree_rights_editor.htm" userLabel=$kernelStrings.app_treeuser_label folderNameLabel=$kernelStrings.app_treefurfldname_title userRightsLabel=$kernelStrings.app_treemoduser_title readLabel=$kernelStrings.app_treeread_label writeLabel=$kernelStrings.app_treewrite_label folderLabel=$kernelStrings.app_treefolder_label ?>
+		<table border="0" cellpadding="0" cellspacing="">
+			<tr><td>&nbsp;</td></tr>
+			<tr><td>
+				<? if $action == "edit" ?>
+					<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_right=10 ?>
+				<? else ?>
+					<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_add_btn formname="form" space_right=10 ?>
+				<? /if ?>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+			</td></tr>
+		</table>
+	<? /if ?>
+  <? /if ?>
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="action" value="<?$action?>">
+  <input type="hidden" name="U_ID" value="<? $U_ID ?>">
+  <input type="hidden" name="firstIndex" value="<? $firstIndex ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

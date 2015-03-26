@@ -1,0 +1,17 @@
+<? if !$fatalError ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button name="savebtn" caption=$kernelStrings.app_save_btn onClick='onSubmitEditor()' ?>
+	<? /wbs_toolbarItem ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button name="saveclosebtn" caption=$qpStrings.amn_screen_close_btn onClick='onSubmitEditor()' ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+<? wbs_toolbarItem?>
+	<? wbs_button name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+<? /wbs_toolbarItem ?>
+
+<? if !$fatalError && $action == 'edit' ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button name="deleteNoteBtn" caption=$qpStrings.amn_screen_delnote_btn onClick="return confirmDelete()" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>

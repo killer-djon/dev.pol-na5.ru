@@ -1,0 +1,338 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+
+	function initFocus()
+	{
+		<? if $invalidField ?>
+			focusFormControl('<? $invalidField ?>');
+		<? else ?>
+			focusFirstFormControl();
+		<? /if ?>
+	}
+
+	function onUpload()
+	{
+		thisForm = document.forms[0];
+		
+		var fileFound = false;
+		for ( i = 0; i < thisForm.elements.length; i++ )
+			if (thisForm.elements[i].name.substr(0, 4) == "file") 
+				if ( thisForm.elements[i].value != "" ) {
+					fileFound = true;
+					break;
+				}
+				
+		if ( !fileFound ) {
+			alert( "<? $ddStrings.ua_selectfile_message ?>" );
+			return false;
+		}
+			
+		if ( document.getElementById ) {
+			var addFileCell = document.getElementById( 'addfilecell' );
+			if (addFileCell)
+				addFileCell.style.display = "none";
+				
+			var attachMessageCell = document.getElementById( 'attachmessagecll' );
+			if (attachMessageCell)
+				attachMessageCell.style.display = "inline";
+		}
+		
+		processTextButton( 'uploadbtn', 'form' );
+		
+		return false;
+	}
+
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="initFocus()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<input type="hidden" name="btndummy">
+	<input type="hidden" name="edited" value=1>
+	<input type="hidden" name="DF_ID" value="<? $DF_ID ?>">
+	<? include file="../../../common/html/classic/header.htm"?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+
+		<? if $archiveSupported ?>
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td class="largeText_normal"><? $folderName|htmlsafe ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</tr>
+				</tr>
+			</table>
+
+			<? if !$fileLoaded && !$operationFinished ?>
+				<!-- Page 1 - upload file -->
+				<table cellpadding="0" cellspacing="0" border="0">
+				<!-- Add file form -->
+					<tr>
+						<td ID="addfilecell">
+							<table cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td><? $ddStrings.ua_upload_note ?></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+							<table cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td>
+										<? conditionalOutput invalidField=$invalidField field="file" text=#invalidFieldHighlight# ?>
+										<? $ddStrings.ua_file_label|cat:":&nbsp;" ?>
+									</td>
+									<td><input class=control type=file name=file style="width: 250px"></td>
+								</tr>
+							</table>
+							<table cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td >&nbsp;</tr>
+								</tr>
+								<tr>
+									<td >
+										<b><? $kernelStrings.app_note_text|cat:": " ?></b><? $ddStrings.ua_fileformat_note ?>
+									</td>
+								</tr>
+								<tr>
+									<td >&nbsp;</tr>
+								</tr>
+							</table>
+
+							<? if $versionControlEnabled ?>
+								<table border=0 cellpadding=0 cellspacing=0>
+									<tr>
+										<td><? $ddStrings.ua_existing_note?></td>
+									</tr>
+								</table>
+
+								<table border=0 cellpadding=0 cellspacing=0>
+									<tr>
+										<td colspan=2>&nbsp;</td>
+									</tr>
+									<tr>
+										<td style="padding-left: 10px">
+											<input type=radio name="existingFileOperation" value="replace" <? switchedOutput val=$existingFileOperation true_val=replace str1="checked" ?>>
+										</td>
+										<td>
+											&nbsp;<? $ddStrings.add_screen_replace_label?>
+										</td>
+									</tr>
+									<tr>
+										<td style="padding-left: 10px">
+											<input type=radio name="existingFileOperation" value="skip" <? switchedOutput val=$existingFileOperation true_val=skip str1="checked" ?>>
+										</td>
+										<td>
+											&nbsp;<? $ddStrings.add_screen_skip_label?>
+										</td>
+									</tr>
+									<tr>
+										<td colspan=2>&nbsp;</td>
+									</tr>
+								</table>
+							<? /if ?>
+
+							<? include file="../../../common/html/classic/button.htm" align="left" caption=$ddStrings.ua_upload_btn formname="form" space_left=0 space_right=10 onClick="return onUpload()" ?>
+							<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+						</td>
+					</tr>
+					<tr>
+						<td ID="attachmessagecll" style="display:none">
+							<p class="header2"><? $ddStrings.ua_uploadarchive_text ?></p>
+							<p><? $ddStrings.ua_uploadwait_text ?></p>
+							<p><img src="<? "images/progress.gif"|stylesetitem:"classic":$styleSet:"DD" ?>" ></p>
+							<p><? include file="../../../common/html/classic/button.htm" align="left" link="catalog.php" caption=$kernelStrings.app_cancel_btn formname="form"?></p>
+						</td>
+					</tr>
+			</table>
+			<? elseif !$operationFinished ?>
+				<!-- Page 2 - setup parameters -->
+				<input type=hidden name=fileLoaded value=1>
+				<input type=hidden name=destPath value="<? $destPath ?>">
+				<input type=hidden name=filesInfo value="<? $filesInfo ?>">
+				<input type=hidden name=imagesLabel value="<? $imagesLabel ?>">
+				<input type=hidden name=requiredSpaceLabel value="<? $requiredSpaceLabel ?>">
+				<input type=hidden name=origFileName value="<? $origFileName ?>">
+
+				<? if $versionControlEnabled ?>
+					<input type=hidden name=existingFileOperation value="<? $existingFileOperation ?>">
+				<? /if ?>
+
+				<? if $availableSpaceLabel ?>
+					<input type=hidden name=availableSpaceLabel value="<? $availableSpaceLabel ?>">
+				<? /if ?>
+
+				<input type=hidden name=archiveInfo value="<? $archiveInfo_packed ?>">
+
+				<table cellpadding=0 cellspacing=0 border=0>
+					<tr>
+						<td colspan=2><? $filesInfo ?></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+
+				<? if $archiveInfo.folders ?>
+					<? if $hasFolderRights ?>
+						<table cellpadding=0 cellspacing=0 border=0>
+							<tr>
+								<td align=right><input type=checkbox name=extractSubdirs value=1 <? switchedOutput val=$extractSubdirs true_val=1 str1="checked" ?>>&nbsp;</td>
+								<td><? $ddStrings.ua_extractsubfolders_label ?></td>
+							</tr>
+							<tr>
+								<td colspan=2>&nbsp;</tr>
+							</tr>
+						</table>
+					<? else ?>
+						<table cellpadding=0 cellspacing=0 border=0>
+							<tr>
+								<td>
+									<b><? $kernelStrings.app_note_text|cat:": " ?></b><? $ddStrings.ua_nofolderrights_note ?>
+								</td>
+							</tr>
+							<tr>
+								<td colspan=2>&nbsp;</tr>
+							</tr>
+						</table>
+					<? /if ?>
+				<? /if ?>
+
+				<table cellpadding=0 cellspacing=0 border=0 width=600>
+					<tr>
+						<td><? $requiredSpaceLabel ?></td>
+					</tr>
+					<? if $availableSpaceLabel ?>
+						<tr>
+							<td><? $availableSpaceLabel ?></td>
+						</tr>
+						<? if $notEnoughSpaceMessage ?>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td><font color=red><b><? $kernelStrings.app_note_text|cat:": " ?></b></font><? $notEnoughSpaceMessage ?></td>
+							</tr>
+						<? /if ?>
+					<? /if ?>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+
+				</table>
+
+				<? if $thumbnailEnabled == "ENABLED" ?>
+					<table cellpadding=0 cellspacing=0 border=0>
+						<tr>
+							<td><hr size=1 noshade></td>
+						</tr>
+						<tr>
+							<td height=5></td>
+						</tr>
+						<tr>
+							<td>
+								<table cellpadding=0 cellspacing=0 border=0>
+									<tr>
+										<td><? $imagesLabel ?></td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+									</tr>
+								</table>
+								<? if $archiveInfo.images ?>
+									<table cellpadding=0 cellspacing=0 border=0>
+										<tr>
+											<td align=right><input type=checkbox name=createThumbs value=1 <? switchedOutput val=$createThumbs true_val=1 str1="checked" ?>>&nbsp;</td>
+											<td><? $ddStrings.ua_createthumbs_label ?></td>
+										</tr>
+										<tr>
+											<td colspan=2>&nbsp;</tr>
+										</tr>
+									</table>
+									<table cellpadding=0 cellspacing=0 border=0>
+										<tr>
+											<td><b><? $kernelStrings.app_note_text|cat:":&nbsp;" ?></b><? $ddStrings.ua_createthumbs_note ?></td>
+										</tr>
+										<tr>
+											<td>&nbsp;</tr>
+										</tr>
+									</table>
+								<? /if ?>
+							</td>
+						</tr>
+					</table>
+				<? /if ?>
+
+				<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_ok_btn formname="form" space_left=0 space_right=10 ?>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+			<? elseif $operationFinished ?>
+				<table cellpadding=0 cellspacing=0 border=0 width=600>
+					<tr>
+						<td><? $statusText|htmlsafe:true:true|cat:"." ?></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<? if $error ?>
+						<tr>
+							<td><? $error|htmlsafe:true:true ?></td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+					<? /if ?>
+					<tr>
+						<td><? $ddStrings.ua_subfolders_label|cat:": "|cat:$resultStats.foldersCreated ?></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<td><? $ddStrings.ua_filesextracted_label|cat:": "|cat:$resultStats.filesAdded ?></td>
+					</tr>
+					<? if $thumbnailEnabled == "ENABLED" ?>
+						<tr>
+							<td><? $ddStrings.ua_imagesextracted_label|cat:": "|cat:$resultStats.imagesAdded ?></td>
+						</tr>
+						<? if $createThumbs ?>
+							<? math equation="x-y" x=$resultStats.imagesAdded y=$resultStats.imageErrors assign=thumbsCreated ?>
+							<tr>
+								<td><? $ddStrings.ua_thumbscreated_label|cat:": "|cat:$thumbsCreated ?></td>
+							</tr>
+							<? if $resultStats.imageErrors ?>
+								<tr>
+									<td><? $ddStrings.ua_thumberrors_label|cat:": "|cat:$resultStats.imageErrors ?></td>
+								</tr>
+							<? /if ?>
+						<? /if ?>
+					<? /if ?>
+					<tr><td>&nbsp;</td></tr>
+				</table>
+
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_ok_btn formname="form" space_left=0 space_right=10 ?>
+			<? /if ?>
+		<? else ?>
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td><? $ddStrings.ua_archivesnotsupported_message|htmlsafe:true:true ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+		<? /if ?>
+
+	<? else ?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+	<? /if ?>
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

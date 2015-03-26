@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout splitter=true toolbar=true needExt=true ?>
+		<link href="../../../IT/html/cssbased/res/it.css" rel="stylesheet" type="text/css"/>
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+		<script src='../../../common/html/cssbased/pageelements/ajax/common_dialog.js'></script>
+		
+		<script>
+			function isCompleteProject (pId) {
+				return false;
+			}
+		</script>
+
+		<? include file="../../../IT/html/cssbased/issuelist_js.htm" ?>
+		
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="issuelist_toolbar.htm"?>
+			<? wbs_errorBlock ?>
+			<? include file="../../../common/html/cssbased/pageelements/common_js.htm" ?>
+			<? include file="../../../PM/html/cssbased/worklist_common.htm" ?>
+			<? include file="../../../PM/html/cssbased/workdialog_js.htm" ?>
+			
+			<input type="hidden" name="PREV_P_ID" value="<? $PREV_P_ID ?>"/>
+			<input type="hidden" name="PREV_PW_ID" value="<? $PREV_PW_ID ?>"/>
+
+			<? if $deleteStatus == 1 ?>
+				<input type="hidden" name="savedDocList" value="<? $savedDocList ?>">
+				<input type="hidden" name="savedP_ID" value="<? $P_ID ?>">
+
+				<script language="JavaScript">
+						if ( confirm('<? $itStrings.il_invworkflissuedel_message ?>'+'\n\n'+'<? $itStrings.il_deleteforbconfirm_message ?>') )
+							processTextButton('deleteanywaybtn', 'form');
+				</script>
+			<? elseif $deleteStatus == 2 ?>
+				<script language="JavaScript">
+					alert( '<? $itStrings.il_unabletodelissues_message ?>' );
+				</script>
+			<? /if ?>
+
+			<? if !$fatalError ?>
+			
+				<? include file="dlg_issue.htm" ?>
+				<? include file="dlg_forward.htm" ?>
+				<? if !$pmDisabled ?><? assign var="headerTpl" value="issuelist_header.htm" ?><? /if ?>
+				
+				<? wbs_splitter header=$headerTpl ?>
+
+					<? if !$hideLeftPanel ?>
+						<? wbs_splitterLeftPanel width=$treePanelWidth ?>
+
+							<? assign var=hideFoldersHint value=$itStrings.il_hidefilters_hint ?>
+
+							<? wbs_splitterPanelHeader
+								caption=$itStrings.il_filters_title
+								id="FoldersHeadersPanel"
+								active=true
+								headerControls="../../../common/html/cssbased/splittercontrols/headerclosebtn.htm" 
+							?>
+
+							<? wbs_splitterScrollableArea width=$treePanelWidth ?>
+								<? include file="filters.htm" ?>
+							<? /wbs_splitterScrollableArea ?>
+
+						<? /wbs_splitterLeftPanel ?>
+					<? /if ?>
+
+					<? wbs_splitterRightPanel ?>
+						<? include file="issuelist_rightpanel.htm" ?>
+					<? /wbs_splitterRightPanel ?>
+
+				<? /wbs_splitter ?>
+			<? else ?>
+
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

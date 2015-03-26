@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "styles/it.css"|stylesetitem:"classic":$styleSet:"IT" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+	<? include file="../../../common/html/classic/header.htm" ?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="smallFont" valign=top rowspan=2>
+					<strong><? $kernelStrings.app_tips_label|cat:":&nbsp;" ?></strong>
+				</td>
+				<td class="smallFont" valign=top>
+					<? $itStrings.tl_tips_text|htmlsafe:true:true ?>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 height=5></td>
+			</tr>
+		</table>
+
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list">
+		<tr>
+			<th align="left"><nobr><? $itStrings.wfm_templatename_title ?></nobr></th>
+			<th align="left"><nobr><? $itStrings.wfm_summary_title ?></nobr></th>
+		</tr>
+		<?foreach key=index from=$templateList item=templateData ?>
+			<tr<? if ($index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+				<td valign="top" >
+					<a href="<? $templateData.ROW_URL ?>">
+						<? switchedOutput val=$templateData.ITT_DEFAULT true_val=1 str1="<b>"?>
+						<? $templateData.ITT_NAME ?>
+						<? switchedOutput val=$templateData.ITT_DEFAULT true_val=1 str1="</b>"?>
+						<? switchedOutput val=$templateData.ITT_DEFAULT true_val=1 str1=" ("|cat:$itStrings.wfm_default_text|cat:")"?>
+					</a>
+				</td>
+				<td><a href="<? $templateData.ROW_URL ?>"><? $templateData.transitions ?></a></td>
+			</tr>
+		<?foreachelse?>
+			<tr align="center"> 
+				<td colspan="2" bgcolor="#FFFFFF"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+			</tr>
+		<?/foreach?>
+		</table>
+
+	<? /if ?>
+	<input name="edited" type="hidden" value="1">
+	<input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

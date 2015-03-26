@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true?>
+
+		<script language="JavaScript">
+		<!--
+
+			function confirmThemeDeletion( text )
+			{
+				return confirm( text );
+			}
+
+		//-->
+		</script>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="themes_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+		<table class="SimpleList" width=100%>
+		<thead>
+		<tr>
+			<th>
+				<? $qpStrings.qpt_name_title ?>
+			</th>
+			<th>
+				<? $qpStrings.qpt_books_title ?>
+			</th>
+			<th width="1%" class="NoBreak">
+				<? $qpStrings.qpt_type_title ?>
+			</th>
+			<th width="1%" class="NoBreak">
+				<? $qpStrings.qpt_enabled_title ?>
+			</th>
+			<th align="left" width="1%" class="NoBreak">
+				&nbsp;
+			</th>
+			<th align="left" width="1%" class="NoBreak">
+				&nbsp;
+			</th>
+			<th align="left" width="1%" class="NoBreak">
+				&nbsp;
+			</th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+
+	<? foreach from=$themes item=theme key=tplIndex name=tpl ?>
+		<tr class="<? wbs_oddItem index=$smarty.foreach.tpl.iteration ?>">
+			<td><a href="<? $theme.ROW_URL ?>"><? $theme.QPT_NAME|htmlsafe:true:true ?></a></td>
+			<td><? $theme.BOOK_NUM ?></td>
+			<td class="NoBreak"><? if $theme.QPT_TYPE == 1 ?><? $qpStrings.qp_publish_tree_title ?><? else ?><? $qpStrings.qp_publish_plain_title ?><? /if ?></td>
+			<td class="NoBreak" align="center"><? wbs_statusImage value=$theme.QPT_SHARED onValue=1 ?></td>
+			<td class="NoBreak"><a href="<? $theme.SHARED_URL ?>" <? if $theme.BOOK_NUM != " " && $theme.SHARED == "unshare" ?> onClick="return confirmThemeDeletion( '<? $theme.UNSHARE_TEXT ?>' );" <? /if ?>><? if $theme.SHARED == "unshare" ?><? $qpStrings.qpt_disable_link ?><? else ?><? $qpStrings.qpt_enable_link ?><? /if ?></a></td>
+			<td></td>
+			<td class="NoBreak"><a href="<? $theme.DELETE_URL ?>" onClick="return confirmThemeDeletion( '<? $theme.DELETE_TEXT ?>' );"><? $qpStrings.qpt_delete_link ?></a></td>
+		</tr>
+	<?foreachelse?>
+		<tr class="NoRecords">
+			<td colspan="7">
+				<? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?>
+			</td>
+		</tr>
+	<?/foreach ?>
+		</tbody>
+
+	</table>
+
+	<? /if ?>
+
+		<input name="folder" type="hidden" value="<? $folder ?>">
+		<input name="sorting" type="hidden" value="<? $sorting?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

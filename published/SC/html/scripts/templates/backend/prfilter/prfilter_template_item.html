@@ -1,0 +1,119 @@
+
+{count array=$_Option.variants item=_VarNum}  
+{if $_VarNum}
+<div class="prfilter-template-category-item" optionID="{$_Option.optionID}" categoryID="{$categoryID}" visible="on">
+	<a href='javascript:void(0);' class="prfilter-templates-restore prfilter-icon-left" title="{'prfilter_templateitem_addtotemplete'|translate}"></a>
+	<div class="prfilter-template-category-item-title"> 
+		{if $_Option.optionType eq 'single'}
+			{assign var="optionType_translate" value="prfilter_params_description_sin"|translate}
+		{elseif $_Option.optionType eq 'slider'}
+			{assign var="optionType_translate" value="prfilter_params_description_sli"|translate}
+		{else}
+			{assign var="optionType_translate" value="prfilter_params_description_sim"|translate}
+		{/if}
+		<a href='javascript:void(0);' class="prfilter-template-category-item-title-link"><img src="images_common/plus.gif" border="0"> {$_Option.name|escape:'html'} <span>( {$optionType_translate}{if $_Option.optionType eq 'slider'}, {"prfilter_optionstep"|translate}: {$_Option.slider_step}, {"prfilter_optionstepprefix"|translate}: {$_Option.slider_prefix}{/if} )</span></a> 
+	</div>
+	<table>
+		<tbody class="prfilter-templates-paramentrs">
+		{if $_Option.optionType eq 'simple'}
+		<tr class="prfilter-templates-paramentr-root">
+			<td>
+				<label><input type="checkbox" class="checknomarging" name="checkall"/> {"prfilter_selectall"|translate}</label>
+			</td>
+		</tr>
+		{/if}
+		{if $_Option.optionType ne 'single'}	
+		{foreach from=$_Option.variants item=_Variant name=variant}
+			<tr {if $_Option.optionType eq 'simple'}class="prfilter-templates-paramentr"{/if}>
+				<td>
+					<label>
+						<input type="checkbox" class="checknomarging" name="" value="{$_Variant.variantID}" variantID="{$_Variant.variantID}"  xname="[{$_Option.optionID}][variants][]" modifyname="yep" />	
+						{$_Variant.option_value|escape:'html'}
+					</label>
+				</td>
+			</tr>
+		{/foreach}
+		{/if}
+		</tbody>
+		<tfoot>
+		<tr class="prfilter-templates-paramentr-additionally">
+			<td>
+				<a href="javasrcipt:void(0);" class="prfilter-templates-paramentr-additionally-link">{"prfilter_templateitem_additionally"|translate}</a><br>
+				<table cellpadding="0" cellspacing="0" width="100%" class="prfilter-template-editoption">
+				{if $_Option.optionType eq 'simple'}
+					<tr><td>{"prfilter_templateitem_visibility"|translate}:</td><td>
+							<select name="" additionally="visibility" xname="[{$_Option.optionID}][visibility]" modifyname="yep">
+								<option value="true" >{"prfilter_expand"|translate}</option>
+								<option value="false" >{"prfilter_collapse"|translate}</option>
+							</select>
+					</td></tr>
+					<tr><td>{"prfilter_templateitem_type"|translate}:</td><td >
+							<select name="" additionally="type" xname="[{$_Option.optionID}][type]" modifyname="yep">
+								<option value="checkbox" >CHECKBOX</option>
+								<option value="select" >SELECT</option>
+								<option value="radio" >RADIO</option>
+							</select>
+					</td></tr>
+					<tr><td>{"prfilter_templateitem_colomns"|translate}:</td><td>
+							<select name="" additionally="colomns" xname="[{$_Option.optionID}][colomns]" modifyname="yep">
+								<option value="1" >1</option>
+								<option value="2" >2</option>
+								<option value="3" >3</option>
+								<option value="4" >4</option>
+								<option value="5" >5</option>
+								<option value="6" >6</option>
+								<option value="7" >7</option>
+								<option value="8" >8</option>
+								<option value="9" >9</option>
+							</select>
+					</td></tr>
+					<tr><td>{"prfilter_templateitem_images"|translate}:</td><td >
+							<select name="" additionally="images" xname="[{$_Option.optionID}][images]" modifyname="yep">
+								<option value="text" >{"prfilter_templateitem_images_text"|translate}</option>
+								<option value="imagetext" >{"prfilter_templateitem_images_imagetext"|translate}</option>
+								<option value="image" >{"prfilter_templateitem_images_image"|translate}</option>
+							</select>
+					</td></tr>
+				{elseif $_Option.optionType eq 'slider'}
+					<tr><td>{"prfilter_templateitem_visibility"|translate}:</td><td>
+							<select name="" additionally="visibility" xname="[{$_Option.optionID}][visibility]" modifyname="yep">
+								<option value="true" >{"prfilter_expand"|translate}</option>
+								<option value="false" >{"prfilter_collapse"|translate}</option>
+							</select>
+					</td></tr>
+					<tr><td>{"prfilter_templateitem_limits"|translate}:</td><td>
+							<select name="" xname="[{$_Option.optionID}][limits]" modifyname="yep">
+								<option value="true" >{"prfilter_yes"|translate}</option>
+								<option value="false" >{"prfilter_no"|translate}</option>
+							</select>
+					</td></tr>
+					<tr><td>{"prfilter_templateitem_labels"|translate}:</td><td>
+							<select name="" xname="[{$_Option.optionID}][labels]" modifyname="yep">
+								<option value="true" >{"prfilter_yes"|translate}</option>
+								<option value="false" >{"prfilter_no"|translate}</option>
+							</select>
+					</td></tr>
+				{elseif $_Option.optionType eq 'single'}	
+					<tr><td>{"prfilter_templateitem_images"|translate}:</td><td >
+							<select name="" additionally="images" xname="[{$_Option.optionID}][images]" modifyname="yep">
+								<option value="text" >{"prfilter_templateitem_images_text"|translate}</option>
+								<option value="imagetext" >{"prfilter_templateitem_images_imagetext"|translate}</option>
+								<option value="image" >{"prfilter_templateitem_images_image"|translate}</option>
+							</select>
+					</td></tr>
+					<tr singleimages="yep"><td>{"prfilter_templateitem_imageuse"|translate}:</td><td >
+						{foreach from=$_Option.variants item=_Variant name=variant}
+						<label>						
+							<input type="radio" class="checknomarging" name="[{$_Option.optionID}][variants]"  value="{$_Variant.variantID}" {if $smarty.foreach.variant.first}checked{/if}  variantID="{$_Variant.variantID}" xname="[{$_Option.optionID}][variants]" modifyname="yep" />
+							{$_Variant.option_value|escape:'html'}
+						</label><br>
+						{/foreach}	
+					</td></tr>
+				{/if}
+				</table>
+			</td>
+		</tr>
+		</tfoot>
+	</table>
+</div>
+{/if}

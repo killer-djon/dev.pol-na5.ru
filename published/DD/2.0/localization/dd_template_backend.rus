@@ -1,0 +1,110 @@
+lbl_files	Файлы
+lbl_n_files	%d файлов
+lbl_file	Файл
+
+tab_folders	Папки
+tab_tools	Настройки
+tab_search	Поиск
+tab_reports	Отчеты
+
+lbl_add_description	<добавить описание>
+lbl_empty_description	<нет описания>
+btn_upload_files	Загрузить файлы
+
+menu_selected_files	Файлы
+
+lbl_view	Вид
+
+action_folder_new	Создать новую
+
+column_filename	Имя файла
+column_date	Дата
+column_type	Тип
+column_size	Размер
+column_owner	Добавил
+column_folder	Папка
+
+menu_selected_files	Действия с файлами
+selected_files_count	%d файлов выбрано
+action_create_link_to_files	Создать ссылку на выбранные файлы
+
+lbl_link_to_this_folder	Ссылка на эту папку
+lbl_nolink_to_this_folder	На эту папку нет ссылки
+lbl_createlink	Создать
+action_link_delete	Удалить ссылку
+action_customize_rights	Настроить права доступа
+action_link_create	Создать ссылку на папку
+action_create_widget	Создать виджет
+
+title_copy_files	Копировать файлы
+title_move_files	Переместить файлы
+
+lbl_file_description	Описание файла
+
+action_edit_online	Редактировать онлайн (Zoho)
+action_send_by_email	Отправить как вложение
+action_version_history	Старые версии
+action_lock	Заблокировать
+action_unlock	Разблокировать
+
+lbl_link_to_file	Ссылка на этот файл
+lbl_locked_by	Заблокирован %s
+action_get_link_to_file	Создать ссылку на этот файл
+action_remove_link_to_file	Удалить ссылку
+lbl_none_versions	нет
+
+action_open	Открыть
+action_download	Скачать
+
+screen_recycle	Корзина
+ftp_folder	FTP Папка
+lbl_no_files	<в этой папке нет файлов>
+lbl_no_finded_files	<файлы не найдены>
+
+lbl_root_folder	Корневую папку
+lbl_subfolder	Подпапку
+
+title_version_history	Старые версии
+action_delete_selected	Удалить выбранные
+message_delete_versions_confirm	Вы действительно хотите удалить выбранные файлы?
+message_notselected_versions	Пожалуйста, выберите файлы для удаления
+lbl_version_info	%s добавил: %s %s
+
+title_send_by_email	Отправить как вложение
+text_enter_message	<введите текст сообщения>
+lbl_and_files	и еще
+lbl_send_files_attachments	%d файл(ов) (%s)
+lbl_attachments	Вложения
+field_send_to	Кому
+field_send_to_comment	Один Email адрес на строку или разделенные ";"
+field_subject	Тема
+field_message	Сообщение
+field_compress_files	Сжать файлы
+
+action_send	Отправить
+
+lbl_current_folder	Текущей папки
+lbl_selected_files	Выбранных файлов (%d)
+
+message_empty_search_string	Пожалуйста, введите строку для поиска
+
+lbl_viewsettings_records_on_page	Количество файлов на одной странице
+lbl_viewsettings_truncate_description	Ограничить видимую длину описания файла до
+lbl_viewsettings_symbols	символов
+lbl_viewsettings_apply_viewmode	Когда вы изменяете вид
+lbl_viewsettings_current_folder	Применить выбранный вид только к текущей папке
+lbl_viewsettings_all_folders	Применить выбранный вид ко всем папкам
+
+lbl_upload_complete	Загрузка завершена
+lbl_account_limit	ОГРАНИЧЕНИЕ АККАУНТА
+lbl_error	ОШИБКА
+
+lbl_actions_with_file	Действия с этим файлом
+
+message_confirm_delete_files	Вы действительно хотите удалить эти файлы?
+
+compress_as_zip_and_save	Сжать в ZIP и сохранить
+extract_from_zip	Извлечь из ZIP
+wait	Пожалуйста, подождите...
+action_save	Сохранить
+message_zohokey_not_found	Ключ zoho не найден. Пожалуйста, обратитесь к администратору вашего аккаунта.

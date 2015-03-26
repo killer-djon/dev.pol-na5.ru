@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+		<link href="../../../IT/html/cssbased/res/it.css" rel="stylesheet" type="text/css"/>
+
+		<script type="text/javascript">
+		<!--
+
+			function submitForm( obj )
+			{
+				selected = obj.selectedIndex;
+				if ( obj.options[selected].value != "" )
+					obj.form.submit();
+			}
+
+		//-->
+		</script>
+
+	</head>
+	<body>
+		<? wbs_pageLayout toolbar="it_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<table class="FormLayout">
+					<tr>
+						<td><? wbs_label text=$itStrings.iss_project_label for="project" ?></td>
+						<td>
+							<select name="P_ID" class="FormControl" style="width: 400px" onChange="submitForm(this)" id="project">
+								<? html_options values=$project_ids selected=$P_ID output=$project_names ?>
+							</select>
+						</td>
+					</tr>
+					<tr class="SeparatedRow">
+						<td><? wbs_label text=$itStrings.iss_view_label for="view" ?></td>
+						<td>
+							<select name="V_ID" class="FormControl" style="width: 400px" onChange="this.form.submit()" id="view">
+								<? html_options values=$viewIDs selected=$V_ID output=$viewNames ?>
+							</select>
+							<input type="hidden" name="prevV_ID" value="<? $V_ID?>"/>
+							<input type="hidden" name="prevP_ID" value="<? $P_ID?>"/>
+							<input type="hidden" name="firstIndex" value="<? $firstIndex ?>"/>
+						</td>
+					</tr>
+					<? if $col_count > 6 ?>
+						<tr class="SeparatedRow">
+							<td><? wbs_label text=$itStrings.iss_find_label for="find" ?></td>
+							<td>
+								<select name="searchCOL_ID" onChange="this.form.submit()" id="find">
+									<? html_options values=$col_ids output=$col_names ?>
+								</select>
+							</td>
+						</tr>
+					<? /if ?>
+				</table>
+
+				<? if $reportLoaded ?>
+					<table width="100%" class="SimpleList">
+						<thead>
+							<tr>
+								<th rowspan="2" class="ValignMiddle SimpleList_BorderRight" nowrap><? $titleColName ?></th>
+								<th align="left" nowrap colspan="<? $colNum ?>">
+									<table width="100%" class="it_statisticsHeader">
+										<tbody>
+											<tr>
+												<? if $prev_pageLink ?>
+													<td align="right" width="15"><? conditionalLink href=$prev_pageLink text=#prev_img#?></td>
+												<? /if ?>
+												<td class="AlignCenter NoBreak"><? $titleRowName ?></td>
+												<? if $next_pageLink ?>
+													<td align="right" width="15"><? conditionalLink href=$next_pageLink text=#next_img#?></td>
+												<? /if ?>
+											</tr>
+										</tbody>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<? foreach from=$colNames item=colName name=colLoop?>
+									<td width="70" class="AlignCenter NoBreak"><span title="<? $colName.long?>"><? $colName.short ?></span></td>
+								<? /foreach ?>
+							</tr>
+						</thead>
+						<tbody>
+							<? foreach from=$rowNames item=rowName key=rowID name=rowLoop ?>
+								<tr class="<? wbs_oddItem index=$smarty.foreach.rowLoop.iteration invert=true?>">
+									<td><? $rowName.name ?></td>
+									<? foreach from=$colNames item=colName key=colID?>
+										<td class="AlignCenter"><em><a href="<? $reportData.$rowID.$colID.url ?>" target="_blank"><? $reportData.$rowID.$colID.data ?></a></em></td>
+									<? /foreach ?>
+								</tr>
+							<? /foreach ?>
+						</tbody>
+					</table>
+				<? /if ?>
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

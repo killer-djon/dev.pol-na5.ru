@@ -1,0 +1,210 @@
+<script type="text/javascript" src="{$smarty.const.URL_JS}/JsHttpRequest.js"></script>
+<div id="blck-content" class="shopping-cart-content">	
+<script type="text/javascript" src="{$smarty.const.URL_JS}/JsHttpRequest.js"></script>
+
+	<h1>{$CurrentDivision.name|translate}</h1>
+	{if $cart_content}
+		<a class="clear-cart" href='{"?ukey=cart&view&clear_cart=yes"|set_query}'>{"cart_clear_cart"|translate}</a>
+		
+	{/if}
+	{$MessageBlock}
+	{if $cart_content}
+	
+		<div class="cart-products">
+			
+			<form action="{'?ukey=cart&view'|set_query_html}" name="ShoppingCartForm" method="post" target="_self">
+				<input type="hidden" name="update" value="1" >
+				<input type="hidden" name="shopping_cart" value="1" >
+				
+				
+			<table id="cart_content_tbl" cellspacing="0" cellpadding="0" border="0" width="100%">
+			    <colgroup>
+			        <col width="20%" />
+			        <col width="20%" />
+			        <col width="30%" />
+			        <col width="30%" />
+			    </colgroup>
+				
+				{assign var="ProductsNum" value=0}
+				{section loop=$cart_content name=i}
+					
+					<tr class='row_{cycle values="odd,even"} list-products'>
+						<td class="image-cart">
+							{if $cart_content[i].thumbnail_url}
+								<img src="{$cart_content[i].thumbnail_url|escape:'html'}" width="{$cart_content[i].thumbnail_width}" />
+							{else}
+								{if $cart_content[i].filename}
+									<img src="{$cart_content[i].filename|escape:'html'}" width="85px" height="85px" />
+								{/if}
+							{/if}
+						</td>
+						<td class="name-cart">
+							<a href='{"?ukey=product&productID=`$cart_content[i].productID`&product_slug=`$cart_content[i].slug`"|set_query_html}'>{$cart_content[i].name}</a>
+						</td>
+						<td class="count-cart">
+							<div class="counts">
+								<span>Количество: </span>
+								{assign var="ProductsNum" value=$ProductsNum+$cart_content[i].quantity}
+								{if $session_items}{assign var=_prdid value=$session_items[i]}
+									{else}{assign var=_prdid value=$cart_content[i].id}
+								{/if}
+								<input type="hidden" name="cart_product_price" value="{$cart_content[i].costUC}" >
+								<input class="cart_product_quantity digit" type="text" maxlength="10" name="count_{$_prdid}" value="{$cart_content[i].quantity}" size="5" >  Кв.м.
+							</div>
+						</td>
+						<td class="total-cart">
+							<div class="price">
+								<div class="price-counters">
+									Сумма: <span class="cost">{$cart_content[i].cost}</span> Руб.
+								</div>
+								<div class="removed">
+									<a href='{"?ukey=cart&view&remove=`$_prdid`"|set_query_html}' title='{"btn_delete"|transcape}'>
+										<img src="{$smarty.const.URL_IMAGES}/remove_from_basket.png" alt='{"btn_delete"|transcape}' />
+									</a>
+								</div>
+							</div>
+						</td>
+					</tr>
+				{/section}
+				
+			</table>
+		</div>
+	
+	
+		<div class="total-amounts">
+			<div class='details'>
+				<div class="checkout-button">					
+					<input type="submit" class="btn_checkout" name="checkout" value="" id="btn-checkout" type="submit" tabindex="1005" >
+				</div>
+				<div class="totals">
+					<span>Всего к оплате: </span>
+					<span class="total-price"><span>{$cart_total}</span> <span class="unit">Руб.</span> </span>
+				</div>
+			</div>
+		</div>
+		</form>
+	{else}
+
+		<p style="text-align: center;">{"cart_cart_is_empty"|translate}</p>
+	{/if}
+
+</div>
+
+<script type="text/javascript" language="javascript">
+{if $PAGE_VIEW eq 'noframe' && !$smarty.get.external} {* adjust cart window height *}
+	
+	{literal}
+	function adjust_cart_window(){
+		
+		var wndSize = getWindowSize(parent);
+		
+		var scr_h = wndSize[1] - 100;
+		var wnd_h = getLayer('blck-content').offsetHeight + 85;
+		parent.resizeFadeIFrame(null, Math.min(scr_h, wnd_h));
+	}
+	{/literal}
+	adjust_cart_window();
+	
+	{if $ProductsNum}
+		parent.document.getElementById('shpcrtgc').innerHTML="{$ProductsNum} {"srch_products_plural"|translate}";
+		parent.document.getElementById('shpcrtca').innerHTML='{$cart_total}';
+	{else}
+		parent.document.getElementById('shpcrtgc').innerHTML="{"cart_content_empty"|translate}";
+		parent.document.getElementById('shpcrtca').innerHTML="&nbsp;";
+	{/if}
+{/if}
+		
+	{if $jsgoto}
+		document.getElementById('btn-checkout').disabled = true;
+		if (!top)closeFadeIFrame(true);
+	    if (top)top.location = "{$jsgoto}";
+	    else document.location.href = "{$jsgoto}";
+	{/if}
+
+{literal}
+function onApplyButtonClick()
+{
+    var coupon_code = document.getElementById('discount_coupon_code').value;
+    document.getElementById('wrong_coupon_lbl').style.display = 'none';
+    document.getElementById('processing_coupon_lbl').style.display = '';
+    document.forms['ShoppingCartForm'].recalculate.disabled = true;
+    document.forms['ShoppingCartForm'].checkout.disabled = true;
+    
+    var req = new JsHttpRequest();
+    req.onreadystatechange = function()
+    {
+        if (req.readyState != 4)return;
+        
+        document.getElementById('processing_coupon_lbl').style.display = 'none';
+        document.forms['ShoppingCartForm'].recalculate.disabled = false;
+        document.forms['ShoppingCartForm'].checkout.disabled = false;
+        if(req.responseJS.applied == 'N')
+        {
+            document.getElementById('wrong_coupon_lbl').style.display = '';
+            return;
+        };
+        
+        document.getElementById('coupon_form').style.display = 'none';
+        document.getElementById('coupon_info').style.display = '';
+        document.getElementById('coupon_info_code').innerHTML = coupon_code;
+        document.getElementById('cart_total').innerHTML = req.responseJS.new_total_show_value;
+        {/literal}{if $PAGE_VIEW eq 'noframe' && !$smarty.get.external}{literal}
+            parent.document.getElementById('shpcrtca').innerHTML = req.responseJS.new_total_show_value;
+        {/literal}{/if}{literal}
+        if(req.responseJS.new_coupon_show != '')
+        {
+            document.getElementById('coupon_discount_value').innerHTML = req.responseJS.new_coupon_show;
+        };
+    };
+    
+    try
+    {
+        req.open(null, set_query('&ukey=cart&caller=1&initscript=ajaxservice'), true);
+        req.send({'action': 'try_apply_discount_coupon', 'coupon_code': coupon_code});
+    }
+    catch ( e )
+    {
+      catchResult(e);
+    }
+    finally { ;}
+};
+
+function onDeleteCouponClick()
+{
+    var req = new JsHttpRequest();
+    req.onreadystatechange = function()
+    {
+        if (req.readyState != 4)return;
+        document.getElementById('coupon_form').style.display = '';
+        document.getElementById('wrong_coupon_lbl').style.display = 'none';
+        document.getElementById('coupon_info').style.display = 'none';
+        document.getElementById('discount_coupon_code').value = document.getElementById('coupon_info_code').innerHTML; 
+        document.getElementById('cart_total').innerHTML = req.responseJS.new_total_show_value;
+        {/literal}{if $PAGE_VIEW eq 'noframe' && !$smarty.get.external}{literal}
+            parent.document.getElementById('shpcrtca').innerHTML = req.responseJS.new_total_show_value;
+        {/literal}{/if}{literal}
+    };
+    
+    try
+    {
+        req.open(null, set_query('&ukey=cart&caller=1&initscript=ajaxservice'), true);
+        req.send({'action': 'remove_doscount_coupon'});
+    }
+    catch ( e )
+    {
+      catchResult(e);
+    }
+    finally { ;}
+};
+
+function noenter(event)
+{
+    if(event.keyCode == 13)
+    {
+        document.getElementById('discount_coupon_code').blur();
+        return false;
+    };
+};
+ 
+{/literal}
+</script>

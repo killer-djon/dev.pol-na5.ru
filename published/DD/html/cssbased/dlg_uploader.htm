@@ -1,0 +1,20 @@
+<script src='../cssbased/dlg_uploader.js'></script>
+
+<script language="JavaScript">
+	ddUploaderDialog.strings = {
+		title: "<? $kernelStrings.wg_createwidget_title ?>",
+		nextBtn: "<? $kernelStrings.wg_next_btn ?>",
+		cancelBtn: "<? $kernelStrings.wg_cancel_btn ?>",
+		createBtn: "<? $kernelStrings.wg_create_btn ?>"
+	};
+	
+	document.dialogs["DDUploaderInplace"] = ddUploaderDialog;
+</script>
+
+<div class="x-dlg-bd" style='display:none' id='ddlist-uploader'>
+	<div id='uploader-create-tab' style='padding: 10px;'>
+		<? $kernelStrings.wg_widgetcreatename_label ?>:
+		<BR>
+		<textarea id='uploader-name-input' style='width: 95%;' rows=2></textarea>
+	</div>
+</div>

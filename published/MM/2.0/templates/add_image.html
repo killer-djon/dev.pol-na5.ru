@@ -1,0 +1,33 @@
+<script language="JavaScript" type="text/JavaScript">
+{{ if $errorStr}}
+
+	alert("{{ $errorStr}}");
+
+{{ else}}
+
+	var url = '../../common/html/scripts/preview.php?file={{ $imageName}}';
+	var img = new Image();
+	img.src = url;
+	img.onLoad = imgWait();
+
+	parent.xinha_editors[parent._editor_textarea].activateEditor();
+	parent.xinha_editors[parent._editor_textarea].focusEditor();
+
+	parent.document.getElementById('addImageInputContainer').innerHTML = parent.inputImageBuffer;
+
+	function imgWait() { waiting = window.setInterval('imgIsLoaded()', 500) }
+	function imgIsLoaded()
+	{
+		if(img.width > 0)
+		{
+			window.clearInterval(waiting)
+			parent.xinha_editors[parent._editor_textarea].
+				insertHTML('<img height="'+img.height+'" width="'+img.width+'" src="'+url+'">');
+			parent.document.getElementById('addImagePgBar').style.display = 'none';
+			parent.document.getElementById('addImageInput').style.display = '';
+		}
+	}
+
+{{ /if}}
+
+</script>

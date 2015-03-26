@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<style type="text/css">
+		table, td, div{font-family: 'Trebuchet MS'; font-size:13px}
+	</style>
+
+	<script language="JavaScript">
+		function fillMsgParams()
+		{
+			var obj = parent.document.getElementById('msgViewHeaderContainer');
+			obj.innerHTML = document.getElementById('msgViewHeader').innerHTML;
+			obj.style.display = '';
+
+			parent.msgParams = Array();
+			parent.msgParams['from'] = htmlDecode(document.getElementById('ViewMsgFrom').innerHTML);
+			parent.msgParams['to'] = htmlDecode(document.getElementById('ViewMsgTo').innerHTML);
+
+			parent.msgParams['all_emails'] = '<? $message->all_emails ?>';
+
+			parent.msgParams['date'] = htmlDecode(document.getElementById('ViewMsgDate').innerHTML);
+			parent.msgParams['subject'] = htmlDecode(document.getElementById('ViewMsgSubject').innerHTML);
+			parent.msgParams['content'] = document.getElementById('ViewMsgContent').innerHTML;
+
+			parent.document.getElementById('cb_'+parent.currentAccount+'~'+parent.currentUID).checked = true;
+
+			parent.resizeIframe();
+
+			var obj = parent.document.getElementById('MsgListLead_'+parent.currentUID);
+			if(obj && !obj.innerHTML)
+				obj.innerHTML = "<? $message->lead|htmlsafe:true:true ?>";
+		}
+		function htmlDecode(str)
+		{
+			str=str.replace(/&amp;/gi,'&');
+			str=str.replace(/&quot;/gi,'"');
+			str=str.replace(/&#039;/g,"'");
+			str=str.replace(/&lt;/gi,'<');
+			str=str.replace(/&gt;/gi,'>');
+			str=str.replace(/&nbsp;/gi,' ');
+			return str;
+		}
+		parent.mainPageURL = '<? $mainPageURL ?>';
+
+		<? if $errorStr ?>
+		parent.forceReload = true;
+		<? /if ?>
+	</script>
+</head>
+<body <? if !$errorStr ?>onload="fillMsgParams()"<? /if ?>>
+
+<? if $errorStr ?>
+	<? $errorStr ?>
+<? else ?>
+
+	<div id="ViewMsgContent" style="padding: 0 5px">
+		<? $message->content ?>
+	</div>
+
+	<? if $message->attachments ?>
+		<br>
+		<div style="border-top: 1px solid gray">
+			<b><? $mmStrings.mm_msgbody_attach_label ?>:</b> &nbsp;<? $message->attachments ?>
+		</div>
+		<br>
+	<? /if ?>
+
+
+	<div id="msgViewHeader" style="display: none">
+
+		<div style="background: #f5f5f5; border-bottom: 1px solid #eaeaea; padding: 0 10px">
+			<span style="font-weight: bold"><? $mmStrings.app_received_field ?></span>&nbsp;
+			<span id="ViewMsgDate" style="font-weight: bold"><? $message->headers.date ?></span>
+		</div>
+
+		<div style="padding: 10px; border-bottom: 1px solid #EAEAEA">
+			<table>
+				<tr>
+					<td nowrap><b><? $mmStrings.app_from_field ?>:</b></td>
+					<td width="100%" nowrap>
+						<span id="ViewMsgFrom"><? $message->headers.from|htmlsafe:true:true ?></span>
+					<? if $message->priority != 3 ?>
+						<span style="padding-left: 2em"><b><? $mmStrings.app_priority_field ?>:</b></span>
+						<? if $message->priority == 5 ?>
+						<span style="color: blue"><? $mmStrings.app_low_priority ?></span>
+						<? elseif $message->priority == 1 ?>
+						<span style="color: red"><? $mmStrings.app_high_priority ?></span>
+						<? /if ?>
+					<? /if ?>
+					</td>
+				</tr>
+				<tr>
+					<td><b><? $mmStrings.app_to_field ?>:</b></td>
+					<td id="ViewMsgTo"><? $message->headers.to|htmlsafe:true:true ?></td>
+				</tr>
+				<? if $message->headers.cc ?>
+				<tr>
+					<td><b><? $mmStrings.app_cc_field ?>:</b></td>
+					<td id="ViewMsgCC"><? $message->headers.cc|htmlsafe:true:true ?></td>
+				</tr>
+				<? /if ?>
+				<tr>
+					<td nowrap><b><? $mmStrings.app_subject_field ?>:	&nbsp; </b></td>
+					<td id="ViewMsgSubject"><? $message->headers.subject|htmlsafe:true:true ?></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+<? /if ?>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'senderData' )">
+		<? wbs_pageLayout toolbar="ams_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout ?>
+					<? wbs_formContent ?>
+							<tr>
+								<td>
+									<? wbs_label for="senderData[MMS_FROM]" fieldName="MMS_FROM" text=$mmStrings.ams_name_label skipColon=false ?>
+								</td>
+								<td width=90%><input class="FormControl" id="senderData[MMS_FROM]" name="senderData[MMS_FROM]" type="text" class="control" value="<? $senderData.MMS_FROM ?>" maxlength="50" style="width: 100%"></td>
+							</tr>
+							<tr>
+								<td>
+									<? wbs_label for="senderData[MMS_EMAIL]" fieldName="MMS_EMAIL" text=$mmStrings.ams_from_label skipColon=false ?>
+								</td>
+								<td><input class="FormControl" id="senderData[MMS_EMAIL]" name="senderData[MMS_EMAIL]" type="text" class="control" value="<? $senderData.MMS_EMAIL ?>" maxlength="50" style="width: 100%"></td>
+							</tr>
+							<tr>
+								<td>
+									<? wbs_label for="senderData[MMS_REPLYTO]" fieldName="MMS_REPLYTO" text=$mmStrings.ams_replyto_label skipColon=false ?>
+								</td>
+								<td><input class="FormControl" id="senderData[MMS_REPLYTO]" name="senderData[MMS_REPLYTO]" type="text" class="control" value="<? $senderData.MMS_REPLYTO ?>" maxlength="50" style="width: 100%"></td>
+							</tr>
+							<tr>
+								<td>
+									<? wbs_label for="senderData[MMS_RETURNPATH]" fieldName="MMS_RETURNPATH" text=$mmStrings.ams_returnpath_label skipColon=false ?>
+								</td>
+								<td><input class="FormControl" id="senderData[MMS_RETURNPATH]" name="senderData[MMS_RETURNPATH]" type="text" class="control" value="<? $senderData.MMS_RETURNPATH ?>" maxlength="50" style="width: 100%"></td>
+							</tr>
+							<tr>
+								<td>
+									<? wbs_label for="senderData[MMS_LANGUAGE]" fieldName="MMS_LANGUAGE" text=$mmStrings.ams_language_label skipColon=false ?>
+								</td>
+								<td>
+									<select class="FormControl" id="senderData[MMS_LANGUAGE]" name="senderData[MMS_LANGUAGE]" class="control" style="width: 100">
+										<? html_options values=$language_ids selected=$senderData.MMS_LANGUAGE output=$language_names ?>
+									</select>
+									<? wbs_note displayNoteMarker=false width="400px" smallFont=true ?>
+										<? $mmStrings.ams_language_comment ?>
+									<? /wbs_note ?>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<? wbs_label for="senderData[MMS_ENCODING]" fieldName="MMS_ENCODING" text=$mmStrings.ams_encoding_label skipColon=false ?>
+								</td>
+								<td><input class="FormControl" id="senderData[MMS_ENCODING]" name="senderData[MMS_ENCODING]" type="text" class="control" value="<? $senderData.MMS_ENCODING ?>" maxlength="50"></td>
+							</tr>
+					<? /wbs_formContent ?>
+					<? wbs_formButtonsPanel ?>
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+							<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+							<? if $action == 'edit' ?>
+								<? wbs_buttonSetButton name="deletebtn" caption=$mmStrings.ams_delete_btn onClick="return confirmDelete()" align="Right"?>
+							<? /if ?>
+						<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+				<? /wbs_formLayout ?>
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+			<input type="hidden" name="action" value="<?$action?>">
+			<input type="hidden" name="currentPage" value="<?$currentPage?>">
+			<input name="MMS_ID" type="hidden" value="<? $MMS_ID ?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

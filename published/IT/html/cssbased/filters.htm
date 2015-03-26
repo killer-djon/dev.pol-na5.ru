@@ -1,0 +1,35 @@
+<script>
+	var currentSelectedTdId = "<? $ISSF_ID ?>";
+	function selectList (href, linkElem) {
+		res = AjaxLoader.loadPage(href); 
+		if (!res)
+			return false;
+		var tdElem = linkElem.parentNode;
+		if (document.getElementById(currentSelectedTdId) != null)
+			document.getElementById(currentSelectedTdId).className = "treeCatalogRow";
+		tdElem.className = "treeCatalogRowCurrent";
+		currentSelectedTdId = tdElem.id;
+		return false;
+	}
+</script>
+
+
+<? if $ISSF_ID == "" ?>
+	<? assign var=ISSF_ID value="NO" ?>
+<? /if ?>
+<div style="padding-left: 10px;">
+	<table border=0 cellpadding=0 cellspacing=0>
+		<? foreach from=$filters item=filterData key=filterKey ?>
+			<? if $filterData != "" ?>
+				<tr>
+					<? if $filterKey|cat:"-" != $ISSF_ID|cat:"-" ?>
+						<? assign var=is_current value=1 ?>
+					<? else ?>
+						<? assign var=is_current value=0 ?>
+					<? /if ?>
+					<td id='<? $filterKey ?>' class="<?if $is_current != 0 ?>treeCatalogRow<?else?>treeCatalogRowCurrent<?/if?>"><a href="<? $filterData.url ?>" onClick='return selectList(this.href, this)'><? $filterData.name|htmlsafe:true:true ?></a></td>
+				</tr>
+			<? /if ?>
+		<? /foreach ?>
+	</table>
+</div>

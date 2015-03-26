@@ -1,0 +1,414 @@
+
+<script src="{{ $p->getCommonUrl() }}/js/jquery-1.3.2.min.js"></script>
+<script src="{{ $p->getJsUrl() }}/jquery.wbs.tabs.js"></script>
+
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/uploadForm.css'>
+<link rel="stylesheet" href="{{ $p->getCssUrl() }}/swfupload.css" type="text/css"/>
+
+<!-- 
+<script type="text/javascript" type="text/javascript" src="{{ $p->getJsUrl() }}/swfupload_new/swfupload.js"></script>
+<script type="text/javascript" type="text/javascript" src="{{ $p->getJsUrl() }}/swfupload_new/swfupload.queue.js"></script>
+<script type="text/javascript" type="text/javascript" src="{{ $p->getJsUrl() }}/swfupload_new/handlers.js"></script>
+<script type="text/javascript" type="text/javascript" src="{{ $p->getJsUrl() }}/swfupload_new/fileprogress.js"></script>
+ -->
+ {{assign var="path1" value=$p->getJsUrl() }}
+{{jscombine file="`$path1`/swfupload-combine.js"  }}
+ {{$p->getJsUrl()}}/swfupload_new/swfupload.js
+ {{$p->getJsUrl()}}/swfupload_new/swfupload.queue.js
+ {{$p->getJsUrl()}}/swfupload_new/handlers.js
+ {{$p->getJsUrl()}}/swfupload_new/fileprogress.js
+{{/jscombine}}
+<script >
+
+	var usage = '{{ $usage }}';
+	var limit = '{{ $limit }}';
+	var memory_limit = '{{ $memory_limit }}';
+	var fileOneLoaded = '{{ $fileOneLoaded }}';
+	
+	$(function(){
+
+		$(window).keydown(function(e){
+	    	if (e.keyCode == 27) {
+	    		window.parent.closePopup();
+	    	}
+	    });
+
+		document.sessionId = "{{ $sessionId }}";
+		var albumId = {{ $albumId }};
+
+		var settings = {
+			flash_url : "{{ $p->getSwfUploadUrl() }}/swfupload.swf",
+			upload_url: "{{ $p->getCssUrl() }}/../backend.php?controller=ajax&action=uploadImage",	// Relative to the SWF file
+			post_params: {
+				"PHPSESSID" : "{{ $sessionId }}",
+				"albumId" : "{{ $albumId }}"
+			},
+			file_size_limit : "100 MB",
+			file_types : "*.jpg;*.jpeg;*.png;*.gif",
+			file_types_description : "Image Files",
+			file_upload_limit : 500,
+			file_queue_limit : 0,
+			file_post_name: 'Filedata',
+
+			custom_settings : {
+				progressTarget : "fsUploadProgress",
+				cancelButtonId : "upload-cancel"
+			},
+			debug: false,
+
+			// Button settings
+			button_width: "300",
+			button_height: "75",
+			button_placeholder_id: "btn-upload-fl",
+			button_text: ' ',
+			button_text_style: ".theFont { font-size: 16px; font-family:'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif; color: #4169E1 }",
+			button_text_left_padding: 12,
+			button_text_top_padding: 3,
+			button_cursor : SWFUpload.CURSOR.ARROW,
+			 
+			button_window_mode : SWFUpload.WINDOW_MODE.TRANSPARENT, 
+			
+			// The event handler functions are defined in handlers.js
+			file_queued_handler : fileQueued,
+			file_queue_error_handler : fileQueueError,
+			file_dialog_complete_handler : fileDialogComplete,
+			upload_start_handler : uploadStart,
+			upload_progress_handler : uploadProgress,
+			upload_error_handler : uploadError,
+			upload_success_handler : uploadSuccess,
+			upload_complete_handler : uploadComplete,
+			queue_complete_handler : queueComplete	// Queue plugin event
+		};
+
+		
+		FileInfo = {
+			isUpload: false,
+				
+			fileCount: 0,
+			fileSize: 0,
+
+			uploadCount: 0,
+			uploadSize: 0,
+
+			error: 0,
+
+			addFile: function (file) {
+				this.fileCount += 1;
+				this.fileSize += file.size;
+			},
+			deleteFile: function(file){
+				this.fileCount -= 1;
+				this.fileSize -= file.size;
+			},
+			uploadFile: function(file) {
+				this.uploadSize += file.size;
+				this.uploadCount += 1;
+			},
+
+			startUpload: function(){
+				this.isUpload = true;
+
+				$('.start-container').hide();
+				$('.progress-container').show();
+				document.fu.uploader.startUpload();
+
+				document.stopTabsClick = true;
+				$('#formupload-menu li:eq(1) a').css({color:'#CCC'});
+			},
+			stopUpload: function(){
+				this.isUpload = false;
+
+				document.fu.uploader.cancelUpload();
+				$('.start-container').show();
+
+				$('.progress-container').hide();
+				$('.divStatus').text('[`Files uploaded`]: '+this.uploadCount);
+					
+				document.stopTabsClick = false;
+				$('#formupload-menu li:eq(1) a').css({color:'#223445'});		
+			},
+			
+			updateView: function() {
+				if ( !this.isUpload ) {
+					if ( this.fileCount > 0 ) {
+						$('.start-container').show();
+					}
+					else {
+						$('.start-container').hide();
+					}
+					if ( this.fileCount < 1 && this.error == 0) {
+						$('.upload-button').show();
+					}
+				}
+				
+				if ( $('.start-container:visible').size() > 0 ) {
+					$('.count-files').html('[`Select files`]: '+this.fileCount+' ('+ $.filesizeformat(this.fileSize)+')');
+				}
+			},
+			reset: function() {
+				this.fileCount = 0;
+				this.fileSize = 0;
+
+				this.uploadCount = 0;
+				this.uploadSize = 0;
+
+				$('#progressBarStripe').css({left: 0});
+				$('.progressValue').text( '0%' );	
+			},
+			cancelQueue: function () {
+				document.fu.uploader.stopUpload();
+				var stats;
+				
+				if (document.fu.uploader.getStats() != null) {
+					do {
+						stats = document.fu.uploader.getStats();
+						document.fu.uploader.cancelUpload();
+					} while (stats.files_queued !== 0);
+				}
+			},
+			errorAdd: function () {	
+				this.error += 1;
+			}
+			
+		};
+
+		if( !this.uploader ) {
+			this.uploader = new SWFUpload(settings);
+			document.fu = {};
+			document.fu.uploader = this.uploader;
+		}
+		
+		$('#upload-cancel').click(function(){
+			FileInfo.cancelQueue();
+			return false;
+		});
+
+		var offset = $('#fsUploadProgress').offset();
+		$('#SWFUpload_0').css({
+			//'z-index': 500,
+			position: 'absolute',
+			//top: 50 
+			left: 130,/*parseInt(offset.left) + $('#fsUploadProgress').width() / 2 - 150,*/
+			top: 50/*parseInt(offset.top) + $('#fsUploadProgress').height() / 2 - 20 - 20 */			
+		});
+
+		if ( albumId ) {
+			$('#select-album-list option[value='+albumId+']').attr('selected', 'selected');
+			$('#radio-select-album').attr("checked", "checked");
+		}
+		else {
+			$('#radio-new-album').attr("checked", "checked");
+		}
+
+		$('#btn-start input').click(function(){
+			FileInfo.startUpload();
+			return false;
+		});
+
+		$('#addinput').click(function(){
+			$('.upload_list').append('<p><input name="Filedata[]" type="file" /></p>');
+			$('.upload_list').append('<p><input name="Filedata[]" type="file" /></p>');
+			return false;
+		});
+		
+		
+
+		$('.btn_start').click(function(){
+			$('.progress').show();	
+			$('#one_upload_frm').submit();
+			$(this).attr('disabled', 'disabled');
+			return false;
+		});
+
+		//if ( $.browser.mozilla )
+			//console.debug('Free space '+ $.filesizeformat(limit) );
+
+		if ( !$.hasFlash() || fileOneLoaded == '1') {
+			$('#formupload-menu').idTabs({selected: 'active', start: '#fragment-2'});
+			$('.upload-button').remove();
+			$('#SWFUpload_0').remove();
+			
+			$('.upload-no').show();
+		}
+		else
+			$('#formupload-menu').idTabs({selected: 'active'});
+
+		if ( fileOneLoaded == '1' ) {
+			$('.message').html('{{ $fileOneMessage }}');
+			if ( '{{ $fileOneError }}' == '1' ) {
+				$('.message').addClass('error-view');
+			}
+			window.parent.refresh();
+		}
+
+	});
+
+	(function($){
+	     $.extend({ 
+	        // Returns a formated file size
+	        filesizeformat: function(bytes, suffixes){
+	            var b = parseInt(bytes, 10);
+	            var s = suffixes || ['byte', 'bytes', 'KB', 'MB', 'GB'];
+	            if (isNaN(b) || b == 0) { return '0 ' + s[0]; }
+	            if (b == 1)             { return '1 ' + s[0]; }
+	            if (b < 1024)           { return  b.toFixed(2) + ' ' + s[1]; }
+	            if (b < 1048576)        { return (b / 1024).toFixed(2) + ' ' + s[2]; }
+	            if (b < 1073741824)     { return (b / 1048576).toFixed(2) + ' '+ s[3]; }
+	            else                    { return (b / 1073741824).toFixed(2) + ' '+ s[4]; }
+	        }
+
+	     });
+	})(jQuery);
+
+	(function($){
+		var formats = {
+			'%': function(val) {return '%';},
+			'b': function(val) {return  parseInt(val, 10).toString(2);},
+			'c': function(val) {return  String.fromCharCode(parseInt(val, 10));},
+			'd': function(val) {return  parseInt(val, 10) ? parseInt(val, 10) : 0;},
+			'u': function(val) {return  Math.abs(val);},
+			'f': function(val, p) {return  (p > -1) ? Math.round(parseFloat(val) * Math.pow(10, p)) / Math.pow(10, p): parseFloat(val);},
+			'o': function(val) {return  parseInt(val, 10).toString(8);},
+			's': function(val) {return  val;},
+			'x': function(val) {return  ('' + parseInt(val, 10).toString(16)).toLowerCase();},
+			'X': function(val) {return  ('' + parseInt(val, 10).toString(16)).toUpperCase();}
+		};
+
+		var re = /%(?:(\d+)?(?:\.(\d+))?|\(([^)]+)\))([%bcdufosxX])/g;
+
+		var dispatch = function(data){
+			if(data.length == 1 && typeof data[0] == 'object') { //python-style printf
+				data = data[0];
+				return function(match, w, p, lbl, fmt, off, str) {
+					return formats[fmt](data[lbl]);
+				};
+			} else { // regular, somewhat incomplete, printf
+				var idx = 0; // oh, the beauty of closures :D
+				return function(match, w, p, lbl, fmt, off, str) {
+					return formats[fmt](data[idx++], p);
+				};
+			}
+		};
+
+		$.extend({
+			sprintf: function(format) {
+				var argv = Array.apply(null, arguments).slice(1);
+				return format.replace(re, dispatch(argv));
+			},
+			vsprintf: function(format, data) {
+				return format.replace(re, dispatch(data));
+			}
+		});
+
+		
+	})(jQuery);
+
+	(function($$) {
+		$$.hasFlash = function() {
+			// look for a flag in the query string to bypass flash detection
+			if(/hasFlash\=true/.test(location)) return true;
+			if(/hasFlash\=false/.test(location)) return false;
+			var pv = $$.hasFlash.playerVersion().match(/\d+/g);
+			var rv = String([arguments[0], arguments[1], arguments[2]]).match(/\d+/g) || String($$.pluginOptions.version).match(/\d+/g);
+			for(var i = 0; i < 3; i++) {
+				pv[i] = parseInt(pv[i] || 0);
+				rv[i] = parseInt(rv[i] || 0);
+				// player is less than required
+				if(pv[i] < rv[i]) return false;
+				// player is greater than required
+				if(pv[i] > rv[i]) return true;
+			}
+			// major version, minor version and revision match exactly
+			return true;
+		};
+				
+		$$.hasFlash.playerVersion = function() {
+			// ie
+			try {
+				try {
+					// avoid fp6 minor version lookup issues
+					// see: http://blog.deconcept.com/2006/01/11/getvariable-setvariable-crash-internet-explorer-flash-6/
+					var axo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash.6');
+					try { axo.AllowScriptAccess = 'always';	} 
+					catch(e) { return '6,0,0'; }				
+				} catch(e) {}
+				return new ActiveXObject('ShockwaveFlash.ShockwaveFlash').GetVariable('$version').replace(/\D+/g, ',').match(/^,?(.+),?$/)[1];
+			// other browsers
+			} catch(e) {
+				try {
+					if(navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin){
+						return (navigator.plugins["Shockwave Flash 2.0"] || navigator.plugins["Shockwave Flash"]).description.replace(/\D+/g, ",").match(/^,?(.+),?$/)[1];
+					}
+				} catch(e) {}		
+			}
+			return '0,0,0';
+		};
+
+		$$.pluginOptions = {
+				expressInstall: false,
+				update: true,
+				version: '6.0.65'
+			};
+					
+	})(jQuery);	
+</script>
+
+<div id="formupload">
+	<div id="formupload-title">[`Upload photos`]</div>
+	<div id="formupload-form">
+		 <input id="album_id" type="hidden" value="{{ $albumId }}" />
+		 {{ $albumName|string_format:'[`Photos will be uploaded to album “%s”`]' }}. 
+	</div>
+	<div id="formupload-menu">
+		<ul>
+			<li class="active"><a href="#fragment-1" class="many-photos"><span></span>[`Bulk`]</a></li>
+			<li><a href="#fragment-2" class="one-photo">[`One-by-one`]</a></li>
+		</ul>
+		<div id="fragment-1">			
+			<div class="upload-no" style="display: none;">[`You need to have <a href="http://get.adobe.com/flashplayer/" target="_blank">Adobe Flash Player</a> installed for bulk photo upload.`] <a href="http://get.adobe.com/flashplayer/" target="_blank">Adobe Flash Player</a>.</div> 
+			<div class="upload-button">
+				<b>[`Choose files`]</b>
+				<span class="help-upload">[`You may select up to`] 500 [`files`]</span>
+				<span class="help-upload">{{ $max_file_size|string_format:'[`Each file size must not exceed %s`]' }}</span>
+			</div> 
+			<span id="btn-upload-fl"><b>[`Upload photos`]</b></span>
+			<div id="fsUploadProgress"> </div>
+			
+			
+			<div class="progress-container" style="display: none;"><div class="progressBar">
+				<span><em id="progressBarStripe" style="left: 0px"></em></span>
+				</div>
+				<span class="progressValue">0%</span><div id="divStatus"></div><div class="upload-cancel-btn"><input type="button" id="upload-cancel" value="[`Cancel`]" /></div>
+            </div>
+            
+            <div class="start-container" style="display: none;">
+            	<span class="count-files"></span>
+            	<span class="error-view"></span>
+            	<span id="btn-start" class="btn-start-disable"><input type="button" value="[`Upload photos`]"/></span>
+            </div>			
+
+			<div class="divStatus"> </div>
+			
+		</div>
+		<div id="fragment-2" style="display: none;">			
+			<form id="one_upload_frm" action="backend.php?controller=album&action=uploadForm&albumId={{ $albumId }}" 
+				method="post" 
+				enctype="multipart/form-data">
+				<div class="whitegb">
+				<div class="upload_list">
+					<p><input name="Filedata[]" type="file" /></p>
+					<p><input name="Filedata[]" type="file" /></p>
+				</div>
+				<div class="addlink"><a href="#" id="addinput">[`Add more`]</a></div>
+				</div>
+				<input name="albumId" type="hidden" value="{{ $albumId }}" />
+				<input name="type" type="hidden" value="file" />
+				<input type="submit" value="[`Upload`]" class="btn_start" /><img class="progress" style="display: none;" src="img/progress2.gif" /> <span class="exceed">{{ $max_file_size|string_format:'[`Each file size must not exceed %s`]' }}</span>
+				
+				<div class="message"></div>
+			</form>
+		</div>
+	</div>
+	
+	<a href="javascript:window.parent.closePopup(); "  id="album-settings-close" ><img src="img/close.gif" width="16" height="16" /></a>
+</div>

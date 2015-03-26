@@ -1,0 +1,241 @@
+<html><head><title></title><style>
+<!--
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-color: #FFFFFF;
+}
+
+td {
+         font-family: Verdana, Arial, sans-serif;
+         font-size: 10pt;
+         font-weight: normal;
+         color: black;
+}
+
+a {
+        font-family: Verdana, Arial, sans-serif;
+        font-size: 10pt;
+        color: #0000FF;
+        text-decoration: none;
+}
+
+a:hover {
+        text-decoration: underline;
+}
+
+.pageHeader {
+         font-family: Verdana, Arial, sans-serif;
+         font-size: 16pt;
+         color: #FFFFFF;
+         background-color: #9B9B9B;
+
+         font-weight: normal;
+         margin-top: 0px;
+         padding-left: 13px;
+         padding-top: 2px;
+         padding-bottom: 5px;
+}
+
+.pageTopPanel {
+         font-family: Verdana, Arial, sans-serif;
+         font-size: 10pt;
+         color: #000000;
+         font-weight: normal;
+         background-color: #F5F5F5;
+
+         margin-top: 0px;
+         padding-left: 10px;
+         padding-top: 1px;
+         padding-bottom: 2px;
+         border-top-width: 1px;
+         border-bottom-width: 1px;
+
+         border-top-style: solid;
+         border-top-color: #FFFFFF;
+         border-bottom-style: solid;
+         border-bottom-color: #E1E1E1;
+}
+
+.treeHeaderPanelText {
+         background: #F7F7F7;
+         border-bottom: 1px solid #DCDCDC;
+	padding-left: 13px;
+	text-align: left;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.treeLeftPanelHeader{
+         padding-left: 13px;
+         background: #F7F7F7;
+         text-align: left;
+         font-size: 10pt;
+         font-weight: bold;
+}
+
+.treeCatalogRow {
+         padding-top: 2px;
+         padding-bottom: 2px;
+         padding-left: 2px;
+         padding-right: 2px;
+}
+
+.treeCatalogRowCurrent {
+         padding-top: 2px;
+         padding-bottom: 2px;
+         background: #005CB9;
+         color: #FFFFFF;
+         padding-left: 2px;
+         padding-right: 2px;
+}
+
+
+.treeCatalogRow a {
+         color: #000000;
+}
+
+.treeCatalogRowCurrent a {
+         color: #FFFFFF;
+}
+
+.restdv_splitter {
+    	background-color: #DDDDDF;
+    	font-size: 1px;
+    	width: 6px;
+    	cursor: e-resize;
+}
+
+.restdv_splitterBtn img {
+    	position: relative;
+    	cursor: pointer;
+    	top: 45%;
+    	z-index: 100;
+}
+
+.btnText {
+         font-family: Tahoma, Verdana, Arial;
+         font-size: 11px;
+}
+
+.noOverflow {
+  overflow:hidden!important;
+}
+
+.control {
+         border: solid 1px #000000;
+         background-color: #FFFFFF;
+         margin: 0px;
+         padding-left: 1px;
+         padding-right: 0px;
+         padding-top: 0px;
+         padding-bottom: 0px;
+         text-align: left;
+}
+-->
+</style>
+</head>
+<body leftmargin="0" topmargin="0">
+<table class="restdv_main" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td colspan="3" height="10" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="pageHeader">Sample</td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="pageTopPanel">
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+	<td class="btnText" valign="middle">Search:&nbsp;</td><td><input class="control" name="searchString" value="" style="width: 200px;" type="text"></td>
+	<td>
+	<table align="left" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+	  <td class="toolbarButton" background="published_files/topbtn_bg.gif"><a name="1" class="btnText"><nobr>Go</nobr></a></td>
+	</tr>
+	</table>
+	</td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="restdv_treetd" id="treetd" style="width: 100px;" valign="top">
+<div class="restdv_leftpanel treePanel" id="treediv" style="height: 100px; width: 115px;">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+	<td class="treeLeftPanelHeader" height="20">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+		<td align="left"><b>Content</b></td>
+		</table>
+	</td>
+	</tr>
+	</table>
+	<div style="overflow: auto; width: 100%; height: 100px;" id="leftscrolldiv">
+	<table height="100%" width="100%">
+	<tbody><tr valign="top">
+		<td>
+		<div id="1.">
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="treeCatalogRow">&nbsp; <a name="1.">Overview</a></td>
+		</tr>
+		</table>
+		<div id="2.">
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="treeCatalogRow">&nbsp; <a name="1.">Chapter 1</a></td>
+		</tr>
+		</table>
+		</div>
+		<div id="13." style="padding-left: 10px;">
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td class="treeCatalogRowCurrent">&nbsp; <a name="13.">Page 1</a></td>
+				</tr>
+		</tbody></table>
+		</div>
+		<div id="13." style="padding-left: 10px;">
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+			<td class="treeCatalogRow">&nbsp; <a name="13.">Page 2</a></td>
+			</tr>
+			</tbody></table>
+		</div>
+</td><td>
+</td></tr>
+</table>
+</div>
+</div>
+			</td>
+			<!-- Splitter -->
+			<td class="restdv_splitter" valign="top">
+				<div style="height: 100px; left: 151px;" id="splitter" class="restdv_splitterBtn" unselectable="on">
+					...
+				</div>
+			</td>
+				<!-- Right panel -->
+		<td style="left: 251px; width: 100px;" id="contenttd" valign="top">
+			<div style="height: 100px; width: 150px;" class="restdv_rightpanel treePanel" id="contentdiv" unselectable="on">
+				<div style="overflow: auto; width: 100%; height: 100px;" id="rightscrolldiv">
+<table align="center" border="0" cellpadding="0" cellspacing="0" height="90%" width="99%">
+<tbody><tr>
+<td valign="top">
+Page 1
+<p>text...text... text... <br>
+text... text... text...
+</td>
+</tr>
+</tbody></table>
+</div>
+</td>
+</tr>
+</tbody></table></form>
+</body></html>

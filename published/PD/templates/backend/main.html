@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Photos</title>
+
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.wbs.popup.js"></script>
+{{ $head }}
+
+<script>
+	$(document).ready(function(){
+		$('#link-upload').click(function(){
+
+			if (Helper)
+			var album = Helper.getManager().getState().albumId; 
+			var url = (album) ? 'backend.php?controller=album&action=uploadForm&albumId='+album : 'backend.php?controller=album&action=uploadForm';
+
+			window.refresh = function(){
+				Helper.getManager().setState({});
+			}.bind(this);
+
+			window.refreshToUpload = function(uploadCount){
+				var page = (Math.ceil( ( parseInt(Data.total) + parseInt(uploadCount) )/Data.limit ) - 1 ) * Data.limit;
+				Helper.getManager().setState({
+					offset: page
+				});				
+			}.bind(this);
+			
+			$('#swfupload').wbsPopup({
+				url: url,
+				width: 600,
+				height: 440,
+				iframe: true,
+				hidePopup: function(){
+					Helper.getManager().setState({});
+				},
+				callback: {
+					test: function (){}
+				}
+			});
+			return false;
+		});
+		
+		$('#album-link').click(function(){
+			window.parent.location.hash = '';
+			
+		});
+		
+		$('#front_link').click(function(){
+			go('{{ $frontend_link }}');
+		});
+		
+	});
+
+	function go(url) {
+		window.open(url);
+		/*
+		 form = document.createElement ("form"); 
+		 form.method = "GET";
+		 form.action = url; 
+		 form.target = "_blank"; 
+		 document.body.appendChild(form); 
+		 form.submit();
+		 */
+	}
+
+	(function($){
+	     $.extend({ 
+	        // Returns a formated file size
+	        filesizeformat: function(bytes, suffixes){
+	            var b = parseInt(bytes, 10);
+	            var s = suffixes || ['byte', 'bytes', 'KB', 'MB', 'GB'];
+	            if (isNaN(b) || b == 0) { return '0 ' + s[0]; }
+	            if (b == 1)             { return '1 ' + s[0]; }
+	            if (b < 1024)           { return  b.toFixed(2) + ' ' + s[1]; }
+	            if (b < 1048576)        { return (b / 1024).toFixed(2) + ' ' + s[2]; }
+	            if (b < 1073741824)     { return (b / 1048576).toFixed(2) + ' '+ s[3]; }
+	            else                    { return (b / 1073741824).toFixed(2) + ' '+ s[4]; }
+	        }
+
+	     });
+	})(jQuery);
+</script>
+
+</head>
+<body>
+
+{{ if ($menu == 'design') }}
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="des-editor-table">
+<tr><td>
+{{ /if }}
+<div id="menu-level1">
+
+	<ul class="menu-level">
+		<li {{ if ($menu == 'albums') }}class="active-item"{{ /if }} ><span></span><a id="album-link" href="backend.php?controller=album#/Albums">[`Albums`]</a></li>
+		{{ if ($manage_collections != 0) }}<li {{ if ($menu == 'collection') }}class="active-item"{{ /if }} ><span></span><a href="backend.php?controller=album&action=collection">[`Collections`]</a></li>{{ /if }}
+		{{ if ($modify_design != 0) }}<li {{ if ($menu == 'design') }}class="active-item"{{ /if }} ><span></span><a  href="backend.php?controller=design">[`Design`]</a></li>{{ /if }}
+		{{ if ($modify_design != 0) }}<li {{ if ($menu == 'settings') }}class="active-item"{{ /if }} ><span></span><a  href="backend.php?controller=album&action=settings">[`Settings`]</a></li>{{ /if }}
+		</ul>
+		<div class="public_galery"><span class="corn-bg"><a id="front_link" href="#">[`Public gallery`]</a></span></div>
+	
+	
+</div>
+
+{{ if ($menu == 'design') }}
+</td></tr>
+<tr><td class="editortd"> 
+{{ /if }}
+
+{{ $content }}
+
+{{ if ($menu == 'design') }}
+</td> </tr> </table>
+{{ /if }}
+
+
+<div id="swfupload" style="display:none;"></div>
+<div id="photo-move" style="display:none; background-color: #FFF;">
+	<div class="window-header"><h2>[`Album`]:</h2></div>
+	<p><select>
+	</select></p>
+	<p><input id="btn_move" type="button" value="[`Move`]"> [`or`] <a href="#" onclick="$('#photo-move').wbsPopupClose(); return false;">[`close`]</a></p>
+    <a href="#" onclick="$('#photo-move').wbsPopupClose(); return false;" class="div-popup-close"><img src="img/close.gif" width="16" height="16" /></a>
+</div>
+
+</body>
+</html>

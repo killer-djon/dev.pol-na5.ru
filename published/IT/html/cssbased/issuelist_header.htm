@@ -1,0 +1,26 @@
+<? if !$pmDisabled ?>
+	<table class="FormLayout">
+		<tr>
+				<? if ! $inplaceScreen ?>
+				<td><? wbs_label for="P_ID" text=$itStrings.il_project_label ?></td>
+				<td>
+					<select title="" name="P_ID" id="P_ID" class="FormControl" style="width: 400px" onChange="this.form.submit()">
+						<? html_options values=$project_ids selected=$P_ID output=$project_names ?>
+					</select>
+				</td>
+			<? else ?>
+				<input type='hidden' name='P_ID' value='<? $P_ID ?>'>
+			<? /if ?>
+			<? if !$manyProjects && !$freeIssues && $P_ID != 0?>
+				<td><? wbs_label for="PW_ID" text=$itStrings.il_task_label ?></td>
+				<td>
+					<select title="" name="curPW_ID" id="PW_ID" class="FormControl" style="width: 300px" onChange="this.form.submit()">
+						<? html_options values=$work_ids selected=$curPW_ID output=$work_names ?>
+					</select>
+				</td>
+			<? else ?>
+				<input type='hidden' name='PW_ID' value='<? $curPW_ID ?>'>
+			<? /if ?>
+		</tr>
+	</table>
+<? /if ?>

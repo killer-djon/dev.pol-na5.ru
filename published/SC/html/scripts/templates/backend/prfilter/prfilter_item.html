@@ -1,0 +1,62 @@
+<td class="name">{html_text dbfield="name" name="extra_option_%lang%_`$_row.optionID`" values=$_row table=$smarty.const.PRODUCT_OPTIONS_TABLE style="width:350px"}</td>
+<td class="sort"><input type="text" name="extra_sort_{$_row.optionID}" value="{$_row.sort_order}" size="3" /></td>
+<td class="options">
+	<a href="javascript:void(0);" class="prfilter-editoption-link" >{'prfilter_additionally'|translate}</a>
+	<div class="prfilter-editoption" >
+		<table cellpadding="0" cellspacing="0" width="100%">
+			<tr><td colspan="2" class="nopadding">{'prfilter_descrition_title'|translate}</td></tr>
+			<tr><td colspan="2" class="nopadding">{html_textarea dbfield="description_title" name="extra_description_title_%lang%_`$_row.optionID`" values=$_row table=$smarty.const.PRODUCT_OPTIONS_TABLE style="width:280px"}</td></tr>			
+			<tr><td colspan="2" class="nopadding">{'prfilter_descrition_text'|translate}</td></tr>
+			<tr><td colspan="2" class="nopadding">{html_textarea dbfield="description_text" name="extra_description_text_%lang%_`$_row.optionID`" values=$_row table=$smarty.const.PRODUCT_OPTIONS_TABLE style="width:280px; height:63px;"}</td></tr>
+			<tr>
+				<td>{'prfilter_category'|translate}:</td>			
+				<td>
+					<select name="extra_optionCategory_{$_row.optionID}" style="width:90px" class="prfilter-categoryes-select">
+						<option value="0" {if $_row.optionCategory eq '0'}selected{/if}>---</option>
+						{foreach from=$categoryes item=_row2}
+							<option value="{$_row2.categoryID}" {if $_row.optionCategory eq $_row2.categoryID}selected{/if}>{$_row2.category_name}</option>
+						{/foreach}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>{'prfilter_optiontype'|translate}:</td>			
+				<td>
+					<select name="extra_optionType_{$_row.optionID}" style="width:90px" class="optionType" optID="{$_row.optionID}" >
+						<option value="simple"  {if $_row.optionType eq 'simple'}selected{/if}>{'prfilter_optiontype_simple'|translate}</option>
+						<option value="slider" {if $_row.optionType eq 'slider'}selected{/if}>{'prfilter_optiontype_slider'|translate}</option>
+						<option value="single" {if $_row.optionType eq 'single'}selected{/if}>{'prfilter_optiontype_single'|translate}</option>
+					</select>
+				</td>
+			</tr>
+			<tr {if $_row.optionType ne 'slider'}style="display:none"{/if} id="{$_row.optionID}_slider_step_tr" >
+				<td>{"prfilter_optionstep"|translate}:</td>
+				<td ><input type="text" name="extra_slider_step_{$_row.optionID}" value="{$_row.slider_step}" size="3" style="width:50px" /></td>
+			</tr>
+			<tr {if $_row.optionType ne 'slider'}style="display:none"{/if} id="{$_row.optionID}_slider_prefix_tr" >
+				<td>{"prfilter_optionstepprefix"|translate}:</td>
+				<td>{html_text dbfield="slider_prefix" name="extra_slider_prefix_%lang%_`$_row.optionID`" values=$_row table=$smarty.const.PRODUCT_OPTIONS_TABLE style="width:50px"}</td>
+			</tr>
+			<tr><td colspan="2" align="center"><br><br><a href="javascript:void(0);"  class="prfilter-editoption-close"  >{"prfilter_closewindow"|translate}</a></td></tr>
+		</table>
+	</div>
+</td>
+<td class="variants"><a href="{"&optionID=`$_row.optionID`"|set_query_html}" class="prfilter-editvariants-link">{"prdcustopt_value_variants"|translate} (<b>{$_row.count_variants}</b>)</a></td>		
+<td class="info">
+	{if $_row.optionType eq 'simple'}
+		<div class="prfilter-icon prfilter-icon-type" title='{"prfilter_optiontype_simpleT"|translate}'>{'prfilter_optiontype_simple'|translate}</div>	
+	{elseif $_row.optionType eq 'slider'}
+		<div class="prfilter-icon prfilter-icon-type" title='{"prfilter_optiontype_sliderT"|translate}'>{'prfilter_optiontype_slider'|translate}</div>
+		<div class="prfilter-icon prfilter-icon-step" title='{"prfilter_optionstep"|translate}: {$_row.slider_step}'>{$_row.slider_step}</div>
+		<div class="prfilter-icon prfilter-icon-prefix" title='{"prfilter_optionstepprefix"|translate}: {$_row.slider_prefix_ru}'>{$_row.slider_prefix_ru}</div>
+	{elseif $_row.optionType eq 'single'}
+		<div class="prfilter-icon prfilter-icon-type" title='{"prfilter_optiontype_singleT"|translate}'>{'prfilter_optiontype_single'|translate}</div>
+	{/if}
+	{if $_row.description_title_ru }
+		<div class="prfilter-icon prfilter-icon-title" title='{"prfilter_description_titleyes"|translate}'></div>
+	{/if}
+	{if $_row.description_text_ru }
+		<div class="prfilter-icon prfilter-icon-desc" title='{"prfilter_description_textyes"|translate}'></div>
+	{/if}
+</td>
+<td class="remove"><a href='{"action=delete_option&optionID=`$_row.optionID`"|set_query_html}' class="confirm_action" title='{"cnfrm_areyousure"|transcape}'><img src="images_common/remove.gif" alt='{"btn_delete"|translate}' /></a></td>

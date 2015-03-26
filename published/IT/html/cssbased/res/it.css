@@ -1,0 +1,226 @@
+table.it_TaskTable
+{
+	border-collapse: collapse;
+	width: 100%;
+	border: none;
+	padding: 0!important;
+	margin: 0!important;
+}
+
+table.it_TaskTable td
+{
+	padding: 0!important;
+	margin: 0!important;
+}
+
+tr.it_TaskCell td
+{
+	padding: 0!important;
+	margin: 0!important;
+}
+
+table.it_IssueList a
+{
+	display: inline!important;
+}
+
+table.it_TaskTable tr.ListSubheader td
+{
+}
+
+table.it_TaskTable tr.ListSuperheader td
+{
+	background: #E9E9E9;
+	border-top: 1px solid #AAA;
+	border-bottom: 0px solid #BBB;
+	font-weight: bold;
+}
+
+table.it_IssueList tbody tr td.it_NoPaddings
+{
+	padding-left: 1px!important;
+	padding-right: 1px!important;
+}
+
+table.it_IssueList tbody tr td
+{
+	font-size: 14px;
+	line-height: normal;
+}
+
+table.it_TaskTable tbody tr td
+{
+	font-size: 1.1em;
+}
+
+div.it_TransitionLog
+{
+	border-left: 3px solid #E0E0E0;
+}
+
+div.it_TransitionLog table 
+{
+	border-collapse: collapse;
+	border: none!important;
+	padding: 0;
+	margin: 0;
+}
+
+div.it_TransitionLog table tbody
+{
+	border: none!important;
+	background: transparent;
+}
+
+div.it_TransitionLog table td
+{
+	border: none!important;
+	vertical-align: top;
+	background: transparent;
+	font-size: 12px !important;
+	color: #696969
+}
+
+table.it_Workflow, table.it_Workflow tr, table.it_Workflow td
+{
+	padding: 0!important;
+	margin: 0!important;
+	line-height: 0;
+}
+
+div.it_WorkflowState table.it_Workflow td
+{
+	line-height: 100%;
+}
+
+div.it_WorkflowState table.it_Workflow td img
+{
+	border: 0;
+}
+
+table.it_Workflow td img
+{
+	outline-width: 0!important;
+	border: none;
+}
+
+table.it_WorkflowSchema
+{
+	margin-bottom: 15px!important;
+}
+
+table.it_Workflow td a
+{
+	text-decoration: none!important;
+}
+
+table.it_Workflow
+{
+	border-collapse: collapse;
+	border: none;
+}
+
+div.it_WorkflowState
+{
+	padding: 0;
+	margin: auto 0;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	line-height: normal!important;
+}
+
+table.it_WorkflowItem
+{
+	margin-top: 3px!important;
+	margin-left: 3px!important;
+}
+
+div.it_WorkflowOuterState
+{
+	padding: 5px;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	line-height: 100%;
+}
+
+div.it_startState, div.it_startState a
+{
+	color: black!important;
+	font-weight: bold;
+}
+
+td.it_stateInfoBlock
+{
+	padding: 5px!important;
+	text-align: left;
+}
+
+table.it_statisticsHeader
+{
+	border-collapse: collapse;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+table.it_statisticsHeader tbody tr td, table.it_statisticsHeader tbody tr
+{
+	border: none;
+	padding: 0!important;
+	margin: 0!important;
+}
+
+
+
+table.it_IssueList.collapsed tr.Issue td {
+	display: none;
+}
+
+.x-form-item{font:normal 14px "Trebuchet MS";}
+.x-form-field {font:normal 14px "Trebuchet MS";}
+
+#work-form .x-form-item{font:normal 12px Tahoma;}
+#issue-form .x-fieldset{margin-bottom: 0px}
+
+.it_TaskTable tr.ListSubheader td {background: #E9E9E9; padding-top: 3pt!important; padding-bottom: 3pt!important; border-bottom: 1px solid #999}
+
+.Grid.it_IssueList.Inprogress tr td {background: #F4FFF4}
+.Grid.it_IssueList.Complete tr td {background: #FFF4F4}
+
+
+.it_IssueList.selected td {background: #FFFFD1; }
+.it_IssueList tr td .IssueLinks {visibility: hidden; margin-bottom: 6px; margin-top: 6px}
+.it_IssueList tr td .IssueLinks a {color: #1B8DFC; border-bottom: 0px; text-decoration: underline; margin-right: 10px; font-size: 0.9em}
+.it_IssueList.selected td .IssueLinks {visibility: visible !important}
+.it_IssueList tr td .IssueAdvInfo {color: #494949}
+.it_IssueList tr td .IssueAdvInfo {margin-top: 10px; }
+.it_IssueList tr td .IssueAdvInfo div {margin-top: 3px}
+.it_IssueList tr td .IssueAdvInfo div nobr {font-weight: bold}
+.it_IssueList tr td .IssueAdvInfo .Comments {font-size: 0.85em; }
+.it_IssueList tr td .MoreLink span {color: blue; text-decoration: underline; cursor: pointer; font-size: 0.9em}
+
+
+
+.it_IssueList.selected .it_TransitionLog, .it_TransitionLog table tbody tr:hover td {background: #F0E798 !important;} {background: #F0E798;}
+
+.it_TransitionLog {margin-bottom: 10px; background: #F5F5F5}
+.it_TransitionLog tr td {background: transparent !important; }
+.it_TransitionLog tr#MainTr td {background: transparent; padding-top: 9px  !important; }
+.it_TransitionLog table tr td .Date {font-weight: normal; }
+.it_TransitionLog table tr td .Sender {margin-left: 10px}
+
+
+
+legend {background: transparent; font-size: 12px}
+.x-fieldset legend {font-size: 14px; font-family: "Trebuchet MS"; font-weight: normal; color: black; }
+.x-form-item {margin-bottom: 0px !important}
+
+
+
+.ext-strict .ext-ie .x-form-element {position: static}
+
+
+.IssueWorkProject {display: none}
+#JustAddedIssues .IssueWorkProject {display: block}

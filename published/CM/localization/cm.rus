@@ -1,0 +1,423 @@
+app_name_long	Common	Application full name	Контакты
+app_name_short	Common	Application short name	Контакты
+app_pendingsubscr_label	Common	Pending subscriber label	Ожидает подтверждения
+app_normalsubscr_label	Common	Pending subscriber label	Нормальное
+cm_screen_long_name	Contact Manager	Contact Manager page full name	Контакты
+cm_screen_short_name	Contact Manager	Contact Manager page short name	Контакты
+cm_numcontacts_label	Contact Manager	Text under the list of contacts	Контактов
+cm_summarydoc_title	Contact Manager	Column in the Available Folders table	Контактов
+cm_summary_note	Contact Manager	Label below the Available Folders table	%s контакт(ов) в %s доступных папках
+cm_searchresult_title	Contact Manager	Search results header	Результаты поиска
+cm_flddelete_message	Contact Manager	Folder deletion confirmation	Все контакты содержащиеся во вложенных папках будут удалены. Вы уверены?
+cm_emptycopy_message	Contact Manager	Contact copying without selecting the contacts message	Пожалуйста, выберите контакт(ы) для копирования.
+cm_emptysend_message	Contact Manager	Sending email without selecting the contacts message	Пожалуйста, выберите контакт(ы) для отправки писем.
+cm_invrights_message	Contact Manager	Lack of administrative rights to move/delete contacts message	У вас нет прав перемещать/удалять некоторые из выделенных контактов
+cm_emptydel_message	Contact Manager	Contact deletion without selecting the files message	Пожалуйста, выберите контакт(ы) для удаления.
+cm_confirmdel_message	Contact Manager	Contact deletion confirmation	Вы действительно хотите удалить выбранные контакты?
+cm_addcontacts_menu	Contact Manager	Menu item Contact/Add Contact	Добавить
+cm_addcontacts_btn	Contact Manager	Button Add Contact	Добавить контакт
+cm_copycontacts_menu	Contact Manager	Menu item Contact/Copy Contact(s)	Скопировать
+cm_movecontacts_menu	Contact Manager	Menu item Contact/Move Contact(s)	Переместить
+cm_deletecontacts_menu	Contact Manager	Menu item Contact/Delete Contact(s)	Удалить
+cm_print_menu	Contact Manager	Menu item Contact/Print	Печать
+cm_import_menu	Contact Manager	Menu item Contact/Import	Импорт
+cm_export_menu	Contact Manager	Menu item Contact/Export	Экспорт
+cm_contact_menu	Contact Manager	Contact... menu 	Контакт
+cm_deleteuser_message	Contact Manager	 Deleting user contact message	Контакт %s зарегистрирован как пользователь ВебАсиста. Чтобы удалить этот контакт, воспользуйтесь сервисом Пользователи
+cm_nomodrights_message	Contact Manager	Lack of administrative rights to delete or modify a contact message	У вас нет прав удалять или изменять этот контакт
+cm_deletefolderuser_message	Contact Manager	Deleting folder containinf user contacts message	Нельзя удалить папку, содержащую контакты, зарегистрированных как пользователи системы, либо подпапки, содержащие такие контакты
+cm_gridview_menu	Contact Manager	Menu View/Grid View	Таблица
+cm_listview_menu	Contact Manager	Menu View/List View	Подробно
+cm_custview_menu	Contact Manager	Menu View/Customize View	Настроить вид
+cm_search_label	Contact Manager	Search bar label	Найти
+cm_search_btn	Contact Manager	Search button	Искать
+cm_searchresult_title	Contact Manager	Search results header	Результаты поиска
+cm_usersmovedel_message	Contact Manager	Error message	Вы не можете переносить или удалять папку WebAsyst Users
+cm_addwebasystcont_message	Contact Manager	Error Message	Контакт не может быть добавлен в папку WebAsyst Users. Пожалуйста, используйте сервис Пользователи для добавления нового пользователя.
+cm_sendemail_menu	Contact Manager	Menu item Contact/Send Email	Отправить Email
+cm_sendsms_menu	Contact Manager	Menu item Contact/Send SMS	Отправить SMS
+cm_folderid_label	Contact Manager	Folder ID label	Код папки
+cm_canmanageusrs_title	Contact Manager	Can manage Users & Groups title	Может управлять Пользователями и группами
+cm_canmanagelists_title	Contact Manager	Can manage Contact Lists title	Может управлять Списками контактов
+cm_cantools_title	Contact Manager	Can tools	Может использовать Инструменты
+cm_canreports_title	Contact Manager	Can tools	Может использовать Отчеты
+cm_confirmlistdel_message	Contact Manager	List deletion confirmation	Вы действительно хотите удалить этот список?
+cm_dellist_note	Contact Manager	List deletion note	ЗАМЕЧАНИЕ: Контакты НЕ будут удалены
+cm_nouserrights_message	Contact Manager	No manage users rights message	Этот контакт является пользователем. Вы не можете удалить этот контакт, так как вы не имеете прав управлять аккаунтами пользователей.
+cm_userprivs_label	Contact Manager	User privileges label	Этот контакт имеет пользовательские привилегии
+cm_show_label	Contact Manager	Show label	<показать>
+cm_defaultwgname_title	Contact Manager	Default SBSC Widget name	Форма подписки
+cm_constructor_menu	Contact Manager	Constructor Menu	Конструктор
+cm_copy_title	Copy/Move	Copying Contacts page header	Копировать контакты
+cm_move_title	Copy/Move	Moving Contacts page header	Переместить контакты
+cm_copyfolder_title	Copy/Move	Copying Folder page header	Копировать папку
+cm_movefolder_title	Copy/Move	Moving Folder page header	Переместить папку
+cm_copy_btn	Copy/Move	Copying process button	Копировать
+cm_move_btn	Copy/Move	Moving process button	Переместить
+cm_contactnum_text	Copy/Move	Number of Contacts selscted text	контакт(ов) выбрано
+cm_contactdlg_showfilled_checkbox	Contact Dialog	Always show filled fields checkbox	Всегда показывать заполненные поля
+amc_screen_add_title	Add/Modify Contact	Add Contact mode header	Добавить контакт
+amc_screen_edit_title	Add/Modify Contact	Modify Contact mode header	Изменить контакт
+amc_newcontact_label	Add/Modify Contact	The contact name for add contact mode	<новый контакт>
+amc_noaddrights_message	Add/Modify Contact	Lack of administrative rights to add a contact message	У вас нет прав на добавление контактов в эту папку
+amc_nomodrights_message	Add/Modify Contact	Lack of administrative rights to delete or modify a contact message	У вас нет прав удалять или изменять этот контакт
+amc_addanother_btn	Add/Modify Contact	Save and Add Another button	Сохранить и добавить другой
+amc_deletecontact_btn	Add/Modify Contact	Delete Contact button	Удалить
+amc_confirmdel_message	Add/Modify Contact	Contact deletion confirmation	Вы действительно хотите удалить этот контакт?
+amc_display_label	Add/Modify Contact	Display label	Показывать
+amc_separatetabs_item	Add/Modify Contact	Display list item	каждая секция на отдельной закладке
+amc_allinone_item	Add/Modify Contact	Display list item	все секции на одной странице
+amc_erroruploadingfile_message	Add/Modify Contact	Error uploading file message	Ошибка загрузки файла
+amc_contact_tab	Add/Modify Contact	Contact tab	Контакт
+amc_user_tab	Add/Modify Contact	User tab	Пользователь
+amc_selectfolder_message	Add/Modify Contact	Select folder message	Пожалуйста выберите папку
+amc_grantpriv_btn	Add/Modify Contact	Grant User Privileges button	Предоставить права доступа
+amc_privs_text	Add/Modify Contact	Grant User Privileges text	Чтобы дать пользовательские привилегии данному контакту, нажмите кнопку ниже и укажите код пользователя, пароль и назначьте права доступа. После этого пользователь сможет подключаться к системе и работать с доступными ВебАсист сервисами.
+amc_privs_note	Add/Modify Contact	Grant User Privileges note	Этот контакт не является пользователем.
+amc_revokepriv_btn	Add/Modify Contact	Revoke User Privileges button	Удалить права пользователя
+amc_revoke_message	Add/Modify Contact	Revoke User Privileges message	Вы действительно хотите удалить пользовательские привилегии для этого контакта?
+amc_accessupdate_message	Add/Modify Contact	Updating access tab message	Вы только что изменили настройку Групп для этого пользователя.\nПожалуйста, дождитесь обновления информации о доступе.
+amc_modifiedby_label	Add/Modify Contact	Modified by label	Изменен
+amc_addedby_label	Add/Modify Contact	Added by label	Добавлен
+amc_status_label	Add/Modify Contact	Status label	Статус
+sv_screen_long_name	Contact Entry Constructor	Contact Entry Constructor page full name	Конструктор записи
+sv_screen_short_name	Contact Entry Constructor	Contact Entry Constructor page short name	Конструктор записи
+sv_section_title	Contact Entry Constructor	Section title	Секция
+sv_add_title	Contact Entry Constructor	Add title	Добавить
+sv_condescr_text	Contact Entry Constructor	Constructor description string	Конструктор позволяет настраивать формат ваших записей о контактах: добавлять новые секции или поля, удалять/изменять существующие поля и изменять их местоположение и внешний вид.
+sv_connote_text	Contact Entry Constructor	Constructor important note	Любые изменения влияют на все записи во всех папках. Удалив или изменив поле, вы не сможете вернуть его. Будьте осторожны и не потеряйте ценные данные.
+sv_impnote_label	Contact Entry Constructor	Label Important Note	ОБРАТИТЕ ВНИМАНИЕ
+sv_contips_text	Contact Entry Constructor	Constructor tips	Для изменения/перемещения/удаления секции или поля, щелкните на его имени.
+sv_addsection_btn	Contact Entry Constructor	Add Section button	Добавить секцию
+sv_addfield_btn	Contact Entry Constructor	Add Field button	Добавить поле
+sv_birthdaytype_name	Contact Entry Constructor	Birthday type name	День рождения
+sv_texttype_name	Contact Entry Constructor	Text type name	Строка
+sv_urltype_name	Contact Entry Constructor	URL type name	WWW ссылка
+sv_emailtype_name	Contact Entry Constructor	Email type name	Email
+sv_memotype_name	Contact Entry Constructor	Memo type name	Текст
+sv_menutype_name	Contact Entry Constructor	Menu type name	Меню
+sv_imagetype_name	Contact Entry Constructor	Image type name	Изображение
+sv_datetype_name	Contact Entry Constructor	Date type name	Дата
+sv_numerictype_name	Contact Entry Constructor	Numeric type name	Число
+sv_nofields_label	Contact Entry Constructor	No fields label	<поля не определены>
+sv_required_label	Contact Entry Constructor	Required label	обязательное
+sv_unique_label	Contact Entry Constructor	Unique label	уникальное
+amf_screen_add_title	Add/Modify Field	Add Field mode header	Добавить поле
+amf_screen_edit_title	Add/Modify Field	Modify Field mode header	Изменить поле
+amf_newfield_label	Add/Modify Field	The field name for add field mode	<новое поле>
+amf_longname_label	Add/Modify Field	Field long name label	Полное название
+amf_shortname_label	Add/Modify Field	Field short name label	Краткое название
+amf_type_label	Add/Modify Field	Label "Field Type"	Тип
+amf_menu_label	Add/Modify Field	Description for the menu control	Меню (только для типа “меню”)
+amf_placeafter_label	Add/Modify Field	Label "Place After"	Поместить после
+amf_shortname_note	Add/Modify Field	Short name note	Краткое название это необязательное альтернативное имя; если указано, оно будет отображаться в заголовке колонок в режиме Таблица, и как подпись к полю в режиме Подробно.
+amf_mandatory_note	Add/Modify Field	Mandatory filed note	Это поле обязательно. Оно не может быть переименовано или удалено. Вы можете перемещать поле только в пределах секции Контакт.
+amf_emptymenu_message	Add/Modify Field	Error message	Вы должны ввести по крайней мере один пункт в список меню
+amf_deletefield_btn	Add/Modify Field	Delete Field button	Удалить поле
+amf_deleteconfirm	Add/Modify Field	Confirmation message	Вы выбрали команду для удаления поля. Вся информация, находящаяся в этом поле будет безвозвратно удалена из базы данных. Эта операция необратима. Продолжить?
+amf_width_label	Add/Modify Field	Width label	Длина
+amf_decplaces_label	Add/Modify Field	Decimal places label	Точность
+amf_items_label	Add/Modify Field	Items label	Пункты
+amf_unique_label	Add/Modify Field	Unique label	Уникальное (дублирующиеся значение не разрешены)
+amf_mandatory_label	Add/Modify Field	Mandatiry label	Обязательное (должно иметь значение)
+amf_constraints_label	Add/Modify Field	Constaings label	Ограничения
+amf_imgunique_message	Add/Modify Field	Image unique constraint message	Поля с типом "Изображение" не могут быть уникальными
+amf_dbname_label	Add/Modify Field	DB Name label	Имя в БД
+ams_screen_add_title	Add/Modify Section	Add Section mode header	Добавить секцию
+ams_screen_edit_title	Add/Modify Section	Modify Section mode header	Изменить секцию
+ams_deletesection_btn	Add/Modify Section	Delete Section button	Удалить секцию
+ams_newsection_label	Add/Modify Section	The section name for add section mode	<новая секция>
+ams_sectionname_label	Add/Modify Section	Section name label	Название секции
+ams_placeontop_item	Add/Modify Section	Place on top item	<поместить наверх>
+ams_deleteconfirm	Add/Modify Section	Confirmation message	Вы выбрали команду для удаления секции. Все поля этой секции будут безвозвратно удалены. Эта операция необратима. Продолжить?
+ams_mandatory_note	Add/Modify Section	Mandatory section note	Эта секция обязательна. Она не может быть перемещена, переименована или удалена.
+cv_page_title	Customize View	Page header	Настроить вид
+cv_form_label	Customize View	Label above the form	Выберите колонки, которые вы хотите видеть в списке контактов
+cv_visible_list	Customize View	Visible Columns list header	Видимые колонки
+cv_hidden_list	Customize View	Hidden Columns list header	Скрытые колонки
+cv_nofields_message	Customize View	Error Message	По крайней мере одна колонка должна быть видимой
+cv_screen_contactsnum_label	Customize View	Number of contacts on one page selection label	Количество контактов на одной странице:
+cv_selectimage_label	Customize View	Select image label	Выберите изображение для режима Подробно
+cv_donotdisplayimg_label	Customize View	Do not display image label	Не показывать изображение
+cv_imagefieldsopt_label	Customize View	Image fields options label	Для полей-изображений показывать
+cv_thumbnails_label	Customize View	Thumbnails label	Эскизы
+cv_textlinks_label	Customize View	Text links label	Текстовые ссылки
+cv_screen_viewopt_label	Customize View	Label "Once you change View option:"	Когда вы переключаете вид между Таблица/Подробно:
+cv_screen_applutoall_label	Customize View	Label "Apply selected view to all folders"	Применить выбранный вид ко всем папкам
+cv_screen_applutocurrent_label	Customize View	Label "Apply selected view to current folder only"	Применить выбранный вид к текущей папке
+cv_general_tab	Customize View	General tab	Общие
+cv_grid_tab	Customize View	Grid tab	Таблица
+cv_list_tab	Customize View	List tab	Подробно
+cv_noimages_label	Customize View	There are no image fields defined label	Поля-изображения не определены
+cv_addimages_note	Customize View	Add images note	Для добавления полей-изображений воспользуйтесь Конструктором записи (в главном меню)
+pcl_print_title	Print Contact List	Page header	Печать
+pcl_form_label	Print Contact List	Text above form	Печать
+pcl_screen_selected_label	Print Contact List	Selected Notes radiobutton text	Выбранные контакты
+pcl_screen_folder_label	Print Contact List	Folder radiobutton text	Папка
+pcl_screen_entire_label	Print Contact List	Entire Address Book radiobutton text	Список контактов полностью
+pcl_screen_print_btn	Print Contact List	Print button	Просмотр
+pcl_printas_label	Print Contact List	Print as label	Печатать как
+pcl_printasgrid_label	Print Contact List	Print as grid label	Таблица
+pcl_printaslist_label	Print Contact List	Print as list label	Подробно
+icl_page_title	Import Contact List	Page header	Импорт контактов
+icl_file_label	Import Contact List	Select File label	Файл
+icl_filetype_label	Import Contact List	Select File Type label	Формат файла
+icl_import_btn	Import Contact List	Import label	Импортировать
+icl_custformat_item	Import Contact List	Custom format item text	<новый формат>
+icl_selectfile_message	Import Contact List	File Import without selecting the file message	Пожалуйста, выберите файл для импорта
+icl_erruploading_message	Import Contact List	Error uploading file message	Ошибка загрузки файла
+icl_crsccols_label	Import Contact List	Column match list header	Колонка в списке контактов
+icl_importinvfield_message	Import Contact List	Invalid import file field message	Невозможно импортировать контакт - поле "%s" пусто
+icl_finished_message	Import Contact List	Import finished message	Импорт завершен. Добавлено %s из %s контакт(ов).
+icl_error_label	Import Contact List	Label "Error message"	Ошибка
+icl_savefileformat_label	Import Contact List	Label "Save file format"	Сохранить формат файла
+icl_formatname_label	Import Contact List	Label "Format Name"	Сохранить формат импорта как
+icl_format_note	Import Contact List	File Format Note	Чтобы сохранить этот формат файла для будущего импорта, включите флажок и введите имя формата ниже
+icl_group_label	Import Contact List	Add To Group label	Добавить в группу
+icl_selectfolder_item	Import Contact List	Select folder item	<выберите папку>
+icl_notaddedusers_label	Import Contact List	Not imported contacts list label	Следующие контакты не были добавлены:
+icl_contactname_label	Import Contact List	Label "Contact Name"	Контакт
+icl_error_label	Import Contact List	Label "Error message"	Ошибка
+icl_custformat_item	Import Contact List	Custom format item text	<новый формат>
+icl_addtofolder_label	Import Contact List	Label "Add to Folder"	Добавить в папку
+icl_grantuserprivs_label	Import Contact List	Grant user privileges label	Предоставить пользовательские привилегии импортируемым контактам
+icl_userstatus_label	Import Contact List	User status label	Укажите статус для новых пользователей
+icl_usergroups_label	Import Contact List	User groups label	Включить импортированные контакты в группы пользователей
+icl_userid_item	Import Contact List	User identifier list item	Код пользователя
+icl_userprivs_label	Import Contact List	User Privileges label	Пользовательские привилегии
+icl_specifyuid_label	Import Contact List	Specify U_ID label	Пожалуйста выберите колонку, которая будет использована в качестве Кода пользователя
+ecl_page_title	Export Contact List	Page header	Экспорт контактов
+ecl_filetype_label	Export Contact List	Select File Format label	Формат файла
+ecl_nofileformat_item	Export Contact List	No file formats item	<нет>
+ecl_tmpfilerr_message	Export Contact List	Error creating temporary file message	Ошибка создания временного файла
+ecl_form_label	Export Contact List	Text above the form	Экспорт
+ecl_selectedcontacts_label	Export Contact List	Selected contacts label	Выбранные контакты
+ecl_folder_label	Export Contact List	Folder label	Папка
+ecl_group_label	Export Contact List	User group label	Группа пользователей
+ecl_list_label	Export Contact List	Contact list label	Список
+ecl_searchresult_label	Export Contact List	Search result label	Результаты поиска полностью
+ecl_entirelist_label	Export Contact List	Entire Contact Manager label	Менеджер контактов полностью (только доступные контакты)
+ecl_export_btn	Export Contact List	Export button	Экспорт
+ecl_download_label	Export Contact List	Contact List link text	Щелкните по ссылке чтобы загрузить экспортированные контакты
+ecl_download_link	Export Contact List	Download link	Загрузить
+ecl_return_btn	Export Contact List	Return to the Contact List button	Вернуться в список контактов
+ecl_separator_label	Export Contact List	Separator label	Разделитель
+ecl_comma_item	Export Contact List	Comma item	Запятая
+ecl_tab_item	Export Contact List	Tab item	Табуляция
+ecl_semicolon_item	Export Contact List	Semicolon item	Точка с запятой
+ecl_period_item	Export Contact List	Period item	Точка
+ecl_included_label	Export Contact List	Included label	Включенные
+ecl_notincluded_label	Export Contact List	Not Included label	Не включенные
+ecl_exportfields_label	Export Contact List	Export fields label	Экспортировать поля
+ecl_userid_item	Import Contact List	User identifier list item	Код пользователя
+ecl_noexprights_message	Import Contact List	No export rights message	У вас нет прав экспортировать контакты из этой папки
+sm_screen_long_name	Send Email	Send Email page name	Отправить почту
+sm_from_label	Send Email	Label From	От
+sm_to_label	Send Email	Label To	Кому
+sm_subject_label	Send Email	Label Subject	Тема
+sm_message_label	Send Email	Label Message	Сообщение
+sm_send_btn	Send Email	Send button	Отправить
+sm_priority_label	Send Email	Priority label	Важность
+sm_hipriority_item	Send Email	High priority item	Высокая
+sm_normalpriority_item	Send Email	Normal priority item	Обычная
+sm_lowpriority_item	Send Email	Low priority item	Низкая
+sm_contactnum_label	Send Email	Selected contact number label	Контактов выбрано: %s
+sm_emailsnum_label	Send Email	Selected contact number label	Адресов: %s
+sm_recnotset_message	Send Email	Error message	Вы должны указать получателей для этого сообщения.
+sm_recipientlimit_message	Send Email	Error message	Превышено ограничение количества получателей: %s
+sms_screen_long_name	Send SMS	Send SMS page name	Отправить SMS
+sms_phonesnum_label	Send SMS	Selected contact number label	%s номеров телефонов
+sms_charsleft_label	Send SMS	Selected contact number label	Счетчик символов
+sms_sentsms_stat_text	Send SMS	Sent SMS statistics	SMS были отправлены на следующие номера
+sms_phone_title	Send SMS	Phone Number column title	Номер телефона
+sms_status_title	Send SMS	Status column title	Статус
+if_screen_long_name	Import Formats	Import Formats page title	Форматы импорта
+if_screen_short_name	Import Formats	Import Formats page title	Форматы импорта
+cman_page_title	Contact Manager	Page Title	Контакты
+cman_groups_title	Contact Manager	User groups title	Группы пользователей
+cman_lists_title	Contact Manager	Lists title	Списки
+cman_list_menu	Contact Manager	List menu	Список
+cman_addlist_menu	Contact Manager	Add list menu item	Добавить
+cman_modifylist_menu	Contact Manager	Modify list menu item	Изменить
+cman_deletelist_menu	Contact Manager	Delete list menu item	Удалить
+cman_availablelist_title	Contact Manager	Available Lists title	Доступные списки
+cman_listssummary_note	Contact Manager	Label below the Available Lists table	%s контакт(ов) в %s списках
+cman_listname_title	Contact Manager	List name title	Список
+cman_contacts_title	Contact Manager	Contacts title	Контактов
+cman_user_label	Contact Manager	User label	Код пользователя
+cman_status_label	Contact Manager	Status label	Статус
+cman_userid_label	Contact Manager	User ID label	Код пользователя
+cman_folders_item	Contact Manager	Folders item	--- ПАПКИ ---
+cman_groups_item	Contact Manager	Groups item	--- ГРУППЫ ПОЛЬЗОВАТЕЛЕЙ ---
+cman_lists_item	Contact Manager	Lists item	--- СПИСКИ ---
+cman_revokeprivs_menu	Contact Manager	Revoke user priviletes menu item	Удалить права пользователя
+cman_emptyrevoke_message	Contact Manager	Revoking privileges without selecting the contacts message	Пожалуйста, выберите пользователей.
+cman_emptychangestatus_message	Contact Manager	Changing user status without selecting the contacts message	Пожалуйста, выберите пользователей.
+cman_revokeprivs_message	Contact Manager	Revoke user privileges confirmation message	Вы действительно хотите удалить пользовательские привилегии для выбранных контактов?
+cman_changeuserstatus_menu	Contact Manager	Change user status menu item	Изменить статус пользователя
+cman_addtolist_menu	Contact Manager	Add to list menu item	Добавить в список
+cman_emptyaddtolist_message	Contact Manager	Adding contacts to list without selecting the contacts message	Пожалуйста, выберите контакты.
+ru_page_title	Restore Users	Page Title	Восстановить пользователей
+ru_selectfolder_message	Restore Users	Select folder message	Пожалуйста выберите папку
+cml_addpage_title	Create/Modify List	Create page title	Создать список контактов
+cml_modpage_title	Create/Modify List	Modify page title	Изменить список контактов
+cml_list_tab	Create/Modify List	List tab	Список
+cml_folders_tab	Create/Modify List	Folders tab	Папки
+cml_contacts_tab	Create/Modify List	Contacts tab	Контакты
+cml_groups_tab	Create/Modify List	Groups tab	Группы
+cml_listname_label	Create/Modify List	List name label	Название списка
+cml_folders_note	Create/Modify List	Folders note	Выберите папки для включения в список контактов.
+cml_contacts_note	Create/Modify List	Contacts note	Выберите контакты для включения в список.
+cml_contactsbottom_note	Create/Modify List	Contacts bottom note	В секции "Не включенные" находятся только контакты из доступных папок.
+cml_included_label	Create/Modify List	Label "Included"	Включенные
+cml_notincluded_label	AddCreate/Modify List	Label "Not Included"	Не включенные
+cml_groups_note	Create/Modify List	Groups note	Выберите группы пользователей для включения в список контактов.
+cml_shared_label	Create/Modify List	Shared label	Общий
+cml_shared_note	Create/Modify List	Shared not	Включите флажок "Общий", чтобы сделать этот список доступным для других пользователей.
+cml_novolders_label	Create/Modify List	No available folders label	<нет доступных папок>
+rup_page_title	Revoke User Privileges	Page Title	Удаление пользовательских привилегий
+rup_success_message	Revoke User Privileges	Contact processing success result message	Пользовательские привилегии были успешно удалены
+dc_page_title	Delete Contacts	Page Title	Удалить контакты
+dc_success_message	Delete Contacts	Contact processing success result message	Контакт был успешно удален
+cus_page_title	Change User Status	Page Title	Изменить статус пользователя
+cus_usernum_label	Change User Status	User number label	Пользователей выбрано: %s.
+cus_changestatus_label	Change User Status	Change status label	Изменить статус на
+atl_page_title	Add to List	Page Title	Добавить в список
+atl_promt_label	Add to List	Promt label	Выберите список, в который вы хотите добавить %s выбранных контактов.
+atl_existinglist_label	Add to List	Existing List label	Добавить в существующий список
+atl_newlist_label	Add to List	New List label	Добавить в новый список
+atl_addedcontacts_label	Add to List	Added contacts label	%s из %s контакт(ов) были добавлены.
+atl_existingcontacts_label	Add to List	Existing contacts label	%s контакт(ов) уже были в списке.
+atl_listcontactsnum_label	Add to List	List contacts number label	Список "%s" теперь содержит %s записей.
+atl_selectedcontacts_label	Add to List	Selected Contacts label	Выбранные контакты (%s)
+atl_entiresearch_label	Add to List	Entire search results label	Результаты поиска полностью
+svc_page_title	Service	Page Title	Конструктор
+svc_importformats_tab	Service	Import Formats tab title	Форматы импорта
+svc_signupform_tab	Service	Signup form tab	Форма подписки
+svc_signupform_note	Service	Signup form note	Форма подписки это HTML форма, которую вы можете разместить на своем сайте. Посетители вашего веб сайта смогут заполнять эту форму и введенная информация будет поступать в вашу базу данных контактов. Это отличный способ собрать информацию о ваших подписчиках в одном месте.
+scv_gensignupform_btn	Service	Generate Signup Form button	Создать форму подписки
+scv_gennewsignupform_btn	Service	Generate new Signup Form button	Создать новую форму
+scv_signupform_desc	Service	Signup Form description	Форму подписки создал %s %s
+scv_download_btn	Service	Download Signup Form button	Скачать
+scv_preview_btn	Service	Preview Signup Form button	Просмотр
+srv_clear_btn	Service	Clear Signup Form button	Очистить
+svs_clear_message	Service	Clear confirmation message	Вы действительно хотите очистить HTML код показанный выше?
+svc_constructor_tab	Service	Constructor tab	Конструктор
+svc_advopt_text	Service	Advanced option description	Скопируйте текст показанный снизу в буфер обмена, или нажмите кнопку Скачать, чтобы сохранить его в файл. Затем вы можете вставить код в страницу на вашем сайте.
+svc_codetoinsert_text	Service	HTML code to insert text	Код HTML для помещения на ваш сайт
+svc_prefsignup_text	Service	Pre-formatted form description text	Щелкните по ссылке %s, чтобы открыть подготовленную форму подписки. Используйте этот адрес для регистрации ваших подписчиков в папке "%s" сервиса Контакты. Вы можете вставить ссылку на форму подписки в отправляемые письма, поместить ее на домашней страничке или в сообщения в блогах, на форумах и досках объявлений.
+svc_prefsignip_title	Service	Pre-formatted form title	Подготовленная форма подписки
+gsf_page_title	Generate Signup Form	Page Title	Мастер форм подписки
+gsf_selectfields_note	Generate Signup Form	Select fields note	Выберите поля, которые вы хотите видеть в форме подписки и настройте их последовательность.
+gsf_next_btn	Generate Signup Form	Next button	Дальше
+gsf_fieldname_title	Generate Signup Form	Field name title	Название поля
+gsf_asindb_label	Generate Signup Form	As in database label	в базе данных
+gsf_asinform_label	Generate Signup Form	As in the form label	на форме
+gsf_width_title	Generate Signup Form	Width title	Ширина
+gsf_required_title	Generate Signup Form	Required title	Обязательное
+gsf_setfieldprops_note	Generate Signup Form	Specify fields properties note	Укажите свойства полей.
+gsf_preview_btn	Generate Signup Form	Preview in new window button	Просмотр в новом окне
+gsf_submit_btn	Generate Signup Form	Submit button	Отправить
+gsf_selectfolder_label	Generate Signup Form	Select folder label	Выберите папку, в которую вы хотите добавлять подписчиков.
+gsf_selectlists_label	Generate Signup Form	Select lists label	Выберите списки, в которые вы хотите добавлять подписчиков.
+gsf_signupgenerated_text	Generate Signup Form	Signup Form generated text	Форма подписки готова.
+gsf_selectmandatoryfield_message	Generate Signup Form	Select mandatiry fields message	Одно из следующих полей должно быть выбрано:\n %s
+gsf_dialog_selectmandatoryfield_message	Generate Signup Form	Select mandatiry fields message	Одно из следующих полей должно быть выбрано: %s
+gsf_signupform_title	Generate Signup Form	Signup Form title	Форма подписки
+gsf_rqfields_label	Generate Signup Form	Required fields label	* - обязательные поля
+gsf_thankyou_label	Generate Signup Form	Thank you label	Спасибо!
+gsf_contactadded_message	Generate Signup Form	Contact added message	%s был успешно добавлен в базу данных.
+gsf_doptin_label	Generate Signup Form	Double Opt-In label	Подтверждение подписки
+gsf_doiemail_label	Generate Signup Form	Double Opt-In email label	Поле Email должно быть включено в форму подписки
+gsf_doptin_note	Generate Signup Form	Double Opt-In note	Включение подтверждения подписки влечет за собой отправку email запроса на подтверждение сразу после заполнения формы подписки. Запрос будет содержать ссылку, по которой необходимо открыть специальную страницу для подтверждения подписки.
+gsf_thankyou_text	Generate Signup Form	Double Opt-In note	Спасибо!
+gsf_conftext1_text	Generate Signup Form	Confirmation text part 1	Форма подписки была успешно отправлена.
+gsf_conftext2_text	Generate Signup Form	Confirmation text part 2	Запрос на подтверждение был отправлен на адрес:
+gsf_conftext3_text	Generate Signup Form	Confirmation text part 3	Пожалуйста проверьте адрес, указанный выше для подтверждения подписки.
+gsf_confemail_text	Generate Signup Form	Confirmation email text	Компания %s только что получила запрос на подписку с вашего адреса %s\n\n. Пожалуйста, щелкните по ссылке ниже, чтобы подтвердить или отменить подписку:\n%s\n\n\Спасибо.
+gsf_confemail_subject	Generate Signup Form	Confirmation email subject	Пожалуйста, подтвердите подписку
+rp_page_title	Reports	Page Title	Отчеты
+rp_accessrightsusers_title	Reports	Access Rights Diagram for Users report title	Права пользователей
+rp_accessrightsusers_note	Reports	Access Rights Diagram for Users report note	Этот отчет показывает права доступа для выбранных пользователей на одной странице. Каждая колонка отображает права доступа для индивидуального пользователя. Сводная диаграмма позволяет сравнить и проанализировать права для нескольких пользователей одновременно.
+rp_accessrightsgroups_title	Reports	Access Rights Diagram for Groups report title	Права групп пользователей
+rp_accessrightsgroups_note	Reports	Access Rights Diagram for Groups report note	Этот отчет показывает права доступа для выбранных групп пользователей на одной странице. Каждая колонка отображает права доступа для индивидуальной группы. Сводная диаграмма позволяет сравнить и проанализировать права для нескольких групп пользователей одновременно.
+rp_runreport_btn	Reports	Run Report button	Показать отчет
+rp_unsubsribers_title	Reports	Unsubsribers report title	Отказавшиеся от подписки
+rp_unsubsribers_note	Reports	Unsubsribers report note	Отчет показывает список Email адресов, владельцы которых отказались от получения почты. Ни одно сообщение не может быть отправлено на эти адреса из сервисов ВебАсист. Чтобы удалить запись из этого списка, вы должны создать форму подписки с включенной функцией подтверждения и предложить отписавшемуся подписчику повторно заполнить форму и, после получения уведомления, подтвердить подписку.
+rp_norecords_label	Reports	No records label	<нет записей>
+rp_signupstats_title	Reports	Sign-Up Statistics report title	Статистика подписок
+rp_signupstats_label	Reports	Sign-Up Statistics report label	Этот отчет показывает количество новых контактов, зарегистрировавшихся в службе Контакты с помощью формы подписки.
+rp_total_title	Reports	Total title	Всего
+rprdu_selectusers_note	Reports	Select users note	Выберите пользователей, которых вы хотите включить в отчет
+rprdu_usernum_note	Reports	User number note	Каждый пользователь занимает отдельную колонку. Чтобы сделать отчет более читаемым, не включайте больше 10-12 пользователей.
+rprdu_selectgroups_note	Reports	Select users note	Выберите группы, которые вы хотите включить в отчет
+rprdu_groupnum_note	Reports	Group number note	Каждая группа занимает отдельную колонку. Чтобы сделать отчет более читаемым, не включайте больше 10-12 групп.
+rprdu_groupnum_note	Reports	Access rights note	Отчет показывает комбинацию персональных и групповых прав доступа для каждого пользователя.
+rps_last_label	Reports	Last label	Последние
+rps_daterange_label	Reports	Date range label	Интервал дат, c
+rps_to_label	Reports	To label	по
+rps_days_label	Reports	Days label	дней
+rps_date_title	Reports	Date label	Дата
+rps_pending_title	Reports	Pending label	Ожидает
+rps_normal_title	Reports	Normal label	Нормальных
+runs_selectdate_label	Reports	Select date range label	Выберите интервал дат
+runs_alldates_label	Reports	All dates label	Все даты
+runs_from_label	Reports	From label	с
+runs_to_label	Reports	To label	по
+runs_sortby_label	Reports	Sort by label	Сортировка
+runs_email_item	Reports	Email item	Email
+runs_dateasc_item	Reports	Dates old on top item	по дате
+runs_datedesc_item	Reports	Dates recent on top item	по дате в обратном
+runs_unsdate_title	Reports	Unsubscribe Date title	Дата
+csb_page_title	Confirm Subscription	Page Title	Подтверждение подписки
+csb_manpage_title	Confirm Subscription	Manage Subscription Page Title	Управление подпиской
+csb_subscrnotfound_message	Confirm Subscription	Subscriber not found message	Подписчик не найден
+csb_curstatus_label	Confirm Subscription	Current subscription status label	Текущее состояние вашей подписки:
+csb_confirmpromt_text	Confirm Subscription	Confirmation promt text	Пожалуйста, щелкните по кнопке ниже, чтобы подтвердить или отменить вашу подписку.
+csb_confirm_btn	Confirm Subscription	Confirm button	Подтвердить подписку
+csb_cancel_message	Confirm Subscription	Cancel subscription message	Вы действительно хотите исключить себя из всех списков и никогда больше не получать сообщений от этого отправителя?
+csb_lists_label	Confirm Subscription	Contact lists label	Ваш адрес находится в следующих списках
+csb_cancelpromt_label	Confirm Subscription	Cancel subscription promt	Если больше вы не хотите получать никаких сообщений от этого отправителя, щелкните по кнопке ниже.
+csb_cancel_btn	Confirm Subscription	Cancel subscription button	Отписаться от всех списков рассылок
+csb_remove_label	Confirm Subscription	Remove label	Удалить
+csb_removefromlist_message	Confirm Subscription	Remove from list message	Вы действительно хотите исключить себя из этого списка?
+csb_canceled_message	Confirm Subscription	Subscription canceled message	Ваша подписка была отменена
+csb_profile_label	Confirm Subscription	Your Profile label	Ваш профиль
+csb_firstname_label	Confirm Subscription	First Name label	Имя
+csb_lastname_label	Confirm Subscription	Last Name label	Фамилия
+csb_email_label	Confirm Subscription	Email label	Email
+csb_updateprof_btn	Confirm Subscription	Update profile button	Изменить профиль
+csb_unsubscribe_label	Confirm Subscription	Unsubscribe label	Отписаться
+csb_remove_note	Confirm Subscription	Remove from list node	Щелкните по ссылке Удалить, чтобы отписаться из соответствующего списка. После этого вы все еще можете получать сообщения из других списков. Чтобы отписаться из всех списков сразу, используйте кнопку ниже.
+upf_page_title	Update Profile	Page Title	Изменить профиль
+app_treefolders_text	Common	Folders text	Управление папками
+app_treefurfldname_title	Common	Folder Name column header on the Folders & Users Rights page	Папка
+app_treeavailflds_title	Common	Available Folders column header on the Folders & Users Rights page	Доступные папки
+app_readaccess_name	Common	Read access	Чтение
+app_writeaccess_name	Common	Read/Write access	Запись
+app_folderaccess_name	Common	Read/Write/Folder access	Папка
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Может создавать папки в корне
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Может видеть список других пользователей, имеющих доступ к его/ее папкам
+cm_tools_menu	Common	menu	Инструменты
+cm_reports_menu	Common	menu	Отчеты
+
+app_canwidgets_label	Common	Can use reports rights	Доступ к виджетам
+app_cmlists_label	Common	Lists label	Списки
+
+cdlg_add_title	Contact dialog	Add title	Добавить контакт
+cdlg_modify_title	Contact dialog	Edit  title	Редактировать контакт
+cdlg_view_title	Contact dialog	View title	Информация о контакте
+cdlg_view_note	Contact dialog	View note 	У вас нет прав для изменения данных
+cdlg_customize_title	Contact Dialog	Customize Dialog title	Настроить поля
+cdlg_fields_btn	Contact Dialog	Fields button	Поля
+cdlg_customize_note	Contact Dialog	Customize note	Выберите видимые поля
+cdlg_deleteimage_label	Contact Dialog	Delete image label	Удалить изображение
+cdlg_select_label	Contact Dialog	select label	выберите
+cdlg_subscriberstatus_title	Contact Dialog	Subcriber status	Статус подписки
+cdlg_add_title	Contact dialog	Add title	Добавить контакт
+cdlg_more_fields	Contact dialog	More fields	Дополнительно
+cm_confirm_load_all_cont	Contact Dialog	Confirm load	Загрузка большого списка контактов может занять продолжительное время. Вы уверены?
+cm_load_cont_number	Contact	Contact count	показаны первые %s контактов из %s
+cm_load_cont_showall	Contact	Contact count	показать все
+cm_new_folder_name	Folder tree	Folder tree	Новая папка
+cm_import_notice	Contact	Contact import	ВНИМАНИЕ: Установки "обязательное" и "уникальное" для полей в записи о <br> контакте игнорируются при выполнении импорта.

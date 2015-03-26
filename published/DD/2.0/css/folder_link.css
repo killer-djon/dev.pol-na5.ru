@@ -1,0 +1,120 @@
+html {
+background:transparent url(../img/folder-link-bg.gif) repeat-x scroll 0 0;
+}
+a { color:#0043A7;}
+img {border: 0px}
+body, html { padding: 0; margin: 0;height: 100%;}
+body, table tr td { font-family: "Trebuchet MS"; font-size: 14px;}
+					
+.BottomBlock {color: #666; margin: 20px 0 20px 30px; font-size: 0.75em; text-align: left; padding-bottom: 10px;}
+.BottomBlock a {color: #666; }
+
+.ServiceBlock { width:240px; float: right;  border:3px solid #e8e3b1; background: #f5f0bb; margin: 10px; padding: 0 5px; }
+.ServiceBlock a {color: black; text-decoration: none}
+
+.ServiceLogo { font-size: 13pt; margin: 0;  font-style: italic;}
+.ServiceLogo em { color:#0056AB; font-style: italic; font-weight: bold;}
+.ServiceLogo b { font-style:normal; font-weight: bold;}
+.ServiceSubscribe { color:#222; margin: 0 0 0 45px; font-size: 9.5pt; position: relative; top: -10px;}
+
+.FolderName { margin:0; padding: 20px 250px 25px 30px; }
+.FolderContainer { text-align: left;  padding-right: 20px;}
+.ServiceImg { vertical-align: middle; margin: 0 5px 0 0; position: relative; //top:3px; }
+
+.ThumbContainer small { color: #444;}
+
+.ViewMode { margin: 0 auto 10px 30px;}
+.ViewMode select { margin-left: 5px;}
+
+#grid { width:70%;}
+#list, #thumb_list, #tiles { width:95%;}
+
+.FilesTable { margin: 0 auto 0 30px; clear: both;} 
+	.FilesTable tr td {padding: 4px; border-bottom: 1px solid #eaeaea;}
+	.ListViewFileName a { font-size:1.1em;}
+	.FilesTable tr td div td { border:none;}
+	.FilesTable tr td a { text-decoration: none; }
+	.FilesTable tr td a:hover { text-decoration: underline;}
+	.FilesTable tr.Title td {border-bottom: 1px solid #eaeaea; font-weight: bold}
+	.FilesTable div.SubFile {color: #444;font-size: 0.8em; padding: 0px; position: relative; left:-0.6em; }
+	.FilesTable .SubFile span {color: #999; margin-left: 0.6em;}
+	.FilesTable td.Icon {padding: 0px; padding-top: 0px; border: 1px solid red;}
+	.FilesTable tr td.Filename { padding-right: 20px}
+	.FilesTable div.FileDesc { color: #222;  padding:8px 0 4px 0; margin-bottom:2px;}
+	
+	.Odd { background: #f7f7f7;}
+	.Even { background: #fff;}
+	
+	
+/*
+	Thumbnails
+*/
+div.ThumbContainer {padding: 0pt 0pt 0pt 5px; float: left; width: 110px; height: 160px; }
+.FilesTable tr td .ThumbContainer a { font-size:13px;}
+div.Thumbnail
+{
+	width: 120px;
+	height: 115px;
+	margin: 0;
+	padding: 5px 0 0 0;
+	vertical-align: middle;
+}
+
+div.Thumbnail div
+{
+	width: 120px;
+	height: 120px;
+	margin: 0;
+	padding: 0;
+	text-align: center!important;
+}
+
+div.Thumbnail a
+{
+	display: inline!important;
+}
+
+div.Thumbnail div div
+{
+	width: 110px;
+	height: 110px;
+	margin: 0;
+	padding: 0;
+}
+
+div.Thumbnail div div span
+{
+	display: block;
+	padding-top: 45px;
+}
+
+div.Thumbnail div div img
+{
+	border: none;
+}
+
+div.Thumbnail div div table
+{
+	border-collapse: collapse;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+div.Thumbnail div div table td
+{
+	width: 110px;
+	height: 110px;
+	text-align: center!important;
+	vertical-align: middle!important;
+}
+
+div.Thumbnail div div
+{
+	background: transparent url(../img/folder-link-thumbnail.gif) no-repeat;
+}
+
+div.Thumbnail div div table tr:hover
+{
+	background: transparent;
+}

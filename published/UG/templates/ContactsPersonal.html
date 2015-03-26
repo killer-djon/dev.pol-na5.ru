@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>[`My personal page at `]{{$company}}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="robots" content="noindex, nofollow" >
+{{csscombine file="`$url.css`personal.css"}}
+	{{$url.css}}reset.css
+	{{$url.css}}users-edit.css
+	{{$url.css}}client.css
+	{{$url.css}}frontend.css
+{{/csscombine}}
+<link rel="stylesheet" type="text/css" href="{{$url.common}}css/datepicker.css" />
+<script type="text/javascript" src="{{$url.common}}js/jquery.js"></script>
+{{jscombine file="`$url.js`contact-add.js"}}
+	{{$url.common}}js/datepicker.js
+	{{$url.common}}js/wbs-common.js
+	{{$url.js}}users-edit.js
+{{/jscombine}} 
+{{if $user_lang=='rus'}}<script type="text/javascript" src="{{$url.common}}js/datepicker-rus.js"></script>{{/if}}
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="body-wrapper">
+<form id="contact_profile_edit" method="post">
+<div id="header_div">
+<table class="company_ident" width="100%" cellpadding="0" cellspacing="0"><tr>
+	{{if $show_logo}}
+		<td class="company_logo" width="1%"><img id="logo" src="{{$url.common}}html/scripts/getlogo.php?lt={{$logo_time}}" /></td>
+	{{/if}}
+		<td class="company_name">{{$company}}</td>
+		<td class="userblock" width="1%">
+			<p class="username"><a href="" id="display_name">{{$contact_name}}</a></p>
+			<!--<p class="usermail"><a href="">{{$contact.C_EMAILADDRESS[0]}}</a></p>-->
+		</td>
+	</tr></table>
+</div>
+
+
+{{if $contact_subscript>=0}}
+<div class="top-rounded user-report attention" style="display:{{if $show_message}}block{{else}}none{{/if}}">
+<a class="close_y" href=""><img src="UG/img/close_y.gif"/></a>
+<p><b>[`Thank you for your subscription!`]</b></p>
+
+<p>[`{{$contact_name}}, this is your personal page at {{$company}}. Please bookmark this page address.`]</p>
+</div>
+{{/if}}
+<div id="body_div">
+
+ {{if $contact_subscript == -2 }}
+  <div style="margin-left: 15px; margin-top: 10px;"><p>[`You account has been cancelled.`]</p></div>
+  <div style="height: 100%;"></div>
+ {{else}}
+ 
+
+<div class="left-panel">
+<div class="left-nav">
+			<ul id="profile-tabs">
+				<li class="leftrounded"><a href="#" id="profile-link" class="{{if $current_tab!="subscription"||!$subscribe_exists}}current {{/if}}leftrounded"><span>&raquo;</span>[`My profile`] </a></li>
+				{{if $subscribe_exists}}
+				<li class="leftrounded"><a href="#" id="subscribe-link" class="{{if $current_tab=="subscription"}}current {{/if}}leftrounded"><span>&raquo;</span>[`Subscription`] </a></li>
+				{{/if}}
+				{{if $support_exists}}
+                <li class="leftrounded"><a href="{{$smarty.server.REQUEST_URI}}&t=requests" id="request-link" class="leftrounded"><span>&raquo;</span>[`My requests`] </a></li>
+                {{/if}}
+			</ul>
+			</div>
+			
+           </div>
+<div id="main_div" class="main manage-subscribe">
+   
+<div id="profile-content" class="tab-content" {{if $current_tab=="subscription" && $subscribe_exists}} style="display:none"{{/if}}>
+	<div class="profile_view preview" style="position:relative">
+		<div id="edit-profile"><a href="#" onClick="ContactControl.setEditAll(this)">[`Edit`]</a></div>			
+		<div id="CONTACT" class="group"></div>
+		{{foreach name=groups from=$fields item = g}}
+		{{if $smarty.foreach.groups.index}}
+		<div id="group{{$smarty.foreach.groups.index}}" class="group"><div class="title"><a class="title click" title="Click to edit">{{$g.name}}</a></div></div>
+		{{/if}}
+		{{/foreach}}
+		<div class="group" id="bottom_save" style="display:none; padding-bottom:10px; margin-left:25%; padding-left:24px"></div>					
+	</div>
+</div>
+{{if $subscribe_exists}}
+<div id="subscribe-content" class="tab-content" {{if $current_tab!="subscription"}}style="display:none"{{/if}}>
+	<div class="profile_view preview">
+		{{if $contact_subscript>=0 }}
+		<p>[`You are currently subscribed to receive mailings from us.`]</p>
+		<br/>
+		<p>[`If you don't want to receive any messages from us, click the link below.`]</p>
+		<p>[`<b>NOTE:</b> If you change your mind, you will be able to re-subscribe again.`]</p>
+		<br/>	                
+		<p><a class="btnText"  href="{{$contact_url}}&do=unsubscribe" >[`Unsubscribe from all future mailings`]</a></p>
+		{{/if}}
+					
+		{{if $contact_subscript==-1 }}
+		<p>[`You are unsubscribed and will not receive any mailings from us.`]</p>
+		<br/>
+		<p><a class="btnText" href="{{$contact_url}}&do=subscribe">[`Subscribe again now`]</a></p>
+		{{/if}}	
+	</div>
+</div>	
+{{/if}}
+</div>
+{{/if}}
+</div>
+</form>
+<script type="text/javascript">
+function confirmRemove() {
+	return confirm('[`Are you sure you want to cancel your account?`]');
+}
+WbsData.set({countries:{{$countries}}});
+WbsData.set({'url.common' : "{{$url.common}}"});
+var ContactControl;
+$(document).ready(function () {	
+	ContactControl = new WbsEditUser({disableEmail: true, type: {{$type}}, groups: {{$js}}, contact: "{{$contact_id}}", saveUrl: "?ajax=1"});
+	$(".DateField").datepicker({
+		yearRange: '1900:2050', 
+		closeAtTop: false, 
+		buttonImage: "{{$url.common}}img/calendar.gif", 
+		buttonImageOnly: true, 
+		showOn: "button", 
+		showOtherMonths: true, 
+		firstDay: 1, 
+		dateFormat: '{{$dateFormat}}'
+	});
+
+	$('a.close_y').click(function(){
+		$('div.user-report').hide();
+		//$.get("?ajax=1&close=1&id={{$contact_id}}");
+		return false;
+	});
+});
+$("#profile-tabs a").click(function() {
+	$("#profile-tabs a").removeClass('current');
+	$(this).addClass('current');
+	var id = $(this).attr('id');
+	id = id.replace(/link/ig, 'content');
+	$(".tab-content").hide();
+	$('#' + id).show();
+});
+</script>			
+</div>
+</body>
+</html>

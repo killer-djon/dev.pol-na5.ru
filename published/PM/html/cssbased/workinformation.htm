@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+		<script src="../../../common/html/classic/styles/calendar.js" type="text/javascript"></script>
+
+		<script type="text/javascript">
+			function confirmFinish()
+			{
+				if ( confirm( "<? $pmStrings.amt_complete_message ?>" ) ) {
+					fillSelectedLists( new Array('assigned_users[]') );
+					return true;
+				}
+					
+				return false;
+			}
+
+			function confirmReopen()
+			{
+				if ( confirm( "<? $pmStrings.amt_resume_message ?>" ) ) {
+					fillSelectedLists( new Array('assigned_users[]') )
+					return true;
+				}
+				
+				return false;
+			}
+
+			function confirmDelete()
+			{
+				if ( confirm( "<? $pmStrings.amt_delete_message ?>" ) ) {
+					fillSelectedLists( new Array('assigned_users[]') )
+					return true;
+				}
+				
+				return false;
+			}
+		</script>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'workData' )">
+		<? wbs_pageLayout toolbar="workinformation_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+			
+			<? if !$fatalError ?>
+
+					<? wbs_formCaption text=$workData.P_DESC|htmlsafe:true:true ?>
+					<input name="workData[P_DESC]" type="hidden" id="workData[P_DESC]" value="<? $workData.P_DESC ?>"/>
+
+					<? wbs_formLayout caption=$pageTitle ?>
+
+						<? wbs_formContent ?>
+							<tr>
+								<td>
+									<table class="FormLayout" width="550">
+										<tr>
+											<td><? wbs_label fieldName="PW_DESC" for="PW_DESC" text=$pmStrings.amt_summary_label ?></td>
+										</tr>
+										<tr class="SeparatedRow">
+											<td>
+												<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+													<textarea name="workData[PW_DESC]" id="PW_DESC" rows="5" class="FormControl" style="width: 550px"><? $workData.PW_DESC|htmlsafe_textarea:$edited ?></textarea>
+												<? else ?>
+													<? $workData.PW_DESC ?>
+												<? /if ?>
+											</td>
+										</tr>
+									</table>
+
+									<table class="FormLayout" align="left">
+										<tr><td class="FormSection" colspan="2"><? $pmStrings.amt_general_label ?></td></tr>
+										<? if $action != "new" ?>
+											<tr>
+												<td><? wbs_label text=$pmStrings.amr_it_label ?></td>
+												<th>
+													<? $workData.PW_ID|sureecho ?>
+													<input name="workData[PW_ID]" type="hidden" id="workData[PW_ID]" value="<? $workData.PW_ID ?>"/>
+												</th>
+											</tr>
+										<? /if ?>
+
+										<tr>
+											<td><? wbs_label fieldName="PW_BILLABLE" for="Billable" text=$pmStrings.amr_billable_label ?></td>
+											<td>
+												<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+													<input type="checkbox" id="Billable" name="workData[PW_BILLABLE]" value="1" <? wbs_checkboxStatus val=$workData.PW_BILLABLE true_val=1 ?>/>
+												<? else ?>
+													<? wbs_statusImage value=$workData.PW_BILLABLE onValue=1 align="center" ?>
+												<? /if ?>
+											</td>
+										</tr>
+
+										<tr>
+											<td><? wbs_label fieldName="PW_COSTESTIMATE" for="Cost" text=$pmStrings.amr_cost_label ?></td>
+											<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+												<td><input name="workData[PW_COSTESTIMATE]" id="Cost" type="text" class="FormControl" value="<? $workData.PW_COSTESTIMATE ?>" maxlength="15" size="10"/></td>
+											<? else ?>
+												<th><? $workData.PW_COSTESTIMATE|sureecho ?></th>
+											<? /if ?>
+											</td>
+										</tr>
+
+										<tr>
+											<td><? wbs_label fieldName="PW_COSTCUR" for="CostCur" text=$pmStrings.amr_costcur_label ?></td>
+												<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+													<td>
+														<select name="workData[PW_COSTCUR]" id="CostCur" class="FormControl">
+															<? html_options values=$currency_ids selected=$workData.PW_COSTCUR output=$currency_ids ?>
+														</select>
+													</td>
+												<? else ?>
+													<th><? $workData.PW_COSTCUR|sureecho ?></th>
+												<? /if ?>
+											</td>
+										</tr>
+
+										<tr>
+											<td><? wbs_label fieldName="PW_STARTDATE" for="StartDate" text=$pmStrings.amr_startdate_label ?></td>
+											<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+												<td>
+													<input name="workData[PW_STARTDATE]" id="StartDate" type="text" class="FormControl" value="<? $workData.PW_STARTDATE ?>" maxlength="10" size="10" />
+													<?include file="../../../common/html/classic/calendar.tpl" name=workData[PW_STARTDATE] style="margin-left: 2px"?>
+												</td>
+											<? else ?>
+												<th>
+													<? $workData.PW_STARTDATE|sureecho ?>
+													<input name="workData[PW_STARTDATE]" type="hidden" value="<? $workData.PW_STARTDATE?>"/>
+												</th>
+											<? /if ?>
+										</tr>
+
+										<tr>
+											<td><? wbs_label fieldName="PW_DUEDATE" for="DueDate" text=$pmStrings.amr_duedate_label ?></td>
+											<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+												<td>
+													<input name="workData[PW_DUEDATE]" type="text" id="DueDate" class="FormControl" value="<? $workData.PW_DUEDATE ?>" size="10" maxlength="10"/>
+													<?include file="../../../common/html/classic/calendar.tpl" name=workData[PW_DUEDATE] style="margin-left: 2px"?>
+												</td>
+											<? else ?>
+												<th><? $workData.PW_DUEDATE|sureecho ?></th>
+											<? /if ?>
+										</tr>
+
+										<tr>
+											<td><? wbs_label fieldName="PW_ENDDATE" for="EndDate" text=$pmStrings.amr_completedate_label ?></td>
+											<th>
+												<? $workData.PW_ENDDATE|sureecho ?>
+												<input name="workData.PW_ENDDATE" type="hidden" id="workData.PW_ENDDATE" value="<? $workData.PW_ENDDATE ?>"/>
+											</th>
+										</tr>
+									</table>
+
+									<table class="FormLayout">
+										<tr>
+											<td class="FormSection" width="200"><? $pmStrings.amr_personnel_label ?></td>
+										</tr>
+										<tr>
+											<td>
+												<? wbs_dualComboBox
+													leftCaption=$pmStrings.amr_assigned_title
+													rightCaption=$pmStrings.amr_notassigned_title
+
+													leftVariableName="assigned_users"
+													rightVariableName="available_users"
+
+													leftValues=$assigned_users
+													rightValues=$available_users
+
+													leftNames=$assigned_users_names
+													rightNames=$available_users_names
+
+													showUpDown=false
+													separated=true
+
+													rows=6
+													width=180
+												?>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						<? /wbs_formContent ?>
+
+						<? wbs_formButtonsPanel ?>
+								<? wbs_buttonSet ?>
+									<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+										<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" onClick="fillSelectedLists( new Array('assigned_users[]') );" ?>
+										<? if $action == ACTION_NEW ?>
+											<? wbs_buttonSetButton caption=$pmStrings.amr_addanother_btn name="saveaddbtn" onClick="fillSelectedLists( new Array('assigned_users[]') );" ?>
+										<? /if ?>
+										<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+									<? /if ?>
+								<? /wbs_buttonSet ?>
+						<? /wbs_formButtonsPanel ?>
+
+					<? /wbs_formLayout?>
+
+			<? else ?>
+				<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+			<? /if ?>
+
+			<input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>"/>
+			<input name="action" type="hidden" id="action" value="<? $action ?>"/>
+			<input name="opener" type="hidden" id="opener" value="<? $opener ?>"/>
+			<input name="firstIndex" type="hidden" id="firstIndex" value="<? $firstIndex ?>"/>
+			<input name="list_action" type="hidden" id="list_action" value="<? $list_action ?>"/>
+			<input name="workData[P_STATUS]" type="hidden" id="workData[P_STATUS]" value="<? $workData.P_STATUS ?>"/>
+			<input name="workData[PW_STATUS]" type="hidden" id="workData[PW_STATUS]" value="<? $workData.PW_STATUS ?>"/>
+			<input name="workData[P_ID]" type="hidden" id="workData[P_ID]" value="<? $workData.P_ID ?>"/>
+			<input name="workData[PW_ID]" type="hidden" id="workData[PW_ID]" value="<? $workData.PW_ID ?>"/>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

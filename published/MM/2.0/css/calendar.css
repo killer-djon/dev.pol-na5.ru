@@ -1,0 +1,162 @@
+/* Calendar styles */
+
+.calendar
+{
+	position: relative;
+	display: none;
+	border: solid 1px #006E95;
+	font-size: 11px;
+	color: #000;
+	cursor: default;
+	background: #FCF9F3;
+	font-family: tahoma, verdana, sans-serif;
+}
+
+.calendar table
+{
+	font-size: 11px;
+	color: #000;
+	cursor: default;
+	background: #AEDBEE;
+	font-family: tahoma, verdana, sans-serif;
+}
+
+.calendar tbody {
+	background-color: #FCF9F3;
+}
+
+.calendar tbody .day
+{
+	width: 2em;
+	text-align: right;
+	padding: 2px 4px 2px 2px;
+}
+
+.calendar tbody .day.othermonth
+{
+	font-size: 80%;
+	color: #ccc;
+}
+
+.calendar tbody .day.othermonth.oweekend
+{
+	color: #fcc;
+}
+
+.calendar table .wn
+{
+	padding: 2px 4px 2px 2px;
+	background-color: #A59B86;
+	color: white;
+}
+
+.calendar tbody td.hilite
+{
+	padding: 1px 3px 1px 1px;
+	border-top: 1px solid #fff;
+	border-right: 1px solid #867D6A;
+	border-bottom: 1px solid #867D6A;
+	border-left: 1px solid #fff;
+}
+
+.calendar thead .daynames
+{
+}
+
+.calendar thead .name
+{
+	padding: 2px;
+	text-align: center;
+	background-color: #A59B86;
+	color: white;
+}
+
+.weekend
+{
+	color: red;
+}
+
+.calendar tbody td.today
+{
+	color: #1B769A;
+	font-weight: bold;
+	background-color: #AEDBEE;
+}
+
+.calendar tbody td.selected
+{
+	background-color: #AEDBEE!important;
+}
+
+.calendar tbody .rowhilite td
+{
+	background-color: #F1F1F1;
+}
+
+.calendar tbody .rowhilite td.wn
+{
+	background-color: #CCCCCC;
+}
+
+.calendar tbody .rowselected td
+{
+	background-color: #F1F1F1;
+}
+
+.calendar tbody .rowselected td.wn
+{
+	background-color: #CCCCCC;
+
+	padding: 1px 3px 1px 1px;
+	border-top: 1px solid #fff;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #fff;
+}
+
+.calendar .button
+{
+	text-align: center;
+	padding: 1px;
+	border-top: 1px solid #D0FEFF;
+	border-right: 1px solid #4F7A8B;
+	border-bottom: 1px solid #4F7A8B;
+	border-left: 1px solid #D0FEFF;
+}
+
+.calendar .nav
+{
+
+}
+
+.calendar thead .title
+{
+	font-weight: bold;
+	padding: 1px;
+	background: #1283AB;
+	color: #fff;
+	text-align: center;
+}
+
+
+.calendar thead .hilite
+{
+	border-top: 1px solid #69C3EE;
+	border-right: 1px solid #006A91;
+	border-bottom: 1px solid #006A91;
+	border-left: 1px solid #69C3EE;
+	padding: 0px;
+	background-color: #399CC5;
+	color: white;
+}
+
+.calendar tbody td.selected
+{
+	font-weight: bold;
+	border-top: 1px solid #000;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	border-left: 1px solid #000;
+	padding: 2px 2px 0px 2px;
+	background: #e4e0d8;
+}

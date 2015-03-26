@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <table border="0" cellspacing="1" cellpadding="1">
+    <tr> 
+      <td align="left" valign="top" class="pageSubheader"> <strong> 
+        <? $projName|wordwrap:50:"<br>"  ?>
+        </strong> </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" class="smallFont"> 
+        <? $it_loc_str[51]|cat:" #"|cat:$PW_ID|cat:":&nbsp;" ?>
+        <? $workDescr|wordwrap:50:"<br>" ?>
+      </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" class="smallFont">&nbsp;</td>
+    </tr>
+  </table>
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+      <td><table border="0" cellpadding="0" cellspacing="0" class="simplelist">
+          <tr> 
+            <td align="left" valign="middle" class="simplelist_header_left"> 
+              <? $it_loc_str[94] ?>
+            </td>
+            <td width="150" align="center" valign="middle" class="simplelist_header"> 
+              <? $it_loc_str[95] ?>
+            </td>
+            <td width="150" align="center" valign="middle" class="simplelist_header"> 
+              <? $it_loc_str[96] ?>
+            </td>
+            <td width="150" align="center" valign="middle" class="simplelist_header"> 
+              <? $it_loc_str[97] ?>
+            </td>
+          </tr>
+          <?foreach from=$assignments item=cur_assignment key=cur_uid ?>
+          <tr <? if ($cur_assignment.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+            <td align="left" class="default">
+              <? $cur_assignment.USER_NAME ?>
+            </td>
+            <td width="150" align="center" class="default"><input type="checkbox" onClick="ITSelected(this, '<? $cur_uid ?>'  )" name="itadata[<?$cur_uid?>][ALLOW_IT]" value="1" <? switchedOutput val= $cur_assignment.ALLOW_IT true_val=1 str1="checked" ?>></td>
+            <td width="150" align="center" class="default"><input type="checkbox" name="itadata[<?$cur_uid?>][ALLOW_ISSUEENTRY]" value="1" <? switchedOutput val= $cur_assignment.ALLOW_ISSUEENTRY true_val=1 str1="checked" ?>></td>
+            <td width="150" align="center" class="default"><input type="checkbox" name="itadata[<?$cur_uid?>][NOTIFY_ONASSIGNMENT]" value="1" <? switchedOutput val= $cur_assignment.NOTIFY_ONASSIGNMENT true_val=1 str1="checked" ?>></td>
+          </tr>
+          <? foreachelse  ?>
+          <tr align="center"> 
+            <td colspan="4" class="default"> 
+              <? $it_loc_str[91] ?>
+            </td>
+          </tr>
+          <? /foreach?>
+        </table></td>
+    </tr>
+  </table>
+  <table width="100" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <input name="savebtn" type="image" src="<? local_file template="classic" file="savebtn.gif" lang=$language  APP_ID="common"?>" border="0">
+  <input name="cancelbtn" type="image" src="<? local_file template="classic" file="cancelbtn.gif" lang=$language  APP_ID="common"?>" border="0">
+  <? else ?>
+  <input name="cancelbtn" type="image" src="<? local_file template="classic" file="cancelbtn.gif" lang=$language  APP_ID="common"?>" border="0">
+  <? /if ?>
+  <input name="edited" type="hidden" value="1">
+  <input name="P_ID" type="hidden" value="<? $P_ID ?>">
+  <input name="PW_ID" type="hidden" value="<? $PW_ID ?>">
+  <input name="opener" type="hidden" value="<? $opener ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? assign var=toolbar value=null ?>
+		<? if $action == "new" ?>
+			<? assign var=toolbar value="addmodcustomer_toolbar.htm" ?>
+		<? else ?>
+			<? assign var=toolbar value="acustomer_toolbar.htm" ?><? assign var=toolbar value="acustomer_toolbar.htm" ?>
+		<? /if ?>
+		<? wbs_initLayout ?>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'customerData' )">
+		<? wbs_pageLayout toolbar=$toolbar ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td colspan="4"><? wbs_label fieldName="C_NAME" for="C_NAME" text=$pmStrings.amc_custname_title ?></td>
+						</tr>
+						<tr class="SeparatedRow">
+							<td colspan="4"><input name="customerData[C_NAME]" id="C_NAME" type="text" class="FormControl" value="<? $customerData.C_NAME?>" size="60" maxlength="250"></td>
+						</tr>
+						<tr>
+							<td class="FormSection" colspan="2"><? $pmStrings.amc_address_title ?></td>
+							<td class="FormSection" colspan="2"><? $pmStrings.amc_contperson_title ?></td>
+						</tr>
+						<tr>
+							<td><? wbs_label fieldName="C_ADDRESSSTREET" for="C_ADDRESSSTREET" text=$pmStrings.amc_streetaddress_title ?></td>
+							<td><input name="customerData[C_ADDRESSSTREET]" id="C_ADDRESSSTREET" type="text" class="FormControl" value="<? $customerData.C_ADDRESSSTREET|htmlsafe:true:true ?>" size="20" maxlength="30"/></td>
+
+							<td><? wbs_label fieldName="C_CONTACTPERSON" for="C_CONTACTPERSON" text=$pmStrings.amc_contname_title ?></td>
+							<td><input name="customerData[C_CONTACTPERSON]" id="C_CONTACTPERSON" type="text" class="FormControl" value="<? $customerData.C_CONTACTPERSON|htmlsafe:true:true ?>" size="20" maxlength="30"/></td>
+						</tr>
+						<tr>
+							<td><? wbs_label fieldName="C_ADDRESSCITY" for="C_ADDRESSCITY" text=$pmStrings.amc_city_title ?></td>
+							<td><input name="customerData[C_ADDRESSCITY]" type="text" id="C_ADDRESSCITY" class="FormControl" value="<? $customerData.C_ADDRESSCITY|htmlsafe:true:true ?>" size="20" maxlength="30"/></td>
+
+							<td><? wbs_label fieldName="C_EMAIL" for="C_EMAIL" text=$pmStrings.amc_email_title ?></td>
+							<td><input name="customerData[C_EMAIL]" type="text" id="C_EMAIL" class="FormControl" value="<? $customerData.C_EMAIL|htmlsafe:true:true ?>" size="20" maxlength="50"/></td>
+						</tr>
+
+						<tr>
+							<td><? wbs_label fieldName="C_ADDRESSSTATE" for="C_ADDRESSSTATE" text=$pmStrings.amc_state_title ?></td>
+							<td><input name="customerData[C_ADDRESSSTATE]" type="text" id="C_ADDRESSSTATE" class="FormControl" value="<? $customerData.C_ADDRESSSTATE|htmlsafe:true:true ?>" size="20" maxlength="30"/></td>
+
+							<td><? wbs_label fieldName="C_PHONE" for="C_PHONE" text=$pmStrings.amc_phone_title ?></td>
+							<td><input name="customerData[C_PHONE]" type="text" id="C_PHONE" class="FormControl" value="<? $customerData.C_PHONE|htmlsafe:true:true ?>" size="20" maxlength="30"/></td>
+						</tr>
+
+						<tr>
+							<td><? wbs_label fieldName="C_ADDRESSZIP" for="C_ADDRESSZIP" text=$pmStrings.amc_zip_title ?></td>
+							<td><input name="customerData[C_ADDRESSZIP]" id="C_ADDRESSZIP" type="text" class="FormControl" value="<? $customerData.C_ADDRESSZIP|htmlsafe:true:true ?>" size="20" maxlength="30"/></td>
+
+							<td><? wbs_label fieldName="C_FAX" for="C_FAX" text=$pmStrings.amc_fax_title ?></td>
+							<td><input name="customerData[C_FAX]" type="text" id="C_FAX" class="FormControl" value="<? $customerData.C_FAX|htmlsafe:true:true ?>" size="20" maxlength="30"/></td>
+						</tr>
+
+						<tr>
+							<td><? wbs_label fieldName="C_ADDRESSCOUNTRY" for="C_ADDRESSCOUNTRY" text=$pmStrings.amc_country_title ?></td>
+							<td><input name="customerData[C_ADDRESSCOUNTRY]" type="text" id="C_ADDRESSCOUNTRY" class="FormControl" value="<? $customerData.C_ADDRESSCOUNTRY|htmlsafe:true:true ?>" size="20" maxlength="30"/></td>
+
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+						<? /wbs_buttonSet ?>
+
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+
+			<? else ?>
+				<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+			<? /if ?>
+
+			<? if $action != "new" ?>
+				<? wbs_note displayNoteMarker=false ?><? $pmStrings.amc_lastmodified_text ?>&nbsp;<? $customerData.C_MODIFYUSERNAME ?>&nbsp;<? $customerData.C_MODIFYDATETIME ?><? /wbs_note ?>
+			<? /if ?>
+
+			<input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>"/>
+			<input name="action" type="hidden" id="sorting" value="<? $action ?>"/>
+			<input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>"/>
+			<? if $action != "new" ?>
+				<input name="customerData[C_ID]" type="hidden" id="customerData[C_ID]"  value="<? $customerData.C_ID ?>"/>
+			<? /if ?>
+			<input name="customerData[C_MODIFYUSERNAME]" type="hidden" id="customerData[C_MODIFYUSERNAME]" value="<? $customerData.C_MODIFYUSERNAME|htmlsafe:true:true ?>"/>
+			<input name="customerData[C_MODIFYDATETIME]" type="hidden" id="customerData[C_MODIFYDATETIME]" value="<? $customerData.C_MODIFYDATETIME|htmlsafe:true:true ?>"/>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

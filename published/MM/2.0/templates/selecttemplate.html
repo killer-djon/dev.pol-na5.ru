@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><title>Untitled Document</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../../common/templates/elements/wbs_btn.css" rel="stylesheet" type="text/css" />
+	<link href="../../MM/2.0/css/mm.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<div style="padding: 10px" class="selectTemplateDiv">
+
+	{{if !$templatesList}}
+
+		<p>&lt;[`templates not found`]&gt;</p>
+
+	{{else}}
+
+		<h4>[`Select template`]:</h4>
+		<div class="selectTemplateContainer">
+		<ul class="selectCommonTemplate">
+		{{foreach from=$templatesList item=temlpate}}
+			<li class='templateItem'
+				onclick="parent.getMessageForm('{{$temlpate.MMM_ID}}', 'fromTemplate')"
+				onmouseover="this.className='templateOver'"
+				onmouseout="this.className='templateItem'">
+				<img src="{{$temlpate.ico}}" />
+				<p>{{if $temlpate.MMM_SUBJECT}}
+					{{$temlpate.MMM_SUBJECT|htmlsafe:true:true|truncate:40:"..."}}
+					{{else}}
+						&lt;[`no subject`]&gt; 
+					{{/if}}
+				</p>
+			</li>
+		{{/foreach}}
+		</ul>
+		</div>
+
+	{{/if}}
+
+	</div>
+
+	<input type="hidden" id="action" name="action" value="">
+
+</body></html>

@@ -1,0 +1,143 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.form.js"></script>
+
+<script>
+	$(function(){
+		$('#save_settings').click(function(){
+			$('#image_lib').submit();		
+		});
+
+		$.extend($.fn, {
+			checked: function(isCheck){
+				return this.each(function(){
+					if (isCheck)
+						$(this).attr('checked', 'checked');
+					else
+						$(this).removeAttr('checked');
+				});
+			}
+		});
+		
+		$('.col_r_all :checkbox').click(function(){
+			var isCheck = $(this).attr('checked');
+			if (isCheck) {
+				$('#access .col_r :checkbox').checked( isCheck );
+								
+				$('#access .col_r_all :checkbox').checked( isCheck );
+			}
+			else {
+				$('#access .col_r :checkbox').checked( isCheck );
+				$('#access .col_w :checkbox').checked( isCheck );
+				$('#access .col_f :checkbox').checked( isCheck );
+				
+				$('#access .col_r_all :checkbox').checked( isCheck );
+				$('#access .col_w_all :checkbox').checked( isCheck );
+				$('#access .col_f_all :checkbox').checked( isCheck );
+			}
+		});
+		$('.col_w_all :checkbox').click(function(){
+			var isCheck = $(this).attr('checked');
+			if (isCheck) {
+				$('#access .col_r :checkbox').checked( isCheck );
+				$('#access .col_w :checkbox').checked( isCheck );	
+				
+				$('#access .col_r_all :checkbox').checked( isCheck );
+				$('#access .col_w_all :checkbox').checked( isCheck );			
+			}
+			else {
+				$('#access .col_w :checkbox').checked( isCheck );
+				$('#access .col_f :checkbox').checked( isCheck );
+				
+				$('#access .col_w_all :checkbox').checked( isCheck );
+				$('#access .col_f_all :checkbox').checked( isCheck );
+			}
+		});
+		$('.col_f_all :checkbox').click(function(){
+			var isCheck = $(this).attr('checked');
+			if (isCheck) {
+				$('#access .col_r :checkbox').checked( isCheck );
+				$('#access .col_w :checkbox').checked( isCheck );
+				$('#access .col_f :checkbox').checked( isCheck );
+
+				$('#access .col_r_all :checkbox').checked( isCheck );
+				$('#access .col_w_all :checkbox').checked( isCheck );
+				$('#access .col_f_all :checkbox').checked( isCheck );
+			}
+			else {
+				$('#access .col_f :checkbox').checked( isCheck );
+				
+				$('#access .col_f_all :checkbox').checked( isCheck );
+			}
+		});
+
+		$('.col_r :checkbox, .col_w :checkbox, .col_f :checkbox').click(function(){
+			var isCheck = $(this).attr('checked');
+			var index = $(this).parent().parent().find('td').index( $(this).parent().get(0) );
+			if (isCheck)
+				$(this).parents('tr').find('td:lt('+index+') :checkbox').checked(true);
+			else
+				$(this).parents('tr').find('td:gt('+index+') :checkbox').checked(false);
+		});
+
+		$(window).resize(function(){
+			$('.resize').height($(window).height() - 42);
+		});
+		$('.resize').height($(window).height() - 42);
+	});
+</script>
+<div class="resize">
+
+<div class="settings-container">
+<div class="setting-wrapper">
+	{{ if ($saved) }}<div class="settings_saved">[`Settings have been successfully saved.`]</div>{{ /if }}
+	<form id="image_lib" method="post" action="backend.php?controller=album&action=settingsSave">
+		<h2>[`Image resize engine`]</h2>
+		
+			<p style="padding:0.7em 40px 0.7em 40px; ">[`Photo thumbnails are created using one of PHP image processing extensions: <a href="http://www.php.net/imagick" target="_blank">Imagick</a> or <a href="http://www.php.net/gd" target="_blank">GD</a>.<br />Select appropriate image processor for your WebAsyst Photos installation. <a href="#support/help/gd-vs-imagick.html" target="_blank">Which processor is better?</a> <img src="img/new_window_icon.gif">`]</p>
+		
+			<ul>
+			<li><label {{ if ( $isNotImagick ) }}class="lib-disabled"{{ /if }}><input name="imagelib" value="imagick" {{ if ( $imagelib == 'imagick' ) }}checked="checked"{{ /if }} type="radio" {{ if ( $isNotImagick ) }}disabled="disabled"{{ /if }} />{{ if ( $isNotImagick ) }}[`Imagick (not supported by the server)`]{{ else }}[`Imagick (recommended)`]{{ /if }}</label></li>
+			
+			<li><label><input name="imagelib" value="gd" type="radio" {{ if ( $imagelib == 'gd' || $isNotImagick ) }}checked="checked"{{ /if }} />GD</label></li>
+			
+			<li class="sharpen-item"><label><input name="sharpen" value="1" type="checkbox" {{ if ( $isSharpen ) }}checked="checked"{{ /if }} />[`Sharpen thumbnails (recommended)`]</label></li>
+			</ul>
+	        <p class="emtext" style="padding-left:40px; ">[`Sharpening makes your photos look nice and sharp. Sharpening takes a bit more time to upload photos, but improves your photos quality.`]</p>
+	{{ if ($isAccessUG) }}	        
+		<h2>[`Access rights`]</h2>
+		<div class="access-right">
+			{{ if ( count($groups) > 0 ) }}
+			<p>[`To grant users (or user groups) of your WebAsyst account access to photo albums, use “Users” application. Select appropriate user (user group), and define access level by album on the “Access” tab.<br /><br />To enable <strong>automated access control to new albums</strong>, set access level by user group below (if no groups are selected, access to the new album will be given only to the user who created the album).<br /><br /><em class="emtext">NOTE: User group access rights you define below will be applied to new albums only, and will not be applied to existing albums.</em>`]</p>
+				<div class="access-perms">
+					<table id="access" width="65%" border="0" cellspacing="0" cellpadding="00">
+					    <tr>
+					    <th width="1%"></th>
+					    <th class="col_r_all"><label><input type="checkbox" />[`Read only`]</label></th>
+					    <th class="col_w_all"><label><input type="checkbox" />[`Read&Write`]</label></th>
+					    <th class="col_f_all"><label><input type="checkbox" />[`Full`]</label></th>
+					    </tr>
+					  {{ foreach from=$groups item=group }}
+					  <tr class="row_{{ $group.UG_ID }}">
+					    <td class="leftcol">{{ $group.UG_NAME }}</td>				
+					    {{ assign var=num value=$group.UG_ID }}
+					    <td class="col_r"><input name="right[{{ $group.UG_ID }}]" value="1" type="checkbox" {{ if ($right.$num >= 1) }} checked="checked" {{ /if }} /></td>
+					    {{ assign var=num value=$group.UG_ID }}
+					    <td class="col_w"><input name="right[{{ $group.UG_ID }}]" value="3" type="checkbox" {{ if ($right.$num >= 3) }} checked="checked" {{ /if }} /></td>
+					    {{ assign var=num value=$group.UG_ID }}
+					    <td class="col_f"><input name="right[{{ $group.UG_ID }}]" value="7" type="checkbox" {{ if ($right.$num >= 7) }} checked="checked" {{ /if }} /></td>
+					  </tr>
+					  {{ /foreach }}
+					</table>
+				</div>
+			{{ else }}
+			<p>[`To grant users of your WebAsyst account access to photo albums, use “Users” application. Select appropriate user, and define access level by album on the “Access” tab.<br /><br />If you want to grant access to new photo albums automatically (by default access to the new created album is provided only to the user who created the album), <strong>create one or more user groups first</strong> in the “Users” application. Then go back to this screen and set access level by user group.`]</p>
+			{{ /if }}
+		</div>
+	{{ /if }}
+	</form>
+    <input id="save_settings" type="button" value="[`Save`]"/><span style="display: none;" class="save_complite">[`Saved`]</span></div>
+
+</div></div>
+

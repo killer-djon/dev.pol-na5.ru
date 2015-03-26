@@ -1,0 +1,451 @@
+app_name_long	Common	Application full name	Issue Tracker
+app_name_short	Common	Application short name	Issue Tracker
+app_onissueassignment_name	Common	On Issue Assignment notification name	Is notified on issue assignment
+app_errloadingprojects_message	Common	Error loading project list message	Unable to load project list
+app_errloadingmanager_message	Common	Error loading project manager data message	Unable to read project manager data
+app_errloadingtasks_message	Common	Error loading task list message	Unable to load task list
+app_errloadingissue_message	Common	Error loading issue data message	Unable to read issue data
+app_errloadingworkflow_message	Common	Error loading workflow message	Unable to load workflow
+app_invissuerights_message	Common	Lack of administrative rights to work with the current issue message	You have no rights to work with this issue
+app_errloadingasgnmt_message	Common	Error loading issue assignment list message	Error loading issue assignment list
+app_issuelow_text	Common	Low assignment priority	Low
+app_issuenormal_text	Common	Normal assignment priority	Normal
+app_issuehigh_text	Common	High assignment priority	High
+app_issuelowshort_text	Common	Low assignment priority short name	L
+app_issuenormalshort_text	Common	Normal assignment priority short name	N
+app_issuehighshort_text	Common	High assignment priority short name	H
+app_tasknotfound_message	Common	Task not found message	Task not found
+app_isstylebrown_name	Common	Brown assignment style name	Brown
+app_isstylebrownb_name	Common	Brown bold assignment style name	Brown bold
+app_isstyledarkgreen_name	Common	Dark green assignment style name	Dark green
+app_isstyledarkgreenb_name	Common	Dark green bold assignment style name	Dark green bold
+app_isstyleblack_name	Common	Black assignment style name	Black
+app_isstyleblackb_name	Common	Black, bold assignment style name	Black, bold
+app_isstylehazel_name	Common	Hazel assignment style name	Hazel
+app_isstylehazelb_name	Common	Hazel bold assignment style name	Hazel bold
+app_isstyleblue_name	Common	Blue assignment style name	Blue
+app_isstyleblueb_name	Common	Blue bold assignment style name	Blue bold
+app_isstyred_name	Common	Red assignment style name	Red
+app_isstyredb_name	Common	Red bold assignment style name	Red bold
+app_freeissues_label	Common	Free issues label	<not linked to project>
+app_errloadingtaskasgnmt_message	Common	Error reading assignment list message	Unable to load assignment list
+app_templnotfound_message	Common	Accessing not existing template message	Template not found
+app_errloadingrights_message	Common	Error loading user rights message	Unable to load user rights
+app_errloadingitl_message	Common	Error reading transition log message	Unable to read issue transition log record
+app_errloadingtrlist_message	Common	Allowed transition list error message	Unable to load allowed transition list
+app_errloadingtmpls_message	Common	Error reading template list message	Unable to read template list
+app_delassignee_message	Common	Deleting user with issue assignment message	Unable to delete user because of he(she) is assigned to issue. Project "%s", issue %s.%s
+app_delsender_message	Common	Deleting issue sender message	Unable to delete user because of he(she) is issue sender. Project "%s", issue %s.%s
+app_delworkflowuser_message	Common	Deleting user assigned in Workflow message	Unable to delete user because of he(she) is selected as issue assignee in Workflow. Project "%s", task %s, status "%s"
+app_delitluser_message	Common	Deleting user, whose name is recorded in Issue Transition message	Unable to delete user because of he(she) is appears in Issue Transition Log. Project "%s", task %s, status "%s"
+app_dellinkedtask_message	Common	Deleting task with linked issues message	Unable to delete task which has linked issues
+app_delusedassignment_message	Common	Active assignment deletion message	Unable to delete assignment because of user %s is assigned to issue. Project "%s", issue %s.%s
+app_dellinkedproj_message	Common	Deleting project with linked issues message	Unable to delete project that has linked issues
+app_complissuesproj_message	Common	Closing project with open issues confirmation	There are open issues for this project. Do you want to complete the project anyway?
+app_complissuestask_message	Common	Closing task with open issues confirmation	There are open issues for this task. Do you want to complete the task anyway?
+app_return_btn	Common	Return button	Back
+app_issueslimit_message	Common	Issue number limitation message	<b>ACCOUNT LIMIT</b>: Number of issues can not exceed %s.
+il_screen_long_name	Issue List	Issue List page full name	Issues
+il_screen_short_name	Issue List	Issue List page short name	Issue
+il_errloadingviewopt_message	Issue List	Error reading Issue List view options message	Unable to load Issue List view options
+il_idfield_title	Issue List	ID column name	ID
+il_priorityfield_title	Issue List	Priority column name	Priority
+il_datefield_title	Issue List	Date column name	Date
+il_statusfield_title	Issue List	Status column name	Status
+il_descfield_title	Issue List	Description column name	Description
+il_authorfield_title	Issue List	Author column name	Author
+il_senderfield_title	Issue List	Sender column name	From
+il_assignedfield_title	Issue List	Assigned column name	To
+il_pendingfield_title	Issue List	Pending column name	Pending
+il_compltask_text	Issue List	Complete text in the assigned tasks list	complete
+il_groupissues_item	Issue List	<group issues by tasks> item in the tasks list	<group issues by tasks>
+il_groupissuesbyproject_item	Issue List	<group issues by projects> item in the projects list	<group issues by projects> 
+il_freeissues_item	Issue List	<free issues> item in the projects list	<free issues>
+il_noprojects_item	Issue List	<no projects> item if there are not tasks	&lt;no projects&gt;
+il_nofilter_text	Issue List	no filter applied text at the tasks list header	no filter applied
+il_copyissues_menu	Issue List	Copy Issue(s) menu item	Copy Issue(s)...
+il_moveissues_menu	Issue List	Move Issue(s)... menu item	Move Issue(s)...
+il_deleteissues_menu	Issue List	Delete Issue(s)... menu item	Delete Issue(s)...
+il_forwardissues_menu	Issue List	Forward Issue(s)... menu item	Forward Issue(s)...
+il_remind_menu	Issue List	Remind menu item	Remind...
+il_customizeworkflow_menu	Issue List	Customize workflow menu item	Customize Workflow
+il_workflowtemplates_menu	Issue List	Workflow Templates menu item	Workflow Templates...
+il_workflow_btn	Issue List	Setup workflow button	Customize Workflow
+il_print_menu	Issue List	Print menu item	Print
+il_grid_menu	Issue List	Grid menu item	Grid
+il_list_menu	Issue List	List menu item	List
+il_custview_menu	Issue List	Customize View menu item	Customize View
+il_displayhistory_menu	Issue List	Display Issue History menu item	Display Issue History
+il_hidehistory_menu	Issue List	Hide Issue History menu item	Hide Issue History
+il_addfilter_menu	Issue List	Add Filter menu item	Add Filter
+il_modfilter_menu	Issue List	Modify Filter menu item	Modify Filter
+il_orgfilters_menu	Issue List	Organize Filters... menu item	Organize Filters...
+il_emptycopy_message	Issue List	Copying issues without selecting any message	You must select issue(s) for this operation first
+il_emptymove_message	Issue List	Moving issues without selecАting any message	You must select issue(s) for this operation first
+il_emptyremind_message	Issue List	Reminding issues without selecting any message	You must select issue(s) for this operation first
+il_emptydelete_message	Issue List	Deleting issues without selecting any message	You must select issue(s) for this operation first
+il_deleteconfirm_message	Issue List	Issue deletion confirmation	Do you really want to delete selected issue(s)?
+il_emptysend_message	Issue List	Attempt to work with issues without selecting them	You must select issue(s) for this operation first
+il_invtaskssend_message	Issue List	Incorrect operation on the list of issues	You can forward multiple issues if they belong to the same task only.
+il_invissuestatussend_message	Issue List	Incorrect operation on the list of issues	You must select issues in the same status to forward them in a batch mode.
+il_invissuesforbsend_message	Issue List	Incorrect operation on the list of issues	Forwarding is not allowed from some of selected states.
+il_addcompltask_message	Issue List	Attempt to adding issue to a completed task	Can not add issue to complete task
+il_invworkflissuedel_message	Issue List	Trying to delete issues, which are prohibited for deletion	Workflow settings do not allow to delete some of selected issues.
+il_deleteforbconfirm_message	Issue List	Confirmation when deleting issues	Delete anyway?
+il_unabletodelissues_message	Issue List	Issues could not be deleted message	Some of selected issues could not be deleted.
+il_addissue_btn	Issue List	Add Issue button	Add Issue
+il_issue_menu	Issue List	Issue menu	Issue
+il_view_menu	Issue List	View menu	View
+il_filters_menu	Issue List	Filters menu	Filters
+il_workflow_menu	Issue List	Workflow menu	Workflow
+il_hidefilters_hint	Issue List	Hide Filters popup hint	Hide Filters
+il_showfilters_hint	Issue List	Show Filters popup hint	Show Filters
+il_records_label	Issue List	Record(s) label	Record(s)
+il_filters_title	Issue List	Filters list header	Filters
+il_task_label	Issue List	Task label	Task
+il_showissues_label	Issue List	show issues label	show issues
+il_hideissues_label	Issue List	hide issues label	hide issues
+il_completetask_label	Issue List	This task is Complete label	This task is Complete
+il_more_text	Issue List	more text	more
+il_comments_text	Issue List	Comments text	Comment
+il_from_text	Issue List	From text	From
+il_to_text	Issue List	To text	To
+it_del_Comment_Confirm	Issue List	confirm comment	Comment will be erased. Continue?
+
+it_Comment_Add	Issue List	add comment	Send
+it_Comment_Add_Title	Issue List	add comment	Add Comment
+it_Comment_Cancel	Issue List	cancel comment	Cancel
+it_Comment_Save	Issue List	save comment	Save
+it_Comment	Issue List	Comment	Comment
+
+il_forwarded_text	Issue List	Forwarded text	Forwarded
+il_tasks_label	Issue List	Task(s) label	Task(s)
+il_issues_label	Issue List	Issue(s) label	Issue(s)
+il_project_label	Issue List	Project label	Project
+il_completeproj_text	Issue List	complete text in closed projects	complete
+il_allissuesfilter_title	Issue List	All Issues filter name	All Issues
+il_openissuesfilter_title	Issue List	Open Issues filter name	Open Issues
+il_imauthorfilter_title	Issue List	I am Author filter name	I am Author
+il_imsenderfilter_title	Issue List	I am Sender filter name	I am Sender
+il_imassigneefilter_title	Issue List	Assigned To Me filter name	Assigned To Me
+il_todayfilter_title	Issue List	Today filter name	Today
+il_lastweekfilter_title	Issue List	Last Week filter name	Last Week
+il_pendweekfitler_title	Issue List	Pending 1 Week + filter name	Pending 1 Week +
+il_completefitler_title	Issue List	Complete Issues filter name	Complete Issues
+il_pendmonthfitler_title	Issue List	Pending 1 Month + filter name	Pending 1 Month +
+il_errfilterloading_message	Issue List	Error loading filter message	Unable to load filter data
+il_errloadinglist_message	Issue List	Error loading issue list message	Unable to load issue list
+il_norights_message	Issue List	Lack of administrative rights to view the report	You have no rights to view this list
+il_filter_label	Issue List	FILTER label in the report	FILTER
+il_manager_label	Issue List	Manager label in the report	Manager
+il_noissues_text	Issue List	No issues in the list text	<no issues satisfied selected filter>
+il_forwardissue_hint	Issue List	Forward this issue popup hint	Forward this issue
+il_issuehistory_label	Issue List	Issue History Label	Issue History
+il_cantforwardissue_hint	Issue List	This issue can not be forwarded popup hint	This issue can not be forwarded
+il_refresh_btn	Issue List	Refresh button	Refresh
+il_show_history	Issue List	Show history	History & Comments
+il_hide_history	Issue List	Hide history	History & Comments
+il_dlgforward_title	Issue List 	Forward Dialog title	Forward Issue
+il_dlgforwardmany_title	Issue List 	Forward Many issues Dialog title	Forward Issues
+il_adddescription_text	Issue List	Add description text	<add description here>
+il_dlgeditnofiles_label	Issue List 	no files label	&lt;no files&gt;
+il_dlgedit_addfile_btn	Issue List	add file	Add File
+il_dlgedit_deletefile_btn	Issue List	add file	 Delete Files
+il_addcoment_text	Issue List	Forward Dialog add comment	<add comment>
+il_issueforward_label	Issue List	Issue Forward link	Forward
+il_issueedit_label	Issue List	Issue Edit link	Edit
+il_issuedelete_label	Issue List	Issue Delete link	Delete
+il_nofilesselected_message	Issue List	No files selected message	Please select files to delete
+il_notaskselected_message	Issue List	Task no selected message	Please select Task
+il_statuscurrent_text	Issue List	Status Current text	This issue has been forwarded to status %state% %date%
+ami_noopentasks_message	Add/Modify Issue	Trying to add issues when no open tasks are present message	You must have at least one open task for this project to add issue.
+ami_notassigned_item	Add/Modify Issue	Not Assigned item	--not assigned--
+ami_addissue_title	Add/Modify Issue	Adding Issue page header	Add Issue
+ami_modissue_title	Add/Modify Issue	Modifying Issue page header	Edit Issue
+ami_task_label	Add/Modify Issue	Task label	Task
+ami_priority_label	Add/Modify Issue	Priority label	Priority
+ami_assignto_label	Add/Modify Issue	Assign to label	Assign to
+ami_status_label	Add/Modify Issue	Status label	Status
+ami_description_label	Add/Modify Issue	Description label	Description
+ami_files_label	Add/Modify Issue	Attached files label	Attached files
+ami_addanother_btn	Add/Modify Issue	Save and Add Another button	Save and Add Another
+ami_sender_label	Add/Modify Issue	Sender label	Sender
+ami_issue_label	Add/Modify Issue	Issue label	Issue
+ami_dateopen_label	Add/Modify Issue	Date open label	Date open
+ami_assignedto_label	Add/Modify Issue	Assigned to label	Assigned to
+ami_erreditingstate_message	Add/Modify Issue	Modifying forbidden issue message	Issue modification in this state is forbidden
+ami_erreditcompltask_message	Add/Modify Issue	Modifying issue in a closed task	Can not modify issue for complete task
+ami_attachments_label	Add/Modify Issue	Attachments label in the notification text	Attachments
+ami_na_label	Add/Modify Issue	n/a label in the notification text	n/a
+ami_mailheader_text	Add/Modify Issue	Notification header	This note is to inform you about new assignment.
+ami_mailproject_label	Add/Modify Issue	Project label in the notification text	Project
+ami_mailnewedition_label	Add/Modify Issue	New edition label in the notification text	New edition
+ami_mailstatus_label	Add/Modify Issue	Status label in the notification text	Status
+ami_mailoldedition_label	Add/Modify Issue	Old edition label in the notification text	Old edition
+ami_mailsubject_text	Add/Modify Issue	Issue modification notification subject	Issue modification
+ami_mailsentby_text	Add/Modify Issue	Sent by in the notification text	Sent by
+ami_mailasgngreetings_text	Add/Modify Issue	Name text in the notification text	Dear %s,
+ami_mailasgncomment_label	Add/Modify Issue	Comment label in the notification text	<br><br><span style="font-size: 11px">Comment: %s</span>
+ami_mailasgnsubject_text	Add/Modify Issue	Issue assignment notification subject	Issue assignment
+wfm_notdefined_text	Workflow Manager	Not Defined text for not defined processes	<not defined>
+wfm_page_title	Workflow Manager	Workflow Manager page header	Customize Workflow
+wfm_return_btn	Workflow Manager	Back to Issue List button	Issue List
+wfm_note1_text	Workflow Manager	Hint first line above form	1. To customize workflow click in Workflow Summary column.
+wfm_note2_text	Workflow Manager	Hint second line above form	2. Complete tasks are not visible in the list.
+wfm_id_title	Workflow Manager	ID column header	ID
+wfm_task_title	Workflow Manager	Task column header	Task
+wfm_summary_title	Workflow Manager	Workflow Summary column header	Workflow Summary
+wfm_templatelist_title	Workflow Manager	Workflow Template List column header	Workflow Template List
+wfm_templatename_title	Workflow Manager	Template Name column header	Template Name
+wfm_default_text	Workflow Manager	Default text for templates by default	default
+wfm_project_label	Workflow Manager	Project label	Project
+wfm_selectproject_item	Workflow Manager	Select project item	<select project>
+wfm_page_hint	Workflow Manager	Page hint	You can customize workflow only for those projects for which you are assigned as a Project Manager.
+fa_screen_long_name	File Attachments	File Attachments page full name	File Attachments
+fa_screen_short_name	File Attachments	File Attachments page short name	Files
+fa_noprojects_item	File Attachments	No Projects item if there are no projects	&lt;no projects&gt;
+fa_project_label	File Attachments	Project label	Project
+fa_filename_title	File Attachments	File name column header	File name
+fa_size_title	File Attachments	Size column header	Size
+fa_date_title	File Attachments	Date column header	Date
+fa_issuenum_title	File Attachments	Issue # column header	Issue #
+fa_issuedesc_title	File Attachments	Issue Description column header	Issue Description
+dws_errloadtrans_message	Define Workflow State	Error loading transition message	Unable to load transition
+dws_notapplicableopt_name	Define Workflow State	Not Applicable status option name	not applicable
+dws_notrequiredopt_name	Define Workflow State	Not Required status option name	not required
+dws_reqselopt_name	Define Workflow State	Required/Selectable  status option name	required/selectable
+dws_reqnotselopt_name	Define Workflow State	Required/Not Selectable status option name	required/not selectable
+dws_notassigned_item	Define Workflow State	Not Assigned item	&lt;not assigned&gt;
+dws_sender_item	Define Workflow State	Sender item	sender
+dws_page_title	Define Workflow State	Page header	Define Workflow State
+dws_task_label	Define Workflow State	Task label	Task
+dws_placebefore_label	Define Workflow State	Place before label	Place before
+dws_statusname_label	Define Workflow State	Status name label	Status name
+dws_issueoptions_title	Define Workflow State	Issues options header	Actions, allowed with issue in this status
+dws_canedit_label	Define Workflow State	Can edit label	Can edit
+dws_candelete_label	Define Workflow State	Can delete label	Can delete
+dws_assignoption_label	Define Workflow State	Assignment option label	Assignment option
+dws_assigdefault_label	Define Workflow State	Assignee (default) label	Assignee (default)
+dws_color_label	Define Workflow State	Color label	Color
+dws_allowedtransitions_title	Define Workflow State	Allowed transitions list header	Allowed transitions
+dws_note1_text	Define Workflow State	First hint text above form	Click checkboxes for those states to which transition is allowed from the current state
+dws_note2_text	Define Workflow State	Second hint text above form	Click radio button for the state which you want to be a default destination from the current state
+dws_delstate_message	Define Workflow State	State deletion confirmation	Delete state?
+dws_delstatissues_message	Define Workflow State	Deleting transition, which is assigned to issues message	Unable to delete transition: issues in this state are found.
+dws_startendname_message	Define Workflow State	Modifying Start and Complete states name message	Can not change the name of start or complete states
+dws_statenameexists_message	Define Workflow State	Creating a state with a duplicate name message	State with this name already exists.
+cw_selectable_label	Customize Workflow	selectable label	selectable
+cw_notselectable_label	Customize Workflow	not selectable label	not selectable
+cw_none_label	Customize Workflow	none label	none
+cw_sender_label	Customize Workflow	sender label	sender
+cw_page_title	Customize Workflow	Page header	Customize Workflow
+cw_returntowm_btn	Customize Workflow	Back to Workflow Manager page button	Back to Workflow Manager
+cw_saveastemplate_btn	Customize Workflow	Save as Template button	Save as Template
+cw_selectemplates_btn	Customize Workflow	Select from Templates button	Select from Templates
+cw_task_label	Customize Workflow	Task label	Task
+cw_candelete_label	Customize Workflow	Can delete label	Can delete
+cw_cannotdelete_label	Customize Workflow	Can not delete label	Can not delete
+cw_canedit_label	Customize Workflow	Can edit label	Can edit
+cw_cannotedit_label	Customize Workflow	Editing prohibited message	Can not edit
+cw_asgntallowed_label	Customize Workflow	Assignments allowed message	Assignments allowed
+cw_asgntnotallowed_label	Customize Workflow	Assignments not allowed message	Assignments not allowed
+cw_to_label	Customize Workflow	To label	To
+cw_addstate_btn	Customize Workflow	Add State button	Add State
+cw_noworkflow_message	Customize Workflow	Workflow not defined message	Workflow is not defined
+wt_none_label	Workflow Template	none label	none
+wt_sender_item	Workflow Template	sender item	sender
+wt_page_title	Workflow Template	Page name	Workflow Template
+wt_return_btn	Workflow Template	Back to Workflow Manager page button	Workflow Manager
+wt_setasdefault_btn	Workflow Template	Set as Default button	Set as Default
+wt_candelete_label	Workflow Template	Can delete label	Can delete
+wt_cannotdelete_label	Workflow Template	Can not delete label	Can not delete
+wt_canedit_label	Workflow Template	Can edit label	Can edit
+wt_cannotedit_label	Workflow Template	Performer setting allowed	Can not edit
+wt_asgntallowed_label	Workflow Template	Assignments allowed	Assignments allowed
+wt_asgntnotallowed_label	Workflow Template	Assignments not allowed	Assignments not allowed
+wt_to_label	Workflow Template	To label	To
+wt_defdel_message	Workflow Template	Deleting default template message	Default template can not be deleted
+pr_page_title	Print	Page header	Print
+pr_formtext_label	Print	Text above form	Print
+pr_selected_label	Print	Selected Issues label	Selected Issues
+pr_curpage_label	Print	Current Page label	Current Page
+pr_entire_label	Print	Entire Project (filtered) label	Entire Project (filtered)
+pr_print_btn	Print	Print button	Print
+mf_any_item	Modify Filter	any item	any
+mf_notassigned_item	Modify Filter	not assigned item	not assigned
+mf_editfilter_title	Modify Filter	Modifying Filter page header	Modify Filter
+mf_newfilter_title	Modify Filter	Adding Filter page header	Add Filter
+mf_showissues_label	Modify Filter	Show Issues label	Show Issues
+mf_createdby_label	Modify Filter	Created By label	Created By
+mf_sentby_label	Modify Filter	Sent By label	Sent By
+mf_assignedto_label	Modify Filter	Assigned To label	Assigned To
+mf_openonly_label	Modify Filter	Open only label	Open only
+mf_completeonly_label	Modify Filter	Complete only label	Complete only
+mf_opencomplete_label	Modify Filter	Open & Complete label	Open & Complete
+mf_visiblestates_title	Modify Filter	Visible issues lists header	Select visible issue statuses
+mf_shownissues_title	Modify Filter	Visible issues list header	Shown Statuses
+mf_hiddenissues_title	Modify Filter	Hidden issues list header	Hidden Statuses
+mf_createdatefilter_title	Modify Filter	Filter Issues by Date section header	Filter Issues by creating date
+mf_nocreatedateflt_label	Modify Filter	Do not filter by creating date label	Do not filter by creating date
+mf_createdinlast_label	Modify Filter	Show issues created in last label	Show issues created in last
+mf_days_label	Modify Filter	Days label	days
+mf_daysago_label	Modify Filter	Created more than label	Created more than
+mf_overdue_label	Modify Filter	days ago (overdue) label	days ago (overdue)
+mf_findforgotten_label	Modify Filter	Find "forgotten" issues label	Find "forgotten" issues
+mf_notforwarding_label	Modify Filter	No forwarding for more than label	No forwarding for more than
+mf_dysormore_label	Modify Filter	days or more (open issues only) label	days or more (open issues only)
+mf_containstext_label	Modify Filter	Issue description contains following text label	Issue description contains following text
+mf_saveas_label	Modify Filter	Save as (this filter name) label	Save as (this filter name)
+iss_screen_long_name	Issue Statistics	Issue Statistics page full name	Issue Statistics
+iss_screen_short_name	Issue Statistics	Issue Statistics page short name	Statistics
+iss_complproj_separator	Issue Statistics	Projects list splitter	-- <complete projects> --
+iss_projstatus_view	Issue Statistics	Project - Status item name	Project - Status
+iss_projperson_view	Issue Statistics	Project - Assigned Person item name	Project - Assigned Person
+iss_projprior_view	Issue Statistics	Project - Priority item name	Project - Priority
+iss_taskstatus_view	Issue Statistics	Task - Status item name	Task - Status
+iss_taslperson_view	Issue Statistics	Task - Assigned Person item name	Task - Assigned Person
+iss_taskprior_view	Issue Statistics	Task - Priority item name	Task - Priority
+iss_personstatus_view	Issue Statistics	Assigned Person - Status item name	Assigned Person - Status
+iss_personprior_view	Issue Statistics	Assigned Person - Priority item name	Assigned Person - Priority
+iss_project_title	Issue Statistics	Project column header	Project
+iss_status_title	Issue Statistics	Status column header	Status
+iss_person_title	Issue Statistics	Assigned Person column header	Assigned Person
+iss_priority_title	Issue Statistics	Priority column header	Priority
+iss_description_title	Issue Statistics	Task description column header	Task description
+iss_page_title	Issue Statistics	Page header	Issue Statistics
+iss_project_label	Issue Statistics	Project label	Project
+iss_view_label	Issue Statistics	View label	View
+iss_find_label	Issue Statistics	Find label	Find
+iss_noreport_message	Issue Statistics	Report not found message	Report not found
+iss_noassignee_text	Issue Statistics	N/A text	<N/A>
+iss_invstatparams_message	Issue Statistics	Invalid parameters for statistics report generator set message	Invalid parameters passed
+iss_allprojects_item	Issue Statistics	All Projects item in projects list	all projects
+iss_complproj_text	Issue Statistics	Complete project marker	сomplete
+rem_page_title	Reminder	Page name	Reminder
+rem_sendto_label	Reminder	Send to label	Send to
+rem_issues_label	Reminder	Issues label	Issues
+rem_note_label	Reminder	NOTE label	NOTE
+rem_addnote_label	Reminder	Add Note label	Add Note
+rem_headersonly_label	Reminder	Headers only checkbox label	Headers only (drop full issue descriptions)
+rem_note_text	Reminder	Note text	Every person will receive reminder only on those issues he(she) is assigned to.
+rem_send_btn	Reminder	Send Notification button	Send Notification
+rem_emptysend_message	Reminder	Sending reminders without selecting any issues message	No issues selected
+rem_remindheader_text	Reminder	Name in the reminder message text	Dear %s,
+rem_remindertitle_text	Reminder	Reminder header	This note is to remind you about issues assigned to you
+rem_remindersubject_text	Reminder	Reminder notification subject	Remind notification
+rem_sentby_text	Reminder	Sent By text in the notification	Sent By
+rem_errloadingsettings_message	Reminder	Error loading reminder settings message	Unable to read report settings
+rem_task_label	Reminder	Task label	Task
+rem_issue_label	Reminder	Issue label	Issue
+rem_dayswaiting_text	Reminder	Days Waiting text	days waiting
+rem_all_item	Reminder	The "All" item in the project list	all
+cm_noprojects_message	Copy/Move	No finished projects message	There are no projects for this operation
+cm_select_item	Copy/Move	Finished issue checkbox select item	select
+cm_pagecopy_title	Copy/Move	Copying Issue page header	Copy Issue
+cm_pagemove_title	Copy/Move	Moving Issue page header	Move Issue
+cm_copytotask_label	Copy/Move	Copy to Task label	Copy to Task
+cm_movetotask_label	Copy/Move	Move to Task label	Move to Task
+cm_form_text	Copy/Move	Text above form	Please select destination task
+cm_note1_text	Copy/Move	First comment reminder text	1. Shown are projects where you are Project Manager
+cm_note2_text	Copy/Move	Second comment reminder text	2. Complete projects & tasks are not visible.
+cm_replacementform_text	Copy/Move	Replacing missed status form comments	Please, provide replacement for the following statuses, which are not defined in the destination workflow scheme:
+cm_status_label	Copy/Move	Status label	Status
+cm_replacewith_label	Copy/Move	Replace with label	replace with
+is_notassigned_text	Issue	Not Assigned text	&lt;not assigned&gt;
+is_na_text	Issue	N/A text	n/a
+is_modified_text	Issue	Modified text	Modified
+is_comment_text	Issue	Comment text	Comment
+is_files_label	Issue	File(s) label	Files
+is_openedby_label	Issue	opened by label	opened by
+is_sentby_label	Issue	sent by label	sent by
+is_page_title	Issue	Page header	Issue
+is_deletetask_message	Issue	Deleting issue confirmation	Delete issue?
+is_return_btn	Issue	back to Issue List page button	Issue List
+is_modify_btn	Issue	Modify button	Modify
+is_delete_btn	Issue	Delete button	Delete
+is_forward_btn	Issue	Forward button	Forward
+is_task_label	Issue	Task label	Task
+is_issue_label	Issue	Issue label	Issue
+is_curstatus_label	Issue	Current status label	Current status
+is_priority_label	Issue	Priority label	Priority
+is_dateopen_label	Issue	Date open label	Date open
+is_closedate_label	Issue	Close date label	Close date
+is_assignedto_label	Issue	Assigned to label	Assigned to
+is_description_label	Issue	Description label	Description
+is_attachments_label	Issue	Attachments label	Attachments
+is_comment_label	Issue	Comment label	Comment
+is_olddesc_text	Issue	Old Description Text in transition logs	Old Description
+is_prchanged_text	Issue	Priority changed text	Priority changed
+is_fromto_text	Issue	Text From Е to Е in transition log	from %s to %s
+is_asmtchanged_text	Issue	Assignment changed text in transition log	Assignment changed
+is_newfiles_text	Issue	New file(s) attached text in transition log	New file(s) attached
+is_filesremoved_text	Issue	Attachment(s) removed text in transition log	Attachment(s) removed
+is_erraddinglog_message	Issue	Error creating issue transition log record message	Error adding issue transition log record
+is_errordelcompltask_message	Issue	Deleting issue from a closed task message	Can not delete issue for complete task
+is_errordelworkflow_message	Issue	Deletion issue in forbidden state message	Issue deleting in this state is forbidden
+fwi_issuesnotfound_message	Forward Issue	Issues not found text	Issues not found
+fwi_invissuesforbsend_message	Forward Issue	Selected issues in forwarding forbidden state message	Forwarding is not allowed from some of selected states.
+fwi_notassigned_item	Forward Issue	Not Assigned item	--not assigned--
+fwi_selectedissuesnum_text	Forward Issue	Number of Issues selected text	%s issue(s) selected
+fwi_page_title	Forward Issue	Page header	Forward Issue
+fwi_task_label	Forward Issue	Task label	Task
+fwi_issuedesc_label	Forward Issue	Issue Description label	Issue Description
+fwi_id_label	Forward Issue	ID label	ID
+fwi_curstatus_label	Forward Issue	Current status label	Current status
+fwi_sendtostatus_label	Forward Issue	Send to status label	Send to status
+fwi_assignto_label	Forward Issue	Assign to label	Assign to
+fwi_comment_label	Forward Issue	Comments to this  Transition label	Comments to this Transition
+fwi_files_label	Forward Issue	Attached files label	Attached files
+fwi_send_btn	Forward Issue	Send button	Send
+fwi_errsend_message	Forward Issue	Forwarding issue from a closed task message	Can not modify issue status for complete task
+fwi_errsendnostate_message	Forward Issue	Sending issue in the transition forbidden state message	Transition is forbidden
+fwi_difftasks_message	Copy/Move	Selected issues located in different tasks message	Selected issues belongs to different tasks
+ogf_page_title	Organize Filters	Page header	Organize Filters
+ogf_emptydel_message	Organize Filters	Deleting filters without selecting any	You must select filter(s) first
+ogf_return_btn	Organize Filters	Back to Issue List page button	Issue List
+ogf_addfilter_btn	Organize Filters	Add Filter button	Add Filter
+ogf_delete_btn	Organize Filters	Delete button	Delete
+ogf_tip_text	Organize Filters	Text above filter list	To modify filter click its name
+ogf_filter_title	Organize Filters	Filter button header	Filter
+cv_page_title	Customize View	Page header	Customize View
+cv_numrecs_label	Customize View	Number of records per page checkbox label	Number of records on one page
+cv_issuelen_label	Customize View	Issue description limit label	Restrict issue description to
+cv_characters_label	Customize View	characters label	characters
+cv_displquickfw_label	Customize View	Display link for quick issue forwarding option label	Display link for quick issue forwarding
+cv_visiblecolumns_title	Customize View	Visible columns section header	Select columns to display in the Grid format
+cv_visiblelist_title	Customize View	Visible columns list header	Visible Columns
+cv_hiddenlist_title	Customize View	Hidden columns list header	Hidden Columns
+cv_listsettings_title	Customize View	List format section header	Display options in the List format
+cv_showstatus_label	Customize View	Show status checkbox label	Show Status and Pending Time
+cv_showsender_label	Customize View	Show sender checkbox label	Show Sender (From:)
+cv_showassignee_label	Customize View	Show assignee checkbox label	Show Assignee (To:)
+cv_showissuehistory_label	Customize View	Show issue histury label	Display issue history
+st_page_title	Select Template	Page header	Select Template
+st_template_label	Select Template	Template list header	Template
+st_incomptemplate_message	Define Workflow State	Loading invalid template to the process message	%s template is not compatible with current workflow scheme. You must use template that has following status(es): %s
+dt_form_text	Delete Transition	Text above form	There are %s issue(s) in the state "%s". Please select a state to transfer these issues
+df_page_title	Delete Transition	Page header	Delete Transition
+df_transferto_label	Delete Transition	Transfer to label	Transfer to
+svt_page_title	Save Template	Page header	Save Template
+svt_templatename_label	Save Template	Template name label	Template name
+svt_templateexists_message	Save Template	Saving template with duplicate name message	Template with this name already exists
+tl_screen_long_name	Template List	Page long name	Workflow Templates
+tl_screen_short_name	Template List	Page short name	Workflow Templates
+tl_tips_text	Template List	Tips text	1. Issue Templates appear in the list below after you click "Save as Template" button in the Customize Workflow form.\n2. To see template details, set template as default or delete obsolete template, click it.
+
+app_available_pages_name	Common	 Available Pages rights name	Available Pages
+app_available_functions_name	Common	 Available Functions	Available Functions
+app_notifications_section_name	Common	 Notifications section rights name	Notifications
+
+app_cantools_label	Common	Can use tools rights	Can manage Workflow
+app_canreports_label	Common	Can use reports rights	Can use Reports
+
+il_justadded_lbl	Issue List	just added	Just added
+il_issuescount_label	Issue List	Issues count label	%s of %s issues satisfied selected filter
+il_commenttoolong_error	Issue List	Added comment is too long error message	Comment can not exceed 10000 characters.
+il_desctoolong_error	Issue List	Added comment is too long error message	Description can not exceed %s characters.
+il_showmore_link	Issue List	Show more link	Show more
+il_loading_label	Issue List	Loading label	Loading
+il_assignments_label	Issue List	Assignments label	Assignments
+il_manage_btn	Issue List	Manage button	Manage
+il_issuesnotlinkedtoproject_label	Issue list	Issues not linked to project	Issues not linked to Projects

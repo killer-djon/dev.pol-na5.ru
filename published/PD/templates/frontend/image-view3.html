@@ -1,0 +1,50 @@
+
+{{ if ( count($imageList) > 0 ) }}
+
+	<script src="{{ $p->getCommonUrl() }}/html/res/highslide/highslide-with-gallery.js"></script>
+	<link rel='stylesheet' type='text/css' href='{{ $p->getCommonUrl() }}/html/res/highslide/highslide.css'>
+	
+	<script>
+		hs.graphicsDir = '{{ $p->getCommonUrl() }}/html/res/highslide/graphics/';
+		hs.align = 'center';
+		hs.transitions = ['expand', 'crossfade'];
+		hs.wrapperClassName = 'dark borderless floating-caption';
+		hs.fadeInOut = true;
+		hs.dimmingOpacity = .75;
+		hs.enableKeyListener = false;
+
+		// Add the controlbar
+		if (hs.addSlideshow) hs.addSlideshow({
+			//slideshowGroup: 'group1',
+			interval: 5000,
+			repeat: false,
+			useControls: true,
+			fixedControls: 'fit',
+			overlayOptions: {
+				opacity: .6,
+				position: 'bottom center',
+				hideOnMouseOut: true
+			}
+			
+		});
+
+	</script>
+	
+	<div class="highslide-gallery">
+	{{ foreach from=$imageList item=imageItem  }}
+		<div class="highslide image-list-float" style="width: {{ $foto_thumb }}px; height: {{ $foto_thumb }}px;">
+			<a href="{{ $imageItem.IMG_URL_1024 }}" class="highslide" onclick="return hs.expand(this)" ><img alt="{{ $imageItem.PL_DESC }}" src="{{ $imageItem.IMG_URL }}" /></a>
+			<div class="highslide-caption">
+				{{ $imageItem.PL_DESC }}
+			</div>
+		</div>
+	{{ /foreach }}		
+	</div>
+
+<br clear="all" />
+
+{{ else }}
+<div class="empty_content">
+	<p>[`There are no photos in this album.`].</p> 
+</div>
+{{ /if }} 		

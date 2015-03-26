@@ -1,0 +1,9 @@
+<? if !$noSenderEmail ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$ddStrings.sm_send_btn name="savebtn" onClick="fillSelected()" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+<? wbs_toolbarItem ?>
+	<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+<? /wbs_toolbarItem ?>

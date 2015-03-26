@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<link href="../../../QN/html/cssbased/res/qn.css" rel="stylesheet" type="text/css"/>
+
+		<? wbs_initLayout htmlArea=true ?>
+
+		<script language="JavaScript">
+		<!--
+			function confirmDelete()
+			{
+				return confirm( "<? $qnStrings.qnt_screen_notedel_message ?>" );
+			}
+		//-->
+		</script>
+
+	</head>
+	<body onLoad="initEditor(); autoFocusFormControl( '<? $invalidField ?>', 'tplData' );">
+		<? wbs_pageLayout toolbar="amt_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+				<table class="mm_columnsTable">
+					<tr>
+						<td>
+							<table class="FormLayout" style="width: 100%;">
+								<tr class="SeparatedRow">
+									<td valign="top"><? wbs_label for="tplData[QNT_NAME]" fieldName="QNT_NAME" text=$qnStrings.qnt_name_field skipColon=false ?></td>
+									<td><input id="tplData[QNT_NAME]" name="tplData[QNT_NAME]" type="text" class="FormControl" value="<? $tplData.QNT_NAME ?>" maxlength="50" style="width: 100%"></td>
+								</tr>
+								<tr class="SeparatedRow">
+									<td></td>
+									<td>
+										<textarea name="tplData[QNT_HTML]" id="tplData[QNT_HTML]" class="control" rows="20" style="width: 100%"><? $tplData.QNT_HTML ?></textarea>
+										<input type=hidden name=use_editor value=1/>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<? wbs_buttonSet ?>
+											<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn onClick="onSubmitEditor();" ?>
+											<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+											<? if $action == 'edit' ?>
+												<? wbs_buttonSetButton name="deleteTplBtn" caption=$qnStrings.qnt_screen_delnote_btn  onClick="onSubmitEditor(); return confirmDelete()" align="Right"?>
+											<? /if ?>
+										<? /wbs_buttonSet ?>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td class="mm_rightColumn ValignTop" align=left>
+							<? wbs_note displayNoteMarker=false ?>
+								<? $qnStrings.qnt_variables ?>
+							<? /wbs_note ?>
+
+							<table class="SimpleList">
+								<thead>
+									<tr>
+										<th><? $qnStrings.qnt_variable_name?></th>
+										<th><? $qnStrings.qnt_variable_descr ?></th>
+									</tr>
+								</thead>
+							<tbody>
+								<tr><td valign=top ><nobr><a href="#" onclick="insertHTML('%FOLDER%');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">%FOLDER%</a></nobr></td><td><small><? $qnStrings.qnt_variable_folder ?></td></tr>
+								<tr><td valign=top><nobr><a href="#" onclick="insertHTML('%SUBJECT%');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">%SUBJECT%</a></nobr></td><td><small><? $qnStrings.qnt_variable_subject ?></td></tr>
+								<tr><td valign=top><nobr><a href="#" onclick="insertHTML('%CONTENT%');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">%CONTENT%</a></nobr></td><td><small><? $qnStrings.qnt_variable_content ?></td></tr>
+								<tr><td valign=top><nobr><a href="#" onclick="insertHTML('%FILELIST%');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">%FILELIST%</a></nobr></td><td><small><? $qnStrings.qnt_variable_filelist ?></td></tr>
+								<tr><td valign=top><nobr><a href="#" onclick="insertHTML('%USERNAME%');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">%USERNAME%</a></nobr></td><td><small><? $qnStrings.qnt_variable_username ?></td></tr>
+								<tr><td valign=top><nobr><a href="#" onclick="insertHTML('%DATETIME%');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">%DATETIME%</a></nobr></td><td><small><? $qnStrings.qnt_variable_datetime ?></td></tr>
+							</tbody>
+							</table>
+
+							<? wbs_note displayNoteMarker=true smallFont=true ?>
+								<? $qnStrings.qnt_variable_note ?>
+							<? /wbs_note ?>
+						</td>
+					</tr>
+				</table>
+
+				<? else ?>
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+					<? /wbs_buttonSet ?>
+				<? /if ?>
+
+				<input type="hidden" name="action" value="<?$action?>">
+				<input type="hidden" name="currentPage" value="<?$currentPage?>">
+				<input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>">
+				<input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>">
+				<input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>">
+				<input name="tplData[QNT_ID]" type="hidden" value="<? $tplData.QNT_ID ?>">
+				<input type="hidden" name="searchString" value="<?$searchString?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

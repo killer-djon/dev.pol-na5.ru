@@ -1,0 +1,78 @@
+<style>
+.sendsms_wrapper {padding:5px 0;}
+.sendsms_table td {vertical-align:top; padding-right:5px;}
+</style>
+
+<div class="sendsms_wrapper">
+	<table class="sendsms_table">
+		{{if $contacts_count}}
+		<tr><td colspan="2">
+		[`Selected contacts have {{$phones_count}} mobile phone numbers.`]<br />
+		</td></tr>
+		{{/if}}	
+		<tr>
+			<td><label for="To">[`To`]:</label></td>
+			<td><textarea id="To" name="messageData[TO]" cols="30" rows="2" style="width: 450px;">{{$phones}}</textarea></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="width:450px; color:gray; font-size:11px;">
+				[`Use country code + area code + phone number.`]<br />
+				[`Don't use leading zeros; i.e., "00".`]
+				[`Non-numeric characters are ignored.`]<br />
+				[`Multiple phone numbers must be delimited with semicolon ";".`]
+				<br />
+				[`Sample: +1 (215) 999-9999; 15551000000; 44 123 5550000`]
+			</td>
+		</tr>
+		<tr>
+			<td><label for="message">[`Message`]:</label></td>
+			<td>
+				<textarea id="message" name="messageData[MESSAGE]" cols="30" rows="8" style="width: 450px;"
+					onkeydown="textCounter( 'message','messagelength',210 );"
+					onkeyup="textCounter( 'message','messagelength',210 );"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="text-align:right;">
+				[`Characters left`]:
+				<input name="messagelength" id="messagelength" disabled="disabled" value="210" style="width: 30px;" />
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td id="error_block" style="display:no1ne; color:red;"></td>
+		</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function () {
+		textCounter( 'message','messagelength',210 );
+		jQuery('#To').focus();
+	});
+
+	function textCounter( textBox, counterField, maxlimit ) {
+		var field = findObj( textBox );
+		var countfield = findObj( counterField );
+
+		if (field.value.length > maxlimit) { // if too long... trim it!
+			field.value = field.value.substring(0, maxlimit);
+		} else { // otherwise, update 'characters left' counter
+			countfield.value = maxlimit - field.value.length;
+		}
+	}
+	function findObj(n, d) {
+		var p,i,x;
+		if (!d) d=document;
+		if ((p=n.indexOf("?"))>0&&parent.frames.length) {
+			d=parent.frames[n.substring(p+1)].document;
+			n=n.substring(0,p);
+		}
+		if (!(x=d[n])&&d.all) x=d.all[n];
+		for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+		for (i=0;!x&&d.layers&&i<d.layers.length;i++) x=findObj(n,d.layers[i].document);
+		if (!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+</script>

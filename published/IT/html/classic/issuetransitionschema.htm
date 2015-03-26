@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script language="JavaScript">
+<!--
+//-->
+</script></head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			
+      <td class="pageTopPanel"> 
+				<? if !$openedFromIssueList ?>
+	        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="returnbtn" caption=$itStrings.cw_returntowm_btn formname="form" space_right=#toolbarSmallSpace#?>
+				<? else ?>
+	        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="returnbtn" caption=$itStrings.il_screen_long_name formname="form" space_right=#toolbarSmallSpace#?>
+				<? /if ?>
+        <img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+        <? if $workflowFound ?>
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="savetemplatebtn" caption=$itStrings.cw_saveastemplate_btn formname="form" space_right=#toolbarSmallSpace# space_left=#toolbarSmallSpace# ?>
+        <? /if ?>
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="selecttemplate" caption=$itStrings.cw_selectemplates_btn formname="form" space_right=#toolbarSmallSpace#?>
+      </td>
+    </tr>
+	</table>	
+  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <table border="0" cellspacing="1" cellpadding="1" width=500>
+    <tr> 
+      <td align="left" valign="top"><strong><? $projName ?></strong> </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top"> 
+        <? $itStrings.cw_task_label|cat:" #"|cat:$PW_ID|cat:":&nbsp;" ?>
+        <? $workDescr ?>
+      </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" class="smallFont">&nbsp;</td>
+    </tr>
+
+  <? if $workflowFound ?>	
+	<? include file="../../../common/html/classic/formframe_begin.htm"?>	
+	<table width="100" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td colspan="<? math equation="x+1" x=$colNum ?>" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="10"><img src="<? "images/transitionschema/blockleft.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" ></td>
+                  <td align="center" background="<? "images/transitionschema/blockbg.gif"|stylesetitem:"classic":$styleSet:"IT" ?>"><a href="<? $startTransitionURL ?>"><strong><font color="#000000">
+                    <? $startStatusName ?>
+                    </font></strong></a></td>
+                  <td width="10"><img src="<? "images/transitionschema/blockright.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" ></td>
+                </tr>
+              </table></td>
+          </tr>
+          <? foreach key=rowIndex item=rowData from=$chartData ?>
+          <tr> 
+            <td> 
+              <? if $rowIndex % 2 == 0 && $rowIndex != 0 && $lastRow != $rowIndex ?>
+              <? math assign=dataIndex equation="x/2" x=$rowIndex ?>
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="3"><img src="<? "images/transitionschema/stateblockleft.gif"|stylesetitem:"classic":$styleSet:"IT" ?>"></td>
+                  <td valign="middle" background="<? "images/transitionschema/stateblockbg.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" class="smallFont"> 
+                    <table border="0" cellspacing="0" cellpadding="0">
+                      <tr> 
+                        <td valign="middle"><nobr><img src="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_DELETE true_val=1 str1="images/transitionschema/trans_delete.gif"|stylesetitem:"classic":$styleSet:"IT" str2="images/transitionschema/trans_no_delete.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" align="absmiddle" width="21" height="20" alt="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_DELETE true_val=1 str1=$itStrings.cw_candelete_label str2=$itStrings.cw_cannotdelete_label ?>"><img src="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_EDIT true_val=1 str1="images/transitionschema/trans_modify.gif"|stylesetitem:"classic":$styleSet:"IT" str2="images/transitionschema/trans_no_modify.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" align="absmiddle" width="21" height="20" alt="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_EDIT true_val=1 str1=$itStrings.cw_canedit_label str2=$itStrings.cw_cannotedit_label ?>"><img src="<? switchedOutput val=$transSchema[$dataIndex].ALLOW_ASSIGNMENT true_val=1 str1="images/transitionschema/trans_assign.gif"|stylesetitem:"classic":$styleSet:"IT" str2="images/transitionschema/trans_no_assign.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" align="absmiddle" width="21" height="20" alt="<? switchedOutput val=$transSchema[$dataIndex].ALLOW_ASSIGNMENT true_val=1 str1=$itStrings.cw_asgntallowed_label str2=$itStrings.cw_asgntnotallowed_label ?>">&nbsp;</nobr></td>
+                        <td align="left"><nobr><a href="<? $transSchema[$dataIndex].ROW_URL ?>">
+                          <? $transSchema[$dataIndex].ITS_STYLE|cat:$transSchema[$dataIndex].ITS_STATUS|cat:"</b></font>" ?>
+                          &nbsp;<br>
+                          <span class="smallFont"> 
+                          <? if $transSchema[$dataIndex].ITS_ASSIGNMENTOPTION <> "" || $transSchema[$dataIndex].U_ID_ASSIGNED <> "" ?>
+                          <? $itStrings.cw_to_label|cat:":&nbsp;" ?>
+                          <? if $transSchema[$dataIndex].U_ID_ASSIGNED ?>
+                          <? $transSchema[$dataIndex].U_ID_ASSIGNED?>
+                          &nbsp; 
+                          <? /if ?>
+                          <? if $transSchema[$dataIndex].ITS_ASSIGNMENTOPTION ?>
+                          <? "("|cat:$transSchema[$dataIndex].ITS_ASSIGNMENTOPTION|cat:")"?>
+                          <? /if ?>
+                          <? /if ?>
+                          </span></a></nobr></td>
+                      </tr>
+                    </table></td>
+                  <td width="9"><img src="<? "images/transitionschema/stateblockright.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="10" height="30" ></td>
+                </tr>
+              </table>
+              <? /if ?>
+            </td>
+            <? if $rowIndex != 0 ?>
+            <? foreach key=columnIndex item=colData from=$rowData ?>
+            <td <?if !$colData.PARITY ?>bgcolor="<? #tableSubHeaderColor# ?>"<?/if?>>
+				<? if $colData.DEFAULT ?>
+					<? assign var=defImage value="_default" ?>
+				<? else ?>
+					<? assign var=defImage value="" ?>
+				<? /if ?>
+				<img src="<? "/images/transitionschema/"|cat:$colData.CELLTYPE|cat:$defImage|cat:".gif"|stylesetitem:"classic":$styleSet:"IT" ?>" >
+			</td>
+            <? /foreach ?>
+            <? /if ?>
+          </tr>
+          <? /foreach ?>
+          <tr> 
+            <td colspan="<? math equation="x+1" x=$colNum ?>" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="10"><img src="<? "images/transitionschema/blockleft.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="10" height="25" ></td>
+                  <td align="center" background="<? "images/transitionschema/blockbg.gif"|stylesetitem:"classic":$styleSet:"IT"?>">
+                    <a href="<? $endTransitionURL ?>"><? $endStatusName ?></a>
+                    </td>
+                  <td width="10"><img src="<? "images/transitionschema/blockright.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="10" height="25" ></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+	<? include file="../../../common/html/classic/formframe_end.htm" extraLine=1?>
+    <? include file="../../../common/html/classic/button.htm" align="left" name="addstatebtn" caption=$itStrings.cw_addstate_btn formname="form" space_left=5?>
+  <? else ?>
+  <? $itStrings.cw_noworkflow_message ?>
+  <? /if ?>
+  <? else ?>
+  <? include file="../../../common/html/classic/button.htm" align="left" name="returnbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <input name="edited" type="hidden" value="1">
+  <input name="ITT_ID" type="hidden" value="<? $ITT_ID ?>">
+  <input name="P_ID" type="hidden" value="<? $P_ID ?>">
+  <input name="PW_ID" type="hidden" value="<? $PW_ID ?>">
+  <input name="sorting" type="hidden" value="<? $sorting ?>">
+  <input name="opener" type="hidden" value="<? $opener ?>">
+  <input name="searchCriteria" type="hidden" value="<? $searchCriteria ?>">
+  <input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

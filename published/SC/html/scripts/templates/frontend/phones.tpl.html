@@ -1,0 +1,21 @@
+<div id="callme_back" title="Перезвонить мне" data-width="400">
+	<p class="validateTips">Поля отмеченные знаком <font color="red">*</font>обязательны для заполнения</p>
+	<form name="form-callme_back" method="post" action="{''|set_query_html}">
+		<input type="hidden" name="action" value="phones" />
+		
+		<div class="rowElem">
+			<label for="user_name">Ваше имя:</label>
+			<input type="text" id="user_name" title="Ваше имя" name="user_name" value="" />
+		</div>
+		
+		<div class="rowElem">
+			<label for="user_phone">Номер телефона:</label>
+			<input type="text" id="user_phone" name="user_phone" value="" />
+		</div>
+		<div class="rowElem">
+			<label for="user_msg">Интересующий вопрос:</label>
+			<textarea name="user_msg" id="user_msg" rows="3"></textarea>
+		</div>
+	</form>
+	
+</div>

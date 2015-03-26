@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "styles/it.css"|stylesetitem:"classic":$styleSet:"IT" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+	<? include file="../../../common/html/classic/header.htm" nospace=1?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="pageTopPanel"> 
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="returnbtn" caption=$itStrings.app_return_btn formname="form" space_right=#toolbarSmallSpace#?>
+			</td>
+		</tr>
+	</table>
+	<? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+	<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><b><? $itStrings.wfm_project_label|cat:":&nbsp;" ?></b></td>
+			<td align="left" valign="top">
+				<select name="P_ID" class="control" style="width: 300px" onChange="this.form.submit()">
+					<? html_options values=$projectIDs selected=$P_ID output=$projectNames ?>
+				</select>
+			</td>
+		</tr>
+		<tr><td colspan=2>&nbsp;</td></tr>
+		<tr>
+			<td valign=top><b><? $kernelStrings.app_note_text|cat:":&nbsp;" ?></b></td>
+			<td width=300>
+				<? $itStrings.wfm_page_hint ?>
+			</td>
+		</tr>
+		<? if $projectExists ?>
+			<tr><td colspan=2>&nbsp;</td></tr>
+			<tr>
+				<td class="smallFont" valign=top rowspan=2>
+					<strong><? $kernelStrings.app_tips_label|cat:":&nbsp;" ?></strong>
+				</td>
+				<td class="smallFont" valign=top>
+					<? $itStrings.wfm_note1_text|htmlsafe:true:true ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="smallFont"><? $itStrings.wfm_note2_text|htmlsafe:true:true ?></td>
+			</tr>
+			<tr><td colspan=2 style="height: 5px"></td></tr>
+		<? /if ?>
+	</table>
+
+	<? if $projectExists ?>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+			<tr>
+				<th align="left" width=10><? $itStrings.wfm_id_title ?></th>
+				<th align="left"><? $itStrings.wfm_task_title ?></th>
+				<th align="left"><? $itStrings.wfm_summary_title ?></th>
+			</tr>
+			<? foreach from=$fullWorkList item=work name=workLoop ?>
+				<tr <? if ($smarty.foreach.workLoop.iteration % 2) == 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>>
+					<td valign=top><? $work.PW_ID ?></td>
+					<td valign=top><? $work.PW_DESC|htmlsafe:true:true ?></td>
+					<td valign=top><? conditionalLink href=$work.URL text=$work.transitions ?></td>
+				</tr>
+			<? foreachelse ?>
+				<tr align="center"> 
+					<td colspan="3" bgcolor="#FFFFFF"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+				</tr>
+			<? /foreach ?>
+		</table>
+
+	<? /if ?>
+
+	<? /if ?>
+	<input name="edited" type="hidden" value="1">
+	<input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

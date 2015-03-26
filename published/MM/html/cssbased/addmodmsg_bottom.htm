@@ -1,0 +1,299 @@
+<? if $curScreen == 0?>
+
+<table class="mm_columnsTable">
+	<tr>
+		<td>
+			<? if $mode ?>
+				<textarea class="FormControl" name="messageData[MMM_CONTENT]" id="messageData[MMM_CONTENT]" onFocus="focusControl('messageData[MMM_CONTENT]')" class="control" rows="23" style="width: 100%;  visibility: hidden;"><? $messageData.MMM_CONTENT|htmlsafe_textarea:$edited ?></textarea>
+			<? else ?>
+					<table border=0 height=300 width=100% class="SimpleList_BorderRight SimpleList_BorderLeft SimpleList_BorderTop SimpleList_BorderBottom">
+					<tr>
+						<td <? if $messageData.MMM_CONTENT == '' ?>class="AlignCenter ValignMiddle"<? else ?>class="ValignTop"<? /if ?>>
+							<? if $messageData.MMM_CONTENT != '' ?>
+								<? $messageData.MMM_CONTENT ?>
+							<? else ?>
+								<? $mmStrings.amn_nocontent_text|htmlsafe:true ?>
+							<? /if ?>
+							&nbsp;
+						</td>
+					</tr>
+				</table>
+			<? /if ?>
+			<? if $mode ?>
+				<? include file="../cssbased/vars.htm" ?>
+			<? /if ?>
+		</td>
+		<td class="mm_rightColumn ValignTop" align=right>
+		<? if $mode ?>
+			<? if $action == "edit" ?>
+				<? wbs_noteBlock width="160px" caption=$mmStrings.amn_screen_images_title class=mm_ImageSetBlock ?>
+
+					<? wbs_scrollableArea height="350px" width="160px" class="mm_ImageSetScroller SimpleReport_BorderBottom"?>
+
+						<? assign var="flag" value=0 ?>
+						<? foreach from=$attachedImages item=fileData  key=fileName?>
+							<? assign var="flag" value=1 ?>
+
+							<div class="mm_thumbnail">
+								<table class="mm_Table">
+									<tr>
+										<td rowspan=2><input name="<? $fileData.delcbName ?>[]" type="checkbox" value="<? $fileData.delcbValue ?>"></td>
+										<td>
+											<? if $fileData.old == 1 ?>
+												<a href="#" onclick="insertHTML('<? $fileData.URL ?>');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">
+											<? /if ?>
+												<img src="<? $fileData.THUMB_URL?>" border=0 style="border: black 1px dotted;">
+											<? if $fileData.old == 1 ?>
+												</a>
+											<? /if ?>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<? if $fileData.old == 1 ?>
+												<a href="#" onclick="insertHTML('<? $fileData.URL ?>');" style="font-size: 8pt; text-decoration: none;">
+											<? else ?>
+												<small>
+											<? /if ?>
+												<? $fileName|truncate:20:"..." ?><br> <? $fileData.DIMS.0 ?>x<? $fileData.DIMS.1 ?> (<? $fileData.size?>)
+												<? " <br>("|cat:|cat:")" ?>
+												<? if $fileData.old == 1 ?></a><? else ?></small><? /if ?>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+						<? /foreach ?>
+
+					<? /wbs_scrollableArea ?>
+
+				<? /wbs_noteBlock ?>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="addimgsbtn" caption=$mmStrings.amn_addimages_btn onClick="onSubmitEditor();" ?>
+					<? if $flag == 1 ?>
+						<? wbs_buttonSetButton name="deleteimgsbtn" caption=$mmStrings.amn_deleteimages_btn onClick="onSubmitEditor();" ?>
+					<? /if ?>
+				<? /wbs_buttonSet ?>
+
+			<? else ?>
+				<? wbs_noteBlock width="160px" caption=$mmStrings.amn_screen_images_title ?>
+					<? wbs_note displayNoteMarker=false ?><? $mmStrings.amn_screen_images_message ?><? /wbs_note ?>
+				<? /wbs_noteBlock ?>
+			<? /if ?>
+		<? /if ?>
+		</td>
+	</tr>
+</table>
+
+<? elseif $curScreen == 1?>
+	<table class="mm_columnsTable" width="100%" align=center>
+	<tr>
+	<td>
+		<table class="mm_Table" width="100%" align=center>
+
+		<? if $mode ?>
+			<tr>
+				<td width="100%">
+				<? wbs_note displayNoteMarker=false smallFont=false ?>
+					<? $mmStrings.amn_auto_text_message ?>
+				<? /wbs_note ?>
+				<? wbs_button name="gentextbtn" caption=$mmStrings.amn_generate_from_html_btn onClick="return confirmGenHtml();" ?>
+				</td>
+			</tr>
+		<? /if ?>
+			<tr>
+				<td>
+					<? if $mode ?>
+						<br>
+						<textarea name="messageData[CONTENT_TEXT]" id="messageData[CONTENT_TEXT]" onFocus="focusControl('messageData[CONTENT_TEXT]')" class="control" rows="23" style="width: 100%">CONTENT_TEXT field deleted</textarea>
+					<? else ?>
+						<table border=0 height=300 width=100% class="SimpleList_BorderRight SimpleList_BorderLeft SimpleList_BorderTop SimpleList_BorderBottom">
+							<tr>
+								<td>
+									<? $mmStrings.amn_nocontent_text|htmlsafe:true ?>
+									&nbsp;
+								</td>
+							</tr>
+						</table>
+					<? /if ?>
+				</td>
+			</tr>
+			</table>
+
+			<? if $mode ?>
+				<? include file="../cssbased/vars.htm" ?>
+			<? /if ?>
+
+
+		</td>
+		<td class="mm_rightColumn ValignTop" align=right>
+		</td>
+
+	</tr>
+	</table>
+
+
+<? elseif $curScreen == 2?>
+
+<table class="NameValueList">
+<tr class="SeparatedRow">
+	<td><? $mmStrings.app_folder_field ?>:</td>
+	<th scope="col"><? $summaryArray.FOLDERDATA.MMF_NAME ?></th>
+</tr>
+<tr>
+	<td><? $mmStrings.app_id_field ?>:</td>
+	<th scope="col"><? $summaryArray.MMM_ID ?></th>
+</tr>
+<tr>
+	<td><? $mmStrings.app_priority_field ?>:</td>
+	<th scope="col"><? $summaryArray.MSGPRIORITY ?></td>
+</tr>
+<tr>
+	<td><? $mmStrings.app_subject_field ?>:</td>
+	<th scope="col"><? $summaryArray.MMM_SUBJECT|htmlsafe:true:true ?></th>
+</tr>
+<tr>
+	<td><? $mmStrings.app_status_field ?>:</td>
+	<th scope="col"><? $summaryArray.MMM_STATUS ?></th>
+</tr>
+<tr>
+	<td><? $mmStrings.app_createdate_field ?>:</td>
+	<th scope="col"><? $summaryArray.MMM_DATETIME ?></th>
+</tr>
+<tr class="SeparatedRow">
+	<td><? $mmStrings.app_encoding_field ?>:</td>
+	<th scope="col">ENCODING field deleted</th>
+</tr>
+
+<? if $messageData.MMM_STATUS != 100 ?>
+
+	<tr>
+		<td><? $mmStrings.app_messageid_field ?>:</td>
+		<th scope="col"><? $summaryArray.MMM_MESSAGEID ?></th>
+	</tr>
+	<tr>
+		<td><? $mmStrings.app_from_field ?>:</td>
+		<th scope="col"><? $summaryArray.MMM_FROM ?></th>
+	</tr>
+	<tr>
+		<td><? $mmStrings.app_returnpath_field ?>:</td>
+		<th scope="col">RETURNPATH field deleted</th>
+	</tr>
+	<tr>
+		<td><? $mmStrings.app_replyto_field ?>:</td>
+		<th scope="col">REPLYTO field deleted</th>
+	</tr>
+<? /if ?>
+
+</table>
+
+<? elseif $curScreen == 3?>
+
+<table border="0" cellspacing="2" cellpadding="2">
+<tr>
+	<td><nobr><b><? $mmStrings.app_sendby_field ?>:</b></nobr></td>
+	<td><? $summaryArray.SENDUSERNAME ?></td>
+</tr>
+<? if $summaryArray.MMM_STATUS == 3 || $summaryArray.MMM_STATUS == 2 ?>
+	<tr><td colspan=2>&nbsp;</td></tr>
+	<tr>
+		<td><nobr><b><? $mmStrings.amn_recipientsnum_label ?>:</b></nobr></td>
+		<td><? $sentReport.TOTAL ?> <? if $summaryArray.SENDTO.RECTOTAL != "" ?> <? $mmStrings.amn_of_text ?> <? $summaryArray.SENDTO.RECTOTAL ?> (<? $mmStrings.amn_maxrecipients_exc_text ?>) <? /if ?></td>
+	</tr>
+	<tr>
+		<td valign=top colspan=2>&nbsp;</td>
+	</tr>
+	<tr>
+		<td valign=top colspan=2><b><? $mmStrings.amn_recipientslist_label ?>:</b></td>
+	</tr>
+	<tr>
+		<td valign=top colspan=2>
+			<div class="control" style="overflow: auto; width: 500; height: 300px; padding: 0!important; margin: 0!important">
+				<? foreach from=$sentReport.RECIPIENTS item=to?>
+					<nobr><? $to.MMMST_EMAIL|htmlsafe:tru:true ?></nobr><br>
+				<? /foreach ?>
+			</div>
+		</td>
+
+	</tr>
+<? /if ?>
+<? if $summaryArray.MMM_STATUS == 99 ?>
+	<tr><td colspan=2>&nbsp;</td></tr>
+	<tr>
+		<td colspan=2><nobr><? $mmStrings.amn_notsent_error ?></nobr></td>
+	</tr>
+<? /if ?>
+</table>
+</div>
+</td></tr>
+</table>
+
+<? elseif $curScreen == 4 ?>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" height=100%>
+<tr>
+<td width=85% valign=top>
+
+	<? if $attachedFiles ?>
+
+		<table class="SimpleList">
+		<? foreach from=$attachedFiles item=fileData  key=fileName?>
+		<tr>
+			<? if $mode ?> <td valign="top"><input name="<? $fileData.delcbName ?>[]" type="checkbox" value="<? $fileData.delcbValue ?>"> &nbsp;</td> <? /if ?>
+			<td ><? $fileData.FILELINK ?></td>
+		</tr>
+		<? /foreach ?>
+		</table>
+
+		<? if $mode ?>
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="deletefilesbtn" caption=$kernelStrings.app_deletefiles_btn onClick="onSubmitEditor();" ?>
+			<? /wbs_buttonSet ?>
+ 		<? /if ?>
+
+	<? else?>
+		<? if !$mode ?>
+			<table border=0 height=300 width=100% class="SimpleList_BorderRight SimpleList_BorderLeft SimpleList_BorderTop SimpleList_BorderBottom">
+			<tr>
+				<td align=center valign=middle>
+					<? $mmStrings.amn_noattachments_text|htmlsafe:true ?>
+					&nbsp;
+				</td>
+			</tr>
+			</table>
+		<? /if ?>
+	<? /if ?>
+
+	<? if $mode ?>
+
+	<table class="FormLayout">
+	<tr class="SeparatedRow">
+	<td>
+		<? wbs_label for="notefile" fieldName="notefile" text=$kernelStrings.app_attachfiles_btn skipColon=false ?>
+	</td>
+	<td>
+		<table border="0" cellspacing="0" cellpadding="0" class="FormLayout">
+		<tr>
+			<td><input name="notefile" id="notefile" type="file" class="FormControl"></td>
+			<td align="right">
+				<? wbs_button name="attachbtn" caption=$kernelStrings.app_attachfiles_btn onClick="onSubmitEditor();" ?>
+			</td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+	</table>
+
+	<? wbs_note displayNoteMarker=true smallFont=true indented=true?>
+		<? $limitStr ?>
+	<? /wbs_note ?>
+
+	<? /if ?>
+</td>
+<td>
+&nbsp;
+</td>
+</table>
+
+<? /if ?>

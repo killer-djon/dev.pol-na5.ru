@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( 'vcSettings[<? $invalidField ?>]', 'folderData' )">
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+			<? wbs_formLayout caption=$pageTitle ?>
+
+			<? wbs_formContent ?>
+
+				<tr>
+					<td>
+						<? wbs_label for="maxVersionNum" text=$ddStrings.vc_maxversions_label ?>
+					</td>
+					<td><input class="FormControl" type=text value="<? $vcSettings.maxVersionNum|htmlsafe:true:true ?>" name="vcSettings[maxVersionNum]" id="maxVersionNum" style="width: 50px"></td>
+				</tr>
+				<tr class="SeparatedRow">
+					<td></td>
+					<td>
+						<? wbs_note displayNoteMarker=false width="500px" smallFont=true ?>
+							<? $ddStrings.vc_blankvalue_note ?>
+						<? /wbs_note ?>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2>
+						<? wbs_note displayNoteMarker=true width="500px" smallFont=false ?>
+							<? $ddStrings.vc_maxversions_note ?>
+						<? /wbs_note ?>
+					</td>
+				</tr>
+			<? /wbs_formContent ?>
+
+			<? wbs_formButtonsPanel ?>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+
+			<? /wbs_formButtonsPanel ?>
+
+			<? /wbs_formLayout ?>
+
+		<? else ?>
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+			<? /wbs_buttonSet ?>
+		<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

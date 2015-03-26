@@ -1,0 +1,224 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+
+	function onCreateArchive()
+	{
+		thisForm = document.forms[0];
+		
+		if ( document.getElementById ) {
+			var addFileCell = document.getElementById( 'optionscell' );
+			if (addFileCell)
+				addFileCell.style.display = "none";
+				
+			var attachMessageCell = document.getElementById( 'waitingcell' );
+			if (attachMessageCell)
+				attachMessageCell.style.display = "inline";
+		}
+		
+		processTextButton( 'savebtn', 'form' );
+		
+		return false;
+	}
+
+	function initFocus()
+	{
+		<? if $invalidField ?>
+			focusFormControl('<? $invalidField ?>');
+		<? else ?>
+			focusFirstFormControl();
+		<? /if ?>
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="initFocus()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<input type="hidden" name="btndummy">
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="DF_ID" value="<? $DF_ID?>">
+	<input type="hidden" name="doclist" value="<? $doclist?>">
+
+	<? include file="../../../common/html/classic/header.htm"?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+		<? if $archiveSupported ?>
+			<? if !$archiveCreated ?>
+				<table cellpadding="0" cellspacing="0" border="0">
+				<!-- Add file form -->
+					<tr>
+						<td ID="optionscell">
+							<table border=0 cellpadding=0 cellspacing=4>
+								<tr>
+									<td><? $ddStrings.ca_createarchive_note ?></td>
+								</tr>
+								<tr><td>&nbsp;</td></tr>
+								<tr>
+									<td><? $ddStrings.ca_add_label|cat:":" ?></td>
+								</tr>
+								<tr>
+									<td height=5></td>
+								</tr>
+								<tr>
+									<td style="padding-left: 20px"><input type=radio <? switchedOutput val=$addMode true_val=0 str1="checked " ?> name=addMode value=0>&nbsp;<? $ddStrings.ca_selectedfiles_label|cat:" ("|cat:$selectedDocsNum|cat:")" ?></td>
+								</tr>
+								<tr>
+									<td style="padding-left: 20px">
+										<table cellpadding=0 cellspacing=0 border=0>
+											<tr>
+												<td><input type=radio <? switchedOutput val=$addMode true_val=1 str1="checked " ?> name=addMode value=1>&nbsp;</td>
+												<td valign=middle>
+													<? $ddStrings.ca_folder_label|cat:":&nbsp;" ?>
+													<select class="control" name="folderID">
+														<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$folderID showAnyRights=true?>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+												<td colspan=2><input type=checkbox name=addsubfolders value=1 <? switchedOutput val=$addsubfolders true_val=1 str1="checked "?>> <? $ddStrings.ca_includesubfolders_label ?></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td style="padding-left: 20px"><input type=radio <? switchedOutput val=$addMode true_val=2 str1="checked " ?> name=addMode value=2>&nbsp;<? $ddStrings.ca_entiredd_label ?></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+							<table cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td><b><? $kernelStrings.app_note_text|cat:": " ?></b> <? $ddStrings.ca_creating_note ?></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+							<? include file="../../../common/html/classic/button.htm" align="left" caption=$ddStrings.ca_createarchive_btn formname="form" space_left=0 space_right=10  onClick="return onCreateArchive()" ?>
+							<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+						</td>
+					</tr>
+					<tr>
+						<td ID="waitingcell" style="display:none">
+							<p class="header2"><? $ddStrings.ca_createarchive_text ?></p>
+							<p><? $ddStrings.ca_createwait_text ?></p>
+							<p><img src="<? "images/progress.gif"|stylesetitem:"classic":$styleSet:"DD" ?>" ></p>
+							<p><? include file="../../../common/html/classic/button.htm" align="left" link="catalog.php" caption=$kernelStrings.app_cancel_btn formname="form"?></p>
+						</td>
+					</tr>
+				</table>
+			<? else ?>
+				<input type=hidden name=archiveName value="<? $archiveName ?>">
+				<input type=hidden name=fileNumber value="<? $fileNumber ?>">
+				<input type=hidden name=fileSize value="<? $fileSize ?>">
+				<input type=hidden name=filesAddedMessage value="<? $filesAddedMessage|htmlsafe:true:true ?>">
+				<input type=hidden name=downloadArchiveLink value="<? $downloadArchiveLink|htmlsafe:true:true ?>">
+				<input type=hidden name=archiveCreated value=1>
+				<input type=hidden name=addMode value="<? $addMode ?>">
+				<input type=hidden name=fileSizeInBytes value="<? $fileSizeInBytes ?>">
+
+				<table border=0 cellpadding=0 cellspacing=2>
+					<tr>
+						<td><? $ddStrings.ca_archivecreated_label ?></td>
+					</tr>
+					<tr>
+						<td><? $filesAddedMessage ?></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<td><? $ddStrings.ca_filesize_label|cat:": "|cat:$fileSize ?></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr><td><hr size=1 noshade width="100%"></td></tr>
+					</tr>
+					<tr><td height=5></td></tr>
+					<tr>
+						<td>
+							<? include file="../../../common/html/classic/button.htm" align="left" link=$downloadArchiveLink caption=$ddStrings.ca_downloadarchive_btn formname="form"?>
+						</td>
+					<tr><td height=5></td></tr>
+					<tr><td><hr size=1 noshade width="100%"></td></tr>
+					<tr><td height=5></td></tr>
+					<tr>
+						<td>
+
+							<!-- Save form -->
+
+							<table border=0 cellpadding=0 cellspacing=2>
+								<tr>
+									<td>
+										<? conditionalOutput invalidField=$invalidField field=targetID text=#invalidFieldHighlight#  ?>
+										<? $ddStrings.ca_saveinfolder_label|cat:":&nbsp;" ?>
+									</td>
+									<td>
+										<select class="control" name="targetID">
+											<option value=""><? $ddStrings.ca_selectfolder_item|htmlsafe:true:true ?></option>
+											<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$targetID showAnyRights=true?>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<? conditionalOutput invalidField=$invalidField field=fileName text=#invalidFieldHighlight#  ?>
+										<? $ddStrings.ca_filename_label|cat:":" ?>
+									</td>
+									<td><input type=text class=control name=fileName value="<? $fileName|htmlsafe:true:true ?>"></td>
+								</tr>
+								<tr>
+									<td valign=top><? $ddStrings.ca_description_label|cat:":" ?></td>
+									<td><textarea style="width: 400px" rows="3" class="control" name="fileDescription"><? $fileDescription|htmlsafe_textarea:$edited ?></textarea></td>
+								</tr>
+								<tr>
+									<td colspan=2>&nbsp;</td>
+								</tr>
+							</table>
+
+							<? include file="../../../common/html/classic/button.htm" align="left" name="savearchivebtn" caption=$kernelStrings.app_save_btn formname="form"?>
+
+							<!-- /Save form -->
+
+						</td>
+					</tr>
+					<tr><td height=5></td></tr>
+					<tr><td><hr size=1 noshade width="100%"></td></tr>
+					<tr><td height=5></td></tr>
+					<tr>
+						<td>
+							<? include file="../../../common/html/classic/button.htm" align="left" name="closebtn" caption=$ddStrings.ca_close_btn formname="form"?>
+						</td>
+					</tr>
+				</table>
+			<? /if ?>
+		<? else ?>
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td><? $ddStrings.ua_archivesnotsupported_message|htmlsafe:true:true ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+		<? /if ?>
+	<? else ?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+	<? /if ?>
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

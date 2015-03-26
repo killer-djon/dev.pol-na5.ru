@@ -1,0 +1,18 @@
+<? if $masterStep == 0 ?>
+	<? if !$showMessages ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton name=addfilebtn link="#" caption=$ddStrings.add_screen_add_btn onClick="return onUpload()" ?>
+		<? /wbs_toolbarItem ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+		<? /wbs_toolbarItem ?>
+	<? else ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton name="cancelbtn"  caption=$kernelStrings.app_ok_btn   ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+<? else ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton name="cancelbtn"  caption=$kernelStrings.app_ok_btn   ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>

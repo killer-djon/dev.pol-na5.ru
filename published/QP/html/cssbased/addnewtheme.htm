@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'themeData' )">
+		<? wbs_pageLayout toolbar="ant_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout ?>
+					<? wbs_formContent ?>
+	<tr class="SeparatedRow">
+		<td colspan=4>
+			<table class="FormLayout"><tr><td><nobr><? wbs_label for="themeData[QPT_NAME]" fieldName="QPT_NAME" text=$qpStrings.qpt_themename_title skipColon=false ?></nobr></td>
+			<td><input type=text class="FormControl" style="width: 400px" name="themeData[QPT_NAME]" id="themeData[QPT_NAME]" value="<? $themeData.QPT_NAME ?>"></td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="SeparatedRow">
+		<td valign=top><input class="FormControl" type=radio name=newtype id=newtype1 value=1 checked></td>
+		<td valign=top><b><? wbs_label for="newtype1" fieldName="newtype" text=$qpStrings.qp_publish_tree_title skipColon=false ?></b>
+			<? wbs_label text=$qpStrings.pub_screen_tree_descr skipColon=true ?>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align=left><? $qpStrings.qp_publish_sample|cat:":<br>" ?><img src=../classic/images/tree.gif style="border: solid 1px Grey;"></td>
+	</tr>
+	<tr class="SeparatedRow">
+		<td width=1 valign=top><input class="FormControl" type=radio name=newtype id=newtype0 value=0></td>
+		<td valign=top width=100%><b><? wbs_label for="newtype0" fieldName="newtype" text=$qpStrings.qp_publish_plain_title skipColon=false ?></b>
+			<? wbs_label skipColon=true text=$qpStrings.pub_screen_plain_descr ?>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align=left><? $qpStrings.qp_publish_sample|cat:":<br>" ?><img src=../classic/images/plain.gif style="border: solid 1px Grey;"></td>
+	</tr>
+	<? if $themesCount > 0 ?>
+	<tr>
+		<td valign=top><input class="FormControl" type=radio name=newtype id=newtypec value="copy"></td>
+		<td valign=top><b><? wbs_label for="newtypec" fieldName="newtype" text=$qpStrings.qpt_copyfrom_theme_label skipColon=false ?></b>
+
+		<select class="FormControl" name="fromTheme">
+			<? foreach from=$themes item=theme ?>
+			<option value="<? $theme.QPT_ID ?>"><nobr><? $theme.QPT_NAME|htmlsafe:true:true ?> (<? if $theme.QPT_TYPE == 0 ?><? $qpStrings.qp_publish_plain_title ?><? else ?><? $qpStrings.qp_publish_tree_title ?><? /if ?>)</nobr>
+			<? /foreach ?>
+		</select>
+
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align=center>&nbsp;</td>
+	</tr>
+	<? /if ?>
+
+					<? /wbs_formContent ?>
+					<? wbs_formButtonsPanel ?>
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name="okbtn" caption=$kernelStrings.app_ok_btn ?>
+							<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+						<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+				<? /wbs_formLayout ?>
+
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+			<input name="folder" type="hidden" value="<? $folder ?>">
+			<input name="sorting" type="hidden" value="<? $sorting?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

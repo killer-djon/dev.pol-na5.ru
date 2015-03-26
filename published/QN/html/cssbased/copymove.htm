@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+
+		<script language="JavaScript" type="text/JavaScript">
+		<!--
+			function checkFolderRights( operation )
+			{
+				obj = findObj("curQNF_ID");
+				if ( !obj )
+					return true;
+
+				selected = obj.selectedIndex;
+				if ( obj.options[selected].value == -1 ||  obj.options[selected].value == 0 ) {
+					switch ( operation ) {
+						case 0 :
+						case 1 : alert( '<? $kernelStrings.app_treenocopymoverights_message ?>' ); break;
+						case 3 : alert( '<? $kernelStrings.app_treenocopytorights_message ?>' ); break;
+						case 4 : alert( '<? $kernelStrings.app_treenomovetofldrights_message ?>' ); break;
+					}
+
+					return false;
+				}
+
+				if ( obj.options[selected].value == -2 ) {
+					alert( '<? $kernelStrings.app_treesavecopymove_message ?>' );
+					return false;
+				}
+
+				if ( obj.options[selected].value == -3 ) {
+					alert( '<? $kernelStrings.app_treeselectfolder_message ?>' );
+					return false;
+				}
+
+				return true;
+			}
+			//-->
+		</script>
+
+	</head>
+	<body>
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? if $folderName && ($operation == 0 || $operation == 1) && $docNum != "" ?>
+					<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+						<? $docNum|cat:" "|cat:$qnStrings.cm_screen_form_label ?>
+					<? /wbs_note ?>
+				<? /if ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+
+						<? if $folderCount ?>
+
+							<tr>
+								<td><? wbs_note displayNoteMarker=false smallFont=false ?><? $kernelStrings.app_treefrom_text|cat:":" ?><? /wbs_note ?></td>
+								<td><b><? $folderName|htmlsafe:true:true|trunc_str:50 ?></b></td>
+							</tr>
+							<? assign var=rowClass value="" ?>
+							<? if $operation == 3 || $operation == 4 ?>
+								<? assign var=rowClass value="SeparatedRow" ?>
+							<? /if ?>
+							<tr class="<? $rowClass ?>">
+								<td><? wbs_label for="curQNF_ID" fieldName="curQNF_ID" text=$kernelStrings.app_treeto_text ?></td>
+								<td>
+									<select id="curQNF_ID" class="control" name="curQNF_ID" style="width: 300px">
+										<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm"
+												selectedID=$currentFolder
+												showAnyRights=true
+												denyNoAccess=true
+												showPromt=true ?>
+									</select>
+								<td>
+							</tr>
+
+						<? else ?>
+							<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+								<? $kernelStrings.app_treenofolders_message ?>
+							<? /wbs_note ?>
+						<? /if ?>
+
+						<? if $operation == 3 || $operation == 4 ?>
+							<tr>
+								<td><input class="FormControl" id="COPY" type=radio value=COPY name=accessInheritance <? wbs_checkboxStatus val=$accessInheritance true_val=COPY ?>/></td>
+								<td><? wbs_label for="COPY" text=$kernelStrings.app_treekeepaccess_text skipColon=1 ?></td>
+							</tr>
+							<tr>
+								<td><input  class="FormControl" type=radio id="INHERIT" value=INHERIT name=accessInheritance <? wbs_checkboxStatus val=$accessInheritance true_val=INHERIT ?>/></td>
+								<td><? wbs_label for="INHERIT" text=$kernelStrings.app_treeinheritaccess_text skipColon=1 ?></td>
+							</tr>
+						<? else ?>
+							<input type="hidden" name="accessInheritance" value="<? $accessInheritance ?>">
+						<? /if ?>
+
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+
+						<? wbs_buttonSet ?>
+							<? if $folderCount ?>
+								<? wbs_buttonSetButton caption=$saveCaption name="savebtn" onClick="return checkFolderRights("|cat:$operation|cat:")" ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+							<? else ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+							<? /if ?>
+						<? /wbs_buttonSet ?>
+
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+
+			<? else ?>
+				<? wbs_button caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+			<? /if ?>
+
+		  <input type="hidden" name="doclist" value="<?$doclist?>">
+		  <input type="hidden" name="searchString" value="<?$searchString?>">
+		  <input type="hidden" name="QNF_ID" value="<?$QNF_ID?>">
+		  <input type="hidden" name="operation" value="<?$operation?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

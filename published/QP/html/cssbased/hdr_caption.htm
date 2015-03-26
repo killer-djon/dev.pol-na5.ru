@@ -1,0 +1,16 @@
+<? if $searchString != "" ?>
+	<? assign var=rightPanelHeader value=$qpStrings.app_screen_search_result_title|htmlsafe:true:true ?>
+<? else ?>
+	<? if $bookData.QPB_PUBLISHED ?>
+		<? assign var=tP value=$qpStrings.qp_screen_published_title|cat:": "|cat:$themeName|htmlsafe:true:true|cat:" - <a href="|cat:$urlBook|cat:" target=_blank><u>"|cat:"preview"|cat:"</u></a>" ?>
+	<? else ?>
+		<? assign var=tP value=$qpStrings.qp_screen_notpublished_title ?>
+	<? /if ?>
+
+	<? if !$fatalError ?>
+		<? assign var=rightPanelHeaderAdditionalInfo value="&nbsp; <span style='font-size: 80%'>["|cat:$tP|cat:"]</span>" ?>
+		<? assign var=rightPanelHeader value=$bookData.QPB_NAME|trunc_str:50|cat:$rightPanelHeaderAdditionalInfo ?>
+	<? /if ?>
+
+<? /if ?>
+<? $rightPanelHeader ?>

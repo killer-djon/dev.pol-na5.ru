@@ -1,0 +1,17 @@
+<? wbs_toolbarItem?>
+	<? if !$openedFromIssueList ?>
+		<? wbs_button caption=$itStrings.cw_returntowm_btn name="returnbtn" ?>
+	<? else ?>
+	<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$itStrings.app_name_short name='returnbtn' ?>
+	<? /if ?>
+<? /wbs_toolbarItem ?>
+
+<? if $workflowFound ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$itStrings.cw_saveastemplate_btn name="savetemplatebtn" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$itStrings.cw_selectemplates_btn name="selecttemplate" ?>
+<? /wbs_toolbarItem ?>

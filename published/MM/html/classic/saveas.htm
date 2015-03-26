@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+
+
+	<table border="0" cellspacing="2" cellpadding="0">
+	<tr>
+		<td colspan=2><h1><? $subject|htmlsafe:true:true ?></h1></td>
+	</tr>
+	<tr>
+			<td><? $mmStrings.sa_savein_text|cat:":&nbsp;" ?></td>
+			<td>
+			<select class="control" name="MMF_ID" style="width: 300px">
+					<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$curMMF_ID showAnyRights=true denyNoAccess=true showPromt=false ?>
+				</select>
+			</td>
+		  </tr>
+    </table>
+	<BR><BR>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=5 space_right=10?>
+        <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+      </td>
+      <td align="right">
+      </td>
+    </tr>
+  </table>
+
+  <? /if ?>
+  <input type="hidden" name="action" value="<?$action?>">
+  <input name="MMM_ID" type="hidden" value="<? $MMM_ID ?>">
+  <input name="opener" type="hidden" value="<? $opener ?>">
+  <input name="STATUS" type="hidden" value="<? $STATUS ?>">
+
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="btndummy">
+
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

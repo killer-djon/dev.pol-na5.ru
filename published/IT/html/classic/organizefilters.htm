@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+
+	function MM_findObj(n, d) { //v4.0
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && document.getElementById) x=document.getElementById(n); return x;
+	}
+
+	function confirmDelete()
+	{
+		if ( !treeCheckSelection( '<? $itStrings.ogf_emptydel_message ?>' ) )
+			return false;
+	
+		return true;
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="pageTopPanel"> 
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$itStrings.ogf_return_btn formname="form" space_right=#toolbarSmallSpace#?>
+			<img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="newfilterbtn" caption=$itStrings.ogf_addfilter_btn formname="form" space_left=#toolbarSmallSpace# space_right=#toolbarSmallSpace#?>
+			<? if $recentFiltersCount ?>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="deletefilterbtn" caption=$itStrings.ogf_delete_btn formname="form" onClick="return confirmDelete()" space_right=#toolbarSmallSpace#?>
+			<? /if ?>
+			</td>
+		</tr>
+	</table>	
+  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+	<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="smallFont" valign=top>
+				<strong><? $kernelStrings.app_tips_label|cat:":&nbsp;" ?></strong>
+			</td>
+			<td class="smallFont" valign=top>
+				 <? $itStrings.ogf_tip_text ?>
+			</td>
+		</tr>
+		<tr colspan=2><td style="height: 5px"></td></tr>
+	</table>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+      <th align="left"  colspan="3"><? $itStrings.ogf_filter_title ?></th>
+	<? foreach from=$recentFilters item=curFilter key=curKey?>
+		<tr<? if ($curFilter.2% 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 			
+		  <td valign="top" width="10"><input type="checkbox" name="document[]" value="<? $curKey?>"></td>
+		  <td valign="top" ><a href="<? $curFilter.1 ?>"><? $curFilter.0 ?></a></td>
+		</tr>
+	<? /foreach ?>
+  </table>
+  <? /if ?>
+  <input name="edited" type="hidden" id="edited" value="1">
+  <input name="P_ID" type="hidden" value="<? $P_ID ?>">
+  <input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

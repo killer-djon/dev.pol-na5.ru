@@ -1,0 +1,146 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="../../../DD/html/classic/stylesets/dd.css" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+
+	function MM_findObj(n, d) { //v4.0
+		var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+		d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+		if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+		for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+		if(!x && document.getElementById) x=document.getElementById(n); return x;
+	}
+
+	function setDateMode( control, value )
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'radio')
+				if ( thisForm.elements[i].name == control && thisForm.elements[i].value == value ) {
+					thisForm.elements[i].checked = true;
+					break;
+				}
+	}
+
+	function initFocus()
+	{
+		<? if $invalidField ?>
+			focusFormControl('repSettings[<? $invalidField ?>]');
+		<? else ?>
+			focusFirstFormControl();
+		<? /if ?>
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="initFocus()">
+<? strip ?>
+	<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+		<? include file="../../../common/html/classic/header.htm"?>
+
+		<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr?>
+
+		<? if !$fatalError ?>
+
+			<table cellpadding=0 cellspacing=2 border=0>
+				<tr>
+					<td><input type=radio name="repSettings[type]" value=days <? switchedOutput val=$repSettings.type true_val=days str1="checked " ?>></td>
+					<td>
+						<? conditionalOutput invalidField=$invalidField field="days" text=#invalidFieldHighlight# ?>
+						<? $ddStrings.rep_last_label|cat:" " ?>
+						<input onchange="setDateMode('repSettings[type]', 'days')" type=text value="<? $repSettings.days|htmlsafe:true:true ?>" name="repSettings[days]" style="width: 30px"><? " "|cat:$ddStrings.rep_days_label ?>
+					</td>
+				</tr>
+				<tr>
+					<td><input type=radio name="repSettings[type]" value=range <? switchedOutput val=$repSettings.type true_val=range str1="checked " ?>></td>
+					<td>
+						<? conditionalOutput invalidField=$invalidField field="from" text=#invalidFieldHighlight# ?>
+						<? $ddStrings.rep_daterange_label|cat:" " ?>
+						<input type=text value="<? $repSettings.from|htmlsafe:true:true ?>" name="repSettings[from]" size=10 id=fromdate onchange="setDateMode('repSettings[type]', 'range')">
+						<?include file="../../../common/html/classic/calendar.tpl"  style="margin-left: 2px" name="fromdate"?>
+						</font>
+						<? conditionalOutput invalidField=$invalidField field="to" text=#invalidFieldHighlight# ?>
+						<? " "|cat:$ddStrings.rep_to_label|cat:" " ?>
+						<input type=text value="<? $repSettings.to|htmlsafe:true:true ?>" name="repSettings[to]" size=10 id=todate onchange="setDateMode('repSettings[type]', 'range')">
+						<?include file="../../../common/html/classic/calendar.tpl"  style="margin-left: 2px" name="todate"?>
+					</td>
+				</tr>
+			</table>
+
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<? include file="../../../common/html/classic/button.htm" name="showbtn" caption=$ddStrings.rep_show_btn formname="form"?>
+
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<? if $reportGenerated ?>
+				<div style='padding-left: 1px'>
+					<table border="0" cellspacing="0" cellpadding="0" class="dd_report_table dd_strongBorder">
+						<tr class=dd_report_head>
+							<td align=left width=300><? $ddStrings.rep_rcupfilename_title ?></td>
+							<td align=right><? $ddStrings.rep_ftsfilesize_title ?>&nbsp;</td>
+							<td align=left><? $ddStrings.rep_rcupuplago_title ?></td>
+							<td align=left><? $ddStrings.rep_rcupusername_title ?></td>
+						</tr>
+
+						<? foreach from=$reportData item=fileData name=reportLoop ?>
+							<tr>
+								<td class="dd_bottomBorder" valign=top><? $fileData.DL_FILENAME|htmlsafe:true:true|sureecho ?></td>
+								<td class="dd_bottomBorder" align=right valign=top><? $fileData.DL_FILESIZE|htmlsafe:true:true ?>&nbsp;</td>
+								<td class="dd_bottomBorder" valign=top><? $fileData.DL_UPLOADDATETIME|htmlsafe:true:true ?>&nbsp;</td>
+								<td class="noRightBorder dd_bottomBorder" valign=top><? $fileData.DL_UPLOADUSERNAME|htmlsafe:true:true|sureecho ?></td>
+							</tr>
+						<? foreachelse ?>
+							<tr>
+								<td colspan=4 height=20 align=center valign=middle>
+									<? $ddStrings.rep_norecords_label|htmlsafe:true:true ?>
+								</td>
+							</tr>
+						<? /foreach ?>
+						<? if $reportDataCount ?>
+							<tr>
+								<td><b><? $ddStrings.rep_totals_label ?></b></td>
+								<td align=right><b><? $total|htmlsafe:true:true|sureecho ?></b>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td class="noRightBorder"></td>
+							</tr>
+						<? /if ?>
+					</table>
+				</div>
+
+				<table cellpadding=0 cellspacing=0 border=0>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			<? /if ?>
+
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$ddStrings.rep_backtorepors_btn formname="form"?>
+		<? else ?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+		<? /if ?>
+		<input type="hidden" name="btndummy">
+		<input type="hidden" name="edited" value="1">
+	<?include file="../../../common/html/classic/pagefooter.htm"?>
+	</form>
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="../../../MM/html/classic/stylesets/default/mm_options.css" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/includes/controls/varlist.js"></script>
+<script language="JavaScript">
+<!--
+
+function processButton( button )
+{
+	<? if $mode && $curScreen == 0 ?>
+		onSubmitEditor();
+	<? /if ?>
+	return processTextButton( button, 'form' );
+}
+
+function onSubmitEditorLocal( )
+{
+	<? if $mode && $curScreen == 0 ?>
+		onSubmitEditor();
+	<? /if ?>
+	return true;
+}
+
+
+function confirmGenHtml()
+{
+	return true;
+}
+
+
+CurrentMessageField = "messageData[MMM_SUBJECT]";
+
+function confirmDelete()
+{
+	return confirm( "<? $deleteConfirmMessage ?>" );
+}
+
+function focusControl( controlID )
+{
+	CurrentMessageField = controlID;
+	return true;
+}
+
+function blurControl( controlID )
+{
+//	CurrentMessageField = "";
+	return true;
+}
+
+function toggleVisibility( id )
+{
+	var el = document.getElementById( id+"Block" );
+	var cm = document.getElementById( id+"Comment" );
+	var tgl = document.getElementById( id+"Tgl" );
+
+	if ( el )
+	{
+		if ( el.style.display == 'none' )
+		{
+			tgl.textContent = "<? $mmStrings.amn_vars_hide_link?>";
+			tgl.innerText = "<? $mmStrings.amn_vars_hide_link?>";
+
+			cm.style.display = el.style.display = '';
+		}
+		else
+		{
+			tgl.textContent = "<? $mmStrings.amn_vars_show_link?>";
+			tgl.innerText = "<? $mmStrings.amn_vars_show_link?>";
+
+			cm.style.display = el.style.display = 'none';
+		}
+	}
+
+	return false;
+}
+
+<? if $curScreen == 0?>
+
+function insertTemplateVar( varName, targetID )
+{
+	insertHTML( varName );
+}
+
+<? else ?>
+
+function insertTemplateVar( varName, targetID )
+{
+	if ( CurrentMessageField == "" )
+		CurrentMessageField = "messageData[MMM_SUBJECT]"
+
+	vcl_insertVar( varName, CurrentMessageField );
+}
+
+<? /if ?>
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" <? if $curScreen == 0 && $mode ?> onLoad="initEditor();" onunload="update_textarea()" <? /if ?> >
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<td class="pageTopPanel">
+
+		<table border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+			<? if $mode ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=#toolbarSmallSpace# onClick='onSubmitEditorLocal()' ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="saveclosebtn" caption=$mmStrings.amn_screen_saveclose_btn formname="form" space_left=#toolbarSmallSpace# onClick='onSubmitEditorLocal()' ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" space_left=#toolbarSmallSpace# ?>
+			<? else ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$mmStrings.amn_screen_close_btn formname="form" space_left=#toolbarSmallSpace# ?>
+			<? /if ?>
+		</td>
+		<td>
+			<img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0">
+		</td>
+		<td>
+			<? if $messageData.MMM_STATUS == 100 ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$mmStrings.amn_template_menu formname="form" space_right=#toolbarSmallSpace# space_left=#toolbarSmallSpace# button_menu=$fileMenu popupMenuIndex=1 menuIcon=1 showTopBar=1 menuClass="btnText" ?>
+			<? else ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$mmStrings.mm_screen_messages_menu formname="form" space_right=#toolbarSmallSpace# space_left=#toolbarSmallSpace# button_menu=$fileMenu popupMenuIndex=1 menuIcon=1 showTopBar=1 menuClass="btnText" ?>
+				<? if $messageData.MMM_STATUS == 0 ?>
+					<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$mmStrings.mm_screen_sendnote_menu formname="form" space_right=#toolbarSmallSpace# space_left=#toolbarSmallSpace# button_menu=$sendMenu popupMenuIndex=2 menuIcon=1 showTopBar=1 menuClass="btnText" ?>
+				<? /if ?>
+			<? /if ?>
+		</td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+	</table>
+
+  <? include file="../../../common/html/classic/toppanel_fix.htm" nospace=1 noleftspace=1 ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr margins=20 ?>
+  <br>
+  <table border="0" cellspacing="2" cellpadding="0">
+  <tr>
+		<td width=15>&nbsp;</td>
+	  	<td valign="top">
+				<? conditionalOutput invalidField=$invalidField field=MMM_SUBJECT text=#invalidFieldHighlight#  ?>
+				<? $mmStrings.app_subject_field|cat:": " ?>
+		</td>
+		<td><input name="messageData[MMM_SUBJECT]" id="messageData[MMM_SUBJECT]" onFocus="focusControl('messageData[MMM_SUBJECT]')" onBlur="blurControl('messageData[MMM_SUBJECT]')" type="text" class="control" value="<? $messageData.MMM_SUBJECT|htmlsafe:true:true ?>" maxlength="250" style="width: 400px" <? if !$mode ?>readonly<? /if ?>></td>
+
+  </table>
+
+  <? if !$fatalError ?>
+		<? include file="../../../common/html/classic/tabbar_templates/tabbar_view.htm" bottom_part="../../../MM/html/classic/addmodmsg_bottom.htm" ?>
+  <? /if ?>
+
+  <input type="hidden" name="action" value="<?$action?>">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="MMF_ID" value="<?$MMF_ID?>">
+
+  <input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>">
+  <input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>">
+  <input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>">
+  <input name="IMAGE_FILES" type="hidden" value="<? $IMAGE_FILES ?>">
+
+  <input type=hidden name=curScreen value=<? $curScreen ?>>
+
+  <input name="messageData[MMM_ID]" type="hidden" value="<? $messageData.MMM_ID ?>">
+  <input name="messageData[MMM_STATUS]" type="hidden" value="<? $messageData.MMM_STATUS ?>">
+  <input name="messageData[MMM_IMAGES]" type="hidden" value="<? $messageData.MMM_IMAGES ?>">
+  <input type="hidden" name="btndummy">
+  <?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

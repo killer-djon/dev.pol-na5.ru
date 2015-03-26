@@ -1,0 +1,24 @@
+	<table border="0" cellspacing="2" cellpadding="0" width=100%>
+	<tr>
+		<td valign="top" class="label" width=20%>
+			<? conditionalOutput invalidField=$invalidField field=QPB_TITLE text=#invalidFieldHighlight#  ?>
+			<? $qpStrings.qpb_title_field|cat:": " ?>
+		</td>
+		<td width=80%><input name="folderData[QPB_TITLE]" type="text" class="control" value="<? $folderData.QPB_TITLE ?>" maxlength="50" style="width: 99%"></td>
+	</tr>
+	<tr>
+		<td valign="top" class="label">
+			<? conditionalOutput invalidField=$invalidField field=QPB_KEYWORDS text=#invalidFieldHighlight#  ?>
+			<? $qpStrings.qpb_keywords_field|cat:": " ?>
+		</td>
+		<td><input name="folderData[QPB_KEYWORDS]" type="text" class="control" value="<? $folderData.QPB_KEYWORDS ?>" maxlength="50" style="width: 99%"></td>
+	</tr>
+	<tr>
+		<td valign="top" class="label">
+			<? conditionalOutput invalidField=$invalidField field=QPB_DESCRIPTION text=#invalidFieldHighlight#  ?>
+			<? $qpStrings.qpb_description_field|cat:": " ?>
+		</td>
+		<td><input name="folderData[QPB_DESCRIPTION]" type="text" class="control" value="<? $folderData.QPB_DESCRIPTION ?>" maxlength="50" style="width: 99%"></td>
+	</tr>
+	</table>
+

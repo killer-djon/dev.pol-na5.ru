@@ -1,0 +1,22 @@
+<div class="ui-block-content"><h1>[`Forms`]</h1>
+<ul class="indent-block">
+<li>
+<p>
+[`WebAsyst Help Desk allows you to quickly create a form and using couple of html code lines embed it into your website.`] 
+[`A message which visitors of your site will send via this form will be added to the list of requests in the same way as requests received by email.`]
+</p>
+{{if $forms}}
+<div class="departments"><table>
+	{{foreach from=$forms item=f name=forms}}
+	<tr {{if $smarty.foreach.forms.iteration is odd}}class="odd"{{/if}}>
+		<td>
+			<a class="history" href="#/forms/info/{{$f.WG_ID}}/"><b>{{$f.WG_DESC}}</b></a>
+		</td>
+	</tr>	
+	{{/foreach}}
+</table></div>
+{{/if}}
+<p class="wbs-text-button"><a class="history" href="#/forms/add/" ><span class="link-text">[`Create a new request form`]</span><span class="icon-text">&rarr;</span></a></p>
+</li>
+</ul>
+</div>

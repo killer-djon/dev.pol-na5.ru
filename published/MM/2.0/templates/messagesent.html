@@ -1,0 +1,94 @@
+<div id="messageSentDiv">
+
+	{{ if $errorStr }}
+
+		<span class="sendConfirmText">
+			<b>{{ $errorStr }}</b>
+		</span>
+
+	{{ else if $sent.BOUNCED }}
+
+		<span class="sendConfirmText">
+			<b>[`Bounced`]:</b> {{ $sent.BOUNCED.0|htmlsafe:true:true }}
+		</span>
+
+	{{ /if }}
+
+</div>
+
+<div id="userConfirmSend">
+
+{{ if !$when }}
+
+	[`Selected contact lists contain`] <b>{{ $userConfirmSend }}</b> [`recipient(s).`]
+
+{{ else }}
+
+	[`Selected contact lists now contain`] <b>{{ $userConfirmSend }}</b> [`recipient(s).`]
+	<br><br>
+	[`They may contain a different amount of recipients on the date of actual sending`]: <b>{{ $when }}</b>
+
+{{ /if }}
+
+	<br><br>
+	<a onclick="confirmSendMessage(); return false" href="javascript:void(0)" class="sendButton">[`Send`]</a>
+	<a onclick="backToSendForm(); return false" href="javascript:void(0)" class="sendButton">[`Cancel`]</a>&nbsp;
+
+</div>
+
+<script language="JavaScript" type="text/JavaScript">
+
+{{ if $errorStr }}
+
+	parent.document.getElementById('messageSentDiv').style.display = 'none';
+	parent.parent.document.getElementById('ToolbarIn').style.display = '';
+	parent.parent.document.getElementById('infoContainer').style.display = '';
+	parent.document.getElementById('sendFormDiv').style.display = '';
+	parent.parent.document.getElementById('infoContainer').innerHTML =
+		"<span style=\"color: indianred; font-weight: bold\">{{ $errorStr|htmlsafe:true:true }}</span>"
+		{{ if $upgradeUrl }}
+			+ ' &nbsp; <a href="{{ $upgradeUrl }}">Upgrade</a>'
+		{{ /if }}
+		;
+	parent.parent.resizeIframe();
+
+{{ elseif $userConfirmSend }}
+
+	parent.document.getElementById('messageSentDiv').innerHTML =
+		document.getElementById('userConfirmSend').innerHTML;
+
+	parent.sendDisplayOn(false, {'confirmSendToolbar':1, 'sendFormIframe':1});
+
+	parent.document.getElementById('userConfirmSend').value = 1;
+
+	parent.parent.document.getElementById('ToolbarIn').style.display = 'none';
+
+{{ elseif !$errorStr && !$sent.BOUNCED }}
+
+	if(typeof(parent.parent.currentSearchString) != 'undefined' && parent.parent.currentSearchString)
+	{
+		var searchString = parent.parent.currentSearchString;
+		parent.parent.backScreenOn(true);
+
+		parent.parent.doSearch_2(searchString, false);
+
+		var obj = parent.parent.parent.document.getElementById('body-frame');
+		var height = obj.offsetHeight;
+		obj.style.height = (height - 1) + 'px';
+		window.setTimeout("parent.parent.parent.document.getElementById('body-frame').style.height="+height+"+'px'", 50);
+	}
+	else
+		parent.parent.parent.window.location.reload();
+
+{{ else }}
+
+	parent.document.getElementById('messageSentDiv').innerHTML =
+		document.getElementById('messageSentDiv').innerHTML;
+
+	parent.sendDisplayOn({'messageSentDiv':1}, {'sentMessageToolbar':1, 'sendFormIframe':1});
+
+	parent.parent.document.getElementById('ToolbarIn').style.display = '';
+
+{{ /if }}
+
+</script>

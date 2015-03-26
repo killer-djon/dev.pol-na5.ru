@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script language="JavaScript" type="text/JavaScript">
+		<!--
+			function MM_findObj(n, d) { //v4.01
+			  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+				d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+			  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+			  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+			  if(!x && d.getElementById) x=d.getElementById(n); return x;
+			}
+
+			function onCreateArchive()
+			{
+				thisForm = document.forms[0];
+
+				if ( document.getElementById ) {
+					var addFileCell = document.getElementById( 'optionscell' );
+					if (addFileCell)
+						addFileCell.style.display = "none";
+
+					var attachMessageCell = document.getElementById( 'waitingcell' );
+					if (attachMessageCell)
+						attachMessageCell.style.display = "inline";
+				}
+
+				processTextButton( 'savebtn', 'form' );
+
+				return false;
+			}
+
+			function initFocus()
+			{
+				<? if $invalidField ?>
+					focusFormControl('<? $invalidField ?>');
+				<? else ?>
+					focusFirstFormControl();
+				<? /if ?>
+			}
+
+			//-->
+			</script>
+	</head>
+
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="tpllist_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? if $archiveSupported ?>
+
+					<? if !$archiveCreated ?>
+
+							<div id="optionscell">
+
+								<table class="NameValueList">
+									<tr>
+										<td><? $qpStrings.bak_book_name_title ?>:</td>
+										<th scope="col"><? $bookData.QPB_NAME|htmlsafe:true:true ?></th>
+									</tr>
+									<tr>
+										<td><? $qpStrings.bak_pages_count_title ?>:</td>
+										<th scope="col"><? $folderCount ?></th>
+									</tr>
+								</table>
+
+								<? wbs_note displayNoteMarker=true width="500px" smallFont=false ?>
+									<? $qpStrings.bak_creating_note ?>
+								<? /wbs_note ?>
+
+								<? wbs_buttonSet ?>
+									<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_ok_btn onClick="return onCreateArchive()" ?>
+									<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+								<? /wbs_buttonSet ?>
+							</div>
+
+							<div ID="waitingcell" style="display:none">
+								<? wbs_formCaption text=$qpStrings.bak_createarchive_text ?>
+
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<? $qpStrings.bak_createwait_text ?>
+								<? /wbs_note ?>
+
+								<p><img src="../cssbased/images/progress.gif" ></p>
+								<p><br>
+								<p>
+									<? wbs_buttonSet ?>
+										<? wbs_buttonSetButton link="quickpages.php"  caption=$kernelStrings.app_cancel_btn ?>
+									<? /wbs_buttonSet ?>
+								</p>
+							</div>
+
+					<? else ?>
+							<input type=hidden name=archiveName value="<? $archiveName ?>">
+							<input type=hidden name=fileNumber value="<? $fileNumber ?>">
+							<input type=hidden name=fileSize value="<? $fileSize ?>">
+							<input type=hidden name=filesAddedMessage value="<? $filesAddedMessage|htmlsafe:true:true ?>">
+							<input type=hidden name=downloadArchiveLink value="<? $downloadArchiveLink|htmlsafe:true:true ?>">
+							<input type=hidden name=archiveCreated value=1>
+							<input type=hidden name=addMode value="<? $addMode ?>">
+							<input type=hidden name=fileSizeInBytes value="<? $fileSizeInBytes ?>">
+
+							<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+								<? $qpStrings.bak_archivecreated_label ?>
+							<? /wbs_note ?>
+
+							<table class="NameValueList">
+								<tr>
+									<td><? $qpStrings.bak_filesize_label|cat:": " ?></td>
+									<th scope="col"><? $fileSize ?></th>
+								</tr>
+							</table>
+
+							<? wbs_hr width="500px" ?>
+
+							<p>
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton link=$downloadArchiveLink  caption=$qpStrings.bak_downloadarchive_btn ?>
+							<? /wbs_buttonSet ?>
+
+							<? wbs_hr width="500px" ?>
+
+							<p>
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton name="closebtn" caption=$qpStrings.bak_close_btn ?>
+							<? /wbs_buttonSet ?>
+
+						<? /if ?>
+					<? else ?>
+
+							<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+								<? $qpStrings.app_archivesnotsupported_message|htmlsafe:true:true ?>
+							<? /wbs_note ?>
+
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+							<? /wbs_buttonSet ?>
+
+					<? /if ?>
+
+			<? else ?>
+				<? wbs_button caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+			<? /if ?>
+
+			<input type="hidden" name="currentBookID" value="<?$currentBookID?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

@@ -1,0 +1,130 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script type="text/javascript" src="../../../common/html/classic/xhina/popups/popup.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../common/html/classic/xhina/popups/popup.css" />
+<script type="text/javascript">
+<!--
+HTMLArea = window.opener.HTMLArea;
+window.resizeTo(480, 150);
+
+// center on parent
+var x = opener.screenX + (opener.outerWidth - window.outerWidth) / 2;
+var y = opener.screenY + (opener.outerHeight - window.outerHeight) / 2;
+var tag_content;
+
+window.moveTo(x, y);
+
+function _CloseOnEsc()
+{
+	if ( event.keyCode == 27 )
+	{
+		window.close();
+		return;
+	}
+}
+
+function Init()
+// run on page load
+{
+	__dlg_translate('PageLink');
+	__dlg_init();
+	document.body.onkeypress = _CloseOnEsc;
+
+
+	var param = window.dialogArguments;
+	tag_content = param["content"];
+
+	var character = '';
+}
+
+function onSubmit( )
+// return character
+{
+	var p = MM_findObj( "FOLDERID" );
+
+	if ( p==null )
+		return '';
+
+	var character =  p[p.selectedIndex].value;
+
+	if ( tag_content == "")
+		tag_content = p[p.selectedIndex].text;
+
+	__dlg_close( '<a href="pageid:'+character+'">'+tag_content+'</a> ' );
+}
+
+function onCancel()
+// cancel selection
+{
+	__dlg_close( null );
+
+	return false;
+};
+
+function MM_findObj(n, d)
+{ //v4.01
+	var p,i,x;
+
+	if(!d)
+		d=document;
+
+	if ((p=n.indexOf("?"))>0&&parent.frames.length)
+	{
+		d=parent.frames[n.substring(p+1)].document;
+		n=n.substring(0,p);
+	}
+
+	if ( !(x=d[n]) && d.all )
+		x=d.all[n];
+
+	for (i=0;!x && i<d.forms.length;i++)
+		x=d.forms[i][n];
+
+	for (i=0;!x && d.layers && i<d.layers.length;i++ )
+		x=MM_findObj(n,d.layers[i].document);
+
+	if(!x && d.getElementById)
+		x=d.getElementById(n);
+
+	return x;
+}
+
+-->
+</script>
+</head>
+<body class="dialog" onload="Init();self.focus();">
+<br>
+<form>
+<table width=100% cellspacing=0 cellpadding=0 border=0>
+<tr>
+<td>&nbsp;<? $qpStrings.gl_screen_select_page_label ?>:&nbsp;</td>
+<td>
+	<select class="control" name="FOLDERID" id="FOLDERID" style="width: 200px">
+<? foreach from=$folders key=curListFolderID item=folder ?>
+	<? if $folder->RIGHT != -1 || $showAnyRights ?>
+		<? if $curListFolderID != RECYCLED ?>
+			<? assign var=listFoldeName value=$folder->NAME|htmlsafe:true:true|trunc_str:50 ?>
+		<? else ?>
+			<? assign var=listFoldeName value=$kernelStrings.app_treerecycled_name ?>
+		<? /if ?>
+		<option value="<? $folder->QPF_TEXTID ?>" ><? $folder->OFFSET_STR|cat:$listFoldeName ?></option>
+	<? /if ?>
+<? /foreach ?>
+	</select>
+</td>
+</tr>
+<tr>
+<td></td>
+<td align=left>
+<br>
+<button type="button" name="ok" onclick="return onSubmit();" class="submitInsertTable">OK</button>
+<button type="button" name="cancel" onclick="return onCancel();" class="submitInsertTable">Cancel</button>
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="../../../DD/html/classic/stylesets/dd.css" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+	<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+		<? include file="../../../common/html/classic/header.htm"?>
+
+		<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr?>
+
+		<? if !$fatalError ?>
+
+			<ul id="reportlist">
+				<li>
+					<a href="rep_spacebyusers.php"><? $ddStrings.rep_spacebyusers_title ?></a><br>
+					<div><? $ddStrings.rep_spacebyusers_note ?></div>
+				</li>
+				<li>
+					<a href="rep_recentuploads.php"><? $ddStrings.rep_recentuploads_title ?></a><br>
+					<div><? $ddStrings.rep_recentuploads_note ?></div>
+				</li>
+				<li>
+					<a href="rep_folderssummary.php"><? $ddStrings.rep_folderssummary_title ?></a><br>
+					<div><? $ddStrings.rep_folderssummary_note ?></div>
+				</li>
+				<li>
+					<a href="rep_filetypesstats.php"><? $ddStrings.rep_filetypestats_title ?></a><br>
+					<div><? $ddStrings.rep_filetypestats_note ?></div>
+				</li>
+				<li>
+					<a href="rep_frequpdfiles.php"><? $ddStrings.rep_frequpd_title ?></a><br>
+					<div><? $ddStrings.rep_frequpd_note ?></div>
+				</li>
+			</ul>
+
+		<? /if ?>
+		<input type="hidden" name="btndummy">
+		<input type="hidden" name="edited" value="1">
+	<?include file="../../../common/html/classic/pagefooter.htm"?>
+	</form>
+<? /strip ?>
+</body>
+</html>

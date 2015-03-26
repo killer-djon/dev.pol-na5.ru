@@ -1,0 +1,39 @@
+<? assign var=showFoldersHint value=$qpStrings.app_folders_hint ?>
+
+<? if $searchString != "" ?>
+	<? assign var=rightPanelHeader value=$qpStrings.app_screen_search_result_title|htmlsafe:true:true ?>
+	<? assign var=hideBottomPanel value=1 ?>
+	<? assign var=rightPanelContent value="../../../QP/html/cssbased/searchlist.htm" ?>
+<? else ?>
+	<? if $bookData.QPB_PUBLISHED ?>
+		<? assign var=tP value=$qpStrings.qp_screen_published_title|cat:": "|cat:$themeName|htmlsafe:true:true|cat:" - <a href="|cat:$urlBook|cat:" target=_blank><u>"|cat:"preview"|cat:"</u></a>" ?>
+	<? else ?>
+		<? assign var=tP value=$qpStrings.qp_screen_notpublished_title ?>
+	<? /if ?>
+
+	<? if !$fatalError ?>
+			<? assign var=rightPanelHeaderAdditionalInfo value="&nbsp; <span style='font-size: 80%'>["|cat:$tP|cat:"]</span>" ?>
+			<? assign var=rightPanelHeader value=$bookData.QPB_NAME|cat:$rightPanelHeaderAdditionalInfo ?>
+	<? /if ?>
+
+	<? assign var=rightPanelContent value="../../../QP/html/cssbased/pageview.htm" ?>
+<? /if ?>
+
+<? assign var=rightPanelCaptionControls value="../../../common/html/cssbased/pageelements/ajax/catalog_folder.showbtn.htm" ?>
+
+<? if $searchString == "" ?>
+	<? wbs_splitterPanelHeader
+		captionTemplate="hdr_caption.htm"
+		active=true
+		id="RightPanelHeader"
+		captionControls=$rightPanelCaptionControls
+		headerControls=$rightPanelControls
+	?>
+<? /if ?>
+
+<? assign var=numDocumentsLabel value=$qpStrings.qp_screen_numdocs_label?>
+
+
+<? wbs_splitterScrollableArea ?>
+	<? include file=$rightPanelContent ?>
+<? /wbs_splitterScrollableArea ?>

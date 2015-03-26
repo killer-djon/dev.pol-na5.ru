@@ -1,0 +1,14 @@
+		<? if $numDocuments ?>
+		<table class="ListHeader" id="ListHeaderContainer">
+		<tr>
+				<td><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"/></td>
+				<td align=right>
+					<? $qnStrings.qn_screen_sorting_title|cat:":&nbsp;" ?>
+					<? wbs_sortColumn ajax=true status=$sorting field="QN_SUBJECT" ?><? $qnStrings.app_subject_field ?><? /wbs_sortColumn ?> |
+					<? wbs_sortColumn ajax=true status=$sorting field="QN_MODIFYUSERNAME" ?><? $qnStrings.app_author_field ?><? /wbs_sortColumn ?> |
+					<? wbs_sortColumn ajax=true status=$sorting field="QN_MODIFYDATETIME" ?><? $qnStrings.app_date_field ?><? /wbs_sortColumn ?>
+
+				</td>
+		</tr>
+		</table>
+		<? /if ?>

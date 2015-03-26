@@ -1,0 +1,8 @@
+<select class="control" name="filter" onChange="this.form.submit()" style="width: 200px">
+	<? foreach from=$filters item=filterData key=filterKey ?>
+		<? if $filterData != "" ?>
+			<option value=<? $filterKey ?> <? if $filterKey|cat:"-" == $ISSF_ID|cat:"-" ?>selected<?/if?>><? $filterData.name|htmlsafe:true:true ?></option>
+		<? /if ?>
+	<? /foreach ?>
+	
+</select>

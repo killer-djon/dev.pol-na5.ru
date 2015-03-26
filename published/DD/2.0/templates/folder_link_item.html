@@ -1,0 +1,63 @@
+<? if $view == "grid" ?>
+
+<tr class="Even">
+  <td align="center" width="40"><img src="<? $file->getIconUrl(16) ?>" align="center" border="0"/></td>
+  <td class="Filename" ><a target="_blank" href="<? $file->getPublicDownloadUrl() ?>"><? $file->DL_FILENAME|wordwrap:50:"&shy;":true ?></a></td>
+  <td class="SubFile"><? $file->DL_FILETYPE ?></td>
+  <td style="text-align: right; padding-left: 20px;" nowrap="nowrap" class="SubFile"><? $file->getFilesizeStr() ?></td>
+</tr>
+
+
+<? elseif $view == "thumb_list" ?>
+<tr height="15">
+<td style="" align="center" valign="top" width="40">
+<div class="Thumbnail">
+<div>
+<div>
+<table><tbody><tr><td valign="middle">
+<a href="<? $file->getPublicDownloadUrl() ?>" target="_blank"><img valign="middle" src="<? $file->getThumbnailUrl() ?>" title="">
+</a></td></tr></tbody></table>
+</div>
+</div>
+</div>
+
+</td>
+<td valign="top" class="ListViewFileName">
+<a class="Filename" target="_blank" href="<? $file->getPublicDownloadUrl() ?>"><? $file->DL_FILENAME ?></a>
+<div class="FileDesc"><? $file->DL_DESC ?></div>	
+<div class="SubFile"><span><? lbl_dd_template_backend->column_type ?>:</span> <? $file->DL_FILETYPE ?><span> <? lbl_dd_template_backend->column_size ?>:</span> <? $file->getFilesizeStr() ?>
+</div>	
+</td>
+</tr>
+
+
+<? elseif $view=="tiles" ?>
+
+<div class="ThumbContainer">
+<div class="Thumbnail">
+  <div>
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <td valign="middle"><a href="<? $file->getPublicDownloadUrl() ?>" target="_blank"><img valign="middle" src="<? $file->getThumbnailUrl() ?>" title=""> </a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<small><a target="_blank" href="<? $file->getPublicDownloadUrl() ?>" class="activelink"><? $file->DL_FILENAME|truncate:14:"...":true ?></a> <br>
+<? $file->getFilesizeStr() ?>  (<? $file->DL_FILETYPE ?>)</small> </div>
+
+<? else ?>
+
+<tr height="15">
+	<td style="" align="center" valign="top" width="40"><a target="_blank" href="<? $file->getPublicDownloadUrl() ?>"><img src="<? $file->getIconUrl() ?>" align="center" border="0"></a> </td>
+  <td valign="top" class="ListViewFileName"><a class="Filename" target="_blank" href="<? $file->getPublicDownloadUrl() ?>"><? $file->DL_FILENAME ?></a>
+    <? if $file->DL_DESC ?><div class="FileDesc"><? $file->DL_DESC ?></div><? /if ?>
+    <div class="SubFile"><span><? lbl_dd_template_backend->column_type ?>:</span> <? $file->DL_FILETYPE?><span> <? lbl_dd_template_backend->column_size ?>:</span> <? $file->getFilesizeStr() ?> </div></td>
+</tr>
+
+
+<? /if ?>

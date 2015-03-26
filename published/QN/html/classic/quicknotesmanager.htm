@@ -1,0 +1,25 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+  <? include file="../../../common/html/classic/header.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>  
+  <? if !$fatalError ?>
+  	  <?include file="../../../common/html/classic/tree_templates/tree_manager_list.htm" modifyNote=$kernelStrings.app_treefurnote_text folderNameLabel=$kernelStrings.app_treefurfldname_title addFolderLabel=$kernelStrings.app_treeaddfolder_title deleteFolderLabel=$kernelStrings.app_treedelfolder_text ?>
+ <? /if ?>
+  <input type="hidden" name="btndummy">
+  <?include file="../../../common/html/classic/pagefooter.htm"?>
+<? /strip ?>
+</form>
+</body>
+</html>

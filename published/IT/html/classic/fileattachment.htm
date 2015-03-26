@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td ><table border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td > 
+              <? $itStrings.fa_project_label|cat:":" ?>
+              &nbsp; </td>
+            <td ><select name="P_ID" class="control" style="width: 400px" onChange="this.form.submit()">
+                <? html_options values=$project_ids selected=$P_ID output=$project_names ?>
+              </select></td>
+          </tr>
+        </table></td>
+      <td align="right" valign="bottom">&nbsp; </td>
+    </tr>
+    <tr> 
+      <td colspan="2" >&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2" ><table width="100%" border="0" cellpadding="0" cellspacing="0" class="list">
+            <th align="left" class="tableHeader"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="screenname" curStatus=$sorting ?>">
+              <? $itStrings.fa_filename_title ?>
+              </a> 
+              <? makeSortImg fieldName="screenname" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?>
+              </nobr> </th>
+            <th width="60" align="left" class="tableHeader"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="size" curStatus=$sorting ?>">
+              <? $itStrings.fa_size_title ?>
+              </a> 
+              <? makeSortImg fieldName="size" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?>
+              </nobr> </th>
+            <th width="80" align="left" class="tableHeader"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="filedate" curStatus=$sorting ?>">
+              <? $itStrings.fa_date_title ?>
+              </a> 
+              <? makeSortImg fieldName="filedate" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?>
+              </nobr> </th>
+            <th align="left" class="tableHeader"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="dispnum" curStatus=$sorting ?>">
+              <? $itStrings.fa_issuenum_title ?>
+              </a> 
+              <? makeSortImg fieldName="dispnum" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?>
+              </nobr> </th>
+            <th align="left" class="tableHeader"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="I_SUMMARY" curStatus=$sorting ?>"> 
+              <? $itStrings.fa_issuedesc_title ?>
+              </a> 
+              <? makeSortImg fieldName="I_SUMMARY" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?>
+              </nobr> </th>
+          <? foreach from=$fileList item=cur_fileData?>
+          <tr <? if ($cur_fileData.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+            <td valign="top" >
+              <? $cur_fileData.FILE_LINK ?>
+            </td>
+            <td valign="top" >
+              <? $cur_fileData.FILE_INFO.size ?>
+            </td>
+            <td valign="top" >
+              <? $cur_fileData.FILE_INFO.filedate ?>
+            </td>
+            <td valign="top" >
+              <? $cur_fileData.DISP_NUM ?>
+            </td>
+            <td valign="top" >
+              <?  $cur_fileData.I_DESC|trunc_str:60?>
+            </td>
+          </tr>
+          <? foreachelse ?>
+          <tr align="center"> 
+            <td  colspan=6> 
+              <? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?>
+            </td>
+          </tr>
+          <? /foreach ?>
+        </table></td>
+    </tr>
+  </table>
+  <? else ?>
+  <? /if ?>
+  <input type="hidden" name="sorting" value="<? $sorting|mime_encode ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,1 @@
+a:2:{s:3:"eng";a:4:{s:11:"rights_read";s:4:"Read";s:12:"rights_write";s:5:"Write";s:11:"rights_full";s:4:"Full";s:9:"rights_no";s:9:"No rights";}s:3:"rus";a:4:{s:11:"rights_read";s:12:"Чтение";s:12:"rights_write";s:12:"Запись";s:11:"rights_full";s:12:"Полные";s:9:"rights_no";s:15:"Нет прав";}}

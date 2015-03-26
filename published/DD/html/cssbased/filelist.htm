@@ -1,0 +1,285 @@
+<? if $viewMode == 0 ?>
+	<!-- Grid mode view -->
+
+	<table class="Grid" id='FilesTable'>
+		<thead>
+			<tr>
+					<? if $numFiles ?>
+						<th align="left" width="10px" style="width: 10px;"><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"></th>
+					<? /if ?>
+					<? if $versionControlEnabled ?>
+						<th align="left" width="16px" style="width: 16px"><img src="../../../DD/html/cssbased/images/lock.gif" ></th>
+					<? /if ?>
+					<th align="left"><? wbs_sortColumn ajax=true status=$sorting field="DL_FILENAME" ?><? $ddStrings.dd_screen_namesorting_title ?><? /wbs_sortColumn ?></th>
+					<? if $searchString != "" ?>
+						<th align="left"><? wbs_sortColumn ajax=true status=$sorting field="DF_NAME" ?><? $ddStrings.app_folder_field ?><? /wbs_sortColumn ?>
+					</th>
+					<? /if ?>
+
+					<? foreach from=$visibleColumns item=columnID ?>
+						<? assign var=nameIndex value=$dd_columnNames[$columnID] ?>
+						<? assign var=columnName value=$ddStrings[$nameIndex] ?>
+						<th <? if $columnID != "DL_FILESIZE" ?>align=left<? else ?>align=right<? /if ?>>
+							<? wbs_sortColumn ajax=true status=$sorting field=$columnID ?><? $columnName ?><? /wbs_sortColumn ?>
+						</th>
+					<? /foreach ?>
+
+					<? if $numFiles && ($curFolderData->TREE_ACCESS_RIGHTS > 0 ||  $searchString != "") ?>
+						<th align="left" width=12>&nbsp;</th>
+					<? /if ?>
+			</tr>
+		</thead>
+		<tbody>
+			<? foreach from=$files item=file name=fileLoop ?>
+				<tr class="<? wbs_oddItem index=$smarty.foreach.fileLoop.iteration ?>">
+					<? if $numFiles ?>
+						<td align=left valign=top width="10px" style="width: 10px"><input class='Filename' type="checkbox" name="document[<? $file.DL_ID ?>]" value="<? $file.DL_ID ?>" filename='<? $file.DL_FILENAME ?>' filesize='<? $file.DL_FILESIZE_BYTES ?>'  checkstatus='<? if $versionControlEnabled && $file.DL_CHECKUSERID != $currentUser && $file.DL_CHECKSTATUS == "OUT" ?>1<? else ?>0<? /if ?>'><input type=hidden name="filerights[<?$file.DL_ID?>]" value="<? $file.TREE_ACCESS_RIGHTS ?>"></td>
+					<? /if ?>
+					<? if $versionControlEnabled ?>
+						<td align="left" width="16px" style="width: 16px"><? if $file.DL_CHECKSTATUS == "OUT" ?><img title="<? $file.CHECKOUTMESSAGE|htmlsafe:true:true ?>" src="../../../DD/html/cssbased/images/lock.gif" ><? else ?>&nbsp;<? /if ?></td>
+					<? /if ?>
+					<td align=left valign=top>
+					<!-- thumbnail -->
+					<? if $displayIcons ?>
+						<a href="<? $file.ROW_URL ?>" target="_blank"><img src="<? thumbnail fileName=$file.DL_FILENAME size=16 os=win ?>"  border="0" align=left></a>
+					<? /if ?>
+
+					<!-- file name -->
+					<a href="<? $file.ROW_URL ?>" target="_blank"><? $file.DL_FILENAME|htmlsafe:true:true|sureecho|trunc_str:50 ?></a></td>
+					<? if $searchString != "" ?>
+						<td align=left valign=top><a href="<? $file.FOLDER_URL ?>" title="<? $ddStrings.dd_screen_openfld_hint ?>"><? $file.DF_NAME|htmlsafe:true:true|sureecho ?></a></td>
+					<? /if ?>
+
+					<? foreach from=$visibleColumns item=columnID ?>
+						<td <? if $columnID != "DL_FILESIZE" ?>align=left<? else ?>align=right<? /if ?> valign=top>
+							<? if $columnID != "DL_DESC" ?>
+								<? $file.$columnID|htmlsafe:true:true|sureecho ?>
+							<? else ?>
+								<? if $restrictDescLen ?>
+									<? assign var=DESC_LEN value=$file.$columnID|htmlsafe:true:true|strlen ?>
+									<span><? $file.$columnID|htmlsafe:true:true|sureecho|trunc_str:$restrictDescLen ?></span>
+									<? if $DESC_LEN > $restrictDescLen ?>
+										[<a class=activelink href="<? $file.VIEW_DESC_URL ?>"><? $ddStrings.dd_screen_more_label ?></a>]
+									<? /if ?>
+								<? else ?>
+									<? $file.$columnID|htmlsafe:true:true|sureecho ?>
+								<? /if ?>
+							<? /if ?>
+						</td>
+					<? /foreach ?>
+					<? if $numFiles && ($curFolderData->TREE_ACCESS_RIGHTS > 0 || $searchString != "") ?>
+						<td align=left align=center valign=top width=12>
+							<? if $numFiles ?>
+								<a href=<? $file.DESC_URL ?> title="<? $ddStrings.dd_screen_fileproperties_hint ?>"><img src="../../../common/html/cssbased/res/images/property.gif" border="0" width="17" height="11" style="margin-top: 4px" border=0></a>
+							<? else ?>
+								&nbsp;
+							<? /if ?>
+							</td>
+					<? /if ?>
+				</tr>
+		<? foreachelse ?>
+			<tr class="NoRecords">
+				<? if $searchString != "" ?>
+					<td colspan="<? $numColumns ?>" class="default"><? $ddStrings.dd_screen_nofiles_text|htmlsafe:true:true ?></td>
+				<? else ?>
+					<td colspan="<? $numColumns ?>" class="default"><? $ddStrings.dd_screen_nofiles_text|htmlsafe:true:true ?></td>
+				<? /if ?>
+			</tr>
+		<? /foreach ?>
+		</tbody>
+	</table>
+
+
+<? elseif $viewMode == 1 || $viewMode == 2 || $viewMode == 3 ?>
+<style>
+table.yellowSelected tr:hover {background:#FFFFD1;}
+</style>
+	<table class="List yellowSelected">
+			<? if $viewMode == 1 || $viewMode == 2 ?>
+				<!-- List view -->
+				<? foreach from=$files item=file name=fileLoop ?>
+				
+				<tr id="s<?$file.DL_ID?>" onmouseover='addClass($("btmctrl<?$file.DL_ID?>"),"visible");' onmouseout='eleHide(<?$file.DL_ID?>)'>
+					<td width="10">
+						<input type="checkbox" onclick="checkEle(<?$file.DL_ID?>)" id="chk<? $file.DL_ID ?>" name="document[<? $file.DL_ID ?>]" value="<? $file.DL_ID ?>" filename='<? $file.DL_FILENAME ?>' filesize='<? $file.DL_FILESIZE_BYTES ?>' checkstatus='<? if $versionControlEnabled && $file.DL_CHECKUSERID != $currentUser && $file.DL_CHECKSTATUS == "OUT"?>1<? else ?>0<? /if ?>'>
+						<input type=hidden name="filerights[<?$file.DL_ID?>]" value="<? $file.TREE_ACCESS_RIGHTS ?>">
+					</td>
+					<td width="32">
+						<? if $viewMode == 1 ?>
+								<? if $displayIcons ?>
+									<a href="<? $file.ROW_URL ?>" target="_blank"><img border=0 style="margin-right: 5px; margin-top: 5px" src="<? thumbnail fileName=$file.DL_FILENAME size=32 os=win ?>" align=absmiddle></a>
+								<? /if ?>
+							<? else ?>
+								<? wbs_thumbnail src=$file.THUMB_URL URL=$file.ROW_URL target='_blank' ?>
+							<? /if ?>
+					</td>
+					
+					<td>
+						<table class="ListItem" title="" id="lt">
+						<thead>
+							<tr>
+								<th scope="col" class="<? $subscrClass ?>">
+									<a href="<? $file.ROW_URL ?>" target="_blank"><? $file.DL_FILENAME|htmlsafe:true:true|sureecho|trunc_str:50 ?></a>
+									<? if $numFiles ?>
+									<?*
+										<a href=<? $file.DESC_URL ?>><img title="<? $ddStrings.dd_screen_fileproperties_hint ?>" src="../../../common/html/cssbased/res/images/property.gif" border="0" width="17" height="11" style="margin-top: 4px" border=0></a>
+									*?>
+									<? /if ?>								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<? if $numVisibleColumns ?>
+									<tr>
+										<td class="treeDocumentListViewContent">
+											<? if $file.DL_DESC && $descriptionVisible ?>
+												<div style="border-bottom: 1px solid #CCCCCC; margin-right: 5px; padding-bottom: 5px; margin-bottom: 5px; padding-top: 5px; ">
+													<? if $restrictDescLen ?>
+														<? assign var=DESC_LEN value=$file.DL_DESC|htmlsafe:true:true|strlen ?>
+								                            <div style='cursor:pointer' onClick='ChangeDesc(<? $file.DL_ID ?>)' id='pl_desc_<? $file.DL_ID ?>' onClick=''>
+								                               <? $file.DL_DESC|htmlsafe:true:true|sureecho|trunc_str:$restrictDescLen ?>
+								                 			</div>
+														<textarea style='display:none' id='real_desc_<? $file.DL_ID ?>'><? $file.DL_DESC ?></textarea>
+														<div id="fl_desc_<?$file.DL_ID?>" style="display:none;cursor:pointer" onClick='ChangeDesc(<? $file.DL_ID ?>)'><? $file.DL_DESC ?></div>
+														<? if $DESC_LEN > $restrictDescLen ?>
+														<div id="morelink<? $file.DL_ID ?>">
+															[<a class=activelink href="javascript:void(0)" onclick="morelink('pl_desc_<? $file.DL_ID ?>','fl_desc_<? $file.DL_ID ?>','morelink<? $file.DL_ID ?>')"><? $ddStrings.dd_screen_more_label ?></a>]
+														</div>
+														<? /if ?>
+													<? else ?>
+														<?if $thisFolderRights != '1'?>
+														<div style='cursor:pointer' onClick='ChangeDesc(<? $file.DL_ID ?>)' id='pl_desc_<? $file.DL_ID ?>' onClick=''><? $file.DL_DESC|htmlsafe:false:false|default:$addDescLabel ?></div>
+														<textarea style='display:none' id='real_desc_<? $file.DL_ID ?>'><? $file.DL_DESC ?></textarea>
+														<?else?>
+														<div><? $file.DL_DESC|htmlsafe:false:false|default:$addDescLabel ?></div>
+														<?/if?>
+														<?* $file.DL_DESC|htmlsafe:true:true|sureecho *?>
+													<? /if ?>
+												</div>
+											<? else ?>
+												<?if $thisFolderRights != '1'?>
+												<div style='cursor:pointer' onClick='ChangeDesc(<? $file.DL_ID ?>)' id='pl_desc_<? $file.DL_ID ?>' onClick=''><?$ddStrings.sv_screen_adddescription_msg?></div>
+												<textarea style='display:none' id='real_desc_<? $file.DL_ID ?>'></textarea>
+												<?/if?>
+											<? /if ?>
+											<div class="grsmall">
+											<? foreach from=$visibleColumns item=columnID name=columnLoop ?>
+												<? if $columnID != "DL_DESC" && $columnID != "DL_MODIFYUSERNAME" && $columnID != "DL_MODIFYDATETIME" ?>
+													<? assign var=nameIndex value=$dd_columnNames[$columnID] ?>
+													<? assign var=columnName value=$ddStrings[$nameIndex] ?>
+
+													<? $columnID ?>
+													<? if $file.$columnID != "" ?>
+														<? $columnName|cat:": "|cat:$file.$columnID|htmlsafe:true:true|sureecho ?>
+														<? if $smarty.foreach.columnLoop.iteration < $numVisibleColumns ?>&nbsp;<? /if ?>
+													<? else ?>
+														<? $columnName|cat:":&nbsp;-&nbsp;"?>
+													<? /if ?>
+												<? /if ?>
+											<? /foreach ?>
+											</div>
+										</td>
+									</tr>
+									<? if $versionControlEnabled && $file.DL_CHECKSTATUS == "OUT"?>
+									<tr>
+											<td align="left" class="treeDocumentListViewContent">
+													<? if $file.DL_CHECKSTATUS == "OUT" ?>
+														<img align=absmiddle title="<? $file.CHECKOUTMESSAGE|htmlsafe:true:true ?>" src="../../../DD/html/cssbased/images/lock.gif" >
+														<? $file.CHECKOUTMESSAGE|htmlsafe:true:true ?>
+													<? else ?>&nbsp;<? /if ?>
+											</td>
+									</tr>
+									<? /if ?>
+							<? /if ?>
+							<tr style="height:30px;">
+								<td id="btmctrl<?$file.DL_ID?>" class="hidden">
+									<div id="inline-list" >
+									<ul>
+									<li><b><a href="<?$file.ROW_URL?>&force=download"><?$ddStrings.sv_screen_download_btn?></a></b></li>
+									<?if $thisFolderRights != '1'?>
+									<li><a href="javascript:void(0)" onclick="deletefile('chk<?$file.DL_ID?>')"><?$ddStrings.sv_screen_delete_btn?></a></li>
+									<?/if?>
+									<?if $versionControlEnabled == 1?>
+									<li><a href=<? $file.DESC_URL ?>><?$ddStrings.mv_versionhostiry_label?> (<?$file_ver[$file.DL_ID]+1?>)</a></li>
+									<?/if?>
+									<?if strtolower($file.DL_FILETYPE) == 'mp3' ?>
+										<li style="padding-right: 0px;"><embed style="width:99px;margin-bottom: -6px;" src="../../../common/player/mediaplayer.swf" width="100" height="19" allowscriptaccess="always" allowfullscreen="false" flashvars="file=<?$file.RAW?>&showdigits=false&screencolor=0xFFFFD1&backcolor=0xFFFFD1"/></li>
+									<?/if?>
+									<?if
+										$zohoeditEnabled && 
+										!$file.DISABLEEDIT &&
+										$thisFolderRights != '1' && 
+										in_array (strtolower($file.DL_FILETYPE), array ('doc', 'txt', 'xls', 'ods','odt') )
+									?>
+									<li class="zohoEdit">
+										<a onclick="checkAutoload('zohoedit.php?DL_ID=<?$file.B64ID?>&FVER=<?$file_ver[$file.DL_ID]?>')" href="javascript:void(0)">
+									<?* onclick="this.href=modify(this.href)" target="_blank" href="zohoedit.php?DL_ID=<?$file.B64ID?>" *?> 
+											<?$ddStrings.dd_zoho_edit?>
+										</a>
+									</li>
+									<?/if?>
+									<?* MENU
+									<li><a target="_blank" href="javascript:void(0)" onclick="ShowAssignmentsPanel(this, 0, ' ', 2, <?$file.DL_ID?>, '<?$file.ROW_URL?>', '<?$file.DESC_URL?>', <?$file_ver[$file.DL_ID]+1?>)">Menu >></a></li>
+									*?>
+									</ul>
+									</div>
+								</td>
+								<td>&nbsp;</td>
+
+							</tr>
+						</tbody>
+						</table>
+					</td>
+
+					</tr>
+				<? foreachelse ?>
+					<tr class="NoRecords">
+						<td align="center" class="default"><? $ddStrings.dd_screen_nofiles_text|htmlsafe:true:true ?></td>
+					</tr>
+				<? /foreach ?>
+			<? /if ?>
+		</table>
+	<? if $viewMode == 3 ?>
+		<? foreach from=$files item=file name=fileLoop ?>
+
+			<div style="float: left; width: 110px; height: 160px; padding: 0 0 0 5px">
+
+					<? if $restrictDescLen ?>
+						<? assign var=truncDesc value=$file.DL_DESC|htmlsafe:true:true|trunc_str:$restrictDescLen ?>
+					<? else ?>
+						<? assign var=truncDesc value=$file.DL_DESC|htmlsafe:true:true|trunc_str ?>
+					<? /if ?>
+
+					<? assign var=thumbTitle value=$file.DL_FILENAME|cat:". "|cat:$file.DL_FILESIZE|htmlsafe:true:true?>
+					<? if $truncDesc != "" ?>
+						<? assign var=thumbTitle value=$thumbTitle|cat:". "|cat:$truncDesc ?>
+					<? /if ?>
+
+					<? wbs_thumbnail src=$file.THUMB_URL URL=$file.ROW_URL target='_blank' ?>
+
+					<div style="padding-top: 1px" class=smallFont align=left>
+
+						<table cellpadding=0 cellspacing=0 border=0 width="110">
+							<tr>
+								<td width=12 valign=middle><input type="checkbox" name="document[<? $file.DL_ID ?>]" value="<? $file.DL_ID ?>" filename='<? $file.DL_FILENAME ?>' filesize='<? $file.DL_FILESIZE_BYTES ?>'  checkstatus='<? if $versionControlEnabled && $file.DL_CHECKUSERID != $currentUser && $file.DL_CHECKSTATUS == "OUT"?>1<? else ?>0<? /if ?>'><input type=hidden name="filerights[<?$file.DL_ID?>]" value="<? $file.TREE_ACCESS_RIGHTS ?>"></td>
+								<td align=center valign=middle><nobr>
+									<? if $file.DL_CHECKSTATUS == "OUT" ?>
+										<img align=absmiddle title="<? $file.CHECKOUTMESSAGE|htmlsafe:true:true ?>" src="../../../DD/html/cssbased/images/lock.gif" >
+									<? /if ?>
+								<small><a target="_blank" href="<?$file.ROW_URL?>" class=activelink><? $file.DL_FILENAME|truncate:10:"..."|htmlsafe:true:true ?></a></small></nobr></td>
+							</tr>
+							<tr>
+								<? if $numFiles ?>
+									<td width=12><a title="<? $ddStrings.dd_screen_fileproperties_hint ?>" href=<? $file.DESC_URL ?>><img src="../../../common/html/cssbased/res/images/property.gif" border="0" width="17" height="11" style="margin-left: 3px; margin-top: 4px" border=0></a></td>
+								<? /if ?>
+								<td class="AlignCenter"<? if !($numFiles && $file.TREE_ACCESS_RIGHTS > 0) ?>colspan=2<? /if ?>><small><? $file.DL_FILESIZE ?></small></td>
+							</tr>
+						</table>
+					</div>
+
+			</div>
+
+		<? foreachelse ?>
+			<div style="width: 100%" align=center class="NoRecords"><? $ddStrings.dd_screen_nofiles_text|htmlsafe:true:true ?></div>
+		<? /foreach ?>
+	<? /if ?>
+<? /if ?>

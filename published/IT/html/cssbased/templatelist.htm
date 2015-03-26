@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="it_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_note noteType=tips indented=true ?><? $itStrings.tl_tips_text|nl2br ?><? /wbs_note ?>
+
+				<table class="SimpleList">
+					<thead>
+						<tr>
+							<th scope="col"><? $itStrings.wfm_templatename_title ?></th>
+							<th scope="col"><? $itStrings.wfm_summary_title ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?foreach key=index from=$templateList item=templateData ?>
+							<tr>
+								<td>
+									<a href="<? $templateData.ROW_URL ?>">
+										<? switchedOutput val=$templateData.ITT_DEFAULT true_val=1 str1="<b>"?>
+										<? $templateData.ITT_NAME ?>
+										<? switchedOutput val=$templateData.ITT_DEFAULT true_val=1 str1="</b>"?>
+										<? switchedOutput val=$templateData.ITT_DEFAULT true_val=1 str1=" ("|cat:$itStrings.wfm_default_text|cat:")"?>
+									</a>
+								</td>
+								<td><a href="<? $templateData.ROW_URL ?>"><? $templateData.transitions ?></a></td>
+							</tr>
+						<?foreachelse?>
+							<tr class="NoRecords"> 
+								<td colspan="2"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+							</tr>
+						<?/foreach?>
+					</tbody>
+				</table>
+
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

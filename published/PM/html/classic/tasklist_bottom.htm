@@ -1,0 +1,102 @@
+<? if $projectData.SCREEN == 0 ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+		<th width="5%" align="left" class=list_rightBorder><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="PW_ID" curStatus=$sorting ?>"><? $pmStrings.pm_id_title ?></a> <? makeSortImg fieldName="PW_ID" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+		<th width="80%" align="left" class=list_rightBorder><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="PW_DESC" curStatus=$sorting ?>"><? $pmStrings.pm_summary_title ?></a> <? makeSortImg fieldName="PW_DESC" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+		<th width="100" align="left" class=list_rightBorder><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="PW_STARTDATE" curStatus=$sorting ?>"><? $pmStrings.pm_start_title ?></a> <? makeSortImg fieldName="PW_STARTDATE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+		<th width="100" align="left" class=list_rightBorder><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="PW_DUEDATE" curStatus=$sorting ?>"><? $pmStrings.pm_due_title ?></a> <? makeSortImg fieldName="PW_DUEDATE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+		<th width="100" align="left" class=list_rightBorder><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="PW_ENDDATE" curStatus=$sorting ?>"><? $pmStrings.pm_complete_title ?></a> <? makeSortImg fieldName="PW_ENDDATE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+		<th width="50" align="left" class=list_rightBorder><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="PW_BILLABLE" curStatus=$sorting ?>"><? $pmStrings.pm_billable_title ?></a> <? makeSortImg fieldName="PW_BILLABLE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+		<th align="right" style="padding-right: 5px"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="PW_COSTESTIMATE" curStatus=$sorting ?>"><? $pmStrings.pm_cost_title ?></a> <? makeSortImg fieldName="PW_COSTESTIMATE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+	<?section name=workSec loop=$project_works?>
+	<tr <? if ($smarty.section.workSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+		<td valign="top" class=list_rightBorder><a href="<? $project_works[workSec].ROW_URL ?>"><? $project_works[workSec].PW_ID?></a></td>
+		<td valign="top" class=list_rightBorder><a href="<? $project_works[workSec].ROW_URL ?>"><? $project_works[workSec].PW_DESC ?></a></td>
+		<td width="100" valign="top" class="default"><nobr><a href="<? $project_works[workSec].ROW_URL ?>"><? $project_works[workSec].PW_STARTDATE?></a></nobr></td>
+		<td width="100" valign="top"><nobr><a href="<? $project_works[workSec].ROW_URL ?>"><span <? if $project_works[workSec].OVERDUE ?>class="alertLabel"<? /if ?>><? $project_works[workSec].PW_DUEDATE ?></span></a></nobr></td>
+		<td width="100" valign="top" class="default"><nobr><a href="<? $project_works[workSec].ROW_URL ?>"><? $project_works[workSec].PW_ENDDATE ?></a></nobr></td>
+		<td width="50" valign="top" class="default" align=center><nobr><a href="<? $project_works[workSec].ROW_URL ?>">
+		<? switchedOutput str1=#checkedImg# str2="" val=$project_works[workSec].PW_BILLABLE true_val=1 ?>
+		</a></nobr></td>
+		<td valign="top" class="default" align="right" style="padding-right: 5px"><nobr><a href="<? $project_works[workSec].ROW_URL ?>"><? $project_works[workSec].PW_COSTESTIMATE ?></a></nobr></td>
+	</tr>
+	<?sectionelse?>
+	<tr align="center"<? if ($smarty.section.workSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+		<td colspan="7" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+	</tr>
+	<?/section?>
+	<tr>
+		<td colspan=6 class=listFooter align=right valign=top><? $pmStrings.pm_totalcost_label ?></td>
+		<td class=listFooter align="right"><? $totalCost|sureecho ?></td>
+	</tr>
+</table>
+<p><? $rightsStr ?></p>
+<p class="smallFont"><b><? $kernelStrings.app_note_text|cat:": " ?></b><? $pmStrings.app_rightslegend_text|nl2br ?></p>
+<? elseif $projectData.SCREEN == 1 ?>
+<? if $showUserSelector ?>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="100%" align="right" valign="middle"><nobr><? $pmStrings.pm_finduser_label|cat:":" ?></nobr>&nbsp;</td>
+			<td align="right">
+				<select name="userShift" onChange="this.form.submit()" class="control">
+					<? html_options values=$userlistIDs selected=$userShift output=$userlist ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="../../../common/html/classic/images/5pixsep.gif"></td>
+		</tr>
+	</table>
+<? /if ?>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="complexList">
+   <tr class="head">
+	<th align="left" class=list_rightBorder widh="10"><? $pmStrings.pm_id_title ?></th>
+	<th align="left" class=list_rightBorder><? $pmStrings.pm_summary_title ?></th>
+	<? if $prevLink ?><th width="15" align="left" valign="middle" class=list_rightBorder><? conditionalLink href=$prevLink  text=#prev_img# title=$pmStrings.pm_moreusers_hint ?></th><? /if ?>
+	<? foreach name="userSec" from=$users item=user key=userID ?>
+	  <th class=list_rightBorder width="70" align="center" valign="middle"><nobr><? $user ?></nobr></th>
+	<? /foreach ?>
+	<? if $nextLink ?>
+	<th width="15" align="right" valign="middle">
+	  <? conditionalLink href=$nextLink text=#next_img# title=$pmStrings.pm_moreusers_hint ?>
+	</th>
+	<? /if ?>
+  </tr>
+  <? section name=workSec loop=$project_works ?>
+  <tr <? if ($smarty.section.workSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+	<td valign="top" class=list_rightBorder width=10><? conditionalLink href=$project_works[workSec].ROW_URL text=$project_works[workSec].PW_ID ?></td>
+	<td valign="top" class=list_rightBorder><? conditionalLink href=$project_works[workSec].ROW_URL text=$project_works[workSec].PW_DESC ?></td>
+	<? if $prevLink ?><td valign="top">&nbsp;</td><? /if ?>
+	<? foreach key=userID item=userData from=$users ?>
+	  <td valign="middle" align="center">
+		<? switchedOutput str1=#checkedImg# str2="&nbsp;" val=$project_works[workSec].ASGN.$userID true_val=1 ?>
+	  </td>
+	<? /foreach ?>
+	<? if $nextLink ?>
+	<td valign="top">&nbsp;</td>
+	<? /if ?>
+  </tr>
+  <? sectionelse ?>
+  <tr align="center"> 
+	<td colspan="<? $totalColCount ?>" class="default">
+	  <? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?>
+	</td>
+  </tr>
+  <?/section?>
+	<tr>
+		<td class=listFooter align=right valign=top>&nbsp;</td>
+		<td class=listFooter align=right valign=top><? $pmStrings.pm_total_label ?></td>
+		<? if $prevLink ?><td class=listFooter valign="top">&nbsp;</td><? /if ?>
+		<? foreach key=userID item=userData from=$users ?>
+			<td class=listFooter align=center><? $userAssignments[$userID]|sureecho ?></td>
+		<? /foreach ?>
+		<? if $nextLink ?><td class=listFooter valign="top">&nbsp;</td><? /if ?>
+	</tr>
+</table>
+<p><? $rightsStr ?></p>
+<p class="smallFont"><b><? $kernelStrings.app_note_text|cat:": " ?></b><? $pmStrings.app_rightslegend_text|nl2br ?></p>
+<? else ?>
+	<? include file="../../../PM/html/classic/textganttchart.htm" ?>
+	<p><? $rightsStr ?></p>
+	<p class="smallFont"><b><? $kernelStrings.app_note_text|cat:": " ?></b><? $pmStrings.app_rightslegend_text|nl2br ?></p>
+<? /if ?>

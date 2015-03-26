@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="../../../common/html/classic/tree_templates/tree_styles.css" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+
+	function confirmBookDeletion()
+	{
+		return confirm( "<? $qpStrings.app_bookdelete_message ?>" );
+	}
+
+	function confirmDeletion()
+	{
+		var ret;
+
+		ret = confirm( "<? $qpStrings.app_screen_pagedel_message ?>" );
+
+		<? if $hasItChilds ?>
+			if ( ret )
+				return confirm( "<? $qpStrings.app_screen_subpages_delete_message ?>" );
+			else
+				return ret;
+		<? else ?>
+			return ret;
+		<? /if ?>
+	}
+
+	function submitFolder( obj )
+	{
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 ) {
+			return false;
+		}
+
+		obj.form.submit();
+	}
+
+
+	function findCurrentFolder()
+	{
+		obj = document.getElementById("<? $currentFolder ?>");
+		if ( obj ) {
+			obj.scrollIntoView();
+		}
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class=noOverflow onLoad="initTreeDocumentView(); findCurrentFolder()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+	<input type="hidden" name="btndummy">
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="curFolderID" value="<? $curFolderID ?>">
+	<input type="hidden" name="currentPage" value="<? $currentPage ?>">
+	<input type="hidden" name="currentBookID" value="<? $currentBookID ?>">
+
+	<? assign var=toolbar value="../../../QP/html/classic/qp_toolbar.htm" ?>
+	<? assign var=headerHeight value=92 ?>
+
+	<? if !$fatalError || $noBooks ?>
+		<? if !$noAccessGranted ?>
+			<? assign var=hideBottomPanel value=1 ?>
+			<? assign var=hideFoldersHint value=$qpStrings.app_hidefolders_hint ?>
+
+			<? assign var=rightPanelContent value="../../../QP/html/classic/pageview.htm" ?>
+
+			<? if $searchString != "" ?>
+				<? assign var=rightPanelHeader value=$qpStrings.qp_screen_searchresult_title ?>
+				<? assign var=rightPanelContent value="../../../QP/html/classic/searchlist.htm" ?>
+				<? assign var=rightPanelHeader value=$qpStrings.app_screen_search_result_title|htmlsafe:true:true ?>
+			<? else ?>
+				<? if $bookData.QPB_PUBLISHED ?>
+					<? assign var=tP value=$qpStrings.qp_screen_published_title|cat:": "|cat:$themeName|htmlsafe:true:true|cat:" - <a href="|cat:$urlBook|cat:" target=_blank><u>"|cat:"preview"|cat:"</u></a>" ?>
+				<? else ?>
+					<? assign var=tP value=$qpStrings.qp_screen_notpublished_title ?>
+				<? /if ?>
+				<? if !$fatalError ?>
+					<? assign var=rightPanelHeader value=$bookData.QPB_NAME ?>
+					<? assign var=rightPanelHeaderAdditionalInfo value="&nbsp; <span style='font-size : 64%'>["|cat:$tP|cat:"]</span>" ?>
+				<? /if ?>
+			<? /if ?>
+
+			<? if $statisticsMode ?>
+				<? if $searchString == "" ?>
+					<? if $bookData.QPB_PUBLISHED ?>
+						<? assign var=tP value=$qpStrings.qp_screen_published_title|cat:": "|cat:$themeName|htmlsafe:true:true|cat:" - <a href="|cat:$urlBook|cat:" target=_blank><u>"|cat:"preview"|cat:"</u></a>" ?>
+					<? else ?>
+						<? assign var=tP value=$qpStrings.qp_screen_notpublished_title ?>
+					<? /if ?>
+
+					<? assign var=rightPanelHeader value=$bookData.QPB_NAME ?>
+					<? assign var=rightPanelHeaderAdditionalInfo value="&nbsp; <span style='font-size : 64%'>["|cat:$tP|cat:"]</span>" ?>
+					<? assign var=rightPanelContent value="../../../QP/html/classic/pageview.htm" ?>
+					<? assign var=hidePages value=1 ?>
+					<? assign var=docsColumnName value=$qpStrings.qp_srceen_summarydoc_title ?>
+				<? /if ?>
+			<? /if ?>
+
+
+			<? if $hideLeftPanel && $searchString == "" ?>
+				<? assign var=topPanelFile value="../../../QP/html/classic/folderselector.htm" ?>
+				<? assign var=foldersImage value="javascript:processTextButton('showFoldersBtn', 'form')" ?>
+			<? /if ?>
+
+			<? assign var=topLevel value=true ?>
+			<? assign var=leftPanel value="../../../QP/html/classic/catalog_panel.htm" ?>
+			<? assign var=rightTopPanel value=$rightPanelContent ?>
+			<? assign var=leftPanelHeader value=$qpStrings.qp_treepages_text?>
+			<? assign var=numDocumentsLabel value=$qpStrings.qp_screen_numdocs_label?>
+			<? assign var=leftPanelLinkTitle value=$qpStrings.qp_treeavailpages_name?>
+
+			<? assign var=showFoldersHint value=$qpStrings.app_folders_hint ?>
+
+			<? include file="../../../common/html/classic/tree_templates/folder_document_resizable_view.htm" ?>
+
+		<? else ?>
+			<? include file="../../../common/html/classic/header.htm" ?>
+			<? $qpStrings.qp_screen_noaccess_message|nl2br ?>
+			<?include file="../../../common/html/classic/pagefooter.htm" ?>
+		<? /if ?>
+	<? else ?>
+		<script language="javascript" src="../../../common/html/classic/styles/wbscommon.js"></script>
+		<script language="javascript">
+			<? assign var=lowerAppID value=$curAPP_ID|lower ?>
+			<? assign var=testFileName value="../../../"|cat:$curAPP_ID|cat:"/help/"|cat:$language|cat:"/"|cat:$lowerAppID|cat:".htm" ?>
+			if ( parent.frames['topFrame'] ) {
+				<? if $testFileName|fileexists ?>
+					parent.frames['topFrame'].curAppID = '<? $curAPP_ID ?>';
+				<? else ?>
+					parent.frames['topFrame'].curAppID = 'NOHELP';
+			<? /if ?>
+			}
+		document.treeViewName = "<? $curAPP_ID|cat:$currentUser ?>";
+		</script>
+
+		<table border=0 cellspacing=0 cellpadding=0 class="restdv_main">
+		<tr>
+		<td colspan=2 id="restdv_banner" valign="top" height=1>
+			<!-- Page header -->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			<td class="pageHeader">
+			<? if $pageIcon != "" ?>
+				<img src="<? $pageIcon ?>" width="34" height="34" hspace="0" align="absmiddle" class="icon">
+			<? /if ?>
+			<? $pageTitle ?>
+			</td>
+			</tr>
+			</table>
+		<? if $addCreateButton ?>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="pageTopPanel">
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$qpStrings.qp_screen_book_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$bookMenu popupMenuIndex=0 menuIcon=1 showTopBar=1 menuClass="btnText" ?>
+			</td>
+		</tr>
+		</table>
+		<? /if ?>
+		<? include file="../../../common/html/classic/submenus.tpl" menu=$menuLinks ?>
+		</td></tr>
+		<tr><td width=2%></td><td valign=top>
+		<br>
+		<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+		</td></tr>
+		</table>
+	<? /if ?>
+</form>
+<? /strip ?>
+</body>
+</html>

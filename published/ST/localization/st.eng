@@ -1,0 +1,349 @@
+app_name_long	Common	Full Application Name	Help Desk
+app_name_short	Common	Short Application Name	Help Desk
+app_id_title	Common	ID title	Код
+app_date_title	Common	Date title	Дата
+app_originaldate_title	Common	Original Date title	Оригинал
+app_receiveddate_title	Common	Received Date title	Получено
+app_client_title	Common	Client title	Клиент
+app_subject_title	Common	Subject title	Тема
+app_performer_title	Common	Performer title	Исполнитель
+app_noperformer_label	Common	Performer is not assigned label	<не назначен>
+app_reply_title	Common	Reply title	Ответ
+
+app_errloadingrequests_message	Common	Error loading requests message	Ошибка загрузки запросов
+app_inboxurlisempty_message	Common	Empty inbox URL error message	Не указан электронный адрес для получения списка запросов
+app_inboxuserisempty_message	Common	Empty inbox user name error message	Не указано имя пользователя почтового ящика
+app_inboxpwdisempty_message	Common	Empty inbox user password error message	Не указан пароль пользователя почтового ящика
+app_serviceerror_message	Common	Service error message	Служба: %s - %s.
+app_downloadsuccess_message	Common	Service download success message	Служба: %s - %s.
+app_errconnectingmailbox_message	Common	Error connecting mail box message	Ошибка подключения к почтовому серверу
+app_errorlockingprocess_message	Common	Error locking downloading process message	Не удалось создать файл блокировки
+app_nosubject_label	Common	No subject label	<без темы>
+app_request_text	Common	Request text	Запрос
+app_requestext_title	Common	Request text title	Текст запроса
+app_discussionsubject_text	Common	Discussion message subject	Support Tracking Discussion
+app_discussionmail_title	Common	Discussion E-mail header	Уважаемый(ая) %s,
+app_errorsending_message	Common	Error sending email message	Ошибка отправки сообщения
+app_lowpriority_label	Common	Low priority label	Низкий
+app_normalpriority_label	Common	Normal priority label	Средний
+app_highpriority_label	Common	High priority label	Высокий
+app_requests_label	Common	Requests label	Запросов
+app_imapisnotpresent_message	Common	IMAP functions is not present message	Не удалось загрузить новые запросы: библиотека IMAP недоступна.
+app_allrequests_title	Common	All requests status title	<все запросы>
+app_newrequests_title	Common	New requests status title	Новые
+app_changefilter_title	Common	Set filters for tickets	Изменить фильтр
+app_applyfilter_title	Common	Apply filters for tickets	Применить
+app_closefilter_title	Common	Close filters window	Закрыть
+app_discussionrequests_title	Common	Discussion requests status title	Обсуждение
+app_closedrequests_title	Common	Closed requests status title	Закрытые
+app_newdiscussionrequests_title	Common	New and discussion requests status title	Новые + Обсуждение
+app_reopenrequests_title	Common	Reopened requests status title	Переоткрытые
+app_deletedrequests_title	Common	Deleted requests status title	Удаленные
+app_filterequests_title	Common	Filterd requests status title	Отфильтрованые
+app_sent_title	Common	Sent title	Получено
+app_statusnew_name	Common	New status name	Новый
+app_statusdiscussion_name	Common	Discussion status name	Обсуждение
+app_statusreply_name	Common	Reply status name	Закрыт
+app_statusdeleted_name	Common	Deleted status name	Удален
+app_reopened_name	Common	Reopened status name	Переоткрытый
+app_cantdiscuss_message	Common	Cannot add discussion message	Невозможно добавить обсуждение для закрытого запроса
+app_cantreply_message	Common	Cannot reply ticket message	Этот запрос уже закрыт
+app_yes_btn	Common	Yes button	Да
+app_no_btn	Common	No button	Нет
+app_email_label	Common	Email address label	Адрес
+app_name_label	Common	Client name label	Имя клиента
+app_replyto_label	Common	Reply To	Обратный
+app_hours_label	Common	Hours label	ч.
+app_searchsettingsnotfound_message	Commpn	Search settings not found message	Настройки поиска не найдены
+app_spticket_id	Common	Ticket ID search place name	номер запроса
+app_spticket_id_name	Common	From search place id	номер запроса
+app_spfrom_name	Common	From search place name	от кого
+app_spsubject_name	Common	Subject search place name	тема
+app_sprequest_name	Common	Request search place name	запрос
+app_spdiscussion_name	Common	Discussion search place name	обсуждение
+app_spreply_name	Common	Reply search place name	ответ
+app_vlctrlvar_title	Common	Variable list control variable name title	Переменная
+app_vlctrldesc_title	Common	Variable list control variable description title	Описание
+app_vlctrl_note	Common	Variable list note	Для вставки переменной в шаблон либо напечатайте ее имя (символы процента % обязательны) либо щелкните по названию переменной в списке.
+app_available_pages_name	Common	 Available Pages rights name	Страницы приложения
+ams_custname_label	Common	Customer name label	Имя клиента
+ams_custemail_label	Common	Customer email label	Email клиента
+ams_ticketid_label	Common	Ticket ID label	Код запроса
+ams_ticketdate_label	Common	Ticket date label	Дата и время запроса
+rl_open_in_new_window	Request List	Open in new window	Открыть в новом окне
+rl_user_file_title	Request List	User file title	Досье на клиента
+rl_find_all_requests	Request List	Find all requests link	Открыть
+rl_find_all_orders	Request List	Find all orders link	Открыть
+rl_no	Request List	Simple no	нет
+rl_long_name	Request List	Request List page full name	Список запросов
+rl_short_name	Request List	Request List page short name	Список запросов
+rl_filter_title	Request List	Filter title	Фильтр
+rl_requests_title	Request List	Request title	Запросы
+rl_orders_title	Request List	Order title	Заказы
+rl_deliver_btn	Request List	Deliver mail button	Доставить
+rl_view_btn	Request List	View button	Вид
+rl_request_btn	Request List	Request button	Запрос
+rl_apply_btn	Request List	Apply button	Применить
+rl_move_btn	Request List	Move button	Переместить
+rl_service_label	Request List	Service label	Служба
+rl_status_label	Request List	Service label	Статус
+rl_status_label_II	Request List	Service label II	Статус запроса
+rl_customer_info	Customer Info	Service customer info label	Информация о заказчике
+rl_filter_label	Request List	Filters	Изменить фильтр
+rl_servicenotfound_message	Request List	Service is not found message	Не найдено ни одной службы. Пожалуйста, используйте меню Support/Сервис для настройки служб.
+rl_allservices_item	Request List	All services list item	<все службы>
+rl_servicupdexpired_message	Request List	Service update intervlal expired message	Превышено допустимое время доставки сообщений с почтового сервера
+rl_warning_message	Request List	Warning message	Внимание!
+rl_moreinfo_button	Request List	More button	подробнее
+rl_delivered_message	Request List	Delivered message	Доставлено новых сообщений
+rl_allservices_menu	Request List	All services menu item	Все службы
+rl_requestchangeservice_menu	Request List	Request/Change service menu	Изменить службу
+rl_requestdelete_menu	Request List	Request/Delete menu	Удалить
+rl_search_menu	Request List	Request/Search	Поиск
+rl_emptydel_message	Request List	Request deletion without selecting the requests message	Пожалуйста, выберите запрос(ы) для удаления.
+rl_confirmdel_message	Request List	Contact deletion confirmation	Вы действительно хотите удалить выбранные запросы?
+rl_emptymove_message	Request List	Request moving without selecting the requests message	Пожалуйста, выберите запрос(ы) для изменения службы.
+rl_refresh_btn	Request List	Refresh button	Обновить
+rl_closemessage_btn	Request List	Close button title	Закрыть
+rl_searchresults_title	Request List	Search Results title	Результаты поиска
+rl_searchparams_title	Request List	Search parameters title	Образец поиска
+rl_closesearch_btn	Request List	Close search button	Вернуться в список
+rl_changesearchsettings_btn	Request List	Change search settings button	Изменить условия...
+rl_viewlist_menu	Request List	View/List menu item	Список
+rl_viewlistandview_menu	Request List	View/List & View menu item	Список и просмотр
+rl_viewsetup_menu	Request List	View/Setup View menu item	Настроить вид
+rl_idascsort_menu	Request List	Sort by ID menu	Код
+rl_iddescsort_menu	Request List	Sort by ID, descending menu	Код (последние наверху)
+rl_receivedascsort_menu	Request List	Sort by received date menu	Получено
+rl_receiveddescsort_menu	Request List	Sort by received date, descending menu	Получено (последние наверху)
+rl_turnoverascsort_title	Request List	Turnover title	Оборот
+rl_sorting_label	Request List	Sorting label	Сортировка
+rs_no_mtaccount_msg	Request	No mt account	В Customer Center нет аккаунта с данным электронным адресом!
+rs_mtaccount_suspended_msg	Request	mt account suspended	Аккаунт в Customer Center с данным адресом ЗАБЛОКИРОВАН!
+rs_emailtickets_full_btn	Request	Show full information for tickets from email button	подробно
+rs_emailtickets_short_btn	Request	Show short information for tickets from email button	кратко
+rs_concernedtickets_full_btn	Request	Show full information for concerned tickets button	подробно
+rs_concernedtickets_short_btn	Request	Show short information for concerned tickets button	кратко
+rs_reply_btn	Request	Reply button	Ответить
+rs_discuss_btn	Request	Discuss button	Обсудить
+rs_delete_btn	Request	Delete button	Удалить
+rs_replydate_label	Request	Reply Date label	Дата ответа
+rs_replytext_label	Request	Reply Text label	Текст ответа
+rs_relatedrequests_label	Request	Related Requests label	Связанные запросы
+rs_discussion_label	Request	Discussion label	Обсуждение
+rs_author_label	Request	Author label	Автор
+rs_message_label	Request	Message label	Сообщение
+rs_historys_label	Request	Historys label	История запросов
+rs_requestlist_btn	Request	Request List Button	Список запросов
+rs_requestdate_label	Request	Reqest Date label	Дата запроса
+rs_date_label	Request	Date label	Date
+rs_delete_message	Request	Delete confirmation message	Удалить запрос?
+rs_attachments_label	Request	Attachments label	Вложения
+rs_from_label	Request	From label	От
+rs_historyticket_label	Request	History	Запрос №
+rs_historyempty_label	Request	History	Обсуждение или ответ клиенту отсутствуют
+rs_totop_label	Request	To_top	Перейти к началу описания запроса
+rs_to_label	Request	To label	Кому
+rs_sent_label	Request	Sent label	Получено
+rs_originalmessage_label	Request	Original Message label	Оригинальное сообщение
+rs_discussionmessage_label	Request	Original Message label	Обсуждение
+rs_replymessage_label	Request	Reply to client label	Ответ заказчику
+rs_pending_label	Request	Pending label	ожидает
+rs_pendingdetails_label	Request	Pending label for the order details section	Ожидает
+rs_afterrequest_label	Request	Аfter request label	после запроса
+rs_catch_btn	Request	Catch button	Захватить
+rs_catch_message	Request	Catch message	Данный запрос уже захвачен пользователем 
+rs_catchconfirm_message	Request	Catch confirm message	Вы действительно хотите поменять исполнителя запроса?
+rs_assignedrequests_label	Request	Assigned requests label	Связан с запросами:
+rs_thisemailrequests_label	Request	Old requests from this email label	Другие запросы с данного адреса:
+rs_close_btn	Request	Close button	Закрыть запрос
+rs_reopen_btn	Request	Reopen button	Открыть заново
+rs_closemessage_label	Request	Close label	Данный запрос закрыт без ответа заказчику
+rs_closeuser_label	Request	Close user label	Пользователь
+rs_closedate_label	Request	Close date label	Дата
+rs_refresh_btn	Request	Refresh button	Обновить
+rs_cancelassignment_label	Request	Cancel assignment label	Отменить назначение
+rs_cancelassignment_message	Request	Cancel assignment message	Вы действительно хотите отменить назначение?
+rs_replydetails_label	Request	Reply details label	Оборот
+rs_reopen_message	Request	Reopen confirmation message	В результате этой операции будет создан новый запрос с новым идентификатором. Вы сможете продолжить обсуждение и ответить заказчику. Продолжить операцию?
+rs_restore_btn	Request	Restore button	Восстановить
+rs_eecustomers_label	Request	Customers with extra email like request email	Адрес зарегистрирован как дополнительный для клиентов:
+ds_discusspage_title	Discuss	Page title	Обсудить запрос
+ds_recipients_label	Discuss	Recipients label	Кому
+ds_message_label	Discuss	Message label	Сообщение
+ds_send_btn	Discuss	Send button	Отправить
+ds_recipientsnotset_message	Discuss	Please specify recipients message	Пожалуйста, укажите получателей
+ds_invalidextrarecipients_message	Discuss	Invalid extra recipients message	Ошибка в адресе дополнительных получателей: "%s". Используйте запятые для разделения адресов.
+ds_messsagenotset_message	Discuss	Please specify message text	Пожалуйста, заполните текст сообщения
+ds_included_label	Discuss	Included label	Включенные
+ds_notincluded_label	Discuss	Not included label	Не включенные
+ds_extraaddress_label	Discuss	Extra email address label	Дополнительно
+ds_discussion_text	Discuss	Discussion Text	\n\n\n--\n%s\n
+ds_discussion_text_link	Discuss	Discussion Text with link to request	Обсуждение запроса %s (см. вложение)
+ds_recipients_label	Discuss	Recipients label	Получатели
+ds_requestfiles_label	Discuss	Request Files label	Файлы запроса
+rplp_page_title	Reply	Reply page title	Ответить
+rp_to_label	Reply	To label	Кому
+rp_cc_label	Reply	CC label	Копия
+rp_bcc_label	Reply	BCC label	Скрытая копия
+rp_confirmassignment_message	Reply	Confirm assignment message	Исполнителем данного запроса является %s.\n\nВы действительно хотите поменять исполнителя?
+rp_message_label	Reply	Message label	Сообщение
+rp_requesttext_label	Reply	Request text label	Текст запроса
+rp_attachments_label	Reply	Attachments label	Вложения
+rp_attachfiles_label	Reply	Attach files label	Прикрепить файл
+rp_recipiensnotset_message	Reply	Please specify recipients message	Пожалуйста, укажите адрес получателя
+rp_subject_label	Reply	Subject label	Тема
+mail_letter_subject	Mail notifications	Discussion letter subject	Обсуждение запроса технической поддержки.
+mail_request_label	Mail notifications	Discussion request label	Запрос
+mail_date_label	Mail notifications	Discussion date label	Дата
+mail_priority_label	Mail notifications	Discussion priority label	Приоритет
+mail_from_email_label	Mail notifications	From email label	От
+mail_requesttext_label	Mail notifications	Discussion request text label	Текст запроса
+mail_message_label	Mail notifications	Discussion message text label	Сообщение
+sst_page_title	Settings	Service Settings page title	Служба
+sst_servicename_title	Settings	Service name title	Название
+sst_servicecode_title	Settings	Service code title	Код службы
+sst_supportaddress_label	Service Settings	Support email address label	Электронный адрес
+sst_popserveraddress_label	Service Settings	POP server address label	Сервер входящей почты (POP3)
+sst_smtpserveraddress_label	Service Settings	SMTP server address label	Сервер исходящей почты (SMTP)
+sst_username_label	Service Settings	User name label	Пользователь
+sst_userpassword_label	Service Settings	User password label	Пароль
+sst_interval_label	Service Settings	Mailbox checking interval label	Интервал проверки почты, сек
+sst_codeexists_label	Service Settings	Service with this code already exists message	Служба с таким кодом уже существует
+sst_invalidaddress_message	Service Settings	Invalid email address message	Пожалуйста, укажите правильный электронный адрес
+sst_nochanges_message	Service Settings	Modification canceled message	Настройки не были сохранены
+sst_changes_message	Service Settings	Modification saved message	Настройки были успешно сохранены
+sst_delete_btn	Service Settings	Delete button	Удалить
+stt_deleteconfirmation_message	Service Settings	Delete confirmation message	Вы действительно хотите удалить эту службу?
+stt_updateinterval_label	Service Settings	Maximum update interval label	Допустимое время обновления, мин.
+stt_service_tab	Service Settings	Service tab title	Служба
+stt_server_tab	Service Settings	Server tab title	Сервер
+stt_signature_tab	Service Settings	Signature tab title	Подпись
+stt_receipt_tab	Service Settings	Receipt tab title	Уведомление
+stt_alerts_tab	Alerts Settings	Alerts tab title	Тревога
+stt_spam_answer_tab	Service Settings	Spam answer tab title	Спам
+stt_newservice_title	Service Settings	New service title	<новая служба>
+stt_var_ticket_hash	Service Settings	Ticket hash variable title	Адрес активации запроса
+sst_getmail_alert1m	Service Settings	Alert time should be not less 1 minute	Разрешенное время недоставки почты должно быть не менее 1 минуты
+sv_page_title	Service	Service page title	Сервис
+sv_msg_encoding	Service	Messages encoding	Кодировка отображения веб-страницы активации запроса и исходного текста email-сообщения о получении запроса после его активации
+sv_answer4spam	Service	Answer for spam	Текст уведомления о непринятом запросе
+sv_activation_message	Service	Message about ticket activation	HTML-код сообщения об активации запроса (показывается пользователю в браузере)
+sv_servicelist_lbl_title	Service	Service list label title	Службы
+sv_clean_lbl_title	Service	Clean label title	Чистка
+sv_error_email_in_blacklist	Service	Error message: email in blacklist	Email уже в черном списке!
+sv_clean_message	Service	clean message	Удалить все запросы со статусом "Удаленные" старее %s месяцев
+sv_clean_confirmation	Service	clean message	Запросы будут удалены без возможности восстановления. Вы действительно хотите удалить запросы?
+sv_deleted_message	Service	message about deleted tickets	Количество удаленных запросов:
+sv_clean_button	Service	clean button	Удалить запросы
+sv_servicename_title	Service	Service name title	Служба
+sv_serviceemail_title	Service	Service email title	Email
+sv_blacklist_email_title	Service	Email in blacklist title	Email
+sv_blacklist_add_title	Service	Add title in blacklist	Добавил
+sv_blacklist_comment_title	Service	Comment 4 email in blacklist title	Комментарий
+sv_blackemail_message	Service	Comment 4 email in blacklist title	Адрес %email% находится в черном списке!
+sv_save_btn	Service	Save service button	Сохранить
+sv_addservice_btn	Service	Add service button	Добавить
+sv_sendreceipt_label	Service	Send receipt label	Отправлять уведомления
+sv_receiptsenderaddress_label	Service	Sender address label	Адрес отправителя уведомлений
+sv_cc_show_tickets_label	Service	Show tickets in CC label	Показывать запросы, поступившие на адрес этой службы, в истории переписки в аккаунте Customer Center
+sv_alrt_getmail_title	Service	Service alert getmail description	Отправлять уведомление о недоставке сообщений в течение %s минут на адреса и телефоны (через запятую):
+sv_enable_spam_protection	Service	Service enable spam protection	Включить защиту службы от спама
+view_page_title	View	Page title	Вид
+view_recsperpage_label	View	Records per page label	Количество запросов на одной странице
+crs_page_title	Change Request Service	Page Title	Изменить службу
+crs_form_label	Change Request Service	Form label	Пожалуйста выберите службу поддержки, в которую вы хотите перенести выбранные запросы.
+crs_service_label	Change Request Service	Service label	Служба
+crs_selectservice_item	Change Request Service	Select service list item	<выберите службу>
+ds_page_title	Delete Service	Page title	Удалить службу
+ds_form_label	Delete Service	Form label	Пожалуйста выберите службу поддержки, в которую вы хотите перенести запросы из 
+ds_service_label	Delete Service	Service label	Служба
+ds_donotmove_btn	Delete Service	Do not move button	Не переносить
+ds_deleteconfirm_message	Delete Service	Delete confirmation message	Запросы, связанные с удаляемой службой, будут также удалены. Продолжить?
+clr_page_title	Close Request	Page title	Закрыть запрос
+clr_comment_label	Close Request	Comment Label	Комментарий
+clr_requestclosed_message	Close Request	Request closed message	Этот запрос уже закрыт.
+sr_page_title	Search	Search page title	Поиск
+sr_service_label	Search	Service label	Служба
+sr_status_label	Search	Service label	Статус
+sr_period_label	Search	Service label	Период получения
+sr_start_label	Search	Service label	с
+sr_end_label	Search	Service label	по
+ 
+sr_dateFormat_label	Search	Service label	формат даты: DD/MM/YYYY
+sr_executor_label	Search	Service label	Исполнитель
+sr_searchsubject_label	Search	Search subject label	Встречается в
+sr_ticket_id_label	Search	Ticket ID label	номер запроса
+sr_from_label	Search	From label	от кого
+sr_subject_label	Search	Subject label	тема
+sr_request_label	Search	Request text label	запрос
+sr_discussiontext_label	Search	Discussion textlabel	обсуждение
+sr_replytext_label	Search	Reply text label	ответ
+sr_searchstring_label	Search	Search string label	Образец поиска
+sr_specifysearchfields_message	Search	Specify search fields message	Укажите хотя бы одно поле для поиска
+sr_previoussearch_label	Search	Previous search presets label	Предыдущие образцы поиска
+sr_allservices_text	Search	All services text	<любая>
+sr_allstatuses_text	Search	All statuses text	<любой>
+sr_unknownstatus_text	Search	Unknown status text	<неизвестный>
+sr_searchin_text	Search	Search in text	Искать в
+sr_searchservicestatus_text	Search	Service and Status text for the search description	Служба [статуc]
+rp_page_title	Reports	Page title	Отчеты
+rp_requestsbyperiod_name	Reports	Requests by period report name	Запросы за период
+rp_requestsbyperiod_desc	Reports	Requests by period report description	Сводная информация о запросах за определенный период
+rp_openrequests_name	Reports	Open requests report name	Открытые запросы
+rp_openrequests_desc	Reports	Open requests report description	Список открытых на данный момент запросов
+rp_run_btn	Reports	Run button	Выполнить
+rbp_frominterval_label	Requests by period	Interval from label	С
+rbp_tointerval_label	Requests by period	Interval to label	по
+gsr_daysleft_label	Reports	Days left label	day(s) left
+gsr_haexpired_label	Reports	Expired label	Expired
+rbp_currentdate_label	Requests by period	Interval current date label	текущий момент
+rbp_show_btn	Requests by period	Show button	Показать
+rbp_interval_label	Requests by period	Interval label	С %s (%s) по %s
+rbp_period_label	Requests by period	Period label	Период
+rbp_invalidintbounds_message	Requests by period	Invalid interval bounds message	Дата начала интервала не может быть больше даты конца
+rbp_openonstart_title	Requests by period	Open on start title	Открытых на начало
+rbp_receivednew_title	Requests by period	Received new title	Поступило новых
+rbp_processednew_title	Requests by period	Processed new title	Отвечено на новые
+rbp_processedold_title	Requests by period	Processed old title	Отвечено на старые
+rbp_closedworesponse_title	Requests by period	Closed without response title	Закрыто без ответа
+rbp_discussed_title	Requests by period	Discussed title	Отправлено на обсуждение
+rbp_deleted_title	Requests by period	Deleted title	Удалено
+rbp_service_title	Requests by period	Service title	Служба
+rbp_totals_title	Requests by period	Totals title	Итого
+rbp_days_label	Requests by period	Days label	дней
+rbp_hours_label	Requests by period	Hours label	час(ов)
+rbp_period_label	Requests by period	Period label	Период:
+opr_total_title	Open Requests	Total title	Всего
+opr_1h_title	Open Requests	More than 1 hour title	> 1ч
+opr_2h_title	Open Requests	More than 2 hour title	> 2ч
+opr_6h_title	Open Requests	More than 6 hour title	> 6ч
+opr_12h_title	Open Requests	More than 12 hour title	> 12ч
+opr_24h_title	Open Requests	More than 24 hour title	> 24ч
+ta_page_title	Ticket Activation	Title of ticket activation page	Активация запроса
+ta_wrong_activation_code	Ticket Activation	Wrong ticket activation code	Запроса с таким кодом не существует или он уже был активирован.
+bl_page_title	Blacklist	Page title	Черный список
+bl_addservice_btn	Blacklist	Add service button	Добавить
+bl_delete_blackemail_btn	Blacklist	Delete black email button	Удалить
+bl_delete_bemails_confirmation	Blacklist	Deleting of black emails confirmation	Вы уверены?
+bl_nochecked_emails	Blacklist	No checked emails	Для удаления необходимо выбрать хотя бы один электронный адрес
+app_tools_menu	Common	Tools menu	Инструменты
+app_reports_menu	Common	Reports menu	Отчеты
+app_cantools_label	Common	Can Use Tools Rights	Может использовать Инструменты
+app_canreports_label	Common	Can Use Reports Rights	Может использовать Отчеты
+
+sa_request_label	Common	Label for request result	Запрос
+sa_discuss_label	Common	Label for discuss result	Обсуждение
+sa_ansner_label	Common	Label for ansner result	Ответ
+sa_subject_label	Common	Label for subject result	Тема
+sa_executor_label	Common	Label for executor result	Исполнитель
+
+sa_exceed_time_label	Common	Exceed executing time	Превышено время выполнения скрипта, измените условия поиска.
+sa_anyone_executor_label	Common	Anyone executor	<любой исполнитель>
+sa_search_period_label	Common	Period of search	Период поиска: 
+sa_start_date_label	Common	Srart search date	c %s
+sa_end_date_label	Common	End search date	до %s
+
+sa_loading_label	Common	Loading label	Загрузка ...
+sa_empty_search_label	Common	Empty search result	К сожалению, отображать нечего (
+sa_menu_search_label	Common	Search menu button	Искать...

@@ -1,0 +1,204 @@
+{{if !$successReport && !$errorReport }}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<link href="{{$styleURL}}" rel="stylesheet" type="text/css">
+
+	<script language="JavaScript">
+		function fillMsgParams()
+		{
+			var obj = parent.document.getElementById('msgViewHeaderContainer');
+			obj.innerHTML = document.getElementById('msgViewHeader').innerHTML;
+			obj.style.display = '';
+
+			parent.msgParams = Array();
+			parent.msgParams['from'] = htmlDecode(document.getElementById('ViewMsgFrom').innerHTML);
+			var obj = document.getElementById('ViewMsgTo');
+			if(obj) parent.msgParams['to'] = htmlDecode(obj.innerHTML);
+
+			parent.msgParams['all_emails'] = '{{$message.all_emails}}';
+			parent.msgParams['replyFrom'] = '{{$replyFrom}}';
+			parent.msgParams['replyTo'] = '{{$replyTo}}';
+
+			var obj = document.getElementById('ViewMsgDate');
+			if(obj) parent.msgParams['date'] = htmlDecode(obj.innerHTML);
+
+			parent.msgParams['subject'] = htmlDecode(document.getElementById('ViewMsgSubject').innerHTML);
+			parent.msgParams['content'] = document.getElementById('ViewMsgContent').innerHTML;
+
+			parent.msgParams['mid'] = '{{$mid}}';
+
+			var obj = parent.document.getElementById('cb_{{$mid}}')
+			if(obj) obj.checked = true;
+
+			parent.resizeIframe();
+
+			var obj = parent.document.getElementById('MsgListLead_{{$uid}}');
+			if(obj && !obj.innerHTML) obj.innerHTML = "{{$message.MMM_LEAD|htmlsafe:true:true}}";
+		}
+		function htmlDecode(str)
+		{
+			str=str.replace(/&amp;/gi,'&');
+			str=str.replace(/&quot;/gi,'"');
+			str=str.replace(/&#039;/g,"'");
+			str=str.replace(/&lt;/gi,'<');
+			str=str.replace(/&gt;/gi,'>');
+			str=str.replace(/&nbsp;/gi,' ');
+			return str;
+		}
+		{{if $errorStr || $forceReload}}
+		parent.forceReload = true;
+		{{/if}}
+	</script>
+</head>
+<body {{if !$errorStr}}onload="fillMsgParams()"{{/if}}>
+
+	{{if $errorStr}}
+		{{$errorStr}}
+	{{else}}
+
+	<div style="padding: 10px">
+
+		<div id="ViewMsgContent">
+			{{$message.MMM_CONTENT}}
+		</div>
+
+		{{if $message.MMM_ATTACHMENT}}
+		<br>
+		<div style="border-top: 1px solid gray">
+			<b>[`Attachments`]:</b> &nbsp;
+			{{foreach from=$attachments item=attach}}
+				<a href="{{$attach.url}}">{{$attach.name}}</a>
+				({{$attach.size}}) &nbsp;
+			{{/foreach}}
+		</div>
+		<br>
+		{{/if}}
+
+	</div>
+
+	<div id="msgViewHeader" style="display: none">
+
+	{{if $message.MMM_STATUS == $STATUS_PENDING}}
+
+	<div style="background: lemonchiffon; border-bottom: 1px solid #EAEAEA; padding: 0 10px">
+		[`This messages will be sent on`]:
+		<span id="ViewMsgDate">{{$message.MMM_DATETIME}}</span> &nbsp;
+		<span style="color: blue; cursor: pointer" onclick="cancelPending('{{$message.MMM_ID}}')">
+			[`Cancel sending and save as a draft`]
+		</span>
+		{{if $pendingError == 1}}
+		<div style="color: red">
+			[`The message could not be sent as scheduled. Please refer to your account administrator.`]
+		</div>
+		{{/if}}
+	</div>
+
+	{{elseif $message.MMM_STATUS == $STATUS_SENT || $message.MMM_STATUS == $STATUS_ERROR}}
+
+	<div style="background: #f5f5f5; border-bottom: 1px solid #eaeaea; padding: 0 10px">
+
+		<span style="color: brown; font-weight: bold">[`Sent`]</span>&nbsp;
+		<span id="ViewMsgDate" style="font-weight: bold">{{$message.MMM_DATETIME}}</span>
+		{{if $errorCount}}
+		<span style="color: red; font-weight: bold; cursor: pointer; padding-left: 2em; text-decoration: underline" onclick="
+			document.getElementById('bufferIframe').src = '../../../MM/2.0/viewform.php?action=errorReport&mid={{$mid}}';
+			">{{$errorCount}} [`error(s)`]</span>
+		{{/if}}
+
+		<div id="reportDiv" style="margin: 5px 0 10px 0; padding: 5px 10px 0 10px; border: 1px solid #dbdfe6; background: white; height: 100px; overflow: auto; display: none"></div>
+
+	</div>
+
+	{{elseif $message.MMM_STATUS == $MM_STATUS_RECEIVED}}
+
+	<div style="background: #f5f5f5; border-bottom: 1px solid #EAEAEA; padding: 0 10px">
+		<b>[`Received`]</b>&nbsp;
+		<span id="ViewMsgDate" style="font-weight: bold">{{$message.MMM_DATETIME}}</span>
+	</div>
+
+	{{/if}}
+
+		<div style="padding: 10px; border-bottom: 1px solid #EAEAEA">
+			<table>
+				<tr>
+					<td nowrap><b>[`From`]:</b></td>
+					<td width="100%" nowrap>
+						<span id="ViewMsgFrom">{{$message.MMM_FROM|htmlsafe:true:true}}</span>
+					{{if $message.MMM_PRIORITY != 3}}
+						<span style="padding-left: 2em"><b>[`Priority`]:</b></span>
+						{{if $message.MMM_PRIORITY == 5}}
+						<span style="color: blue">[`low`]</span>
+						{{elseif $message.MMM_PRIORITY == 1}}
+						<span style="color: red">[`high`]</span>
+						{{/if}}
+					{{/if}}
+					</td>
+				</tr>
+				{{if $message.MMM_TO}}
+				<tr>
+					<td><b>[`To`]:</b></td>
+					<td id="ViewMsgTo">{{$message.MMM_TO|htmlsafe:true:true}}</td>
+				</tr>
+				{{/if}}
+				{{if $message.MMM_CC}}
+				<tr>
+					<td><b>[`Copy`]:</b></td>
+					<td id="ViewMsgCC">{{$message.MMM_CC|htmlsafe:true:true}}</td>
+				</tr>
+				{{/if}}
+				{{if $message.MMM_BCC}}
+				<tr>
+					<td><b>[`BCC`]:</b></td>
+					<td id="ViewMsgBCC">{{$message.MMM_BCC|htmlsafe:true:true}}</td>
+				</tr>
+				{{/if}}
+				{{if $lists}}
+				<tr>
+					<td><b>[`Lists`]:</b></td>
+					<td id="ViewMsgLists">
+						{{$lists|htmlsafe:true:true}}
+					</td>
+				</tr>
+				{{/if}}
+				<tr>
+					<td nowrap><b>[`Subject`]: &nbsp; </b></td>
+					<td id="ViewMsgSubject">{{$message.MMM_SUBJECT|htmlsafe:true:true}}</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+	{{/if}}
+
+</body></html>
+
+{{else}}
+
+<div id="reportDiv">
+{{if $successReport}}{{foreach from=$successReport item=success}}
+  {{$success.MMMST_EMAIL}}<br>
+{{/foreach}}{{/if}}
+
+{{if $errorReport}}
+	<table>
+	{{foreach from=$errorReport item=error}}
+		<tr>
+			<td>{{$error.MMMST_EMAIL}}</td>
+			<td style="color: red; padding-left: 20px">{{$error.MMMST_STATUS}}</td>
+		</tr>
+	{{/foreach}}
+	</table>
+{{/if}}
+
+</div>
+
+<script language="JavaScript">
+	var obj = parent.document.getElementById('reportDiv')
+	obj.innerHTML = document.getElementById('reportDiv').innerHTML;
+	obj.style.display = '';
+</script>
+
+{{/if}}

@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=7" />
+		<? wbs_initLayout ?>
+		<link rel='stylesheet' type='text/css' href='../../../AA/html/cssbased/aa.css'>
+		<link href="../../../common/html/cssbased/acprofile.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="../../../common/html/cssbased/geometry/rounded/niftycube.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		Nifty("a.aa-change-email", "small");
+	}
+	
+	function checkForm() {
+
+		var TableObj = ge('tbl_extra_emails');
+		var submit_form = true;
+		var empty_emails = true;
+		
+		for(var i=0; i<TableObj.rows.length; i++) {
+			var str = trim(TableObj.rows[i].cells[1].firstChild.value);
+			if(str) {
+				empty_emails = false;
+			}
+			if(str && !str.match(/[\.\-_a-z0-9]+?@[\.\-a-z0-9]+?\.[a-z0-9]{2,4}/i)) {
+				TableObj.rows[i].cells[2].innerHTML = '<? $kernelStrings.shsd_enteremails_error ?>';
+				TableObj.rows[i].cells[0].style.color = 'red';
+				submit_form = false;
+			} else {
+				TableObj.rows[i].cells[2].innerHTML = '';
+				TableObj.rows[i].cells[0].style.color = 'black';
+			}
+		}
+		if(empty_emails) {
+			ge('emails_error').style.display = '';
+			submit_form = false;
+		} else {
+			ge('emails_error').style.display = 'none';
+		}
+		return submit_form;
+	}
+	function trim(str) {return str.replace(/^\s*(.*?)\s*$/,"$1")}
+	function ge(id) {return document.getElementById(id)}
+</script>
+		
+	</head>
+	<body onload="document.form.onsubmit=function(){return checkForm()}"><? strip ?>
+		<? wbs_pageLayout ?>
+		
+			<? if !$email_errors ?>
+			<? wbs_errorBlock ?>
+			<? /if ?>
+
+			<? if !$fatalError ?>
+
+
+
+				<div class="aa-index-content">
+				<? if $IS_HOSTED_ACCOUNT ?>
+				
+					<h1>
+				
+					</h1>
+
+<!-- Holder info-->
+
+					<div class="aa-with-span-float">
+						<p>
+							<span>
+								<? $kernelStrings.bill_created_label ?>
+							</span>
+							<span class="aa-rspan">
+								 <? $holderInfo.regDate|htmlsafe:true:true ?>
+							</span>
+						</p>
+						
+						<p>
+							<span>
+								<? $kernelStrings.bill_owner_label ?>
+							</span>
+						
+							<span class="aa-rspan">
+										
+								<? $holderInfo.firstName|htmlsafe:true:true ?>&nbsp;
+								<? $holderInfo.lastName|htmlsafe:true:true ?>
+							
+ 							</span>
+						</p>
+						<p>
+							<span>
+								<? $kernelStrings.bill_email_title ?>
+							</span>
+							
+							<span class="aa-rspan">
+								<? $holderInfo.email|htmlsafe:true:true ?>
+							</span>
+						</p>
+						
+					</div>
+						
+					<? /if ?>
+					
+
+
+					<? if isset($current_plan) ?>
+						<? assign var="desc_var" value="tariff_"|cat:$current_plan|cat:"_label" ?>
+						<? assign var="plan_length" value=$kernelStrings.$desc_var|count_characters?>
+						<? assign var="plan_length" value=$plan_length+390?>
+						<? if $language=='rus' ?>	
+							<? assign var="plan_length" value=$plan_length+10?>
+						<? /if ?>
+					<? else ?>
+						<? assign var="plan_length" value="400"?>
+					<? /if ?>
+					
+  <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td width="<?$plan_length?>" valign="top">
+				<? if $IS_HOSTED_ACCOUNT ?>
+<!-- Billing info-->
+						<h2>
+							<a href="change_plan.php"><img src="../../../AA/html/img/prof.gif" width="46" height="35" /></a><a href="change_plan.php"><? $kernelStrings.bill_account_profile_title ?></a>
+						</h2>
+						
+						<div class="aa-with-span-float">
+							<p>
+								<span>
+									<? $kernelStrings.bill_current_plan_label ?>
+								</span>
+								<span class="aa-rspan">
+									<? $kernelStrings.$desc_var ?> &nbsp;
+
+									<? if ($price_for_current != 0) ?> 
+										<? $price_for_current|string_format:$article?> <? $kernelStrings.bill_per_month_label?>
+									<? elseif  $current_plan != $smarty.const.HOST_DEFAULT_PLAN ?>
+										<? $kernelStrings.bill_free_cost_label?>
+									<? /if ?>
+
+								</span>
+							</p>
+							
+							<? if ((!empty($billing_date) && $current_plan != $smarty.const.HOST_DEFAULT_PLAN) && $price_for_current != 0) ?>
+								<p>
+									<span>
+										<? $kernelStrings.bill_paid_to_label ?>
+									</span>
+									
+									<span class="aa-rspan">
+										<? $billing_date ?>
+									</span>
+									&nbsp;<a href="change_plan.php?exceed=period"><?$kernelStrings.bill_extend_period_label?></a>
+								</p>
+							<? /if ?>
+						</div>
+					
+					<? /if ?>
+
+<!-- Setting part-->
+					<h2>
+						<img src="../../../AA/html/img/sett.gif" width="46" height="33" class="aa-sett" />
+						<? $kernelStrings.bill_settings_label ?>
+					</h2>
+
+					<? foreach from=$sRights item=url key=screen ?>
+					
+						<? assign var="labelName" value=$screen|cat:"_screen_long_name"|lower ?>
+						<? assign var="commentName" value="aa_"|cat:$screen|cat:"_comment_text"|lower ?>
+
+						<? if $screen == 'SMS' ?>
+							<h2><img src="../../../AA/html/img/sms35.gif" width="46" height="37" /><a href="<? $url ?>"><? $kernelStrings.bill_sms_history_label ?></a></h2>
+						<? else ?>
+							<p><a <? if $screen=="CI" ?>style='font-size: 1.2em; font-weight: bold'<? /if ?>href="<? $url ?>"><? $kernelStrings.$labelName ?></a></p>
+						<? /if ?>
+
+					<? /foreach ?>
+  </td>
+				<? if $IS_HOSTED_ACCOUNT && isset($current_plan) && $current_plan != 'FREE' ?>
+					<td valign="top" align="left">
+
+					<h2><img src="../../../AA/html/img/mydomains.gif" width="45" height="36" class="aa-sett" />
+						<a href="framework_domains.php" target="_blank"><? $kernelStrings.domains_link_label ?></a></h2>
+					  <p>&nbsp;</p>
+					  <p>&nbsp;</p>
+					  <p>&nbsp;</p>
+					</td><? /if ?>
+						
+  </tr></table>
+						
+<!-- Cancel account-->
+					<? if $IS_HOSTED_ACCOUNT ?>
+						<p class="aa-cancell">
+						<a href="wahost_cancel.php?action=cancelaccount"><? $kernelStrings.ai_cancelaccount_label ?></a>
+						</p>
+					<? /if ?>
+				</div>
+
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	<? /strip ?></body>
+</html>

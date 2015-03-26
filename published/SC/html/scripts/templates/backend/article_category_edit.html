@@ -1,0 +1,135 @@
+
+<h1 class="breadcrumbs"><a href='{"?ukey=articles_admin&CategoryID="|set_query_html}'>{"pgn_articles"|translate}</a>
+&raquo;
+{if $CategoryID && $CategoryID ne 1}{'prdcat_edit_category'|translate|replace:'%CATEGORY_NAME%':$Category.CategoryTitle|escape:'html'}{else}{'prdcat_add_category'|transcape}{/if}</h1>
+
+{$MessageBlock}
+		
+<form enctype="multipart/form-data" action="{''|set_query_html}" method="post" name="MainForm">
+	<input name="action" value="save_category" type="hidden" />
+
+	<table style="table-layout:fixed;" cellpadding="5" cellspacing="0">
+		<tr>
+			<td class="lcolumnr">{"prdcat_category_parent"|translate}</td>
+			<td>
+				<div id="parent-category-name">
+				{foreach from=$parent_category.calculated_path item=_crumb name=_frcrumbs}
+					{if $_crumb.CategoryID ne 1 && $parent_category.CategoryID ne $_crumb.CategoryID}{$_crumb.CategoryTitle|escape:'html'}&nbsp;&gt;{/if}
+				{/foreach}
+				{$parent_category.CategoryTitle|default:'Root'|escape:'html'}
+				</div>
+				<input name="CategoryParent" id="parent-category-categoryID" value="{$parent_category.CategoryID|default:1}" type="hidden" />
+				<a href="#choose_category" id="choose-parentcategory-handler">{lbl_prdset_lnk_choose_parentcategory}</a>
+			</td>
+		</tr>
+		<tr>
+			<td class="lcolumnr"><strong>{"prdcat_category_name"|translate}</strong></td>
+			<td>{html_text name="CategoryTitle" values=$Category style="width:350px;"}</td>
+		</tr>
+		<tr>
+			<td class="lcolumnr">{"pgn_enabled"|translate}:</td>
+			<td><input type="checkbox" class="checknomarging" name="CategoryEnable"	value="1" {if !$CategoryID} checked="checked"{elseif $Category.CategoryEnable eq 1} checked="checked"{/if} /></td>
+		</tr>
+		
+		<tr>
+			<td class="lcolumnr">{"prdcat_category_logo"|translate}</td>
+			<td>
+				<input type="file" name="CategoryDefaultPicture" />
+				<br />
+				{if $Category.CategoryDefaultPicture}
+					<font class="average"></font><a class="small" href="#" onclick="{$Category.picture_href}" >{$Category.CategoryDefaultPicture}</a> - 
+					<a href='{"categoryID=`$Category.СategoryID`&action=remove_picture"|set_query}' title='{"cnfrm_delete_picture"|translate}' class="confirm_action">{"btn_delete"|translate}</a>
+				{elseif $CategoryID && $CategoryID ne 1}
+					<font class="average">{"str_image_not_uploaded"|translate}</font>
+				{/if}
+			</td>
+		</tr> 
+
+		<tr>
+			<td class="lcolumnr">{"prdcat_category_descr"|translate}:</td>
+			<td>{html_textarea name="CategoryDescription" rows="7" class="mceEditor" cols="40" values=$Category}</td>
+		</tr>
+		
+		<tr>
+			<td class="lcolumnr">{"prdset_meta_title"|translate}:</td>
+			<td>{html_text name="CategoryMetaTitle" style="width:350px;" values=$Category}</td>
+		</tr>
+		
+		<tr>
+			<td  class="lcolumnr">{"prdset_meta_keywords"|translate}:</td>
+			<td>{html_text name="CategoryMetaKey" style="width:350px" values=$Category}</td>
+		</tr>
+
+		<tr>
+			<td class="lcolumnr">{"prdset_meta_description"|translate}:</td>
+			<td>{html_textarea name="CategoryMetaDescription" style="width:350px;" rows=2 cols=35 values=$Category}</td>
+		</tr>
+
+		<tr>
+			<td class="lcolumnr">{"str_sort_order"|translate}:</td>
+			<td><input type="text" name="CategorySort" value="{$Category.CategorySort|default:'0'}" size="13" /></td>
+		</tr>
+		<tr>
+			<td class="lcolumnr">{lbl_catset_slug}</td>
+			<td><input name="CategorySlug" value="{$Category.CategorySlug|escape:'html'}" type="text" style="width:350px;" /></td>
+		</tr>
+		
+		<tr>
+			<td class="lcolumnr">{"pgn_show_sub_posts"|translate}:</td>
+			<td><input type="checkbox" class="checknomarging" name="CategoryShowSub" value="1"{if $Category.CategoryShowSub eq 1} checked="checked"{/if} /></td>
+		</tr>
+
+		</table>
+
+		<p>
+		<input type="submit" value="{"btn_save"|translate}" class="cancel_contentchanged" />
+		{if $CategoryID && $CategoryID ne 1}
+		<input type="button" value="{"btn_delete"|translate}" onclick="if(window.confirm('{'cnfrm_delete'|transcape}'))document.location.href='{'action=delete_category'|set_query_html}';" />
+		{/if}
+		</p>
+</form>
+	
+	
+{include file="backend/tiny_mce_config.html"}
+<script type="text/javascript">
+var categoryID = '{$CategoryID}';
+{literal}
+getLayer('choose-parentcategory-handler').onclick = function(){categoryTreeManager.show_tree('choose_parentcategory');}
+var categoryTreeManager = {
+	
+	'show_tree': function(action){
+		var url = set_query('?ukey=articles_category_tree&js_action='+action);
+		sswgt_CartManager.shop_url = "{/literal}{$smarty.const.CONF_FULL_SHOP_URL|escape:'html'}{literal}";
+		sswgt_CartManager.show(url, 550, 500); 	
+	},
+	'hide_tree': function(){
+		
+		sswgt_CartManager.hide();
+	},
+	'actions': {
+		'choose_parentcategory': {
+			'onclick': function(node){		
+				if(categoryID == node.getSetting('categoryID')){
+					return;
+				}
+				var breadCrumbs = node.getSetting('name');
+				var p = node.ParentNode;
+				while(p){
+					breadCrumbs = p.getSetting('name')+"&nbsp;&gt;&nbsp;"+breadCrumbs;
+					p = p.ParentNode;
+				}
+				getLayer('parent-category-categoryID').value = node.getSetting('categoryID');
+				getLayer('parent-category-name').innerHTML = breadCrumbs;
+				beforeUnloadHandler_contentChanged = true;		
+				categoryTreeManager.hide_tree();
+			}
+		}
+	},
+	
+	'eval': function(action, handler, node, wnd){
+		this.actions[action][handler](node, wnd);
+	}
+}
+</script>
+{/literal}
+<script type='text/javascript' src='{$smarty.const.URL_JS}/widget_checkout.js'></script>

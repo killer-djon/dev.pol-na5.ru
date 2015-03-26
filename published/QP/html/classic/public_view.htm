@@ -1,0 +1,35 @@
+<? if !$fatalError ?>
+<div style="overflow: auto; width: 100%; height: 100%" id="rightscrolldiv">
+<br>
+<table border="0" cellspacing="0" cellpadding="0" width="98%" height=90% align=center>
+<tr>
+<td valign=top>
+
+	<? if $properties.tree_pn_visible == 1 && ( $properties.tree_pn_pos == 'top' || $properties.tree_pn_pos == 'both' ) ?>
+			<p class="pnLink">
+				<? if $folderData.prevURL != "" ?><a href="<? $folderData.prevURL ?>" class="pnLink"><? /if ?><?$qpStrings.app_prev_link ?></a> |
+				<? if $folderData.nextURL != "" ?><a href="<? $folderData.nextURL ?>" class="pnLink"><? /if ?><?$qpStrings.app_next_link ?></a>
+			</p>
+	<? /if ?>
+
+	<? if $folderData.QPF_ID != "AVAILABLEFOLDERS" ?>
+
+		<p></p>
+		<? $folderData.QPF_CONTENT ?>
+		<p></p>
+
+	<? /if ?>
+
+	<? if $properties.tree_pn_visible == 1 && ( $properties.tree_pn_pos == 'bottom' || $properties.tree_pn_pos == 'both' ) ?>
+			<br>
+			<p class="pnLink">
+				<? if $folderData.prevURL != "" ?><a href="<? $folderData.prevURL ?>" class="pnLink"><? /if ?><?$qpStrings.app_prev_link ?></a> |
+				<? if $folderData.nextURL != "" ?><a href="<? $folderData.nextURL ?>" class="pnLink"><? /if ?><?$qpStrings.app_next_link ?></a>
+			</p>
+	<? /if ?>
+
+</td>
+</tr>
+</table>
+</div>
+<? /if ?>

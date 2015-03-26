@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>[`Support Tracker`]</title>
+	<link type="text/css" href="{{$url.css}}style.css" rel="stylesheet" />
+	<script type="text/javascript" src="{{$url.common}}js/jquery.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<div class="panel-container">
+			<table class="top-panel">
+				<tr>
+					<td class="back">
+						<div class="backlink">
+							<a class="history" href="index.php"><span>&larr;</span>[`Back to requests list`]</a>
+						</div>
+					</td>
+					<td class="menu" style="display:none">
+						<div class="menu-container">
+							<ul id="menu" class="menu">
+								<li class="active"><span></span><a href="#">[`Tickets`]</a></li>
+								<li><span></span><a href="?act=settings">[`Tools and Settings`]</a></li>
+							</ul>
+						</div>
+					</td>
+					<td class="button" style="display:none">
+						<div class="button-right">
+							<div class="button-left">
+								<a href="?act=manualticket">[`Add a new request`]</a>
+							</div>
+						</div>
+					</td>
+					<td class="search" class="search-container">
+						<div id="search-block">
+							<label>[`Search`]: <input type="text" class="query"/></label>
+							<button class="search">[`Search`]</button>
+						</div>
+					</td>
+				</tr>
+			</table>	
+			</div>		
+		</div>
+		<div id="body">{{$content}}</div>
+		<div id="footer"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<? if $searchString != "" ?>
+	<? assign var=hideBottomPanel value=1 ?>
+	<? assign var=rightPanelHeader value=$qnStrings.qn_sreen_searchresult_title ?>
+<? else ?>
+	<? assign var=rightPanelHeader value=$curFolderName|htmlsafe:true:true ?>
+<? /if ?>
+
+<? if $statisticsMode ?>
+	<? if $searchString == "" ?>
+		<? assign var=hideBottomPanel value=1 ?>
+		<? assign var=rightPanelHeader value=$kernelStrings.app_treeavailfolders_name ?>
+		<? assign var=hidePages value=1 ?>
+		<? assign var=docsColumnName value=$qnStrings.qn_sreen_summarydoc_title ?>
+	<? /if ?>
+<? /if ?>
+
+
+
+<? assign var=rightPanelCaptionControls value="../../../common/html/cssbased/pageelements/ajax/catalog_folder.showbtn.htm" ?>
+<? wbs_splitterPanelHeader
+	caption=$rightPanelHeader
+	active=true
+	id="RightPanelHeader"
+	captionControls=$rightPanelCaptionControls
+	headerControls=$rightPanelControls
+?>
+
+<? if !$statisticsMode ?>
+	<? assign var=numDocumentsLabel value=$qnStrings.qn_screen_numdocs_label?>
+	<? if $viewMode != 0 ?>
+		<? include file="../../../QN/html/cssbased/notelist_header.htm" ?>
+	<? /if ?>
+	<? assign var=rightPanelContent value="../../../QN/html/cssbased/notelist.htm" ?>
+<? else ?>
+	<? assign var=rightPanelContent value="../../../common/html/cssbased/pageelements/folders_summary.htm" ?>
+
+	<? assign var=hideBottomPanel value=1 ?>
+	<? assign var=hidePages value=1 ?>
+
+	<? assign var=docsColumnName value=$qnStrings.qn_sreen_summarydoc_title ?>
+<? /if ?>
+
+<? wbs_splitterScrollableArea ?>
+	<? include file=$rightPanelContent ?>
+<? /wbs_splitterScrollableArea ?>
+
+<? include file="../../../QN/html/cssbased/notelist_footer.htm" ?>
+
+<input type='hidden' id='currentFolderId' value='<? $currentFolder ?>'>

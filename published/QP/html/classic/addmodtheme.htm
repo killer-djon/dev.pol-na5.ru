@@ -1,0 +1,1015 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+
+function chooseColor( id )
+{
+	document.getElementById("colorchooser").value = id;
+
+	var dlg = window.open("../classic/color.htm", "hadialog",
+								"toolbar=no,menubar=no,personalbar=no,status=no,width=270,height=190," +
+								"scrollbars=no,resizable=no,modal=yes,dependable=yes");
+}
+
+function chooseColorTitle( )
+{
+	return '<? $qpStrings.qpt_screen_choosecolor_title ?>';
+}
+
+function MM_findObj(n, d)
+{ //v4.01
+	var p,i,x;
+
+	if(!d)
+		d=document;
+
+	if ((p=n.indexOf("?"))>0&&parent.frames.length)
+	{
+		d=parent.frames[n.substring(p+1)].document;
+		n=n.substring(0,p);
+	}
+
+	if ( !(x=d[n]) && d.all )
+		x=d.all[n];
+
+	for (i=0;!x && i<d.forms.length;i++)
+		x=d.forms[i][n];
+
+	for (i=0;!x && d.layers && i<d.layers.length;i++ )
+		x=MM_findObj(n,d.layers[i].document);
+
+	if(!x && d.getElementById)
+		x=d.getElementById(n);
+
+	return x;
+}
+
+function var_dump(obj)
+{
+	if(typeof obj == "object")
+	{
+		return "Type: "+typeof(obj)+((obj.constructor) ? "\nConstructor: "+obj.constructor : "")+"\nValue: " + obj;
+	}
+	else
+	{
+		return "Type: "+typeof(obj)+"\nValue: "+obj;
+	}
+}//end function var_dump
+
+function getRadioValue ( property )
+{
+	var retVal;
+	var i=0;
+
+	if (document.form[property] )
+	while (i < 48) {
+		if (document.form[property][i] && document.form[property][i].checked )
+		{
+			return document.form[property][i].value;
+		}
+		i++;
+	}
+
+	return '';
+}
+
+function getTextValue ( property )
+{
+	var retVal;
+	var i=0;
+
+	if (document.form[property] )
+		return document.form[property].value;
+
+	return '';
+}
+
+function getCheckboxValue ( property )
+{
+	var p = MM_findObj( property );
+
+	if ( p==null )
+		return '';
+
+	return p.checked ? 1 : 0;
+}
+
+function getListboxValue ( property )
+{
+	var p = MM_findObj( property );
+
+	if ( p==null )
+		return '';
+
+	return p[p.selectedIndex].value;
+}
+
+function getIframeDOMDocument(ifr)
+{
+	return (ifr.contentDocument) ? ifr.contentDocument : ( (ifr.contentWindow) ? ifr.contentWindow.document : ifr.document );
+}
+
+<? foreach from=$dataSchema key=curKey item=curValue ?>
+var <? $curKey ?>;
+<? /foreach ?>
+
+function initVars()
+{
+
+<? foreach from=$dataSchema key=curKey item=curValue ?>
+	<? if ( !isset( $curValue.notuse ) ) ?>
+		<? if ( !isset( $curValue.checkbox ) ) ?>
+			<? if ( isset( $curValue.radio ) ) ?>
+				<? $curKey ?> = getRadioValue( 'properties[<? $curKey ?>]' );
+			<? else ?>
+				<? if ( isset( $curValue.text ) ) ?>
+					<? $curKey ?> = getTextValue( 'properties[<? $curKey ?>]' );
+				<? else ?>
+					<? $curKey ?> = getListboxValue( 'properties[<? $curKey ?>]' );
+				<? /if ?>
+			<? /if ?>
+		<? else ?>
+				<? $curKey ?> = getCheckboxValue( 'properties[<? $curKey ?>]' );
+		<? /if ?>
+	<? /if ?>
+<? /foreach ?>
+
+	redrawPreview();
+
+}
+
+function updateListbox (property)
+{
+	var p = 'properties['+property+']';
+
+	var val = getListboxValue( p );
+
+	eval( property + '="' + val + '";');
+
+	redrawPreview();
+}
+
+function updateCheckbox (property)
+{
+	var p = 'properties['+property+']';
+
+	var val = getCheckboxValue( p );
+
+	eval( property + '="' + val + '";');
+
+	redrawPreview();
+}
+
+function updateRadio (property)
+{
+	var p = 'properties['+property+']';
+
+	var val = getRadioValue( p );
+
+	eval( property + '="' + val + '";');
+
+	redrawPreview();
+}
+
+function updateText (property)
+{
+	var p = 'properties['+property+']';
+
+	var val = getTextValue( p );
+
+	eval( property + '="' + val + '";');
+
+	redrawPreview();
+}
+
+function updateBNameVis( type )
+{
+	var p = 'properties['+type+'_bname_style]';
+
+	var val = getRadioValue( p );
+
+	var b0 = MM_findObj( 'bname0' );
+	var b1 = MM_findObj( 'bname1' );
+
+	b0.style.display = ( val == 0 ) ? "block" : "none";
+	b1.style.display = ( val == 1 ) ? "block" : "none";
+}
+
+function redrawPreview()
+{
+	<? if $type == plain ?>
+	redrawPlainPreview();
+	<? else ?>
+	redrawTreePreview();
+	<? /if ?>
+}
+
+function redrawTreePreview()
+{
+var p = '<html><head><title></title><style><!--\
+html, body {\
+	height: 100%;\
+	margin: 0px;\
+	padding: 0px;\
+	background-color: ';
+p += tree_body_bg;
+p += ';\
+}\
+body, td {\
+	font-family: ';
+p += tree_body_ff;
+p += ';\
+	font-size: ';
+p += tree_body_fsz;
+p += ';\
+	font-weight: ';
+p += tree_body_fs;
+p += ';\
+	color: ';
+p += tree_body_fg;
+p += ';\
+}\
+a {\
+	color: ';
+p += tree_link_fg;
+p += ';\
+	text-decoration: none;\
+}\
+a:hover {\
+	text-decoration: underline;\
+}\
+.pageHeader {\
+	font-family: ';
+p += tree_bname_ff;
+p += ';\
+	font-size: ';
+p += tree_bname_fsz;
+p += ';\
+	color: ';
+p += tree_bname_fg;
+p += ';\
+	background-color: ';
+p += tree_bname_bg;
+p += ';\
+	font-weight: ';
+p += tree_bname_fs;
+p += ';\
+	margin-top: 0px;\
+	padding-left: 13px;\
+	padding-top: 2px;\
+	padding-bottom: 5px;\
+}\
+.pageTopPanel {\
+	font-family: ';
+p += tree_srch_ff;
+p += ';\
+	font-size: ';
+p += tree_srch_fsz;
+p += ';\
+	color: ';
+p += tree_srch_fg;
+p += ';\
+	background-color: ';
+p += tree_srch_bg;
+p += ';\
+	font-weight: ';
+p += tree_srch_fs;
+p += ';\
+	margin-top: 0px;\
+	padding-left: 10px;\
+	padding-top: 1px;\
+	padding-bottom: 2px;\
+}\
+.treeLeftPanelHeader {\
+	font-family: ';
+p += tree_tochdr_ff;
+p += ';\
+	font-size: ';
+p += tree_tochdr_fsz;
+p += ';\
+	color: ';
+p += tree_tochdr_fg;
+p += ';\
+	background-color: ';
+p += tree_tochdr_bg;
+p += ';\
+	font-weight: ';
+p += tree_tochdr_fs;
+p += ';\
+	padding-left: 13px;\
+}\
+.treeCatalogRowTbl{\
+	color: ';
+p += tree_toc_fg;
+p += ';\
+	background-color: ';
+p += tree_toc_bg;
+p += ';\
+}\
+.treeCatalogRow {\
+	font-family: ';
+p += tree_toc_ff;
+p += ';\
+	font-size: ';
+p += tree_toc_fsz;
+p += ';\
+	color: ';
+p += tree_toc_fg;
+p += ';\
+	background-color: ';
+p += tree_toc_bg;
+p += ';\
+	font-weight: ';
+p += tree_toc_fs;
+p += ';\
+	padding-top: 2px;\
+	padding-bottom: 2px;\
+	padding-left: 2px;\
+	padding-right: 2px;\
+}\
+.treeCatalogRowCurrent {\
+	font-family: ';
+p += tree_toc_ff;
+p += ';\
+	font-size: ';
+p += tree_toc_fsz;
+p += ';\
+	color: ';
+p += tree_tocs_fg;
+p += ';\
+	background-color: ';
+p += tree_tocs_bg;
+p += ';\
+	font-weight: ';
+p += tree_toc_fs;
+p += ';\
+	padding-top: 2px;\
+	padding-bottom: 2px;\
+	padding-left: 2px;\
+	padding-right: 2px;\
+}\
+.treeCatalogRow a {\
+	color: ';
+p += tree_toc_fg;
+p += ';\
+}\
+.treeCatalogRowCurrent a {\
+	color: ';
+p += tree_tocs_fg;
+p += ';\
+}\
+.restdv_splitter {\
+	background-color: ';
+p += tree_splitter_fg;
+p += ';\
+	font-size: 15px;\
+	width: 6px;\
+	cursor: pointer;\
+	cursor: hand;\
+}\
+.restdv_splitterBtn img {\
+	position: relative;\
+	cursor: pointer;\
+	top: 45%;\
+	z-index: 100;\
+}\
+.noOverflow {\
+	overflow:hidden!important;\
+}\
+.control {\
+	border: solid 1px #000000;\
+	background-color: #FFFFFF;\
+	margin: 0px;\
+	padding-left: 1px;\
+	padding-right: 0px;\
+	padding-top: 0px;\
+	padding-bottom: 0px;\
+	text-align: left;\
+}\
+.btnText {\
+	font-family: ';
+p += tree_srch_ff;
+p += ';\
+	font-size: ';
+p += tree_srch_fsz;
+p += ';\
+	color: ';
+p += tree_srch_fg;
+p += ';\
+	font-weight: ';
+p += tree_srch_fs;
+p += ';\
+}\
+.toolbarButton {\
+}\
+\
+.toolbarButton a {\
+	color: ';
+p += tree_srch_fg;
+p += ';\
+	background-color: ';
+p += tree_btn_bg;
+p += ';\
+	border: 1px solid ';
+p += tree_srch_fg;
+p += ';\
+	font-weight: ';
+p += tree_srch_fs;
+p += ';\
+	padding-left: 8px;\
+	padding-right: 8px;\
+	padding-top: 3px;\
+	padding-bottom: 3px;\
+	margin-top: 3px;\
+	margin-bottom: 3px;\
+	vertical-align: middle;\
+}\
+H1 {\
+	font-family: ';
+p += tree_h1_ff;
+p += ';\
+	font-size: ';
+p += tree_h1_fsz;
+p += ';\
+	color: ';
+p += tree_h1_fg;
+p += ';\
+	background-color: ';
+p += tree_h1_bg;
+p += ';\
+	font-weight: ';
+p += tree_h1_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-bottom: 0px;\
+	padding-top: 0px;\
+	padding-left: 4px;\
+}\
+H2 {\
+	font-family: ';
+p += tree_h2_ff;
+p += ';\
+	font-size: ';
+p += tree_h2_fsz;
+p += ';\
+	color: ';
+p += tree_h2_fg;
+p += ';\
+	background-color: ';
+p += tree_h2_bg;
+p += ';\
+	font-weight: ';
+p += tree_h2_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-bottom: 0px;\
+	padding-top: 0px;\
+	padding-left: 4px;\
+}\
+H3 {\
+	font-family: ';
+p += tree_h3_ff;
+p += ';\
+	font-size: ';
+p += tree_h3_fsz;
+p += ';\
+	color: ';
+p += tree_h3_fg;
+p += ';\
+	background-color: ';
+p += tree_h3_bg;
+p += ';\
+	font-weight: ';
+p += tree_h3_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-bottom: 0px;\
+	padding-top: 0px;\
+	padding-left: 4px;\
+}\
+.pnLink {\
+	font-family: ';
+p += tree_pn_ff;
+p += ';\
+	font-size: ';
+p += tree_pn_fsz;
+p += ';\
+	color: ';
+p += tree_pn_fg;
+p += ';\
+	background-color: ';
+p += tree_pn_bg;
+p += ';\
+	font-weight: ';
+p += tree_pn_fs;
+p += ';\
+	text-align: ';
+p += tree_pn_adjust;
+p += ';\
+	padding-left: 2px;\
+}\
+-->\
+</style>\
+</head>\
+<body leftmargin="0" topmargin="0">\
+<table class="restdv_main" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">\
+<tr>\
+<td colspan="3" height="10" valign="top">';
+
+if ( tree_top_visible == 1 )
+p+='<p style="cursor: pointer; cursor: hand;" align=center onClick="parent.switchHorFormTab( \'TOP\', parent.tabsfoldertabs, \'\' );"><b><?$qpStrings.qp_publish_settings_edittop_title ?></b><? $topempty ?></p>';
+
+if ( tree_bname_visible == 1 )
+p += '<table border="0" cellpadding="0" cellspacing="0" width="100%">\
+<tr style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'BNAME\', parent.tabsfoldertabs, \'\' );">\
+<td class="pageHeader"><?$qpStrings.qp_publish_settings_bookname_title?></td>\
+</tr>\
+</table>';
+
+if ( tree_srch_visible == 1 )
+p+='<table border="0" cellpadding="0" cellspacing="0" width="100%">\
+<tr>\
+<td class="pageTopPanel">\
+	<table align="left" border="0" cellpadding="0" cellspacing="0">\
+	<tr>\
+	<td valign="middle" class="pageTopPanel" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'SPANEL\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_searchpanel_title?></td><td></td>\
+	<td>\
+		<table align="left" border="0" cellpadding="0" cellspacing="0" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'SPANEL\', parent.tabsfoldertabs, \'\' );">\
+		<tr>\
+			<td class="toolbarButton" background="published_files/topbtn_bg.gif">&nbsp; <a name="1" class="btnText"><nobr><?$qpStrings.qp_publish_settings_button_title?></nobr></a></td>\
+		</tr>\
+		</table>\
+	</td>\
+	</tr>\
+	</table>\
+</td>\
+</tr>\
+</table>';
+
+p += '</td>\
+</tr>\
+<tr>\
+<td class="restdv_treetd" id="treetd" style="width: 130px;" valign="top">\
+<div class="restdv_leftpanel treePanel" id="treediv" style="height: 100%; width: 100%;">\
+	<table border="0" cellpadding="0" cellspacing="0" width="140">\
+	<tr>\
+	<td class="treeLeftPanelHeader" height="20" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCHEADER\', parent.tabsfoldertabs, \'\' );">\
+		<span class="treeLeftPanelHeader"><?$qpStrings.qp_publish_settings_tocheader_brief_title?></span>\
+	</td>\
+	</tr>\
+	</table>\
+	<div style="overflow: auto; width: 140px; height: 93%;" id="leftscrolldiv">\
+	<table height="100%" width="140" class="treeCatalogRowTbl">\
+	<tbody><tr valign="top">\
+		<td>\
+		<div id="1.">\
+		<table border="0" cellpadding="0" cellspacing="0" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCBODY\', parent.tabsfoldertabs, \'\' );">\
+		<tr>';
+if ( tree_toc_pageicons == 1 )
+	p+='<td><img class="treeImage" border="0" src="../../../QP/html/classic/images/folder_open.gif" width="16" height="16"></td>';
+p += '<td class="treeCatalogRow">&nbsp; <a name="1."><?$qpStrings.qp_publish_settings_tocbody_brief_title?></a></td>\
+		</tr>\
+		</table>\
+		<div id="2.">\
+		<table border="0" cellpadding="0" cellspacing="0" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCBODY\', parent.tabsfoldertabs, \'\' );">\
+		<tr>';
+if ( tree_toc_pageicons == 1 )
+	p+='<td><img class="treeImage" border="0" src="../../../QP/html/classic/images/folder_open.gif" width="16" height="16"></td>';
+p += '<td class="treeCatalogRow">&nbsp; <a name="13."><?$qpStrings.qp_publish_settings_tocbody_brief_title?></a></td>\
+		</tr>\
+		</table>\
+		</div>\
+		<div id="13." style="padding-left: 0px;">\
+			<table border="0" cellpadding="0" cellspacing="0" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCS\', parent.tabsfoldertabs, \'\' );">\
+			<tbody><tr>';
+if ( tree_toc_pageicons == 1 )
+	p+='<td><img class="treeImage" border="0" src="../../../QP/html/classic/images/folder_open.gif" width="16" height="16"></td>';
+p += '<td class="treeCatalogRowCurrent">&nbsp; <a name="13."><?$qpStrings.qp_publish_settings_curtocrow_title?></a></td>\
+				</tr>\
+		</tbody></table>\
+		</div>\
+		<div id="13." style="padding-left: 10px;" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCBODY\', parent.tabsfoldertabs, \'\' );">\
+			<table border="0" cellpadding="0" cellspacing="0">\
+			<tbody><tr>';
+if ( tree_toc_pageicons == 1 )
+	p+='<td><img class="treeImage" border="0" src="../../../QP/html/classic/images/folder_open.gif" width="16" height="16"></td>';
+p += '<td class="treeCatalogRow">&nbsp; <a name="13."><?$qpStrings.qp_publish_settings_tocbody_brief_title?></a></td>\
+			</tr>\
+			</tbody></table>\
+		</div>\
+</td><td>\
+</td></tr>\
+</table>\
+</div>\
+</div>\
+		</td>\
+		<!-- Splitter -->\
+		<td class="restdv_splitter" valign="middle" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'SPLITTER\', parent.tabsfoldertabs, \'\' );">\
+			<div style="height: 10; left: 151px;" id="splitter" class="restdv_splitterBtn" unselectable="on"><b>S</b></div>\
+		</td>\
+		<!-- Right panel -->\
+		<td style="left: 251px; width: 100px;" id="contenttd" valign="top">\
+			<div style="height: 100%; width: 199px" class="restdv_rightpanel treePanel" id="contentdiv" unselectable="on">\
+				<div style="overflow: auto; width: 100%; height: 100%;" id="rightscrolldiv" >';
+
+if ( ( tree_pn_pos == 'top' || tree_pn_pos == 'both' ) && tree_pn_visible == 1 )
+	p += '<br><table align="center" border="0" cellpadding="0" cellspacing="0" width="99%">\
+			<tr>\
+					<td valign="top" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'PREVNEXT\', parent.tabsfoldertabs, \'\' );">\
+					<p class="pnLink"><a name="" class="pnLink"><?$qpStrings.qp_publish_settings_pn_title ?></a></p>\
+			</td></tr></table><br>';
+
+				p += '<table align="center" border="0" cellpadding="0" cellspacing="0" width="99%">\
+				<tr>\
+				<td valign="top" style="cursor: pointer; cursor: hand;">\
+					<h1 style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'H1\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_h1_title?></h1>\
+					<h2 style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'H2\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_h2_title?></h2>\
+					<h3 style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'H3\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_h3_title?></h3>\
+					<span  onClick="parent.switchHorFormTab( \'BODY\', parent.tabsfoldertabs, \'\' );"><br>&nbsp;<?$qpStrings.qp_publish_settings_pagetext_title?><br>\
+					&nbsp;<?$qpStrings.qp_publish_settings_pagetext_title?><br><br></span>\
+				</td>\
+				</tr>\
+				</table>\
+				<table align="center" border="0" cellpadding="0" cellspacing="0" width="99%">\
+				<tr>\
+					<td valign="top" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'LINKS\', parent.tabsfoldertabs, \'\' );">\
+					&nbsp;<a name=""><?$qpStrings.qp_publish_settings_links_title?></a>\
+				</td>\
+				</tr>\
+				</table>';
+
+if ( ( tree_pn_pos == 'bottom' || tree_pn_pos == 'both' ) && tree_pn_visible == 1 )
+	p += '<br><table align="center" border="0" cellpadding="0" cellspacing="0" width="99%">\
+			<tr>\
+					<td valign="top" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'PREVNEXT\', parent.tabsfoldertabs, \'\' );">\
+					<p class="pnLink"><a name="" class="pnLink"><?$qpStrings.qp_publish_settings_pn_title ?></a></p>\
+			</td></tr></table>';
+
+	p += '		</div>\
+			</div>\
+		</td>\
+		</tr>\
+		</table>\
+		</body>\
+		</html>';
+
+	var myIframe = document.getElementById('preview');
+	var pvd = getIframeDOMDocument(myIframe);
+	pvd.open();
+	pvd.write(p);
+	pvd.close();
+
+}
+
+function redrawPlainPreview()
+{
+var p = '<html><head><title></title><style><!--\
+html, body {\
+	height: 100%;\
+	width: 100%;\
+	margin: 0px;\
+	padding: 0px;\
+	background-color: ';
+p += plain_body_bg;
+p += ';\
+}\
+body, td {\
+	font-family: ';
+p += plain_body_ff;
+p += ';\
+	font-size: ';
+p += plain_body_fsz;
+p += ';\
+	font-weight: ';
+p += plain_body_fs;
+p += ';\
+	color: ';
+p += plain_body_fg;
+p += ';\
+}\
+a {\
+	color: ';
+p += plain_link_fg;
+p += ';\
+	text-decoration: none;\
+}\
+a:hover {\
+	text-decoration: underline;\
+}\
+.bookName {\
+	font-family: ';
+p += plain_bname_ff;
+p += ';\
+	font-size: ';
+p += plain_bname_fsz;
+p += ';\
+	color: ';
+p += plain_bname_fg;
+p += ';\
+	background-color: ';
+p += plain_bname_bg;
+p += ';\
+	font-weight: ';
+p += plain_bname_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-left: 13px;\
+	padding-top: 2px;\
+	padding-bottom: 5px;\
+}\
+.tocHdr {\
+	font-family: ';
+p += plain_tochdr_ff;
+p += ';\
+	font-size: ';
+p += plain_tochdr_fsz;
+p += ';\
+	color: ';
+p += plain_tochdr_fg;
+p += ';\
+	background-color: ';
+p += plain_tochdr_bg;
+p += ';\
+	font-weight: ';
+p += plain_tochdr_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-left: 13px;\
+	padding-top: 2px;\
+	padding-bottom: 5px;\
+}\
+.tocLink {\
+	font-family: ';
+p += plain_toclink_ff;
+p += ';\
+	font-size: ';
+p += plain_toclink_fsz;
+p += ';\
+	color: ';
+p += plain_toclink_fg;
+p += ';\
+	background-color: ';
+p += plain_toclink_bg;
+p += ';\
+	font-weight: ';
+p += plain_toclink_fs;
+p += ';\
+	text-align: ';
+p += plain_toclink_adjust;
+p += ';\
+	padding-left: 13px;\
+}\
+.pageTitle {\
+	font-family: ';
+p += plain_ptitle_ff;
+p += ';\
+	font-size: ';
+p += plain_ptitle_fsz;
+p += ';\
+	color: ';
+p += plain_ptitle_fg;
+p += ';\
+	background-color: ';
+p += plain_ptitle_bg;
+p += ';\
+	font-weight: ';
+p += plain_ptitle_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-left: 13px;\
+	padding-top: 2px;\
+	padding-bottom: 5px;\
+}\
+.treeCatalogRow {\
+	font-family: ';
+p += plain_toc_ff;
+p += ';\
+	font-size: ';
+p += plain_toc_fsz;
+p += ';\
+	color: ';
+p += plain_toc_fg;
+p += ';\
+	background-color: ';
+p += plain_toc_bg;
+p += ';\
+	font-weight: ';
+p += plain_toc_fs;
+p += ';\
+	padding-left: 13px;\
+}\
+.treeCatalogRow a {\
+	color: ';
+p += plain_toc_fg;
+p += ';\
+}\
+H1 {\
+	font-family: ';
+p += plain_h1_ff;
+p += ';\
+	font-size: ';
+p += plain_h1_fsz;
+p += ';\
+	color: ';
+p += plain_h1_fg;
+p += ';\
+	background-color: ';
+p += plain_h1_bg;
+p += ';\
+	font-weight: ';
+p += plain_h1_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-bottom: 0px;\
+	padding-top: 0px;\
+	padding-left: 13px;\
+}\
+H2 {\
+	font-family: ';
+p += plain_h2_ff;
+p += ';\
+	font-size: ';
+p += plain_h2_fsz;
+p += ';\
+	color: ';
+p += plain_h2_fg;
+p += ';\
+	background-color: ';
+p += plain_h2_bg;
+p += ';\
+	font-weight: ';
+p += plain_h2_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-bottom: 0px;\
+	padding-top: 0px;\
+	padding-left: 13px;\
+}\
+H3 {\
+	font-family: ';
+p += plain_h3_ff;
+p += ';\
+	font-size: ';
+p += plain_h3_fsz;
+p += ';\
+	color: ';
+p += plain_h3_fg;
+p += ';\
+	background-color: ';
+p += plain_h3_bg;
+p += ';\
+	font-weight: ';
+p += plain_h3_fs;
+p += ';\
+	margin-top: 0px;\
+	margin-bottom: 0px;\
+	padding-bottom: 0px;\
+	padding-top: 0px;\
+	padding-left: 13px;\
+}\
+-->\
+</style>\
+</head>\
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">';
+
+if ( plain_top_visible == 1 )
+p+='<p style="cursor: pointer; cursor: hand; width: 100%;" align=center onClick="parent.switchHorFormTab( \'TOP\', parent.tabsfoldertabs, \'\' );"><b><?$qpStrings.qp_publish_settings_edittop_title ?></b><? $topempty ?></p>';
+
+if ( plain_bname_visible == 1 )
+p+='<p class=bookName style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'BNAME\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_bookname_title?></p>';
+
+if ( plain_toc_visible == 1 )
+{
+	if ( plain_tochdr_visible == 1 )
+	p += '<p class=tocHdr style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCHEADER\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_tocheader_title?></p>';
+
+	p+='<table cellpadding="0" cellspacing="0" border="0" width="100%" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCBODY\', parent.tabsfoldertabs, \'\' );"><tr><td>';
+
+	p +='<div style="padding-left: 0px;"><table cellpadding="0" cellspacing="0" border="0"><tr><td class="treeCatalogRow"><a name=""><?$qpStrings.qp_publish_settings_tocbody_title?></a></td></tr></table></div>\
+		<div style="padding-left: 23px;"><table cellpadding="0" cellspacing="0" border="0"><tr><td class="treeCatalogRow"><a name=""><?$qpStrings.qp_publish_settings_tocbody_title?></a></td></tr></table></div>\
+		</td></tr></table>';
+}
+
+p += '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
+
+if ( plain_ptitle_visible == 1 )
+	p += '<tr style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'PAGETITLE\', parent.tabsfoldertabs, \'\' );"><td><p class=pageTitle><?$qpStrings.qp_publish_settings_pagetitle_title?></p></td></tr>';
+
+p += '<tr><td>\
+	<table border="0" cellspacing="0" cellpadding="0" width="100%" align=center>\
+	<tr><td>\
+	<h1 style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'H1\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_h1_title?></h1>\
+	<h2 style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'H2\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_h2_title?></h2>\
+	<h3 style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'H3\', parent.tabsfoldertabs, \'\' );"><?$qpStrings.qp_publish_settings_h3_title?></h3>\
+	</td></tr>\
+	<tr style="cursor: pointer; cursor: hand; " onClick="parent.switchHorFormTab( \'BODY\', parent.tabsfoldertabs, \'\' );"><td>\
+	<p style="padding-left: 13px;"><br><?$qpStrings.qp_publish_settings_pagetext_title?><br>\
+	<br>\
+	</td></tr>\
+	<tr style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'LINKS\', parent.tabsfoldertabs, \'\' );"><td>\
+	<a name=""  style="padding-left: 13px;"><?$qpStrings.qp_publish_settings_links_title?></a>\
+	<br><br>\
+	</td></tr>';
+
+if ( plain_toclink_visible == 1 )
+	p += '<tr style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCLINK\', parent.tabsfoldertabs, \'\' );"><td>\
+	<p class="tocLink" style="cursor: pointer; cursor: hand;" onClick="parent.switchHorFormTab( \'TOCHEADER\', parent.tabsfoldertabs, \'\' );"><a name="" class="tocLink"><?$qpStrings.qp_publish_settings_toclink_title?></a></p>\
+	</td></tr>';
+
+p += '<p></p></td></tr></table></td></tr></table>\
+</body>\
+</html>';
+
+	var myIframe = document.getElementById('preview');
+	var pvd = getIframeDOMDocument(myIframe);
+	pvd.open();
+	pvd.write(p);
+	pvd.close();
+
+}
+-->
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="initVars()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<? include file="../../../common/html/classic/header.htm"?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+
+	<? if !$fatalError ?>
+
+		<table>
+		<tr>
+			<td width=1>
+				<nobr><? conditionalOutput invalidField=$invalidField field=QPT_NAME text=#invalidFieldHighlight# ?><? $qpStrings.qpt_themename_title|cat:":" ?>&nbsp;</nobr>
+			</td>
+			<td align=left width=100%>
+				<input type=text class="control" name="themeData[QPT_NAME]" maxlength="50" value="<? $themeData.QPT_NAME|htmlsafe:true:true|trunc_str:50 ?>">
+			</td>
+		</tr>
+		<tr>
+		<td colspan=2 align=left>
+			<table cellspacing=0 cellpadding=0 border=0>
+				<tr>
+				<td colspan=3><br><b><? $kernelStrings.app_note_text|cat:":" ?></b> <? $qpStrings.pub_screen_modtheme_note ?><br>&nbsp;</td>
+				</tr>
+				<tr>
+				<td width=1%>&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>
+				<? $qpStrings.pub_screen_preview_title|cat:":" ?>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<? include file="../../../QP/html/classic/formtabs_templates/formtabs.htm" width=330 height=330 basePath="../../../QP/html/classic" tabsID="foldertabs" extraLine=true ?>
+				</td>
+				<td>&nbsp;&nbsp;</td>
+				<td valign=top><iframe name="preview" id="preview" src="" width="350" height="350" scrolling="none" align="top" frameborder="0" style="border: 5px solid #c0c0c0;"> </iframe></td>
+				</tr>
+			</table>
+		</td>
+		</tr>
+		</table>
+		<br>
+		<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_right=10 ?>
+
+	<? /if ?>
+
+<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" space_right=10 ?>
+
+<input type="hidden" name="edited" value="1">
+
+<input type="hidden" name="action" value="<?$action?>">
+
+<input type="hidden" name="QPT_ID" value="<?$QPT_ID?>">
+
+<input type="hidden" name="type" value="<?$type?>">
+<input type="hidden" name="newtype" value="<?$newtype?>">
+
+<input type="hidden" name="btndummy">
+
+<input type="hidden" id="colorchooser" name="colorchooser" value="">
+
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

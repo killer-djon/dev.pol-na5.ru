@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+	function confirmPublishBtn()
+	{
+		return confirm( "<? $qpStrings.pub_screen_publ_msg ?>" );
+	}
+
+	function confirmUnPublishBtn()
+	{
+		return confirm( "<? $qpStrings.pub_screen_unpubl_msg ?>" );
+	}
+
+	function getRadioValue ( property )
+	{
+		var retVal;
+		var i=0;
+
+		if (document.form[property] )
+		while (i < 100) {
+			if (document.form[property][i] && document.form[property][i].checked )
+			{
+				return document.form[property][i].value;
+			}
+			i++;
+		}
+
+		return '';
+	}
+
+	function openpreview()
+	{
+		var theme;
+		theme = getRadioValue ( 'QPB_THEME' );
+
+		window.open( '<? $urlBook ?>'+'&previewTheme='+theme );
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+<? include file="../../../common/html/classic/header.htm"?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+
+<? if !$fatalError ?>
+
+	<table border="0" cellpadding="0" cellspacing="0">
+		<tr><td class="largeText_normal"><? $bookData.QPB_NAME ?></td></tr>
+		<tr><td>&nbsp;</td></tr>
+	</table>
+
+	<table width=540 cellspacing=5>
+	<tr>
+		<td width="20" valign=top>
+		<p><input name="published" type="radio" value="0" <? if !$published ?>checked<? /if ?> 	<? if !$rights ?> disabled <? /if ?> >
+		</td>
+		<td width=100%>
+			<b><? $qpStrings.pub_screen_notpublished_label ?></b>
+		</td>
+	</tr>
+	<tr>
+		<td width="20" valign=top>
+		<p><input name="published" type="radio" value="1" <? if $published ?>checked<? /if ?> 	<? if !$rights ?> disabled <? /if ?> >
+		</td>
+		<td width=100%>
+			<b><? $qpStrings.pub_screen_published_label ?></b>
+			<br><br>
+			<? $qpStrings.pub_screen_themes_title ?>:
+			<br><br>
+			<table width=1 cellspacing=0 cellpadding=0>
+
+					<tr><td><input type=radio name="QPB_THEME" value="DEFAULT" <? if "DEFAULT" == $QPB_THEME ?>checked<? /if ?>></td><td>&nbsp;<nobr><? $qpStrings.app_systemtheme_text|htmlsafe:true:true ?></nobr></td></tr>
+
+					<? foreach from=$themes item=theme ?>
+					<tr><td><input type=radio name="QPB_THEME" value="<? $theme.QPT_ID ?>" <? if $theme.QPT_ID == $QPB_THEME ?>checked<? /if ?>></td><td>&nbsp;<nobr><? $theme.QPT_NAME|htmlsafe:true:true ?> (<? if $theme.QPT_TYPE == 0 ?><? $qpStrings.qp_publish_plain_title ?><? else ?><? $qpStrings.qp_publish_tree_title ?><? /if ?>)</nobr></td></tr>
+					<? /foreach ?>
+
+				</table>
+			<br>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=6><b><? $kernelStrings.app_note_text|cat:": " ?></b><? $qpStrings.pub_screen_theme_note ?><br>&nbsp;</td>
+	</tr>
+	<? if $rights ?>
+	<tr>
+		<td colspan=2 align=left>
+
+				<table border=0>
+				<tr><td><label><? $qpStrings.pub_screen_lang_label|cat:":" ?> </label></td>
+				<td>
+				<select name="properties[language]" class="control" style="width: 200px">
+					<? html_options values=$language_ids selected=$properties.language output=$language_names ?>
+				</select>
+				</td></tr>
+				<tr><td><label><? $qpStrings.pub_screen_codepage_label|cat:":" ?> </label></td>
+				<td>
+				<select name="properties[codepage]" class="control" style="width: 200px">
+				<? foreach from=$cpArray key=cKey item=cItem ?>
+					<? assign var=nameidx value=$cItem.NAME ?>
+					<option value="<? $cItem.VALUE ?>" <? conditionalOutput invalidField=$cItem.VALUE field=$properties.codepage text="selected"  ?>><? $qpStrings.$nameidx ?></option>
+				<? /foreach ?>
+				</select>
+				</td></tr>
+				</table>
+		</td>
+	</tr>
+	<? /if ?>
+
+	<tr>
+		<td colspan=2>
+				<br><br>
+				<? include file="../../../common/html/classic/button.htm" align="left" link="javascript:openpreview()" caption=$qpStrings.pub_screen_preview_btn formname="form" ?>
+				<br><br>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan=2>
+			<br>
+			<? $qpStrings.pub_screen_url_label|cat:":" ?><br>
+			<textarea class="control" style="font-size: 11px; width: 100%;" name="url" rows=3 cols=20 wrap="hard" readonly><? $urlHTML ?></textarea>
+		</td>
+	</tr>
+
+	</table>
+<br><br>
+<? if $rights ?>
+	<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_right=10 ?>
+<? /if ?>
+<? /if ?>
+<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" space_right=10 ?>
+<input type="hidden" name="edited" value="1">
+
+<input type="hidden" name="currentBookID" value="<?$currentBookID?>">
+<input type="hidden" name="opener" value="<?$opener?>">
+
+<input type="hidden" name="btndummy">
+
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+
+</body>
+</html>

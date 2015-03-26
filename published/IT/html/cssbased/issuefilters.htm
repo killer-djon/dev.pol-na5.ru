@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'filterData' )">
+		<? wbs_pageLayout toolbar="issuefilters_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent suppressTable=true ?>
+						<ul class="Columns">
+							<li>
+								<table class="FormLayout">
+									<tr>
+										<td colspan="2" class="FormSection"><? $itStrings.mf_showissues_label ?></td>
+									</tr>
+									<tr>
+										<td><? wbs_label text=$itStrings.mf_createdby_label for="createdby" ?></td>
+										<td>
+											<select id="createdby" name="filterData[ISFF_U_ID_AUTHOR]" class="FormControl" style="width: 150px">
+												<? html_options values=$authorIDs selected=$filterData.ISFF_U_ID_AUTHOR output=$authorValues ?>
+											</select>
+										</td>
+									</tr>
+
+									<tr>
+										<td><? wbs_label text=$itStrings.mf_sentby_label for="sentby" ?></td>
+										<td>
+											<select name="filterData[ISFF_U_ID_SENDER]" id="sentby" class="FormControl" style="width: 150px">
+												<? html_options values=$authorIDs selected=$filterData.ISFF_U_ID_SENDER output=$authorValues ?>
+											</select>
+										</td>
+									</tr>
+
+									<tr class="SeparatedRow">
+										<td><? wbs_label text=$itStrings.mf_assignedto_label for="assignedto" ?></td>
+										<td>
+											<select id="assignedto" name="filterData[ISFF_U_ID_ASSIGNED]" class="FormControl" style="width: 150px">
+												<? html_options values=$assignmentIDs selected=$filterData.ISFF_U_ID_ASSIGNED output=$assignmentValues ?>
+											</select>
+										</td>
+									</tr>
+								</table>
+
+								<table class="FormLayout">
+									<tr>
+										<td><input type=radio id="status2" name="filterData[ISSF_ISSUE_COMPLETE]" value=2 <? wbs_checkboxStatus val=$filterData.ISSF_ISSUE_COMPLETE true_val=2 ?> /></td>
+										<td><? wbs_label skipColon=true for="status2" text=$itStrings.mf_opencomplete_label ?></td>
+									</tr>
+
+									<tr>
+										<td><input type=radio id="status0" name="filterData[ISSF_ISSUE_COMPLETE]" value=0 <? wbs_checkboxStatus val=$filterData.ISSF_ISSUE_COMPLETE true_val=0 ?>/></td>
+										<td><? wbs_label skipColon=true for="status0" text=$itStrings.mf_openonly_label ?></td>
+									</tr>
+
+									<tr>
+										<td><input type=radio id="status1" name="filterData[ISSF_ISSUE_COMPLETE]" value=1 <? wbs_checkboxStatus val=$filterData.ISSF_ISSUE_COMPLETE true_val=1 ?>/></td>
+										<td><? wbs_label skipColon=true for="status1" text=$itStrings.mf_completeonly_label ?></td>
+									</tr>
+								</table>
+
+							</li>
+							<li class="Last">
+								<? wbs_dualComboBox
+									leftCaption=$itStrings.mf_shownissues_title
+									rightCaption=$itStrings.mf_hiddenissues_title
+
+									leftVariableName="shownStatuses"
+									rightVariableName="hiddenStatuses"
+
+									leftValues=$shownStatuses
+									rightValues=$hiddenStatuses
+
+									leftNames=$shownStatuses
+									rightNames=$hiddenStatuses
+
+									showUpDown=false
+									separated=true
+
+									rows=11
+									width=160
+								?>
+							</li>
+						</ul>
+
+						<table class="FormLayout" style="clear:both">
+							<tr>
+								<td colspan=2 class="FormSection"><? $itStrings.mf_createdatefilter_title ?></td>
+							</tr>
+							<tr>
+								<td width="10" class="Indent"><input type=radio name="filterData[ISSF_WORKSTATE_CREATEDAY_OPT]" id="crdayopt" value=0 <? wbs_checkboxStatus val=$filterData.ISSF_WORKSTATE_CREATEDAY_OPT true_val=0 ?>/></td>
+								<td><? wbs_label text=$itStrings.mf_nocreatedateflt_label skipColon=true for="crdayopt" ?></td>
+							</tr>
+							<tr>
+								<td class="Indent" width="10"><input type=radio name="filterData[ISSF_WORKSTATE_CREATEDAY_OPT]" id="crdayopt1" value=1 <? wbs_checkboxStatus val=$filterData.ISSF_WORKSTATE_CREATEDAY_OPT true_val=1 ?>/></td>
+								<td>
+									<? wbs_label text=$itStrings.mf_createdinlast_label skipColon=true for="crdayopt1" fieldName=ISSF_LASTDAYS ?>
+									<input type=text class=FormControl style="width: 50px" maxlength=10 name="filterData[ISSF_LASTDAYS]" value="<? $filterData.ISSF_LASTDAYS ?>"/>
+									<? wbs_label text="&nbsp;"|cat:$itStrings.mf_days_label skipColon=true ?>
+								</td>
+							</tr>
+							<tr class="SeparatedRow">
+								<td class="Indent" width="10"><input type=radio name="filterData[ISSF_WORKSTATE_CREATEDAY_OPT]" id="crdayopt2"  value=2 <? wbs_checkboxStatus val=$filterData.ISSF_WORKSTATE_CREATEDAY_OPT true_val=2 ?>/></td>
+								<td>
+									<? wbs_label text=$itStrings.mf_daysago_label skipColon=true for="crdayopt2" fieldName=ISSF_DAYSAGO ?>
+									<input type=text class=FormControl style="width: 50px" maxlength=10 name="filterData[ISSF_DAYSAGO]" value="<? $filterData.ISSF_DAYSAGO ?>"/>
+									<? wbs_label text="&nbsp;"|cat:$itStrings.mf_overdue_label skipColon=true ?>
+								</td>
+							</tr>
+						</table>
+
+						<table class="FormLayout">
+							<tr>
+								<td class="FormSection"><? $itStrings.mf_findforgotten_label ?></td>
+							</tr>
+							<tr class="SeparatedRow">
+								<td class="Indent">
+									<? wbs_label text=$itStrings.mf_notforwarding_label for="forgotten" fieldName=ISSF_PENDING skipColon=true ?>
+									<input type=text class=FormControl id="forgotten" style="width: 50px" maxlength=10 name="filterData[ISSF_PENDING]" value="<? $filterData.ISSF_PENDING ?>"/>
+									<? wbs_label text="&nbsp;"|cat:$itStrings.mf_dysormore_label for="forgotten" fieldName=ISSF_PENDING skipColon=true ?>
+								</td>
+							</tr>
+						</table>
+
+						<table class="FormLayout" width="100%">
+							<tr>
+								<td><? wbs_label text=$itStrings.mf_containstext_label fieldName=ISSF_SEARCHSTRING for=ISSF_SEARCHSTRING ?></td>
+							</tr>
+							<tr class="SeparatedRow">
+								<td><input name="filterData[ISSF_SEARCHSTRING]" id="ISSF_SEARCHSTRING" type="text" class="FormControl" style="width: 100%" value="<? $filterData.ISSF_SEARCHSTRING ?>" maxlength="255"/></td>
+							</tr>
+							<tr>
+								<td><? wbs_label text=$itStrings.mf_saveas_label fieldName=ISSF_NAME for=ISSF_NAME ?></td>
+							</tr>
+							<tr>
+								<td><input name="filterData[ISSF_NAME]" type="text" id="ISSF_NAME" class="FormControl" style="width: 100%" value="<? $filterData.ISSF_NAME ?>" maxlength="250"/></td>
+							</tr>
+						</table>
+
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" onClick="fillSelectedLists( new Array( 'hiddenStatuses[]', 'shownStatuses[]' ) );" ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+							<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+
+			<? /if ?>
+
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+			<input name="opener" type="hidden" value="<? $opener ?>"/>
+			<input name="action" type="hidden" value="<? $action ?>"/>
+			<input name="filterData[ISSF_ID]" type="hidden" value="<? $filterData.ISSF_ID?>"/>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

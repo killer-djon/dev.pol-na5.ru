@@ -1,0 +1,5 @@
+<select class="FormControl" style="width:160px" name="<?$arrayName ?>[<? $selName ?>]" id="<?$arrayName ?>[<? $selName ?>]" onChange="updateListbox('<? $selName ?>');">
+<? foreach from=$pickArray key=curKey item=curValue ?>
+	<option value="<? $curValue ?>" <? conditionalOutput invalidField=$value field=$curValue text="selected" ?>><? $curValue ?></option>
+<? /foreach ?>
+</select>

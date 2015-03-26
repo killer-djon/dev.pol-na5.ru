@@ -1,0 +1,11 @@
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$kernelStrings.app_back_label|cat:" "|cat:$itStrings.app_name_short link=$currentAppData.mainURL ?>
+<? /wbs_toolbarItem ?>
+
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$itStrings.ogf_addfilter_btn name="newfilterbtn" ?>
+<? /wbs_toolbarItem ?>
+
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$itStrings.ogf_delete_btn name="deletefilterbtn" onClick="return confirmDelete()" ?>
+<? /wbs_toolbarItem ?>

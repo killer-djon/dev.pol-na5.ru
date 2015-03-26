@@ -1,0 +1,10 @@
+<script src='<? $preproc->getTemplatesUrl("js/locale.js") ?>'></script>
+<script>
+	WbsLocale.loadStrings ("common", 
+		<? $preproc->assignStringsToJs("template_common", true) ?>
+	);
+	
+	WbsLocale.loadStrings ("dd", 
+		<? $preproc->assignStringsToJs("dd_template_backend", true) ?>
+	);
+</script>

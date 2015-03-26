@@ -1,0 +1,9 @@
+<div style="padding: 10px 0px 0px 20px">
+{{if !$type || $type == 'simple'}}
+	{{include file="ContactsSearchSimple.html"}}
+{{elseif $type=='advanced'}}
+	{{include file="ContactsSearchAdvanced.html"}}
+{{elseif $type=='smart'}}
+	{{include file="ContactsSearchSmart.html"}}
+{{/if}}
+</div>

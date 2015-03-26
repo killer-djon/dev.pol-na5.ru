@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+
+		<script language="JavaScript">
+		<!--
+			function confirmDelete()
+			{
+				return confirm( "<? $qnStrings.amn_screen_notedel_message ?>" );
+			}
+
+		//-->
+		</script>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'noteData' )">
+
+		<? wbs_pageLayout toolbar="qncommon_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td>
+								<? wbs_label for="noteData[QN_SUBJECT]" fieldName="QN_SUBJECT" text=$qnStrings.app_subject_field skipColon=false ?>
+							</td>
+							<td><input name="noteData[QN_SUBJECT]" readonly=true id="noteData[QN_SUBJECT]" type="text" class="FormControl" value="<? $noteData.QN_SUBJECT ?>" maxlength="50" style="width: 400px"></td>
+						</tr>
+						<tr>
+							<td valign="top" class="label">
+								<? wbs_label for="noteData[QN_CONTENT]" fieldName="QN_CONTENT" text=$qnStrings.app_content_field skipColon=false ?>
+							</td>
+							<td width="100%"><textarea readonly=true name="noteData[QN_CONTENT]" id="noteData[QN_CONTENT]" class="FormControl" rows="10" style="width: 400px"><? $noteData.QN_CONTENT|htmlsafe_textarea:$edited ?></textarea></td>
+						</tr>
+					</table>
+
+					<? if $attachedFiles ?>
+					<table class="FormLayout">
+						<tr>
+							<td class="FormSection"><? $qnStrings.amn_screen_files_field ?></tr>
+						</tr>
+						<tr class="SeparatedRow">
+						<td>
+									<table class="SimpleList" width="400">
+										<tbody>
+										<? foreach from=$attachedFiles item=fileData key=fileName name=fileLoop ?>
+												<tr>
+													<td width="10"><input name="<? $fileData.delcbName ?>[]" type="checkbox" value="<? $fileData.delcbValue ?>"></td>
+													<td><? $fileName|cat:" ("|cat:$fileData.size|cat:")" ?></td>
+												</tr>
+										<? /foreach ?>
+										</tbody>
+									</table>
+						</td>
+						</tr>
+					</table>
+				<? /if ?>
+			</tr>
+		<? /wbs_formContent ?>
+	<? /wbs_formLayout ?>
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+		<input type="hidden" name="action" value="<?$action?>">
+		<input type="hidden" name="QNF_ID" value="<?$QNF_ID?>">
+		<input type="hidden" name="currentPage" value="<?$currentPage?>">
+		<input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>">
+		<input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>">
+		<input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>">
+		<input name="noteData[QN_ID]" type="hidden" value="<? $noteData.QN_ID ?>">
+		<input type="hidden" name="searchString" value="<?$searchString?>">
+
+	<? /wbs_pageLayout ?>
+
+</body>
+</html>

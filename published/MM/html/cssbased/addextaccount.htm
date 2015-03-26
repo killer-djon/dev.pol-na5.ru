@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<? wbs_initLayout ?>
+</head>
+<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'accountData' )">
+<? wbs_pageLayout ?>
+
+	<? wbs_errorBlock ?>
+
+	<? if !$fatalError ?>
+
+		<? wbs_formLayout ?>
+			<? wbs_formContent ?>
+
+			<tr>
+				<td>
+					<? wbs_label for="accountData[MMA_EMAIL]" fieldName="MMA_EMAIL" text=$mmStrings.ama_email_label skipColon=false ?>
+				</td>
+				<td width=250><input type="text" id="accountData[MMA_EMAIL]" name="accountData[MMA_EMAIL]"
+					class="FormControl" style="width: 100%; font-size: 1.2em" maxlength="50"
+					value="<? $accountData.MMA_EMAIL|htmlsafe:true:true ?>">
+				</td>
+			</tr>
+			<tr><td></td><td style="font-size: 0.8em"><? $mmStrings.ama_email_comment ?></td></tr>
+			<tr>
+				<td>
+					<? wbs_label for="accountData[MMA_NAME]" fieldName="MMA_NAME" text=$mmStrings.ama_name_label skipColon=false ?>
+				</td>
+				<td><input type="text" id="accountData[MMA_NAME]" name="accountData[MMA_NAME]"
+					class="FormControl" style="width: 100%; font-size: 1.2em"  maxlength="50"
+					value="<? $accountData.MMA_NAME|htmlsafe:true:true ?>">
+				</td>
+			</tr>
+			<tr><td></td><td style="font-size: 0.8em"><? $mmStrings.ama_name_comment ?></td></tr>
+			<tr>
+				<td colspan="2">
+					<? wbs_label for="accountData[MMA_PROTOCOL]" fieldName="MMA_PROTOCOL" text=$mmStrings.ama_protocol_label skipColon=true ?>
+					<select class="FormControl" id="accountData[MMA_PROTOCOL]" name="accountData[MMA_PROTOCOL]" class="control" style="width: 100">
+						<? html_options values=$protocol_ids selected=$accountData.MMA_PROTOCOL output=$protocol_names ?>
+					</select> <? $mmStrings.ama_protocol_tail ?>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<? wbs_label for="accountData[MMA_SERVER]" fieldName="MMA_SERVER" text=$mmStrings.ama_server_label skipColon=false ?>
+				</td>
+				<td><input type="text" id="accountData[MMA_SERVER]" name="accountData[MMA_SERVER]"
+					class="FormControl" style="width: 100%" maxlength="50"
+					value="<? $accountData.MMA_SERVER|htmlsafe:true:true ?>">
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<input type="checkbox" id="accountData[MMA_SECURE]" name="accountData[MMA_SECURE]"
+						value="1" <? if $accountData.MMA_SECURE ?>checked<? /if ?> class="control">
+					<? $mmStrings.ama_security_label ?>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<? wbs_label for="accountData[MMA_PORT]" fieldName="MMA_PORT" text=$mmStrings.ama_port_label skipColon=false ?>
+				</td>
+				<td><input type="text" id="accountData[MMA_PORT]" name="accountData[MMA_PORT]"
+					class="FormControl" style="width: 100%" maxlength="50"
+					value="<? $accountData.MMA_PORT ?>"></td>
+			</tr>
+			<tr>
+				<td>
+					<? wbs_label for="accountData[MMA_LOGIN]" fieldName="MMA_LOGIN" text=$mmStrings.ama_login_label skipColon=false ?>
+				</td>
+				<td><input type="text" id="accountData[MMA_LOGIN]" name="accountData[MMA_LOGIN]"
+					class="FormControl" style="width: 100%" maxlength="50"
+					value="<? $accountData.MMA_LOGIN|htmlsafe:true:true ?>"></td>
+			</tr>
+			<tr><td></td><td style="font-size: 0.8em"><? $mmStrings.ama_login_comment ?></td></tr>
+			<tr>
+				<td>
+					<? wbs_label for="accountData[MMA_PASSWORD]" fieldName="MMA_PASSWORD" text=$mmStrings.ama_password_label skipColon=false ?>
+				</td>
+				<td><input type="password" id="accountData[MMA_PASSWORD]" name="accountData[MMA_PASSWORD]"
+					class="FormControl" style="width: 100%" maxlength="50"></td>
+			</tr>
+
+			<? /wbs_formContent ?>
+			<? wbs_formButtonsPanel ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /wbs_formButtonsPanel ?>
+		<? /wbs_formLayout ?>
+
+	<? else ?>
+		<? wbs_buttonSet ?>
+			<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+		<? /wbs_buttonSet ?>
+	<? /if ?>
+
+	<input type="hidden" name="action" value="<?$action?>">
+	<input type="hidden" name="currentPage" value="<?$currentPage?>">
+	<input name="MMA_ID" type="hidden" value="<? $MMA_ID ?>">
+	<input name="accountData[MMA_INTERNAL]" type="hidden" value="">
+
+<? /wbs_pageLayout ?>
+</body>
+</html>

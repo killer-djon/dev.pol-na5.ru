@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<WBSAPPLICATION>
+	<APPLICATION APP_ID="IT" SORTORDER="35" NAME="app_name_long" UI_NAME="app_name_short">
+		<PARENTS>
+			<PARENT APP_ID="AA"/>
+		</PARENTS>
+		<EVENT_HANDLERS>
+			<HANDLER APP_ID="AA" NAME="onDeleteUser" HANDLER_PROC="it_onDeleteUser" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="AA" NAME="onRemoveUser" HANDLER_PROC="it_onRemoveUser" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="AA" NAME="onDeleteCurrency" HANDLER_PROC="it_onDeleteCurrency" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onCloseWork" HANDLER_PROC="it_onCloseWork" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onNewWork" HANDLER_PROC="it_onNewWork" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onDeleteWork" HANDLER_PROC="it_onDeleteWork" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onDeleteAssignment" HANDLER_PROC="it_onDeleteAssignment" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onDeleteProject" HANDLER_PROC="it_onDeleteProject" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onUpdateWorkStartDate" HANDLER_PROC="it_onUpdateWorkStartDate" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onCompleteRequest" HANDLER_PROC="it_onCompleteRequest" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="PM" NAME="onCompleteTaskRequest" HANDLER_PROC="it_onCompleteTaskRequest" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>			
+			<HANDLER APP_ID="PM" NAME="onUninstallService" HANDLER_PROC="it_onUninstallProjects" HANLDER_SCRIPT="it_dbfunctions_cmn.php"/>						
+		</EVENT_HANDLERS>
+		<MAIL_NOTIFICATIONS>
+			<NOTIFICATION ID="onIssueAssignment" NAME="app_onissueassignment_name"/>
+		</MAIL_NOTIFICATIONS>
+	</APPLICATION>
+	<SCREENS>
+		<SCREEN SCR_ID="IL" SCR_PAGE="issuelist.php" NAME="il_screen_long_name" UI_NAME="il_screen_short_name"/>
+		<SCREEN SCR_ID="FA" SCR_PAGE="fileattachment.php" NAME="fa_screen_long_name" UI_NAME="fa_screen_short_name"/>
+		<SCREEN SCR_ID="ISM" SCR_PAGE="statistics.php" NAME="iss_screen_long_name" UI_NAME="iss_screen_short_name"/>
+		<SCREEN SCR_ID="TL" SCR_PAGE="templatelist.php" NAME="tl_screen_long_name" UI_NAME="tl_screen_short_name"/>
+	</SCREENS>
+</WBSAPPLICATION>

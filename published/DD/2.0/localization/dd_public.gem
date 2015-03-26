@@ -1,0 +1,10 @@
+service_title	Dateien
+service_desc	Auslagern und Austauschen von Dateien online.
+service_link	#
+service_footer	"Powered by <a href=""#""><b>WebAsyst Files</b></a> - eine Webseite, die es Ihnen ermöglicht, Dateien von überall aus ins Internet hochzuladen und auf diese zuzugreifen.<br>Die Benutzung von Webasyst Files ist kostenlos. <a href=""#"">Generieren Sie jetzt Ihren Zugang!</a>"
+
+lbl_view	Ansicht
+view_grid	Detailansicht
+view_list	Symbole
+view_thumb_list	Kacheln
+view_tiles	Miniaturansicht

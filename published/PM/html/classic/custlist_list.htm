@@ -1,0 +1,58 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>  
+  <td class="default">
+    <? if $showPageSelector ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr> 
+		<td align="right"><table border="0" cellspacing="0" cellpadding="0">
+		<tr> 
+		<td align="right" valign="middle">
+		  <? $pmStrings.cl_page_label|cat:":&nbsp;" ?>
+		</td>
+		<td><select name="currentPage" class="control" onChange="this.form.submit()">
+			<? html_options values=$pages selected=$currentPage output=$pages ?>
+		  </select></td>
+		<td align="right" valign="middle">
+		  <? "&nbsp;"|cat:$pmStrings.cl_of_label|cat:" "|cat:$pagesNum ?>
+		</td>
+	  </tr>
+	</table></td>
+	</tr>
+	<tr>
+		<td align="right"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+	</tr>
+	</table>
+	<? /if ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+			<th align="left" width="10">&nbsp;</th>
+			<th align="left" width="200"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="C_NAME" curStatus=$sorting ?>"><? $pmStrings.cl_custname_title ?></a> <? makeSortImg fieldName="C_NAME" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="100"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="C_ADDRESSSTREET" curStatus=$sorting ?>"><? $pmStrings.cl_address_title ?></a> <? makeSortImg fieldName="C_ADDRESSSTREET" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="100"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="C_ADDRESSCITY" curStatus=$sorting ?>"><? $pmStrings.cl_city_title ?></a> <? makeSortImg fieldName="C_ADDRESSCITY" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="100"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="C_ADDRESSSTATE" curStatus=$sorting ?>"><? $pmStrings.cl_state_title ?></a> <? makeSortImg fieldName="C_ADDRESSSTATE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="100"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="C_ADDRESSCOUNTRY" curStatus=$sorting ?>"><? $pmStrings.cl_country_title ?></a> <? makeSortImg fieldName="C_ADDRESSCOUNTRY" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="100"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="C_PHONE" curStatus=$sorting ?>"><? $pmStrings.cl_phone_title ?></a> <? makeSortImg fieldName="C_PHONE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="100"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="C_CONTACTPERSON" curStatus=$sorting ?>"><? $pmStrings.cl_contname_title ?></a> <? makeSortImg fieldName="C_CONTACTPERSON" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+		<?section name=customerSec loop=$customers?>
+		<tr<? if ($smarty.section.customerSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+			<td valign="top" class="default" width="10">
+				<input type=checkbox name="document[<? $customers[customerSec].C_ID ?>]" value=1>
+				<input type=hidden name="AN[<? $customers[customerSec].C_ID ?>]" value="<? $customers[customerSec].ACTIVE_NUM ?>">
+				<input type=hidden name="TN[<? $customers[customerSec].C_ID ?>]" value="<? $customers[customerSec].TOTAL_NUM ?>">
+			</td>
+			<td valign="top" class="default" width="200"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_NAME ?></a></td>
+			<td valign="top" class="default" width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_ADDRESSSTREET ?></a></td>
+			<td valign="top" class="default" width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_ADDRESSCITY ?></a></td>
+			<td valign="top" class="default" width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_ADDRESSSTATE ?></a></td>
+			<td valign="top" class="default" width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_ADDRESSCOUNTRY ?></a></td>
+			<td valign="top" class="default" width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_PHONE ?></a></td>
+			<td valign="top" class="default" width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_CONTACTPERSON ?></a></td>
+		</tr>
+		<?sectionelse?>
+		<tr align="center"<? if ($smarty.section.customerSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+			<td colspan="8" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+		</tr>
+		<?/section?>
+	</table>
+  </td>
+  </tr>
+</table>

@@ -1,0 +1,14 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="treeSharedListTable">
+	<tr>
+		<td class="treeSharedListHeader" style="border-right: 1px solid #C5BEAF"><? $kernelStrings.app_treeuserperms_text ?></td>
+		<td class="treeSharedListHeader" style="border-right: 1px solid #C5BEAF" width=50><? $kernelStrings.app_treeread_label ?></td>
+		<td class="treeSharedListHeader" style="border-right: 1px solid #C5BEAF" width=50><? $kernelStrings.app_treewrite_label ?></td>
+	</tr>
+	<? foreach from=$sharedData item=userData key=listUserID name=userLoop ?>
+		<tr <? if  ($smarty.foreach.userLoop.iteration % 2) == 0?>bgcolor="<? #oddRowsColor#?>"<?else?>bgcolor=<? #evenRowsColor# ?><? /if ?>>
+			<td class="treeSharedMidCell"><nobr><? $userData.NAME ?><? if $listUserID == $currentUser ?><? " "|cat:$kernelStrings.app_treemyperms_label ?><? /if ?></nobr></td>
+			<td class="treeSharedMidCell"><? if $userData.TREE_ACCESS_RIGHTS >= 0 ?><span class=treeSharedEnabled><? $kernelStrings.app_treeyes_label ?></span><? else ?><span class=treeSharedDisabled><? $kernelStrings.app_treeno_label ?></span><? /if ?></td>
+			<td class="treeSharedMidCell"><? if $userData.TREE_ACCESS_RIGHTS >= 1 ?><span class=treeSharedEnabled><? $kernelStrings.app_treeyes_label ?></span><? else ?><span class=treeSharedDisabled><? $kernelStrings.app_treeno_label ?></span><? /if ?></td>
+		</tr>
+	<? /foreach ?>
+</table>

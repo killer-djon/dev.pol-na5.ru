@@ -1,0 +1,325 @@
+<script type="text/javascript">
+$(document).ready(function () {
+	$(".date").datepicker({
+		yearRange: '1900:2050', 
+		closeAtTop: false, 
+		buttonImage: "{{$url.common}}img/calendar.gif", 
+		buttonImageOnly: true, 
+		showOn: "button", 
+		showOtherMonths: true, 
+		firstDay: 1, 
+		dateFormat: '{{$dateFormat}}'
+	});
+	
+});
+</script>
+
+<div id="search_content" >
+{{if !$smarty.get.list}}
+	<h1>[`Advanced search`] <span id="search-links"></span></h1>
+	
+{{/if}}
+ <div class="main-conditions">
+<form id="search_form" method="get" {{if $search && !$smarty.get.list}}style="display:none"{{/if}}>
+<table class="search" id="advanced_search" width="100%">
+<tbody>
+{{foreach from=$fields key=i item=s}}
+{{if $i > 0}}
+<tr >
+<td colspan="2" style="cursor:pointer" onclick="jQuery(this).parent().next().toggle()"><b class="section-header">{{$s.name}}</b></td>
+</tr>
+{{/if}}
+<tr {{if $i > 0}}style="display:none"{{/if}}><td width="350">
+<table>
+{{foreach name=fff from=$s.fields key=j item=f}}
+{{if  2*$smarty.foreach.fff.index < $s.fields|@count}}
+<tr>
+<td width="170" align="right">{{$f.name}}:</td>
+<td width="50%">
+	{{if $f.type == 'CHECKBOX'}}
+	<select id="field{{$f.id}}" name="info[{{$f.id}}]">
+		<option value=""></option>
+		<option value="0">[`No`]</option>
+		<option value="1">[`Yes`]</option>
+	</select>
+	{{elseif $f.type == 'COUNTRY'}}
+	<select id="field{{$f.id}}" name="info[{{$f.id}}]">
+		<option value=""></option>
+	{{foreach from="$countries" item=v key=k}}
+		<option value="{{$k}}">{{$v}}</option>
+	{{/foreach}}
+	</select>	
+	{{else}}
+	<input id="field{{$f.id}}" type="text" name="info[{{$f.id}}]" />
+	{{/if}}
+</td>
+</tr>
+{{/if}}
+{{/foreach}}
+</table>
+</td>
+<td valign="top" width="350" style="padding-top: 10px">
+<table>
+{{foreach name=ffff from=$s.fields key=j item=f}}
+{{if  2*$smarty.foreach.ffff.index >= $s.fields|@count}}
+<tr>
+<td width="170" align="right">{{$f.name}}:</td>
+<td>
+	{{if $f.type == 'CHECKBOX'}}
+	<select id="field{{$f.id}}" name="info[{{$f.id}}]">
+		<option value=""></option>
+		<option value="0">[`No`]</option>
+		<option value="1">[`Yes`]</option>
+	</select>
+	{{elseif $f.type == 'COUNTRY'}}
+	<select id="field{{$f.id}}" name="info[{{$f.id}}]">
+		<option value=""></option>
+	{{foreach from="$countries" item=v key=k}}
+		<option value="{{$k}}">{{$v}}</option>
+	{{/foreach}}
+	</select>		
+	{{else}}
+	<input id="field{{$f.id}}" type="text" name="info[{{$f.id}}]" />
+	{{/if}}
+</td></tr>
+{{/if}}
+{{/foreach}}
+</table>
+</td>
+</tr>
+{{/foreach}}
+</tbody>
+</table>
+
+</form></div>
+<div class="add-conditions">
+<form id="add_condition" {{if $search && !$smarty.get.list}}style="display:none"{{/if}}>
+<b class="section-header" onclick="jQuery('table.advanced').toggle()" class="title" style="cursor: pointer">[`Additinal conditions`]</b>
+
+<table class="advanced">
+<tr>
+<td width="365"><b>[`Contacts added by`]:</b></td>
+<td><b>[`Search in folder`]:</b></td>
+</tr>
+<tr>
+<td class="pl">
+<input type="radio" name="added" value="0" checked />
+<select name="createcid" onfocus = "$('input[name=added][value=0]').attr('checked', 'checked')" style="width:300px">
+<option value="0">[`anyone`]</option>
+{{foreach from=$contacts_created item=c key=contact_id}}
+<option value="{{$contact_id}}">{{$c}}</option>
+{{/foreach}}
+</select>
+</td>
+<td>
+<select class="select300" name="folder_id">
+<option value="0">[`all folders`]</option>
+{{foreach from=$folders item=f key=folder_id}}
+<option value="{{$f.ID}}" style="padding-left:{{$f.OFFSET*7}}px">{{$f.NAME}}</option>
+{{/foreach}}
+</select>
+</td>
+</tr>
+<tr>
+<td class="pl"><input type="radio" name="added" value="1"/> [`subscribers via signup form`]</td>
+<td style="font-size: 90%;"><input type="checkbox" name="subfolders" style="vertical-align: middle;" /> [`including subfolders`]</td>
+</tr>
+<tr>
+<td width="365"><b>[`Adding date`]:</b></td>
+<td><b>[`Contact type`]:</b></td>
+</tr>
+<tr>
+	<td class="pl" style="padding:0;">
+	<table>
+		<tr><td><input type="radio" name="when" value="0" checked /> [`anytime`]</td><td></td></tr>
+		<tr><td><input type="radio" name="when" value="1" /> [`in last`]</td><td><input onFocus = "jQuery('input[name=when][value=1]').attr('checked', 'checked')" class="min" type="text" name="days" /> [`days`]</td></tr>
+		<tr><td><input type="radio" name="when" value="2" /> [`from`]</td><td><input onFocus = "jQuery('input[name=when][value=2]').attr('checked', 'checked')" class="min date" type="text" name="from" /> [`to`] <input onFocus = "jQuery('input[name=when][value=2]').attr('checked', 'checked')" class="min date" type="text" name="to" /></td></tr>
+	</table>
+	</td>
+	<td valign="top">
+	<select class="select300" name="type_id">
+	<option value="0">[`any type`]</option>
+	{{foreach from=$types item=name key=id}}
+	<option value="{{$id}}">{{$name|lower}}</option>
+	{{/foreach}}
+	</select>	
+	</td>
+</tr>
+</table>
+<br />
+{{if $list_id || $smarty.get.list}}
+	<input type="button" id="search_button" onClick="search(-1)" value="[`Save`]" />
+	<input type="button" id="search_button" onClick="back()" value="[`Cancel`]" />
+{{else}}
+	<input type="button" id="search_button" onClick="search(0)" value="[`Search`]" />
+{{/if}}
+<br />
+</form></div>
+<div id="search_form_close"></div>
+</div>
+<script type="text/javascript">
+
+document.app.search_type = 'advanced';
+document.createList = function () {
+	search(-1);
+}
+
+var search_info = {{if $search}}{{$search}}{{else}}[]{{/if}};
+if (search_info.length) {
+	for (var i = 0; i < search_info.length; i++) {
+		setValue(search_info[i].field, search_info[i].val); 
+	}
+}
+
+function setValue(field_id, value) {
+	if (parseInt(field_id) == field_id) {	
+		$("#field" + field_id).val(value);
+		$("#field" + field_id).parent().parent().show();
+	} else {
+		$('table.advanced').show();
+		switch (field_id) {
+			case 'added': {
+				$("#add_condition input[name='added'][value='1']").attr("checked", "checked");
+				break;			
+			}
+			case 'folder_id':
+				var sub = value.substr(-1) == '%';
+				if (sub) {
+					$("#add_condition input[name='subfolders']").attr("checked", "checked");
+					value = value.substr(0, value.length - 1);
+				}
+				$("#add_condition select[name='" + field_id + "']").val(value);				
+				break;				 			
+			case 'createcid': {
+				$("#add_condition select[name='" + field_id + "']").val(value);
+				break;
+			}
+			case 'type_id': 
+				$("#add_condition select[name='" + field_id + "']").val(value);
+				break;
+			case 'days': 
+			case 'from': 
+			case 'to': {
+				$("#add_condition input[name='" + field_id + "']").val(value).parent().prev().find('input').attr('checked', 'checked');
+				break;
+			}			
+			
+		}		
+	}
+}
+
+function search(no_save) {
+	no_save = no_save | 0;
+	var str = {};
+	var desc = "";
+	var f = false;
+	$("#advanced_search input[type='text']").add("#advanced_search select").each(function (i) {
+		var input = $(this);
+		var v = input.val();
+		if (v.length) {
+			f = true;
+			str['info[' + i + '][field]'] = input.attr('id').substr(5);
+			str['info[' + i + '][val]'] = input.val();
+			if (desc) {
+				desc += ", ";
+			}
+			if (input.get(0).tagName.toLowerCase() == 'select') {
+				v = input.children(":selected").html();
+			}			
+			desc += input.parent().prev().html().replace(":", "") + " <b>&quot;" + v + "&quot;</b>"; 
+		}
+		$("#add_condition :input").each(function() {
+			var t = jQuery(this).attr("type");
+			if ((t == 'radio' || t == 'checkbox') && !jQuery(this).is(":checked")) {
+		      
+			} else {
+				f = true;
+				str[$(this).attr("name")] = jQuery(this).val();
+			}
+		});			
+	});
+
+	switch ($("input[name='added']:checked").val()) {
+		case "0": 
+			var n = jQuery("select[name='createcid']").val();
+			if (n != "0") {
+				if (desc) desc += ", ";
+				desc  += '[`Contacts added by`] <b>&quot;' + jQuery("select[name='createcid'] option[value='" + n + "']").html() + '&quot;</b>';
+			} 
+			break;
+		case "1":
+			if (desc) desc += ", ";
+			desc += "[`Contacts added by`] <b>&quot;[`subscribers via signup form`]&quot;</b>";
+			break;	
+	}
+	switch (jQuery("input[name='when']:checked").val()) {
+		case "1":
+			if (desc) desc += ", ";
+			desc += "[`Adding date`] <b>&quot;[`in last `]" + jQuery("input[name='days']").val() + "[` days`]&quot;</b>"
+			break;
+		case "2":
+			if (desc) desc += ", ";
+			desc += "[`Adding date`] <b>&quot;[`from `]" + jQuery("input[name='from']").val() + "[` to `]" + jQuery("input[name='to']").val() + " &quot;</b>"
+			break;				
+	}
+
+	var fid = $("select[name='folder_id']").val();
+	if (fid != "0") {
+		if (desc) desc += ", ";
+		desc += "[`Search in folder`] <b>&quot;" + $("select[name='folder_id'] option[value='" + fid + "']").html() + "&quot;</b>";
+		if ($("input[name='subfolders']").is(":checked")) {
+			desc += "([`including subfolders`])";
+		} 
+	}
+	var type_id = $("select[name='type_id']").val();
+	if (type_id != "0") {
+		if (desc) desc += ", ";
+		desc += "[`Contact type`] <b>&quot;" + $("select[name=type_id] option[value="+type_id+"]").html() + "&quot;</b>";
+	} 
+	
+	if (f) {
+		$("#loading_content").show();
+		document.app.doAdvancedSearch(str, no_save, {{$smarty.get.id+0}});
+		$("#search_form").hide();
+		$("#add_condition").hide();
+		$('#main-content').show();
+		results_load = function () {
+			$("#loading_content").hide();
+			var d = '<a href="javascript:void(0)" onClick="editAdvancedSearch()">[`Edit search conditions`]</a> | <a href="javascript:void(0)" onClick="jQuery(\'#search_content\').remove(); loadPage(\'?mod=contacts&act=search&type=advanced\')">[`Start new search`]</a>'; 
+			$("#search-links").html(d);			
+			desc = '<div class="search-desc" onClick="editAdvancedSearch()">' + this + '</div>';
+			$("#search_form_close").width("100%").html(desc).show();
+			document.app.resize();
+		}.bind(desc);
+		fix();
+	}
+	return false;
+};
+
+function editAdvancedSearch()
+{
+	$("#search-links").empty();
+	$('#search_form_close').hide();
+	$('#search_form').add('#add_condition').show();
+	$('#main-content').add("#search_header").add("#view-settings-block").hide();
+	fix();
+}
+
+function fix() {
+	if ($("#main-header").height() > jQuery(window).height()) {
+		$("#main-container").css('overflow', 'auto');
+		$("#screen-content-block").css('overflow', 'auto');		
+	} else {
+		$("#main-container").css('overflow', 'hidden');
+		$("#screen-content-block").css('overflow', 'hidden');		
+	}
+};
+jQuery(window).resize(fix);
+
+{{if $search && !$list}}
+jQuery(document).ready(function () {
+	search();
+});
+{{/if}}
+
+</script>

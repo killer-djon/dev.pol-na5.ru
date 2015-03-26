@@ -1,0 +1,25 @@
+<div class="ui-block-content">
+<h1>[`Add a new form`]</h1>
+
+<ul class="indent-block">
+<li>
+	<form id="forms-add" method="post" action="?m=forms&act=save">
+	[`Form name`]:<br />
+	<input type="text" name="name" /><br />
+	<button name="add" onclick="$('#forms-add').submit()">[`Add`]</button>
+	<button onclick="$.wbs.loadHash('/forms/')">[`Cancel`]</button>
+	</form>	
+</li>
+</ul>
+</div>
+<script type="text/javascript">
+$("#forms-add").submit(function () {
+	$.post($(this).attr('action'), $(this).serialize() + '&add=1', function (response) {
+		if (response.status == 'OK') {
+			$.wbs.loadHash('/forms/info/' + response.data.id);
+			$('.alertmsg').hide();
+		}
+	}, "json");
+	return false;
+});
+</script>

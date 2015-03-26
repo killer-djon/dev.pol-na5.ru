@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout noScroll=false toolbar=true ?>
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+
+		<script language="JavaScript">
+		<!--
+
+			function confirmInactivate()
+			{
+				if ( !treeCheckSelection( '<? $pmStrings.cl_emptyaction_message ?>' ) )
+					return false;
+
+				thisForm = document.forms[0];
+				
+				for ( i = 0; i < thisForm.elements.length; i++ ) 
+					if (thisForm.elements[i].type == 'checkbox') 
+						if (thisForm.elements[i].checked) {
+							el = thisForm.elements[i];
+							len = el.name.length;
+
+							C_ID = el.name.substr( 9, len-10 );
+
+							ANName = "AN["+C_ID+"]";
+
+							obj = findObj(ANName);
+
+							if ( obj.value != 0 ) {
+								alert("<? $pmStrings.cl_openinact_message ?>");
+								return false;
+							}
+					}
+
+				return true;
+			}
+
+			function confirmDelete()
+			{
+				if ( !treeCheckSelection( '<? $pmStrings.cl_emptyaction_message ?>' ) )
+					return false;
+
+				thisForm = document.forms[0];
+				
+				for ( i = 0; i < thisForm.elements.length; i++ ) 
+					if (thisForm.elements[i].type == 'checkbox') 
+						if (thisForm.elements[i].checked) {
+							el = thisForm.elements[i];
+							len = el.name.length;
+
+							C_ID = el.name.substr( 9, len-10 );
+
+							ANName = "TN["+C_ID+"]";
+
+							obj = findObj(ANName);
+
+							if ( obj.value != 0 ) {
+								alert("<? $pmStrings.cl_opendel_message ?>");
+								return false;
+							}
+					}
+
+				return confirm( "<? $pmStrings.cl_deleteconfirm_message ?>" );
+			}
+
+			function confirmReactivate()
+			{
+				if ( !treeCheckSelection( '<? $pmStrings.cl_emptyaction_message ?>' ) )
+					return false;
+
+				return true;
+			}
+
+		//-->
+		</script>
+
+	</head>
+	<body>
+		<? wbs_pageLayout fullWidthContent=false toolbar="customers_toolbar.htm" ?>
+
+			<input name="sorting" type="hidden" id="sorting" value="<? $sorting|mime_encode ?>"/>
+			<? if $pagesNum < 2 ?>
+				<input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>"/>
+			<? /if ?>
+			<input type="hidden" name="folder" value="<? $folder ?>"/>
+
+			<? assign var=footer value=null ?>
+			<? if $showPageSelector ?>
+				<? assign var=footer value="custlist_footer.htm" ?>
+			<? /if ?>
+
+			<? wbs_tabBar tabs=$tabs footer=$footer ?>
+				<? wbs_errorBlock ?>
+
+				<? include file="custlist_bottom.htm" ?>
+			<? /wbs_tabBar ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<? if !$fatalError ?>
+	<? if $mode ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button name="savebtn" caption=$kernelStrings.app_save_btn onClick='onSubmitEditorLocal()' ?>
+		<? /wbs_toolbarItem ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button name="saveclosebtn" caption=$mmStrings.amn_screen_saveclose_btn onClick='onSubmitEditorLocal()' ?>
+		<? /wbs_toolbarItem ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+		<? /wbs_toolbarItem ?>
+	<? else ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$mmStrings.mm_screen_long_name link=$currentAppData.mainURL ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+	<? if $messageData.MMM_STATUS == 100 ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$mmStrings.amn_template_menu menu=$fileMenu ?>
+		<? /wbs_toolbarItem ?>
+	<? else ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$mmStrings.mm_screen_messages_menu menu=$fileMenu ?>
+		<? /wbs_toolbarItem ?>
+
+		<? if $messageData.MMM_STATUS == 0 ?>
+			<? wbs_toolbarItem?>
+				<? wbs_button caption=$mmStrings.mm_screen_sendnote_menu menu=$sendMenu ?>
+			<? /wbs_toolbarItem ?>
+		<? /if ?>
+	<? /if ?>
+<? else ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>

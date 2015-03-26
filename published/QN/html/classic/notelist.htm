@@ -1,0 +1,118 @@
+<? if $viewMode == 1 ?>
+	<script language="JavaScript">treeRightPanelHeaderObj = "rightPanelHeader";</script>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="treeDocumentListViewTable noBottomBorder" id="rightPanelHeader">
+		<? if $numDocuments ?>
+			<tr>
+				<th align=left colspan=3>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="treeDocumentListViewHeader">
+						<tr>
+							<td><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"></td>
+							<td align=right nowrap><nobr>
+									<? $qnStrings.qn_screen_sorting_title|cat:":&nbsp;" ?>
+									<? makeSortHeader URL=$genericLinkUnsorted fieldName=QN_SUBJECT curStatus=$sorting text=$qnStrings.app_subject_field descImg=#sortImgDesc# ascImg=#sortImgAsc# ?> |
+									<? makeSortHeader URL=$genericLinkUnsorted fieldName=QN_MODIFYUSERNAME curStatus=$sorting text=$qnStrings.app_author_field descImg=#sortImgDesc# ascImg=#sortImgAsc# ?> |
+									<? makeSortHeader URL=$genericLinkUnsorted fieldName=QN_MODIFYDATETIME curStatus=$sorting text=$qnStrings.app_date_field descImg=#sortImgDesc# ascImg=#sortImgAsc# ?>
+									&nbsp;
+								</nobr>
+							</td>
+						</tr>
+					</table>
+				</th>
+			</tr>
+		<? /if ?>
+	</table>
+	<div style="overflow: auto; width: 100%; height: 100%" id="rightscrolldiv">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="treeDocumentListViewTable">
+			<? assign var=index value=0 ?>
+			<? assign var=prevHasContent value=1 ?>
+			<? foreach from=$notes key=note_ID item=noteData name=noteLoop ?>
+				<? if $noteData.QN_CONTENT || $prevHasContent ?>
+					<? math equation="x + 1" x=$index assign=index?>
+				<? /if ?>
+
+				<? if ($index % 2) == 0 ?>
+					<? assign var=curBorderColor value=#oddRowsSeparatorColor# ?>
+				<? else ?>
+					<? assign var=curBorderColor value=#evenRowsSeparatorColor# ?>
+				<? /if ?>
+
+				<tr <? if ($index % 2) == 0 ?>bgcolor="<? #oddRowsColor#?>"<?else?>bgcolor=<? #evenRowsColor# ?><? /if ?>>
+					<td <? if ( !$prevHasContent && !$noteData.QN_CONTENT ) ?>style="border-top: 1px solid <? $curBorderColor ?>;"<?/if?> width="10" valign=top><input type="checkbox" name="document[<?$noteData.QN_ID?>]" value="<?$noteData.QN_ID?>"><input type=hidden name="noterights[<?$noteData.QN_ID?>]" value="<? $noteData.TREE_ACCESS_RIGHTS ?>"></td>
+					<td <? if ( !$prevHasContent && !$noteData.QN_CONTENT ) ?>style="border-top: 1px solid <? $curBorderColor ?>;"<?/if?> width="100%"><a href="<? $noteData.ROW_URL ?>"><? $noteData.QN_SUBJECT|htmlsafe:true:true|truncate:150 ?></a><input type=hidden name="noterights[<?$noteData.QN_ID?>]" value="<? $noteData.TREE_ACCESS_RIGHTS ?>"></td>
+					<td <? if ( !$prevHasContent && !$noteData.QN_CONTENT ) ?>style="border-top: 1px solid <? $curBorderColor ?>;"<?/if?> align="right" class=smallFont valign=top><nobr><? $noteData.QN_MODIFYUSERNAME|cat:" " ?><? $noteData.QN_MODIFYDATETIME?>&nbsp;</nobr></td>
+				</tr>
+
+				<? if $noteData.ATTACHEDFILES || $noteData.QN_CONTENT ?>
+					<tr <? if ($index % 2) == 0 ?>bgcolor="<? #oddRowsColor#?>"<?else?>bgcolor=<? #evenRowsColor# ?><? /if ?>>
+						<td class=treeDocumentListViewContent>&nbsp;</td>
+						<td colspan="2" class=treeDocumentListViewContent>
+							<? if $noteData.QN_CONTENT ?>
+								<span class=smallFont><? $noteData.QN_CONTENT|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?></span>
+							<? /if ?>
+							<? if $noteData.ATTACHEDFILES ?>
+								<? if $noteData.QN_CONTENT ?><br><?/if?>
+								<span class=smallFont><? $qnStrings.qn_screen_files_label|cat:": " ?><? $noteData.ATTACHEDFILES ?></span>
+							<? /if ?>
+						</td>
+					</tr>
+				<? /if ?>
+				<? if $noteData.QN_CONTENT ?>
+					<? assign var=prevHasContent value=1 ?>
+				<? else ?>
+					<? assign var=prevHasContent value=0 ?>
+				<? /if ?>
+			<? foreachelse ?>
+				<tr>
+					<td align="center" valign="middle" height=40><? $qnStrings.qnp_screen_norecords_label|htmlsafe:true:true ?></td>
+				</tr>
+			<? /foreach ?>
+		</table>
+		<? include file="../../../common/html/classic/tree_templates/tree_pages.htm" ?>
+	</div>
+
+<? else ?>
+	<div style="overflow: auto; width: 100%; height: 100%" id="rightscrolldiv">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="treeDocumentListTable">
+			<tr height=20>
+				<? if $numDocuments ?>
+					<th align="left" width="10px" style="width: 10px"><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"></th>
+				<? /if ?>
+
+				<? foreach from=$visibleColumns item=columnID ?>
+					<? assign var=nameIndex value=$qn_columnNames[$columnID] ?>
+					<? assign var=columnName value=$qnStrings[$nameIndex] ?>
+					<? if $columnID != "ATTACHEDFILES" ?>
+						<th align="left"><? makeSortHeader URL=$genericLinkUnsorted fieldName=$columnID curStatus=$sorting text=$columnName descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+					<? else ?>
+						<th align="left"><? $columnName ?></th>
+					<? /if ?>
+				<? /foreach ?>
+
+			</tr>
+			<? foreach from=$notes key=note_ID item=noteData name=noteLoop ?>
+				<tr <? if ($smarty.foreach.noteLoop.iteration % 2) == 0 ?>bgcolor="<? #oddRowsColor#?>"<?else?>bgcolor=<? #evenRowsColor# ?><? /if ?>>
+					<? if $numDocuments ?>
+						<td align=left valign=top width="10px" style="width: 10px"><input type="checkbox" name="document[<?$noteData.QN_ID?>]" value="<?$noteData.QN_ID?>"><input type=hidden name="noterights[<?$noteData.QN_ID?>]" value="<? $noteData.TREE_ACCESS_RIGHTS ?>"></td>
+					<? /if ?>
+
+					<? foreach from=$visibleColumns item=columnID ?>
+						<? if $columnID == "QN_CONTENT" ?>
+							<td valign=top><a href="<? $noteData.ROW_URL ?>"><? $noteData.$columnID|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?></a></td>
+						<? elseif $columnID == "ATTACHEDFILES" ?>
+							<td valign=top class=fileLink><? $noteData.$columnID|sureecho ?></td>
+						<? elseif $columnID == "QNF_NAME" ?>
+							<td valign=top><a href="<? $noteData.FOLDER_URL ?>"><? $noteData.$columnID|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?></a></td>
+						<? else ?>
+							<td valign=top><a href="<? $noteData.ROW_URL ?>"><? $noteData.$columnID|strip|htmlsafe:true:true|sureecho ?></a></td>
+						<? /if ?>
+					<? /foreach ?>
+				</tr>
+			<? foreachelse ?>
+				<tr>
+					<td align="center" valign="middle" height=40 colspan="<? $numVisibleColumns ?>"><? $qnStrings.qnp_screen_norecords_label|htmlsafe:true:true ?></td>
+				</tr>
+			<? /foreach ?>
+		</table>
+		<? include file="../../../common/html/classic/tree_templates/tree_pages.htm" ?>
+	</div>
+<? /if ?>

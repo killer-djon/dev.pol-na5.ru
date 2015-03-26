@@ -1,0 +1,57 @@
+<div id="uploadFilesDiv">
+
+	<div id="uploadFilesList">
+
+	{{if $attachments}}
+
+		<table style="border-collapse:collapse; border-spacing:0; padding:0; margin:0; border:0">
+			<tr>
+				<td style="vertical-align: top; padding-top: 4px"><b>[`Attachments`]:</b></td>
+				<td>
+					<table>
+					{{foreach from=$attachments item=file}}
+						<tr>
+							<td nowrap>{{$file.name}} ({{$file.size}})</td>
+							<td>
+								<span class="deleteFile" onClick="deleteUploadedFile('{{$file.name}}')">
+									[`Delete`]
+								</span>
+							</td>
+						</tr>
+					{{/foreach}}
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	{{/if}}
+
+	</div>
+
+	{{if $errorStr}}
+	<span class="ErrorStr">{{$errorStr}}</span>
+	{{/if}}
+
+	<div id="uploadFileInput" style="width: 20em">
+		<div class="fileInputContainer">
+			<input type="file" name="file" class="file" onChange="uploadFile()">
+			<div class="visibleFileInput">{{if $attachments}}[`Attach one more file`]{{else}}[`Attach file`]{{/if}}</div>
+		</div>
+	</div>
+	<span id="uploadFilePgBar" style="display: none"></span>
+
+</div>
+
+<script language="JavaScript">
+//	window.onload = function ()
+//	{
+		var obj = parent.document.getElementById('uploadFilesDiv');
+		if(obj)
+		{
+			obj.innerHTML = document.getElementById('uploadFilesDiv').innerHTML;
+			parent.document.getElementById('uploadFilePgBar').style.display = 'none';
+			parent.document.getElementById('uploadFileInput').style.display = '';
+			parent.parent.resizeIframe();
+		}
+//	}
+</script>

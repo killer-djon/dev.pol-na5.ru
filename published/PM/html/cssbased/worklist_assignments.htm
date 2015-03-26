@@ -1,0 +1,69 @@
+<? if $showUserSelector ?>
+	<table class="FormLayout" width="100%">
+		<tr>
+			<td width="100%" class="AlignRight"><nobr><? wbs_label text=$pmStrings.pm_finduser_label ?></nobr>&nbsp;</td>
+			<td align="right">
+				<select name="userShift" onChange="this.form.submit()" class="FormControl">
+					<? html_options values=$userlistIDs selected=$userShift output=$userlist ?>
+				</select>
+			</td>
+		</tr>
+	</table>
+<? /if ?>
+
+<table width="100%" class="SimpleList">
+	<thead>
+		<tr>
+			<th class="ValignMiddle" width="10"><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"></th>
+			<th class="ValignMiddle" width="10"><? $pmStrings.pm_id_title ?></th>
+			<th class="ValignMiddle"><? $pmStrings.pm_summary_title ?></th>
+			<? if $prevLink ?>
+				<th width="15" align="left" class="list_rightBorder ValignMiddle">
+					<? wbs_iconButton link=$prevLink iconClass=Left hint=$pmStrings.pm_moreusers_hint?>
+				</th>
+			<? /if ?>
+			<? foreach name="userSec" from=$users item=user key=userID ?>
+				<th class="AlignCenter ValignMiddle" width="70"><? $user ?></th>
+			<? /foreach ?>
+			<? if $nextLink ?>
+				<th width="15" class="AlignRight ValignMiddle">
+					<? wbs_iconButton link=$nextLink iconClass=Right hint=$pmStrings.pm_moreusers_hint?>
+				</th>
+			<? /if ?>
+		</tr>
+	</thead>
+	<tbody>
+		<? section name=workSec loop=$project_works ?>
+			<tr class="<? wbs_oddItem index=$smarty.section.workSec.index ?>">
+			<td width="10"><input type="checkbox" name="tasks[]" value="<? $project_works[workSec].PW_ID ?>"></td>
+			<td width="10"><? conditionalLink href=$project_works[workSec].ROW_URL text=$project_works[workSec].PW_ID ?></td>
+			<td><? conditionalLink href=$project_works[workSec].ROW_URL text=$project_works[workSec].PW_DESC ?></td>
+			<? if $prevLink ?><td>&nbsp;</td><? /if ?>
+			<? foreach key=userID item=userData from=$users ?>
+				<td class="AlignCenter"><? wbs_statusImage align=center value=$project_works[workSec].ASGN.$userID onValue=1 ?></td>
+			<? /foreach ?>
+			<? if $nextLink ?><td>&nbsp;</td>
+		<? /if ?>
+		</tr>
+		<? sectionelse ?>
+			<tr class="NoRecords">
+				<td colspan="<? $totalColCount ?>"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+			</tr>
+		<?/section?>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th class="AlignRight">&nbsp;</th>
+			<th class="AlignRight">&nbsp;</th>
+			<th class="AlignRight"><? $pmStrings.pm_total_label ?></th>
+			<? if $prevLink ?><th>&nbsp;</th><? /if ?>
+			<? foreach key=userID item=userData from=$users ?>
+				<th class="AlignCenter"><? $userAssignments[$userID]|sureecho ?></th>
+			<? /foreach ?>
+			<? if $nextLink ?><th>&nbsp;</th><? /if ?>
+		</tr>
+	<tfoot>
+</table>
+
+<? wbs_note smallFont=false displayNoteMarker=false ?><? $rightsStr ?><? /wbs_note ?>
+<? wbs_note ?><? $pmStrings.app_rightslegend_text|nl2br ?><? /wbs_note ?>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<? wbs_initLayout splitter=true toolbar=true needExt=true ?> <!--  htmlArea=true -->
+
+	<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+	<script src="../../../common/html/cssbased/pageelements/ajax/common_dialog.js"></script>
+
+	<? include file="../../../MM/html/cssbased/mm_js.htm" ?>
+
+</head>
+<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+
+<? wbs_pageLayout toolbar="mm_toolbar.htm" ?>
+
+<? if !$hideErrorBlock ?>
+	<? wbs_errorBlock ?>
+<? /if ?>
+
+<? if !$fatalError ?>
+
+	<? wbs_splitter ?>
+
+		<? if !$hideLeftPanel ?>
+			<? wbs_splitterLeftPanel width=$treePanelWidth hide=$treePanelHide ?>
+
+				<? wbs_splitterPanelHeader
+					caption=$kernelStrings.app_treefolders_text
+					captionLink=$leftPanelHeaderLink
+					id="FoldersHeadersPanel"
+					active=true
+					headerControls="../../../common/html/cssbased/pageelements/ajax/catalog_folder.close.htm" ?>
+
+				<? wbs_splitterScrollableArea width=$treePanelWidth ?>
+					<? include file="../../../MM/html/cssbased/catalog_panel.htm" ?>
+				<? /wbs_splitterScrollableArea ?>
+			<? /wbs_splitterLeftPanel ?>
+		<? /if ?>
+
+		<? wbs_splitterRightPanel ?>
+
+				<? include file="mm_rightpanel.htm" ?>
+
+		<? /wbs_splitterRightPanel ?>
+
+	<? /wbs_splitter ?>
+
+	<div id="infoContainer" style="background: lemonchiffon; border-bottom: 1px solid #EAEAEA; padding: 2px 10px; display: none"></div>
+	<div id="msgViewHeaderContainer" style="display: none"></div>
+	<iframe id="msgViewIframe" src="../cssbased/frame_loading.htm" frameborder=0 style="width: 100%; display: none"></iframe>
+	<iframe id="sendFormIframe" src="../cssbased/frame_loading.htm" frameborder=0 style="width: 100%; display: none"></iframe>
+	<iframe id="bufferIframe" name="bufferIframe" src="../cssbased/frame_loading.htm" style="display: none"></iframe>
+
+<? /if ?>
+
+<input type="hidden" name="curFolderID" value="<? $curFolderID ?>">
+<input type="hidden" name="currentPage" value="<? $currentPage ?>">
+<input type="hidden" name="currentMID" id="currentMID" value="">
+
+<? /wbs_pageLayout ?>
+
+</body>
+</html>

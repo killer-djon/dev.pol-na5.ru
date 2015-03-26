@@ -1,0 +1,215 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+	function checkMinRights( rights )
+	{
+		thisForm = document.forms[0];
+	
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'checkbox')
+				if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked ) {
+					DL_ID = thisForm.elements[i].value;
+					
+					var rightsObj = tree_MM_findObj( "filerights["+DL_ID+"]" );
+					if (!rightsObj)
+						return false;
+						
+					if ( rightsObj.value < rights )
+						return false;
+				}
+		
+		return true;
+	}
+
+	function confirmDeletion() 
+	{	
+		if ( !treeCheckSelection( '<? $ddStrings.dd_screen_emptydel_message ?>' ) )
+			return false;
+			
+		if ( !checkMinRights( TREE_ONLYWRITE ) ) {
+			alert( '<? $ddStrings.dd_screen_invrights_message ?>' );
+			return false;
+		}
+	
+		return confirm( '<? $ddStrings.dd_screen_confirmdel_message ?>' );
+	}
+	
+	function confirmRestore() 
+	{
+		if ( !treeCheckSelection( '<? $ddStrings.dd_screen_emptyrestore_message ?>' ) )
+			return false;
+			
+		return true;
+	}
+	
+	function confirmCopy()
+	{
+		if ( !treeCheckSelection( '<? $ddStrings.dd_screen_emptycopy_message ?>' ) )
+			return false;
+			
+		return true;	
+	}
+	
+	function confirmMove()
+	{
+		if ( !treeCheckSelection( '<? $ddStrings.dd_screen_emptymove_message ?>' ) )
+			return false;
+			
+		if ( !checkMinRights( 1 ) ) {
+			alert( '<? $ddStrings.dd_screen_invrights_message ?>' );
+			return false;
+		}			
+		
+		return true;	
+	}
+	
+	function confirmFolderDeletion() 
+	{
+		return confirmDeletionAjax( '<? $ddStrings.dd_screen_flddelete_message ?>' );
+	}
+	
+	function alertDelete()
+	{
+		 alert( '<? $kernelStrings.app_treenoflddelrights_message ?>' );
+		 return false;
+	}
+	
+	function alertMove()
+	{
+		alert( '<? $kernelStrings.app_treenomovetosubfldrights_message ?>' );
+		return false;
+	}
+	
+	function alertCopy()
+	{
+		alert( '<? $kernelStrings.app_treenocopyfldrights_message ?>' );
+		return false;
+	}
+	
+	function alertAdd()
+	{
+		alert( '<? $kernelStrings.app_treenofldrights_message ?>' );
+		return false;
+	}
+	
+	function alertAddRoot()
+	{
+		alert( '<? $kernelStrings.app_treenorootrights_message ?>' );
+		return false;
+	}			
+	
+	function alertModify()
+	{
+		alert( '<? $kernelStrings.app_treeinvcurfldrights_message ?>' );
+		return false;
+	}
+	
+	function submitFolder( obj ) 
+	{
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 ) {
+			return false;
+		}
+	
+		obj.form.submit();
+	}
+
+	function checkEmailList()
+	{
+		if ( !treeCheckSelection( '<? $ddStrings.dd_screen_emptyemail_message ?>' ) )
+			return false;
+			
+		return true;
+	}
+		
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<input type="hidden" name="btndummy">
+  <input type="hidden" name="lastCurrentPage" value="<? $currentPage ?>">   
+  <input type="hidden" name="prevSearchString" value="<? $searchString?>">   
+  <? if $fatalError || $noAccessGranted ?>
+	  <? assign var=nospace value=0 ?>  	
+  <? else ?>
+	  <? assign var=nospace value=1 ?> 
+  <? /if ?>
+  <? include file="../../../common/html/classic/header.htm" nospace=1?>
+  <? if !$noAccessGranted ?>
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr> 
+		  <td class="pageTopPanel">		   
+		  	<? if $searchString == "" ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$ddStrings.dd_screen_folder_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$folderMenu popupMenuIndex=1 menuIcon=1 showTopBar=1 menuClass="btnText" ?>
+			<? /if ?>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$ddStrings.dd_screen_file_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$fileMenu popupMenuIndex=2 menuIcon=1 showTopBar=1 menuClass="btnText" ?>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$ddStrings.dd_screen_view_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$viewMenu popupMenuIndex=3 menuIcon=1 showTopBar=1 checkboxes=1 menuClass="btnText" ?>
+			<img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+			<table border="0" cellpadding="0" cellspacing="0" align="left">
+				<tr>
+					<td><img src="<? "images/buttons/btn_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" width="5" height="22"></td>
+					<td valign="middle" class="btnText"><? $ddStrings.dd_screen_search_label|cat:":&nbsp;" ?></td>
+					<td><input type="text" class="control" name="searchString" value="<? $searchString|htmlsafe:true:true ?>" style="width: 200px"></td>					
+					<td>
+					  <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="searchbtn" caption=$ddStrings.dd_screen_search_btn formname="form" space_left=#toolbarSmallSpace# ?>
+					  <? if $searchString != "" ?>
+						  <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="foldersbtn" caption=$ddStrings.dd_screen_showfolders_btn formname="form" space_left=#toolbarSmallSpace# ?>
+					  <? /if ?>
+					</td>
+				</tr>
+			</table>
+		  </td>
+		</tr>
+	  </table>  
+  <? /if ?>
+  <? include file="../../../common/html/classic/toppanel_fix.htm" nospace=$nospace noleftspace=$nospace ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr margins=20 ?>
+  <? if !$fatalError ?>
+  		<? if !$noAccessGranted ?>		
+			<? assign var=rightPanelContent value="../../../DD/html/classic/filelist.htm" ?>
+			<? if $searchString != "" ?>
+				<? assign var=hideBottomPanel value=1 ?>
+				<? assign var=rightPanelHeader value=$ddStrings.dd_sreen_searchresult_title ?>
+			<? else ?>
+				<? assign var=rightPanelHeader value=$curFolderName|htmlsafe:true:true ?>
+			<? /if ?>
+			
+			<? if $statisticsMode ?>
+				<? if $searchString == "" ?>
+					<? assign var=hideBottomPanel value=1 ?>
+					<? assign var=rightPanelHeader value=$kernelStrings.app_treeavailfolders_name ?>
+					<? assign var=rightPanelContent value="../../../common/html/classic/tree_templates/tree_folders_summary.htm" ?>
+					<? assign var=hidePages value=1 ?>				
+					<? assign var=docsColumnName value=$ddStrings.dd_sreen_summarydoc_title ?>			
+				<? /if ?>			
+			<? /if ?>		
+
+			<? if $hideLeftPanel && $searchString == "" ?>
+				<? assign var=topPanelFile value="../../../DD/html/classic/folderselector.htm" ?>
+				<? assign var=foldersImage value="javascript:processTextButton('showFoldersBtn', 'form')" ?>
+			<? /if ?>
+
+			<? assign var=hideBottomPanel value=1 ?>
+
+			<? include file="../../../common/html/classic/tree_templates/folder_document_view.htm" topLevel=true leftPanel="../../../DD/html/classic/catalog_panel.htm" rightTopPanel=$rightPanelContent rightBottomPanel="../../../common/html/classic/tree_templates/tree_folder_users.htm" leftPanelHeader=$kernelStrings.app_treefolders_text rightPanelHeader=$rightPanelHeader numDocumentsLabel=$ddStrings.dd_screen_numdocs_label hideLeftPanel=$hideLeftPanel hideBottomPanel=$hideBottomPanel leftPanelLinkTitle=$kernelStrings.app_treeavailfolders_name ?>
+		<? else ?>
+			<? $ddStrings.dd_screen_noaccess_message|nl2br ?>
+		<? /if ?>
+  <? /if ?>
+  <?include file="../../../common/html/classic/pagefooter.htm" norightspace=$nospace ?>
+</form>
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+ function MM_findObj(n, d) { //v4.0
+   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+   if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+   for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+   if(!x && document.getElementById) x=document.getElementById(n); return x;
+ }
+ 
+ function focusControl(objName) {
+   var obj = MM_findObj(objName); 
+   if (obj) {
+   obj.focus( );
+  }
+ }
+
+ function ConfirmDelete()
+ {
+	return confirm('<? $ddStrings.dd_screen_confirmdel_message ?>');
+ }
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl('fileData[DL_FILENAME]')">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<? include file="../../../common/html/classic/header.htm"?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+
+	<table cellpadding=0 cellspacing=2 border=0>
+		<tr>
+			<td valign=top>
+
+				<table border=0 cellpadding=0 cellspacing=0>
+					<tr>
+						<td valign=top><a href="<? $fileData.ROW_URL ?>" target="_blank"><img border=0 style="margin-right: 5px; margin-top: 5px; margin-left: 1px" src="<? thumbnail fileName=$fileData.DL_FILENAME size=32 os=win ?>" align=absmiddle></a></td>
+						<td valign=top class=largeText_normal style="padding-top: 1px">
+							<div style="padding-bottom: 5px"><a href="<? $fileData.ROW_URL ?>" target="_blank" class=largeText_normal><? $fileData.DL_FILENAME|htmlsafe:true:true|wordwrap:40:"<br>":1 ?></a>
+							<? if !$readOnly ?>
+								<a href="<? $editFileURL ?>" title="<? $ddStrings.fpp_editfile_hint ?>"><img src="<? "images/edit.gif"|stylesetitem:"classic":$styleSet ?>" border="0" width="20" height="16" align=absmiddle style="margin-left: 7px" border=0></a>
+							<? /if ?>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan=2>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td style="width: 500px">
+							<? $fileData.DL_DESC|htmlsafe:true:true ?>
+						</td>
+					</tr>
+					<tr>
+						<td height=5>&nbsp;</td>
+						<td height=5 style="border-bottom: 1px solid #CCCCCC;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td class=treeDocumentListViewContent style="padding-left: 0px!important; padding-top: 5px; ">
+							<? $ddStrings.app_type_field|cat:": " ?>
+							<? $fileData.DL_FILETYPE|htmlsafe:true:true ?>&nbsp;&nbsp;
+							<? $ddStrings.app_size_field|cat:": " ?>
+							<? $fileData.DL_FILESIZE|htmlsafe:true:true ?>&nbsp;&nbsp;
+							<? $ddStrings.app_addeddate_field|cat:": " ?>
+							<? $fileData.DL_UPLOADDATETIME|htmlsafe:true:true ?>
+							<? " "|cat:$ddStrings.app_by_label|cat:" "?>
+							<? $fileData.DL_UPLOADUSERNAME|htmlsafe:true:true ?>
+						</td>
+					</tr>
+				</table>
+
+				<table border=0 cellpadding=0 cellspacing=0>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$ddStrings.fd_close_btn formname="form"?>
+			</td>
+
+			<? if $versionControlEnabled ?>
+				<td>&nbsp;</td>
+				<td class="leftBorder">&nbsp;</td>
+				<td>&nbsp;</td>
+
+				<td valign=top>
+					<table border=0 cellpadding=1 cellspacing=0>
+						<tr>
+							<td>
+								<? $ddStrings.mf_screen_version_label|cat:": " ?>
+							</td>
+							<td>
+								<? $fileVersion ?>
+
+								<? if $fileData.DL_CHECKSTATUS == "OUT" ?>
+									&nbsp;(<font color=red><b><? $ddStrings.app_checkedout_label ?></b></font>)
+								<? else ?>
+									&nbsp;(<font color=green><b><? $ddStrings.app_checkedin_label ?></b></font>)
+								<? /if ?>
+							</td>
+						</tr>
+						<tr>
+							<td valign=top><? $ddStrings.mf_screen_uploaded_label|cat:": " ?></td>
+							<td>
+								<? $fileData.DL_CHECKDATETIME ?>
+								<? " "|cat:$ddStrings.app_by_label|cat:" "?>
+								<? $checkedUserName ?>
+							</td>
+						</tr>
+						<? if $fileData.DL_VERSIONCOMMENT != "" ?>
+							<tr>
+								<td colspan=2 height=5></td>
+							</tr>
+							<tr>
+								<td valign=top><? $ddStrings.fpp_comment_label|cat:":&nbsp;" ?></td>
+								<td class=smallFont><? $fileData.DL_VERSIONCOMMENT|wordwrap:50:"<br>" ?></td>
+							</tr>
+						<? /if ?>
+					</table>
+						<? if $showFileHistory ?>
+						<table border=0 cellpadding=1 cellspacing=0>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+						<b><? $ddStrings.mv_versionhostiry_label ?></b>
+						<table border=0 cellpadding=1 cellspacing=0>
+							<tr>
+								<td colspan=3 height=5></td>
+							</tr>
+							<? foreach from=$fileHistory key=verNum item=historyItem ?>
+								<tr>
+									<? if $fullRights ?>
+										<td><input type=checkbox name="deleteVersion[]" value="<? $historyItem.DLH_VERSION?>"></td>
+									<? /if ?>
+									<td style="padding-right: 8px"><a target="_blank" class=activeLink href="<? $historyItem.FILE_URL ?>"><? $ddStrings.mf_screen_version_label|cat:": "|cat:$historyItem.DLH_VERSION ?> (<? $historyItem.DLH_SIZE ?>)</a></td>
+								<tr>
+									<td>&nbsp;</td>
+									<td><? $ddStrings.mf_screen_replaced_label|cat:": "|cat:$historyItem.DLH_DATETIME|cat:" "|cat:$ddStrings.app_by_label|cat:" "|cat:$historyItem.DLH_USERNAME|htmlsafe:true:true ?></td>
+								</tr>
+								<? if $historyItem.DLH_DESC != "" ?>
+									<tr>
+										<? if $fullRights ?>
+											<td>&nbsp;</td>
+										<? /if ?>
+										<td class=smallFont><? $historyItem.DLH_DESC|wordwrap:50:"<br>" ?></td>
+									</tr>
+								<? /if ?>
+							<? /foreach ?>
+							<? if $fullRights ?>
+								<tr>
+									<td colspan=3>&nbsp;</td>
+								</tr>
+							<? /if ?>
+						</table>
+
+						<? if $fullRights ?>
+							<? include file="../../../common/html/classic/button.htm" name="deletebtn" onClick="return ConfirmDelete()" caption=$ddStrings.fpp_deleteselected_btn formname="form"?>
+						<? /if ?>
+
+					<? /if ?>
+				</td>
+			<? /if ?>
+		<tr>
+	</table>
+
+	<table border=0 cellpadding=0 cellspacing=0>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+	<? else ?>
+	<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+	<? /if ?>
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="currentPage" value="<? $currentPage ?>">  
+	<input type="hidden" name="DL_ID" value="<? $DL_ID ?>">  
+	<input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<? counter assign=rowNum ?>
+
+<? if $node->Id != "ROOT" ?>
+<tr <? if $rowNum % 2 ?>class='odd'<? /if ?>>
+	<td>
+		<a href='javascript:void(0)' onClick='window.parent.openFolder("<? $node->Id ?>")' style='padding-left: <? math equation="x*10" x=$level ?>px'><? $node->Name ?></a>
+	</td>
+	<td align='center'>
+		<? $node->getRightsStr() ?>
+	</td>
+	<td align='center'>
+		<? $node->FilesCount ?>
+	</td align='center'>
+</tr>
+<? /if ?>
+
+<? foreach from=$node->getChildren() item=childNode ?>
+	<? if $childNode->isAvailable() ?>
+		<? include file="backend_folders_node.html" node=$childNode level=$level+1?>
+	<? /if ?>
+<? /foreach ?>

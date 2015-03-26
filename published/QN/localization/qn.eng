@@ -1,0 +1,122 @@
+app_name_long	Common	Application full name	Notes
+app_name_short	Common	Application short name	Notes
+app_subject_field	Common	Subject field label	Subject
+app_content_field	Common	Content field label	Content
+app_file_field	Common	File field label	File
+app_author_field	Common	Author field label	Author
+app_date_field	Common	Date field label	Date
+app_folder_field	Common	Folder field label	Folder
+app_notelimit_message	Common	Note number limitation message	<b>ACCOUNT LIMIT</b>: Number of notes can not exceed %s.
+qn_screen_long_name	Quick Notes	Quick Notes page full name	Notes
+qn_screen_short_name	Quick Notes	Quick Notes page short name	Notes
+qn_screen_addnote_menu	Quick Notes	Menu item Notes/Add Note(s)	Add Note(s)
+qn_screen_copynote_menu	Quick Notes	Menu item Notes/Copy Note(s)	Copy Note(s)
+qn_screen_movenote_menu	Quick Notes	Menu item Notes/Move Note(s)	Move Note(s)
+qn_screen_deletenote_menu	Quick Notes	Menu item Notes/Delete Note(s)	Delete Note(s)
+qn_screen_print_menu	Quick Notes	Menu item Notes/Print	Print...
+qn_screen_grid_menu	Quick Notes	Menu item View/Grid	Grid
+qn_screen_list_menu	Quick Notes	Menu item View/List	List
+qn_screen_custview_menu	Quick Notes	Menu item View/Customize View	Customize View
+qn_screen_summary_note	Quick Notes	Label under Available Folders table	%s note(s) in %s accessible folder(s)
+qn_screen_flddelete_message	Quick Notes	Folder deletion conformation	Notes in this folder will be permanently deleted. Are you sure?
+qn_screen_emptycopy_message	Quick Notes	File copying without selecting the files message	You must select note(s) for this operation first.
+qn_screen_emptymove_message	Quick Notes	File moving without selecting the files message	You must select note(s) for this operation first.
+qn_screen_invrights_message	Quick Notes	Lack of administrative rights to move/delete files	You have no rights to move/delete some of selected notes.
+qn_screen_emptydel_message	Quick Notes	File deletion without selecting any files message	You must select note(s) for this operation first.
+qn_screen_confirmdel_message	Quick Notes	File deletion conformation	Do you want to delete this note(s)?
+qn_screen_notes_menu	Quick Notes	Notes menu	Notes
+qn_screen_view_menu	Quick Notes	View menu	View
+qn_screen_search_label	Quick Notes	Search bar label	Search
+qn_screen_search_btn	Quick Notes	Search button	Go
+qn_sreen_searchresult_title	Quick Notes	Search results header	Search Results
+qn_sreen_summarydoc_title	Quick Notes	Column in Available Folders table	Notes
+qn_screen_numdocs_label	Quick Notes	Text under the list of notes	Note(s)
+qn_screen_noaccess_message	Quick Notes	No access to folders message	Access denied.\n\nNOTE: To setup an access to Quick Notes folders please go to the "Notes/Folders & User Rights" menu item. If you do not see this item in your menu - refer to your system administrator.
+qn_screen_folder_menu	Quick Notes	Folder menu	Folder
+qn_screen_showfolders_btn	Quick Notes	Show Folders button	Folders
+qn_screen_files_label	Quick Notes	Files label	File(s)
+qn_screen_sorting_title	Document Depot	Sorting bar header	Sorting
+qnp_screen_files_label	Note	Header on top of file list	File(s)
+qnp_screen_norecords_label	Note	File list text if there no notes	<no notes>
+n_screen_rights_message	Note	Lack of administrative rights message	You have no rights to view this note
+n_screen_title	Note	Page header	Note
+n_screen_return_btn	Note	Back to list button	Notes
+n_screen_files_label	Note	Header above file list	File(s)
+n_screen_lastmodified_label	Note	Text last modified by	Last modified by
+amn_screen_norights_message	Add/Modify Note	Lack of administrative rights to modify notes message	You have no rights to work with this note
+amn_screen_add_title	Add/Modify Note	Add Note page header	Add Note
+amn_screen_modify_title	Add/Modify Note	Modify Note page header	Modify Note
+amn_screen_notedel_message	Add/Modify Note	Deleting Note conformation	You really want to delete this note?
+amn_screen_addanother_btn	Add/Modify Note	Save and Add Another button	Save and Add Another
+amn_screen_files_field	Add/Modify Note	Attached files field label	Attached Files
+amn_screen_delnote_btn	Add/Modify Note	Delete Note button	Delete Note
+amn_screen_noaddrights_message	Add/Modify Note	Lack of administrative rights to add notes message	You have no rights to add notes into this folder
+amn_screen_nodelrights_message	Add/Modify Note	Lack of administrative rights to delete notes message	You have no rights to modify or delete this note
+ps_screen_cut_label	Print Settings	Checkbox text	Cut notes content to %s characters
+ps_screen_print_title	Print Settings	Page header	Print
+ps_screen_print_label	Print Settings	Text above form	Print
+ps_screen_selected_label	Print Settings	Selected Notes radio button text	Selected Notes
+ps_screen_folder_label	Print Settings	Folder radio button text	Folder
+ps_screen_entire_label	Print Settings	Entire Quick Notes radio button text	All Available Notes
+ps_screen_print_btn	Print Settings	Print button	Print
+ps_screen_select_template	Print Settings	Tempate listbox label text	Template
+ps_screen_default_template	Print Settings	Default template name	<default>
+cm_screen_copy_title	Copy/Move	File Copying in progress page header	Copy Notes
+cm_screen_move_title	Copy/Move	File Moving in progress page header	Move Notes
+cm_screen_copyfolder_title	Copy/Move	Folder Copying in progress page header	Copy Folder
+cm_screen_movefolder_title	Copy/Move	Folder Moving in progress page header	Move Folder
+cm_screen_copy_btn	Copy/Move	Copying in progress button	Copy
+cm_screen_move_btn	Copy/Move	Moving in progress button	Move
+cm_screen_form_label	Copy/Move	Label above the form	note(s) selected
+cm_screen_copyerr_message	Copy/Move	Error copying file message	Error copying file
+cm_screen_makedirerr_message	Copy/Move	Error creating folder message	Error creating folder
+rights_screen_long_name	Folders & Users Rights	Folders & User Rights page full name	Folders & User Rights
+rights_screen_short_name	Folders & Users Rights	Folders & User Rights page short name	Folders & User Rights
+cv_screen_title	Customize View	Page header	Customize View
+cv_screen_form_label	Customize View	Label above the form	Select columns to display in the Grid format list (Subject is always visible):
+cv_screen_visible_list	Customize View	Visible Columns list header	Visible Columns
+cv_screen_hidden_list	Customize View	Hidden Columns list header	Hidden Columns
+cv_screen_notesnum_label	Customize View	Number of notes on one page selection label	Number of notes on one page:
+cv_screen_notelen_label	Customize View	Limit number of characters in notes label (part 1)	Limit visible text to
+cv_screen_notelenend_label	Customize View	Limit number of characters in notes label (part 2)	characters
+qnt_screen_long_name	Templates	Template page full name	Print Templates
+qnt_screen_short_name	Templates	Template page short name	Print Templates
+qnt_template_name_title	Templates	Name column header in template list table	Template Name
+qnt_template_author_title	Templates	Author column header in template list table	Author
+qnt_template_lastmodified_title	Templates	Last modified column header in template list table	Last Modified
+qnt_addtpl_btn	Templates	Add button	Add Template
+qnt_name_field	Templates	Name field label	Name
+qnt_html_field	Templates	Content field label	Content
+qnt_use_editor	Templates	Use Internal Editor radio button label	Modify template with internal editor
+qnt_upload_file	Templates	Upload HTML template file radio button label	Upload HTML template file
+qnt_screen_delnote_btn	Templates	Delete Template button	Delete Template
+qnt_screen_notedel_message	Templates	Template deletion conformation message	Do you really want to delete this template?
+qnt_screen_add_title	Templates	Add Print Template page header	Add Print Template
+qnt_screen_modify_title	Templates	Modify Print Template page header	Modify Print Template
+qnt_variables	Templates	Template variables section header	Templates Variables
+qnt_variable_name	Templates	Variable column name	Variable
+qnt_variable_descr	Templates	Description column name	Description
+qnt_variable_folder	Templates	Folder variable description	Folder name where note is located
+qnt_variable_subject	Templates	Subject variable description	Note's subject
+qnt_variable_content	Templates	Content variable description	Note's content
+qnt_variable_filelist	Templates	Filelist variable description	List of files attached to the note
+qnt_variable_username	Templates	Username variable description	User who has added/modified note
+qnt_variable_datetime	Templates	Day time variable description	Date and time of the last change
+qnt_variable_note	Templates	Templates variables note	To insert variable into template either type its name (percent symbol % is required) or just click it in the list above.
+qnt_tplnum_label	Templates	Templates number label	Templates
+
+app_treefolders_text	Common	Folders text	Available Actions with Folders
+app_treefurfldname_title	Common	Folder Name column header on the Folders & Users Rights page	Folder Name
+app_readaccess_name	Common	Read access	Read
+app_writeaccess_name	Common	Read/Write access	Write
+app_folderaccess_name	Common	Read/Write/Folder access	Folder
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Can create root folders
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Can see other users' permissions
+
+app_available_pages_name	Common	 Available Pages rights name	Available Pages
+app_available_functions_name	Common	 Available Functions	Available Functions
+app_notifications_section_name	Common	 Notifications section rights name	Notifications
+app_treeavailflds_title	Common	Available Folders column header on the Folders & Users Rights page	Available Folders
+
+app_cantools_label	Common	Can use tools rights	Can use Tools
+app_canreports_label	Common	Can use reports rights	Can use Reports

@@ -1,0 +1,179 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script> 
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+<? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		
+      <td class="pageTopPanel"> 
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="rstcbtn" caption=$pmStrings.amc_activate_btn formname="form" onClick="return confirm('"|cat:$pmStrings.amc_activate_message|cat:"')" space_right=5?>
+        <img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="delcbtn" caption=$pmStrings.amc_delete_btn formname="form" onClick="return confirm('"|cat:$pmStrings.amc_deleteconfirm_message|cat:"')" space_left=5?>
+      </td>
+	</tr>
+</table>
+<? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+<? if !$fatalError ?>
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+	<td colspan="2">
+	  <table border="0" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td> <table width="100%" border="0" cellpadding="0" cellspacing="0">
+			  <tr> 
+				<td class="default"> 
+				<? include file="../../../common/html/classic/formframe_begin.htm"?>	
+					 <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr> 
+                        <td colspan="3"><table width="100%" border="0" cellspacing="2" cellpadding="0">
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.amc_custname_title|cat:":" ?></nobr>
+                               </td>
+                              <td class="readonly_control" width="100%">
+							    <nobr><? $customerData.C_NAME|htmlsafe:true:true|sureecho ?></nobr>
+							  </td>
+                            </tr>
+							<tr> 
+							  <td colspan="2" align="right" class="default">&nbsp;</td>
+							</tr>
+						  </table>
+					    </td>
+					  </tr>
+					  <tr>
+						<td><table border="0" cellspacing="2" cellpadding="0">
+							<tr>
+							  <td colspan="2" align="right" class="formSection">
+                                <nobr><? $pmStrings.amc_address_title ?></nobr>
+                              </td>
+							</tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.amc_streetaddress_title|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control">
+							    <nobr><? $customerData.C_ADDRESSSTREET|htmlsafe:true:true|sureecho ?></nobr>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.amc_city_title|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control">
+							    <nobr><? $customerData.C_ADDRESSCITY|htmlsafe:true:true|sureecho ?></nobr>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.amc_state_title|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control">
+							    <nobr><? $customerData.C_ADDRESSSTATE|htmlsafe:true:true|sureecho ?></nobr>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.amc_zip_title|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control">
+								<nobr><? $customerData.C_ADDRESSZIP|htmlsafe:true:true|sureecho ?></nobr>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.amc_country_title|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control">
+								<nobr><? $customerData.C_ADDRESSCOUNTRY|htmlsafe:true:true|sureecho ?></nobr>
+							  </td>
+                            </tr>
+                          </table></td>
+						<td valign="top"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+						<td valign="top"> <table border="0" cellpadding="0" cellspacing="2">
+						  <tr>
+							<td colspan="2" align="right" class="formSection">
+                                <nobr><? $pmStrings.amc_contperson_title ?></nobr>
+                            </td>
+						  </tr>
+                          <tr> 
+                            <td align="right" class="label"> 
+                              <nobr><? $pmStrings.amc_contname_title|cat:":" ?></nobr>
+                            </td>
+                            <td class="readonly_control">
+							  <nobr><? $customerData.C_CONTACTPERSON|htmlsafe:true:true|sureecho ?></nobr>
+							</td>
+                          </tr>
+                          <tr> 
+                            <td align="right" class="label"> 
+                              <nobr><? $pmStrings.amc_email_title|cat:":" ?></nobr>
+                            </td>
+                            <td class="readonly_control">
+							  <nobr><? $customerData.C_EMAIL|htmlsafe:true:true|sureecho ?></nobr>
+						    </td>
+                          </tr>
+                          <tr> 
+                            <td align="right" class="label"> 
+                              <nobr><? $pmStrings.amc_phone_title|cat:":" ?></nobr>
+                            </td>
+                            <td class="readonly_control">
+							  <nobr><? $customerData.C_PHONE|htmlsafe:true:true|sureecho ?></nobr>
+						    </td>
+                          </tr>
+                          <tr> 
+                            <td align="right" class="label"> 
+                              <nobr><? $pmStrings.amc_fax_title|cat:":" ?></nobr>
+                            </td>
+                            <td class="readonly_control">
+						      <nobr><? $customerData.C_FAX|htmlsafe:true:true|sureecho ?></nobr>
+							</td>
+                          </tr>
+						</table>
+                      </tr>
+                    </table>
+					<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true?>
+					</td>
+			  </tr>
+			</table></td>
+		</tr>
+	  </table> 
+	  </td>
+	  </tr>
+	  <tr>	    
+      <td colspan="2" class="default"> 
+        <? include file="../../../common/html/classic/button.htm" align="left" name="clsbtn" caption=$pmStrings.amc_close_btn formname="form" space_left=5 space_right=10 ?>
+      </td>
+	  </tr>
+	  <tr>
+	  	<td colspan="2">&nbsp;</td>
+	  </tr>
+	  <tr>
+	    <td align="left" colspan="2" class="smallFont">
+		  <hr width="100%" size="1" noshade>
+		  <nobr><? $pmStrings.amc_lastmodified_text ?>&nbsp;<? $customerData.C_MODIFYUSERNAME ?>&nbsp;
+		  <? $customerData.C_MODIFYDATETIME ?></nobr>
+		</td>
+	  </tr>
+  </table>
+  <? /if ?>
+  <input name="edited" type="hidden" id="edited" value="1">
+  <input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>">
+  <input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>">
+  <input name="customerData[C_ID]" type="hidden" id="customerData[C_ID]" value="<? $customerData.C_ID ?>">
+  <input name="customerData[C_MODIFYUSERNAME]" type="hidden" id="customerData[C_MODIFYUSERNAME]" value="<? $customerData.C_MODIFYUSERNAME|htmlsafe:true:true ?>">
+  <input name="customerData[C_NAME]" type="hidden" value="<? $customerData.C_NAME ?>">
+  <input name="customerData[C_MODIFYDATETIME]" type="hidden" id="customerData[C_MODIFYDATETIME]" value="<? $customerData.C_MODIFYDATETIME ?>">
+  <input type="hidden" name="btndummy">
+  <?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+  
+  <? /strip ?>
+</body>
+</html>

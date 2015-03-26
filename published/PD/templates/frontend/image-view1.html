@@ -1,0 +1,24 @@
+
+{{ if ( count($imageList) > 0 ) }}
+		
+			{{ foreach from=$imageList item=imageItem  }}
+			<div class="image-list-item"><p class="image-desc">{{ $imageItem.PL_DESC }}</p>
+				<div class="over-original">
+					{{ if (isset($imageItem.IS_IMG_CREATE)) }}
+					<img class="oreginal" newsrc="{{ $imageItem.IMG_URL }}" src="{{ $p->getJsUrl() }}/../../img/ajload.gif" />
+					{{ else }}
+					<img class="oreginal" src="{{ $imageItem.IMG_URL }}" />
+					{{ /if }}
+					{{ if ( $view_oreginal == 1 ) }}
+						<div class="save-orig"><a target="_blank" href="{{ $imageItem.HASH }}">[`download original image`]<img src="{{ $p->getImageUrl() }}/new_window_icon.gif" /></a></div>
+					{{ /if }}			
+				</div>
+			</div>
+			{{ /foreach }}
+<br clear="all" />
+		
+{{ else }}
+<div class="empty_content">
+	<p>[`There are no photos in this album.`].</p> 
+</div>
+{{ /if }} 		

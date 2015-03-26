@@ -1,0 +1,450 @@
+app_name_long	Common	Application full name	Contacts
+app_name_short	Common	Application short name	Contacts
+
+app_pendingsubscr_label	Common	Pending subscriber label	Pending
+app_normalsubscr_label	Common	Pending subscriber label	Normal
+
+cm_screen_long_name	Contact Manager	Contact Manager page full name	Contacts
+cm_screen_short_name	Contact Manager	Contact Manager page short name	Contacts
+cm_numcontacts_label	Contact Manager	Text under the list of contacts	Contact(s)
+cm_summarydoc_title	Contact Manager	Column in the Available Folders table	Contacts
+cm_summary_note	Contact Manager	Label below the Available Folders table	%s contact(s) in %s accessible folder(s)
+cm_searchresult_title	Contact Manager	Search results header	Search Results
+cm_flddelete_message	Contact Manager	Folder deletion confirmation	Contacts in this folder will be permanently deleted. Delete folder anyway?
+cm_emptycopy_message	Contact Manager	Contact copying without selecting the contacts message	You must select contact(s) for this operation first.
+cm_emptysend_message	Contact Manager	Sending email without selecting the contacts message	You must select contact(s) for this operation first.
+cm_invrights_message	Contact Manager	Lack of administrative rights to move/delete contacts message	You have no rights to move/delete some of selected contacts.
+cm_emptydel_message	Contact Manager	Contact deletion without selecting the files message	You must select contact(s) for this operation first.
+cm_confirmdel_message	Contact Manager	Contact deletion confirmation	Do you really want to delete this contact(s)?
+cm_addcontacts_menu	Contact Manager	Menu item Contact/Add Contact	Add Contact
+cm_addcontacts_btn	Contact Manager	Button Add Contact	Add Contact
+cm_copycontacts_menu	Contact Manager	Menu item Contact/Copy Contact(s)	Copy Contact(s)
+cm_movecontacts_menu	Contact Manager	Menu item Contact/Move Contact(s)	Move Contact(s)
+cm_deletecontacts_menu	Contact Manager	Menu item Contact/Delete Contact(s)	Delete Contact(s)
+cm_print_menu	Contact Manager	Menu item Contact/Print…	Print...
+cm_import_menu	Contact Manager	Menu item Contact/Import…	Import...
+cm_export_menu	Contact Manager	Menu item Contact/Export…	Export...
+cm_contact_menu	Contact Manager	Contact... menu 	Contact
+cm_deleteuser_message	Contact Manager	 Deleting user contact message	Contact %s is registered WebAsyst User. To delete this contact please use Account Administrator/Users & Groups menu.
+cm_nomodrights_message	Contact Manager	Lack of administrative rights to delete or modify a contact message	You have no rights to modify or delete this contact
+cm_deletefolderuser_message	Contact Manager	Deleting folder containinf user contacts message	Can not delete folder, containing contacts registered as WebAsyst User, or subfolders containing such contacts
+cm_gridview_menu	Contact Manager	Menu View/Grid View	Grid
+cm_listview_menu	Contact Manager	Menu View/List View	Details
+cm_custview_menu	Contact Manager	Menu View/Customize View	Customize View
+cm_search_label	Contact Manager	Search bar label	Search
+cm_search_btn	Contact Manager	Search button	Go
+cm_searchresult_title	Contact Manager	Search results header	Search Results
+cm_usersmovedel_message	Contact Manager	Error message	You can not move or delete WebAsyst Users folder.
+cm_addwebasystcont_message	Contact Manager	Error Message	Contact can not be added directly to WebAsyst Users folder. Please use Administrator/Users & Groups tools to add new user.
+cm_sendemail_menu	Contact Manager	Menu item Contact/Send Email…	Send Email...
+cm_sendsms_menu	Contact Manager	Menu item Contact/Send SMS…	Send SMS...
+cm_folderid_label	Contact Manager	Folder ID label	Folder ID
+cm_canmanageusrs_title	Contact Manager	Can manage Users & Groups title	Can manage Users & Groups
+cm_canmanagelists_title	Contact Manager	Can manage Contact Lists title	Can manage Contact Lists
+cm_cantools_title	Contact Manager	Can tools	Can use Tools
+cm_canreports_title	Contact Manager	Can tools	Can use Reports
+cm_confirmlistdel_message	Contact Manager	List deletion confirmation	Do you really want to delete this list?
+cm_dellist_note	Contact Manager	List deletion note	NOTE: Contact entries will NOT be deleted.
+cm_nouserrights_message	Contact Manager	No manage users rights message	This contact has user privileges. Can not delete this contact because you have no rights to manage user accounts.
+cm_userprivs_label	Contact Manager	User privileges label	This contact has user privileges
+cm_show_label	Contact Manager	Show label	<show>
+cm_defaultwgname_title	Contact Manager	Default SBSC Widget name	Sign-Up Form
+
+cm_constructor_menu	Contact Manager	Constructor Menu	Constructor
+
+cm_copy_title	Copy/Move	Copying Contacts page header	Copy Contacts
+cm_move_title	Copy/Move	Moving Contacts page header	Move Contacts
+cm_copyfolder_title	Copy/Move	Copying Folder page header	Copy Folder
+cm_movefolder_title	Copy/Move	Moving Folder page header	Move Folder
+cm_copy_btn	Copy/Move	Copying process button	Copy
+cm_move_btn	Copy/Move	Moving process button	Move
+cm_contactnum_text	Copy/Move	Number of Contacts selscted text	contact(s) selected
+
+cm_contactdlg_showfilled_checkbox	Contact Dialog	Always show filled fields checkbox	Always show filled fields
+
+amc_screen_add_title	Add/Modify Contact	Add Contact mode header	Add Contact
+amc_screen_edit_title	Add/Modify Contact	Modify Contact mode header	Edit Contact
+amc_newcontact_label	Add/Modify Contact	The contact name for add contact mode	<new contact>
+amc_noaddrights_message	Add/Modify Contact	Lack of administrative rights to add a contact message	You have no rights to add contact to this folder
+amc_nomodrights_message	Add/Modify Contact	Lack of administrative rights to delete or modify a contact message	You have no rights to modify or delete this contact
+amc_addanother_btn	Add/Modify Contact	Save and Add Another button	Save and Add Another
+amc_deletecontact_btn	Add/Modify Contact	Delete Contact button	Delete Contact
+amc_confirmdel_message	Add/Modify Contact	Contact deletion confirmation	Do you really want to delete this contact?
+amc_display_label	Add/Modify Contact	Display label	Display
+amc_separatetabs_item	Add/Modify Contact	Display list item	every section on separate tab
+amc_allinone_item	Add/Modify Contact	Display list item	all sections on one page
+amc_erroruploadingfile_message	Add/Modify Contact	Error uploading file message	Error uploading file
+amc_contact_tab	Add/Modify Contact	Contact tab	Contact
+amc_user_tab	Add/Modify Contact	User tab	User
+amc_selectfolder_message	Add/Modify Contact	Select folder message	Please select folder
+amc_grantpriv_btn	Add/Modify Contact	Grant User Privileges button	Grant User Privileges
+amc_privs_text	Add/Modify Contact	Grant User Privileges text	To grant user privileges to this contact, click the button below and provide User ID, password and assign access rights. This user will be able then to login his/her account and work with available WebAsyst applications.
+amc_privs_note	Add/Modify Contact	Grant User Privileges note	This contact has no user privileges.
+amc_revokepriv_btn	Add/Modify Contact	Revoke User Privileges button	Revoke User Privileges
+amc_revoke_message	Add/Modify Contact	Revoke User Privileges message	Do you really want to revoke user privileges for this contact?
+amc_accessupdate_message	Add/Modify Contact	Updating access tab message	You have just changed Groups for this user.\nPlease wait while we updating access information.
+amc_modifiedby_label	Add/Modify Contact	Modified by label	Modified
+amc_addedby_label	Add/Modify Contact	Added by label	Added
+amc_status_label	Add/Modify Contact	Status label	Status
+
+sv_screen_long_name	Contact Entry Constructor	Contact Entry Constructor page full name	Contact Entry Constructor
+sv_screen_short_name	Contact Entry Constructor	Contact Entry Constructor page short name	Entry Constructor
+sv_section_title	Contact Entry Constructor	Section title	Section
+sv_add_title	Contact Entry Constructor	Add title	Add
+sv_condescr_text	Contact Entry Constructor	Constructor description string	Constructor allows you to customize your contact entry format: add new sections and fields, delete/modify existing fields and change their location and appearance.
+sv_connote_text	Contact Entry Constructor	Constructor important note	Any changes affect all contact entries in all folders. Once you delete or modify field(s) you won't be able to restore it. Be careful and don't lose precious data.
+sv_impnote_label	Contact Entry Constructor	Label Important Note	IMPORTANT NOTE
+sv_contips_text	Contact Entry Constructor	Constructor tips	To modify/move/delete section or field, click its name.
+sv_addsection_btn	Contact Entry Constructor	Add Section button	Add Section...
+sv_addfield_btn	Contact Entry Constructor	Add Field button	Add Field...
+sv_birthdaytype_name	Contact Entry Constructor	Birthday type name	Birthday
+sv_texttype_name	Contact Entry Constructor	Text type name	Text
+sv_urltype_name	Contact Entry Constructor	URL type name	WWW Link
+sv_emailtype_name	Contact Entry Constructor	Email type name	Email Link
+sv_memotype_name	Contact Entry Constructor	Memo type name	Memo
+sv_menutype_name	Contact Entry Constructor	Menu type name	Menu
+sv_imagetype_name	Contact Entry Constructor	Image type name	Image
+sv_datetype_name	Contact Entry Constructor	Date type name	Date
+sv_numerictype_name	Contact Entry Constructor	Numeric type name	Numeric
+sv_nofields_label	Contact Entry Constructor	No fields label	<no fields defined>
+sv_required_label	Contact Entry Constructor	Required label	required
+sv_unique_label	Contact Entry Constructor	Unique label	unique
+amf_screen_add_title	Add/Modify Field	Add Field mode header	Add Field
+amf_screen_edit_title	Add/Modify Field	Modify Field mode header	Edit Field
+amf_newfield_label	Add/Modify Field	The field name for add field mode	<new field>
+amf_longname_label	Add/Modify Field	Field long name label	Long Name
+amf_shortname_label	Add/Modify Field	Field short name label	Short Name
+amf_type_label	Add/Modify Field	Label "Field Type"	Field Type
+amf_menu_label	Add/Modify Field	Description for the menu control	Menu (applicable only for Menu type)
+amf_placeafter_label	Add/Modify Field	Label "Place After"	Place After
+amf_shortname_note	Add/Modify Field	Short name note	Short Name is an optional alternative name; if provided, is displayed as a column title in the Grid view and as a field signature in the Details view
+amf_mandatory_note	Add/Modify Field	Mandatory filed note	This field is mandatory. It can not be renamed or deleted. You can change location of this field only inside Contact section.
+amf_emptymenu_message	Add/Modify Field	Error message	You must add at least one item in the menu list
+amf_deletefield_btn	Add/Modify Field	Delete Field button	Delete Field
+amf_deleteconfirm	Add/Modify Field	Confirmation message	You are about to remove this field. All information containing in this field will be permanently removed from the database as well. This operation is not undoable. Delete anyway?
+amf_width_label	Add/Modify Field	Width label	Width
+amf_decplaces_label	Add/Modify Field	Decimal places label	Decimal places
+amf_items_label	Add/Modify Field	Items label	Items
+amf_unique_label	Add/Modify Field	Unique label	Unique (duplicate entries not allowed)
+amf_mandatory_label	Add/Modify Field	Mandatiry label	Required (must have a value)
+amf_constraints_label	Add/Modify Field	Constaings label	Constraints
+amf_imgunique_message	Add/Modify Field	Image unique constraint message	Image field can not be set as unique
+amf_dbname_label	Add/Modify Field	DB Name label	DB Name
+ams_screen_add_title	Add/Modify Section	Add Section mode header	Add Section
+ams_screen_edit_title	Add/Modify Section	Modify Section mode header	Edit Section
+ams_deletesection_btn	Add/Modify Section	Delete Section button	Delete Section
+ams_newsection_label	Add/Modify Section	The section name for add section mode	<new section>
+ams_sectionname_label	Add/Modify Section	Section name label	Section Name
+ams_placeontop_item	Add/Modify Section	Place on top item	<place on top>
+ams_deleteconfirm	Add/Modify Section	Confirmation message	You are about to remove this section. All fields in this section will be permanently removed from the database as well. This operation is not undoable. Delete anyway?
+ams_mandatory_note	Add/Modify Section	Mandatory section note	This section is mandatory. It can not be relocated, renamed or deleted.
+cv_page_title	Customize View	Page header	Customize View
+cv_form_label	Customize View	Label above the form	Select visible columns
+cv_visible_list	Customize View	Visible Columns list header	Visible Columns
+cv_hidden_list	Customize View	Hidden Columns list header	Hidden Columns
+cv_nofields_message	Customize View	Error Message	At least one column must be visible.
+cv_screen_contactsnum_label	Customize View	Number of contacts on one page selection label	Number of entries on one page:
+cv_selectimage_label	Customize View	Select image label	Select image field to display in the leftmost column
+cv_donotdisplayimg_label	Customize View	Do not display image label	Don't display image
+cv_imagefieldsopt_label	Customize View	Image fields options label	For image fields show
+cv_thumbnails_label	Customize View	Thumbnails label	Thumbnails
+cv_textlinks_label	Customize View	Text links label	Text links
+cv_screen_viewopt_label	Customize View	Label "Once you change View option:"	Once you switch Grid/Details view:
+cv_screen_applutoall_label	Customize View	Label "Apply selected view to all folders"	Apply selected view to all folders
+cv_screen_applutocurrent_label	Customize View	Label "Apply selected view to current folder only"	Apply selected view to current folder only
+cv_general_tab	Customize View	General tab	General
+cv_grid_tab	Customize View	Grid tab	Grid
+cv_list_tab	Customize View	List tab	Details
+cv_noimages_label	Customize View	There are no image fields defined label	There are no image fields defined.
+cv_addimages_note	Customize View	Add images note	To add image fields use Contact Entry Constructor (in the main menu)
+
+pcl_print_title	Print Contact List	Page header	Print
+pcl_form_label	Print Contact List	Text above form	Print
+pcl_screen_selected_label	Print Contact List	Selected Notes radiobutton text	Selected Contacts
+pcl_screen_folder_label	Print Contact List	Folder radiobutton text	Folder
+pcl_screen_entire_label	Print Contact List	Entire Address Book radiobutton text	Entire Contact List
+pcl_screen_print_btn	Print Contact List	Print button	Preview
+pcl_printas_label	Print Contact List	Print as label	Print as
+pcl_printasgrid_label	Print Contact List	Print as grid label	Grid
+pcl_printaslist_label	Print Contact List	Print as list label	Details
+
+icl_page_title	Import Contact List	Page header	Import Contacts
+icl_file_label	Import Contact List	Select File label	File
+icl_filetype_label	Import Contact List	Select File Type label	File Format
+icl_import_btn	Import Contact List	Import label	Import
+icl_custformat_item	Import Contact List	Custom format item text	<custom format>
+icl_selectfile_message	Import Contact List	File Import without selecting the file message	Please select file to import
+icl_erruploading_message	Import Contact List	Error uploading file message	Error uploading file
+icl_crsccols_label	Import Contact List	Column match list header	Contact List Column
+icl_importinvfield_message	Import Contact List	Invalid import file field message	Can not import contact: field "%s" is empty
+icl_finished_message	Import Contact List	Import finished message	Import completed. %s contact(s) of %s successfully added.
+icl_error_label	Import Contact List	Label "Error message"	Error
+icl_savefileformat_label	Import Contact List	Label "Save file format"	Save file format
+icl_formatname_label	Import Contact List	Label "Format Name"	Save import file format as
+icl_format_note	Import Contact List	File Format Note	To save this import file format for further usage, click checkbox and enter format name below
+icl_group_label	Import Contact List	Add To Group label	Add To Group
+icl_selectfolder_item	Import Contact List	Select folder item	<select folder>
+icl_notaddedusers_label	Import Contact List	Not imported contacts list label	Following contacts have not been added:
+icl_contactname_label	Import Contact List	Label "Contact Name"	Contact Name
+icl_error_label	Import Contact List	Label "Error message"	Error
+icl_filetype_label	Import Contact List	Select File Type label	File Format
+icl_custformat_item	Import Contact List	Custom format item text	<custom format>
+icl_addtofolder_label	Import Contact List	Label "Add to Folder"	Add to Folder
+
+icl_grantuserprivs_label	Import Contact List	Grant user privileges label	Grant User Privileges to imported contacts
+icl_userstatus_label	Import Contact List	User status label	Specify Status for new users
+icl_usergroups_label	Import Contact List	User groups label	Include imported contacts into user groups
+icl_userid_item	Import Contact List	User identifier list item	User ID
+icl_userprivs_label	Import Contact List	User Privileges label	User Privileges
+icl_specifyuid_label	Import Contact List	Specify U_ID label	Please specify the column that will be used as User ID
+
+ecl_page_title	Export Contact List	Page header	Export Contacts
+ecl_filetype_label	Export Contact List	Select File Format label	File Format
+ecl_nofileformat_item	Export Contact List	No file formats item	<none>
+ecl_tmpfilerr_message	Export Contact List	Error creating temporary file message	Error creating temporary file
+ecl_form_label	Export Contact List	Text above the form	Export
+ecl_selectedcontacts_label	Export Contact List	Selected contacts label	Selected Contacts
+ecl_folder_label	Export Contact List	Folder label	Folder
+ecl_group_label	Export Contact List	User group label	User Group
+ecl_list_label	Export Contact List	Contact list label	List
+ecl_searchresult_label	Export Contact List	Search result label	Entire Search Results
+ecl_entirelist_label	Export Contact List	Entire Contact Manager label	Entire Contact Manager (available contacts only)
+ecl_export_btn	Export Contact List	Export button	Export
+ecl_download_label	Export Contact List	Contact List link text	Please click the link below to download exported contacts
+ecl_download_link	Export Contact List	Download link	Download
+ecl_return_btn	Export Contact List	Return to the Contact List button	Return to Contact List
+ecl_separator_label	Export Contact List	Separator label	Delimiter
+ecl_comma_item	Export Contact List	Comma item	Comma
+ecl_tab_item	Export Contact List	Tab item	Tab
+ecl_semicolon_item	Export Contact List	Semicolon item	Semicolon
+ecl_period_item	Export Contact List	Period item	Period
+ecl_included_label	Export Contact List	Included label	Included
+ecl_notincluded_label	Export Contact List	Not Included label	Not Included
+ecl_exportfields_label	Export Contact List	Export fields label	Export Fields
+ecl_userid_item	Import Contact List	User identifier list item	User ID
+ecl_noexprights_message	Import Contact List	No export rights message	You have no rights to export contacts from this folder
+
+sm_screen_long_name	Send Email	Send Email page name	Send Email
+sm_from_label	Send Email	Label From	From
+sm_to_label	Send Email	Label To	To
+sm_subject_label	Send Email	Label Subject	Subject
+sm_message_label	Send Email	Label Message	Message
+sm_send_btn	Send Email	Send button	Send
+sm_priority_label	Send Email	Priority label	Priority
+sm_hipriority_item	Send Email	High priority item	High
+sm_normalpriority_item	Send Email	Normal priority item	Normal
+sm_lowpriority_item	Send Email	Low priority item	Low
+sm_contactnum_label	Send Email	Selected contact number label	%s contact(s) selected
+sm_emailsnum_label	Send Email	Selected contact number label	%s email address(es)
+sm_recnotset_message	Send Email	Error message	You must specify some recipients for this message.
+sm_recipientlimit_message	Send Email	Error message	Limit number of recipients has been exceeded: %s
+sms_screen_long_name	Send SMS	Send SMS page name	Send SMS
+sms_phonesnum_label	Send SMS	Selected contact number label	%s phone number(s)
+sms_charsleft_label	Send SMS	Selected contact number label	Characters left
+sms_sentsms_stat_text	Send SMS	Sent SMS statistics	SMS has been sent to the following phone number(s)
+sms_phone_title	Send SMS	Phone Number column title	Phone Number
+sms_status_title	Send SMS	Status column title	Status
+if_screen_long_name	Import Formats	Import Formats page title	Import Formats
+if_screen_short_name	Import Formats	Import Formats page title	Import Formats
+
+cman_page_title	Contact Manager	Page Title	Contacts
+cman_groups_title	Contact Manager	User groups title	User Groups
+cman_lists_title	Contact Manager	Lists title	Lists
+cman_list_menu	Contact Manager	List menu	List
+cman_addlist_menu	Contact Manager	Add list menu item	Add List
+cman_modifylist_menu	Contact Manager	Modify list menu item	Modify List
+cman_deletelist_menu	Contact Manager	Delete list menu item	Delete List
+cman_availablelist_title	Contact Manager	Available Lists title	Available Lists
+cman_listssummary_note	Contact Manager	Label below the Available Lists table	%s contact(s) in %s list(s)
+cman_listname_title	Contact Manager	List name title	List Name
+cman_contacts_title	Contact Manager	Contacts title	Contacts
+cman_user_label	Contact Manager	User label	User ID
+cman_status_label	Contact Manager	Status label	Status
+cman_userid_label	Contact Manager	User ID label	User ID
+cman_folders_item	Contact Manager	Folders item	--- FOLDERS ---
+cman_groups_item	Contact Manager	Groups item	--- USER GROUPS ---
+cman_lists_item	Contact Manager	Lists item	--- LISTS ---
+cman_revokeprivs_menu	Contact Manager	Revoke user priviletes menu item	Revoke User Privileges
+cman_emptyrevoke_message	Contact Manager	Revoking privileges without selecting the contacts message	You must select user(s) for this operation first.
+cman_emptychangestatus_message	Contact Manager	Changing user status without selecting the contacts message	You must select user(s) for this operation first.
+cman_revokeprivs_message	Contact Manager	Revoke user privileges confirmation message	Do you really want to revoke user privileges for selected contact(s)?
+cman_changeuserstatus_menu	Contact Manager	Change user status menu item	Change User Status...
+cman_addtolist_menu	Contact Manager	Add to list menu item	Add To List...
+cman_emptyaddtolist_message	Contact Manager	Adding contacts to list without selecting the contacts message	You must select contact(s) for this operation first.
+
+ru_page_title	Restore Users	Page Title	Restore Users
+ru_selectfolder_message	Restore Users	Select folder message	Please select folder
+
+cml_addpage_title	Create/Modify List	Create page title	Create Contact List
+cml_modpage_title	Create/Modify List	Modify page title	Modify Contact List
+cml_list_tab	Create/Modify List	List tab	List
+cml_folders_tab	Create/Modify List	Folders tab	Folders
+cml_contacts_tab	Create/Modify List	Contacts tab	Contacts
+cml_groups_tab	Create/Modify List	Groups tab	Groups
+cml_listname_label	Create/Modify List	List name label	List Name
+cml_folders_note	Create/Modify List	Folders note	Select contact folders to include them into current Contact List.
+cml_contacts_note	Create/Modify List	Contacts note	Select individual contacts to include them into current Contact List.
+cml_contactsbottom_note	Create/Modify List	Contacts bottom note	Only contacts from available folders appear above.
+cml_included_label	Create/Modify List	Label "Included"	Included
+cml_notincluded_label	AddCreate/Modify List	Label "Not Included"	Not Included
+cml_groups_note	Create/Modify List	Groups note	Select user groups to include them into current Contact List.
+cml_shared_label	Create/Modify List	Shared label	Shared
+cml_shared_note	Create/Modify List	Shared not	Enable "Shared" option to make this list available for other users.
+cml_novolders_label	Create/Modify List	No available folders label	<no available folders>
+
+rup_page_title	Revoke User Privileges	Page Title	Revoke User Privileges
+rup_success_message	Revoke User Privileges	Contact processing success result message	User Privileges have been successfully revoked.
+
+dc_page_title	Delete Contacts	Page Title	Delete Contacts
+dc_success_message	Delete Contacts	Contact processing success result message	Contact has been successfully deleted
+
+cus_page_title	Change User Status	Page Title	Change User Status
+cus_usernum_label	Change User Status	User number label	%s user(s) selected.
+cus_changestatus_label	Change User Status	Change status label	Change status for
+
+atl_page_title	Add to List	Page Title	Add To List
+atl_promt_label	Add to List	Promt label	%s contact(s) selected.
+atl_existinglist_label	Add to List	Existing List label	Add to Existing List
+atl_newlist_label	Add to List	New List label	Add to New List
+atl_addedcontacts_label	Add to List	Added contacts label	%s from %s contact(s) were added.
+atl_existingcontacts_label	Add to List	Existing contacts label	%s contact(s) already exist in the list.
+atl_listcontactsnum_label	Add to List	List contacts number label	List "%s" now contains %s entries.
+atl_selectedcontacts_label	Add to List	Selected Contacts label	Selected Contacts
+atl_entiresearch_label	Add to List	Entire search results label	Entire Search Results
+
+svc_page_title	Service	Page Title	Constructor
+svc_importformats_tab	Service	Import Formats tab title	Import Formats
+svc_signupform_tab	Service	Signup form tab	Sign-Up Form
+svc_signupform_note	Serice	Signup form note	Sign-Up Form is an HTML form that you can place on your website. Visitors of your website can fill in this form and post information entered into your Contact Manager database. This is a great way to collect your subscriber information into centralized storage.
+scv_gensignupform_btn	Service	Generate Signup Form button	Generate Sign-Up Form...
+scv_gennewsignupform_btn	Service	Generate new Signup Form button	Generate New...
+scv_signupform_desc	Service	Signup Form description	Sign-Up Form has been generated by %s on %s
+scv_download_btn	Service	Download Signup Form button	Download
+scv_preview_btn	Service	Preview Signup Form button	Preview
+srv_clear_btn	Service	Clear Signup Form button	Clear
+svs_clear_message	Service	Clear confirmation message	Do you really want to clear the HTML code shown above?
+svc_constructor_tab	Service	Constructor tab	Constructor
+svc_advopt_text	Service	Advanced option description	Copy the code shown below into your clipboard or click Download button to export the code in a text file. Then you can paste the code into the page on your website where you want this form to appear.
+svc_codetoinsert_text	Service	HTML code to insert text	HTML code to place on your website (advanced option)
+svc_prefsignup_text	Service	Pre-formatted form description text	Click %s to open default pre-formatted Sign-Up form. Use this link to sign up your subscribers into %s folder in your Contact Manager database. You can insert this link in email messages, put on your home page or paste with your notes in blogs, forums and bulletin boards.
+svc_prefsignip_title	Service	Pre-formatted form title	Pre-formatted Sign-Up Form
+
+gsf_page_title	Generate Signup Form	Page Title	Generate Sign-Up Form
+gsf_selectfields_note	Generate Signup Form	Select fields note	Select fields you want to appear in the Sign-Up Form and adjust their position.
+gsf_next_btn	Generate Signup Form	Next button	Next
+gsf_fieldname_title	Generate Signup Form	Field name title	Field Name
+gsf_asindb_label	Generate Signup Form	"As in database" label	as in database
+gsf_asinform_label	Generate Signup Form	"As in the form" label	as in the form
+gsf_width_title	Generate Signup Form	Width title	Width
+gsf_required_title	Generate Signup Form	Required title	Required
+gsf_setfieldprops_note	Generate Signup Form	Specify fields properties note	Specify field properties.
+gsf_preview_btn	Generate Signup Form	Preview in new window button	Preview in New Window
+gsf_submit_btn	Generate Signup Form	Submit button	Submit
+gsf_selectfolder_label	Generate Signup Form	Select folder label	Select Folder where you want to add subscribers.
+gsf_selectlists_label	Generate Signup Form	Select lists label	Select Lists where you want to add subscribers.
+gsf_signupgenerated_text	Generate Signup Form	Signup Form generated text	Sign-Up Form has been successfully generated.
+gsf_selectmandatoryfield_message	Generate Signup Form	Select mandatiry fields message	One of the following fields must be selected:\n %s
+gsf_dialog_selectmandatoryfield_message	Generate Signup Form	Select mandatiry fields message	One of the following fields must be selected: %s
+gsf_signupform_title	Generate Signup Form	Signup Form title	Sign-Up Form
+gsf_rqfields_label	Generate Signup Form	Required fields label	* - required fields
+gsf_thankyou_label	Generate Signup Form	Thank you label	Thank you!
+gsf_contactadded_message	Generate Signup Form	Contact added message	%s has been successfully signed up.
+gsf_doptin_label	Generate Signup Form	Double Opt-In label	Double Opt-In
+gsf_doiemail_label	Generate Signup Form	Double Opt-In email label	E-Mail field must be included in the Sign-Up Form
+gsf_doptin_note	Generate Signup Form	Double Opt-In note	Enabling double opt-in will require that subscriber clicks a link in a confirmation email before she actually added via this sign-up form. Subscribers retain "Pending" status until they click on the confirmation link.
+gsf_thankyou_text	Generate Signup Form	Double Opt-In note	Thank you!
+gsf_conftext1_text	Generate Signup Form	Confirmation text part 1	Sign-Up Form has been successfully submitted.
+gsf_conftext2_text	Generate Signup Form	Confirmation text part 2	Confirmation request has been sent to:
+gsf_conftext3_text	Generate Signup Form	Confirmation text part 3	Please check the email above to confirm your subscription.
+gsf_confemail_text	Generate Signup Form	Confirmation email text	%s has just received a sign-up request from your address %s.\n\nPlease click the link below to confirm or cancel your subscription:\n%s\n\nThank you.
+gsf_confemail_subject	Generate Signup Form	Confirmation email subject	Please confirm your subscription
+
+rp_page_title	Reports	Page Title	Reports
+rp_accessrightsusers_title	Reports	Access Rights Diagram for Users report title	Access Rights Diagram for Users
+rp_accessrightsusers_note	Reports	Access Rights Diagram for Users report note	This report shows access rights for selected users on one page. Every column displays access rights information for individual user. Overall diagram allows you easily compare and analyze permissions for multiple users.
+rp_accessrightsgroups_title	Reports	Access Rights Diagram for Groups report title	Access Rights Diagram for User Groups
+rp_accessrightsgroups_note	Reports	Access Rights Diagram for Groups report note	This report shows access rights for selected user groups on one page. Every column displays access rights information for individual user group. Overall diagram allows you easily compare and analyze permissions for multiple groups.
+rp_runreport_btn	Reports	Run Report button	Run Report
+rp_unsubsribers_title	Reports	Unsubsribers report title	Unsubscribed Emails
+rp_unsubsribers_note	Reports	Unsubsribers report note	This report shows the list of email addresses which owners have unsubscribed from your database. No messages can be sent to these emails from WebAsyst applications. To remove entry from this list you must create Sign-Up form with Double Opt-In function enabled and have your subscriber to sign up and confirm subscription.
+rp_norecords_label	Reports	No records label	<no records>
+rp_signupstats_title	Reports	Sign-Up Statistics report title	Sign-Up Statistics
+rp_signupstats_label	Reports	Sign-Up Statistics report label	This report displays a number of subscribers grouped by date, signed up to your Contact Manager database using Sign-Up Form.
+rp_total_title	Reports	Total title	Total
+
+rprdu_selectusers_note	Reports	Select users note	Select users you want to include into report
+rprdu_usernum_note	Reports	User number note	Every user takes separate column. To make your report easy to read, do not include more than 10-12 users.
+rprdu_selectgroups_note	Reports	Select users note	Select groups you want to include into report
+rprdu_groupnum_note	Reports	Group number note	Every group takes separate column. To make your report easy to read, do not include more than 10-12 groups.
+rprdu_groupnum_note	Reports	Access rights note	Combination of personal and group access rights is shown for every user.
+
+rps_last_label	Reports	Last label	Last
+rps_daterange_label	Reports	Date range label	Date Range, from
+rps_to_label	Reports	To label	to
+rps_days_label	Reports	Days label	days
+rps_date_title	Reports	Date label	Date
+rps_pending_title	Reports	Pending label	Pending
+rps_normal_title	Reports	Normal label	Normal
+
+runs_selectdate_label	Reports	Select date range label	Select unsubscribe date range
+runs_alldates_label	Reports	All dates label	All Available Dates
+runs_from_label	Reports	From label	From
+runs_to_label	Reports	To label	To
+runs_sortby_label	Reports	Sort by label	Sort by
+runs_email_item	Reports	Email item	E-Mail
+runs_datedesc_item	Reports	Dates recent on top item	Date (recent on top)
+runs_dateasc_item	Reports	Dates old on top item	Date (old on top)
+runs_unsdate_title	Reports	Unsubscribe Date title	Date
+
+csb_page_title	Confirm Subscription	Page Title	Confirm Your Subscription
+csb_manpage_title	Confirm Subscription	Manage Subscription Page Title	Manage Your Subscription
+csb_subscrnotfound_message	Confirm Subscription	Subscriber not found message	Subscriber not found
+csb_curstatus_label	Confirm Subscription	Current subscription status label	Your current subscription status is:
+csb_confirmpromt_text	Confirm Subscription	Confirmation promt text	Please click the button below to confirm or cancel your subscription.
+csb_confirm_btn	Confirm Subscription	Confirm button	Confirm Subscription
+csb_cancel_message	Confirm Subscription	Cancel subscription message	Do you really want to unsubscribe from all lists and never receive messages from this sender?
+csb_lists_label	Confirm Subscription	Contact lists label	You are subscribed to the following lists
+csb_cancelpromt_label	Confirm Subscription	Cancel subscription promt	If you don't want to receive any messages from this sender any more, click the button below.
+csb_cancel_btn	Confirm Subscription	Cancel subscription button	Unsubscribe from All Lists
+csb_remove_label	Confirm Subscription	Remove label	Remove
+csb_removefromlist_message	Confirm Subscription	Remove from list message	Do you really want to be removed from this list?
+csb_canceled_message	Confirm Subscription	Subscription canceled message	Your subscription has been canceled.
+csb_profile_label	Confirm Subscription	Your Profile label	Your Profile
+csb_firstname_label	Confirm Subscription	First Name label	First Name
+csb_lastname_label	Confirm Subscription	Last Name label	Last Name
+csb_email_label	Confirm Subscription	Email label	E-Mail
+csb_updateprof_btn	Confirm Subscription	Update profile button	Update Profile
+csb_unsubscribe_label	Confirm Subscription	Unsubscribe label	Unsubscribe
+csb_remove_note	Confirm Subscription	Remove from list node	Click Remove link to unsubscribe from the respective list. You may still receive messages not relevant to any list after that. To unsubscribe permanently use the button below.
+
+upf_page_title	Update Profile	Page Title	Update Profile
+
+app_treefolders_text	Common	Folders text	Available Actions with Folders
+app_treefurfldname_title	Common	Folder Name column header on the Folders & Users Rights page	Folder Name
+app_treeavailflds_title	Common	Available Folders column header on the Folders & Users Rights page	Available Folders
+app_readaccess_name	Common	Read access	Read
+app_writeaccess_name	Common	Read/Write access	Write
+app_folderaccess_name	Common	Read/Write/Folder access	Folder
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Can create root folders
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Can see other users' permissions
+
+cm_tools_menu	Common	menu	Tools
+cm_reports_menu	Common	menu	Reports
+app_canwidgets_label	Common	Can use reports rights	Can manage Widgets
+app_cmlists_label	Common	Lists label	Contact Lists
+
+cdlg_add_title	Contact dialog	Add title	Add Contact
+cdlg_modify_title	Contact dialog	Edit  title	Edit Contact
+cdlg_view_title	Contact dialog	View title	Contact Information
+cdlg_view_note	Contact dialog	View note 	You have no rights to edit this contact.
+cdlg_customize_title	Contact Dialog	Customize Dialog title	Customize Fields
+cdlg_fields_btn	Contact Dialog	Fields button	Fields
+cdlg_customize_note	Contact Dialog	Customize note	Choose visible fields
+cdlg_deleteimage_label	Contact Dialog	Delete image label	Delete Image
+cdlg_select_label	Contact Dialog	select label	select
+cdlg_subscriberstatus_title	Contact Dialog	Subcriber status	Sign-Up Status
+cm_confirm_load_all_cont	Contact Dialog	Confirm load	Loading of a large list of contacts may take a lot of time. Are you sure?
+cm_load_cont_number	Contact	Contact count	shown are only first %s contacts of %s
+cm_load_cont_showall	Contact	Contact count	show all
+cm_new_folder_name	Folder tree	Folder tree	New Folder
+cm_import_notice	Contact	Contact import	NOTE: Import operation ignores "required" and "unique" settings for contact <br> entry fields.

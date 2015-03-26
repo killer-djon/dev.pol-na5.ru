@@ -1,0 +1,46 @@
+<table border="0" cellpadding="0" cellspacing="2">
+	<tr>
+		<td>
+			<? conditionalOutput invalidField=$invalidField field=DF_NAME text=#invalidFieldHighlight# ?>
+			<? $qpStrings.amb_bookname_label|cat:":&nbsp;" ?>
+		</td>
+		<td>
+			<? if !$protectFolderName ?>
+				<input type=text class="control" name="folderData[DF_NAME]" value="<? $folderData.DF_NAME|htmlsafe:true:true ?>" maxlength="255" style="width: 300px">
+			<? else ?>
+				<b><? $folderData.DF_NAME|htmlsafe:true:true ?></b>
+				<input type=hidden name="folderData[DF_NAME]" value="<? $folderData.DF_NAME|htmlsafe:true:true ?>">
+			<? /if ?>
+		</td>
+	</tr>
+	<tr>
+		<td valign=top>
+			<? conditionalOutput invalidField=$invalidField field=QPB_TEXTID text=#invalidFieldHighlight# ?>
+			<? $qpStrings.amb_textid_label|cat:":&nbsp;" ?>
+		</td>
+		<td>
+				<input type=text class="control" name="folderData[QPB_TEXTID]" value="<? $folderData.QPB_TEXTID|htmlsafe:true:true ?>" maxlength="255" style="width: 300px"><br>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		</td>
+		<td>
+				<small><? $qpStrings.app_text_id_note?></small>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2>&nbsp;</td>
+	</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="2">
+	<tr>
+		<td><? $qpStrings.app_treeaddfolderperms_text ?></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td><b><? $kernelStrings.app_note_text|cat:": " ?></b><? $kernelStrings.app_treeaddfolderusers_text ?></td>
+	</tr>
+</table>

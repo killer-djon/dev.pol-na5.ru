@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+			<? wbs_formCaption text=$subject|htmlsafe:true:true ?>
+
+			<? wbs_formLayout ?>
+				<? wbs_formContent ?>
+					<tr>
+					<td><? $mmStrings.sa_savein_text|cat:":&nbsp;" ?></td>
+					<td>
+						<select class="FormControl" name="MMF_ID" style="width: 300px">
+							<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$curMMF_ID showAnyRights=true denyNoAccess=true showPromt=false ?>
+						</select>
+					</td>
+					</tr>
+				<? /wbs_formContent ?>
+				<? wbs_formButtonsPanel ?>
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+						<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+					<? /wbs_buttonSet ?>
+				<? /wbs_formButtonsPanel ?>
+			<? /wbs_formLayout ?>
+
+		<? else ?>
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+			<? /wbs_buttonSet ?>
+		<? /if ?>
+
+		<input type="hidden" name="action" value="<?$action?>">
+		<input name="MMM_ID" type="hidden" value="<? $MMM_ID ?>">
+		<input name="opener" type="hidden" value="<? $opener ?>">
+		<input name="STATUS" type="hidden" value="<? $STATUS ?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+		<link rel='stylesheet' type='text/css' href='../../../common/html/cssbased/2.0.adapter.css'>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="rep_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+				<table class="SimpleList ReportTable">
+					<thead>
+						<tr>
+							<th width=300><? $ddStrings.rep_sbuname_title ?></th>
+							<th><? $ddStrings.rep_sbusize_title ?>&nbsp;</th>
+							<th>%&nbsp;</th>
+							<th><? $ddStrings.rep_sbuquota_title ?>&nbsp;</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+					<? foreach from=$reportData key=userName item=userData name=reportLoop ?>
+						<tr>
+							<td><? $userName|htmlsafe:true:true ?></td>
+							<td><? $userData.DU_SIZE|htmlsafe:true:true ?></td>
+							<td><? $userData.RATIO|htmlsafe:true:true|sureecho ?></td>
+							<td><? $userData.UDQ_SIZE|htmlsafe:true:true|sureecho ?></td>
+						</tr>
+					<? foreachelse ?>
+						<tr class="NoRecords">
+							<td colspan="4">
+								<? $ddStrings.rep_norecords_label|htmlsafe:true:true ?>
+							</td>
+						</tr>
+					<? /foreach ?>
+
+					<? if $reportDataCount ?>
+					<tfoot>
+						<tr>
+							<td><? $ddStrings.rep_totals_label ?></td>
+							<td><? $total|htmlsafe:true:true|sureecho ?></td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					</tfoot>
+					<? /if ?>
+				</table>
+				
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

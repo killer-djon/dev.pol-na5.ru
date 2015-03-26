@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script language="JavaScript">
+		<!--
+
+			function setBoundsMode( control, value )
+			{
+				thisForm = document.forms[0];
+
+				for ( i = 0; i < thisForm.elements.length; i++ ) 
+					if (thisForm.elements[i].type == 'radio')
+						if ( thisForm.elements[i].name == control && thisForm.elements[i].value == value ) {
+							thisForm.elements[i].checked = true;
+							break;
+						}
+			}
+
+		//-->
+		</script>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>' )">
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<ul class="Columns">
+					<li>
+
+						<? wbs_formLayout caption=$pageTitle ?>
+
+							<? wbs_formContent ?>
+
+								<tr>
+									<td colspan="2" class="FormSection"><? wbs_label ?><? $pmStrings.dvi_start_label ?><? /wbs_label ?></td>
+								</tr>
+								<tr>
+									<td class="Indent AlignRight"><input id="mode0" type=radio name=startMode value=0 <? wbs_checkboxStatus val=$startMode true_val=0 ?>/></td>
+									<td><? wbs_label skipColon=true for="mode0" text=$pmStrings.dvi_firstmonth_label ?></td>
+								</tr>
+								<tr class="SeparatedRow">
+									<td class="Indent AlignRight"><input id="mode1" type=radio name=startMode value=1 <? wbs_checkboxStatus val=$startMode true_val=1 ?>/></td>
+									<td>
+										<select class="FormControl" name="startDate_month" onChange="setBoundsMode( 'startMode', 1 );">
+											<? html_options values=$monthList_ids selected=$startDate_month output=$monthList_names ?>
+										</select>
+										<select class="FormControl" name="startDate_year" onChange="setBoundsMode( 'startMode', 1 );">
+											<? html_options values=$years selected=$startDate_year output=$years ?>
+										</select>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" class="FormSection"><? wbs_label ?><? $pmStrings.dvi_end_label ?><? /wbs_label ?></td>
+								</tr>
+								<tr>
+									<td class="Indent AlignRight"><input id="emode0" type=radio name=endMode value=0 <? wbs_checkboxStatus val=$endMode true_val=0 ?>/></td>
+									<td><? wbs_label skipColon=true for="emode0" text=$pmStrings.dvi_endmonth_label ?></td>
+								</tr>
+								<tr class="SeparatedRow">
+									<td class="Indent AlignRight"><input id="emode1" type=radio name=endMode value=1 <? wbs_checkboxStatus val=$endMode true_val=1 ?>/></td>
+									<td>
+										<select class="FormControl" name="endDate_month" onChange="setBoundsMode( 'endMode', 1 );">
+											<? html_options values=$monthList_ids selected=$endDate_month output=$monthList_names ?>
+										</select>
+										<select class="FormControl" name="endDate_year" onChange="setBoundsMode( 'endMode', 1 );">
+											<? html_options values=$years selected=$endDate_year output=$years ?>
+										</select>
+									</td>
+								</tr>
+
+							<? /wbs_formContent ?>
+
+							<? wbs_formButtonsPanel ?>
+
+								<? wbs_buttonSet ?>
+									<? wbs_buttonSetButton caption=$kernelStrings.app_ok_btn name="savebtn" ?>
+									<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+								<? /wbs_buttonSet ?>
+
+							<? /wbs_formButtonsPanel ?>
+
+						<? /wbs_formLayout ?>
+
+					</li>
+					<li>
+						<table class="SimpleList">
+							<thead>
+								<tr>
+									<th scope="col" colspan="2"><? $pmStrings.dvi_recdefint_title ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<? foreach from=$intervals key=int item=interval ?>
+									<tr>
+										<td width="10"><input type=checkbox name="int[<? $int ?>]" value="1"/></td>
+										<td><? $interval.name ?></td>
+									</tr>
+								<? foreachelse ?>
+									<tr class="NoRecords">
+										<td colspan="2"><? $pmStrings.dvi_nointervals_text|htmlsafe:true:true ?></td>
+									</tr>
+								<? /foreach ?>
+							</tbody>
+						</table>
+
+						<? if $intervalsNum ?>
+							<? wbs_button caption=$kernelStrings.app_delete_btn name="deletebtn" ?>
+						<? /if ?>
+					</li>
+				</ul>
+
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

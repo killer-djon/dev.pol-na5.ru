@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'senddata' )">
+		<? wbs_pageLayout toolbar="okcancel_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_note smallFont=false displayNoteMarker=false ?>
+					<? $projName ?><br>
+					<? $itStrings.is_task_label|cat:" #"|cat:$PW_ID|cat:":&nbsp;" ?>
+					<? $workName|wordwrap:50:"<br>" ?>
+				<? /wbs_note ?>
+
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td>
+								<? if $iCnt == 1 ?>
+									<table class="FormLayout" width="500">
+										<tr>
+											<td><? $itStrings.fwi_issuedesc_label ?></td>
+										</tr>
+										<tr class="SeparatedRow">
+											<td><? wbs_note smallFont=false displayNoteMarker=false width="500px" ?><? $issuedata.I_DESC ?><? /wbs_note ?></td>
+										</tr>
+									</table>
+								<? /if ?>
+
+								<table class="NameValueList">
+									<? if $iCnt == 1 ?>
+										<tr>
+											<td><? $itStrings.fwi_id_label|cat:":" ?></td>
+											<th scope="col"><? $issuedata.PW_ID|cat:"."|cat:$issuedata.I_NUM ?></th>
+										</tr>
+										<tr>
+											<td><? $itStrings.fwi_curstatus_label|cat:":" ?></td>
+											<td>
+												<? mime_decode  string=$issuedata.STATUS_COLOR ?>
+												<? $issuedata.I_STATUSCURRENT ?>
+											</td>
+										</tr>
+									<? /if ?>
+									<tr>
+										<td><? wbs_label text=$itStrings.fwi_sendtostatus_label for="status" fieldName="STATUS"?></td>
+										<td>
+											<select name="STATUS" class="FormControl" id="status" onChange="this.form.submit()">
+												<? html_options values=$transition_ids selected=$STATUS output=$transition_descs ?>
+											</select>
+										</td>
+									</tr>
+									<tr class="SeparatedRow">
+										<td><? wbs_label text=$itStrings.fwi_assignto_label for="assignee" fieldName="U_ID_ASSIGNED"?></td>
+										<th>
+											<? if !$noAssigneeAllowed ?>
+												<select name="senddata[U_ID_ASSIGNED]" id="assignee" class="FormControl" >
+													<? html_options values=$assignment_ids selected=$senddata.U_ID_ASSIGNED output=$assignment_names ?>
+												</select>
+											<? else ?>
+												N/A
+											<? /if ?>
+										</th>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td><? wbs_label text=$itStrings.fwi_comment_label fieldName=ITL_DESC for="desc" ?></td>
+						</tr>
+						<tr class="SeparatedRow">
+							<td><textarea name="senddata[ITL_DESC]" rows="3" id="desc" class="FormControl" style="width: 500px"><? $senddata.ITL_DESC|htmlsafe_textarea:$edited ?></textarea></td></tr>
+						</tr>
+
+
+						<tr>
+							<td class="FormSection"><? $itStrings.ami_files_label ?></tr>
+						</tr>
+
+						<? if $attachedFiles ?>
+							<tr class="SeparatedRow">
+								<td>
+									<table class="SimpleList" width="400">
+										<tbody>
+											<? foreach from=$attachedFiles item=fileData key=fileName name=fileLoop?>
+												<tr <? if $smarty.foreach.fileLoop.last ?>class="SeparatedRow"<? /if ?>>
+													<td width="10"><input name="<? $fileData.delcbName ?>[]" type="checkbox" value="<? $fileData.delcbValue ?>"/></td>
+													<td><? $fileName|cat:" ("|cat:$fileData.size|cat:")" ?></td>
+												</tr>
+											<? /foreach ?>
+										</tbody>
+									</table>
+									<? wbs_button caption=$kernelStrings.app_deletefiles_btn name="deletefilesbtn" ?>
+								</td>
+							</tr>
+						<? /if ?>
+
+						<tr>
+							<td>
+								<ul class="Stack">
+									<li>
+										<input name="transitionfile" type="file" class="FormControl" size="30"/>
+									</li>
+									<li><? wbs_button caption=$kernelStrings.app_attachfiles_btn name="attachbtn" ?></li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><? wbs_note displayNoteMarker=true indented=true?><? $limitStr ?><? /wbs_note ?></td>
+						</tr>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_ok_btn name="savebtn" ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+							<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+
+			<? /if ?>
+
+			<input name="I_ID" type="hidden" value="<? $I_ID ?>"/>
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+			<input name="PW_ID" type="hidden" value="<? $PW_ID ?>"/>
+			<input name="listPW_ID" type="hidden" value="<? $listPW_ID ?>"/>
+			<input name="searchCriteria" type="hidden" value="<? $searchCriteria ?>"/>
+			<input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>"/>
+			<input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>"/>
+			<input name="opener" type="hidden" value="<? $opener ?>"/>
+			<input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>"/>
+			<input name="issues" type="hidden" value="<? $issues ?>"/>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

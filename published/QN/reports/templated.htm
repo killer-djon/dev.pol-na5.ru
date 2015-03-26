@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="styles/qn_print_styles.css" rel="stylesheet" type="text/css">
+<link href="../../common/reports/print_styles.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<? $errorStr ?>
+<? if !$fatalError ?>
+			<? foreach from=$templated_strings key=QNF_ID item=str ?>
+				<p><? $str ?>
+			<? /foreach ?>
+		</table>
+<? /if ?>
+<? /strip ?>
+</body>
+</html>

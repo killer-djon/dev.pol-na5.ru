@@ -1,0 +1,152 @@
+{{if $showInput}}
+
+<div id="main-container" class="wbs-flexcontainer" style="">
+
+	<div id="main-header" class="wbs-flexcontainer-header">
+
+		<div style="padding: 15px">
+			<table>
+				<tr>
+
+					<td class="CaptionControls" style="width: 1px">
+						<a id="SplitterShowLeftPanelBtn"
+							style="padding: 0px; margin-right: 2px; text-decoration: none; display: none"
+							title="[`Show Folders`]"
+							onclick="SplitterShowLeftPanel()">
+							<span class="SplitterHeaderTreeBtn"
+								style="margin-top: 4px; height: 23px; background-position: left top;"></span>
+						</a>
+					</td>
+
+					<td style="font-weight: bold; font-size: 1.4em">[`Search`]</td>
+					<td style="padding: 0 3px 0 20px">
+						<input type="text" id="searchString" name="searchString" value="{{$searchString|htmlsafe:true:true}}"
+							style="width: 200px" onKeyPress="if(event.keyCode == 13) {doSearch_2(this.value, false); return false;}">
+					</td>
+					<td>
+						<a href="#" class="Button"
+							onclick="doSearch_2(document.getElementById('searchString').value, false); return false">[`Find`]</a>
+					</td>
+
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="searchResultsContainer"></div>
+
+</div>
+
+<input type="hidden" name="currentPage" id="currentPage" value="{{$currentPage}}">
+
+{{else}}
+
+<div id="searchResultsDiv">
+
+	<div id="searchResultsCount" style="padding: 0 0 10px 15px; border-bottom: 1px solid #d3d3d3">
+		[`Messages found`]: {{$searchResultsCount}}
+	</div>
+
+	{{if $searchResults}}
+
+	<table class="Grid">
+		<tr>
+			<th style="background: white url(../../../common/html/cssbased/themes/simplelist-background-gradient-gray.gif) repeat-x scroll center bottom">
+				<span style="padding-left: 5px">
+					<input type="checkbox" onclick="treeSelectAll(this)" name="selectAllDocsCB">
+				</span>
+			</th>
+		</tr>
+	</table>
+
+	<div id="searchResultsScrollable" style="padding: 10px; border-top: 1px solid #d3d3d3; overflow: auto">
+
+	<table border="0" cellpadding="0" cellspacing="0">
+
+		{{foreach from=$searchResults item=row key=count}}
+
+		<tr>
+			<td width="1%" style="padding-right: 5px">
+				<input id="cb_{{$row.MMM_ID}}" type="checkbox" value="{{$row.MMM_ID}}" name="document[{{$row.MMM_ID}}]">
+			</td>
+			<td style="font-size: 1.2em">
+				<span style="cursor: pointer" onclick="getMessageForm('{{$row.MMM_ID}}', '{{$row.MMM_STATUS}}')">
+					{{if $row.MMM_SUBJECT}}{{$row.MMM_SUBJECT}}{{else}}&lt;[`no subject`]&gt;{{/if}}
+				</span>
+			</td>
+		</tr>
+
+		{{if $row.MMM_CONTENT}}
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<span style="cursor: pointer" onclick="getMessageForm('{{$row.MMM_ID}}', '{{$row.MMM_STATUS}}')">
+					{{$row.MMM_CONTENT}}
+				</span>
+			</td>
+		</tr>
+		{{/if}}
+
+		<tr>
+			<td colspan=2
+				style="padding: 10px 0 10px 40px; font-size: 0.8em; border-bottom: 1px solid #d3d3d3">
+				<span style="{{$row.statusStyle}}">{{$row.statusName}}</span>
+				 &nbsp; {{$row.MMM_DATETIME}} &nbsp; ([`Folder`]: <a style="cursor: pointer"
+					onclick="
+						foldersTree.getNodeById('AVAILABLEFOLDERS').expand();
+						foldersTree.getNodeById('{{$row.MMF_ID}}').select();
+						foldersTree.loadSelectedNode(true, null)">
+					{{$row.MMF_NAME}}</a>)
+				<br>
+				{{if $row.MMM_FROM}}
+					<b>[`From`]:</b> {{$row.MMM_FROM|htmlsafe:true:true}}
+				{{/if}}
+				&nbsp;
+				{{if $row.MMM_TO}}
+					<b>[`To`]:</b> {{$row.MMM_TO|htmlsafe:true:true}}
+				{{/if}}
+			</td>
+		</tr>
+
+		{{/foreach}}
+
+		{{if ($row.index+1) < $searchResultsCount}}
+		<tr>
+			<td colspan=2 style="padding: 10px 0 10px 25px">
+				<a style="cursor: pointer" onclick="doSearch_2(document.getElementById('searchString').value, true)">[`Show more...`]</a>
+			</td>
+		</tr>
+		{{/if}}
+
+	</table>
+	{{/if}}
+
+	</div>
+
+	<input type="hidden" name="currentAction" id="currentAction" value="">
+
+</div>
+
+	{{if $currentAction=='delete'}}
+	<script language="JavaScript">
+
+		var form = false;
+		var obj = parent;
+		if(!(form = obj.document.form))
+		{
+			obj = parent.parent;
+			form = obj.document.form;
+		}
+		if(obj.document.getElementById('msgViewIframe').style.display != 'none' ||
+			obj.document.getElementById('sendFormIframe').style.display != 'none')
+			obj.backScreenOn();
+
+		obj.document.getElementById('searchResultsScrollable').innerHTML =
+			document.getElementById('searchResultsScrollable').innerHTML;
+		obj.document.getElementById('searchResultsCount').innerHTML =
+			document.getElementById('searchResultsCount').innerHTML;
+
+	</script>
+	{{/if}}
+
+{{/if}}

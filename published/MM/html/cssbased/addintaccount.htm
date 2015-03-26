@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<? wbs_initLayout ?>
+</head>
+<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'accountData' )">
+<? wbs_pageLayout toolbar="accounts_toolbar.htm" ?>
+
+	<? wbs_errorBlock ?>
+
+	<? if !$fatalError ?>
+
+	<table class="FormBlock">
+		<tr>
+			<td vAlign="top" style="width: 1%; border-bottom:1px solid #EEEEEE; border-top:1px solid #EEEEEE; background:#FCFCFC; padding: 0 10px">
+				<table>
+					<tr>
+						<td style="padding-right: 10px">
+							<? wbs_label for="accountData[MMA_EMAIL]" fieldName="MMA_EMAIL" text=$mmStrings.ama_email_label skipColon=false ?>
+						</td>
+						<td width="1%" style="font-size: 1.2em; padding-right: 2px" nowrap>
+						<? if $action != 'edit' ?>
+							<table><tr>
+								<td><input type="text" class="FormControl" id="accountData[MMA_EMAIL]" name="accountData[MMA_EMAIL]"
+									value="<? $accountData.MMA_EMAIL|htmlsafe:true:true ?>" maxlength="50"
+									style="width: 150px; font-size: 1.2em">
+								</td>
+								<td nowrap> @
+									<select name="accountData[MMA_DOMAIN]">
+									<? foreach from=$domain_names item=domain ?>
+										<option  value="<? $domain ?>"><? $domain ?></option>
+									<? /foreach ?>
+									</select> 
+								</td>
+							</tr></table>
+						<? else ?>
+							<? $accountData.MMA_EMAIL|htmlsafe:true:true ?>@<? $accountData.MMA_DOMAIN ?>
+							<input type="hidden" name="accountData[MMA_EMAIL]" value="<? $accountData.MMA_EMAIL|htmlsafe:true:true ?>">
+							<input type="hidden" name="accountData[MMA_DOMAIN]" value="<? $accountData.MMA_DOMAIN ?>">
+						<? /if ?>
+						</td>
+					</tr>
+					<tr>
+						<td vAlign="top">
+							<? wbs_label for="accountData[MMA_NAME]" fieldName="MMA_NAME" text=$mmStrings.ama_name_label skipColon=false ?>
+						</td>
+						<td colspan=2 nowrap style="padding-right: 2px">
+						<? if $action == 'edit' ?>
+							<span id="intAccNameString">
+								<span style="font-size: 1.2em"><? $accountData.MMA_NAME|htmlsafe:true:true ?></span> &nbsp;
+								<a href="#" onclick="
+								$('intAccNameString').style.display='none';
+								$('intAccNameEdit').style.display='';
+								$('intAccNameInput').focus();
+								return false"><? $mmStrings.acc_change_name_label ?></a>
+							</span>
+							<span id="intAccNameEdit" style="display: none">
+								<input type="text" name="accountData[MMA_NAME]" id="intAccNameInput"
+									class="FormControl" style="width: 100%; font-size: 1.2em"
+									value="<? $accountData.MMA_NAME|htmlsafe:true:true ?>" maxlength="50" style="width: 100%">
+								<br>
+								<input type="button" value="Save" onclick="
+								$('intAccNameEdit').style.display='none';
+								$('intAccNameString').style.display='';
+								processTextButton('savebtn');
+								">
+								<input type="button" value="Cancel" onclick="
+								$('intAccNameEdit').style.display='none';
+								$('intAccNameString').style.display='';
+								">
+							</span>
+						<? else ?>
+							<input type="text" name="accountData[MMA_NAME]" id="intAccNameInput"
+								class="FormControl" style="width: 100%; font-size: 1.2em"
+								value="<? $accountData.MMA_NAME|htmlsafe:true:true ?>" maxlength="50" style="width: 100%">
+						<? /if ?>
+						</td>
+					</tr>
+				</table>
+			</td>
+
+			<td vAlign="top" style="width: 30%; padding-left: 20px;<? if $action != 'edit' ?>display: none"<? /if ?>">
+				<div id="intAccPrompt" style="padding: 3px 20px 10px 20px; background: lemonchiffon;
+					<? if $accountData.MMA_ACCESS ?>display: none<? /if ?>">
+					<? $mmStrings.acc_prompt_label ?>
+					<br><br>
+					<a href="#" onclick="
+					$('intAccPrompt').style.display='none';
+					$('intAccParams').style.display='';
+					$('accountData[MMA_ACCESS]').value = 1;
+					processTextButton('savebtn');
+					return false"><? $mmStrings.acc_open_access_link ?></a>
+				</div>
+				<div id="intAccParams" style="float: left; padding: 3px 20px 10px 20px; background: lemonchiffon; width: auto;
+					<? if !$accountData.MMA_ACCESS ?>display: none<? /if ?>">
+					<? $mmStrings.acc_params_label ?>
+					<br><br>
+					<table>
+						<tr>
+							<td><b><? $mmStrings.ama_email_label ?>:</b></td>
+							<td><? $accountData.MMA_EMAIL|htmlsafe:true:true ?>@<? $accountData.MMA_DOMAIN|htmlsafe:true:true ?></td>
+						</tr>
+						<tr>
+							<td nowrap><b><? $mmStrings.ama_server_label ?> (<? $mmStrings.ama_pop_imap_label ?>):</b></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b><? $mmStrings.ama_port_label ?> (POP):</b></td>
+							<td>110</td>
+						</tr>
+						<tr>
+							<td><b><? $mmStrings.ama_port_label ?> (IMAP):</b></td>
+							<td>143</td>
+						</tr>
+						<tr>
+							<td><b><? $mmStrings.ama_smtp_server_label ?>:</b></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b><? $mmStrings.ama_port_label ?> (SMTP):</b></td>
+							<td>25</td>
+						</tr>
+						<tr>
+							<td nowrap><b><? $mmStrings.ama_login_label ?>:</b></td>
+							<td><? $accountData.MMA_EMAIL|htmlsafe:true:true ?>@<? $accountData.MMA_DOMAIN|htmlsafe:true:true ?></td>
+						</tr>
+						<tr>
+							<td vAlign="top" style="padding-right: 10px"><b><? $mmStrings.ama_password_label ?>:</b></td>
+							<td nowrap style="padding-right: 2px">
+								<span id="intAccPasswordString">
+									<span style="font-size: 1.2em"><? $accountData.MMA_PASSWORD ?></span> &nbsp;
+									<a href="#" onclick="
+									$('intAccPasswordString').style.display='none';
+									$('intAccPasswordEdit').style.display='';
+									$('intAccPasswordInput').focus();
+									return false"><? $mmStrings.acc_change_label ?></a>
+								</span>
+								<span id="intAccPasswordEdit" style="display: none">
+									<input type="text" name="accountData[MMA_PASSWORD]" id="intAccPasswordInput"
+										class="FormControl" style="width: 100%; font-size: 1.2em"
+										value="<? $accountData.MMA_PASSWORD ?>">
+									<br>
+									<input type="button" value="Save" onclick="
+									$('intAccPasswordEdit').style.display='none';
+									$('intAccPasswordString').style.display='';
+									processTextButton('savebtn');
+									">
+									<input type="button" value="Cancel" onclick="
+									$('intAccPasswordEdit').style.display='none';
+									$('intAccPasswordString').style.display='';
+									">
+								</span>
+							</td>
+						</tr>
+					</table>
+					<br>
+					<a href="#" onclick="
+					$('intAccParams').style.display='none';
+					$('intAccPrompt').style.display='';
+					$('accountData[MMA_ACCESS]').value = 0;
+					processTextButton('savebtn');
+					return false"><? $mmStrings.acc_close_access_link ?></a>
+				</div>
+			</td>
+
+			<td>&nbsp;</td>
+		</tr>
+
+	</table>
+
+	<div class="FormButtons" style="padding-top: 10px;<? if $action == 'edit' ?> display: none<? /if ?>">
+		<? wbs_buttonSet ?>
+			<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+			<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+		<? /wbs_buttonSet ?>
+	</div>
+
+	<? else ?>
+		<? wbs_buttonSet ?>
+			<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+		<? /wbs_buttonSet ?>
+	<? /if ?>
+
+	<input type="hidden" name="action" value="<?$action?>">
+	<input type="hidden" name="currentPage" value="<?$currentPage?>">
+	<input type="hidden" name="MMA_ID" value="<? $MMA_ID ?>">
+	<input type="hidden" name="accountData[MMA_INTERNAL]" value="1">
+	<input type="hidden" name="accountData[MMA_ACCESS]" id="accountData[MMA_ACCESS]" value="<? $accountData.MMA_ACCESS ?>">
+	
+<? /wbs_pageLayout ?>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<? wbs_formCaption text=$proj_data.C_NAME|cat:".&nbsp;"|cat:$proj_data.P_DESC ?>
+
+<? include file="import_tasks/errors.htm" errors_list=$_errors ?>
+
+    <? wbs_tabForm activeTab=$activeTab hideOneCaption=true basePath="../../../PM/html/cssbased/import_tasks/" tabs=$tabs width="670px" ?>
+        
+        <? wbs_formButtonsPanel ?>
+            <? wbs_buttonSet ?>
+                <? wbs_buttonSetButton caption=$pmStrings.import_tasks_btn_continue link="javascript:void(0);" onClick="document.forms['wbs-main-form'].submit(); return false;" ?>
+                <? wbs_buttonSetButton caption=$pmStrings.btn_cancel name='cancelbtn' ?>
+            <? /wbs_buttonSet ?>
+        <? /wbs_formButtonsPanel ?>
+        
+    <? /wbs_tabForm ?>
+
+<script language="JavaScript">
+<? literal ?>
+
+function toogleImportSource(new_source)
+{
+    var old_source = (new_source == 'file' ? 'plaintext' : 'file');
+    document.getElementById('wbs-main-form').elements['import_source_'+new_source].disabled = false;
+    document.getElementById('wbs-main-form').elements['import_source_'+old_source].disabled = true;
+    document.getElementById('wbs-main-form').elements['file_encoding'].disabled = (new_source != 'file');
+    document.getElementById('wbs-main-form').elements['text_csv_delimiter'].disabled = (new_source != 'plaintext');
+};
+
+Ext.onReady(function(){
+    var win;
+    var button = Ext.get('help-link');
+
+    button.on('click', function(){
+        /*// create the window on the first click and reuse on subsequent clicks
+        if(!win){
+            win = new Ext.Window({
+                el: 'help-win',
+                layout: 'fit',
+                width: 500,
+                height: 300,
+                closeAction: 'hide',
+                plain: true,
+                autoScroll: true,
+                
+                buttons: [{
+                    text: '<? /literal ?><? $pmStrings.amp_close_btn ?><? literal ?>',
+                    handler: function(){
+                        win.hide();
+                    }
+                }]
+            });
+        }
+        win.show(this);*/
+        openHelp('../../../common/html/scripts/help.php?selectedApp=PM&section=importtasks');
+    });
+});
+
+<? /literal ?>
+</script>
+
+<div id="help-win" class="x-hidden">
+    <div class="x-window-header"><? $kernelStrings.app_helplink_text ?></div>
+    <div class="x-window-body">
+    <? include file="import_tasks/"|cat:$import_help_file ?>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/reset.css' />
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/frontend.css' />
+
+	<title>
+		{{ $imageDesc_mini }}{{ if ( $imageDesc_mini  && $galery_name) }} &mdash; {{ /if }}{{ $galery_name }}
+	</title>
+
+</head>
+
+<body id="" class="one-image-body">
+	{{ if !empty($imageDesc) }}
+	<div class="description">
+		{{ $imageDesc }} 
+	</div>
+	{{ /if }}
+	<div class="one-image">
+		
+		<img src="{{ $imageUrl }}" />	
+	</div>
+	
+	{{ if $powerBy }}
+		<div id="footer">[`Photos are published using <a href="#" style="text-decoration: none">WebAsyst Photos</a>`]</div>
+	{{ /if }}
+	
+</body>

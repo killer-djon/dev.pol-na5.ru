@@ -1,0 +1,33 @@
+.viewmode-selector .mode-elem {float: left; }
+.viewmode-selector .mode-elem img {cursor: pointer; height: 23px; width: auto}
+
+
+
+.wbs-popwindow {background: #FFF; background: #F7F8FC; border: 1px solid #5A5A5A}
+.wbs-popwindow .wbs-popwindow-inner {padding: 5px}
+
+.wbs-popmenu ul, .wbs-popmenu ul li {list-style-image:none; list-style-position:outside; list-style-type:none; margin:0px; padding:0px; white-space: nowrap}
+
+.wbs-popmenu ul li .label {color: #8C8C8C; }
+.wbs-popmenu ul li .smalllabel {}
+.wbs-popmenu input.shared-url {width: 250px}
+
+.wbs-popmenu {background: #FFF; background: #F7F8FC}
+.wbs-popmenu ul {display: block; border: 1px solid #5A5A5A}
+.wbs-popmenu ul li {margin:0px; padding: 3px;display: block; cursor: pointer; padding-left: 12px; padding-right: 30px; }
+.wbs-popmenu ul li.nopadding {padding-right: 10px}
+.wbs-popmenu ul li.nopadding-nolink {padding-right: 10px; cursor: default}
+.wbs-popmenu ul li.separator {padding: 0px;}
+.wbs-popmenu ul li.separator div {border-top: 1px solid #999; margin-bottom: 3px}
+.wbs-popmenu ul li.highlight {background-color: #F0F0F0}
+.wbs-popmenu ul li.hidden {display: none}
+.wbs-popmenu ul li.disabled {cursor: default; color: #8C8C8C;}
+.wbs-popmenu ul li.disabled a {color: #8C8C8C; cursor: default}
+.wbs-popmenu ul li {color: #333; }
+.wbs-popmenu ul li a {color: #333; text-decoration: none}
+
+.wbs-popmenu ul li.unactive {cursor: default}
+.wbs-popmenu ul li.unactive a {cursor: default}
+
+.wbs-popmenu-images ul li {padding-left: 25px}
+.wbs-popmenu-images ul li.with-image {background-position: 5px 5px; background-repeat: no-repeat;}

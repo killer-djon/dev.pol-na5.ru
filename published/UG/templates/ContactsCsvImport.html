@@ -1,0 +1,209 @@
+<style type="text/css">
+p.red {color: red}
+form { margin:0; padding:0}
+</style>
+<h2 style="margin-bottom:0;">[`Import contacts`]</h2>
+
+<div class="error" style="padding-left: 20px">
+{{$errors[0]}}
+</div>
+{{ if !$step }}
+<script type="text/javascript">
+var clear = false;
+$(document).ready(function () {
+	$("textarea[name='content']").focus(function () { 
+		$("#radio_content").attr("checked", "checked");
+	}).keyup(function () {
+		var l = $(this).val().length;
+		if (l == 0) {
+			$("input[name='upload']").attr("disabled", "disabled");
+		} else if (l > 0 && $("input[name='upload']").attr("disabled")) {
+			$("input[name='upload']").removeAttr("disabled");
+		}
+	});
+	$("input[name='csv']").focus(function () { 
+		$("#radio_file").attr("checked", "checked");
+		$("input[name='upload']").removeAttr("disabled"); 
+	});
+	$("#radio_file").change(function () {
+		$("input[name='upload']").removeAttr("disabled");
+	});
+	$("#form_import").submit(function () {
+		if (!$("#radio_file").is(":checked")) {
+			$("input[name='csv']").attr("disabled", "disabled");
+		}
+	});
+});
+</script>
+<div class="content-wrapper">
+<form id="form_import" action="" method="post" enctype="multipart/form-data">
+<div class="colorblock textar">
+	<p><label for="radio_content" class="l-header"><input id="radio_content" type="radio" name="from" value="1" />[`Import from text`]</label></p>
+	<table>
+	<tr>
+		<td>
+			<textarea name="content" rows="5"></textarea>
+		</td>
+		<td width="30%">
+			<div class="infoblock">
+				<div class="info-corn"></div>
+				<p>[`Copy and paste or simply type in names and other contact data for import.`]</p>
+				<p>[`Fields must be delimited by comma (,), semicolon (;) or tab.`] [`Different contacts on separate lines.`]</p>
+				<p style="font-family:Courier New, Courier, monospace; white-space:nowrap;">
+				[`SAMPLE:`]<br />
+				[`John, Smith, john@domain.com`]<br />
+				[`Sue, Miller, sue@domain.com`]
+				</p>
+			</div>
+		</td>
+	</tr>
+	</table>
+    
+    </div>
+ <div class="colorblock file">
+	<p><label for="radio_file" class="l-header"><input id="radio_file" type="radio" name="from" value="2" />
+	[`Import from file`]</label></p>
+<p><input type="file" name="csv" /></p>
+
+<p>
+<label for="">[`Encoding`]:</label>
+<select name="encode">
+{{foreach from=$encoding key=v item=e}}
+	<option value="{{$v}}"{{if $v=="UTF-8"}} selected="selected"{{/if}}>{{$e}}</option>
+{{/foreach}}
+</select></p>
+</div>
+
+<div class="add-to-folder">
+<p><label>[`Add to folder`]:</label>
+
+<select name="folder_id" class="w fix-width">
+	{{foreach from=$folders item=f}}
+	{{if $f.RIGHTS < 3}}
+	<option value="{{$f.ID}}" disabled="disabled" {{if $f.ID == $current_folder}}selected{{/if}}>
+	{{else}}
+	<option value="{{$f.ID}}" {{if $f.ID == $current_folder}}selected{{/if}}>
+	{{/if}}
+	{{"&nbsp;"|repeat:$f.OFFSET}}
+	{{$f.NAME}}
+	</option>
+	{{/foreach}}
+</select></p>
+</div> 
+<div style="color: red; padding-bottom: 5px">{{$import_error}}</div>
+<input type="hidden" name="step" value="upload" />  
+<input type="hidden" name="referer" value="{{$referer}}" />
+<input class="hiddable" type="submit" value="[`Import`]" name="upload" disabled="disabled" onclick="$('.hiddable').hide(); $('#loading').show()" />
+<input class="hiddable" type="button" onclick="$('#back-url').click()" value="[`Cancel`]" name="cancel" />
+<div id="loading" style="display:none">[`Loading`]... <img style="vertical-align: middle" src="{{$url.common}}img/loading.gif" /></div>
+</form>
+{{elseif $step == 'upload'}}
+<form id="form-import" action="" method="post">
+<div class="nobg"><p class="import-stat">
+<p>[`We have found {{$fields|@count}} columns in imported data.`]</p>
+<p class="red" id="required-primary-name" style="display:none">[`You must select at least one of the following fields: First name, Last name, Company name, Email.`]</p>
+<p id="specify">[`Please specify fields matching these columns.`]</p>
+</div>
+<div class="import-preview">
+<table id="table-preview" class="preview" width="100%" cellspacing="0" cellpadding="0">
+<thead><tr>
+{{foreach name=fields from=$fields item=f item=i}}
+<td class="off">
+<select name="fields[{{$smarty.foreach.fields.index}}]">
+	<option value="">[`Select a field`]</option>
+	{{foreach from=$dbfields item=dbfieldname key=dbfieldid}}
+	<option value="{{$dbfieldid}}">{{$dbfieldname}}</option>
+	{{/foreach}}
+</select>
+</td>
+{{/foreach}}
+</tr></thead>
+{{foreach from=$records item=record}}
+<tbody><tr>
+	{{foreach from=$fields item=v key=k}}
+		<td class="off">{{$record[$k]}}</td>
+	{{/foreach}}
+</tr></tbody>
+{{/foreach}}</table>
+{{if $records|@count < $n}}
+<div class="table-foot">...</div>
+{{/if}}
+</div>
+
+<div class="nobg">
+<span class="fl-block">[`Total lines to import`]: <span id="count_rows">{{$n+1}}</span></span>
+<span class="fl-block"><label for=""><input type="checkbox" name="first_line" checked="checked" />[`Import first line`]</label><span class="fl-block">
+</div>
+<div class="import-butts "><input type="hidden" name="delimiter" value="{{$delimiter}}"/>
+<input type="hidden" name="file" value="{{$file}}"/>
+<input type="hidden" name="folder_id" value="{{$folder_id}}"/>
+<input type="hidden" name="encode" value="{{$encode}}"/>
+<input type="hidden" name="step" value="import" />    
+<input class="hiddable" type="submit" value="[`Import`]" name="import" />
+<input class="hiddable" type="button" onclick="$('#back-url').click()" value="[`Cancel`]" name="cancel" />
+<div id="loading" style="display:none">[`Loading`]... <img style="vertical-align: middle" src="{{$url.common}}img/loading.gif" /></div>
+</div>
+</form></div>
+<script type="text/javascript">
+	$("#table-preview select").each(function (i) {
+		$(this).change(function () {
+			var v = $(this).val(); 
+			$("#table-preview tr").each(function (j) {
+				var td = $(this).children("td:eq(" + i + ")");
+				if (v) {
+					td.removeClass('off');
+				} else {
+					td.addClass('off');
+				}
+			});
+		});
+	});
+
+	$("input[name='first_line']").click(function () {
+		if ($(this).is(":checked")) {
+			$("div.import-preview table.preview tbody tr:first").removeClass('off');
+			$("#count_rows").html(parseInt($("#count_rows").html()) + 1);
+		} else {
+			$("div.import-preview table.preview tbody tr:first").addClass('off');
+			$("#count_rows").html($("#count_rows").html() ? parseInt($("#count_rows").html()) - 1 : "");
+		}
+	});
+	$("#form-import").submit(function () {
+		var is_select = false;
+		var is_required = false;
+		$("table.preview select").each(function () {
+			var v = $(this).val();
+			if (v) {
+				is_select = true;
+			}
+			if (v == 'C_FIRSTNAME' || v == 'C_LASTNAME' || v == 'C_COMPANY' || v == 'C_EMAILADDRESS') {
+				is_required = true;
+			}
+		});
+		if (!is_select) {
+			$("p#specify").addClass('red');
+			return false;
+		}
+		if (!is_required) {
+			$("p#required-primary-name").show();
+			return false;
+		}
+		$('.hiddable').hide(); $('#loading').show();
+	});
+</script>
+{{elseif $step == 'import'}}
+<div class="content-wrapper">
+[`Added {{$users|@count + 0}} contacts.`] <br />
+	{{if $import_errors}}
+	<br />
+	[`Following lines could not be imported`]: <br />
+	{{foreach from=$import_errors item=e}}
+	{{$e[0]}}: {{foreach from=$e[1] key=k item=se}}{{if $k}}<br />{{/if}}{{$se.text}}{{/foreach}}<br /> 
+	{{/foreach}}
+	{{/if}}
+	
+	<br />
+	<input type="button" onclick="if (parent && parent.document.app){parent.document.app.foldersTree.selectNode('{{$folder_id}}')} else {location.href='index.php?folder_id={{$folder_id}}'}" value="[`Go to folder`]" />
+</div>
+{{/if}}
+

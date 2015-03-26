@@ -1,0 +1,16 @@
+<!-- 
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/reset.css' />
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/backend.css' />
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/wbs-elements.css' />
+ -->
+ {{assign var="path1" value=$p->getCssUrl() }}
+{{csscombine file="`$path1`/designeditor-combine.css"  }}
+ {{$p->getCssUrl()}}/reset.css
+ {{$p->getCssUrl()}}/backend.css
+ {{$p->getCssUrl()}}/wbs-elements.css
+{{/csscombine}}
+
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/wbs-common.js"></script>
+
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/codemirror/codemirror.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.form.js"></script>

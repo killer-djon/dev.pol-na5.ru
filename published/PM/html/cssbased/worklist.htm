@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? if $screenEmptyToolbar || $action == "no_project" ?><? assign var="fullWidth" value=false ?><? else ?><? assign var="fullWidth" value=true ?><? /if ?>
+		<? if $screenApp ?>
+			<? wbs_initLayout splitter=$fullWidth noscroll=false toolbar=true needExt=true ?>
+		<? else ?>
+			<? wbs_initLayout splitter=$fullWidth noScroll=false toolbar=true needExt=true ?>
+		<? /if ?>
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+		<link href="../../../PM/html/cssbased/res/pm.css" rel="stylesheet" type="text/css"/>
+		<? include file="../../../common/html/cssbased/pageelements/common_js.htm" ?>
+		<? if !$screenApp ?>
+			<? include file="worklist_js.htm" ?>
+		<? /if ?>
+
+
+		<script type="text/javascript">
+		<!--
+		
+			function doSubmit( screen, form ) {
+				if ( screen == 1) { // Work assignments
+					var srcObj = findObj( "firstIndex" );
+					if ( srcObj )
+						srcObj.value = 1;
+
+					var shiftObj = findObj( "userShift" );
+					if ( shiftObj ) {
+						var selObj = shiftObj.options;
+						if ( selObj )
+							selObj[0].selected = true;
+					}
+				}
+
+				form.submit();
+			}
+
+			function submitForm( obj )
+			{
+				obj = findObj("projectData[P_ID]");
+				if ( !obj )
+					return true;
+
+				selected = obj.selectedIndex;
+				if ( obj.options[selected].value != "" )
+					obj.form.submit();
+			}
+
+			function checkManagerRights() 
+			{
+				<? if $showEditBtn ?>
+					return true;
+				<? else ?>
+					alert( "<? $pmStrings.pm_noprojmanrights_message ?>" );
+					return false;
+				<? /if ?>
+			}
+
+			function checkAddWork()
+			{
+				<? if !$canAddWorks ?>
+					alert( "<? $pmStrings.pm_noaddmodtaskrights_message ?>" );
+					return false;
+				<? else ?>
+					<? if !$isActive ?>
+						alert( "<? $pmStrings.pm_comlpraddtask_message ?>" );
+						return false;
+					<? /if ?>
+					return true;
+				<? /if ?>
+			}
+
+			function confirmComplete()
+			{
+				return confirm( '<? $pmStrings.amp_projcomplete_message ?>' );
+			}
+
+			function confirmDelete( string )
+			{
+				return confirm( string );
+			}
+
+			function confirmResume()
+			{
+				return confirm( '<? $pmStrings.amp_resume_message ?>' );
+			}
+
+			function confirmDeletion()
+			{
+				var Object = findObj( "works_count" );
+				var count = Object.value;
+
+				return !( !confirmDelete( "<? $pmStrings.amp_projdel_message ?>" ) || ( count > 0 && !confirmDelete( "<? $confirmation_string ?>" )) );			
+			}
+			
+			function confirmTaskDelete()
+			{
+				if (!checkTasksSelected())
+					return false;
+				return confirm("<? $pmStrings.pm_tasksdeleteconfirm_message ?>");
+			}
+			
+			function checkTasksSelected () {
+				var selectedRecords = document.worksGrid.getSelectionModel().getSelections();
+				
+				if (!selectedRecords || selectedRecords.length <= 0) {
+					alert ( '<? $pmStrings.pm_tasksemptyaction_message ?>' );
+					return false;
+				}
+				
+				return true;
+			}
+
+			var GanttCells = new Array();
+
+			function registerCell( Cell )
+			{
+				GanttCells.push( $(Cell) );
+			}
+
+			function arangeCells()
+			{
+				if ( !GanttCells.length )
+					return;
+
+				var totalWidth = 0;
+
+				for ( var i = 0; i < GanttCells.length; i++ )
+				{
+					if ( GanttCells[i] )
+						totalWidth += GanttCells[i].offsetWidth;
+				}
+
+				var cellWidth = parseInt(totalWidth/GanttCells.length);
+				if ( cellWidth == 0 )
+					cellWidth = 1;
+
+				for ( var i = 0; i < GanttCells.length; i++ )
+				{
+					if ( GanttCells[i] )
+						GanttCells[i].style.width = cellWidth + "px";
+				}
+			}
+
+		//-->
+		</script>
+	</head>
+	<body>
+		<? if $action != "no_project" ?>
+			<? wbs_pageLayout fullWidthContent=$fullWidth tabbar="main_tabbar.htm" stoolbar="worklist_toolbar.htm" ?>
+				<? if $screenApp ?>
+					<input name="screenApp" type="hidden" value="<? $screenApp ?>"/>
+					<? include file="worklist_"|cat:$screenApp|cat:"_screen.htm"|lower ?>
+				<? else ?>
+					<input name="sorting" type="hidden" id="sorting" value="<? $sorting|mime_encode ?>"/>
+					<input name="action" type="hidden" id="action" value="<? $action ?>"/>
+					<input name="projectData[P_STATUS]" type="hidden" id="projectData[P_STATUS]" value="<? $projectData.P_STATUS ?>"/>
+					<input name="projectData[U_ID_MANAGER]" type="hidden" id="projectData[U_ID_MANAGER]" value="<? $projectData.U_ID_MANAGER ?>"/>
+					<input name="prevP_ID" type="hidden" value="<? $prevP_ID ?>"/>
+					<input name="works_count" type="hidden" value="<? $works_count ?>"/>
+					
+					<? wbs_errorBlock ?>
+					<div class='x-hidden'></div>
+					<? include file="worklist_bottom.htm" ?>
+					<div id='work-window' class='x-hidden'></div>
+					<div id='work-assignments-panel' class='x-hidden'></div>
+				<? /if ?>
+			<? /wbs_pageLayout ?>
+		<? else ?>
+			<? wbs_pageLayout toolbar="worklist_toolbar.htm" ?>
+				<? wbs_note smallFont=false displayNoteMarker=false ?><? $pmStrings.pm_noprojects_message ?><? /wbs_note ?>
+				<? wbs_note smallFont=false ?><? $pmStrings.pm_noprojects_note ?><? /wbs_note ?>
+			<? /wbs_pageLayout ?>
+		<? /if ?>
+	</body>
+</html>

@@ -1,0 +1,350 @@
+<? if !$currentObject ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<link href="/MM/html/cssbased/mm.css" rel="stylesheet" type="text/css">
+	<link href="/common/html/cssbased/calendar.css" rel="stylesheet" type="text/css">
+	<script>
+		_editor_url	= '/common/html/xinha/';
+		_editor_textarea = 'messageData[MMM_CONTENT]';
+		_editor_iframe = 'EditorIFrame'; // will be changed by editor !
+		_editor_lang = '<? $EDITOR_LANGUAGE ?>';
+		_editor_skin = 'blue-look';
+	</script>
+	<script src="/common/html/xinha/XinhaCore.js" type="text/javascript"></script>
+	<script src="/common/html/xinha/XinhaConfig.js" type="text/javascript"></script>
+	<script src="/common/html/classic/styles/calendar.js" type="text/javascript"></script>
+
+<? include file="sendform_js.htm" ?>
+</head>
+
+<body onLoad="initEditor(); editorWait(); hideLayer('layer')">
+
+<div id="sendFormDiv">
+
+<form name="SendForm" enctype="multipart/form-data" method="post" action="sendmail.php" target="bufferIframe">
+
+	<div  class="top_form_compose"><table width="100%" cellpadding="0" cellpadding="0" border="0">
+
+		<? if $senderNames ?>
+		<tr>
+			<td width="1%" nowrap>
+				<? wbs_label for="messageData[MMM_FROM]" text=$mmStrings.app_from_field skipColon=false ?>
+			</td>
+			<td colspan=2>
+				<select id="messageData[MMM_FROM]" name="messageData[MMM_FROM]">
+					<? html_options values=$senderIds selected=messageData.MMM_FROM output=$senderNames ?>
+				</select>
+			</td>
+		</tr>
+		<? /if ?>
+
+		<tr id="SendTo">
+			<td valign="top"><? wbs_label for="messageData[MMM_TO]" text=$mmStrings.app_to_field skipColon=false ?></td>
+			<td width="70%" nowrap onkeypress="return enterAddress(event, 'messageData[MMM_TO]', 'SendSubTo')">
+				<textarea  name="messageData[MMM_TO]" id="messageData[MMM_TO]"
+					rows="2" style="width: 100%"></textarea>
+			</td>
+			<td class="comboControl">
+				<img src="/common/html/res/images/btn-arrow.gif"
+					onclick="switchContactsMenu('messageData[MMM_TO]', 'ssc_contacts')">
+			</td>
+		</tr>
+
+		<tr id="SendLists" style="display: none">
+			<td><? wbs_label for="messageData[MMM_LISTS]" text=$mmStrings.app_lists_field skipColon=false ?></td>
+			<td>
+				<input type="text" name="messageData[MMM_LISTS]" id="messageData[MMM_LISTS]"
+					maxlength="250" style="width: 100%" readonly onclick="switchContactsMenu('messageData[MMM_LISTS]', 'ssc_lists')">
+			</td>
+			<td class="comboControl">
+				<img src="/common/html/res/images/btn-arrow.gif" id="SendListsCtrl"
+					onclick="switchContactsMenu('messageData[MMM_LISTS]', 'ssc_lists')">
+			</td>
+		</tr>
+
+		<tr id="SendCC" style="display: none">
+			<td>
+				<? wbs_label for="messageData[MMM_CC]" text=$mmStrings.app_cc_field skipColon=false ?>
+			</td>
+			<td onkeypress="return enterAddress(event, 'messageData[MMM_CC]', 'SendSubCC')">
+				<input type="text" name="messageData[MMM_CC]" id="messageData[MMM_CC]"
+					maxlength="250" style="width: 100%" value="" autocomplete="on">
+			</td>
+			<td class="comboControl">
+				<img src="/common/html/res/images/btn-arrow.gif"
+					onclick="switchContactsMenu('messageData[MMM_CC]', 'ssc_contacts')">
+			</td>
+		</tr>
+
+		<tr id="SendBCC" style="display: none">
+			<td>BCC:</td>
+			<td onkeypress="return enterAddress(event, 'messageData[MMM_BCC]', 'SendSubBCC')">
+				<input type="text" name="messageData[MMM_BCC]" id="messageData[MMM_BCC]"
+					maxlength="250" style="width: 100%" value="" autocomplete="on">
+			</td>
+			<td class="comboControl">
+				<img src="/common/html/res/images/btn-arrow.gif"
+					onclick="switchContactsMenu('messageData[MMM_BCC]', 'ssc_contacts')">
+			</td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td><span id="showLink"><? $mmStrings.app_show_label ?>:</span>
+				<span id="showCCLink" class="Link" onclick="hideSendFormLink('showCCLink')">
+					<? $mmStrings.app_cc_field ?>
+				</span>
+				<span id="snds1">&nbsp;|</span>
+				<span id="showBCCLink" class="Link" onclick="hideSendFormLink('showBCCLink')">
+					<? $mmStrings.app_bcc_field ?>
+				</span>
+				<span id="snds2">&nbsp;|</span>
+				<span id="showListsLink" class="Link" onclick="hideSendFormLink('showListsLink')">
+					<? $mmStrings.app_lists_field ?>
+				</span>
+			</td>
+		</tr>
+
+		<tr>
+			<td><? wbs_label for="messageData[MMM_SUBJECT]" text=$mmStrings.app_subject_field skipColon=false ?></td>
+			<td><input type="text" name="messageData[MMM_SUBJECT]" id="messageData[MMM_SUBJECT]"
+				value="" maxlength="250" style="width: 100%">
+			</td>
+			<td></td>
+		</tr>
+
+	</table></div>
+
+	<div class="editor_table" id="editor_table"><table width="100%" cellpadding="0" cellpadding="0" border="0">
+		<tr>
+			<td>
+				<iframe id="EditorIFrame" frameBorder="0" src="" style="display: none"></iframe>
+				<textarea name="messageData[MMM_CONTENT]" id="messageData[MMM_CONTENT]"
+					rows="23" style="width: 100%"></textarea>
+			</td>
+		</tr>
+	</table></div>
+
+	<div id="UploadFilesDiv" style="padding-left: 10px">
+		<div id="UploadFileInput" style="width: 20em">
+			<div class="fileInputContainer">
+				<input type="file" name="file" class="file" onChange="uploadFile()">
+				<div class="visibleFileInput"><? $mmStrings.app_attach_file_label ?></div>
+			</div>
+		</div>
+		<span id="UploadFilePgBar" style="display: none">
+			<span>Loading...</span><img src="/common/html/res/images/loading.gif">
+		</span>
+	</div>
+
+	<div style="padding: 10px 0">
+
+		<table>
+			<tr vAlign="top">
+				<td>
+					<input type="checkbox" name="messageData[MMM_SAVE]" id="messageData[MMM_SAVE]" value="1"
+						<? if $currentFolder ?>checked<? /if ?>
+						onClick="if(!this.checked) document.getElementById('messageData[MMM_FOLDER]').selectedIndex = 0">
+				</td>
+				<td nowrap>
+					<? wbs_label for="messageData[MMM_FOLDER]" text=$mmStrings.app_savecopy_label skipColon=false ?>
+				</td>
+				<td>
+					<select id="messageData[MMM_FOLDER]" name="messageData[MMM_FOLDER]" onChange="
+						document.getElementById('messageData[MMM_SAVE]').checked = true">
+						<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$currentFolder showAnyRights=true denyNoAccess=true showPromt=true ?>
+					</select>
+				</td>
+			</tr>
+		</table>
+
+		<table>
+			<tr vAlign="top">
+				<td style="padding-left: 1em">
+					<table cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td align=left nowrap>
+								<input type=radio name="messageData[WHEN]" id="messageData[WHEN]"
+									onclick="hideLayer('layer')" value="now" checked>
+								<? wbs_label for="messageData[WHEN]" fieldName="WHEN" text=$mmStrings.sm_sendnow_label skipColon=true ?>
+							</td>
+							<td rowspan=2 nowrap style="padding-left: 2em">
+								<div id="layer">
+									<table class="FormLayout">
+										<tr>
+											<td nowrap>
+												<? wbs_label for="messageData[WHENDATE]" fieldName="WHENDATE" text=$mmStrings.sm_senddate_label skipColon=false ?>
+												<input type=text class=control id="messageData[WHENDATE]" name="messageData[WHENDATE]" value="<? $messageData.WHENDATE ?>" maxlength="15" >
+												<? include file="../../../common/html/classic/calendar.tpl" style="margin-left: 2px" name="messageData[WHENDATE]" ?>
+											</td>
+											<td nowrap>
+												<? wbs_label for="messageData[WHENTIME]" fieldName="WHENTIME" text=$mmStrings.sm_sendtime_label skipColon=false ?>
+												<select class=control name="messageData[WHENTIME]" id="messageData[WHENTIME]" >
+												<? foreach from=$timeArray item=time ?>
+													<option value='<? $time ?>' <? if $messageData.WHENTIME == $time?>selected<? /if ?>><? $time ?></option>
+												<? /foreach?>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td colspan=2>
+												<? $serverTimeNote ?>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align=left nowrap>
+								<input type=radio name='messageData[WHEN]' id='messageData[WHEN1]' value='later'
+									onclick="showLayer('layer')">
+								<? wbs_label for="messageData[WHEN1]" fieldName="WHEN" text=$mmStrings.sm_sendlater_label skipColon=true ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table>
+			<tr>
+				<td style="padding-left: 2em" nowrap>
+					<input type="button" value="<? $mmStrings.app_send_btn ?>" onClick="sendMessage()">
+					<input type="button" value="<? $mmStrings.app_save_draft_btn ?>" onClick="saveToDraft()">
+					<input type="button" value="<? $kernelStrings.app_cancel_btn ?>" onClick="parent.backScreenOn()">
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+	<div id="SendSubContacts" style="display:none" class="popup_div">
+		<div id="ssc_contacts">
+			<table width="100%">
+				<tr>
+					<td>
+						<select name="currentObject" id="currentObject" style="border: 1px solid gray"
+							onChange="
+								document.getElementById('bufferIframe').src = 'getsendform.php?currentObject='+this.value;
+								document.getElementById('contactsForInclude').innerHTML = parent.getLoadingBar();
+							">
+							<option value="all folders">
+								<? $mmStrings.app_sub_all_folders_label ?>
+							</option>
+							<? foreach from=$foldersList item=fgl_item key=ID ?>
+							<option value="<? $fgl_item.ID ?>">
+								<? $fgl_item.OFFSET ?><? $fgl_item.NAME|htmlsafe:true:true|truncate:47:"..."|sureecho ?>
+							</option>
+							<? /foreach ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="searchSendContact" id="searchSendContact" value="" onkeypress="
+							if(event.keyCode==13) { doSearchContact(); return false }">
+						<span class="Link" onclick="doSearchContact()">
+							<? $mmStrings.mm_screen_search_label ?>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div id="contactsForInclude">
+							<? if $contactsForInclude ?>
+								<table>
+									<? foreach from=$contactsForInclude item=contact key=name?>
+									<tr>
+										<td nowrap onclick="
+											addAddress(currentInput, '', htmlDecode(this.innerHTML))"
+											onmouseover="this.className='OverList'"
+											onmouseout="this.className='OutList'"><? $name ?></td>
+									</tr>
+									<? /foreach ?>
+								</table>
+								<? if $showMore ?>
+									<div style="padding: 0.2em">
+										<b>.&nbsp;.&nbsp;.</b><br>
+										<span class="Link" onclick="showMoreContacts()">
+											<? $mmStrings.app_sub_show_more_link ?>
+										</span>
+									</div>
+								<? /if ?>
+							<? else ?>
+								<? $mmStrings.app_sub_not_found_label ?>
+							<? /if ?>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="Link" style="text-align: right; padding-right: 1em"
+						onclick="hideMenu('SendSubContacts')">
+						<? $mmStrings.app_sub_close_link ?>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="ssc_lists" style="display:none"
+			onScroll="try {clearTimeout(hideMenuTimeout)} catch(e) {}">
+			<table width="100%">
+				<? foreach from=$sendLists item=list key=id ?>
+					<tr onmouseover="this.className='OverList'" onmouseout="this.className='OutList'">
+						<td><input type="checkbox" id="box_<? $id ?>" onclick="switchList('<? $id ?>', 1)"></td>
+						<td width="100%" id="td_<? $id ?>" onclick="switchList('<? $id ?>', 0)"><? $list.NAME ?></td>
+					</tr>
+				<? /foreach ?>
+			</table>
+		</div>
+	</div>
+
+	<input type="hidden" id="action" name="action" value="">
+	<input type="hidden" id="toDraft" name="toDraft" value=0>
+	<input type="hidden" id="deleteFile" name="deleteFile" value="">
+	<input type="hidden" id="userConfirmSend" name="userConfirmSend" value=0>
+
+</form>
+
+</div>
+
+<div id="messageSentDiv" name="messageSentDiv" style="padding: 10px; display: none"></div>
+<iframe id="bufferIframe" name="bufferIframe" src="" style="display: no1ne"></iframe>
+
+</body>
+</html>
+
+<? else ?>
+
+	<div id="contactsForInclude">
+	<? if $contactsForInclude ?>
+		<table>
+			<? foreach from=$contactsForInclude item=contact key=name?>
+			<tr>
+				<td nowrap onclick="
+					addAddress(currentInput, '', htmlDecode(this.innerHTML))"
+					onmouseover="this.className='OverList'"
+					onmouseout="this.className='OutList'"><? $name ?></td>
+			</tr>
+			<? /foreach ?>
+		</table>
+		<? if $showMore ?>
+			<div style="padding: 0.2em">
+				<b>.&nbsp;.&nbsp;.</b><br>
+				<span class="Link" onclick="showMoreContacts()">
+					<? $mmStrings.app_sub_show_more_link ?>
+				</span>
+			</div>
+		<? /if ?>
+	<? else ?>
+		<? $mmStrings.app_sub_not_found_label ?>
+	<? /if ?>
+	</div>
+
+	<script>
+		var obj = parent.document.getElementById('contactsForInclude');
+		obj.innerHTML = document.getElementById('contactsForInclude').innerHTML;
+	</script>
+
+<? /if ?>

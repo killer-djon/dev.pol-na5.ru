@@ -1,0 +1,23 @@
+
+<? if $action != "new" ?>
+	<? wbs_formCaption text=$thisFolderName|htmlsafe:true:true ?>
+<? /if ?>
+
+<? wbs_tabForm basePath=$basePath activeTab=$activeTab tabs=$tabs width="600px" height="330px" ?>
+
+	<? wbs_formButtonsPanel ?>
+
+		<? wbs_buttonSet ?>
+
+			<? wbs_buttonSetButton caption=$saveBtnCaption|default:$kernelStrings.app_save_btn name="savebtn" onClick=$onSave ?>
+			<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+
+			<? if $action != "new" && !$hideDelete ?>
+				<? wbs_buttonSetButton caption=$kernelStrings.app_delete_btn onClick="return confirmFolderDeletion()" name="deletebtn" align="right" ?>
+			<? /if ?>
+
+		<? /wbs_buttonSet ?>
+
+	<? /wbs_formButtonsPanel ?>
+
+<? /wbs_tabForm ?>

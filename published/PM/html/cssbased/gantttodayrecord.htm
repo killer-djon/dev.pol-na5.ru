@@ -1,0 +1,25 @@
+<? math equation="x + 2" x=$duration assign=duration ?>
+<? math equation="x + y" x=$startOffset y=$duration assign=endOffset ?>
+
+<? if (!$picheight) ?>
+	<? assign var=picheight value=10 ?>
+<? /if ?>
+
+<? if $ganttSettings.TODAY_INDEX > $startOffset && $ganttSettings.TODAY_INDEX <= $endOffset ?>
+
+	<? math equation="x - y+1" x=$ganttSettings.TODAY_INDEX y=$startOffset assign=startSpan ?>
+	<? math equation="x - y+1" x=$duration y=$startSpan assign=endSpan ?>
+
+	<? if $startSpan > 0 ?>
+		<th background="<? $src ?>" class="AlignRight <? if $ganttSettings.TODAY_INDEX > $startOffset?>pm_ganttTableTodayRight<?else?>pm_ganttTableTodayLeft<?/if?>" colspan="<? $startSpan ?>"><? $ganttSettings.TODAY_LABEL ?> <img src="../cssbased/res/images/todaymarker.gif" width=7 height=10 align=absmiddle></th>
+	<? /if ?>
+
+	<? if $endSpan > 0 ?>
+		<th background="<? $src ?>" colspan="<? $endSpan ?>"><img width="100%" height=<? $picheight ?> src="<? $src ?>"></th>
+	<? /if ?>
+
+<? else ?>
+	<? if $duration ?>
+		<th background="<? $src ?>" colspan="<? $duration ?>"><img width="100%" height=<? $picheight ?> src="<? $src ?>"></th>
+	<? /if ?>
+<? /if ?>

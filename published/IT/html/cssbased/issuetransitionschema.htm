@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+		<link href="../../../IT/html/cssbased/res/it.css" rel="stylesheet" type="text/css"/>
+
+	</head>
+	<body>
+		<? wbs_pageLayout toolbar="custwf_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? if $workflowFound ?>	
+
+					<? wbs_note smallFont=false displayNoteMarker=false ?>
+						<? $projName ?><br>
+						<? $itStrings.is_task_label|cat:" #"|cat:$PW_ID|cat:":&nbsp;" ?>
+						<? $workDescr ?>
+					<? /wbs_note ?>
+
+					<table class="it_Workflow it_WorkflowSchema">
+						<tr>
+							<td class="AlignCenter ValignMiddle" colspan="<? math equation="x+1" x=$colNum ?>">
+								<div class="it_WorkflowOuterState it_startState SimpleList_Border SimpleList_BgHeader">
+									<a href="<? $startTransitionURL ?>"><? $startStatusName ?></a>
+								</div>
+							</td>
+						</tr>
+
+						<? foreach key=rowIndex item=rowData from=$chartData ?>
+							<tr>
+								<td class="AlignLeft">
+									<? if $rowIndex % 2 == 0 && $rowIndex != 0 && $lastRow != $rowIndex ?>
+										<? math assign=dataIndex equation="x/2" x=$rowIndex ?>
+
+										<div class="it_WorkflowState SimpleList_BgHeader ValignMiddle AlignLeft">
+											<table class="it_Workflow" align="left">
+												<tr>
+													<td class="ValignMiddle NoBreak it_stateInfoBlock">
+														<img src="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_DELETE true_val=1 str1="../cssbased/res/images/trans_delete.gif" str2="../cssbased/res/images/trans_no_delete.gif" ?>" align="absmiddle" width="21" height="20"
+														alt="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_DELETE true_val=1 str1=$itStrings.cw_candelete_label str2=$itStrings.cw_cannotdelete_label ?>"
+														title="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_DELETE true_val=1 str1=$itStrings.cw_candelete_label str2=$itStrings.cw_cannotdelete_label ?>">
+														<img src="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_EDIT true_val=1 str1="../cssbased/res/images/trans_modify.gif" str2="../cssbased/res/images/trans_no_modify.gif" ?>" align="absmiddle" width="21" height="20" 
+														alt="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_EDIT true_val=1 str1=$itStrings.cw_canedit_label str2=$itStrings.cw_cannotedit_label ?>"
+														title="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_EDIT true_val=1 str1=$itStrings.cw_canedit_label str2=$itStrings.cw_cannotedit_label ?>">
+														<img src="<? switchedOutput val=$transSchema[$dataIndex].ALLOW_ASSIGNMENT true_val=1 str1="../cssbased/res/images/trans_assign.gif"
+														str2="../cssbased/res/images/trans_no_assign.gif" ?>" align="absmiddle" width="21" height="20" 
+														alt="<? switchedOutput val=$transSchema[$dataIndex].ALLOW_ASSIGNMENT true_val=1 str1=$itStrings.cw_asgntallowed_label str2=$itStrings.cw_asgntnotallowed_label ?>"
+														title="<? switchedOutput val=$transSchema[$dataIndex].ALLOW_ASSIGNMENT true_val=1 str1=$itStrings.cw_asgntallowed_label str2=$itStrings.cw_asgntnotallowed_label ?>">
+													</td>
+													<td align="left" class="NoBreak SmallFont"><a href="<? $transSchema[$dataIndex].ROW_URL ?>">
+														<? $transSchema[$dataIndex].ITS_STYLE|cat:$transSchema[$dataIndex].ITS_STATUS|cat:"</b></font>" ?>
+														&nbsp;<br>
+														<? if $transSchema[$dataIndex].ITS_ASSIGNMENTOPTION <> "" || $transSchema[$dataIndex].U_ID_ASSIGNED <> "" ?>
+														<? $itStrings.cw_to_label|cat:":&nbsp;" ?>
+														<? if $transSchema[$dataIndex].U_ID_ASSIGNED ?>
+														<? $transSchema[$dataIndex].U_ID_ASSIGNED?>
+														&nbsp; 
+														<? /if ?>
+														<? if $transSchema[$dataIndex].ITS_ASSIGNMENTOPTION ?>
+														<? "("|cat:$transSchema[$dataIndex].ITS_ASSIGNMENTOPTION|cat:")"?>
+														<? /if ?>
+														<? /if ?>
+														</a>
+													</td>
+												</tr>
+											</table>
+										</div>
+									<? /if ?>
+								</td>
+
+								<? if $rowIndex != 0 ?>
+									<? foreach key=columnIndex item=colData from=$rowData ?>
+										<? if $colData.DEFAULT ?>
+											<? assign var=defImage value="_default" ?>
+										<? else ?>
+											<? assign var=defImage value="" ?>
+										<? /if ?>
+
+										<td <?if !$colData.PARITY ?>class="SimpleList_BgBody"<?/if?>><img border=0 src="<? "../cssbased/res/images/"|cat:$colData.CELLTYPE|cat:$defImage|cat:".gif" ?>" ></td>
+									<? /foreach ?>
+								<? /if ?>
+							</tr>
+						<? /foreach ?>
+						<tr>
+							<td class="AlignCenter ValignMiddle" colspan="<? math equation="x+1" x=$colNum ?>">
+								<div class="it_WorkflowOuterState SimpleList_Border SimpleList_BgHeader">
+									<a href="<? $endTransitionURL ?>"><? $endStatusName ?></a>
+								</div>
+							</td>
+						</tr>
+					</table>
+
+					<? wbs_button caption=$itStrings.cw_addstate_btn name="addstatebtn" ?>
+				<? else ?>
+					<? wbs_note smallFont=false displayNoteMarker=false ?><? $itStrings.cw_noworkflow_message ?><? /wbs_note ?>
+					<? wbs_button caption=$kernelStrings.app_cancel_btn name="returnbtn" ?>
+				<? /if ?>
+			<? else ?>
+				<? wbs_button caption=$kernelStrings.app_cancel_btn name="returnbtn" ?>
+			<? /if ?>
+
+			<input name="ITT_ID" type="hidden" value="<? $ITT_ID ?>"/>
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+			<input name="PW_ID" type="hidden" value="<? $PW_ID ?>"/>
+			<input name="sorting" type="hidden" value="<? $sorting ?>"/>
+			<input name="opener" type="hidden" value="<? $opener ?>"/>
+			<input name="searchCriteria" type="hidden" value="<? $searchCriteria ?>"/>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

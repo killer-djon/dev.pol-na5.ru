@@ -1,0 +1,965 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WebAsyst\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-09-10 11:50+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1339
+msgid "Organize albums"
+msgstr "Управление альбомами"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:370
+msgid "New album"
+msgstr "Новый альбом"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:840
+msgid "Delete"
+msgstr "Удалить"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:612
+msgid "This will permanently delete all photos inside this album. Delete?"
+msgstr "Все фотографии в альбоме будут удалены, восстановить их будет нельзя. Удалить?"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:182
+msgid "Upload photos"
+msgstr "Загрузить фото"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:715
+msgid "View"
+msgstr "Просмотр"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:718
+msgid "Organize and share"
+msgstr "Управление и ссылки"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:757
+msgid "With selected"
+msgstr "С отмеченными"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:759
+msgid "Links to photos"
+msgstr "Ссылки на фотографии"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:782
+msgid "Create a collection from selected photos"
+msgstr "Создать коллекцию из выбранных фото"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:785
+msgid "Move to another album"
+msgstr "Переместить в другой альбом"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:842
+msgid "Delete selected photos?"
+msgstr "Удалить выбранные фотографии?"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:985
+msgid "Edit album description"
+msgstr "Редактировать описание альбома"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:918
+msgid "Edit photo description"
+msgstr "Редактировать описание фото"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\createCollection.html:54
+msgid "Create a collection"
+msgstr "Создать коллекцию"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:958
+msgid "Import from Flickr"
+msgstr "Импорт из Flickr"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\createCollection.html:46
+msgid "Link"
+msgstr "Ссылка"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1088
+msgid "Link (for email and IM)"
+msgstr "Ссылка (для ICQ, email)"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\imageLinks.html:12
+msgid "HTML (for websites and blogs)"
+msgstr "HTML (для сайтов и блогов)"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\imageLinks.html:16
+msgid "BBcode (forums)"
+msgstr "BBcode (для форума)"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1212
+msgid "Apply"
+msgstr "Применить"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1250
+msgid "Make this a key photo"
+msgstr "Поставить на обложку альбома"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1268
+msgid "This is a key photo for this album"
+msgstr "Фото используется как обложка альбома"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1274
+msgid "Details (EXIF)"
+msgstr "Подробности (EXIF)"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1276
+msgid "Image size"
+msgstr "Размеры"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1284
+msgid "Camera"
+msgstr "Фотоаппарат"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1294
+msgid "Focal length"
+msgstr "Фок. расстояние"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1332
+msgid "Back to album"
+msgstr "В альбом"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1392
+msgid "Album is not published"
+msgstr "Альбом не опубликован"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1393
+msgid "Publish"
+msgstr "Опубликовать"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1394
+msgid "Album is published"
+msgstr "Альбом опубликован"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1403
+msgid "Album is published privately"
+msgstr "Альбом опубликован приватно"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1414
+msgid "Settings"
+msgstr "Настройки"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1443
+msgid "full"
+msgstr "полные"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1446
+msgid "write"
+msgstr "запись"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1452
+msgid "read"
+msgstr "чтение"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1508
+msgid "Show"
+msgstr "Показывать по "
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1511
+msgid "photos on a page"
+msgstr "фото на странице"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1984
+msgid "description"
+msgstr "описание"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:2297
+msgid "There are no photos in this album."
+msgstr "В этом альбоме еще нет фотографий."
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:2318
+msgid "to"
+msgstr "по"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:2313
+msgid "from"
+msgstr "из"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:2317
+msgid "Photos"
+msgstr "Фото с"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:78
+msgid "View:"
+msgstr "Вид:"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:56
+msgid "Album “%S” publication settings"
+msgstr "Настройки публикации альбома «%S»"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:66
+msgid "Published"
+msgstr "Опубликован "
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:67
+msgid "Published privately"
+msgstr "Опубликован приватно"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:70
+msgid "Not published"
+msgstr "Не опубликован "
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:73
+msgid "Album can be viewed and managed only inside your WebAsyst account by users with sufficient access permissions."
+msgstr "Альбом доступен только внутри вашего WebAsyst-аккаунта."
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:104
+msgid "Photo size"
+msgstr "Размер фото"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:116
+msgid "Number of photos on one page"
+msgstr "Количество фотографий на одной странице"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:142
+msgid "all"
+msgstr "все"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:148
+msgid "Can view and download original images from public gallery"
+msgstr "Можно посмотреть и скачать оригинал фотографий альбома из галереи"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\album-settings.html:128
+msgid "Thumbnail size"
+msgstr "Размер эскизов"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\designeditor.html:52
+msgid "Save"
+msgstr "Сохранить"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\albums.html:15
+msgid "Subtitle (e.g. when the photos were taken)"
+msgstr "Подзаголовок (например, когда были сделаны фото)"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\albums.html:16
+msgid "User"
+msgstr "Пользователь"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\albums.html:17
+msgid "My access"
+msgstr "Мои права"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\changeDescElement.html:31
+msgid "Album description"
+msgstr "Описание альбома"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\changeDescElement.html:33
+msgid "Photo description"
+msgstr "Описание фотографии"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\changeDescElement.html:44
+msgid "Description"
+msgstr "Описание"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\main.html:85
+msgid "or"
+msgstr "или"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\changePhotoDesc.html:70
+msgid "close without saving"
+msgstr "закрыть без сохранения"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\changePhotoDesc.html:47
+msgid "Album photos"
+msgstr "Фотографии из альбома "
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\designeditor.html:39
+msgid "Saved"
+msgstr "Сохранено"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\changePhotoDesc.html:70
+msgid "Save all"
+msgstr "Сохранить все"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\createCollection.html:40
+msgid "All photos in this album"
+msgstr "Из всего альбома"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\createCollection.html:42
+msgid "Selected photos"
+msgstr "Из выбранных фотографий"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\createCollection.html:42
+msgid "Switch to “Organize and share” mode to select certain photos."
+msgstr "Перейдите в режим «Управление и ссылки», чтобы выбрать отдельные фотографии."
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\createCollection.html:49
+msgid "Widget"
+msgstr "Виджет"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\createCollection.html:50
+msgid "Collection"
+msgstr "Название коллекции"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\createCollection.html:57
+msgid "Close"
+msgstr "Закрыть"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\designeditor.html:36
+msgid "Photo gallery name"
+msgstr "Название фотогалереи"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\designeditor.html:42
+msgid "Reset styles to default"
+msgstr "Сбросить все изменения"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\flickrImport.html:8
+msgid "To import photos you need to authorize on Flickr website."
+msgstr "Для импорта фотографий вы должны авторизоваться на веб-сайте Flickr."
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\flickrImport.html:9
+msgid "by this link"
+msgstr "по этой ссылке"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\flickrImport.html:11
+msgid "Authorization"
+msgstr "Авторизация"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\flickrImport.html:16
+msgid "Select photo sets to be imported"
+msgstr "Фотографии из каких наборов импортировать?"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\flickrImport.html:24
+msgid "Continue"
+msgstr "Продолжить"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\flickrImport.html:34
+msgid "Importing photos..."
+msgstr "Импорт фотографий..."
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\flickrImport.html:50
+msgid "Uploading photos"
+msgstr "Загрузка фотографий"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\imageLinks.html:9
+msgid "Links to selected photos (for email and IM)"
+msgstr "Ссылки на выбранные фотографии (для ICQ, email)"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\main.html:61
+msgid "Albums"
+msgstr "Альбомы"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\main.html:62
+msgid "Collections"
+msgstr "Коллекции"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\main.html:64
+msgid "Design"
+msgstr "Дизайн"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\main.html:83
+msgid "Album"
+msgstr "Выберите альбом"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\main.html:85
+msgid "Move"
+msgstr "Переместить"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\main.html:86
+msgid "Cancel"
+msgstr "Отменить"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:161
+msgid "Create new album"
+msgstr "Создать новый альбом"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:163
+msgid "To the album"
+msgstr "В альбом"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:175
+msgid "Bulk"
+msgstr "Много фото"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:177
+msgid "One-by-one"
+msgstr "По одной"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:178
+msgid "Choose files"
+msgstr "Выбрать файлы"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:178
+msgid "You may select up to"
+msgstr "Можно выбрать сразу до "
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:179
+msgid "files"
+msgstr "файлов"
+
+#: W:\home\webasyst\trunk\published\PD2\source\templates\backend\upload_form.html:205
+msgid "Add more"
+msgstr "Добавить еще"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1307
+msgid "Shutter"
+msgstr "Выдержка"
+
+#: W:\home\webasyst\trunk\published\PD2\source\js\backend.js:1308
+msgid "Aperture"
+msgstr "Диафрагма"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:747
+msgid "Slideshow"
+msgstr "Слайдшоу"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:811
+msgid "With selected photos"
+msgstr "С выбранными фото"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:813
+msgid "select all"
+msgstr "выбрать все"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:909
+msgid "Delete photos"
+msgstr "Удалить фотографии"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1041
+msgid "Delete album"
+msgstr "Удалить альбом"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1183
+msgid "This photo"
+msgstr "Эта фотография"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1196
+msgid "URL"
+msgstr "URL"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1213
+msgid "Original"
+msgstr "Оригинал"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1364
+msgid "Crop"
+msgstr "Вырезать"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1431
+msgid "Delete photo"
+msgstr "Удалить фотографию"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1434
+msgid "This will permanently delete photo. Are you sure?"
+msgstr "Фотография будет удалена без возможности восстановления. Удалить?"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1451
+msgid "Taken"
+msgstr "Снято"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:1452
+msgid "Uploaded"
+msgstr "Загружено"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/backend.js:2558
+msgid "album(s)"
+msgstr "альбомов"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/backend/upload_form.html:119
+msgid "Select files"
+msgstr "Выбрать файлы"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/swfupload_new/handlers.js:87
+msgid "You have only %s of available disk space left. Not all photos will be uploaded."
+msgstr "У вас осталось %s доступного места на диске. Не все фотографии будут загружены."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/js/swfupload_new/handlers.js:194
+msgid "Photo was not uploaded. Not enough permissions or out of disk space."
+msgstr "Фотография не загружена на сервер. Вероятно, нет прав для загрузки или недостаточно места на диске."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/themes/default/index.html:58
+msgid "Photos are published using <a href=\"#\" style=\"text-decoration: none\">WebAsyst Photos</a>"
+msgstr "Фото опубликованы с помощью <a href=\"#\" style=\"text-decoration: none\">WebAsyst Фото</a>"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/frontend/album-view1.html:18
+msgid "There are no published albums in the gallery."
+msgstr "В галерее нет опубликованных альбомов."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/themes/default/index.html:28
+msgid "Album list"
+msgstr "Список альбомов"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/themes/default/index.html:52
+msgid "Pages"
+msgstr "Страницы"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/backend/collection-empty.html:3
+msgid "You did not create photo collections yet."
+msgstr "Пока не создано ни одной коллекции фотографий."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/backend/collection-empty.html:4
+msgid "You may create collections of selected photos or photos from the entire album on the “Albums” screen."
+msgstr "Выберите целый альбом или несколько фотографий в разделе «Альбомы», чтобы создать коллекцию."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/backend/main.html:92
+msgid "Public gallery"
+msgstr "Открыть галерею"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/backend/upload_form.html:324
+msgid "You need to have <a href=\"http://get.adobe.com/flashplayer/\" target=\"_blank\">Adobe Flash Player</a> installed for bulk photo upload."
+msgstr "Для того, чтобы выбрать и загрузить сразу много изображений, у вас должен быть установлен <a href=\"http://get.adobe.com/flashplayer/\" target=\"_blank\">Adobe Flash Player</a>."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/backend/slideshow.html:202
+msgid "sec"
+msgstr "с"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/backend/slideshow.html:337
+msgid "show descriptions"
+msgstr "показывать описания"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD2/source/templates/backend/slideshow.html:297
+msgid "don't show description"
+msgstr "не показывать описания"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:650
+msgid "You don't have permission to access this album."
+msgstr "У вас нет прав доступа к этому альбому."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/slideshow.html:312
+msgid "don't show descriptions"
+msgstr "не показывать описания"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:54
+msgid "Import photos from Flickr"
+msgstr "Импорт фотографий из Flickr"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:30
+msgid "Importing photos from Flickr requires valid API credentials"
+msgstr "Для импорта фотографий из Flickr необходимо ввести Flickr API Key и Secret."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/upload_form.html:338
+msgid "Photos will be uploaded to album “%s”"
+msgstr "Фотографии будут загружены в альбом «%s»"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/upload_form.html:352
+msgid "Each file size must not exceed %s"
+msgstr "Размер одного файла не должен превышать %s"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:98
+msgid "Imagick (not supported by the server)"
+msgstr "Imagick (не поддерживается сервером)"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:98
+msgid "Imagick (recommended)"
+msgstr "Imagick (рекомендуется)"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:102
+msgid "Sharpen thumbnails (recommended)"
+msgstr "Применять фильтр резкости при создании эскизов (рекомендуется)"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:104
+msgid "Sharpening makes your photos look nice and sharp. Sharpening takes a bit more time to upload photos, but improves your photos quality."
+msgstr "Применение фильтра резкости (sharpen) позволяет создать более четкие эскизы фотографий. При включенном фильтре эскизы будут создаваться чуть дольше, но их качество будет заметно выше."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:107
+msgid "When a new album is created, it becomes available only to its author (WebAsyst user who created this album). To grant access permissions to new albums for other users <em>automatically when albums are created</em>, select appropriate WebAsyst user groups and define permission levels."
+msgstr "Когда вы создаете новый альбом, он становится доступным только его автору (пользователю WebAsyst, который создал альбом). Чтобы и другие пользователи получали доступ к альбомам <em>автоматически при их создании</em>, укажите соответствующие группы пользователей и уровень прав доступа к новым альбомам для них."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:128
+msgid "You do not have user groups in your WebAsyst installation. This means that only album author will have access to new albums automatically, and allowing other users to access new albums will require manual permission settings."
+msgstr "В вашей установке WebAsyst не создано ни одной группы пользователей. Это значит, что права доступа к новому альбому автоматически будут устанавливаться только автору альбома, а другим пользователям WebAsyst доступ к новым альбомам необходимо будет предоставлять каждый раз вручную."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/swfupload_new/handlers.js:156
+msgid "Uploaded:"
+msgstr "Загружено:"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/swfupload_new/handlers.js:156
+msgid "of"
+msgstr "из"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1108
+msgid "edit"
+msgstr "редактировать"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1017
+msgid "Edit photo descriptions"
+msgstr "Редактировать описания фото"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1464
+msgid "This is a key photo for album"
+msgstr "Фото используется как обложка альбома"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1750
+msgid "read & write"
+msgstr "чтение и запись"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/frontend/album-view1.html:24
+msgid "There are no published albums in the gallery"
+msgstr "В фотогалерее не опубликовано ни одного альбома"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/frontend/image-view1.html:10
+msgid "download original image"
+msgstr "скачать оригинал изображения"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/createCollection.html:65
+msgid "Name your collection"
+msgstr "Название коллекции"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/album-settings.html:170
+msgid "close"
+msgstr "закрыть"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/albums.html:16
+msgid "by"
+msgstr "Автор"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/changePhotoDesc.html:55
+msgid "Edit descriptions of photos in “%s”"
+msgstr "Редактирование описаний фотографий из альбома «%s»"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/album-settings.html:65
+msgid "Album “%s” publication settings"
+msgstr "Настройки публикации альбома «%s»"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:650
+msgid "You do not have permissions to access this album."
+msgstr "У вас нет прав доступа к этому альбому."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:63
+msgid "Import photos from your Flickr account"
+msgstr "Импорт фото из вашего аккаунта на Flickr"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:65
+msgid "<a href=\"http://www.flickr.com\" target=\"_blank\">Login</a> to your Flickr account."
+msgstr "<a href=\"http://www.flickr.com\" target=\"_blank\">Войдите</a> в ваш аккаунт на Flickr."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:66
+msgid "Go to this web page"
+msgstr "Перейдите по следующей ссылке:"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:67
+msgid "Create a new Flickr API key (non-commercial API key is ok)."
+msgstr "Зарегистрируйте новый ключ Flickr API key (API-ключ для некоммерческого использования подойдет)."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:68
+msgid "Enter the following URL in the “Callback URL” field of your new API key (Flickr import feature will not work if you don't enter valid callback URL)"
+msgstr "Введите следующий адрес в поле «Callback URL» в настройках созданного API-ключа (если этого не сделать, импорт фото работать не будет)"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:70
+msgid "Enter your new Flickr API key and secret below"
+msgstr "Введите информацию о созданном API-ключе"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:72
+msgid "Flickr API Key"
+msgstr "Flickr API Key"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:73
+msgid "Flickr API Secret"
+msgstr "Flickr API Secret"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:82
+msgid "Import now"
+msgstr "Импортировать"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:83
+msgid "Go to Flickr website and select photo sets to be imported."
+msgstr "Перейти на Flickr и выбрать фотографии, которые необходимо импортировать."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:87
+msgid "Edit Flickr API settings"
+msgstr "Настройки Flickr API"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/flickrImport.html:109
+msgid "Importing photos"
+msgstr "Импорт фотографий"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/swfupload_new/handlers.js:199
+msgid "403 Forbidden"
+msgstr "403 Forbidden"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:591
+msgid "There are no photo albums in your library."
+msgstr "В фотогалерее нет ни одного альбома."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:591
+msgid "Create a new album to upload photos."
+msgstr "Создайте новый альбом, чтобы загрузить фотографии."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1778
+msgid "photo"
+msgstr "фото"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1807
+msgid "Back to albums"
+msgstr "К списку альбомов"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1956
+msgid "Photo %s of %s"
+msgstr "Фото %s из %s"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:94
+msgid "Settings have been successfully saved."
+msgstr "Настройки успешно сохранены."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1600
+msgid "View albums mode"
+msgstr "Вернуться к просмотру альбомов "
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/js/backend.js:1662
+msgid "cancel"
+msgstr "отменить"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/imageLinks.html:92
+msgid "No images selected"
+msgstr "Не выбрано ни одной фотографии"
+
+#: W:\home\webasyst\trunk\published\PD\controllers\albumController.php:664
+msgid "Access denied."
+msgstr "Доступ запрещен."
+
+#: W:\home\webasyst\trunk\published\PD\controllers\albumController.php:271
+msgid "All files successfully uploaded."
+msgstr "Все файлы успешно загружены."
+
+#: W:\home\webasyst\trunk\published\PD\controllers\albumController.php:274
+msgid "Not all files were uploaded and added to your photo library.<br />Supported image formats are JPG, GIF, PNG."
+msgstr "Не все изображения были загружены и добавлены в альбом.<br />Допустимые форматы файлов: JPG, GIF, PNG."
+
+#: W:\home\webasyst\trunk\published\PD\source\templates\backend\_designeditor.html:66
+msgid "Gallery name is displayed in the public part of your gallery along with the name of every published album.<br />Editing CSS (styles) below allows you to change the way your public gallery looks."
+msgstr "Название фотогалереи отображается в ее общедоступной части (там, где публикуются ваши альбомы и фотографии).<br />Редактирование стилей CSS ниже позволяет настроить внешний вид фотогалереи."
+
+#: W:\home\webasyst\trunk\published\PD\_rights.php:19
+msgid "Can create and manage collections"
+msgstr "Создание и управление коллекциями"
+
+#: W:\home\webasyst\trunk\published\PD\_rights.php:20
+msgid "Can modify public gallery design"
+msgstr "Настройка дизайна фотогалереи"
+
+#: W:\home\webasyst\trunk\published\PD\_rights.php:25
+msgid "Available Actions with Albums"
+msgstr "Допустимые действия с альбомами"
+
+#: W:\home\webasyst\trunk\published\PD\_rights.php:27
+msgid "Can manage albums (and see the list of all albums)"
+msgstr "Управление списком альбомов"
+
+#: W:\home\webasyst\trunk\published\PD\_rights.php:28
+msgid "Can create albums"
+msgstr "Создание альбомов"
+
+#: W:\home\webasyst\trunk\published\PD\_rights.php:33
+msgid "Available Albums"
+msgstr "Доступные альбомы"
+
+#: W:\home\webasyst\trunk\published\PD\source\templates\backend\settings.html:96
+msgid "Image resize engine"
+msgstr "Механизм обработки изображений"
+
+#: W:\home\webasyst\trunk\published\PD\source\templates\backend\settings.html:105
+msgid "Access rights"
+msgstr "Права доступа"
+
+#: W:\home\webasyst\trunk\published\PD\source\js\backend.js:1785
+msgid "photos"
+msgstr "фото"
+
+#: W:\home\webasyst\trunk\published\PD\source\js\backend.js:53
+msgid "Available memory size"
+msgstr "Доступный скриптам объем памяти"
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:170
+msgid "Not enough memory to perfom operation (memory_limit=%s)"
+msgstr "Недостаточно памяти для выполнения операции (memory_limit=%s)"
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:48
+msgid "File size exceeds maximum allowed by the server."
+msgstr "Размер файла превышает максимально допустимый сервером."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:52
+msgid "Cannot upload 0 byte files."
+msgstr "Невозможно загрузить файл с нулевым размером."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:56
+msgid "Invalid File Type."
+msgstr "Недопустимый тип файла."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:61
+msgid "Error"
+msgstr "Ошибка"
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:129
+msgid "Uploading..."
+msgstr "Загрузка..."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:147
+msgid "Uploading... Creating thumbnails..."
+msgstr "Загрузка... Создание эскизов..."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:176
+msgid "Complete."
+msgstr "Готово."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:211
+msgid "Upload Failed."
+msgstr "Файл не был загружен."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:215
+msgid "Server (IO) Error"
+msgstr "Ошибка доступа к серверу (IO)"
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:219
+msgid "Security Error"
+msgstr "Ошибка загрузки файла (security error)."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:223
+msgid "Upload limit exceeded."
+msgstr "Превышено ограничение на загрузку."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:227
+msgid "Failed Validation.  Upload skipped."
+msgstr "Файл пропущен."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:235
+msgid "Cancelled"
+msgstr "Загрузка отменена"
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:239
+msgid "Stopped"
+msgstr "Загрузка остановлена"
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:242
+msgid "Error creating thumbnail (possible reason — not enough memory)."
+msgstr "Ошибка создания эксиза (возможная причина: недостаточно памяти)."
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:110
+msgid "Files uploaded"
+msgstr "Загружено файлов"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:386
+msgid "Upload"
+msgstr "Загрузить"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:113
+msgid "Read only"
+msgstr "Только чтение"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:114
+msgid "Read&Write"
+msgstr "Чтение и запись"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:115
+msgid "Full"
+msgstr "Полные права"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changePhotoDesc.html:64
+msgid "Photo descriptions are displayed in the public part of your photo gallery. HTML tags are allowed."
+msgstr "Описание фотографий отображаются в общедоступной части фотогалереи. Можно использовать HTML."
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:58
+msgid "Gallery"
+msgstr "Галерея"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changeDescElement.html:55
+msgid "Album description is displayed in the public part of your photo gallery. HTML tags are allowed."
+msgstr "Описание альбома отображается в общедоступной части фотогалереи. Можно использовать HTML."
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:878
+msgid "Arrange photos using drag'n'drop."
+msgstr "Задайте порядок сортировки перетаскиванием фото."
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\designeditor.html:12
+msgid "This will discard all changes you have made to gallery CSS so far. Do you confirm resetting all changes?"
+msgstr "Сбросить все изменения, которые были сделаны в CSS-стилях галереи?"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\albums.html:15
+msgid "Created"
+msgstr "Создан"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:126
+msgid "Importing photo"
+msgstr "Загрузка фотографии"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:131
+msgid "Import successfully completed."
+msgstr "Импорт завершен."
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:98
+msgid "Photo thumbnails are created using one of PHP image processing extensions: <a href=\"http://www.php.net/imagick\" target=\"_blank\">Imagick</a> or <a href=\"http://www.php.net/gd\" target=\"_blank\">GD</a>.<br />Select appropriate image processor for your WebAsyst Photos installation. <a href=\"#support/help/gd-vs-imagick.html\" target=\"_blank\">Which processor is better?</a> <img src=\"img/new_window_icon.gif\">"
+msgstr "Эскизы фотографий создаются с использованием одного из расширений PHP для работы с графикой: <a href=\"http://www.php.net/imagick\" target=\"_blank\">Imagick</a> или <a href=\"http://www.php.net/gd\" target=\"_blank\">GD</a>.<br />Выберите расширение, которое будет использоваться в вашей установке WebAsyst Фото. <a href=\"help/gd-vs-imagick.html\" target=\"_blank\">Что выбрать?</a> <img src=\"img/new_window_icon.gif\">"
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:175
+msgid "Invalid file type."
+msgstr "Неверный тип файла."
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2879
+msgid "%d photos in %d album(s)"
+msgstr "%d фото, %d альбом(ов)"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:54
+msgid "email or IM direct link"
+msgstr "прямая ссылка на коллекцию фотографий"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:62
+msgid "to embed to your website of blog"
+msgstr "для встраивания на сайт или блог"
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:472
+msgid "Drag'n'drop to arrange albums."
+msgstr "Задайте порядок отображения альбомов, перетаскивая их с помощью мышки."
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1853
+msgid "rename"
+msgstr "ред."
+
+#: X:\home\webasyst\www\published\PD\controllers\ajaxController.php.js:1
+msgid "Album name is empty."
+msgstr "Название альбома не может быть пустым."
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:97
+msgid "Retrieving photos information..."
+msgstr "Получение информации об изображениях..."
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:40
+msgid "Collection name should not be empty."
+msgstr "Название коллекции не может быть пустым."
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1387
+msgid "Rotate left"
+msgstr "Поворот влево"
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1418
+msgid "Rotate right"
+msgstr "Поворот вправо"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:110
+msgid "When you create a new photo album, only you get access to this album by default (only your WebAsyst user; all other users do not have permissions to access your new album).<br /><br /> If you want other WebAsyst users to get access to every new album as well (automatically), you may configure this on the basis of <strong>groups of users</strong>. To do this, assign every group of users proper access rights level — access will be automatically applied for every new created album."
+msgstr "Когда вы создаете новый альбом, права доступа к нему устанавливаются по умолчанию только для вас (для вашего пользователя аккаунта WebAsyst).<br /><br /> Можно настроить автоматическое предоставление доступа и для других пользователей вашего аккаунта. Это можно сделать на основе <strong>групп пользователей</strong>: просто укажите права, которые нужно предоставлять группам пользователей при создании новых фотоальбомов (права будут устанавливаться автоматически)."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/PD/source/templates/backend/settings.html:134
+msgid "You do not have groups of users in your WebAsyst account. Use “Users” application to create a new group of users."
+msgstr "В вашей установке WebAsyst не создано ни одной группы пользователей. Создать группу пользователей можно в приложении WebAsyst «Команда»."
+
+#: X:\home\webasyst\www\published\PD\source\js\jquery.jeditable.js:71
+msgid "Click to edit"
+msgstr "Без названия"
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2877
+msgid "Click to select, drag'n'drop to sort"
+msgstr "Щелкните, чтобы выбрать, перетащите, чтобы задать порядок сортировки"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:111
+msgid "To grant users (or user groups) of your WebAsyst account access to photo albums, use “Users” application. Select appropriate user (user group), and define access level by album on the “Access” tab.<br /><br />To enable <strong>automated access control to new albums</strong>, set access level by user group below (if no groups are selected, access to the new album will be given only to the user who created the album).<br /><br /><em class=\"emtext\">NOTE: User group access rights you define below will be applied to new albums only, and will not be applied to existing albums.</em>"
+msgstr "Для предоставления доступа к вашим альбомам другим пользователям (или группам пользователей), перейдите в сервис «Команда». Щелкните по нужному пользователю (или группе пользователей) и на закладке «Доступ», в секции «Фото», включите необходимые права.<br /><br />Для <strong>автоматического предоставления доступа к каждому новому альбому</strong>  установите нужные права в списке групп пользователей ниже (если не выбрано ни одной группы, то при создании нового альбома доступ к нему будет только у пользователя-автора альбома).<br /><br /><em class=\"emtext\">ПРИМЕЧАНИЕ: Настройки прав для групп будут применяться только к новым созданным альбомам, на ранее созданные альбомы настройки не распространяются.</em>"
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:135
+msgid "To grant users of your WebAsyst account access to photo albums, use “Users” application. Select appropriate user, and define access level by album on the “Access” tab.<br /><br />If you want to grant access to new photo albums automatically (by default access to the new created album is provided only to the user who created the album), <strong>create one or more user groups first</strong> in the “Users” application. Then go back to this screen and set access level by user group."
+msgstr "Для предоставления доступа к вашим альбомам другим пользователям перейдите в приложение «Команда» в главном меню. Откройте нужного пользователя и на закладке «Доступ», в секции «Фото», включите необходимые права.<br /><br />Если вы хотите автоматически предоставлять доступ другим пользователям к каждому новому альбому (по умолчанию при создании альбома доступ устанавливается только для пользователя-автора альбома), то прежде <strong>создайте одну или несколько групп пользователей</strong>, опять же, в приложении «Команда». Затем вернитесь на текущую страницу, чтобы настроить уровень доступа к новым альбомам для групп пользователей."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:38
+msgid "You have attempted to queue too many files."
+msgstr "Вы выбрали слишком много файлов."
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:38
+msgid "You may select up to %s files."
+msgstr "Можно выбрать не более %s файлов."
+

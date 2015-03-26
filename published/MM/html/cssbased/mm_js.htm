@@ -1,0 +1,747 @@
+<script language="JavaScript">
+<!--
+
+	window.CustomSplitterHeightHandler = function (splitterHeight)
+	{
+		if ( SplitterInfo.LeftPanelVisible )
+		{
+			var FoldersPanel = document.getElementById( 'FoldersHeadersPanel' );
+
+			var Content = document.getElementById( 'SplitterLeftScrollableContent' );
+
+			var TotalHeight = splitterHeight - FoldersPanel.offsetHeight;
+
+			var OffsetHeight = Content.offsetHeight;
+
+			SplitterInfo.LeftPanelContent.style.height = TotalHeight + 'px';
+		}
+
+		var RightPanelHeader = document.getElementById( 'RightPanelHeader' );
+		var ListHeader = document.getElementById( 'ListHeaderContainer' );
+		var ListFooter = document.getElementById( 'ListFooterContainer' );
+
+		var ListHeaderHeight = 0;
+		if ( ListHeader )
+			ListHeaderHeight = ListHeader.offsetHeight;
+
+		var ListFooterHeight = 0;
+		if ( ListFooter )
+		{
+			ListFooterHeight = ListFooter.offsetHeight;
+			ListFooter.style.visibility = 'visible';
+		}
+
+		rphHeight = (RightPanelHeader == null) ? 0 : RightPanelHeader.offsetHeight;
+		SplitterInfo.RightPanelContent.style.height = splitterHeight - rphHeight - ListHeaderHeight - ListFooterHeight + 'px';
+	}
+
+	function checkMinRights( rights )
+	{
+		return true;
+
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ )
+			if (thisForm.elements[i].type == 'checkbox')
+				if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked )
+				{
+					MMM_ID = thisForm.elements[i].value;
+
+					var rightsObj = tree_MM_findObj( "noterights["+MMM_ID+"]" );
+					if (!rightsObj)
+						return false;
+
+					if ( rightsObj.value < rights )
+						return false;
+				}
+
+		return true;
+	}
+
+	function checkField( field, value, eq )
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ )
+			if (thisForm.elements[i].type == 'checkbox')
+				if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked )
+				{
+					MMM_ID = thisForm.elements[i].value;
+
+					var rightsObj = tree_MM_findObj( field+"["+MMM_ID+"]" );
+					if (!rightsObj)
+						return false;
+
+					if ( eq )
+					{
+						if ( rightsObj.value == value )
+							return true;
+					} else {
+						if ( rightsObj.value != value )
+							return true;
+					}
+				}
+		return false;
+	}
+
+	function checkSentImages()
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ )
+			if (thisForm.elements[i].type == 'checkbox')
+				if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked )
+				{
+					MMM_ID = thisForm.elements[i].value;
+
+					var images = tree_MM_findObj( "noteimages["+MMM_ID+"]" );
+					if (!images)
+						return false;
+
+					var type = tree_MM_findObj( "notetype["+MMM_ID+"]" );
+					if (!type)
+						return false;
+
+					if ( images.value != '' && type.value == '3')
+						return true;
+				}
+		return false;
+	}
+
+	function confirmFolderDeletion()
+	{
+		return confirmDeletionAjax( '<? $mmStrings.mm_screen_flddelete_message ?>' );
+	}
+
+	function alertDelete()
+	{
+		 alert( '<? $kernelStrings.app_treenoflddelrights_message ?>' );
+		 return false;
+	}
+
+	function alertMove()
+	{
+		alert( '<? $kernelStrings.app_treenomovetosubfldrights_message ?>' );
+		return false;
+	}
+
+	function alertCopy()
+	{
+		alert( '<? $kernelStrings.app_treenocopyfldrights_message ?>' );
+		return false;
+	}
+
+	function alertAdd()
+	{
+		alert( '<? $kernelStrings.app_treenofldrights_message ?>' );
+		return false;
+	}
+
+	function alertAddRoot()
+	{
+		alert( '<? $kernelStrings.app_treenorootrights_message ?>' );
+		return false;
+	}
+
+	function alertModify()
+	{
+		alert( '<? $kernelStrings.app_treeinvcurfldrights_message ?>' );
+		return false;
+	}
+
+	function confirmSend()
+	{
+		if ( !treeCheckSelection( '<? $mmStrings.mm_screen_emptysend_message ?>' ) )
+			return false;
+			
+		if ( checkField( 'notetype', '1', true ) )
+		{
+			alert( '<? $mmStrings.sm_notpending_error_text ?>');
+			return false;
+		}
+
+		if ( checkField( 'notetype', '0', true ) )
+			return true;
+
+		alert( '<? $mmStrings.sm_onlydraft_error_text ?>');
+
+		return false;
+	}
+
+	function confirmCopy()
+	{
+		if ( !treeCheckSelection( '<? $mmStrings.mm_screen_emptycopy_message ?>' ) )
+			return false;
+
+		return true;
+	}
+
+	function confirmMove()
+	{
+		if ( !treeCheckSelection( '<? $mmStrings.mm_screen_emptymove_message ?>' ) )
+			return false;
+
+		if ( !checkMinRights( 1 ) )
+		{
+			alert( '<? $mmStrings.mm_screen_invrights_message ?>' );
+			return false;
+		}
+		return true;
+	}
+
+	function confirmDeletion()
+	{
+		if ( !treeCheckSelection( '<? $mmStrings.mm_screen_emptydel_message ?>' ) )
+			return false;
+
+		if ( !checkMinRights( 1 ) )
+		{
+			alert( '<? $mmStrings.mm_screen_invrights_message ?>' );
+			return false;
+		}
+
+		if ( checkSentImages( ) )
+			return confirm( '<? $mmStrings.mm_screen_confirmimgdel_message ?>\n<? $mmStrings.app_delete_anyway_text?>' );
+		else
+			return confirm( '<? $mmStrings.mm_screen_confirmdel_message ?>' );
+	}
+
+	function submitFolder( obj )
+	{
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 )
+			return false;
+
+		obj.form.submit();
+	}
+
+	function findCurrentFolder()
+	{
+		obj = document.getElementById("<? $currentFolder ?>");
+		if ( obj )
+			obj.scrollIntoView();
+	}
+
+	function checkMail(interval, limit)
+	{
+		if(typeof(limit) == 'undefined')
+			var limit = 60;
+
+		if(typeof(interval) != 'undefined' && interval)
+		{
+			var url = '../ajax/check_mail.php?connectLimit=' + limit;
+			var params = {'interval': interval, 'limit': limit};
+		} else {
+			var url = '../ajax/check_mail.php?mailbox=' + document.getElementById('currentAccount').value;
+			var params = '';
+			document.getElementById('checkMailBtn').style.display = 'none';
+			document.getElementById('checkMailPgBar').style.display = '';
+		}
+		AjaxLoader.doRequest (
+			url,
+			mailChecked,
+			params,
+			{scope: this}
+		);
+	}
+
+	function mailChecked(response, options)
+	{
+		var bar = document.getElementById('checkMailPgBar');
+		var btn = document.getElementById('checkMailBtn');
+		if(bar && btn)
+		{
+			bar.style.display = 'none';
+			btn.style.display = '';
+		}
+		if(typeof(response.responseText) != 'undefined')
+			try {
+				var news = eval('(' + response.responseText + ')');
+			} catch (e) {
+				var news = {};
+			}
+		else
+			var news = {};
+
+		if(typeof(news.newLocation) != 'undefined')
+		{
+			window.location = news.newLocation;
+			return;
+		}
+
+		var interval = options.params.interval;
+
+		if(typeof(interval) == 'undefined')
+			interval = false;
+		else if(interval == 1)
+			interval = 3;
+		else
+			interval = '<? $checkMailInterval ?>';
+
+		if(response.responseText)
+		{
+			var currentAccount = document.getElementById('currentAccount').value;
+
+			var dofldRefresh = false;
+
+			var curSendingMessages = new Array();
+
+			for(el in news)
+			{
+				if(isNaN(el) && isNaN(news[el]))
+				{
+					if(!interval)
+						alert(news[el]);
+				}
+				else if(isNaN(el))
+				{
+					dofldRefresh = true;
+
+					if( currentAccount == el)
+					{
+						var url = 'mailmaster.php?action=msgRefresh&mailbox=' + el;
+						var params = '';
+
+						AjaxLoader.doRequest (
+							url,
+							msgRefreshed,
+							params,
+							{scope: this}
+						);
+					}
+				}
+				else
+					curSendingMessages[el] = news[el];
+			}
+
+			if(dofldRefresh)
+			{
+				var url = 'mailmaster.php?action=fldRefresh';
+				var params = '';
+
+				AjaxLoader.doRequest (
+					url,
+					fldRefreshed,
+					params,
+					{scope: this}
+				);
+			}
+		}
+
+		for(el in sendingMessages)
+		{
+			if(typeof(curSendingMessages[el]) == 'undefined')
+				curSendingMessages[el] = 3;
+
+			if(sendingMessages[el] != curSendingMessages[el] )
+			{
+				styleColor = {3:'#a52a2a', 99:'#ff0000'};
+				styleFontWeight = {3:'normal', 99:'bold'};
+				statusText = {3:'<? $mmStrings.app_sent_status ?>', 99:'<? $mmStrings.app_error_status ?>'};
+
+				var tr = document.getElementById('MsgListRow_' + el);
+				var aList= tr.getElementsByTagName('a');
+				for(var i=0; i<aList.length; i++)
+				{
+					aList[i].style.color = styleColor[curSendingMessages[el]];
+					aList[i].style.fontWeight = styleFontWeight[curSendingMessages[el]];
+					aList[i].style.fontStyle='normal';
+
+					var txt = aList[i].innerHTML;
+					if(txt == '<? $mmStrings.app_sending_status ?>' || txt == '<? $mmStrings.app_pending_status ?>')
+						aList[i].innerHTML = statusText[curSendingMessages[el]];
+				}
+				delete sendingMessages[el];
+			}
+		}
+		if(interval)
+			setTimeout('checkMail(' + interval + ',' + options.params.limit + ')', interval * 1000);
+	}
+
+	function msgRefreshed(response, options)
+	{
+		document.getElementById('rightPanelMsgList').innerHTML = response.responseText;
+	}
+
+	function fldRefreshed(response, options)
+	{
+		var info = response.responseText.split(/\n/);
+		var newTotal = 0;
+
+		for(var i=0; i<info.length; i++)
+		{
+			var row = info[i].split(/\t/);
+			if(row[1] == 'new')
+			{
+				if(row[2] != 0)
+				{
+					document.getElementById('AccNameRow_'+row[0]).style.fontWeight = 'bold';
+					document.getElementById('AccNewRow_'+row[0]).innerHTML = '(' + row[2] + ')';
+
+					var summNew = document.getElementById('SummInboxNew_'+row[0]);
+					if(summNew)
+					{
+						summNew.innerHTML = row[2];
+						summNew.style.fontWeight = 'bold';
+						document.getElementById('SummInboxAcc_'+row[0]).style.fontWeight = 'bold';
+					}
+					newTotal += (row[2]-0);
+				}
+				else
+				{
+					document.getElementById('AccNameRow_'+row[0]).style.fontWeight = 'normal';
+					document.getElementById('AccNewRow_'+row[0]).innerHTML = '';
+				}
+			}
+ 			else if((row[1] == 'count') && (msgCount = document.getElementById('SummInboxMsg_'+row[0])))
+					msgCount.innerHTML = row[2];
+
+			if(newTotal)
+			{
+				document.getElementById('inboxRootNew').innerHTML = '(' + newTotal + ')';
+				document.getElementById('inboxRootLabel').style.fontWeight = 'bold';
+			}
+			else
+			{
+				document.getElementById('inboxRootNew').innerHTML = '';
+				document.getElementById('inboxRootLabel').style.fontWeight = 'normal';
+			}
+		}
+	}
+
+// *****************************************************************************
+
+	var displayElements = Array(
+		'mainScreenToolbar', 'msgViewToolbar', 'sendFormToolbar', 'sentMessageToolbar',
+		'confirmSendToolbar', 'composeTemplateToolbar', 'selectTemplateToolbar',
+		'PageSplitter', 'msgViewIframe', 'sendFormIframe', 'msgViewHeaderContainer', 'infoContainer');
+	parent.cache = Array();
+
+	var currentSearchString = false;
+
+	function resizeIframe()
+	{
+		var content = document.getElementById('ContentScroller');
+		var height = content.offsetHeight;
+		var frame = null;
+
+		if(frame = document.getElementById('msgViewIframe'))
+		{
+			var h = height - document.getElementById('msgViewHeaderContainer').offsetHeight;
+			frame.style.height = h + 'px';
+		}
+		if(frame = document.getElementById('sendFormIframe'))
+		{
+			var h = height - document.getElementById('infoContainer').offsetHeight;
+			frame.style.height = h + 'px';
+			resizeEditorIframe(h);
+		}
+		if(obj = document.getElementById('searchResultsScrollable'))
+		{
+			height -= document.getElementById('main-header').offsetHeight + 76;
+			obj.style.height = height + 'px';
+		}
+	}
+
+	function delayedResizeIframe() {window.setTimeout("resizeIframe()", 50)}
+
+	function resizeEditorIframe(height)
+	{
+		if(frame = document.getElementById('sendFormIframe'))
+		{
+			var frameContent = frame.contentWindow;
+			if(frameContent.document)
+			{
+				if(editorIsLoaded)
+				{
+					var h = height - frameContent.document.getElementById('sendFormHeader').offsetHeight -
+						frameContent.document.getElementById('sendFormFooter').offsetHeight - 65;
+					if(h < 150)
+						h = 150;
+					var w = document.getElementById('ContentScroller').offsetWidth;
+					w -= 4;
+					// Next lines, exept of sizeEditor(), fix IE scroll bar bug only.
+					// If it will be possible, remove it!
+					frameContent.document.getElementById('sendFormDiv').style.width = w + 'px';
+					w -= 20;
+					frameContent.document.getElementById('sendFormHeader').style.width = w + 'px';
+					frameContent.xinha_editors[frameContent._editor_textarea].sizeEditor(w+'px', h+'px', false, false);
+					frameContent.document.getElementById('editor_table').style.width = w + 'px';
+				}
+			}
+		}
+	}
+
+	function displayOn(doOn, screenName)
+	{
+		for(var i=0; i<displayElements.length; i++)
+		{
+			if(typeof(doOn[displayElements[i]]) == 'undefined')
+				document.getElementById(displayElements[i]).style.display = 'none';
+			else
+				document.getElementById(displayElements[i]).style.display = '';
+		}
+		if(screenName)
+			document.getElementById('SubToolbar').innerHTML = '<div>' + screenName + '</div>';
+	}
+
+	function getLoadingBar()
+	{
+		if(typeof(loadingBar) == 'undefined')
+			loadingBar = document.getElementById('bufferIframe').contentWindow.document.body.innerHTML;
+		return loadingBar;
+	}
+
+	function backScreenOn(doResize)
+	{
+		var obj = document.getElementById('ToolbarIn');
+		if(obj)
+			obj.style.display = '';
+
+		if(typeof(forceReload) != 'undefined' && forceReload)
+		{
+			parent.document.getElementById('body-frame').src = '<? $mainPageURL ?>';
+			forceReload = false;
+			return;
+		}
+		if(typeof(currentAction) != 'undefined' &&
+			(currentAction == 'reply' || currentAction == 'reply_all' || currentAction == 'forward'))
+		{
+			currentAction = 0;
+			displayOn({'msgViewToolbar':1, 'msgViewIframe':1, 'msgViewHeaderContainer':1}, '<? $mmStrings.msg_screen_short_name ?>');
+		}
+		else
+			displayOn({'mainScreenToolbar':1, 'PageSplitter':1}, '<? $mmStrings.mm_screen_short_name ?>');
+		if(typeof(doResize) != 'undefined' && doResize)
+			resizeIframe();
+	}
+
+	function getMessage(account, uid, size)
+	{
+/*
+		var obj = document.getElementById('MsgListRow_' + uid);
+		if(obj && obj.style.fontWeight == 'bold' &&
+			size > <? $MM_RECEIVE_SIZE_LIMIT ?> && !confirm('<? $MM_DISPLAY_SIZE_LIMIT ?>'))
+			return false;
+*/
+		displayOn({'msgViewToolbar':1, 'msgViewIframe':1, 'msgViewHeaderContainer':1}, '<? $mmStrings.msg_screen_short_name ?>');
+
+		if(typeof(currentAccount) == 'undefined' || typeof(currentUID) == 'undefined' ||
+			currentAccount != account || currentUID != uid)
+		{
+			currentAccount = account;
+			currentUID = uid;
+
+			document.getElementById('msgViewHeaderContainer').innerHTML = '';
+
+			obj = document.getElementById('msgViewIframe');
+			obj.contentWindow.document.body.innerHTML = getLoadingBar();
+			obj.src = 'getmessage.php?MMM_ACCOUNT='+account+'&MMM_UID='+uid;
+		}
+		var obj = document.getElementById('MsgListRow_' + uid);
+		if(obj != null && obj.style.fontWeight == 'bold')
+		{
+			obj.style.fontWeight = 'normal';
+			decreaseNew('inboxRootNew', 'inboxRootLabel');
+			decreaseNew('AccNewRow_' + account, 'AccNameRow_' + account);
+		}
+	}
+
+	function decreaseNew(numID, labelID)
+	{
+		obj = document.getElementById(numID);
+		var val = obj.innerHTML.replace(/[\(\)]/g, '') - 1;
+		if(val > 0)
+			obj.innerHTML = '(' + val + ')';
+		else
+		{
+			obj.innerHTML = '';
+			document.getElementById(labelID).style.fontWeight = 'normal';
+		}
+	}
+
+	var editorIsLoaded = false;
+
+	function getSendForm_2(action, id)
+	{
+		if(action == 'template') // && !id)
+			displayOn({'composeTemplateToolbar':1, 'sendFormIframe':1}, '<? $mmStrings.snd_screen_newtemplate_name ?>');
+		else
+			displayOn({'sendFormToolbar':1, 'sendFormIframe':1}, '<? $mmStrings.snd_screen_newmessage_name ?>');
+
+		currentAction = action;
+
+		if(typeof(id) == 'undefined')
+		{
+			currentMID = '';
+			var mid = '';
+		}
+		else
+		{
+			currentMID = id;
+			var mid = '&mid=' + id;
+		}
+
+		var obj = document.getElementById('sendFormIframe');
+		if(typeof(skipSendFormLoad) == 'undefined')
+		{
+			skipSendFormLoad = 1;
+			obj.src = '<? $mm_path ?>sendform.php?action=' + action + mid;
+		} else {
+			obj.contentWindow.fillSendForm(id);
+			obj.contentWindow.prepareSendForm();
+		}
+	}
+
+	function getMessageForm(id, status)
+	{
+		if(!isNaN(id)) {
+
+			currentStatus = status;
+			currentAccount = '';
+
+			var obj = document.getElementById('ToolbarIn');
+			if(obj)
+				obj.style.display = '';
+
+			if(status == 0)
+			{
+				getSendForm_2('draft', id);
+				return;
+			}
+			else if(status == 100)
+			{
+				getSendForm_2('template', id);
+				return;
+			}
+			else if (status == 'fromTemplate')
+			{
+				getSendForm_2('fromTemplate', id);
+				return;
+			}
+
+			displayOn({'msgViewToolbar':1, 'msgViewIframe':1, 'msgViewHeaderContainer':1}, '<? $mmStrings.msg_screen_short_name ?>');
+
+			var obj = document.getElementById('msgViewIframe');
+			obj.contentWindow.document.body.innerHTML = getLoadingBar();
+			obj.src = '<? $viewFormURL ?>?mid=' + id + '&status=' + status;
+		}
+		else {
+			var arr = id.split(/~/);
+			var uid = '';
+			for(var i=1; i<arr.length; i++) {
+				uid += arr[i];
+			}
+			getMessage(arr[0], uid);
+		}
+	}
+
+	function getSearchPage()
+	{
+		var url = '<? $searchPageURL ?>?showInput=1';
+		var params = '';
+
+		AjaxLoader.doRequest (
+			url,
+			searchPageLoaded,
+			params,
+			{scope: this}
+		);
+	}
+
+	function searchPageLoaded(response, options)
+	{
+		document.getElementById('SplitterRightPanelContainer').innerHTML = response.responseText;
+
+		document.getElementById('searchString').focus();
+	}
+
+	function doSearch_2(searchString, showMore)
+	{
+		if(!searchString)
+			return;
+
+		currentSearchString = searchString;
+
+		var currentPage = document.getElementById('currentPage').value;
+		if(showMore)
+			currentPage++;
+
+		document.getElementById('searchResultsContainer').innerHTML = '<span style="padding-left: 20px">' + getLoadingBar() + '</span>';
+
+		var url = '<? $searchPageURL ?>';
+		var params = 'searchString=' + searchString + '&currentPage=' + currentPage;
+
+		AjaxLoader.doRequest (
+			url,
+			searchDone,
+			params,
+			{scope: this}
+		);
+	}
+
+	function searchDone(response, options)
+	{
+		var height = document.getElementById('ContentScroller').offsetHeight;
+
+		document.getElementById('searchResultsContainer').innerHTML = response.responseText;
+
+		height -= document.getElementById('main-header').offsetHeight + 76;
+		document.getElementById('searchResultsScrollable').style.height = height + 'px';
+	}
+
+	function processTextButton_2(btn, form)
+	{
+		if(currentSearchString && btn == 'deletebtn') {
+
+			var form = document.form;
+			form.action = '../../2.0/search.php';
+			form.target = 'bufferIframe';
+
+			form.currentAction.value = 'delete';
+			form.submit();
+
+		} else if(btn == 'delbtn') {
+
+			document.getElementById('currentMID').value = msgParams['mid'];
+			processTextButton(btn, form);
+		
+		} else {
+			processTextButton(btn, form);
+		}
+	}
+
+	function getSelectTemplatePage()
+	{
+		displayOn({'selectTemplateToolbar':1, 'msgViewIframe':1}, '<? $mmStrings.mm_screen_composetpl_menu ?>');
+
+		obj = document.getElementById('msgViewIframe');
+		obj.contentWindow.document.body.innerHTML = getLoadingBar();
+		obj.src = '<? $selectTemplateURL ?>';
+
+		currentMID = '';
+	}
+
+	function cancelPending(mid)
+	{
+		AjaxLoader.doRequest('../../2.0/cancelPending.php?mid='+mid, '', '', {scope: this});
+		forceReload = true;
+		getSendForm_2('draft', mid)
+	}
+
+	function trim(str) {return str.replace(/^\s*(.*?)\s*$/,"$1")}
+
+	RegisterOnLoad( function(){ SplitterScrollPanel( '<? $currentFolder ?>' ) } );
+	RegisterOnLoad(delayedResizeIframe);
+	Event.observe(window, 'resize', delayedResizeIframe);
+
+	function dump(obj, obj_name)
+	{
+	  var result = "";
+	  for(var i in obj)
+	    result += obj_name + "." + i + " = " + obj[i] + "\n";
+	  return result;
+	}
+
+//-->
+</script>

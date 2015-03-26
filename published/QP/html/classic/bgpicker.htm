@@ -1,0 +1,5 @@
+<select class="control" style="width:160px" name="<?$arrayName ?>[<? $selName ?>]" id="<?$arrayName ?>[<? $selName ?>]" onChange="updateListbox('<? $selName ?>');">
+<? foreach from=$colorArray key=curColor item=nameColor ?>
+	<option style="background-color:<? $curColor ?>" value="<? $curColor ?>" <? conditionalOutput invalidField=$value field=$curColor text="selected"  ?>><? $nameColor ?></option>
+<? /foreach ?>
+</select>

@@ -1,0 +1,62 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<? include file="../../../common/html/classic/header.htm"?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+
+		<? if !$noFolders ?>
+
+			<? assign var=noBackButton value=1 ?>
+			<? assign var=changeRightsInstruction value=1 ?>
+			<? assign var=noSelfRightsLabel value=1 ?>
+
+			<?include file="../../../common/html/classic/tree_templates/tree_accessrightsinfo.htm" ?> 
+
+			<div style="width: 500; padding-top: 8px; margin-top: 8px" class=topBorder>
+				<b><? $ddStrings.paa_note_text ?></b>
+			</div>
+
+			<div style="height: 15"></div>
+
+			<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$ddStrings.paa_propagate_btn formname="form" space_right=5 ?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+		<? else ?>
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td class=largeText_normal><? $folderName ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+			<? $ddStrings.paa_nofolders_message ?>
+
+			<div style="height: 15"></div>
+
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_ok_btn formname="form"?>
+		<? /if ?>
+
+	<? else ?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+	<? /if ?>
+	<input type="hidden" name="btndummy">
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="DF_ID" value="<? $DF_ID?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

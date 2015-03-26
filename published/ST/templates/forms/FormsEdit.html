@@ -1,0 +1,266 @@
+
+<link rel="stylesheet" href="{{$url.common}}css/colorpicker.css" type="text/css" />
+<script type="text/javascript" src="{{$url.common}}js/jquery.colorpicker.js"></script>
+<style>
+    div.color { width: 54px; height: 18px; border: 1px solid #666; float:left; margin:0 0.5em 0 0 ;}
+    .w{width:100%}
+</style>
+
+<form id="formEdit">
+<h1><input type="text" name="form-name" style="width:475px" value="{{$info.WG_DESC}}" /></h1>
+<!--div class="button-pane">
+<button class="submit">[`Save changes`]</button>
+<button onclick="$.wbs.loadHash('#/forms/info/{{$info.WG_ID}}/')">[`Cancel`]</button>
+</div-->
+<div id="form-tabs" class="tabs">
+	<ul class="tabs-nav">
+	    <li class="tab-fields"><a href="#/forms/edit/{{$info.WG_ID}}/fields/"><span>[`Fields`]</span></a></li>
+	    <li class="tab-view"><a href="#/forms/edit/{{$info.WG_ID}}/view/"><span>[`View`]</span></a></li>
+	    <li class="tab-aftersubmit"><a href="#/forms/edit/{{$info.WG_ID}}/aftersubmit/"><span>[`After submit`]</span></a></li>
+	</ul>
+</div>
+<div id="form-fields" class="tabs-body" style="display:none">
+
+		<table class="tab-settings" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td class="label">[`Client's name`]</td>
+			<td><input class="longfield" name="labels[name]" type="text" value="{{if $params.FIELDS.name}}{{$params.FIELDS.name}}{{else}}{{$params.LABELS.name}}{{/if}}" /></td>
+		</tr>
+		<tr>
+			<td class="label">[`Email address`]</td>
+			<td><input class="longfield" name="labels[email]" type="text" value="{{if $params.FIELDS.email}}{{$params.FIELDS.email}}{{else}}{{$params.LABELS.email}}{{/if}}" /></td>
+		</tr>
+<!--
+		<tr>
+			<td colspan="3" class="delimeter"><div class="table-delimeter"></div><h4 class="subtitle">[`Select classifiers you want to include in the form`]</h4></td>
+		</tr>
+    {{foreach from=$classTypes key=key item=clType}}
+		<tr>
+		    <td><input class="classes" name="clType[]" value="{{$clType.id}}" type="checkbox" {{if $clType.selected eq 1}}checked="checked"{{/if}}/></td>
+		    <td>{{$clType.name}}</td>
+			<td>
+				<select class="longfield" name="classes-menu[]" value="{{$clType.id}}" {{if $clType.selected eq 0}}disabled="disabled"{{/if}}>
+					<option value="0" {{if $clType.type eq 1}}selected="selected"{{/if}}>{{if $clType.multiple eq 1}}checkbox{{else}}radio{{/if}}</option>
+		            <option value="1" {{if $clType.type eq 1}}selected="selected"{{/if}}>menu</option>
+				</select>
+			</td>
+		</tr>
+    {{/foreach}}
+        <tr><td colspan="3" class="delimeter"><div class="table-delimeter"></div></td></tr>
+-->
+		<tr>
+			<td class="label">[`Request summary`]</td>
+			<td><input class="longfield"  name="labels[summary]" type="text" value="{{if $params.FIELDS.summary}}{{$params.FIELDS.summary}}{{else}}{{$params.LABELS.summary}}{{/if}}" /></td>
+		</tr>				
+		<tr>
+			<td class="label">[`Request text`]</td>
+			<td><input class="longfield"  name="labels[text]" type="text" value="{{if $params.FIELDS.text}}{{$params.FIELDS.text}}{{else}}{{$params.LABELS.text}}{{/if}}" /></td>
+		</tr>
+        <tr><td colspan="3" class="delimeter"><div class="table-delimeter"></div></td></tr>
+		<tr>
+			<td class="label"><input class="f" name="params[FIELDS][]" value="captcha" type="checkbox" {{if $params.FIELDS.captcha}}checked="checked"{{/if}}/>[`CAPTCHA`]</td>
+			<td><input class="longfield" name="labels[captcha]" type="text" {{if !$params.FIELDS.captcha}}disabled="disabled"{{/if}} value="{{if $params.FIELDS.captcha}}{{$params.FIELDS.captcha}}{{else}}{{$params.LABELS.captcha}}{{/if}}" /></td>
+		</tr>
+		</table>
+  
+</div>
+<div id="form-view" class="tabs-body" style="display:none">
+	
+		<table class="tab-settings">
+		<tr>
+			<td class="label">[`Caption`]:</td>
+			<td><input class="longfield" name="params[TITLE]" value="{{$params.TITLE}}" type="text" /></td> 
+		</tr>
+		<tr>
+			<td class="label">[`Caption text color`]:</td>
+			<td>
+			<div class="color" style="background:{{$params.TITLECOLOR}}">
+			<input name="params[TITLECOLOR]" value="{{$params.TITLECOLOR}}" type="hidden" />
+			</div>
+			<a href="#" class="change-color">[`change`]</a>
+			</td> 
+		</tr>
+		<tr>
+			<td class="label">[`Caption background color`]:</td>
+			<td>
+			<div class="color" style="background:{{$params.TITLEBGCOLOR}}">
+			<input name="params[TITLEBGCOLOR]" value="{{$params.TITLEBGCOLOR}}" type="hidden" />
+			</div> 
+			<a href="#" class="change-color">[`change`]</a>
+			</td>
+		</tr>
+		<tr><td colspan="2" class="delimeter"><div class="table-delimeter"></div></td></tr>
+		<tr>
+			<td class="label">[`Form width`]:</td>
+			<td><input name="params[WIDTH]" size="5" value="{{$params.WIDTH}}" type="text" /></td> 
+		</tr>
+		<tr>
+			<td class="label">[`Form background color`]:</td>
+			<td>
+			<div class="color" style="background:{{$params.BGCOLOR}}"><input name="params[BGCOLOR]" value="{{$params.BGCOLOR}}" type="hidden" /></div>
+			<a href="#" class="change-color">[`change`]</a>
+			</td> 
+		</tr>
+		<tr><td colspan="2" class="delimeter"><div class="table-delimeter"></div></td></tr>						
+		<tr>
+			<td class="label">[`Button`]:</td>
+			<td><input  class="longfield" name="params[SAVEBUTTON]" value="{{$params.SAVEBUTTON}}" type="text" /></td> 
+		</tr>
+		<tr><td colspan="2" class="delimeter"><div class="table-delimeter"></div></td></tr>
+		<tr>
+			<td class="label">[`Language`]:</td> 
+			<td><select id="form-lang" name="info[WG_LANG]">
+			{{foreach from=$langs key=lang item=lang_title}}
+				<option value="{{$lang}}"{{if $lang==$info.WG_LANG}} selected="selected"{{/if}}>{{$lang_title}}</option>
+			{{/foreach}}
+			</select><br />
+			</td>
+		</tr>
+		<tr><td colspan="2"><span style="font-size:80%">[`System messages and default field names will appear in this language.`]</span></td></tr>			
+		</table>
+  
+</div>
+<div id="form-aftersubmit" class="tabs-body" style="display:none">
+	<table class="tab-settings" cellpadding="0" cellspacing="0" width="100%">
+		<tr><td colspan="2">
+			<h4 class="subtitle">[`Once user clicks submission button in this form:`]</h4></td></tr>
+			<tr><td colspan="2"><label><input name="success-action" value="AFTERTEXT" type="radio" {{if !$params.REDIRECT}}checked="checked"{{/if}} /> [`Stay on the form page and display this message:`]</label></td></tr>
+			<tr><td colspan="2">
+            
+			<textarea class="AFTERTEXT w" {{if $params.REDIRECT}}disabled="disabled"{{/if}} name="params[AFTERTEXT]" class="w" rows="3">{{$params.AFTERTEXT}}</textarea>
+			</td></tr>
+			<tr><td colspan="2"><label><input name="success-action" value="REDIRECT" type="radio" {{if $params.REDIRECT}}checked="checked"{{/if}} /> [`Redirect to another page:`]</label></td></tr>
+			<tr><td colspan="2">
+			<input class="w" id="redirect-url" {{if !$params.REDIRECT}}disabled="disabled"{{/if}} class="w REDIRECT" type="text" name="params[REDIRECT]" value="{{$params.REDIRECT|escape:"html"}}" />
+			</td></tr>
+			<tr><td colspan="2"><div class="error-url" style="display:none;">[`Incorrect URL`]</div>
+			<label><input {{if !$params.REDIRECT}}disabled="disabled"{{/if}} id="new-window" style="margin-left: 0" type="checkbox" name="params[NEWWINDOW]" value="1" {{if $params.NEWWINDOW}}checked="checked"{{/if}} /> [`Open in new window`]</label>
+			
+
+			<!--div class="error-emails">[`To enable "Send email" function you have to add Email field in this form.`]</div>
+			<label><input class="semail"  name="params[EMAILSEND]" value="1" type="checkbox" {{if $params.EMAILSEND}}checked="checked"{{/if}} />[`Send email to user`]</label-->
+			<script type="text/javascript">
+			$("input[name=success-action]").click(function () {
+				if (this.value == 'REDIRECT') {
+					$("#redirect-url").removeAttr('disabled');
+					$("textarea.AFTERTEXT").attr('disabled', 'disabled');
+					$("#new-window").removeAttr('disabled');
+				} else {
+					$("#redirect-url").removeClass('error').val('').attr('disabled', 'disabled');
+					$(".error-url").hide();
+					$("textarea.AFTERTEXT").removeAttr('disabled');
+					$("#new-window").attr('disabled', 'disabled');
+				}
+			});
+			</script>
+		</td></tr>
+		
+		<!--tr>
+			<td>[`From (Name)`]:</td>
+			<td><input class="semail w" name="params[EMAILFROMNAME]" value="{{$params.EMAILFROMNAME}}" type="text" /></td> 
+		</tr>
+		<tr>
+			<td>[`From (Email)`]:</td>
+			<td><input class="semail w" name="params[EMAILFROM]" value="{{$params.EMAILFROM}}" type="text" /></td> 
+		</tr-->	
+		
+        <tr>
+        	
+            <td class="delimeter"><div class="table-delimeter"></div><h4 class="subtitle">[`Choose email box from which return messages will be sent`]:</h4></td>
+        </tr>
+        <tr>
+            <td>
+            	<select name="params[SOURCEID]">
+                    {{foreach from=$sources.email key=id item=s name=source}}
+					   <option value="{{$s.id}}" {{if !$params.SOURCEID}}{{if $s.value eq $default_email}} selected="selected" {{/if}}{{else}}{{if $s.id eq $params.SOURCEID}} selected="selected" {{/if}}{{/if}}>
+					   	{{$s.name}} &lt;{{$s.value}}&gt;
+					   </option>
+            		{{/foreach}}
+            	</select>
+            </td> 
+        </tr>
+		<!--tr>
+			<td>[`Subject`]:</td>
+			<td><input class="semail w" name="params[EMAILSUBJECT]" value="{{$params.EMAILSUBJECT}}" type="text" /></td> 
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="send_mail_editor"><div class="editor_wrapper" style="position:relative;">{{$params.EMAILTEXT}}</div></div>
+			</td>
+		</tr-->	
+		<!--tr>
+			<td colspan="2"><a href="#" id="insert-url">[`Insert a confirmation link into this message`]</a></td>
+		</tr-->
+		</table>
+  
+</div>
+</form>
+
+<div class="button-pane">
+	 
+<button class="submit">[`Save changes`]</button>
+<button onclick="$.wbs.loadHash('#/forms/info/{{$info.WG_ID}}/')">[`Cancel`]</button>
+</div>
+
+<script type="text/javascript">
+
+$("a.change-color").click(function () {
+    $(this).prev().click();
+    return false;
+});
+$('.color').hover(function () {$(this).css('cursor', 'pointer')}, function () {$(this).css('cursor', 'default')}).ColorPicker({
+    onSubmit: function(hsb, hex, rgb, el) {
+        $(el).css('background', '#' + hex)
+        $(el).children('input').val('#' + hex);
+        $(el).ColorPickerHide();
+    },
+    onBeforeShow: function () {
+        $(this).ColorPickerSetColor($(this).children('input').val());
+    }
+})
+.bind('keyup', function(){
+    $(this).ColorPickerSetColor(this.value);
+});
+
+var submitForm = function(){
+	var classesStr = '';
+	$(".classes:checked").each(function(){
+		var $this = $(this);
+		var $select = $('select', $this.closest('tr'));
+		classesStr += $this.val() + '=' + $select.val()+';'
+	})
+	var formData = $("#formEdit").serialize() + '&save=y' + '&id=' + '{{$info.WG_ID}}' + (classesStr!=''?"&classes="+classesStr:'');
+	$.wbs.ajaxRequest({
+		url: '?m=forms&act=save',
+		requestMethod: 'post',
+		data: formData,
+		callback: function(data){
+            $('#pageContainer').empty();
+			$.wbs.loadHash('#/forms/info/{{$info.WG_ID}}/');
+            //$('#pageContainer').empty();
+			//location.reload();
+		}
+	})
+    return false;
+}
+$('input[type=checkbox].classes').change(function(){
+    if (!this.checked){
+        $('select', $(this).closest('tr')).attr('disabled', 'disabled');
+    } else {
+        $('select', $(this).closest('tr')).removeAttr('disabled');
+    }
+})
+$('input[type=checkbox].f').change(function(){
+	if (!this.checked){
+        $('input[type=text]', $(this).closest('tr')).attr('disabled', 'disabled');
+	} else {
+        $('input[type=text]', $(this).closest('tr')).removeAttr('disabled');
+	}
+})
+$('.editor_wrapper').wbsEditor({fill:false, height:150, name:'params[EMAILTEXT]', menuOffset:true});
+$('.editor_wrapper').css('border','1px solid #8D9499')
+$('.submit').click(function(){
+    submitForm();
+	return false;
+})
+</script>

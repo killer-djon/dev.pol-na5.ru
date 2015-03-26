@@ -1,0 +1,39 @@
+
+{if $answer}
+	<h1 class="breadcrumbs"><a href='{"answer="|set_query_html}'>{lbl_pgn_product_reviews}</a></h1>
+	<h2 class="post_title">{$discussion.CommentAuthor|escape:"html"|linewrap}</h2>
+	<div class="post_date">{$discussion.CommentDate|escape:"html"}</div>
+	<div class="post_content">{$discussion.CommentText|escape:"html"|linewrap}</div>
+{else}
+
+	<h1>{$CurrentDivision.name|translate}</h1>
+
+	{if $GridRows}
+	<table class="grid" width="100%">
+	<tr class="gridsheader">
+		{include file="backend/gridheader.tpl.html"}
+	</tr>
+
+	{foreach from=$GridRows item=_row}
+	{assign var="_answer_url" value="&answer=`$_row.CommentID`"|set_query_html}
+	<tr class="{cycle values='gridline,gridline1'}">
+		<td nowrap="nowrap"><a href='{$_answer_url}'>{$_row.CommentDate}</a></td>
+		<td><a href='{$_answer_url}'>{$_row.ArticleTitle|escape:'html'|truncate:20}</a></td>
+		<td><a href='{$_answer_url}'>{$_row.CommentAuthor|escape:'html'|truncate:20}</a></td>
+		<td><a href='{$_answer_url}'>{$_row.CommentText|escape:'html'|truncate:50:'...':true}</a></td>
+		<td align="center">
+			<a href='{"action=delete_comment&CommentID=`$_row.CommentID`"|set_query_html}' title='{"cnfrm_delete"|translate}' class="confirm_action">
+				<img src="images_common/remove.gif" alt="{"btn_delete"|translate}" />
+			</a>
+		</td>
+	</tr>
+	{/foreach}
+
+	<tr class="gridsfooter"> 
+		<td colspan="{$GridHeadersNum}">{include file="backend/lister.tpl.html"}</td>
+	</tr>
+	</table>
+	{else}
+		{"str_empty_list"|translate}
+	{/if}
+{/if}

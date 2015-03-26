@@ -1,0 +1,32 @@
+<? wbs_splitterPanelHeader
+	caption=$ddStrings.links_screen_name
+	active=true
+	id="RightPanelHeader"
+?>
+
+<? wbs_splitterScrollableArea ?>
+	<div class='SimpleContentBlock' style='width: 600px'>
+		
+		<? $ddStrings.links_description_text ?>
+		<BR><BR>
+		
+		<b><? $ddStrings.links_sample_label ?></b>: <a target='_blank' href='http://demo./files/roses'>http://demo./files/roses</a>
+		<BR><BR>
+		
+		<? $ddStrings.links_create_text ?>
+		<BR><BR>
+		
+		<? if $links && !$noWidgetsList ?>
+			<? wbs_formCaption text=$ddStrings.links_availablelinks_label ?>
+					
+			<div style='padding-left: 20px'>
+				<? foreach from=$links item=widget ?>
+					<a href='javascript:void(0)' onClick='foldersTree.selectLink("<? $widget.WG_ID ?>")'><? $widget.WG_DESC ?></a><BR>
+				<? /foreach ?>
+			</div>
+		<? /if ?>
+		
+		
+		
+	</div>
+<? /wbs_splitterScrollableArea ?>

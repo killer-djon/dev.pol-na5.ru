@@ -1,0 +1,141 @@
+<!-- current_state_color: {{$current_state_color}}; request.state: {{$request.state}} request_color: {{$request_color}}-->
+<div style="clear:both"></div>
+<div id="ticket">
+    <p><a href="javascript:void(0)" class="backlink">[`Back to request list`]</a></p>
+	<!--div style="float:right" id="top-btns">
+		{{foreach from=$actions key=n item=action}}
+            <button id="{{$action.type}}" rel="{{$action.id}}">{{$action.name}}</button>
+        {{/foreach}}
+	</div-->
+<div style="clear:both"></div>
+    <!--<div class="ticket-container">
+-->        {{if $source.params.message}}
+            <div class="message">{{$source.params.message}}</div>
+        {{/if}}
+      <div class="ticket-info-container">
+<div class="request-subject">
+<span class="date request-state">[`Status`]: <b style="color:{{$current_state_color}}">{{$request.state}}</b></span>
+<span class="date request-id">[`Id`]: <b>{{$request.id}}</b></span>
+<div class="subject">{{$request.subject}}</div>
+</div>
+      <div class="request-content">
+      <div class="request-top" style="background-color:{{$request_color}}">
+      <span class="date">{{$request.datetime}}</span><span class="req-text">Request text</span></div>
+            <div class="text ui-widget-content" style="">
+            <table style="width:100%" style="margin:0;"><tr><td id="left-column" valign="top">{{$request.text}}
+            {{if $request.attachments}}
+            <p class="attachments">
+                <b class="gray">[`Attachment(s)`]:</b>
+                {{foreach from=$request.attachments key=n item=file}}
+                <a href="?key={{$smarty.get.key}}&m=requests&attachment=r{{$request.id}}{{$n}}">{{$file.name}}</a>
+                ({{$file.size|filesize}}) &nbsp;
+                {{/foreach}}
+            </p>
+            {{/if}}
+            </td>
+			</tr>
+            </table>
+            
+            </div>
+
+        </div>
+   </div>
+
+{{foreach from=$log item=l}}
+<div class="ticket-log-container {{if $l.has_border}}greyborder {{/if}} {{$all_actions[$l.action_id].type|lower}}">
+        <div class="header {{if !$l.text}}{{/if}}" {{if $l.has_border}}style="background:{{$l.light_color}}"{{/if}}>
+            <!-- {{if $l.upic}}<div class="userpick"><img height="32" src="{{$l.upic}}" /></div>{{/if}} -->       
+            <p class="action-info"><span class="date">{{$l.datetime}}</span>
+            <span title="" class="author" {{if $l.has_border}}style="color:{{$l.color}}"{{/if}}>{{if $l.account}}{{$l.account}}{{else}}{{$l.contact}}{{/if}}</span>
+            <span class="action">{{$all_actions[$l.action_id].log_name}}</span></p>
+        </div>
+    {{if $l.text}}
+        <div class="text" style="border-left-color:{{$l.color}}">
+            {{$l.text}}
+			
+			{{if $l.attachments|@sizeof > 0}}
+            <p class="attachments">
+                <b class="gray">[`Attachment(s)`]:</b>
+                {{foreach from=$l.attachments key=n item=file}}
+                <a href="?key={{$smarty.get.key}}&m=requests&attachment=l{{$l.id}}{{$n}}">{{$file.name}}</a>
+                ({{$file.size|filesize}}) &nbsp;
+                {{/foreach}}
+            </p>
+			{{/if}}
+             
+        </div>
+	{{/if}}
+</div>
+{{/foreach}}</div>
+<div id="reopen-request"style="display:none">
+    <div class="header ui-corner-top">
+    [`Reopen request`]
+    </div>
+    <div class="action-form text">
+    <form id="reopen-request-form" enctype="multipart/form-data" method="post" action="?key={{$smarty.get.key}}&DK_KEY={{$smarty.get.DK_KEY}}&t=requests&iframe={{$smarty.get.iframe}}&a=info&id={{$smarty.get.id}}&action={{foreach from=$actions key=n item=action}}{{if $action.type eq 'CLIENT-REOPEN'}}{{$action.id}}{{/if}}{{/foreach}}">
+
+        <div id="reopen" class="ui-corner-bottom"></div>
+        <div class="button-pane ui-corner-bottom"><input type="submit" value="[`Send`]" />
+        <input type="button" value="[`Cancel`]" id="reopen-request-cancel" /></div>
+    </form>
+    </div>
+</div>
+
+
+
+<div>
+	<a href="javascript:void(0)" class="backlink">[`Back to request list`]</a>
+</div>
+<div style="float:right" id="bottom-btns">
+        {{foreach from=$actions key=n item=action}}
+            <button id="{{$action.type}}" rel="{{$action.id}}">{{$action.name}}</button>
+        {{/foreach}}
+</div>
+<script>
+    $('#reopen').wbsEditor({
+        name: 'reopen',
+        attachFiles: true,
+        withFrame: true,
+        menuOffset: true
+    })
+	
+	$('button').button().click(function(){
+		return false;
+	});
+	$('.backlink').click(function(){
+        location.href = '?key={{$smarty.get.key}}&DK_KEY={{$smarty.get.DK_KEY}}&t=requests&iframe={{$smarty.get.iframe}}';
+		//location.hash="";
+        //$('#requests-table').show();
+        //$('#request').empty().hide();
+	})
+	/* User actions */
+		
+    $('#CLIENT-REOPEN').click(function(){
+		$(".backlink").hide();
+        $('#bottom-btns, #top-btns').toggle();
+        $('#reopen-request').toggle();
+        $('body').scrollTop($('body').height());
+		$('#reopen').wbsEditor('focus');
+	})
+	
+    $('#CLIENT-CANCEL').click(function(){
+        $.get("?key={{$smarty.get.key}}&DK_KEY={{$smarty.get.DK_KEY}}&t=requests&iframe={{$smarty.get.iframe}}&a=info&id={{$smarty.get.id}}",{'action':$(this).attr('rel')}, function(response){
+            location.href = '?key={{$smarty.get.key}}&DK_KEY={{$smarty.get.DK_KEY}}&t=requests&iframe={{$smarty.get.iframe}}';
+        });
+    })
+	$('#reopen-request-cancel').click(function(){
+        $('#bottom-btns, #top-btns').show();
+        $('#reopen-request').hide();
+        $(".backlink").show();
+	});
+    $('#reopen-request-form').submit(function(){
+        var reopen = $('[name=reopen]').val();
+        if (!reopen) {
+            $('#reopen').addClass('error');
+        }
+        if (!reopen){ 
+            return false;
+        }
+    })
+	$('.request-content a, .ticket-log-container a').attr('target', '_blank');
+</script>

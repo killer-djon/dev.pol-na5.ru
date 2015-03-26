@@ -1,0 +1,225 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+
+	function initFocus()
+	{
+		<? if $invalidField ?>
+			focusFormControl('messageData[<? $invalidField ?>]');
+		<? else ?>
+			focusFirstFormControl();
+		<? /if ?>
+	}
+
+	function fillSelected()
+	{
+		arr = new Array('includedContacts[]');
+		fillSelectedLists( arr );
+	}
+
+	function setFileName( obj )
+	{
+		textField = findObj('messageData[ARCHIVENAME]');
+		if (textField && obj.checked && !textField.value.length)
+			textField.value = "attachment";
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="initFocus()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+	<input type="hidden" name="btndummy">
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="doclist" value="<? $doclist?>">
+
+	<? include file="../../../common/html/classic/header.htm"?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+
+		<table cellpadding=0 cellspacing=2 border=0>
+			<? if !$noSenderEmail ?>
+				<tr>
+					<td><? $ddStrings.sm_priority_label|cat:": " ?></td>
+					<td>
+							<table cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td>
+										<select name="messageData[PRIORITY]" class="control" onChange="fillSelected(); this.form.submit()">
+											<? html_options values=$priorityValues selected=$messageData.PRIORITY output=$priorityNames ?>
+										</select>&nbsp;
+									</td>
+									<td>
+										<? if $messageData.PRIORITY == 0 ?>
+											<img src="../../../common/html/classic/images/lowpr.gif" width=16 height=16>
+										<? elseif $messageData.PRIORITY == 2 ?>
+											<img src="../../../common/html/classic/images/hipr.gif" width=16 height=16>
+										<? /if ?>
+									</td>
+								</tr>
+							</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2>&nbsp;</td>
+				</tr>
+			<? /if ?>
+			<tr>
+				<td><? $ddStrings.sm_from_label|cat:": " ?></td>
+				<td><? $emailName|htmlsafe:true:true?>&nbsp;&lt;<? if !$noSenderEmail ?><? $emailAddress|htmlsafe:true:true ?><? else ?><font color=red><? $ddStrings.sm_nosenderemail_label ?></font><? /if ?>&gt;</td>
+			</tr>
+			<? if !$noSenderEmail ?>
+				<tr>
+					<td colspan=2 height=5></td>
+				</tr>
+				<tr>
+					<td valign=top><? conditionalOutput invalidField=$invalidField field='recipients' text=#invalidFieldHighlight# ?><? $ddStrings.sm_to_label|cat:": " ?></td>
+					<td>
+						<table cellpadding=1 cellspacing=0 border=0>
+							<tr>
+								<td class=readonly_control><? $ddStrings.sm_included_label ?></td>
+								<td>&nbsp;</td>
+								<td class=readonly_control><? $ddStrings.sm_notincluded_label ?></td>
+							</tr>
+							<tr>
+								<td>
+									<select name="includedContacts[]" size="4" style="width: 233px" class="control" multiple ondblclick="moveComboItems('includedContacts[]', 'notincludedContacts[]')">
+										<? html_options values=$includedContacts output=$includedContactsNames ?>
+									</select>
+								</td>
+								<td>
+									<p><a href="javascript: moveComboItems('notincludedContacts[]', 'includedContacts[]' )"><img src="<? "images/buttons/moveLeft.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a><br>
+									<a href="javascript: moveComboItems('includedContacts[]', 'notincludedContacts[]' )"><img src="<? "images/buttons/moveRight.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a>
+									</p>
+								</td>
+								<td>
+									<select name="notincludedContacts[]" size="4" style="width: 232px" class="control" multiple ondblclick="moveComboItems('notincludedContacts[]', 'includedContacts[]')">
+										<? html_options values=$notincludedContacts output=$notincludedContactsNames ?>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td valign=top><? conditionalOutput invalidField=$invalidField field='TOMORE' text=#invalidFieldHighlight# ?><? $ddStrings.sm_tomore_label|cat:": " ?></td>
+					<td>
+						<textarea name="messageData[TOMORE]" cols="30" rows="2" class="control" style="width: 500px"><? $messageData.TOMORE|htmlsafe_textarea:$edited ?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<? conditionalOutput invalidField=$invalidField field='SUBJECT' text=#invalidFieldHighlight# ?>
+						<? $ddStrings.sm_subject_label|cat:": " ?>
+					</td>
+					<td><input type=text name="messageData[SUBJECT]" value="<? $messageData.SUBJECT|htmlsafe:true:true ?>" class=control style="width: 500px"></td>
+				</tr>
+				<tr>
+					<td colspan=2>&nbsp;</td>
+				</tr>
+				<tr>
+					<td valign=top><? conditionalOutput invalidField=$invalidField field='MESSAGE' text=#invalidFieldHighlight# ?><? $ddStrings.sm_message_label|cat:": " ?></td>
+					<td>
+						<textarea name="messageData[MESSAGE]" cols="30" rows="5" class="control" style="width: 500px"><? $messageData.MESSAGE|htmlsafe_textarea:$edited ?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2 height=5></td>
+				</tr>
+
+				<!-- Attachments -->
+
+				<tr>
+					<td colspan=2><hr size=1 noshade></td>
+				</tr>
+
+				<tr>
+					<td valign=top>
+						<? $ddStrings.sm_attachments_label|cat:":&nbsp;" ?>
+					</td>
+					<td width=500>
+						<? foreach from=$fileList item=fileData ?>
+							<div style="float: left; padding-right: 5px; padding-top: 5px">
+								<table cellpadding=0 cellspacing=0 border=0>
+									<tr>
+										<td><img src="<? thumbnail fileName=$fileData->DL_FILENAME size=16 os=win ?>" align=absmiddle border=0 style="margin-right: 5px"></td>
+										<td><? $fileData->DL_FILENAME|htmlsafe:true:true|cat:" ("|cat:$fileData->DL_FILESIZE|cat:")" ?></td>
+									</tr>
+								</table>
+							</div>
+						<? /foreach ?>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2 height=5></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><? $totalFilesInfo ?></td>
+				</tr>
+				<? if $archivesSupported ?>
+					<tr>
+						<td colspan=2>&nbsp;</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td valign=middle width=500>
+
+							<table cellpadding=2 cellspacing=0 border=0>
+								<tr>
+									<td><input type=checkbox value=1 name="messageData[COMPRESS]" <? switchedOutput val=$messageData.COMPRESS true_val=1 str1="checked" ?> onClick="setFileName(this)"></td>
+									<td align=right><? $ddStrings.sm_compressfiles_label ?></td>
+								</tr>
+							</table>
+							<table cellpadding=2 cellspacing=0 border=0>
+								<tr>
+									<td align=right>
+										<? conditionalOutput invalidField=$invalidField field='ARCHIVENAME' text=#invalidFieldHighlight# ?>
+										<? $ddStrings.sm_filename_label|cat:": " ?>
+									</td>
+									<td>
+										<input type=text class=control style="width: 200px" name="messageData[ARCHIVENAME]" value="<? $messageData.ARCHIVENAME|htmlsafe:true:true ?>">.zip
+									</td>
+								</tr>
+								<tr>
+									<td colspan=2 height=5></td>
+								</tr>
+							</table>
+
+							<b><? $kernelStrings.app_note_text|cat:": " ?></b><? $ddStrings.sm_compress_note ?>
+
+
+						</td>
+					</tr>
+				<? /if ?>
+			<? /if ?>
+
+			<tr>
+				<td colspan=2>&nbsp;</td>
+			</tr>
+		</table>
+
+		<? if !$noSenderEmail ?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$ddStrings.sm_send_btn formname="form" space_right=10 onClick="fillSelected()"?>
+		<? /if ?>
+
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" ?>
+
+	<? else ?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+	<? /if ?>
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

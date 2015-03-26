@@ -1,0 +1,102 @@
+<? if $showAccountError ?>
+	<? literal ?>
+		<script id="executable_js">
+			var obj = document.getElementById('AccNameRow_<? /literal ?><? $showAccountError ?><? literal ?>');
+			if(obj)
+				obj.style.color='red';
+		</script>
+	<? /literal ?>
+<? else ?>
+	<? literal ?>
+		<script id="executable_js">
+			var obj = document.getElementById('AccNameRow_<? /literal ?><? $currentAccount ?><? literal ?>');
+			if(obj)
+				obj.style.color='black';
+			currentSearchString = false;
+		</script>
+	<? /literal ?>
+<? /if ?>
+
+
+<? if $fatalError || $errorStr ?>
+	<? wbs_errorBlock ?>
+	<div id="SplitterRightPanelContent"></div>
+<? else ?>
+
+	<? if $hideLeftPanel && $searchString == "" ?>
+		<? assign var=rightPanelControls value="../../../MM/html/cssbased/folderselector.htm" ?>
+		<? assign var=foldersImage value="javascript:processTextButton('showFoldersBtn', 'form')" ?>
+	<? /if ?>
+
+	<? if $searchString != "" ?>
+		<? assign var=hideBottomPanel value=1 ?>
+		<? assign var=rightPanelHeader value=$mmStrings.mm_sreen_searchresult_title ?>
+	<? else ?>
+		<? assign var=rightPanelHeader value=$curFolderName|htmlsafe:true:true ?>
+	<? /if ?>
+
+	<? if $statisticsMode ?>
+		<? if $searchString == "" ?>
+			<? assign var=hideBottomPanel value=1 ?>
+			<? assign var=rightPanelHeader value=$kernelStrings.app_treeavailfolders_name ?>
+			<? assign var=hidePages value=1 ?>
+			<? assign var=docsColumnName value=$mmStrings.mm_sreen_summarydoc_title ?>
+		<? /if ?>
+		<? if $inboxMode ?>
+			<? assign var=rightPanelHeader value=$mmStrings.app_inbox_summary_title ?>
+		<? /if ?>
+	<? /if ?>
+
+	<? if $diskQuotaWarning?>
+		<div style="background: lemonchiffon; color: indianred; font-weight: bold; padding: 0 10px">
+			<? $mmStrings.app_disk_quota_warning ?>
+		</div>
+	<? /if ?>
+
+
+	<? assign var=rightPanelCaptionControls value="../../../common/html/cssbased/pageelements/ajax/catalog_folder.showbtn.htm" ?>
+	<? assign var=captTemplate value="rightheaderpanel.htm"  ?>
+
+
+	<? wbs_splitterPanelHeader
+		caption=$rightPanelHeader
+		active=true
+		id="RightPanelHeader"
+		captionControls=$rightPanelCaptionControls
+		headerControls=$rightPanelControls
+		captionTemplate=$captTemplate
+		height=$rightHeaderHeight
+	?>
+
+
+	<? if !$statisticsMode ?>
+		<? assign var=numDocumentsLabel value=$mmStrings.mm_screen_numdocs_label?>
+		<? if $viewMode != 0 ?>
+			<? include file="../../../MM/html/cssbased/msglist_header.htm" ?>
+		<? /if ?>
+		<? assign var=rightPanelContent value="../../../MM/html/cssbased/msglist.htm" ?>
+	<? else ?>
+		<? if !$inboxMode ?>
+			<? assign var=rightPanelContent value="../../../MM/html/cssbased/folders_summary.htm" ?>
+
+			<? assign var=hideBottomPanel value=1 ?>
+			<? assign var=hidePages value=1 ?>
+			<? assign var=docsColumnName value=$mmStrings.mm_sreen_summarydoc_title ?>
+		<? else ?>
+			<? assign var=rightPanelContent value="../../../MM/html/cssbased/accounts_summary.htm" ?>
+
+			<? assign var=hideBottomPanel value=1 ?>
+			<? assign var=hidePages value=1 ?>
+		<? /if ?>
+	<? /if ?>
+
+	<? wbs_splitterScrollableArea ?>
+		<? include file=$rightPanelContent ?>
+	<? /wbs_splitterScrollableArea ?>
+
+	<? include file="../../../MM/html/cssbased/msglist_footer.htm" ?>
+
+	<input type="hidden" id="currentFolderId" value="<? $currentFolder ?>">
+	<input type="hidden" name="currentAccount"  id="currentAccount" value="<? $currentAccount|htmlsafe:true:true ?>">
+
+<? /if ?>

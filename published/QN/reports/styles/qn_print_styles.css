@@ -1,0 +1,9 @@
+.noteHeader {
+	font-weight: bold;	
+	padding-bottom: 10px;
+}
+
+.noteContent {
+	padding-left: 10px;
+	padding-bottom: 10px;
+}

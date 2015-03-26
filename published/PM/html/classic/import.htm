@@ -1,0 +1,99 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "../classic/stylesets/"|cat:$styleSet|cat:"/pm_styles.css" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <? if $step == 1 ?>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="smallFont" valign=top>
+					<strong>&nbsp;&nbsp;<? $kernelStrings.app_tips_label|cat:":&nbsp;" ?></strong>
+				</td>
+				<td class="smallFont" valign=top>
+					<? $pmStrings.icl_filetip_text|htmlsafe:true:true ?>
+				</td>
+			</tr>
+			<tr colspan=2><td style="height: 5px"></td></tr>
+		</table>
+	  <? include file="../../../common/html/classic/formframe_begin.htm"?>	
+		<table cellpadding=2 cellspacing=0 border=0>
+			<tr>
+				<td class="label"><? conditionalOutput invalidField=$invalidField field=FILE text=#invalidFieldHighlight# ?><?$pmStrings.icl_filefield_label|cat:": "?></td>
+				<td><input name=file type=file class="control" style="width: 300px"></td>
+			</tr>
+		</table>
+		<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true ?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$pmStrings.icl_continue_btn formname="form" space_left=5 space_right=10 ?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? elseif $step == 2 ?>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="smallFont" valign=top>
+					<strong><? $kernelStrings.app_tips_label|cat:":&nbsp;" ?></strong>
+				</td>
+				<td class="smallFont" valign=top>
+					<? $pmStrings.icl_columntip_text|htmlsafe:true:true ?>
+				</td>
+			</tr>
+			<tr colspan=2><td style="height: 5px"></td></tr>
+		</table>
+		<table cellpadding=2 cellspacing=0 border=0 class=list>
+			<tr>
+				<th><? $pmStrings.icl_filecolumns_title ?></th>
+				<th>&nbsp;</td>
+				<th><? $pmStrings.icl_importchecks_title ?></th>
+				<th>&nbsp;</td>
+				<th><? $pmStrings.icl_icrsccols_title ?></th>
+			</tr>
+			<? foreach from=$headers item=headerName key=headerIndex name=columnLoop ?>
+				<tr  <? if ($smarty.foreach.columnLoop.iteration % 2) == 0 ?>bgcolor="<? #oddRowsColor#?>"<? /if ?>>
+					<td><? conditionalOutput invalidField=$invalidField field="column"|cat:$headerIndex text=#invalidFieldHighlight# ?><? $headerName ?></td>
+					<td>&nbsp;</td>
+					<td align=center><input type=checkbox value=1 name="importColumn[<? $headerIndex ?>]" <? switchedOutput val=$importColumn[$headerIndex] true_val=1 str1="checked" ?>></td>
+					<td>&nbsp;</td>
+					<td align=right>
+						<select name="nameMap[<? $headerIndex ?>]">
+							<? html_options values=$columnIDs selected=$nameMap.$headerIndex output=$columnNames ?>
+						</select>
+					</td>
+				</tr>
+			<? /foreach ?>
+		</table>
+		<table cellpadding=2 cellspacing=0 border=0>
+			<tr>
+				<td colspan=2>&nbsp;</td>
+			</tr>
+			<tr>
+				<td align=right><input type=checkbox name=importFirstLine value=1></td>
+				<td><? $pmStrings.icl_importfirst_label ?></td>
+			</tr>
+			<tr>
+				<td colspan=2>&nbsp;</td>
+			</tr>
+		</table>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="importbtn" caption=$pmStrings.icl_import_btn formname="form" space_right=10 ?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <? /if ?>
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="edited" value=1>
+  <input type="hidden" name="step" value=<? $step ?>>
+  <input type="hidden" name="headers_pack" value=<? $headers_pack ?>>
+  <input type="hidden" name="tmpFileName" value=<? $tmpFileName ?>>
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<? if $curScreen == 0 ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+		<th align="left" width="10"><? if $totalItemCount ?><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"><? else ?>&nbsp;<?/if?></th>
+		<th align="left" width="auto"><? makeSortHeader URL=$genericLinkUnsorted fieldName="DL_FILENAME" curStatus=$sorting text=$ddStrings.app_file_field descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+		<th align="left" width="50"><? makeSortHeader URL=$genericLinkUnsorted fieldName="DL_FILETYPE" curStatus=$sorting text=$ddStrings.app_type_field descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+		<th align="left" width="50"><? makeSortHeader URL=$genericLinkUnsorted fieldName="DL_FILESIZE" curStatus=$sorting text=$ddStrings.app_size_field descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+		<th align="left" width="50"><? makeSortHeader URL=$genericLinkUnsorted fieldName="DL_UPLOADDATETIME" curStatus=$sorting text=$ddStrings.app_uploaddate_field descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+		<th align="left" width="auto"><? makeSortHeader URL=$genericLinkUnsorted fieldName="DL_UPLOADUSERNAME" curStatus=$sorting text=$ddStrings.app_owner_field descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+		<th align="left" width="auto"><? makeSortHeader URL=$genericLinkUnsorted fieldName="DL_MODIFYDATETIME" curStatus=$sorting text=$ddStrings.sv_screen_deletedcol_title descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+		<th align="left" width="auto"><? makeSortHeader URL=$genericLinkUnsorted fieldName="DL_MODIFYUSERNAME" curStatus=$sorting text=$ddStrings.sv_screen_deletedbycol_title descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+
+	<!-- Folders -->
+	<? foreach from=$folders item=folder name=folderLoop ?>
+		<tr <? if ($smarty.foreach.folderLoop.iteration % 2) == 0 ?>bgcolor="<? #oddRowsColor#?>"<?else?>bgcolor=#FFFFFF<? /if ?>>
+			<td width=10><input type="checkbox" name="folder[<? $folder->DF_ID ?>]" value="<? $folder->DF_ID ?>"></td>
+			<td><img style="margin-right: 2px" src="../../../common/html/classic/images/folder_open.gif" width=14 height=12 align=absmiddle border=0><? $folder->DF_NAME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $kernelStrings.app_treefolder_text ?></td>
+			<td><? $folder->DF_SIZE ?></td>
+			<td><? $folder->DF_CREATEDATETIME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $folder->DF_CREATEUSERNAME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $folder->DF_MODIFYDATETIME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $folder->DF_MODIFYUSERNAME|htmlsafe:true:true|sureecho ?></td>
+		</tr>
+	<? /foreach ?>
+	<!-- Files -->
+	<? foreach from=$files item=file name=fileLoop ?>
+		<? math equation="((i+o-1) % 2)" i=$smarty.foreach.fileLoop.iteration o=$folderCount assign=parity ?>
+
+		<tr <? if $parity ?>bgcolor="<? #oddRowsColor#?>"<?else?>bgcolor=#FFFFFF<? /if ?>>
+			<td width=10><input type="checkbox" name="document[<? $file.DL_ID ?>]" value="<? $file.DL_ID ?>"><input type=hidden name="filerights[<?$file.DL_ID?>]" value="<? $file.TREE_ACCESS_RIGHTS ?>"></td>
+			<td><img src="<? thumbnail fileName=$file.DL_FILENAME size=16 os=win ?>" style="margin-right: 2px" align=absmiddle border=0><a href="<? $file.ROW_URL ?>" target="_blank"><? $file.DL_FILENAME|htmlsafe:true:true|sureecho ?></a></td>
+			<td><? $file.DL_FILETYPE|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_FILESIZE|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_UPLOADDATETIME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_UPLOADUSERNAME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_DELETE_DATETIME|htmlsafe:true:true|sureecho ?></td>
+			<td><? $file.DL_DELETE_USERNAME|htmlsafe:true:true|sureecho ?></td>
+		</tr>
+	<? /foreach ?>
+	<? if !$totalItemCount ?>
+		<tr><td colspan="8" align="center"><div class="noentries"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></div></td></tr>		
+	<? /if ?>
+  </table>
+<? elseif $curScreen == 1 ?>
+	<? if $thumbnailsSupported ?>
+		<? if $thumbnailEnabled == "ENABLED" ?>
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td><? $ddStrings.sv_screen_thumbenabled_label|cat:"<font color=#009900><b>"|cat:$ddStrings.sv_screen_enabled_label|cat:"</b></font>." ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<? include file="../../../common/html/classic/button.htm" link="" formname="form" align="left" name="disablethumbs" caption=$ddStrings.sv_screen_disablethumb_btn onClick="return confirmDisabling()"?>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><b><? $kernelStrings.app_note_text|cat:": " ?></b><? $ddStrings.sv_disabledthumbs_note ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><hr noshade size=1 width="100%"></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><? $ddStrings.sv_totalimagesnum_label|cat:" "|cat:$totalImageNum ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<? include file="../../../common/html/classic/button.htm" link="" formname="form" align="left" name="updatethumbs" caption=$ddStrings.sv_updatethumbs_btn ?>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<b><? $kernelStrings.app_note_text|cat:": " ?></b><br>
+						<? $ddStrings.sv_updatethumbs_note|htmlsafe:true:true ?>
+					</td>
+				</tr>
+				<? if $thumbnailsGenerated ?>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				<? /if ?>
+			</table>
+
+			<? if $thumbnailsGenerated ?>
+				<table cellpadding=0 cellspacing=0 border=0>
+					<tr>
+						<td><? $ddStrings.sv_filesprocessed_label|cat:": "|cat:$filesProcessed ?></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				<div style="overflow: auto; width: 580px; height: 250px; padding: 5px;" class=framearea>
+					<? foreach from=$messageStack key=folderKey item=folderData ?>
+						<? assign var=files value=$folderData.files ?>
+							<? foreach from=$files key=fileName item=fileData ?>
+								<nobr><? "<b>"|cat:$fileName|cat:"</b>: "|cat:$fileData|cat:"." ?><nobr><br>
+							<? /foreach ?>
+					<? /foreach ?>
+				</div>
+				<table cellpadding=0 cellspacing=0 border=0>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			<? /if ?>
+		<? else ?>
+			<table cellpadding=0 cellspacing=0 border=0>
+				<tr>
+					<td><? $ddStrings.sv_screen_thumbenabled_label|cat:"<font color=#FF0000><b>"|cat:$ddStrings.sv_screen_disabled_label|cat:"</b></font>." ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<? include file="../../../common/html/classic/button.htm" link="" formname="form" align="left" name="enablethumbs" caption=$ddStrings.sv_screen_enablethumb_btn?>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><b><? $kernelStrings.app_note_text|cat:": " ?></b><? $ddStrings.sv_enablethumbs_note ?></td>
+				</tr>
+			</table>
+		<? /if ?>
+	<? else ?>
+		<? $ddStrings.sv_nogdmessage_message|htmlsafe:true:true ?>
+	<? /if ?>
+<? elseif $curScreen == 2 ?>
+	<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td>
+				<? if $versionControlEnabled ?>
+					<table cellpadding=0 cellspacing=0 border=0>
+						<tr>
+							<td colspan=2><? $ddStrings.sv_vcenabled_label|cat:" <font color=#009900><b>"|cat:$ddStrings.sv_vcstatusenabled_label|cat:"</b></font>." ?></td>
+						</tr>
+						<tr>
+							<td colspan=2>&nbsp;</td>
+						</tr>
+
+						<tr>
+							<td>
+								<? $ddStrings.sv_maxversionnum_label|cat:": " ?>
+								<? if $versionOverrideEnabled ?>
+									<? $maxVersionNum|cat:"." ?>
+								<? else ?>
+									<? $ddStrings.sv_unlimited_label|cat:"." ?>
+								<? /if ?>
+							</td>
+							<td><? include file="../../../common/html/classic/button.htm" link="" formname="form" align="left" name="changeversionoverride" caption=$ddStrings.sv_change_btn space_left=10 ?></td>
+						</tr>
+						<tr>
+							<td colspan=2>&nbsp;</td>
+						</tr>
+
+						<tr>
+							<td colspan=2>
+								<? include file="../../../common/html/classic/button.htm" link="" formname="form" align="left" name="disableversioncontrol" caption=$ddStrings.sv_disablevc_btn ?>
+							</td>
+						</tr>
+					</table>
+				<? else ?>
+					<table cellpadding=0 cellspacing=0 border=0>
+						<tr>
+							<td><? $ddStrings.sv_vcenabled_label|cat:" <font color=#FF0000><b>"|cat:$ddStrings.sv_vcstatusdisabled_label|cat:"</b></font>." ?></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<? if !$duplicateFilesFound ?>
+							<tr>
+								<td>
+									<? include file="../../../common/html/classic/button.htm" link="" formname="form" align="left" name="enableversioncontrol" caption=$ddStrings.sv_enablevc_btn ?>
+								</td>
+							</tr>
+							<? else ?>
+								<tr>
+									<td>
+										<table cellpadding=0 cellspacing=0 border=0>
+											<tr>
+												<td>
+													<? $ddStrings.sv_duplicatefilesfound_message ?><br>
+													<? $ddStrings.sv_duplicatefiles_note ?>
+												</td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+											</tr>
+										</table>
+										<div style="overflow: auto; width: 580px; height: 250px; padding: 5px;" class=framearea>
+											<table border=0 cellpadding=0 cellspacing=0>
+												<? foreach from=$duplicates item=duplicateItem name=folderIterator ?>
+													<tr>
+														<td>
+															<b><? $duplicateItem.PATH|htmlsafe:true:true ?></b>
+														</td>
+													</tr>
+													<tr><td height=5></td></tr>
+													<tr>
+														<td>
+															<table border=0 cellpadding=1 cellspacing=0>
+																<tr>
+																	<td></td>
+																	<td><b><? $ddStrings.sv_filename_column ?></b>&nbsp;</td>
+																	<td><b><? $ddStrings.sv_created_column ?></b></td>
+																</tr>
+
+																<? foreach from=$duplicateItem.files item=nameList name=nameIterator ?>
+																	<? foreach from=$nameList item=fileData name=fileIterator ?>
+																		<tr>
+																			<td style="padding-left: 20px">
+																				<? if $smarty.foreach.fileIterator.iteration == 1 ?>
+																					<? $smarty.foreach.nameIterator.iteration|cat:"." ?>
+																				<? /if ?>
+																			</td>
+																			<td style="padding-right: 5px"><? $fileData->DL_FILENAME|htmlsafe:true:true ?></td>
+																			<td>
+																				<? $fileData->DL_UPLOADDATETIME ?>
+																				<? " "|cat:$ddStrings.app_by_label|cat:" " ?>
+																				<? $fileData->DL_UPLOADUSERNAME ?>
+																			</td>
+																		</tr>
+																	<? /foreach ?>
+
+																	<? if !$smarty.foreach.nameIterator.last ?>
+																		<tr>
+																			<td colspan=3 height=5></td>
+																		</tr>
+																	<? /if ?>
+																<? /foreach ?>
+															</table>
+														</td>
+													</tr>
+													<? if !$smarty.foreach.folderIterator.last ?>
+														<tr>
+															<td height=5></td>
+														</tr>
+													<? /if ?>
+												<? /foreach ?>
+											</table>
+										</div>
+										<table cellpadding=0 cellspacing=0 border=0>
+											<tr>
+												<td>&nbsp;</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							<? /if ?>
+					</table>
+				<? /if ?>
+			</td>
+		</tr>
+	</table>
+<? else ?>
+	<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td><? $ddStrings.sv_emailsettings_label|cat:":" ?></td>
+		</tr>
+		<tr height=5>
+			<td></td>
+		</tr>
+	</table>
+	<div style="padding-left: 15px">
+		<? if $emailMode == 'GLOBAL' ?>
+			<table cellpadding=0 cellspacing=2 border=0>
+				<tr>
+					<td><? $ddStrings.sv_emailname_label|cat:": " ?></td>
+					<td><b><? $emailName|htmlsafe:true:true ?></b></td>
+				</tr>
+				<tr>
+					<td><? $ddStrings.sv_emailaddress_label|cat:": " ?></td>
+					<td><b><? $emailAddress|htmlsafe:true:true ?></b></td>
+				</tr>
+			</table>
+		<? else ?>
+			<table cellpadding=0 cellspacing=2 border=0>
+				<tr>
+					<td><b><? $ddStrings.emp_usermode_note|cat:"." ?></b></td>
+				</tr>
+			</table>
+		<? /if ?>
+
+		<table cellpadding=0 cellspacing=0 border=0>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+	<? include file="../../../common/html/classic/button.htm" link="" formname="form" name="changeemailsettings" caption=$ddStrings.sv_change_btn ?>
+<? /if ?>

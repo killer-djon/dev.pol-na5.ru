@@ -1,0 +1,56 @@
+<style type="text/css">
+	.listTitle input {font-size:170%; width:600px;}
+	.listTitle span {display:block; border-bottom: 1px solid #eee; width: 600px; font-size: 18px;}
+	.listTitle div.title {font-size:20pt; font-weight:bold}
+	#loading_content {border-top:1px solid #DCDCDC; padding-top: 15px; text-align:center; display: none}
+</style>
+<div style="padding: 10px 0px 5px 20px;">
+{{if $smarty.get.list}}
+	<div class="listTitle">
+		{{if $list_name}}
+			<input type="text" id="list_name" value="{{$list_name|escape:'html'}}" /><br /><br />
+		{{else}}
+			<b>[`Create a name for this list`]:</b> <br />
+			<input type="text" id="list_name" value="[`New list`]" /><br /><br />
+		{{/if}}
+	</div>
+	<div style="margin-top:10px; margin-bottom: 10px">
+	{{if $list_name}}
+		[`Edit search criteria for this list`]:
+	{{else}}
+		[`Specify search criteria for this list`]:
+	{{/if}}
+	</div>	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#list_name").select();
+		});
+		var results_load;
+	</script>
+{{/if}}
+
+{{if !$type || $type == 'simple'}}
+	{{include file="ContactsSearchSimple.html"}}
+{{elseif $type=='advanced'}}
+	{{include file="ContactsSearchAdvanced.html"}}
+{{elseif $type=='smart'}}
+	{{include file="ContactsSearchSmart.html"}}
+{{/if}}
+</div>
+<div id="loading_content">[`Loading`]&nbsp; <div class='wbs-loading-icon'></div></div>
+
+<script type="text/javascript">
+
+function back() {
+	jQuery("#loading_content").show();
+	{{if $list}}
+		document.app.navBarBlockActivated({id: 'lists'});
+	{{else}}
+		loadPage("?mod=lists&act=create");
+	{{/if}}
+
+	$(document).ready(function () {
+		$("#list_name").focus();
+	});
+}
+</script>

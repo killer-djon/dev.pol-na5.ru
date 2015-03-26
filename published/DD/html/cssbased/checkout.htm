@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="back_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<input type="hidden" name="doclist" value="<? $doclist?>">
+
+			<? if !$fatalError ?>
+
+				<? if $showCheckedOutFiles ?>
+
+					<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+						<? $ddStrings.co_checkedout_label|cat:":" ?>
+					<? /wbs_note ?>
+
+					<ul class="List">
+						<? foreach from=$checkedOutFiles item=fileData ?>
+						<li>
+							<a target="_blank" href="<? $fileData->ROW_URL ?>"><? $fileData->DL_FILENAME|htmlsafe:true:true|sureecho|trunc_str:50 ?></a>
+						</li>
+						<? /foreach ?>
+					</ul>
+
+				<? /if ?>
+
+				<? if $showInvalidFiles ?>
+					<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+						<? $ddStrings.co_invalidfiles_label|cat:":" ?>
+					<? /wbs_note ?>
+
+					<ul class="List">
+						<? foreach from=$invalidFiles item=fileData ?>
+						<li>
+							<? $fileData->DL_FILENAME|htmlsafe:true:true|sureecho|trunc_str:50 ?>
+						</li>
+						<? /foreach ?>
+					</ul>
+
+				<? /if ?>
+
+				
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<? wbs_formCaption text=$proj_data.C_NAME|cat:".&nbsp;"|cat:$proj_data.P_DESC ?>
+
+<? wbs_tabForm activeTab=$activeTab hideOneCaption=true basePath="../../../PM/html/cssbased/export_tasks/" tabs=$tabs width="670px" ?>
+
+    <? wbs_formButtonsPanel ?>
+        <? wbs_buttonSet ?>
+            <? wbs_buttonSetButton caption=$pmStrings.import_tasks_btn_continue link="javascript:void(0);" onClick="mainSubmit(); return false;" ?>
+            <? wbs_buttonSetButton caption=$pmStrings.btn_cancel name='cancelbtn' ?>
+        <? /wbs_buttonSet ?>
+    <? /wbs_formButtonsPanel ?>
+
+<? /wbs_tabForm ?>
+
+<script language="JavaScript">
+
+function mainSubmit()
+{
+    var frm = document.getElementById('wbs-main-form');
+    
+    if(frm.elements['included_fields[]'].options.length == 0)
+    {
+        alert('<? $pmStrings.export_tasks_wrn_no_columns ?>');
+        return false;
+    };
+    
+    for(i = 0; i < frm.elements['included_fields[]'].options.length; i++)
+    {
+        frm.elements['included_fields[]'].options[i].selected = true;
+    };
+    for(i = 0; i < frm.elements['excluded_fields[]'].options.length; i++)
+    {
+        frm.elements['excluded_fields[]'].options[i].selected = true;
+    };
+    
+    frm.submit();
+    return true;
+};
+
+</script>

@@ -1,0 +1,6 @@
+<table class="FormLayout" width="100%">
+<? foreach from=$results.messages key=index item=msg ?>
+    <tr><td><? $msg ?></td></tr>
+    <? if $index eq 0 ?><tr><td>&nbsp;</td></tr><? /if ?>
+<? /foreach ?>
+</table>

@@ -1,0 +1,220 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+
+function MM_findObj(n, d)
+{ //v4.01
+	var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function fillSelected()
+{
+	var Object = MM_findObj("pagesIDs[]");
+	var selObj = Object.options;
+
+	for (var i=0; i<selObj.length; i++)
+		selObj[i].selected = true;
+
+	return true;
+}
+
+function moveIt( src, dest ) {
+
+	srcObj = MM_findObj(src);
+	destObj = MM_findObj(dest);
+
+	if (srcObj.selectedIndex>=0) {
+		selObj = srcObj.options[srcObj.selectedIndex];
+		newPos = destObj.length;
+
+		destObj.options[newPos] = new Option(selObj.text, selObj.value);
+		srcObj.options[selObj.index] = null;
+	}
+}
+
+function changePosition( obj, direction ) {
+	srcObj = MM_findObj(obj);
+
+	if (srcObj.selectedIndex>=0) {
+
+		selected = srcObj.selectedIndex;
+		len = srcObj.options.length;
+
+		if ( (selected == 0 && direction == -1) || (selected == (len-1) && direction == 1)  )
+			return;
+
+		selObj = srcObj.options[selected];
+		obj1 = srcObj.options[selected+direction];
+
+		srcObj.options[selected+direction] = new Option(selObj.text, selObj.value);
+		srcObj.options[selected] = obj1;
+
+		srcObj.selectedIndex = selected+direction;
+	}
+}
+
+function isSelected( obj, del )
+{
+	srcObj = MM_findObj(obj);
+
+	if ( !srcObj )
+		return false;
+
+	if (srcObj.selectedIndex>=0)
+	{
+		if (del == 0 )
+			return true;
+		else
+			return confirm( "<? $qpStrings.qpo_screen_delete_message ?>" );
+	}
+	else
+		alert( "<? $qpStrings.qpo_screen_emptyaction_message ?>" );
+
+	return false;
+}
+
+
+function confirmDelete()
+{
+	return confirm( "<? $qpStrings.amn_screen_notedel_message ?>" );
+}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+
+	<? if $folderCount ?>
+
+		<? include file="../../../common/html/classic/formframe_begin.htm"?>
+
+		<table cellpadding="0" cellspacing="2" border="0">
+			<tr>
+				<td class="label"><? $qpStrings.qpo_current_page_field|cat:":&nbsp;" ?></td>
+				<td>
+					<select class="control" name="newQPF_ID" style="width: 300px" onChange="this.form.submit()">
+						<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$selectedFolder showAnyRights=true denyNoAccess=true showPromt=false ?>
+					</select>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+
+		<div style="padding-left: 20px">
+			<table border="0" cellspacing="0" cellpadding="0">
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr><td>&nbsp;</td>
+				<td>
+					<table border="0" cellspacing="2" cellpadding="0">
+					<tr>
+						<td class="readonly_control"><? $qnStrings.cv_screen_visible_list ?></td>
+						<td></td><td class="readonly_control"><? $qnStrings.cv_screen_hidden_list ?></td>
+					</tr>
+					<tr>
+						<td>
+							<select name="pagesIDs[]" id="pagesIDs[]" size="8" style="width: 340px; height: 220px" class="control" multiple>
+							<? html_options values=$pagesIDs output=$pagesNames ?>
+							</select>
+						</td>
+						<td width="40" align="center" valign=top>
+							<table width=100% cellspacing=0 cellpadding=0 border=0>
+							<tr><td align=left>
+							<a href="javascript: changePosition('pagesIDs[]', -1)" title="<? $kernelStrings.app_upbtn_hint ?>"><img src="<? "images/buttons/moveUp.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a>
+							</td></td>
+							<tr><td align=left><a href="javascript: changePosition('pagesIDs[]', 1)" title="<? $kernelStrings.app_downbtn_hint ?>"><img src="<? "images/buttons/moveDown.gif"|stylesetitem:"classic":$styleSet ?>" width="30" height="22" border="0"></a></td></tr>
+							<tr><td><br><br></td></tr>
+							<tr>
+								<td height=24>
+								<? include file="../../../common/html/classic/button.htm" align="left" name="publbtn" caption=$qpStrings.qpo_mark_pub_btn formname="form" space_left=2 onClick="return isSelected('pagesIDs[]',0);" buttonWidth="120"?>
+								</td>
+							</tr>
+							<tr>
+								<td height=24>
+								<? include file="../../../common/html/classic/button.htm" align="left" name="unpublbtn" caption=$qpStrings.qpo_mark_unpub_btn formname="form" space_left=2 space_right=20 onClick="return isSelected('pagesIDs[]',0);" buttonWidth="120"?>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								&nbsp;
+								</td>
+							</tr>
+							<tr>
+								<td height=24>
+								<? include file="../../../common/html/classic/button.htm" align="left" name="movebtn" caption=$qpStrings.qpo_move_btn formname="form" space_left=2 onClick="return isSelected('pagesIDs[]',0);" buttonWidth="120"?>
+								</td>
+							</tr>
+							<tr>
+								<td height=24>
+								<? include file="../../../common/html/classic/button.htm" align="left" name="copybtn" caption=$qpStrings.qpo_copy_btn formname="form" space_left=2 onClick="return isSelected('pagesIDs[]',0);" buttonWidth="120"?>
+								</td>
+							</tr>
+							<tr>
+								<td height=24>
+								<? include file="../../../common/html/classic/button.htm" align="left" name="deletebtn" caption=$qpStrings.qpo_delete_btn formname="form" space_left=2 onClick="return isSelected('pagesIDs[]',1);" buttonWidth="120"?>
+								</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+		</table>
+	</div>
+		<? if $sortCount ?>
+
+		<? else ?>
+			<center><? $qpStrings.qpo_nobooks_notice ?></center><br>&nbsp;
+		<? /if ?>
+
+		<? include file="../../../common/html/classic/formframe_end.htm" ?>
+
+		<? include file="../../../common/html/classic/button.htm" align="left" name="orderbtn" caption=$kernelStrings.app_save_btn formname="form" space_left=10 onClick="fillSelected();"?>
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" space_left=10?>
+
+	<? else ?>
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr><td><? $kernelStrings.app_treenofolders_message ?></td></tr>
+			<tr><td>&nbsp;</td></tr>
+		</table>
+
+		<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_back_btn formname="form" space_left=10?>
+
+	<? /if ?>
+
+
+	<input type="hidden" name="accessInheritance" value="<? $accessInheritance ?>">
+  <? /if ?>
+
+  <input type="hidden" name="btndummy">
+
+  <input type="hidden" name="doclist" value="<?$doclist?>">
+  <input type="hidden" name="searchString" value="<?$searchString?>">
+  <input type="hidden" name="QPF_ID" value="<?$QPF_ID?>">
+  <input type="hidden" name="currentBookID" value="<?$currentBookID?>">
+  <input type="hidden" name="operation" value="<?$operation?>">
+
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

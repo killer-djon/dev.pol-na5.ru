@@ -1,0 +1,84 @@
+<? wbs_formCaption text=$proj_data.C_NAME|cat:".&nbsp;"|cat:$proj_data.P_DESC ?>
+
+<? include file="import_tasks/errors.htm" errors_list=$_errors ?>
+
+<? wbs_tabForm activeTab=$activeTab hideOneCaption=true basePath="../../../PM/html/cssbased/import_tasks/" tabs=$tabs width="670px" ?>
+
+    <? wbs_formButtonsPanel ?>
+        <? wbs_buttonSet ?>
+            <? wbs_buttonSetButton caption=$pmStrings.import_tasks_btn_continue link="javascript: void(0);" onClick="mainSubmit(); return false;" ?>
+            <? wbs_buttonSetButton caption=$pmStrings.import_tasks_btn_back link=$back_url ?>
+        <? /wbs_buttonSet ?>
+    <? /wbs_formButtonsPanel ?>
+
+<? /wbs_tabForm ?>
+
+<script language="JavaScript">
+<? literal ?>
+
+function toogleAdditionalInput(column_index)
+{
+    var frm = document.getElementById('wbs-main-form');
+    if(frm.elements['column_map['+column_index+']'].value != '<? /literal ?><? $smarty.const.PM_TASK_COLUMN_STARTDATE ?><? literal ?>'
+        && frm.elements['column_map['+column_index+']'].value != '<? /literal ?><? $smarty.const.PM_TASK_COLUMN_DUEDATE ?><? literal ?>'
+        && frm.elements['column_map['+column_index+']'].value != '<? /literal ?><? $smarty.const.PM_TASK_COLUMN_ENDDATE ?><? literal ?>')
+    {
+        frm.elements['format_input['+column_index+']'].style.display = 'none';
+    }
+    else
+    {
+        frm.elements['format_input['+column_index+']'].style.display = '';
+    };
+};
+
+function checkDuplicate()
+{
+    var frm = document.getElementById('wbs-main-form');
+    var map_values = new Array();
+    
+    for(i=0; i < frm.elements.length; i++)
+    {
+        if(frm.elements[i].name.indexOf('columns_to_import') == 0 && frm.elements[i].checked)
+        {
+            var column_index = frm.elements[i].name.replace('columns_to_import[','').replace(']','');
+            map_values.push(frm.elements['column_map['+column_index+']'].value);
+        };
+    };
+    
+    for(i=0; i < map_values.length; i++)
+    {
+        for(j=i+1; j < map_values.length; j++)
+        {
+            if(map_values[i] == map_values[j])
+            {
+                return false;
+            };
+        };
+    };
+    
+    return true;
+};
+
+function mainSubmit()
+{
+    if(!checkDuplicate())
+    {
+        alert('<? /literal ?><? $pmStrings.import_tasks_wrn_duplicate_columns ?><? literal ?>');
+        return false;
+    };
+    
+    document.getElementById('wbs-main-form').submit();
+};
+
+var ip_win_ol_back = window.onload;
+window.onload = function() {
+    if(ip_win_ol_back) ip_win_ol_back();
+    <? /literal ?>
+        <? foreach from=$importer_state.columns item=column key=column_index ?>
+        toogleAdditionalInput(<? $column_index ?>);
+        <? /foreach ?>
+    <? literal ?>
+};
+
+<? /literal ?>
+</script>

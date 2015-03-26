@@ -1,0 +1,13 @@
+<? wbs_toolbarItem?>
+	<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" ?>
+<? /wbs_toolbarItem?>
+
+<? if $action == ACTION_NEW ?>
+<? wbs_toolbarItem?>
+	<? wbs_buttonSetButton caption=$itStrings.ami_addanother_btn name="saveaddbtn" ?>
+<? /wbs_toolbarItem?>
+<? /if ?>
+
+<? wbs_toolbarItem?>
+	<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+<? /wbs_toolbarItem?>

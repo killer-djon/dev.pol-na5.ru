@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		 <script language="JavaScript" type="text/JavaScript">
+		<!--
+			function MM_findObj(n, d) { //v4.01
+			  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+				d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+				  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+				  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+				  if(!x && d.getElementById) x=d.getElementById(n); return x;
+			}
+
+			function checkFolderRights()
+			{
+				obj = MM_findObj("curDF_ID");
+				if ( !obj )
+					return true;
+
+				selected = obj.selectedIndex;
+				if ( obj.options[selected].value == -1 ) {
+					alert( '<? $ddStrings.r_screen_norights_message ?>' );
+					return false;
+				}
+
+				return true;
+			}
+		//-->
+		
+		<? if ($reloadParent) ?>
+			window.parent.location.href = "../../2.0/backend.php?currentFolderId=trash";
+		<? /if ?>
+		</script>
+
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+			<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+				<? $ddStrings.r_screen_form_label|cat:":" ?>
+			<? /wbs_note ?>
+
+			<? wbs_formLayout caption=$pageTitle ?>
+
+			<? wbs_formContent ?>
+				<tr>
+				<td>
+					<select class="FormControl" name="curDF_ID" style="width: 300px">
+						<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$currentFolder showAnyRights=true denyNoAccess=true ?>
+					</select>
+				</td>
+				</tr>
+			<? /wbs_formContent ?>
+
+			<? wbs_formButtonsPanel ?>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="savebtn" caption=$ddStrings.r_screen_restore_btn onClick="return checkFolderRights("|cat:$operation|cat:")" ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+
+			<? /wbs_formButtonsPanel ?>
+
+			<? /wbs_formLayout ?>
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+		<input type="hidden" name="doclist" value="<?$doclist?>">
+		<input type="hidden" name="folderlist" value="<?$folderlist?>">
+		<input type="hidden" name="opener" value="<?$opener?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

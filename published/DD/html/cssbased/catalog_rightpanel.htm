@@ -1,0 +1,73 @@
+<? if $rightPanelFile ?>
+	<? include file=$rightPanelFile ?>
+<? else ?>
+
+	<? include file="../../../common/html/cssbased/pageelements/ajax/createwidgetdialog.htm" ?>
+
+	<? assign var=numDocumentsLabel value=$ddStrings.dd_screen_numdocs_label ?>
+
+	<? if $hideLeftPanel && $searchString == "" ?>
+		<? assign var=rightPanelControls value="../../../DD/html/cssbased/folderselector.htm" ?>
+	<? /if ?>
+
+	<? assign var=rightPanelCaptionControls value="../../../common/html/cssbased/pageelements/ajax/catalog_folder.showbtn.htm" ?>
+
+	<? if $searchString != "" ?>
+		<? assign var=hideBottomPanel value=1 ?>
+		<? assign var=rightPanelHeader value=$ddStrings.dd_sreen_searchresult_title ?>
+	<? else ?>
+		<? assign var=rightPanelHeader value=$curFolderName|htmlsafe:true:true ?>
+	<? /if ?>
+
+	<? assign var=height value=75 ?>
+	<? if $statisticsMode || $searchString != "" ?>
+		<? assign var=hideBottomPanel value=1 ?>
+		<? assign var=rightPanelHeader value=$kernelStrings.app_treeavailfolders_name ?>
+		<? assign var=hidePages value=1 ?>
+		<? assign var=docsColumnName value=$ddStrings.dd_sreen_summarydoc_title ?>
+		
+		<? if $searchString != "" ?>
+			<? assign var=rightPanelHeader value="Search results: $searchString" ?>	
+		<? else ?>
+			<? assign var=captTemplate  value=null ?>
+			<? assign var=height value=null ?>
+		<? /if ?>
+	<? /if ?>
+
+	<? assign var=captTemplate value="filelistheaderpanel.htm"  ?>
+
+	<? wbs_splitterPanelHeader
+		caption=$rightPanelHeader
+		active=true
+		id="RightPanelHeader"
+		captionControls=$rightPanelCaptionControls
+		headerControls=$rightPanelControls
+		captionTemplate=$captTemplate  
+		height=$height
+	?>
+
+
+	<? if !$statisticsMode || $searchString != "" ?>
+		<? if $viewMode != 0 ?>
+			<? include file="../../../DD/html/cssbased/filelist_header.htm" ?>
+		<? /if ?>
+		<? assign var=rightPanelContent value="../../../DD/html/cssbased/filelist.htm" ?>
+	<? else ?>
+		<? assign var=rightPanelContent value="../../../common/html/cssbased/pageelements/folders_summary.htm" ?>
+		<? assign var=hideBottomPanel value=1 ?>
+		<? assign var=hidePages value=1 ?>
+		<? assign var=docsColumnName value=$ddStrings.dd_sreen_summarydoc_title ?>
+	<? /if ?>
+
+	<? wbs_splitterScrollableArea ?>
+		<? include file=$rightPanelContent ?>
+	<? /wbs_splitterScrollableArea ?>
+
+	<? include file="../../../DD/html/cssbased/filelist_footer.htm" ?>
+
+	<input type="hidden" name="curDF_ID" id='curDF_ID' value="<? $curDF_ID ?>"/>
+	<input type="hidden" name="currentFolder" id='currentFolderId' value="<? $currentFolder ?>"/>
+	<input type="hidden" name="sendLimitBytes" id='sendLimitBytes' value="<? $sendLimitBytes ?>"/>
+	<input type="hidden" id='currentFolderName' value="<? $curFolderName ?>"/>
+	<input type="hidden" id='canShareFolder' value="<? $canShareFolder ?>"/>
+<? /if ?>

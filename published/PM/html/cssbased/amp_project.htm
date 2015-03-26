@@ -1,0 +1,46 @@
+<table class="FormLayout" width="100%">
+	<tr>
+		<td><? wbs_label fieldName="P_DESC" for="description" text=$pmStrings.app_description_label ?></td>
+	</tr>
+	<tr>
+		<td>
+			<textarea id="description" name="projectData[P_DESC]" rows="3" cols="50" style="width: 525px" class="FormControl"><? $projectData.P_DESC|htmlsafe_textarea:$edited ?></textarea>
+		</td>
+	</tr>
+</table>
+
+<table class="FormLayout">
+	<tr>
+		<td><? wbs_label fieldName="C_ID" for="customer" text=$pmStrings.app_customer_label ?></td>
+		<td>
+			<select name="projectData[C_ID]" id="customer" class="FormControl">
+				<? html_options values=$customers_ids selected=$projectData.C_ID output=$customers_names ?>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td><? wbs_label fieldName="U_ID_MANAGER" for="manager" text=$pmStrings.app_manager_label ?></td>
+		<td>
+			<select name="projectData[U_ID_MANAGER]" id="manager" class="FormControl" onChange="triggerManagerChange();">
+				<? html_options values=$managers_ids selected=$projectData.U_ID_MANAGER output=$managers_names ?>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td><? wbs_label fieldName="P_BILLABLE" for="billable" text=$pmStrings.amp_billable_label ?></td>
+		<td>
+			<input type="checkbox" name="projectData[P_BILLABLE]" id="billable" value="1" <? wbs_checkboxStatus val=$projectData.P_BILLABLE true_val=1 ?>/>
+		</td>
+	</tr>
+
+	<tr>
+		<td><? wbs_label fieldName="P_STARTDATE" for="startdate" text=$pmStrings.amp_startdate_label ?></td>
+		<td>
+			<input name="projectData[P_STARTDATE]" type="text" id="startdate" class="FormControl" value="<? $projectData.P_STARTDATE ?>" maxlength="10"/>
+			<?include file="../../../common/html/classic/calendar.tpl" name=projectData[P_STARTDATE]?>
+		</td>
+	</tr>
+
+</table>

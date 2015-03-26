@@ -1,0 +1,103 @@
+<div class="ticket-sidebar">
+	<div class="right-panel-block noactiveblock">
+		<table class="ticket-info">
+            <tr>
+                <td class="td-label">[`Number`]:</td>
+                <td>{{$request.id}}</td>
+            </tr>
+            <tr>
+                <td class="td-label">[`Date`]:</td>
+                <td>{{$request.datetime}}&nbsp;[`ago`])</td>
+            </tr>
+            <tr>
+                <td class="td-label">[`Status`]:</td>
+                <td>{{$request.state}}</td>
+            </tr>
+            <tr>
+                <td class="td-label">[`Assigned`]:</td>
+                <td>{{$request.assigned_name}}</td>
+            </tr>
+		</table>
+	</div>
+	{{if $allowed_class_change}}
+    <div class="right-panel-block noactiveblock">
+    {{foreach from=$class_types key=key item=clType}}
+            <div class="classTypeDiv">
+            <h4 class="ui-state-default ui-corner-top">{{$clType.name}}</h4>
+            
+            {{if $clType.multiple eq 1}}
+                {{foreach from=$clType.classes item=classes}}
+                <p><input type="checkbox" id="$classes[{{$clType.id}}][{{$classes.class_id}}]"
+                 name="classes[]" 
+                 value="{{$classes.class_id}}" disabled checked /><label for="$classes[{{$clType.id}}][{{$classes.class_id}}]">{{$classes.class_name}}</label></p>
+                {{/foreach}}
+            {{else}}
+                {{foreach from=$clType.classes item=classes}}
+                <p><input type="radio" id="cltype[{{$clType.id}}][{{$classes.class_id}}]" 
+                name="classes[]" 
+                value="{{$classes.class_id}}" disabled checked /><label for="$classes[{{$clType.id}}][{{$classes.class_id}}]">{{$classes.class_name}}</label></p>
+                {{/foreach}}
+                <input class="selectedvalue" type="hidden">
+            {{/if}}
+            </div>
+    {{/foreach}}
+            <a href="#" onclick="$.wbs.widgets.classChanger($id)">[`Change`]</a>
+    </div>
+	{{endif}}
+	<div class="right-panel-block noactiveblock">
+		<a href="#">[`Knowledge base`]</a>
+	</div>
+</div>
+
+<script>
+    var date = new Date(), curTimeStamp = date.getTime(),
+	    $btn = $('<a href="#">[`Reload page`]</a>');
+    $btn.click(function(){
+        location.reload();
+    })
+	$rTable = $('.right-panel-block table');
+	$('td:first', $('tr',$rTable)).css({
+		'text-align':'right',
+		'padding-right':'5px'
+		});
+    setInterval(function(){
+		if ($('.ticket-sidebar').length>0){
+	        $.wbs.ajaxRequest({
+	            url: '?m=requests&act=changes',
+	            data: {
+	                id: $id,
+	                timestamp: curTimeStamp
+	            },
+	            callback: function(data){
+	                var date = new Date();
+	                curTimeStamp = date.getTime();
+	                
+	                var actions = data['actions'];
+	                for (key in data) {
+	                    if (key != 'actions') {
+	                        var l = data[key],
+	                        msg = '<div class="ticket-log-container ui-state-highlight">' +
+	                        '<div class="header '+ actions[l.action_id].type +' ">' +
+	                        '<span class="date"> ' +
+	                        l.datetime +
+	                        '<span title="" class="author"> ' +
+	                        l.contact +
+	                        '<span class="action"> '+actions[l.action_id].log_name+' </span>' +
+	                        (l.to ? '<b title="">'+l.to+'</b>' : '')+
+	                        '</div>' +
+	                        '</div>';
+	                    }
+	                    
+	                var $msg = $(msg);
+	                    if (!$('#info-container .ticket-log-container').length){
+	                        $('#info-container').append($msg.append($btn));
+	                        $('#ticket').height($('#ticket').height() - $msg.outerHeight())
+	                    } else {
+	                        $('.info-container .ticket-log-container').replaceWith($msg);
+	                    }
+	                }
+	            }
+	        });
+		}
+    }, 60000);
+</script>

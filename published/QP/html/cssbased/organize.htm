@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script language="JavaScript" type="text/JavaScript">
+		<!--
+
+		function MM_findObj(n, d)
+		{ //v4.01
+			var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+			d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+			if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+			for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+			if(!x && d.getElementById) x=d.getElementById(n); return x;
+		}
+
+		function fillSelected()
+		{
+			var Object = MM_findObj("pagesIDs[]");
+			var selObj = Object.options;
+
+			for (var i=0; i<selObj.length; i++)
+				selObj[i].selected = true;
+
+			return true;
+		}
+
+		function moveIt( src, dest ) {
+
+			srcObj = MM_findObj(src);
+			destObj = MM_findObj(dest);
+
+			if (srcObj.selectedIndex>=0) {
+				selObj = srcObj.options[srcObj.selectedIndex];
+				newPos = destObj.length;
+
+				destObj.options[newPos] = new Option(selObj.text, selObj.value);
+				srcObj.options[selObj.index] = null;
+			}
+		}
+
+		function changePosition( obj, direction ) {
+			srcObj = MM_findObj(obj);
+
+			if (srcObj.selectedIndex>=0) {
+
+				selected = srcObj.selectedIndex;
+				len = srcObj.options.length;
+
+				if ( (selected == 0 && direction == -1) || (selected == (len-1) && direction == 1)  )
+					return;
+
+				selObj = srcObj.options[selected];
+				obj1 = srcObj.options[selected+direction];
+
+				srcObj.options[selected+direction] = new Option(selObj.text, selObj.value);
+				srcObj.options[selected] = obj1;
+
+				srcObj.selectedIndex = selected+direction;
+			}
+		}
+
+		function isSelected( obj, del )
+		{
+			srcObj = MM_findObj(obj);
+
+			if ( !srcObj )
+				return false;
+
+			if (srcObj.selectedIndex>=0)
+			{
+				if (del == 0 )
+					return true;
+				else
+					return confirm( "<? $qpStrings.qpo_screen_delete_message ?>" );
+			}
+			else
+				alert( "<? $qpStrings.qpo_screen_emptyaction_message ?>" );
+
+			return false;
+		}
+
+
+		function confirmDelete()
+		{
+			return confirm( "<? $qpStrings.amn_screen_notedel_message ?>" );
+		}
+
+		//-->
+		</script>
+	</head>
+
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="tpllist_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+	<? if $folderCount ?>
+
+					<? wbs_formLayout ?>
+						<? wbs_formContent ?>
+
+			<tr class="SeparatedRow">
+				<td><? $qpStrings.qpo_current_page_field|cat:":&nbsp;" ?></td>
+				<td>
+					<select class="FormControl" name="newQPF_ID" style="width: 340px" onChange="this.form.submit()">
+						<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$selectedFolder showAnyRights=true denyNoAccess=true showPromt=false ?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+
+							<table class="FormLayout">
+							<tr>
+								<td>
+									<select name="pagesIDs[]" id="pagesIDs[]" size="8" style="width: 340px; height: 220px" class="FormControl" multiple>
+									<? html_options values=$pagesIDs output=$pagesNames ?>
+									</select>
+								</td>
+								<td width="170" align="left" valign=top>
+
+									<table width=100% class="FormLayout">
+									<tr>
+										<td>
+														<? wbs_iconButton link="javascript: changePosition('pagesIDs[]', -1)" iconClass="Up" ?>
+										</td>
+									</td>
+									<tr class="SeparatedRow">
+										<td>
+														<? wbs_iconButton link="javascript: changePosition('pagesIDs[]', 1)" iconClass="Down" ?>
+										</td>
+									</tr>
+									<tr>
+										<td height=24>
+											<? wbs_button name="publbtn" caption=$qpStrings.qpo_mark_pub_btn onClick="fillSelected();" onClick="return isSelected('pagesIDs[]',0);" ?>
+										</td>
+									</tr>
+									<tr class="SeparatedRow">
+										<td height=24>
+											<? wbs_button name="unpublbtn" caption=$qpStrings.qpo_mark_unpub_btn onClick="fillSelected();" onClick="return isSelected('pagesIDs[]',0);" ?>
+										</td>
+									</tr>
+									<tr>
+										<td height=24>
+											<? wbs_button name="movebtn" caption=$qpStrings.qpo_move_btn onClick="fillSelected();" onClick="return isSelected('pagesIDs[]',0);" ?>
+										</td>
+									</tr>
+									<tr>
+										<td height=24>
+											<? wbs_button name="copybtn" caption=$qpStrings.qpo_copy_btn onClick="fillSelected();" onClick="return isSelected('pagesIDs[]',0);" ?>
+										</td>
+									</tr>
+									<tr>
+										<td height=24>
+											<? wbs_button name="deletebtn" caption=$qpStrings.qpo_delete_btn onClick="fillSelected();" onClick="return isSelected('pagesIDs[]',0);" ?>
+										</td>
+									</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					</tr>
+					<? if $sortCount ?>
+
+					<? else ?>
+						<tr>
+						<td>
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+										<? $qpStrings.qpo_nobooks_notice ?>
+								<? /wbs_note ?>
+						</td></tr>
+					<? /if ?>
+		<? /wbs_formContent ?>
+		<? wbs_formButtonsPanel ?>
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="orderbtn" caption=$kernelStrings.app_save_btn onClick="fillSelected();" ?>
+				<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+			<? /wbs_buttonSet ?>
+		<? /wbs_formButtonsPanel ?>
+	<? /wbs_formLayout ?>
+
+	<? else ?>
+
+			<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+					<? $kernelStrings.app_treenofolders_message ?>
+			<? /wbs_note ?>
+
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+			<? /wbs_buttonSet ?>
+
+	<? /if ?>
+
+
+			<? else ?>
+				<? wbs_button caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+			<? /if ?>
+
+			<input type="hidden" name="doclist" value="<?$doclist?>">
+			<input type="hidden" name="searchString" value="<?$searchString?>">
+			<input type="hidden" name="QPF_ID" value="<?$QPF_ID?>">
+			<input type="hidden" name="currentBookID" value="<?$currentBookID?>">
+			<input type="hidden" name="operation" value="<?$operation?>">
+			<input type="hidden" name="accessInheritance" value="<? $accessInheritance ?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

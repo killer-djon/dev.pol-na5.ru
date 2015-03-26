@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js" type="text/javascript"></script>
+
+		<script language="JavaScript" type="text/JavaScript">
+		<!--
+
+			function MM_findObj(n, d) { //v4.0
+				var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+				d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+				if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+				for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+				if(!x && document.getElementById) x=document.getElementById(n); return x;
+			}
+
+			function focusControl(objName) {
+				var obj = MM_findObj(objName);
+				if (obj) {
+					obj.focus( );
+				}
+			}
+
+				function onCreateArchive()
+				{
+					thisForm = document.forms[0];
+
+					if ( document.getElementById ) {
+						var addFileCell = document.getElementById( 'optionscell' );
+						if (addFileCell)
+							addFileCell.style.display = "none";
+
+						var attachMessageCell = document.getElementById( 'waitingcell' );
+						if (attachMessageCell)
+							attachMessageCell.style.display = "inline";
+					}
+
+					processTextButton( 'savebtn', 'form' );
+
+					return false;
+				}
+
+
+				function checkFolderRights()
+				{
+					obj = MM_findObj("parentFolderID");
+					if ( !obj )
+						return onCreateArchive();
+
+					selected = obj.selectedIndex;
+
+					if ( obj.options[selected].value == -1 ) {
+						alert( '<? $kernelStrings.app_treenofldrights_message ?>' );
+						return false;
+					}
+
+					return onCreateArchive();
+				}
+
+				function changeFolder(obj)
+				{
+					selected = obj.selectedIndex;
+
+					if ( obj.options[selected].value != -1 )
+						obj.form.submit();
+				}
+			//-->
+			</script>
+</head>
+	</head>
+
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="restore_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+					<? if $archiveSupported ?>
+				
+							<div id="optionscell">
+
+									<? include file="../../../QP/html/cssbased/pageelements/addmodfolder.htm"
+											parentFolderLabel=$kernelStrings.app_treeparentfolder_text
+											folderNameLabel=$qpStrings.amb_bookname_label
+											folderSelectorEvent="changeFolder(this)"
+											basePath="../../../QP/html/cssbased/pageelements"
+											saveBtnCaption=$qpStrings.rst_restore_btn
+											onSave="return onCreateArchive()"
+									?>
+
+							</div>
+							<div ID="waitingcell" style="display:none">
+								<? wbs_formCaption text=$qpStrings.rst_restorearchive_text ?>
+
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<? $qpStrings.rst_restorearchive_text ?>
+								<? /wbs_note ?>
+
+								<p><img src="../cssbased/images/progress.gif" ></p>
+								<p><br>
+								<p>
+									<? wbs_buttonSet ?>
+										<? wbs_buttonSetButton link="quickpages.php" caption=$kernelStrings.app_cancel_btn ?>
+									<? /wbs_buttonSet ?>
+								</p>
+							</div>
+
+					<? else ?>
+							<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+								<? $qpStrings.app_archivesnotsupported_message|htmlsafe:true:true ?>
+							<? /wbs_note ?>
+
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+							<? /wbs_buttonSet ?>
+					<? /if ?>
+
+			<? else ?>
+				<? wbs_button caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+			<? /if ?>
+
+			<input type="hidden" name="action" value="<? $action ?>">
+			<input type="hidden" name="opener" value="<? $opener ?>">
+			<input type="hidden" name="QPB_ID" value="<? $QPF_ID?>">
+			<input type="hidden" name="QPB_ID_PARENT" value="<? $QPB_ID_PARENT ?>">
+			<input type="hidden" name="folderData[QPB_ID]" value="<? $folderData.QPB_ID ?>">
+			<input type="hidden" name="folderData[QPB_PUBLISHED]" value="<? $folderData.QPB_PUBLISHED ?>">
+			<input type="hidden" name="QPB_PROPERTIES" value="<? $QPB_PROPERTIES ?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

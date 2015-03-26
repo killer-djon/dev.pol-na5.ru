@@ -1,0 +1,43 @@
+.notesTable {
+	border-bottom: 1px solid #AAA08B;
+	margin-bottom: 7px;
+	padding-left: 5px;
+}
+
+.noteHeader {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #49453B;
+	background: #FDFCF9;
+	border-bottom: 1px solid #EEE6D5;
+}
+
+.noteHeader a {
+	color: #49453B;
+}
+
+.noteHeaderAuthor {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #000000;
+	background: #FDFCF9;
+	border-bottom: 1px solid #EEE6D5;
+	padding-right: 5px;
+}
+
+.noteBody {
+	background: #FFFFFF;
+	padding-left: 15px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	font-size: 8pt;
+}
+
+.noteBody a {
+	color: #000000;
+}
+
+.fileLink a {
+	color: #3A76B1;
+}

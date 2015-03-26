@@ -1,0 +1,125 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function MMM_findObj(n, d) { //v4.01
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+		d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MMM_findObj(n,d.layers[i].document);
+	  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+
+	function checkFolderRights( operation )
+	{
+		obj = MMM_findObj("curMMF_ID");
+		if ( !obj )
+			return true;
+
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 || obj.options[selected].value == 0 ) {
+			switch ( operation ) {
+				case 0 : 
+				case 1 : alert( '<? $kernelStrings.app_treenocopymoverights_message ?>' ); break;
+				case 3 : alert( '<? $kernelStrings.app_treenocopytorights_message ?>' ); break;
+				case 4 : alert( '<? $kernelStrings.app_treenomovetofldrights_message ?>' ); break;
+			}
+						
+			return false;
+		}
+		
+		if ( obj.options[selected].value == -2 ) {
+			alert( '<? $kernelStrings.app_treesavecopymove_message ?>' );
+			return false;
+		}
+		
+		if ( obj.options[selected].value == -3 ) {
+			alert( '<? $kernelStrings.app_treeselectfolder_message ?>' );
+			return false;
+		}
+		
+		return true;		
+	}
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>   
+  	<? if $folderCount ?>
+		<? if $folderName && ($operation == 0 || $operation == 1) ?>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<? if $docNum != "" ?>
+					<tr><td><? $docNum|cat:" "|cat:$mmStrings.cm_screen_form_label ?></td></tr>
+					<tr><td>&nbsp;</td></tr>
+				<? /if ?>
+			</table>
+		<? /if ?>
+		<? include file="../../../common/html/classic/formframe_begin.htm"?>	
+		<table cellpadding="0" cellspacing="2" border="0">
+			<tr>
+				<td class="label"><? $kernelStrings.app_treefrom_text|cat:":&nbsp;" ?></td>
+				<td class="readonly_control"><strong><? $folderName|htmlsafe:true:true|trunc_str:50 ?></strong></td>
+			</tr>
+			<tr>
+				<td class="label"><? $kernelStrings.app_treeto_text|cat:":&nbsp;" ?></td>
+				<td>
+					<select class="control" name="curMMF_ID" style="width: 300px">
+						<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$currentFolder showAnyRights=true denyNoAccess=true showPromt=true ?>
+					</select>				
+				</td>
+			</tr>
+		</table>
+	<? include file="../../../common/html/classic/formframe_end.htm" ?>	
+	<? else ?>
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr><td><? $kernelStrings.app_treenofolders_message ?></td></tr>
+			<tr><td>&nbsp;</td></tr>
+		</table>		
+	<? /if ?>
+	<? if $operation == 3 || $operation == 4 ?>
+		<table cellpadding="0" cellspacing="4" border="0">
+			<tr>
+				<td><input type=radio value=COPY name=accessInheritance <? switchedOutput val=$accessInheritance true_val=COPY str1="checked" ?>></td>
+				<td><? $kernelStrings.app_treekeepaccess_text ?></td>
+			</tr>
+			<tr>
+				<td><input type=radio value=INHERIT name=accessInheritance <? switchedOutput val=$accessInheritance true_val=INHERIT str1="checked" ?>></td>
+				<td><? $kernelStrings.app_treeinheritaccess_text ?></td>
+			</tr>
+		</table>
+	<? else ?>
+		<input type="hidden" name="accessInheritance" value="<? $accessInheritance ?>">
+	<? /if ?>
+	<table cellpadding="0" cellspacing="0" border="0">
+		<tr><td>&nbsp;</td></tr>
+		<tr><td>
+		  	<? if $folderCount ?>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$saveCaption formname="form" space_left=5 onClick="return checkFolderRights("|cat:$operation|cat:")" ?>		
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" space_left=10?>		
+			<? else ?>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>		
+		  	<? /if ?>
+		</td></tr>
+	</table>		
+  <? /if ?>
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="doclist" value="<?$doclist?>">
+  <input type="hidden" name="searchString" value="<?$searchString?>">
+  <input type="hidden" name="MMF_ID" value="<?$MMF_ID?>">
+  <input type="hidden" name="operation" value="<?$operation?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<? if $searchString != "" ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button name="foldersbtn" caption=$kernelStrings.app_back_label|cat:" "|cat:$qpStrings.app_name_short ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+
+<? if $searchString == "" ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$qpStrings.qp_screen_book_menu menu=$bookMenu ?>
+	<? /wbs_toolbarItem ?>
+
+	<? if !$noBooks ?>
+
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$qpStrings.qp_screen_page_menu menu=$folderMenu ?>
+		<? /wbs_toolbarItem ?>
+
+	<? /if ?>
+<? /if ?>
+
+<? if $canTools && $searchString == "" ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$kernelStrings.app_tools_menu menu=$toolsMenu ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+<? wbs_toolbarItem?>
+	<div class='TBLabel'><? $qpStrings.qp_screen_search_label|cat:":&nbsp;" ?></div>
+<? /wbs_toolbarItem ?>
+
+<? wbs_toolbarItem?>
+	<input type="text" ID="Search" name="searchString" value="<? $searchString|htmlsafe:true:true ?>" style="width: 200px"/>
+<? /wbs_toolbarItem ?>
+
+<? wbs_toolbarItem?>
+	<? wbs_button name="searchbtn" caption=$qpStrings.qp_screen_search_btn?>
+<? /wbs_toolbarItem ?>

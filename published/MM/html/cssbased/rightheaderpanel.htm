@@ -1,0 +1,33 @@
+<div>
+	<span id="RightPanelHeaderCaption" style="font-weight: normal"><? $rightHeaderLabel ?></span>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="5" class='HeaderLinks'>
+<tr>
+
+	<? if $inboxMode && $statisticsMode ?>
+
+		<td>
+			<a href="<? $accountsMenuURL ?>" class="Button" style="font-size: 1em">
+				<? $mmStrings.acc_add_label ?>
+			</a>
+		</td>
+
+	<? /if ?>
+
+	<? if $currentAccount ?>
+
+		<td id="checkMailBtn">
+			<a href="#" class="Button" style="font-size: 1em" 
+				onClick="checkMail(); return false;">
+				<? $mmStrings.mm_screen_checkmail_btn ?>
+			</a>
+		</td>
+		<td id="checkMailPgBar" style="display: none">
+			<? $mmStrings.app_checkingmail_label ?> ... <img src="../../../common/html/res/images/loading.gif">
+		</td>
+
+	<? /if ?>
+
+</tr>
+</table>

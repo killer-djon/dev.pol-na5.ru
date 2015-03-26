@@ -1,0 +1,49 @@
+<div id="messageSentDiv">
+
+	<? if $errorStr ?>
+
+		<span class="sendConfirmText">
+			<b><? $errorStr ?></b>
+		</span>
+
+	<? else if $sent.BOUNCED ?>
+
+		<span class="sendConfirmText">
+			<b>Bounced:</b> <? $sent.BOUNCED.0|htmlsafe:true:true ?>
+		</span>
+
+	<? /if ?>
+
+</div>
+
+<div id="userConfirmSend">
+
+	<span class="sendConfirmText">
+		<b><? $userConfirmSend ?></b>
+	</span>
+
+</div>
+
+<script>
+<? if $userConfirmSend ?>
+
+	parent.document.getElementById('messageSentDiv').innerHTML =
+		document.getElementById('userConfirmSend').innerHTML;
+
+	parent.sendDisplayOn(false, {'confirmSendToolbar':1, 'sendFormIframe':1});
+
+	parent.document.getElementById('userConfirmSend').value = 1;
+
+<? elseif !$errorStr && !$sent.BOUNCED ?>
+
+	parent.parent.backScreenOn();
+
+<? else ?>
+
+	parent.document.getElementById('messageSentDiv').innerHTML =
+		document.getElementById('messageSentDiv').innerHTML;
+
+	parent.sendDisplayOn({'messageSentDiv':1}, {'sentMessageToolbar':1, 'sendFormIframe':1});
+
+<? /if ?>
+</script>

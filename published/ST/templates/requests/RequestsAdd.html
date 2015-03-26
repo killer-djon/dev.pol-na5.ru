@@ -1,0 +1,270 @@
+<form class="ui-block-content" id="addRequestForm">
+<h2>[`Add a new request`]</h2>
+	<table width="100%">
+		<tr>
+			<td class="label"><label for="client_from">[`From`]:</label></td>
+			<td>
+                <div class="relative">
+					<a id="client-search-link" href="#">[`client not specified`]</a>
+					<div id="searchContactForm" style="display:none">
+						<div class="ticket-tabs tabs" style="margin:0; padding:0;">
+						   <ul class="tabs-nav" style="margin:0; padding:0;">
+						            <li id="tabs-contact-search"><a href="#"><span>[`Search`]</span></a></li>
+                                    <li id="tabs-contact-browse"><a href="#"><span>[`Browse`]</span></a></li>
+                                    <li id="tabs-contact-create"><a href="#"><span>[`Create`]</span></a></li>
+						   </ul>
+						</div>
+						<div id="searchContactFormContent" class="ui-widget-content">
+						</div>
+					</div>
+                </div>
+                    <form>
+				        <table id="addContactForm" style="display:none">
+                            <tr>
+                                <td><label for="contact-name">[`Name`]:</label></td>
+                                <td><input type="text" id="contact-name" size="40" /></td>
+                            </tr>
+                            <tr>
+                                <td><label for="contact-email">[`Email`]:</label></td>
+                                <td><input type="text" id="contact-email" size="40" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button id="addContactSave">[`Save`]</button>
+								    <button id="addContactCancel">[`Cancel`]</button>
+								</td>
+                            </tr>
+							<tr>
+							    <td colspan="2">
+							    	<div class="errors-msgbox error" style="width:250px"></div>
+							    </td>
+							</tr>
+                        </table>
+                    </form>
+			</td>
+		</tr>
+		<tr>
+			<td class="label"><label for="subject">[`Subject`]:</label></td>
+			<td>
+				<input type="text" id="subject" name="subject" class="w90p" value="{{$data.STH_SUBJECT}}" />
+			</td>
+		</tr>
+		<tr>
+			<td class="label" style="vertical-align:top"><label for="text">[`Text`]:</label></td>
+			<td>
+				<div class="w90p" id="text" name="text">{{$data.STL_TEXT}}</div>
+				<br />
+				<label for="data_STL_TEXT" class="error_field" id="text_error"
+					style="display:none;">[`This field is required`].</label>
+			</td>
+		</tr>
+
+        <tr>
+            <td class="label"><label for="assigned_c_id">[`Assign to`]:</label></td>
+            <td>
+            <select name="assigned_c_id">
+            	<option value="" selected="selected"></option>
+			{{foreach from=$users key=key item=user}}
+                <option value="{{$key}}">{{$user}}</option>
+            {{/foreach}}
+            </select>
+            </td>
+        </tr>
+		
+		
+        <tr>
+            <td class="label">[`Classifiers`]:</td>
+            <td>
+			{{foreach from=$classTypes key=key item=clType}}
+			
+                {{if $clType.classesLength gt 0}}
+					<div class="classTypeDiv ui-widget-content ui-corner-all">
+					<h4 class="ui-state-default ui-corner-top">{{$clType.name}}</h4>
+					
+					{{if $clType.multiple eq 1}}
+					    {{foreach from=$clType.classes item=classes}}
+					    <p><input type="checkbox" id="cltype[{{$clType.id}}][{{$classes.id}}]"
+						 name="classes[]" 
+						 value="{{$classes.id}}" /><label for="cltype[{{$clType.id}}][{{$classes.id}}]">{{$classes.name}}</label></p>
+					    {{/foreach}}
+	                {{else}}
+	                    {{foreach from=$clType.classes item=classes}}
+	                    <p><input type="radio" id="cltype[{{$clType.id}}][{{$classes.id}}]" 
+						name="classes[]" 
+						value="{{$classes.id}}" /><label for="cltype[{{$clType.id}}][{{$classes.id}}]">{{$classes.name}}</label></p>
+	                    {{/foreach}}
+						<input class="selectedvalue" type="hidden">
+					{{/if}}
+					</div>
+                {{/if}}
+			{{/foreach}}
+
+            </td>
+        </tr>
+		
+        <tr>
+            <td></td>
+            <td>
+            	<div>
+                    <button id="addRequestBtn">[`Add request`]</button>
+                    <button id="cancelBtn">[`Cancel`]</button>
+                </div>      
+            </td>
+        </tr>
+		<tr>
+			<td></td>
+			<td>
+				<label for="client_c_id" style="display:none">[`From`]:</label>
+				<input type="hidden" name="client_c_id" id="client_c_id" value="" />
+				<div class="errors-msgbox error"></div>
+			</td>
+		</tr>
+	</table>
+	
+	{{if $errorStr}}<div class="error_field add-req-butts">{{$errorStr}}</div>{{/if}}
+		
+	
+</form>
+
+<script type="text/javascript" src="{{$url.js}}wbs/wbs.ui.searchlist.js"></script>
+<script type="text/javascript">
+	
+	
+	/*$('#client_search').select(function(){
+		if ($(this).val() == '[`Search by name`]') $(this).val('');
+	})*/
+	$('#searchContactForm').wbsPopup({
+        parent: $('#client-search-link'),
+		parentShadow: false,
+		padding:5,
+        absolute: true,
+		open: function(){
+            $('#tabs-contact-search a').click()
+		},
+		close: function(){
+            $('#client_c_id').keyup();
+		}
+    })
+	
+    $('#searchContactForm li a').click(function(){
+        $('#searchContactFormContent').empty();
+    });
+	
+	$('#tabs-contact-search a').click(function(){
+        var $searchForm = $('<div>');
+        $('#searchContactFormContent').append($searchForm);
+        $searchForm.wbsSearchlist({
+			filter: 'input'
+		});
+    });
+	
+	$('#tabs-contact-browse a').click(function(){
+        var $searchForm = $('<div>');
+        $('#searchContactFormContent').append($searchForm);
+        $searchForm.wbsSearchlist({
+            filter: 'select',
+			filterSource: '?m=contacts&act=folderlist',
+			source: '?m=contacts&act=list&byfolder=1'
+        });
+    });
+	
+	$('#tabs-contact-create a').click(function(){
+		var $addForm = $('#addContactForm').clone(true);
+		$('#searchContactFormContent').append($addForm);
+		$addForm.show();
+	});
+	//$('#searchContactFormContent').wbsSearchlist()
+	
+	/*$('#client_from').autocomplete('index.php?m=contacts&act=list', {
+        insert: function (elem, text) {
+            $('.autocomplete').remove();
+            $('#client_from').val(text);
+        }, 
+        hiddenField: 'client_c_id'
+    });
+    */
+	
+	$('#text').wbsEditor({
+		fill:false,
+		withFrame: true,
+		height:150
+	});
+	
+   /* $('#addContactForm').wbsPopup({
+        parent: $('#addContactBtn'),
+        absolute: true
+    })*/
+	$('#addContactBtn').click(function(){
+		
+		$('#addContactForm input').val('');
+		//$('#addContactForm').wbsPopup('open');
+		
+        $('#contact-name').addError('any', [$('#contact-email')]);
+        $('#contact-email').addError('any', [$('#contact-name')]);
+		$('#contact-name').focus();
+		return false;
+	})
+	$('#addContactCancel').click(function(){
+        $('#searchContactForm').wbsPopup('close');
+	})
+	
+    $('#addContactSave').click(function(){
+		
+        if (!$('#addContactForm .errors-msgbox').is(':empty')) {
+		   $('#contact-name').focus()
+           return false;
+        } else {
+           $.wbs.ajaxRequest({
+            url:'?m=contacts&act=add',
+            requestMethod: 'post',
+            data:{
+                name: $('#contact-name').val(),
+                email: $('#contact-email').val()
+            },
+            callback: function(data){
+	            $('#client_c_id').val(data.id);
+	            $('#client-search-link').html($.wbs.decHTML(data.name));
+                $('#searchContactForm').wbsPopup('close');
+            }
+           })
+           return false;
+        }
+		
+    })
+	
+	$('.classTypeDiv :radio').click(function(){
+        if ($(this).val() == $('.selectedvalue', $(this).parent().parent()).val()) {
+			$(this).attr('checked', false);
+            $('.selectedvalue', $(this).parent().parent()).val('');
+		} else {
+            $('.selectedvalue', $(this).parent().parent()).val($(this).val());
+		}
+		
+    })
+	
+    $('#client_c_id').addError('required');
+    $('#subject').addError('required');
+    $('#text .ui-editor-editablefield').addError('required');
+	
+	$("#addRequestBtn").click(function () {
+        $('#client_c_id').keyup();
+		$('#subject').focus().blur();
+        $('#text .ui-editor-editablefield').focus().blur();
+		if (!$('#addRequestForm .errors-msgbox').is(':empty')) {
+	       return false;
+		} else {
+            var params = $('#addRequestForm').serialize();
+			$.wbs.ajaxRequest({
+	            url:"?m=requests&act=new",
+	            requestMethod: 'post',
+	            data: params,
+	            callback: function(data){
+                 $('#addRequestForm .errors-msgbox')
+                    .after('<div class="ui-state-highlight">[`Request was created succefully`]</div>');
+	            }
+            })
+		}
+	});
+
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>[`Help Desk`]</title>
+
+<link type="text/css" rel="stylesheet" href="{{$url.css}}reset.css"/>
+<link type="text/css" rel="stylesheet" href="{{$url.css}}base/ui.all.css">
+<link type="text/css" rel="stylesheet" href="{{$url.css}}base/wbs-theme.css"/>
+<link type="text/css" rel="stylesheet" href="{{$url.css}}style.css"/>
+
+<script type="text/javascript" src="{{$url.js}}lib/jquery/jquery-1.4.2.min.js"></script>
+{{jscombine file="`$url.js`wbs/wbsstlite.js"}}
+{{$url.js}}lib/jquery-ui/ui/jquery.ui.core.js
+{{$url.js}}lib/jquery-ui/ui/jquery.ui.widget.js
+{{$url.js}}lib/jquery-ui/ui/jquery.ui.button.js
+{{$url.js}}lib/jquery-ui/ui/jquery.ui.position.js
+{{$url.js}}lib/jquery-ui/ui/jquery.ui.dialog.js
+{{$url.js}}lib/plugins/jquery.autocomplete.js
+{{$url.js}}wbs/wbs.ui.popup.js
+{{$url.js}}wbs/wbs.ui.menu.js
+{{$url.js}}wbs/wbs.ui.colorpicker.js
+{{$url.js}}wbs/wbs.ui.editor.js
+{{$url.js}}wbs/wbs.core.js
+{{$url.js}}wbs/wbs.controller.js
+{{$url.js}}wbs/wbs.request.js
+{{$url.js}}wbs/wbs.widgets.js
+{{$url.js}}wbs/wbs.ui.searchlist.js
+{{/jscombine}}
+       
+<style>
+html,body{
+	height: auto;
+	background: #F0F3F5;
+}
+</style>
+</head>
+<body>
+	{{$tabs}}
+	{{$header}}
+	{{$content}}
+<script>
+	$.wbs.set('current-request-id', {{$id}});
+    $.wbs.set('data', {{$data}});
+    $.wbs.controller.onLoad();
+    $.wbs.controller.init();
+</script>
+</body>
+</html>

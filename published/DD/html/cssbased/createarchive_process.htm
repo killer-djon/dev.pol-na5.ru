@@ -1,0 +1,136 @@
+<!-- Direct way to create archive -->
+
+<input name="fileNumber_d" id="fileNumber_d" value="<? $fileNumber|string_format:$ddStrings.ca_compressed_text ?>" type="hidden">
+<input name="direct_start" id="direct_start" value="<? $direct_start?>" type="hidden">
+
+<div ID="creatingceller" style="display:none"> 
+
+	<span class="FormCaption"><? $ddStrings.ca_createarchive_text ?></span>
+	
+	<? wbs_formContent ?>
+		<div id="body_dialog"><? $ddStrings.ca_createwait_text ?> <img src="../../../common/html/res/images/progress.gif"></div>
+	<? /wbs_formContent ?>
+	<br/>
+	<? wbs_buttonSet ?>
+	
+		<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" style="Tab" onClick="return stop_conn()"  ?>
+		
+	<? /wbs_buttonSet ?>
+	
+</div>
+	
+<div id="optionscell" style="width: 600px; display:none">
+
+<? if $direct_start != true or $fileNumber > 0 ?>
+
+	<!-- Have problems whis user files -->
+
+	<? wbs_formLayout caption=$pageTitle ?>
+		
+		<? if !$accessDenied and count($bad_files) ?>
+
+			<? wbs_formCaption text=$ddStrings.ca_createarchive_text ?>
+
+			<? $filesizelimit|string_format:$ddStrings.ca_ignorefiles_text ?>
+			
+			<!-- List of bad files -->
+				
+			<br/><br/>
+
+			<table border=0 cellpadding=0 cellspacing=0 width="100%">
+				<tr>
+					<td class=smallFont>
+					
+							<div style='display: block; width: 600px; height: 150px; overflow: auto; border: solid 1px #C2C2C2;"' id='ServicesInfo'>
+
+
+
+							<table border=0 cellpadding=0 cellspacing=0 width="100%">
+
+								<? foreach from=$bad_files item=file name=fileLoop ?>
+									
+									<tr bgcolor="<? if ($smarty.foreach.fileLoop.iteration % 2) == 0 ?>#E8E8E8<? else ?>#FAFAFA<? /if ?>">
+										<td class=smallFont><? $file.path ?><? $file.file ?></td>
+										<td class=smallFont><? $file.size ?></td>
+									</tr>	
+								<? /foreach ?>
+
+							</table>
+							</div>
+
+					</td>
+				</tr>
+			</table>
+			<br/><br/>	
+			
+			<? wbs_buttonSet ?>
+			
+				<? if !$accessDenied ?>
+					<? wbs_buttonSetButton caption=$ddStrings.ca_skipbutton_text name="proceedbtn" onClick="return onPrepareArchive('proceedbtn')" ?>
+				<? /if ?>
+				<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+			<? /wbs_buttonSet ?>
+			
+		<? else ?>	
+			
+			<!-- Total limit of files has been exceed -->
+		
+			<? wbs_formCaption text=$ddStrings.ca_createarchive_text ?>
+			
+				<? $ddStrings.ca_sizeexceed_text ?> <? $allowSize ?>
+			
+			<br/><br/>
+			
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+			<? /wbs_buttonSet ?>
+	
+		<? /if ?>
+	
+
+	<? /wbs_formLayout?>
+
+
+	
+<? else ?>	
+
+	<!-- Archive is empty -->
+
+	<? wbs_formCaption text=$ddStrings.ca_createarchive_text ?>
+	
+		<? $ddStrings.ca_nonfiled_text ?>
+	
+	<br/><br/>
+	
+	
+	<? wbs_buttonSet ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"  onClick="return stop_conn()"  ?>
+	<? /wbs_buttonSet ?>				
+					
+<? /if ?>	
+
+</div>
+
+<!-- Hidden elements of form -->
+
+<div style="display:none">
+	<input type=radio <? switchedOutput val=$addMode true_val=0 str1="checked " ?> name=addMode id=addMode1 value=0>
+	<input type=radio <? switchedOutput val=$addMode true_val=1 str1="checked " ?> name=addMode id=addMode2 value=1>
+	<select class="control" name="folderID">
+		<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$folderID showAnyRights=true?>
+	</select>
+	<input type=checkbox name=addsubfolders id=addsubfolders value=1 <? switchedOutput val=$addsubfolders true_val=1 str1="checked "?>>
+</div>
+					
+					
+<div ID="waitingcell" style="display:none">
+	<span class="FormCaption"><? $ddStrings.ca_createarchive_text ?> </span>
+	
+		<? $ddStrings.ca_createwait_text ?> <img src="../../../common/html/res/images/progress.gif">
+	
+	<br/><br/>
+	
+	<? wbs_buttonSet ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+	<? /wbs_buttonSet ?>
+</div>

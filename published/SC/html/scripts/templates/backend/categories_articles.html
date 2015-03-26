@@ -1,0 +1,214 @@
+{* products and categories view *}
+<table id="tbl-block" cellspacing="0" cellpadding="0">
+<tr height="1%">
+	<td colspan="2"  height="1%">
+		<h1>{$CurrentDivision.name|translate}</h1>
+		{$MessageBlock}
+	</td>
+</tr>
+
+
+<tr>
+<td id="left-block">
+	<div id="left-div">
+	<ul>
+		<li><div {if 1 == $CategoryID || !$CategoryID}class="current"{/if}>
+			<img style="visibility:hidden;" src="images_common/minus.gif" alt="{'btn_collapse'|translate}" border="0" />
+			<a href="{"&CategoryID=1"|set_query}">{"prdcat_category_root"|translate}</a>
+			({$articles_in_root_category})
+		</div></li>
+	
+		{foreach from=$Categorys item=_category}
+			<li><div {if $_category.CategoryID == $CategoryID}class="current"{/if}>
+				{section name=j loop=$_category.level max=$_category.level}&nbsp;&nbsp;&nbsp;{/section}
+				
+				{if !$_category.ExpandedCategory}
+					{if $_category.ExistSubCategories}
+						<a href='{"&expandCat=`$_category.CategoryID`"|set_query_html}'><img src="images_common/plus.gif" alt="{'btn_expand'|transcape}" /></a>
+					{else}
+						<img src="images_common/minus.gif" style="visibility:hidden;" />
+					{/if}
+				{else}
+					{if $_category.ExistSubCategories}
+						<a href='{"&shrinkCat=`$_category.CategoryID`"|set_query_html}'><img src="images_common/minus.gif" alt="{'btn_collapse'|transcape}" /></a>
+					{else}
+						<img src="images_common/minus.gif" style="visibility:hidden;" />
+					{/if}
+				{/if}
+				
+				<a href='{"&CategoryID=`$_category.CategoryID`&expandCat=`$_category.CategoryID`"|set_query_html}'>{$_category.CategoryTitle|escape:'html'|default:"(no name)"}</a>
+				{if !$_category.ExpandedCategory}({$_category.CountArticlesAll}){else}({$_category.CountArticlesAll}){/if}
+			</div></li>
+		 {/foreach}
+	</ul>
+	<div id="left-bottom">
+	<p>	
+	<input type="button" value='{"btn_addcategory"|transcape}' class="goto" rel='{"?ukey=articles_category_edit&CategoryParent=`$CategoryID`"|set_query_html}' />
+	</p>
+	</div>
+	</div>
+	
+	<script type="text/javascript" src="{$smarty.const.URL_JS}/niftycube.js"></script>
+	<script type="text/javascript" src="{$smarty.const.URL_JS}/functions.js"></script>
+	<script type="text/javascript" src="{$smarty.const.URL_JS}/widget_checkout.js"></script>	
+	<script type="text/javascript">	Nifty('#left-div', 'tl bl');	Nifty('div.current', 'tl bl');</script>
+</td>
+
+
+
+
+<td id="right-block">
+	<h2>
+	{if $CategoryID ne 1 && $CategoryID}{$Category.CategoryTitle|escape:'html'}{else}Корень{/if}
+	{if $CategoryID ne 1 && $CategoryID}
+		&nbsp;<a href='{"ukey=articles_category_edit&СategoryID=`$СategoryID`"|set_query_html}'>{'prdcat_btn_edit_category'|transcape}</a>
+		&nbsp;<a href='{"action=delete_category"|set_query_html}' title="{"cnfrm_delete"|transcape}" class="confirm_action">{'prdcat_btn_delete_category'|transcape}</a>
+	{/if}
+	</h2>
+	<p><input value="{'pgn_add_article'|transcape}" type="button" class="goto" rel='{"ukey=article_edit&СategoryID=`$СategoryID`"|set_query_html}' /></p>
+
+	{if $Articles}
+	<form action='{$urlToSubmit}' method="post" name="MainForm" id="MainForm">
+	<input name="action" value="save_articles" type="hidden" />
+		
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="grid">
+		<thead>
+			<tr class="gridsheader">
+				<td width=20><input type="checkbox" class="groupcheckbox " id="group-box" rel="select_articles" /></td>
+				<td width=20>{'pgn_enabled'|transcape}</td>
+				<td>{'pgn_post_title'|transcape}</td>
+				<td width=20>{'pgn_sort'|transcape}</td>
+				<td width=20></td>			
+			</tr>
+		</thead>
+		<tfoot>
+		<tr class="gridsfooter"> 
+			<td colspan="5">	
+				{$NavigatorHtml}	
+				<span style="float: right;">
+					<input name="save_articles" type="submit" value='{'pgn_save_sort'|transcape}' />
+				</span>
+			</td>		
+		</tr>
+		<tr class="gridsfooter"> 
+			<td colspan="4">
+					<div style="float: left;">
+						{'pgn_selected_posts'|transcape}: <input type="submit" name="delete_selected" class="confirm_action" title="{'cnfrm_delete'|transcape}" value='{"btn_delete"|translate}' />
+					</div>
+					<div style="float: left;">
+						&nbsp;
+						<input name="categoryID" id="parent-category-categoryID" value="{$parent_category.categoryID|default:1}" type="hidden" />
+					</div>
+					<div style="float: left;">	
+						&nbsp;					
+						<input name="move_selected" type="submit" value='{"prdcat_category_move_to"|translate}' id="choose-parentcategory-handler"/>
+					</div>
+					<div style="float: left;">	
+						&nbsp;					
+						<input name="duplicate_selected" type="submit" value='{"prdcat_products_duplicate_selected"|translate}' id="duplicate_articles-handler"/>
+					</div>
+			</td>
+		</tr>
+		</tfoot>
+		<tbody>
+		{section name=i loop=$Articles}
+		{assign var=article_url value="?ukey=article_edit&ArticleID=`$Articles[i].ArticleID`&CategoryID=&expandCat"|set_query_html}
+		<tr class="{cycle values='gridline1,gridline'}">
+			<td width=20>
+				<input name="select_articles_{$Articles[i].ArticleID}" class="checkbox select_articles" rel="group-box" type="checkbox" value="1" />
+			</td>
+			<td width=20>
+				<input class="checkbox"  type="checkbox" value="1" {if $Articles[i].ArticleEnable eq '1'}checked{/if} disabled />
+			</td>
+			<td align=left>
+				<a href="{$article_url}">
+					{$Articles[i].ArticleTitle|escape:'html'}&nbsp;
+					{if $Articles[i].ArticleEnable ne 1}<span class="notice">{lbl_prep_invisible_in_storefront}</span>{/if}
+				</a>
+			</td>
+			<td align="center" width=20>
+				<input type='text' name='sort_order_{$Articles[i].ArticleID}' value="{$Articles[i].ArticleSort}" size="2" />
+			</td>
+			<td style="border-right: solid 1px #F5F0BB;" width=20>
+				<a href='{"action=delete_article&ArticleID=`$Articles[i].ArticleID`"|set_query_html}' title='{"cnfrm_delete"|transcape}' class="confirm_action">
+					<img src="images_common/remove.gif" border="0" alt='{"btn_delete"|transcape}' />
+				</a>
+			</td>
+		</tr>	
+		{/section}
+		</tbody>
+		</table>
+	</form>
+	
+	
+	
+<script type="text/javascript">
+var categoryID = '{$CategoryID}';
+{literal}
+			
+getLayer('choose-parentcategory-handler').onclick = function(){
+	if(getCountCheckGroupBox('select_articles')<1){
+		alert('{/literal}{"pgn_select_posts"|transcape}{literal}');
+		return false;
+	}
+	categoryTreeManager.show_tree('choose_parentcategory');
+	return false;
+};
+
+
+getLayer('duplicate_articles-handler').onclick = function(){
+	if(getCountCheckGroupBox('select_articles')<1){
+		alert('{/literal}{"pgn_select_posts"|transcape}{literal}');
+		return false;
+	}
+};
+
+
+
+
+var categoryTreeManager = {
+	'show_tree': function(action){
+		var url = set_query('?ukey=articles_category_tree&js_action='+action);
+		sswgt_CartManager.shop_url = "{/literal}{$smarty.const.CONF_FULL_SHOP_URL|escape:'html'}{literal}";
+		sswgt_CartManager.show(url, 550, 500); 	
+	},
+	'hide_tree': function(){
+		sswgt_CartManager.hide();
+	},
+	'actions': {
+		'choose_parentcategory': {
+			'onclick': function(node){				
+				if(categoryID == node.getSetting('categoryID')){
+					categoryTreeManager.hide_tree();
+				}
+				categoryTreeManager.hide_tree();
+				var breadCrumbs = node.getSetting('name');
+				var p = node.ParentNode;
+				while(p){
+					breadCrumbs = p.getSetting('name')+" » "+breadCrumbs;
+					p = p.ParentNode;
+				}
+				if(window.confirm('{/literal}{"pgn_move_select_posts"|transcape}{literal}'+' '+breadCrumbs+'?')){
+					getLayer('parent-category-categoryID').value = node.getSetting('categoryID');
+					getLayer('choose-parentcategory-handler').onclick = function(){return true;};
+					getLayer('choose-parentcategory-handler').click();
+				}				
+			}
+		}
+	},
+	'eval': function(action, handler, node, wnd){	
+		this.actions[action][handler](node, wnd);
+	}
+}
+{/literal}
+</script>
+	
+	
+	
+	{else}
+		<p style="text-align: center">{'str_empty_list'|transcape}</p>
+	{/if}
+
+</td>
+</tr>
+</table>

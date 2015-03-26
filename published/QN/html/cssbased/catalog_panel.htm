@@ -1,0 +1,33 @@
+<?include file="../../../common/html/cssbased/pageelements/ajax/catalog_folder.htm" hideRecyced=1 showFolderControls=1 addFolderLabel=$kernelStrings.app_treeaddfolder_title deleteFolderLabel=$kernelStrings.app_treedelfolder_text enableDD=true enableEdit=true ?>
+
+<script>
+	document.onFoldersTreeLoad = function () {
+		foldersTree.searchPrefix = "quicknotes.php?searchString=";
+		foldersTree.linkPrefix = 'quicknotes.php?curQNF_ID=';
+		
+		var treeDDManager = new TreeDDManager ();
+		treeDDManager.init (
+			foldersTree, 
+			{
+				nodeMovedUrl: "../ajax/folder_move.php", 
+				treeLoaderUrl: '../ajax/tree.folders.php', 
+				linkPrefix: 'quicknotes.php?curQNF_ID='
+			}
+		);
+		
+		var treeEditManager = new TreeEditManager ();
+		treeEditManager.init (
+			foldersTree,
+			{
+				renameUrl: "../ajax/folder_rename.php"				
+			}		
+		);
+		
+		<? if $lastSearchString ?>
+			var searchNode = foldersTree.getSearchNode ("<? $lastSearchString ?>");
+			<? if $searchString ?>
+				searchNode.select ();
+			<? /if ?>
+		<? /if ?>
+	}
+</script>

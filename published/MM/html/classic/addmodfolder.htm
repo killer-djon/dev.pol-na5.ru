@@ -1,0 +1,78 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+ function MMM_findObj(n, d) { //v4.0
+   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+   if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+   for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MMM_findObj(n,d.layers[i].document);
+   if(!x && document.getElementById) x=document.getElementById(n); return x;
+ }
+ 
+ function focusControl(objName) {
+   var obj = MMM_findObj(objName); 
+   if (obj) {
+   obj.focus( );
+  }
+ }
+ 
+
+	function checkFolderRights()
+	{
+		obj = MMM_findObj("parentFolderID");
+		if ( !obj )
+			return true;
+	
+		selected = obj.selectedIndex;
+		
+		if ( obj.options[selected].value == -1 ) {
+			alert( '<? $kernelStrings.app_treenofldrights_message ?>' );
+			return false;
+		}
+		
+		return true;		
+	}
+
+	function changeFolder(obj)
+	{
+		selected = obj.selectedIndex;
+
+		if ( obj.options[selected].value != -1 )
+			obj.form.submit();
+	}
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl('folderData[DF_NAME]')">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>   
+	<?include file="../../../common/html/classic/tree_templates/tree_addmodfolder.htm" updateOnFolderChange=$updateOnFolderChange parentFolderLabel=$kernelStrings.app_treeparentfolder_text folderNameLabel=$kernelStrings.app_treefurfldname_title folderSelectorEvent="changeFolder(this)" ?> 
+	<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=0 space_right=10 onClick="return checkFolderRights()" ?>
+	<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? else ?>
+	<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="action" value="<? $action ?>">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="opener" value="<? $opener ?>">
+  <input type="hidden" name="MMF_ID" value="<? $MMF_ID?>">
+  <input type="hidden" name="MMF_ID_PARENT" value="<? $MMF_ID_PARENT ?>">
+  <input type="hidden" name="folderData[MMF_ID]" value="<? $folderData.MMF_ID ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

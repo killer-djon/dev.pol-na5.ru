@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+body{
+	font-family: "Calibri";
+	background:url('http://jorange.ru/templates/jorange/images/bg.png');
+	margin:0px;
+	padding:0px;
+}
+
+.iefix{ text-align:center;}
+.mainWidth{ width: 700px; margin:0 auto; text-align:left;}
+
+a {
+	font-size: 13px;
+	font-family: "Verdana";
+	color: #2F73B8;
+	line-height: 19px;
+	text-decoration: underline;
+}
+
+/* .logo {
+	width: 119px;
+	height: 144px;
+	background: url('http://jorange.ru/templates/jorange/images/logo.png') left top no-repeat;
+	vertical-align: middle;
+	display:inline-block;
+	//display:inline;
+	//zoom:1;
+}
+ */
+.divGreyBlackTop {
+	height: 62px;
+	width: 100%;
+	background:url('http://jorange.ru/templates/jorange/images/blackBG.png');
+	font-size: 0px;
+	position: absolute;
+}
+
+.divGreyBlackTop2 {
+	height: 8px;
+	width: 100%;
+	background: url('http://jorange.ru/templates/jorange/images/divGreyBlackTop.png');
+	font-size: 0px;
+	position: absolute;
+	top: 62px;
+}
+
+.sub_title{
+	font-size: 26px;
+	font-weight: normal;
+	margin: 0px;
+	padding: 15px 0px;
+	color: #BBB;
+	z-index: 2;
+	position: relative;
+}
+.block_title{
+	font-family: "Calibri";
+	font-size: 16px;
+	color: #444;
+	padding: 10px 0px;
+	border-bottom: 1px dashed #444;
+	margin: 20px 0px 15px 0px;
+}
+
+.message_error{
+	font-family: "Calibri";
+	font-size: 20px;
+	color: #B01515;
+	background: #F5CCCC;
+	padding: 10px;
+	border: 1px solid #E08B8B;
+	margin: 15px 0px;
+}
+.message_info{
+	font-family: "Calibri";
+	font-size: 16px;
+	color: #0c4357;
+	background: #e7f4f5;
+	padding: 10px;
+	border: 1px dashed #9dc9d9;
+	margin: 15px 0px;
+}
+.check_files{
+	font-family: "Calibri";
+	font-size: 15px;
+	color: #444;
+	line-height: 20px;
+}
+.check_file_success, .check_file_problem{
+	float:right;
+}
+.check_file_success{
+	color:#11ad28;
+}
+.check_file_problem{
+	color:#b01515;
+}
+
+
+.button_simple{
+	border-top: 1px solid #EB7129;
+	border-bottom: 1px solid #BB5011;
+	border-left: 1px solid #D3621F;
+	border-right: 1px solid #D3621F;
+	background:#FF6B14;
+	display: inline-block;
+	//display: inline;
+	//zoom: 1;
+	margin:15px 0px;
+}
+.button_simple button, .button_simple input{
+	border:0px;
+	background: transparent;
+	display: block;
+	padding: 8px 13px;
+	margin: 0px;
+	font-family: "Calibri";
+	font-size: 17px;
+	color: white;
+	text-shadow: 0 -1px 0px #BB5011;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#progress{
+	text-align:left; 
+	width:700px; 
+	border:1px solid #ccc;
+	margin-bottom: 15px;
+}
+#progress div{
+	background-color:#ddd; 
+	background-image: url(slide.gif);
+	font-family: "Calibri";
+	font-size: 14px;
+	color: #444;
+	text-align:center;
+}

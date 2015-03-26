@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script language="JavaScript">
+		<!--
+
+			var descriptions = new Array();
+
+			function checkDescriptions()
+			{
+				var i = 0;
+
+				for ( i = 0; i < this.descriptions.length; i++ ) {
+					var description = this.descriptions[i];
+					var obj = document.getElementById(description);
+
+					if ( obj.value.length > 255 ) {
+						obj.focus();
+						alert( "<? $kernelStrings.app_textlen_message ?>" );
+						return false;
+					}
+				}
+
+				return true;
+			}
+
+			function onUpload()
+			{
+				thisForm = document.forms[0];
+
+				var fileFound = false;
+				for ( i = 0; i < thisForm.elements.length; i++ )
+					if (thisForm.elements[i].name.substr(0, 6) == "files[")
+						if ( thisForm.elements[i].value != "" ) {
+							fileFound = true;
+							break;
+						}
+
+				if ( !fileFound ) {
+					alert( "<? $ddStrings.add_screen_nofiles_message ?>" );
+					return false;
+				}
+
+				if ( document.getElementById ) {
+					var addFileCell = document.getElementById( 'addfilecell' );
+					if (addFileCell)
+						addFileCell.style.display = "none";
+
+					var attachMessageCell = document.getElementById( 'attachmessagecll' );
+					if (attachMessageCell)
+						attachMessageCell.style.display = "inline";
+				}
+
+				processTextButton( 'addfilebtn', 'form' );
+
+				return false;
+			}
+
+			var visibleSections = 2;
+
+			function expand()
+			{
+				inc = 2;
+				if ( document.getElementById ) {
+					for ( i = 1; i <= inc; i++ ) {
+						sectionName = "section" + (this.visibleSections+i-1);
+						var extraSection = document.getElementById( sectionName );
+						if (extraSection)
+							extraSection.style.display = "block";
+					}
+
+					this.visibleSections += inc;
+
+					if ( this.visibleSections >= <? $sectionCount ?> ) {
+						var section = document.getElementById( "expandSection" );
+						if (section)
+							section.style.display = "none";
+					}
+				}
+
+				return false;
+			}
+
+			function MM_preloadImages() { //v3.0
+			  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+			    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+			    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+			}
+
+		//-->
+		</script>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="addfile_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<input type="hidden" name="masterStep" value="<? $masterStep ?>">
+  			<input type="hidden" name="DF_ID" value="<? $DF_ID ?>">
+
+			<? if !$fatalError ?>
+				<? wbs_formCaption text=$folderInfo.DF_NAME|htmlsafe:true:true|trunc_str:50 ?>
+				
+				<? if $masterStep == 0 ?>
+					<? if !$showMessages ?>
+						<div ID="addfilecell">
+							<div style='float: left'>
+							<? foreach from=$fileSections key=index item=section ?>
+							<table cellpadding="0" cellspacing="2" border="0" <?if $index > 1 ?>style="display:none"<?else?><?/if?> ID="<? "section"|cat:$index ?>">
+								<tr><td rowspan="2" valign="top" align="right" class="greatHeader" style="padding-left: 20px">&nbsp;</td><td><? $ddStrings.app_file_field|cat:":&nbsp;" ?></td><td><input type="file" class="FormControl" name="files[<? $index ?>]" style="width: 400px"></td></tr>
+								<tr><td valign="top"><? $ddStrings.app_desc_field|cat:":&nbsp;" ?></td><td><textarea class="FormControl" style="width: 400px" rows="3" class="FormControl" name="descriptions[<? $index ?>]"></textarea></td></tr>
+								<tr><td colspan="3" style="height: 10px"></td></tr>
+							</table>
+							<? /foreach ?>
+							</div>
+							<div style='float:left; margin-left: 50px; padding: 20px; border: 3px solid #999; background: #F0F0F0'>
+								<a href='<? $newUploaderLink ?>'><b><? $ddStrings.add_screen_bulk_link ?></b></a>
+								<BR><BR>
+								<font style='font-size: 0.9em; color: #999'><? $ddStrings.add_screen_bulk_requires ?> <a style='color: #888' href='http://www.adobe.com'>Adobe Flash Player</a></font>
+							</div>
+							
+							<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+								<? $ddStrings.add_screen_morefiles_label|cat:": " ?><a href="#bottom" onClick="expand()"><img src="../cssbased/images/expand.gif" border="0" width="17" height="11"></a>
+							<? /wbs_note ?>
+							<a name="bottom"></a>
+
+							<? wbs_note displayNoteMarker=true width="500px" smallFont=true indented=true ?>
+								<? $limitStr ?>
+							<? /wbs_note ?>
+
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton name=addfilebtn link="#" caption=$ddStrings.add_screen_add_btn onClick="return onUpload()" ?>
+								<? wbs_buttonSetButton name=cancelbtn caption=$kernelStrings.app_cancel_btn ?>
+							<? /wbs_buttonSet ?>
+						</div>
+						<div ID="attachmessagecll" style="display:none">
+
+								<?* wbs_formCaption text=$ddStrings.add_screen_upload_text *?>
+
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<? $ddStrings.add_screen_uploadwait_text ?>
+								<? /wbs_note ?>
+
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<img src="../cssbased/images/progress.gif" >
+								<? /wbs_note ?>
+
+								<? wbs_buttonSet ?>
+									<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" link="catalog.php" ?>
+								<? /wbs_buttonSet ?>
+						</div>
+					<? else ?>
+						<table cellpadding=2 cellspacing=0 border=0>
+							<tr>
+								<td><? $messageStack ?></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name="cancelbtn"  caption=$kernelStrings.app_ok_btn   ?>
+						<? /wbs_buttonSet ?>
+					<? /if ?>
+				<? elseif $masterStep == 1 ?>
+					<input type="hidden" name="fileListPacked" value="<? $fileListPacked ?>">
+					<input type="hidden" name="existingFilesPacked" value="<? $existingFilesPacked ?>">
+
+					<? if !$showMessages ?>
+						<table border=0 cellpadding=0 cellspacing=0>
+							<tr>
+								<td><? $ddStrings.add_screen_filesexists_label|cat:":" ?></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+
+						<div style="padding-left: 20px">
+							<table border=0 cellpadding=2 cellspacing=0>
+								<tr>
+									<td colspan=2 class=bottomBorder><b><? $ddStrings.add_screen_filename_title ?></b></td>
+									<td style="padding-left: 5px" class=bottomBorder><b><? $ddStrings.add_screen_comment_title ?></b></td>
+								</tr>
+								<? foreach from=$existingFiles item=fileInfo key=fileKey ?>
+									<tr>
+										<td valign=top>
+											<? if $fileInfo.LOCKED ?>
+												<img style="margin-right: 1px; margin-top: 3px" align=baseline src="<? "images/lock.gif"|stylesetitem:"classic":$styleSet:"DD" ?>" >
+											<? /if ?>
+										</td>
+										<td valign=top>
+											<? $fileInfo.DL_FILENAME|htmlsafe:true:true|sureecho|trunc_str:50 ?>
+										</td>
+										<td style="padding-left: 5px" valign=top>
+											<? if $fileInfo.LOCKED ?>
+												<? "("|cat:$ddStrings.add_screen_checkout_label|cat:": "|cat:$fileInfo.DL_CHECKUSERID|cat:" "|cat:$fileInfo.DL_CHECKDATETIME|cat:")" ?>
+											<? else ?>
+												<textarea name="DL_VERSIONCOMMENT[<? $fileKey ?>]" class="FormControl" style="width: 350px" ID="<? "description"|cat:$fileKey ?>"><? $fileInfo.DL_VERSIONCOMMENT|htmlsafe_textarea:0 ?></textarea>
+												<script language=JavaScript>
+														descriptions.push('<? "description"|cat:$fileKey ?>');
+												</script>
+											<? /if ?>
+										</td>
+									</tr>
+								<? /foreach ?>
+							</table>
+						</div>
+
+						<table border=0 cellpadding=1 cellspacing=0>
+							<tr>
+								<td colspan=2>&nbsp;</td>
+							</tr>
+							<tr>
+									<td>
+									<input class="FormControl" type=radio name="existingFileOperation" value="replace" <? switchedOutput val=$existingFileOperation true_val=replace str1="checked" ?>>
+								</td>
+								<td>
+									&nbsp;<? $ddStrings.add_screen_replace_label?>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input class="FormControl" type=radio name="existingFileOperation" value="skip" <? switchedOutput val=$existingFileOperation true_val=skip str1="checked" ?>>
+								</td>
+								<td>
+									&nbsp;<? $ddStrings.add_screen_skip_label?>
+								</td>
+							</tr>
+							<tr>
+								<td colspan=2>&nbsp;</td>
+							</tr>
+						</table>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name=addfilebtn caption=$kernelStrings.app_ok_btn  onClick="return checkDescriptions()" ?>
+							<? wbs_buttonSetButton name=cancelbtn link="catalog.php" caption=$kernelStrings.app_cancel_btn ?>
+						<? /wbs_buttonSet ?>
+
+					<? else ?>
+						<table cellpadding=2 cellspacing=0 border=0>
+							<tr>
+								<td><? $messageStack ?></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_ok_btn  ?>
+						<? /wbs_buttonSet ?>
+
+					<? /if ?>
+				<? /if ?>
+
+			<? else ?>
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+						<? /wbs_buttonSet ?>
+			<? /if ?>
+			<input type=hidden name=finished value=1>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

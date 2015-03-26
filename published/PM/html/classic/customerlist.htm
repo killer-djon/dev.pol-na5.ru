@@ -1,0 +1,119 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+
+	function MM_findObj(n, d) { //v4.0
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && document.getElementById) x=document.getElementById(n); return x;
+	}
+
+	function confirmInactivate()
+	{
+		if ( !treeCheckSelection( '<? $pmStrings.cl_emptyaction_message ?>' ) )
+			return false;
+
+		thisForm = document.forms[0];
+		
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'checkbox') 
+				if (thisForm.elements[i].checked) {
+					el = thisForm.elements[i];
+					len = el.name.length;
+
+					C_ID = el.name.substr( 9, len-10 );
+
+					ANName = "AN["+C_ID+"]";
+
+					obj = MM_findObj(ANName);
+
+					if ( obj.value != 0 ) {
+						alert("<? $pmStrings.cl_openinact_message ?>");
+						return false;
+					}
+			}
+
+		return true;
+	}
+
+	function confirmDelete()
+	{
+		if ( !treeCheckSelection( '<? $pmStrings.cl_emptyaction_message ?>' ) )
+			return false;
+
+		thisForm = document.forms[0];
+		
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'checkbox') 
+				if (thisForm.elements[i].checked) {
+					el = thisForm.elements[i];
+					len = el.name.length;
+
+					C_ID = el.name.substr( 9, len-10 );
+
+					ANName = "TN["+C_ID+"]";
+
+					obj = MM_findObj(ANName);
+
+					if ( obj.value != 0 ) {
+						alert("<? $pmStrings.cl_opendel_message ?>");
+						return false;
+					}
+			}
+
+		return confirm( "<? $pmStrings.cl_deleteconfirm_message ?>" );
+	}
+
+	function confirmReactivate()
+	{
+		if ( !treeCheckSelection( '<? $pmStrings.cl_emptyaction_message ?>' ) )
+			return false;
+
+		return true;
+	}
+
+//-->
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default" bgcolor="white">
+<?strip?>
+<form name="form" method="post" action="<? $formLink ?>" enctype="multipart/form-data">
+<? include file="../../../common/html/classic/header.htm" nospace=1?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>		
+		<td class="pageTopPanel"> 
+			<? if !$folder ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="addcbtn" caption=$pmStrings.cl_addcust_btn formname="form" space_right=#toolbarSmallSpace#?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$pmStrings.cl_custmer_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$custMenu popupMenuIndex=15002 menuIcon=1 showTopBar=1 menuClass="btnText"?>
+			<? else ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$pmStrings.cl_custmer_menu  formname="form" space_right=#toolbarSmallSpace# button_menu=$custMenu popupMenuIndex=15002 menuIcon=1 showTopBar=1 menuClass="btnText"?>
+			<? /if ?>
+		</td>
+	</tr>
+</table>
+<? include file="../../../common/html/classic/toppanel_fix.htm" nospace=1 noleftspace=1 ?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+<? if !$fatalError ?>
+	<? include file="../../../common/html/classic/tabbar_templates/tabbar_view.htm" tabs=$tabs bottom_part="../../../PM/html/classic/custlist_list.htm" ?>
+<? /if ?>
+  <input name="sorting" type="hidden" id="sorting" value="<? $sorting|mime_encode ?>">
+  <? if $pagesNum < 2 ?>
+    <input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>">
+  <? /if ?>
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="folder" value="<? $folder ?>">
+<?include file="../../../common/html/classic/pagefooter.htm" norightspace=1 ?>
+</form>
+
+<?/strip?>
+</body>
+</html>

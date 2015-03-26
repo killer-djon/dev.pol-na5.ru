@@ -1,0 +1,276 @@
+<div id="ticket">
+    <div class="ticket-container">
+        {{if $source.params.message}}
+            <div class="message">{{$source.params.message|escape}}</div>
+        {{/if}}
+        <!--<div class="ticket-info-container">-->
+        <div class="request-header">
+        
+	<div id="info-container">
+	    <div class="info-name">
+	    	{{if $request.client_c_id}}
+	        <div class="name"><a href="javascript:void(0)" id="client_name">{{$request.from_name}}</a></div>
+	        {{/if}}
+
+            <div class="contact-panel" style="display:none;">
+            {{if $request.client_c_id}}
+			
+            <div class="contact-img"><img src="{{$contact_photo}}"></div>
+            {{$contact_info}}
+            {{foreach from=$contact_info_plugins item=plugin_html}}
+                {{$plugin_html}}
+            {{/foreach}}
+            
+            {{foreach from=$top_plugins item=plugin_html}}
+            	{{$plugin_html}}
+            {{/foreach}}
+		    <div class="orders client_requests">
+                {{if $client_requests_cnt gt 1}} 
+                    <h4>[`Total requests from this client`]:<span class="r-count">{{$client_requests_cnt}}</span> <a href="javascript:void(0)" id="client_requests_link" class="blacklink">[`show all`]</a></h4>
+                    {{else}}
+                    <h4 style="padding-top:0.5em"><i>[`Other requests from this client: none`]</i></h4>
+                {{/if}}
+            </div>
+			{{/if}}
+		    </div>
+       
+	    </div>
+	</div></div>
+<div class="request-subject">
+<span class="details"><a href="javascript:void(0)" class="blacklink show-right-column">[`show details`]</a></span>
+<span class="date request-state">[`Status`]: <b style="color:{{$current_state_color}}">{{$request.state}}</b></span>
+<span class="date request-id">[`Id`]: <b>{{$request.id}}</b></span>
+<div class="subject">{{$request.subject}}</div>
+</div>
+
+{{if $log_order eq 'DESC'}}
+{{foreach from=$log item=l}}
+<div class="ticket-log-container {{if $l.has_border}}greyborder {{/if}} {{$all_actions[$l.action_id].type|lower}}">
+        <div class="header" {{if $l.has_border}}style="background:{{$l.light_color}}"{{/if}}>
+            {{if $l.upic}}<span class="userpick"><img height="32" src="{{$l.upic}}" /></span>{{/if}}       
+            <div style="float:right"><span class="date">{{$l.datetime}}</span>
+            <span class="time-before">+ {{$l.countdown}}</span></div>
+            <p class="action-info">
+            <span title="" class="author" {{if $l.has_border}}style="color:{{$l.color}}"{{/if}}>{{$l.contact}}</span>
+            <span class="action">{{$all_actions[$l.action_id].log_name}}</span></p>
+                {{if $l.to}}
+                <p class="action-to"><span class="to-label">{{if $all_actions[$l.action_id].type == 'FORWARD-ASSIGN'}}[`<span class="assign">To</span>`]{{else}}[`To`]{{/if}}:</span><b href="javascript:void(0)">{{$l.to|escape}}</b></p>
+                {{/if}}
+                {{if $l.cc}}
+                <p class="action-to"><span class="to-label">[`Cc`]:</span><b href="javascript:void(0)">{{$l.cc|escape}}</b></p>
+                {{/if}}
+                {{if $l.bcc}}
+                <p class="action-to"><span class="to-label">[`Bcc`]:</span><b href="javascript:void(0)">{{$l.bcc|escape}}</b></p>
+                {{/if}}
+            
+        </div>
+    {{if $l.text}}
+        <div class="text" style="border-left-color:{{$l.color}}">
+        {{$l.text}}
+        {{if $l.attachments}}
+        {{foreach from=$l.attachments key=n item=file}}
+        {{if !$file.content_id &&(substr($file.type, 0, 5)=="image" && substr($file.name, -4) != '.tif' && substr($file.name, -5) != '.tiff' || substr($file.name, -4) == ".gif") && $file.size <= 2097152}}
+        <div style="max-width: 100%">
+        	<img style="max-width: 100%" src="?m=requests&act=attachment&id=l{{$l.id}}&n={{$n}}" alt="{{$file.name}}" title="{{$file.name}}" />
+        </div>
+        {{/if}}
+        {{/foreach}}
+        <p class="attachments">
+            <b class="gray">[`Attachment(s)`]:</b>
+            {{foreach from=$l.attachments key=n item=file}}
+            <a href="?m=requests&act=attachment&id=l{{$l.id}}&n={{$n}}">{{if $file.name}}{{$file.name}}{{else}}[`noname`]{{/if}}</a>
+            ({{$file.size|filesize}}) &nbsp;
+            {{/foreach}}
+        </p>
+        {{/if}}
+        </div>
+    {{/if}}
+</div>
+{{/foreach}}
+{{/if}}
+<div class="request-content">
+
+<div class="request-top" style="background-color:{{$request_color}}">
+<span class="date">{{$request.datetime}}</span><span class="req-text">[`Request text`]</span>
+	{{if $class_types|@sizeof > 0}} 
+	<div class="category" style="clear:both;"><p>
+	{{foreach from=$class_types key=key item=clType}}
+	    <p><span class="cat-value"><b>{{$clType.name}}:&nbsp;</b>{{$clType.classes}}</span></p>
+	{{/foreach}}
+	</p></div>
+	{{/if}}
+</div>
+	  
+            <div class="text ui-widget-content" style="">
+            {{$request.text}}
+            {{if $request.attachments != ''}}
+	        {{foreach from=$request.attachments key=n item=file}}
+	        {{if !$file.content_id && (substr($file.type, 0, 5)=="image"  && substr($file.name, -4) != '.tif' && substr($file.name, -5) != '.tiff' || substr($file.name, -4) == ".gif") && $file.size <= 2097152}}
+	        <div style="max-width: 100%; margin: 3px 0">
+	        	<img style="max-width: 100%" src="?m=requests&act=attachment&id=r{{$request.id}}&n={{$n}}" alt="{{$file.name}}" title="{{$file.name}}" />
+	        </div>
+	        {{/if}}
+	        {{/foreach}}
+            
+            <p class="attachments">
+                <b class="gray">[`Attachment(s)`]:</b>
+                {{foreach from=$request.attachments key=n item=file}}
+                <a href="?m=requests&act=attachment&id=r{{$request.id}}&n={{$n}}">{{if $file.name}}{{$file.name}}{{else}}[`noname`]{{/if}}</a>
+                ({{$file.size|filesize}}) &nbsp;
+                {{/foreach}}
+            </p>
+            {{/if}}
+			
+<div class="ticket-sidebar" style="display:none">
+ 
+        <table class="ticket-info">
+           
+            <tr>
+                <td class="td-label" valign="top">[`Created`]:</td>
+                <td>{{$request.datetime}}</td>
+            </tr>
+            <tr>
+                <td class="td-label" valign="top">[`Source`]:</td>
+                <td>
+{{if $request.source_type eq 'email'}}
+[`Email`]
+{{/if}}
+{{if $request.source_type eq 'user'}}
+[`added manually by user`]
+{{/if}}
+{{if $request.source_type eq 'cabinet'}}
+[`added manually by user from cabinet`]
+{{/if}}
+{{if $request.source_type eq 'form'}}
+[`Form`]
+{{/if}}
+{{if $request.source_type eq 'client'}}
+[`Form`]
+{{/if}}
+                </td>
+            </tr>
+{{if $request.source_type eq 'email'}}
+            <tr>
+                <td class="td-label" valign="top">[`From`]:</td>
+                <td>{{$request.client_from|escape:'html'}}</td>
+            </tr>
+            <tr>
+                <td class="td-label" valign="top">[`To`]:</td>
+                <td>{{$request.source|escape:'html'}}</td>
+            </tr>
+{{/if}}
+{{if $request.source_type eq 'user'}}
+            <tr>
+                <td class="td-label"></td>
+                <td>{{$request.source}}</td>
+            </tr>
+{{/if}}
+{{if $request.source_type eq 'form'}}
+            <tr>
+                <td class="td-label"></td>
+                <td>
+                {{if $user_is_admin}}
+				    <a href="#/forms/info/{{$request.source}}/">{{$request.form_name}}</a>
+				{{else}}
+                    {{$request.form_name}}
+				{{/if}}
+				</td>
+            </tr>
+{{/if}}
+        
+            <tr>
+                <td class="td-label" valign="top">[`Assigned`]:</td>
+                <td>{{$request.assigned_name}}</td>
+            </tr>
+        </table>
+
+</div>
+		
+            
+            </div>
+
+        </div>  
+		<!--</div>-->
+    </div>
+{{if $log_order eq 'ASC'}}
+{{foreach from=$log item=l}}
+<div class="ticket-log-container {{if $l.has_border}}greyborder {{/if}} {{$all_actions[$l.action_id].type|lower}}">
+        <div class="header" {{if $l.has_border}}style="background:{{$l.light_color}}"{{/if}}>
+			{{if $l.upic}}<span class="userpick"><img height="32" src="{{$l.upic}}" /></span>{{/if}}       
+            <div style="float:right"><span class="date">{{$l.datetime}}</span>
+			<span class="time-before">+ {{$l.countdown}}</span></div>
+            <p class="action-info">
+            <span title="" class="author" {{if $l.has_border}}style="color:{{$l.color}}"{{/if}}>{{$l.contact}}</span>
+            <span class="action">{{$all_actions[$l.action_id].log_name}}</span></p>
+			
+                {{if $l.to}}
+                <p class="action-to"><span class="to-label">{{if $all_actions[$l.action_id].type == 'FORWARD-ASSIGN'}}[`<span class="assign">To</span>`]{{else}}[`To`]{{/if}}:</span><b href="javascript:void(0)">{{$l.to|escape}}</b></p>
+                {{/if}}
+				{{if $l.cc}}
+				<p class="action-to"><span class="to-label">[`Cc`]:</span><b href="javascript:void(0)">{{$l.cc|escape}}</b></p>
+                {{/if}}
+                {{if $l.bcc}}
+                <p class="action-to"><span class="to-label">[`Bcc`]:</span><b href="javascript:void(0)">{{$l.bcc|escape}}</b></p>
+                {{/if}}
+			
+        </div>
+    {{if $l.text}}
+        <div class="text" style="border-left-color:{{$l.color}}">
+        {{$l.text}}
+	    {{if $l.attachments}}
+        {{foreach from=$l.attachments key=n item=file}}
+        {{if !$file.content_id && (substr($file.type, 0, 5)=="image" && substr($file.name, -4) != '.tif' && substr($file.name, -5) != '.tiff' || substr($file.name, -4) == ".gif") && $file.size <= 2097152}}
+        <div style="max-width: 100%">
+        	<img style="max-width: 100%" src="?m=requests&act=attachment&id=l{{$l.id}}&n={{$n}}" alt="{{$file.name}}" title="{{$file.name}}" />
+        </div>
+        {{/if}}
+        {{/foreach}}	    
+        <p class="attachments">
+			<b class="gray">[`Attachment(s)`]:</b>
+			{{foreach from=$l.attachments key=n item=file}}
+			<a href="?m=requests&act=attachment&id=l{{$l.id}}&n={{$n}}">{{$file.name}}</a>
+			({{$file.size|filesize}}) &nbsp;
+			{{/foreach}}
+	    </p>
+        {{/if}}
+        </div>
+    {{/if}}
+</div>
+{{/foreach}}
+{{/if}}
+
+<div id="contact-search-form" style="display:none">
+    <div class="tabs" style="margin:0; padding:0;">
+       <ul class="tabs-nav" style="margin:0; padding:0;">
+                <li id="tabs-search-contacts"><a href="#"><span>[`Contacts`]</span></a></li>
+                <li id="tabs-search-users"><a href="#"><span>[`Users`]</span></a></li>
+                <li id="tabs-search-browse"><a href="#">[`<span>Search</span>`]</a></li>
+       </ul>
+    </div>
+    <div id="contact-search-form-content" class="ui-widget-content"></div>
+</div>
+</div><!-- ticket-wrapper -->
+{{if $sidebar_plugins}}
+<style>
+#ticket-wrapper{
+	padding-right:25%;
+}
+#sidebar { width:25%; position:absolute; top:0; right:0px;}
+
+</style>
+<div id="sidebar">
+{{foreach from=$sidebar_plugins item=plugin_html}}
+    {{$plugin_html}}
+{{/foreach}}
+</div>
+{{/if}}
+<script>
+$.wbs.request.data = $.extend(true, $.wbs.request.data, {
+    client_c_id: '{{$request.client_c_id}}',
+	from_name: {{$request.from_name|json}},
+	subject: {{$request.subject|json}},
+	last_req_log_id: '{{$last_req_log_id}}',
+    order: '{{$log_order}}'
+})
+$.wbs.request.create();
+</script>

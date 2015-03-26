@@ -1,0 +1,799 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: webasyst\n"
+"POT-Creation-Date: 2009-09-10 11:51+0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: X:\home\webasyst\www\published\PD\source\js\jquery.jeditable.js:71
+msgid "Click to edit"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:169
+msgid "Not enough memory to perfom operation (memory_limit=%s)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1848
+msgid "Organize albums"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:486
+msgid "New album"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:488
+msgid "Drag'n'drop to arrange albums."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:614
+msgid "There are no photo albums in your library."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:3084
+msgid "Create a new album to upload photos."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:675
+msgid "You do not have permissions to access this album."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1954
+msgid "Album is published"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1961
+msgid "Album is published privately"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:760
+msgid "Delete"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1209
+msgid "This will permanently delete all photos inside this album. Delete?"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:74
+msgid "Slideshow"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1238
+msgid "edit"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:855
+msgid "Edit album description"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:3163
+msgid "View"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:862
+msgid "Organize and share"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:930
+msgid "Arrange photos using drag'n'drop."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:931
+msgid "With selected photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:933
+msgid "select all"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\imageLinks.html:80
+msgid "Links to photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:974
+msgid "Create a collection from selected photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:977
+msgid "Move to another album"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\imageLinks.html:105
+msgid "No images selected"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1051
+msgid "Delete photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1066
+msgid "Delete selected photos?"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changePhotoDesc.html:62
+msgid "Edit photo descriptions"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:85
+msgid "Create a collection"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1191
+msgid "Import from Flickr"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1206
+msgid "Delete album"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1240
+msgid "Edit photo description"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1390
+msgid "Link (for email and IM)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\imageLinks.html:98
+msgid "HTML (for websites and blogs)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\imageLinks.html:100
+msgid "BBcode (forums)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1399
+msgid "URL"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1409
+msgid "Original"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1430
+msgid "Rotate left"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1461
+msgid "Rotate right"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1568
+msgid "Crop"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:381
+msgid "Cancel"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1635
+msgid "Make this a key photo"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1645
+msgid "This is a key photo for this album"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1663
+msgid "This is a key photo for album"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1673
+msgid "Delete photo"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1676
+msgid "This will permanently delete photo. Are you sure?"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1691
+msgid "Details (EXIF)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1694
+msgid "Taken"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1697
+msgid "Uploaded"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\imageLinks.html:87
+msgid "Image size"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1705
+msgid "Camera"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\slideshow.html:219
+msgid "sec"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1709
+msgid "Shutter"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1712
+msgid "Aperture"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1715
+msgid "Focal length"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:140
+msgid "Save"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1835
+msgid "View albums mode"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1925
+msgid "rename"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1912
+msgid "cancel"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:124
+msgid "or"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1947
+msgid "Album is not published"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:1951
+msgid "Publish"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:100
+msgid "Settings"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2000
+msgid "full"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2002
+msgid "read & write"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2006
+msgid "read"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2067
+msgid "Back to albums"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:97
+msgid "Albums"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2076
+msgid "photos on a page"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2216
+msgid "Back to album"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2242
+msgid "Photo %s of %s"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2630
+msgid "description"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2903
+msgid "Click to select, drag'n'drop to sort"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\frontend\image-view3.html:48
+msgid "There are no photos in this album."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:3089
+msgid "%d photos in %d album(s)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:3092
+msgid "Photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:156
+msgid "of"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\backend.js:2038
+msgid "photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:38
+msgid "You have attempted to queue too many files."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:38
+msgid "You may select up to %s files."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:48
+msgid "File size exceeds maximum allowed by the server."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:52
+msgid "Cannot upload 0 byte files."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:56
+msgid "Invalid File Type."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:134
+msgid "Error"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:89
+msgid "You have only %s of available disk space left. Not all photos will be uploaded."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:129
+msgid "Uploading..."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:147
+msgid "Uploading... Creating thumbnails..."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:175
+msgid "Invalid file type."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:181
+msgid "Complete."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:208
+msgid "Photo was not uploaded. Not enough permissions or out of disk space."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:211
+msgid "403 Forbidden"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:216
+msgid "Upload Failed."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:220
+msgid "Server (IO) Error"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:224
+msgid "Security Error"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:228
+msgid "Upload limit exceeded."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:232
+msgid "Failed Validation.  Upload skipped."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:240
+msgid "Cancelled"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:244
+msgid "Stopped"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\js\swfupload_new\handlers.js:247
+msgid "Error creating thumbnail (possible reason — not enough memory)."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:148
+msgid "Select files"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:78
+msgid "Album “%s” publication settings"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:87
+msgid "Published"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:88
+msgid "Published privately"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:89
+msgid "Not published"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:95
+msgid "Album can be viewed and managed only inside your WebAsyst account by users with sufficient access permissions."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:97
+msgid "View:"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:130
+msgid "Photo size"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:164
+msgid "Number of photos on one page"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:170
+msgid "all"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:152
+msgid "Can view and download original images from public gallery"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\album-settings.html:159
+msgid "Thumbnail size"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:124
+msgid "close"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\albums.html:15
+msgid "Created"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\albums.html:16
+msgid "by"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\albums.html:17
+msgid "My access"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:387
+msgid "Upload photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changeDescElement.html:40
+msgid "Album description"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changeDescElement.html:40
+msgid "Photo description"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changeDescElement.html:48
+msgid "Subtitle (e.g. when the photos were taken)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changeDescElement.html:52
+msgid "Description"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changeDescElement.html:57
+msgid "Album description is displayed in the public part of your photo gallery. HTML tags are allowed."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changePhotoDesc.html:68
+msgid "Photo descriptions are displayed in the public part of your photo gallery. HTML tags are allowed."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changePhotoDesc.html:90
+msgid "close without saving"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:140
+msgid "Saved"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\changePhotoDesc.html:90
+msgid "Save all"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\collection-empty.html:3
+msgid "You did not create photo collections yet."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\collection-empty.html:4
+msgid "You may create collections of selected photos or photos from the entire album on the “Albums” screen."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:47
+msgid "Collection name should not be empty."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:64
+msgid "All photos in this album"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:65
+msgid "Selected photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:66
+msgid "Switch to “Organize and share” mode to select certain photos."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:69
+msgid "Link"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:69
+msgid "email or IM direct link"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:70
+msgid "Widget"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:73
+msgid "Gallery"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:77
+msgid "to embed to your website of blog"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\createCollection.html:80
+msgid "Name your collection"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\designeditor.html:12
+msgid "This will discard all changes you have made to gallery CSS so far. Do you confirm resetting all changes?"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\designeditor.html:53
+msgid "Photo gallery name"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\designeditor.html:59
+msgid "Reset styles to default"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\designeditor.html:59
+msgid "Gallery name is displayed in the public part of your gallery along with the name of every published album.<br />Editing CSS (styles) below allows you to change the way your public gallery looks."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:52
+msgid "Import photos from Flickr"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:28
+msgid "Importing photos from Flickr requires valid API credentials"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:61
+msgid "Import photos from your Flickr account"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:63
+msgid "<a href=\"http://www.flickr.com\" target=\"_blank\">Login</a> to your Flickr account."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:64
+msgid "Go to this web page"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:65
+msgid "Create a new Flickr API key (non-commercial API key is ok)."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:66
+msgid "Enter the following URL in the “Callback URL” field of your new API key (Flickr import feature will not work if you don't enter valid callback URL)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:68
+msgid "Enter your new Flickr API key and secret below"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:70
+msgid "Flickr API Key"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:71
+msgid "Flickr API Secret"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:80
+msgid "Import now"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:81
+msgid "Go to Flickr website and select photo sets to be imported."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:85
+msgid "Edit Flickr API settings"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:100
+msgid "Select photo sets to be imported"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:106
+msgid "Continue"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:107
+msgid "Retrieving photos information..."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:116
+msgid "Importing photos"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:138
+msgid "Importing photo"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:143
+msgid "Import successfully completed."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\flickrImport.html:160
+msgid "Close"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\imageLinks.html:95
+msgid "Links to selected photos (for email and IM)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:98
+msgid "Collections"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:99
+msgid "Design"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:102
+msgid "Public gallery"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:121
+msgid "Album"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\main.html:124
+msgid "Move"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:94
+msgid "Settings have been successfully saved."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:96
+msgid "Image resize engine"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:98
+msgid "Photo thumbnails are created using one of PHP image processing extensions: <a href=\"http://www.php.net/imagick\" target=\"_blank\">Imagick</a> or <a href=\"http://www.php.net/gd\" target=\"_blank\">GD</a>.<br />Select appropriate image processor for your WebAsyst Photos installation. <a href=\"#support/help/gd-vs-imagick.html\" target=\"_blank\">Which processor is better?</a> <img src=\"img/new_window_icon.gif\">"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:101
+msgid "Imagick (not supported by the server)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:101
+msgid "Imagick (recommended)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:105
+msgid "Sharpen thumbnails (recommended)"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:107
+msgid "Sharpening makes your photos look nice and sharp. Sharpening takes a bit more time to upload photos, but improves your photos quality."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:109
+msgid "Access rights"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:112
+msgid "To grant users (or user groups) of your WebAsyst account access to photo albums, use “Users” application. Select appropriate user (user group), and define access level by album on the “Access” tab.<br /><br />To enable <strong>automated access control to new albums</strong>, set access level by user group below (if no groups are selected, access to the new album will be given only to the user who created the album).<br /><br /><em class=\"emtext\">NOTE: User group access rights you define below will be applied to new albums only, and will not be applied to existing albums.</em>"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:117
+msgid "Read only"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:118
+msgid "Read&Write"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:119
+msgid "Full"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\settings.html:135
+msgid "To grant users of your WebAsyst account access to photo albums, use “Users” application. Select appropriate user, and define access level by album on the “Access” tab.<br /><br />If you want to grant access to new photo albums automatically (by default access to the new created album is provided only to the user who created the album), <strong>create one or more user groups first</strong> in the “Users” application. Then go back to this screen and set access level by user group."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\slideshow.html:342
+msgid "don't show descriptions"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\slideshow.html:369
+msgid "show descriptions"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:128
+msgid "Files uploaded"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:360
+msgid "Photos will be uploaded to album “%s”"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:364
+msgid "Bulk"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:365
+msgid "One-by-one"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:368
+msgid "You need to have <a href=\"http://get.adobe.com/flashplayer/\" target=\"_blank\">Adobe Flash Player</a> installed for bulk photo upload."
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:370
+msgid "Choose files"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:371
+msgid "You may select up to"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:371
+msgid "files"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:406
+msgid "Each file size must not exceed %s"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:402
+msgid "Add more"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\backend\upload_form.html:406
+msgid "Upload"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\frontend\album-view1.html:24
+msgid "There are no published albums in the gallery"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\themes\default\index.html:75
+msgid "Photos are published using <a href=\"#\" style=\"text-decoration: none\">WebAsyst Photos</a>"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\frontend\image-view2.html:18
+msgid "download original image"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\themes\default\index.html:39
+msgid "Album list"
+msgstr ""
+
+#: X:\home\webasyst\www\published\PD\source\templates\themes\default\index.html:69
+msgid "Pages"
+msgstr ""
+

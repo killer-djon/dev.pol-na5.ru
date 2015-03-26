@@ -1,0 +1,62 @@
+/*
+	Gantt Chart
+*/
+
+table.pm_ganttChart thead td, 
+table.pm_ganttChart thead th
+{
+	vertical-align: middle!important;
+}
+
+table.pm_ganttChart thead td
+{
+	padding: 1px!important;
+}
+
+table.pm_ganttChart tr.pm_ganttIntervalBar
+{
+	height: 5px!important;
+}
+
+table.pm_ganttChart thead tr.pm_ganttIntervalBar th
+{
+	padding: 0!important;
+	margin: 0!important;
+	height: 5px!important;
+}
+
+th.pm_ganttTableTodayRight, td.pm_ganttTableTodayRight
+{
+	border-right: 1px solid #FF0000!important;
+}
+
+th.pm_ganttTableTodayLeft, td.pm_ganttTableTodayLeft
+{
+	border-left: 1px solid #FF0000!important;
+}
+
+table.pm_ganttChart tfoot th
+{
+	font-size: 0.9em;
+	font-weight: normal;
+	color: red;
+	padding-right: 0!important;
+	padding-left: 0!important;
+}
+
+table.pm_ganttChart
+{
+	border-collapse: collapse;
+	border: none;
+}
+
+tr.pm_ganttBar, tr.pm_ganttBar td
+{
+	height: 5px!important;
+	font-size: 0!important;
+}
+
+tr.pm_normalLineHeight td, td.pm_normalLineHeight, tr.pm_normalLineHeight th
+{
+	line-height: 0;
+}

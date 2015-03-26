@@ -1,0 +1,13 @@
+<table class="FormLayout" width="100%">
+<tr><td>
+<? $pmStrings.export_tasks_download_pompt ?> <br /><a href="<? $forward_url ?>"><? $pmStrings.export_tasks_download_lbl ?></a>
+</td></tr>
+</table>
+
+<script language="JavaScript">
+var win_ol_back = window.onload;
+window.onload = function() {
+    if(win_ol_back) win_ol_back();
+    window.location = '<? $forward_url ?>';
+};
+</script>

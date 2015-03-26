@@ -1,0 +1,13 @@
+<? wbs_toolbarItem?>
+	<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+<? /wbs_toolbarItem?>
+
+<? wbs_toolbarItem?>
+	<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+<? /wbs_toolbarItem?>
+
+<? if $action == 'edit' ?>
+	<? wbs_toolbarItem?>
+		<? wbs_buttonSetButton name="deletebtn" caption=$mmStrings.ams_delete_btn onClick="return confirmDelete()" align="Right"?>
+	<? /wbs_toolbarItem?>
+<? /if ?>

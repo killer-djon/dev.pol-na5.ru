@@ -1,0 +1,34 @@
+<?include file="../../../common/html/cssbased/pageelements/ajax/catalog_folder.htm" hideRecyced=1 hideCheckbox=1 showFolderControls=1 addFolderLabel=$kernelStrings.app_treeaddfolder_title elemFile="catalog_folder.elem.htm" deleteFolderLabel=$kernelStrings.app_treedelfolder_text hideFolderIcons=1 linkWrap=1 enableEdit=false avIconCls="book-published" unavIconCls="book-unpublished" ?>
+
+<script>
+	document.onFoldersTreeLoad = function () {
+		var treeEditManager = new TreeEditManager ();
+		treeEditManager.init (
+			foldersTree,
+			{
+				renameUrl: "../ajax/folder_rename.php"				
+			}		
+		);
+		
+		foldersTree.removeListener("click", onTreeClick);		
+		foldersTree.addListener("click", function (node, e) {
+			if (!node)
+				return false;
+				
+			Ext.get("myFrame").on("load", function () {
+				if (document.getElementById("myFrame").temp)
+					return;					
+				document.getElementById("LoadingBlock").style.display = "none";
+			});
+			document.getElementById("myFrame").temp = true;
+			document.getElementById("myFrame").src = "";
+			window.setTimeout("setFrameAddress('" + node.id + "')", 10);
+			
+			document.getElementById("LoadingBlock").style.display = "block";
+		});
+	}
+	function setFrameAddress (nodeId) {
+		document.getElementById("myFrame").temp = false;
+		document.getElementById("myFrame").src = "clearpageview.php?currentBookID=" + document.getElementById("currentBookID").value + "&QPF_ID=" + nodeId	;
+	}
+</script>

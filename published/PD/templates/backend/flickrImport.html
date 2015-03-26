@@ -1,0 +1,167 @@
+<!-- 
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/backend.css'>
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/popup.css'>
+ -->
+ {{assign var="path1" value=$p->getCssUrl() }}
+{{csscombine file="`$path1`/popup-combine.css"  }}
+ {{$p->getCssUrl()}}/backend.css
+ {{$p->getCssUrl()}}/popup.css
+{{/csscombine}}
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/jquery-1.3.2.min.js"></script>
+
+<title>[`Import photos from Flickr`]</title>
+
+<script>
+	$(function(){
+		$('.furl').click(function(){
+			if ($('.param1').val() == '' || $('.param2').val() == '') {
+				$('.flickr_settings').show();
+				$('.flickr_auth').hide();
+				return false;
+			}
+		});
+
+		$('.flickr_api_save').click(function(){
+			var fparam1 = $('.param1').val();
+			var fparam2 = $('.param2').val();	
+			if ( fparam1 == '' || fparam2 == '' ) {
+				alert('[`Importing photos from Flickr requires valid API credentials`]');
+			}
+			else {
+				$.get('backend.php?controller=flickr&action=saveApiFlickr',{
+					fparam1: fparam1,
+					fparam2: fparam2
+				}, function(furl){
+					$('.furl').attr('href', furl);
+				});
+				$('.flickr_settings').hide();
+				$('.flickr_auth').show();
+			}
+
+		});
+
+		$('.flickr_settings_show').click(function(){
+			$('.flickr_settings').show();
+			$('.flickr_auth').hide();
+			return false;
+		});
+	});
+</script>
+
+<div class="window-header">
+	<h2>[`Import photos from Flickr`]</h2>
+</div>
+<div class="flicr-content">
+{{if ($step == 1) }}
+
+
+
+
+<div class="flickr_settings" style="display: none;">
+	<h2>[`Import photos from your Flickr account`]:</h2>
+	<ol>
+	<li>[`<a href="http://www.flickr.com" target="_blank">Login</a> to your Flickr account.`]</li>
+	<li>[`Go to this web page`]: <a href="http://www.flickr.com/services/api/keys/" target="_blank">http://www.flickr.com/services/api/keys/</a></li>
+	<li>[`Create a new Flickr API key (non-commercial API key is ok).`]</li>
+	<li>[`Enter the following URL in the “Callback URL” field of your new API key (Flickr import feature will not work if you don't enter valid callback URL)`]:<br /><br />
+	<strong>{{ $backurl }}</strong><br /><br /></li>
+	<li>[`Enter your new Flickr API key and secret below`]:<br /><br />
+	
+	<p><label>[`Flickr API Key`]:</label> <input class="param1" type="text" value="{{ $fparam1 }}" /></p>
+	<p><label>[`Flickr API Secret`]:</label><input class="param2" type="text" value="{{ $fparam2 }}" /></p>
+	<p><label>&nbsp;</label><input class="flickr_api_save" type="button" value="[`Save`]"/></p>
+	
+	</li>
+	</ol>
+</div>
+
+
+<div class="flickr_auth" >
+	<a class="furl" href="{{ $furl }}">[`Import now`]</a><br />
+	[`Go to Flickr website and select photo sets to be imported.`]
+	
+	<br /><br />
+	
+	<a href="#" class="flickr_settings_show">[`Edit Flickr API settings`]</a>
+</div>
+
+
+
+{{elseif ( $step == 2 )}}
+<script>
+	$(function(){
+		$('#continue').click(function(){
+			$(this).attr('disabled', 'disabled');
+			$("#send").show();
+			$('#sets_form').submit();
+		});
+	});
+</script>
+<h4>[`Select photo sets to be imported`]:</h4>
+<form id="sets_form" action="backend.php?controller=flickr&action=importImage" method="post">
+	{{foreach from=$photosets item=set}}
+	<label><input type="checkbox" name="{{$set.id}}"/>{{$set.title._content}}</label><br />
+	{{/foreach}}
+	
+	<input id="continue" type="button" value="[`Continue`]" />
+	<span id="send" style="display: none;"><img src="{{ $p->getImageUrl() }}/ajload.gif"/> [`Retrieving photos information...`]</span>
+	
+	<p>
+	<a href="javascript:window.parent.closePopup(); "  id="album-settings-close" ><img src="img/close.gif" width="16" height="16" /></a>
+	</p>	
+</form>
+{{elseif ( $step == 3 )}}
+
+	
+	<h4>[`Importing photos`]:</h4>
+	<script type="text/javascript">
+	<!--
+		var albumListUpdate = {{ $photosets }};
+		$(document).ready(function() {
+			var isOn = false;
+			function loadImage() {
+				if ( isOn ) {
+					pos = pos + step;
+				}
+				isOn = true;
+
+				if ( albumListUpdate.length > 0) {
+					var photo = albumListUpdate.pop();		
+					photo.PHPSESSID = '{{ $sessionId }}';
+					photo.album = '{{ $album }}';
+
+					if ( photo['error'] ) {
+						$("#log").html("[`Error`] "+photo['error'] + $("#log")+ "<br />" +html() );
+						$('#f_close').removeAttr('disabled');					
+					}
+					else {
+						$("#log").html("[`Importing photo`] "+photo['photo_name'] + " (#"+(parseInt(pos)+1)+")" + "<br />" + $("#log").html());					
+						$.post('backend.php?controller=flickr&action=load', photo, loadImage);
+					}					
+				}	
+				else {
+						$("#log").html("[`Import successfully completed.`]" + "<br />" + $("#log").html());
+					$('#f_close').removeAttr('disabled');
+					return 0;
+				}
+			}
+					
+			var step = 1;//100 / albumListUpdate.length;
+			var pos = 0;
+			loadImage();
+		});
+		
+	//-->
+	</script>
+	
+	<div>
+		<span class="progressBar" id="spaceused1" style="width: 500px" />
+	</span>
+	<input id="f_close" type="button" onclick="window.close();" value="[`Close`]" disabled="disabled"/>
+	<div class="import-log" id="log" /></div>
+	<div>
+	<a href="javascript:window.parent.closePopup(); "  id="album-settings-close" ><img src="img/close.gif" width="16" height="16" /></a>
+	</div>
+	</div>
+{{/if}}
+</div>

@@ -1,0 +1,47 @@
+<div>
+	<a onClick='toggleIssueSelected(<? $listRecord.P_ID ?>, <? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>, true); return false' href="javascript:void(0)">
+		<? $listRecord.ROW_COLOR?>
+			<? if $viewdata.RESTRICTDESCRIPTION ?>
+				<? $listRecord.I_DESC|substr:0:$descLen ?><? if $viewdata.RESTRICTDESCRIPTION && $listRecord.DESC_LEN > $descLen?><span class='MoreLink' id='descshort_<? $listRecord.P_ID ?>_<? $listRecord.PW_ID ?>_<? $listRecord.I_ID ?>' onClick='toggleIssueRestricted(<? $listRecord.P_ID ?>, <? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>);'>...<span><? "["|cat:$itStrings.il_more_text|cat:"]" ?></span> </span><span style='display: none' id='descfull_<? $listRecord.P_ID ?>_<? $listRecord.PW_ID ?>_<? $listRecord.I_ID ?>' class=''><? $listRecord.I_DESC|substr:$descLen ?></span><? /if ?>
+			<? else ?>
+				<? $listRecord.I_DESC ?>
+			<? /if ?>
+		</b></font>
+	</a>
+	
+	<?* if $viewdata.SHOWPROJECTANDWORK ?>
+		<div class='IssueWorkProject' style='font-size: 0.9em'>
+			<? if $listRecord.PW_NAME ?><? $itStrings.il_task_label ?>: <b><? $listRecord.PW_NAME ?></b>  <span style='padding-left: 20px'>&nbsp;</span><? /if ?>
+			<? if $listRecord.P_NAME ?><? $itStrings.il_project_label ?>: <b><? $listRecord.P_NAME ?></b><? /if ?>
+		</div>
+	<? /if *?>
+	
+	
+	<? if $listRecord.ATTACHEDFILES || $listRecord.I_TRANSITION_DESC ?>
+		<div class='IssueAdvInfo'>
+			<? if $listRecord.ATTACHEDFILES ?>
+				<div>
+					<em><? $listRecord.ATTACHEDFILES ?></em>
+				</div>
+			<? /if ?>
+			<? if $listRecord.I_TRANSITION_DESC != "" ?>
+				<div>
+					<span class='Comments'><b><? $itStrings.il_comments_text ?>:</b> <? $listRecord.I_TRANSITION_DESC ?></span> 
+				</div>
+			<? /if ?>
+		</div>
+	<? /if ?>
+</div>
+
+<div class='IssueLinks'>
+	<? if $listRecord.ALLOWED_DESTS_COUNT ?>
+		<a href='javascript:void(0)' style='font-weight: bold' onClick="return issueForwardDialog(<? $listRecord.P_ID ?>, <? $listRecord.PW_ID ?>, [<? $listRecord.I_ID ?>], ['<? $listRecord.DISPLAY_NUM ?>'])" ><? $itStrings.il_issueforward_label ?></a>
+	<? /if ?>
+	<? if $listRecord.ALLOW_MODIFY ?><a href='javascript:void(0)' onClick='issueEditDialog(<? $listRecord.P_ID ?>, <? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>); return false'><? $itStrings.il_issueedit_label ?></a><? /if ?>
+	<? if $listRecord.ALLOW_DELETE ?><a href='javascript:void(0)' onClick='deleteIssue(<? $listRecord.P_ID ?>, <? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>); return false'><? $itStrings.il_issuedelete_label ?></a><? /if ?>
+	<a href='javascript:void(0)' onClick='toggleWorkHistory (<? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>)'><span id='history-link-<? $listRecord.PW_ID ?>_<? $listRecord.I_ID ?>'><? $itStrings.il_show_history ?></span> (<? count assign="c" var=$listRecord.TRANSITION_LOG ?><? $c ?>)</a>
+
+	<a href='javascript:void(0)' onClick='CommentForm(<? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>)'><?$itStrings.it_Comment_Add_Title?></a>
+</div>
+
+<? include file="../../../IT/html/cssbased/transloginline.htm" ?>

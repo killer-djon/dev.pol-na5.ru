@@ -1,0 +1,157 @@
+<div style="clear:both"></div>
+<div class="orders notes">
+<h4 {{if !$notes}}style="display:none"{{/if}}>[`Notes about client`]
+<a class="notes-add" href="javascript:void(0)" onclick="addNote(this)">[`Add a note`]</a>
+</h4>
+<div id="notes-list">
+    {{foreach from=$notes item=note name=notes_list}}
+<div class="notes-item">
+	<div class="notes-text">{{$note.CN_TEXT}}</div>
+	<div class="notes-item-info">
+	    <span class="notes-added-by">[`added by`]:&nbsp;{{$note.author}}</span>&nbsp;<span class="notes-date">{{$note.date}}</span>
+	</div>
+	<div class="notes-item-controls">
+        <a class="blacklink" rel="{{$note.CN_ID}}" href="javascript:void(0)" onclick="editNote(this)">[`Edit`]</a>
+        <a class="blacklink" rel="{{$note.CN_ID}}" href="javascript:void(0)" onclick="deleteNote(this)">[`Delete`]</a>
+    </div>
+</div>
+    {{foreachelse}}
+    <p class="notes-norows" style="padding-top:0.5em; margin-left:1em; color:#787878"><i>[`Notes about this client: none`]</i>&nbsp;<a class="notes-add blacklink" href="javascript:void(0)" onclick="addNote(this)" style="margin-left:1em">[`Add a note`]</a></p>
+    {{/foreach}}
+</div>
+
+</div>
+<script>
+    checkForEmptyField = function($el, $save){
+        $el.keyup(function(){
+            if ($el.val().split(' ').join('') == ''){
+                $save.button('disable');
+            } else {
+                $save.button('enable');
+            }
+        }).bind('paste', function(e) {
+            setTimeout(function() {
+                if ($el.val().split(' ').join('') == '') {
+                    $save.button('disable')
+                } else {
+                    $save.button('enable')
+                }
+            }, 100);
+        });
+    },
+	editNote = function(el){
+        var $this = $(el), 
+        $item = $this.parent().parent(),
+        text = $item.find('.notes-text').text(),
+        $clone = $item.children().clone(true),
+        $editForm = $('<div/>');
+        $editField = $('<textarea rows="3" class="notes-textarea"></textarea>');
+        $editField.val(text);
+        var $btns = $('<div class="notes-btns"/>'),
+        $save = $('<button>[`Save`]</button>').button().click(function(){
+            var text = $editField.val();
+			$.wbs.widgets.toggleLoading($('#textarea'));
+            $.wbs.ajaxRequest({
+                url: "?m=plugins&p=notes&act=save",
+                requestMethod: 'post',
+                data: {
+                    'noteid': $this.attr('rel'),
+                    'text': text
+                },
+                callback: function(data){
+					$.wbs.widgets.toggleLoading($('#textarea'));
+                    if (data.success) {
+                        $item.empty().append($clone);
+                        $item.find('.notes-text').html(data.success.text);
+                    }
+                }
+            })
+        }),
+        $cancel = $('<button>[`Cancel`]</button>').button().click(function(){
+            $item.empty().append($clone);
+        });
+        checkForEmptyField($editField, $save);
+		$editForm.append($editField).append($btns.append($save).append($cancel));
+        $item.empty().append($editForm);
+        $editField.focus();
+		return false;
+    },
+    addNote = function(){
+        var $this = $(this), 
+        $item = $('#notes-list'),
+        $addForm = $('<div/>');
+        $addField = $('<textarea rows="3" class="notes-textarea"></textarea>');
+        $btns = $('<div class="notes-btns"/>');
+        $('.notes-norows, .notes-add').hide();
+        var $save = $('<button>[`Add`]</button>').button().click(function(){
+            var text = $addField.val();
+			$.wbs.widgets.toggleLoading($('#textarea'));
+            $.wbs.ajaxRequest({
+                url: "?m=plugins&p=notes&act=add",
+                requestMethod: 'post',
+                data: {
+                    'contactid': '{{$contact_id}}',
+                    'text': text
+                },
+                callback: function(data){
+					$.wbs.widgets.toggleLoading($('#textarea'));
+                    if (data.success) {
+						$('.notes h4').show();
+						$('.notes-add').show();
+						$('.notes-norows').remove();
+                        $addForm.remove();
+						var note = data.success;
+						$item.prepend(
+						'<div class="notes-item">'+
+						    '<div class="notes-text">'+note.text+'</div>'+
+						    '<div class="notes-item-info">'+
+						        '<span class="notes-added-by">[`added by`]:&nbsp;'+note.author+'</span>&nbsp;'+
+						        '<span class="notes-date">'+note.date+'</span>'+
+						    '</div>'+
+						    '<div class="notes-item-controls">'+
+						        '<a class="blacklink" rel="'+note.id+'" href="javascript:void(0)" onclick="editNote(this)">[`Edit`]</a>'+
+						        '<a class="blacklink" rel="'+note.id+'" href="javascript:void(0)" onclick="deleteNote(this)">[`Delete`]</a>'+
+						    '</div>'+
+						'</div>'
+						);
+                    } else {
+                        $('.notes-norows, .notes-add').show();
+					}
+                }
+            })
+        }),
+        $cancel = $('<button>[`Cancel`]</button>').button().click(function(){
+			$('.notes-norows, .notes-add').show();
+            $addForm.remove();
+        });
+        $save.button('disable');
+        checkForEmptyField($addField, $save);
+        $addForm.append($('<div class="notes-item"/>').append($addField).append($btns.append($save).append($cancel)));
+        $item.prepend($addForm);
+		$addField.focus();
+        return false;
+    },
+	deleteNote = function(el){
+		var $this = $(el), 
+		$item = $this.parent().parent();
+		$.wbs.widgets.toggleLoading($('#textarea'));
+		$.wbs.ajaxRequest({
+			url: "?m=plugins&p=notes&act=delete",
+			requestMethod: 'post',
+			data: {
+				'noteid': $this.attr('rel')
+			},
+			callback: function(data){
+				$.wbs.widgets.toggleLoading($('#textarea'));
+				if (data.success == 1) {
+                   $item.remove();
+				   if (!$('.notes-item').length) {
+                       $('.notes h4').hide();
+                       $('#notes-list').append('<p class="notes-norows" style="padding-top:0.5em; margin-left:1em; color:#787878"><i>[`Notes about this client: none`]</i>&nbsp;<a class="notes-add blacklink" href="javascript:void(0)" onclick="addNote(this)" style="margin-left:1em">[`Add a note`]</a></p>');
+                   }
+				}
+			}
+		})
+		return false;
+	}
+</script>

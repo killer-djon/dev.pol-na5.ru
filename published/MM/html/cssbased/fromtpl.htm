@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', '' )">
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+			<? wbs_formCaption text=$subject|htmlsafe:true:true ?>
+
+			<? wbs_formLayout ?>
+				<? wbs_formContent ?>
+					<tr>
+					<td><? $mmStrings.ft_select_tpl_label|cat:":&nbsp;" ?></td>
+					<td>
+						<select class="FormControl" name="MMM_ID" style="width: 300px">
+						<? foreach from=$docs item=doc key=docId ?>
+							<option value='<? $docId ?>'><? $doc.MMM_SUBJECT|htmlsafe:true:true ?></option>
+						<? /foreach ?>
+						</select>
+					</td>
+					</tr>
+				<? /wbs_formContent ?>
+				<? wbs_formButtonsPanel ?>
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_ok_btn ?>
+						<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+					<? /wbs_buttonSet ?>
+				<? /wbs_formButtonsPanel ?>
+			<? /wbs_formLayout ?>
+		<? else ?>
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+			<? /wbs_buttonSet ?>
+		<? /if ?>
+
+		  <input name="MMF_ID" type="hidden" value="<? $MMF_ID ?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

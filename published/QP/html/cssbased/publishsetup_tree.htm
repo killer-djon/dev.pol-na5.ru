@@ -1,0 +1,417 @@
+<table class="FormLayout">
+
+<? if $PAGE_ID == "BNAME" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_bname_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td align=left valign=middle colspan=3><input class="FormControl" name="properties[tree_bname_visible]" type="checkbox" value="1" onClick="updateCheckbox('tree_bname_visible');" <? if $properties.tree_bname_visible == 1 ?>checked<? /if ?>>&nbsp;<? $qpStrings.qp_publish_visible_label ?></td></tr>
+			<tr align="left"><td colspan="3">&nbsp;</td></tr>
+			<tr><td colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td width=40%>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_bname_ff" value=$properties.tree_bname_ff ?>
+			</td></tr>
+			<tr><td colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_bname_fs" value=$properties.tree_bname_fs ?>
+			</td></tr>
+			<tr><td colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_bname_fsz" value=$properties.tree_bname_fsz ?>
+			</td>
+			</tr>
+			<tr><td colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_bname_fg" value=$properties.tree_bname_fg ?>
+			</td></tr>
+			<tr><td colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_bname_bg" value=$properties.tree_bname_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "TOP" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_top_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td align=left valign=middle colspan=3><input class="FormControl" name="properties[tree_top_visible]" type="checkbox" value="1"  onClick="updateCheckbox('tree_top_visible');" <? if $properties.tree_top_visible == 1 ?>checked<? /if ?>>&nbsp;<? $qpStrings.qp_publish_visible_label ?></td></tr>
+			<tr align="left"><td colspan="3">&nbsp;</td></tr>
+
+			<tr align="left"><td colspan="3">
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton name="editbtn" caption=$qpStrings.qpt_screen_topmodify_title ?>
+						<? /wbs_buttonSet ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "SPANEL" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_spanel_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td align=left valign=middle colspan=3><input class="FormControl" name="properties[tree_srch_visible]" type="checkbox" value="1"  onClick="updateCheckbox('tree_srch_visible');" <? if $properties.tree_srch_visible == 1 ?>checked<? /if ?>>&nbsp;<? $qpStrings.qp_publish_visible_label ?></td></tr>
+			<tr align="left"><td colspan="3">&nbsp;</td></tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_srch_ff" value=$properties.tree_srch_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_srch_fs" value=$properties.tree_srch_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_srch_fsz" value=$properties.tree_srch_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_srch_fg" value=$properties.tree_srch_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_panelbg_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_srch_bg" value=$properties.tree_srch_bg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_buttonbg_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_btn_bg" value=$properties.tree_btn_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "TOCHEADER" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_tochdr_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_tochdr_ff" value=$properties.tree_tochdr_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_tochdr_fs" value=$properties.tree_tochdr_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_tochdr_fsz" value=$properties.tree_tochdr_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_tochdr_fg" value=$properties.tree_tochdr_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_tochdr_bg" value=$properties.tree_tochdr_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "TOCBODY" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_tocbody_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<?*			<tr><td width=1% align=center><input class="FormControl" name="properties[tree_toc_wrap]" type="checkbox" value="1" <? if $properties.tree_toc_wrap == 1 ?>checked<? /if ?>></td><td colspan=2><? $qpStrings.qp_publish_wrap_label ?></td></tr> *?>
+
+			<tr><td align=left valign=middle colspan=3><input class="FormControl" name="properties[tree_toc_pageicons]" type="checkbox" value="1" onClick="updateCheckbox('tree_toc_pageicons');" <? if $properties.tree_toc_pageicons == 1 ?>checked<? /if ?>>&nbsp;<? $qpStrings.qp_publish_pageicons_label ?></td></tr>
+			<tr align="left"><td colspan="3">&nbsp;</td></tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_toc_ff" value=$properties.tree_toc_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_toc_fs" value=$properties.tree_toc_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_toc_fsz" value=$properties.tree_toc_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_toc_fg" value=$properties.tree_toc_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_toc_bg" value=$properties.tree_toc_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "TOCS" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_tocs_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_tocs_fg" value=$properties.tree_tocs_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_tocs_bg" value=$properties.tree_tocs_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "SPLITTER" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_splitter_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_color_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_splitter_fg" value=$properties.tree_splitter_fg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "BODY" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_body_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_body_ff" value=$properties.tree_body_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_body_fs" value=$properties.tree_body_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_body_fsz" value=$properties.tree_body_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_body_fg" value=$properties.tree_body_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_body_bg" value=$properties.tree_body_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "LINKS" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_links_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_link_fg" value=$properties.tree_link_fg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "BTN" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_btn_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_btn_ff" value=$properties.tree_btn_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_btn_fs" value=$properties.tree_btn_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_btn_fsz" value=$properties.tree_btn_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_btn_fg" value=$properties.tree_btn_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_btn_bg" value=$properties.tree_btn_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "PREVNEXT" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_pn_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td align=left valign=middle colspan=3><input class="FormControl" name="properties[tree_pn_visible]" type="checkbox" value="1" onClick="updateCheckbox('tree_pn_visible');" <? if $properties.tree_pn_visible == 1 ?>checked<? /if ?>>&nbsp;<? $qpStrings.qp_publish_visible_label ?></td></tr>
+			<tr align="left"><td colspan="3">&nbsp;</td></tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_pn_ff" value=$properties.tree_pn_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_pn_fs" value=$properties.tree_pn_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_pn_fsz" value=$properties.tree_pn_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_pn_fg" value=$properties.tree_pn_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_pn_bg" value=$properties.tree_pn_bg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_position_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/pickerkey.htm" pickArray=$positionNames arrayName=properties selName="tree_pn_pos" value=$properties.tree_pn_pos ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_justify_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$adjustNames arrayName=properties selName="tree_pn_adjust" value=$properties.tree_pn_adjust ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "H1" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_h1_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_h1_ff" value=$properties.tree_h1_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_h1_fs" value=$properties.tree_h1_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_h1_fsz" value=$properties.tree_h1_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_h1_fg" value=$properties.tree_h1_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_h1_bg" value=$properties.tree_h1_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "H2" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_h2_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_h2_ff" value=$properties.tree_h2_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_h2_fs" value=$properties.tree_h2_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_h2_fsz" value=$properties.tree_h2_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_h2_fg" value=$properties.tree_h2_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_h2_bg" value=$properties.tree_h2_bg ?>
+			</td></tr>
+
+<? elseif $PAGE_ID == "H3" ?>
+
+			<tr>
+			<td colspan=3 height=90 valign=top>
+				<? wbs_note displayNoteMarker=false width="330px" smallFont=false ?>
+					<? $qpStrings.pub_screen_h3_tip ?>
+				<? /wbs_note ?>
+			</td>
+			</tr>
+
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_font_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontNames arrayName=properties selName="tree_h3_ff" value=$properties.tree_h3_ff ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontweight_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontStyles arrayName=properties selName="tree_h3_fs" value=$properties.tree_h3_fs ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontsize_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/picker.htm" pickArray=$fontSizes arrayName=properties selName="tree_h3_fsz" value=$properties.tree_h3_fsz ?>
+			</td>
+			</tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_fontcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_h3_fg" value=$properties.tree_h3_fg ?>
+			</td></tr>
+			<tr><td width=20% colspan=2><nobr><? $qpStrings.qp_publish_bgcolor_label ?>:</nobr></td>
+			<td>
+				<? include file="../../../QP/html/cssbased/colorpicker.htm" arrayName=properties selName="tree_h3_bg" value=$properties.tree_h3_bg ?>
+			</td></tr>
+
+<? /if ?>
+</table>

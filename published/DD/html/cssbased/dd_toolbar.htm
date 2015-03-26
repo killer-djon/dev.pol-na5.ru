@@ -1,0 +1,53 @@
+<? if $rightPanelFile ?>
+	<? include file="empty_toolbar.htm" ?>
+<? else ?>
+	<? if $searchString != "" && false ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button name="foldersbtn" caption=$kernelStrings.app_back_label|cat:" "|cat:$ddStrings.app_name_short ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+
+
+	<? if $searchString == "" ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$ddStrings.dd_screen_folder_menu menu=$folderMenu ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$ddStrings.dd_screen_file_menu menu=$fileMenu ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$ddStrings.dd_screen_view_menu menu=$viewMenu ?>
+	<? /wbs_toolbarItem ?>
+
+	<? if !$disableServiceFunctions ?>
+		<? if $searchString == "" ?>
+			<? if $canTools ?>
+				<? wbs_toolbarItem?>
+					<? wbs_button caption=$kernelStrings.app_tools_menu menu=$toolsMenu ?>
+				<? /wbs_toolbarItem ?>
+			<? /if ?>
+
+			<? if $canReports ?>
+				<? wbs_toolbarItem?>
+					<? wbs_button caption=$kernelStrings.app_reports_menu menu=$reportsMenu ?>
+				<? /wbs_toolbarItem ?>
+			<? /if ?>
+		<? /if ?>
+
+
+		<? wbs_toolbarItem?>
+			<div class='TBLabel'><? $ddStrings.dd_screen_search_label|cat:":&nbsp;" ?></div>
+		<? /wbs_toolbarItem ?>
+
+		<? wbs_toolbarItem?>
+			<input type="text" ID="Search" name="searchString" value="<? $searchString|htmlsafe:true:true ?>" style="width: 200px" onKeyPress="if (event.keyCode == 13) { doSearch(); return false;}"/>
+		<? /wbs_toolbarItem ?>
+
+		<? wbs_toolbarItem?>
+			<? wbs_button ajax=true name="searchbtn" caption=$ddStrings.dd_screen_search_btn onClick='doSearch(); return false;' ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+<? /if ?> 

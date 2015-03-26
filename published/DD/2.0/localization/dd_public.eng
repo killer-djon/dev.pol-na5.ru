@@ -1,0 +1,10 @@
+service_title	Files
+service_desc	Store and share files online
+service_link	#
+service_footer	Powered by <a href="#"><b>WebAsyst Files</b></a> - a website that allows uploading files to the Internet and accessing them from anywhere.<br>Everyone can use WebAsyst Files for free. <a href="#">Create your account now!</a>
+
+lbl_view	View
+view_grid	Grid
+view_list	List with file descriptions
+view_thumb_list	Thumbnails with file descriptions
+view_tiles	Thumbnails Tile

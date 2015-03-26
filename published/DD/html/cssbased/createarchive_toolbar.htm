@@ -1,0 +1,10 @@
+<? if $archiveSupported ?>
+	<? if $archiveCreated  ?>
+	
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$ddStrings.app_name_short link=$currentAppData.mainURL ?>
+		<? /wbs_toolbarItem ?>
+		
+	<? /if ?>
+
+<? /if ?>

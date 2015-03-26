@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="propagaterights_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+			<? if !$noFolders ?>
+				<? assign var=noBackButton value=1 ?>
+				<? assign var=changeRightsInstruction value=1 ?>
+				<? assign var=noSelfRightsLabel value=1 ?>
+
+				<?include file="../../../common/html/cssbased/pageelements/tree_accessrightsinfo.htm" ?>
+
+				<div style="width: 500; padding-top: 8px; margin-top: 8px" class=topBorder>
+					<b><? $ddStrings.paa_note_text ?></b>
+				</div>
+
+				<div style="height: 15px"></div>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="savebtn" caption=$ddStrings.paa_propagate_btn ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+				<? /wbs_buttonSet ?>
+			<? else ?>
+
+				<? wbs_formCaption text=$folderName ?>
+
+				<? wbs_note smallFont=false displayNoteMarker=false ?><? $ddStrings.paa_nofolders_message ?><? /wbs_note?>
+
+				<div style="height: 15"></div>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_ok_btn  ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+		<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+				<? /wbs_buttonSet ?>
+		<? /if ?>
+
+		<input type="hidden" name="btndummy">
+		<input type="hidden" name="edited" value="1">
+		<input type="hidden" name="DF_ID" value="<? $DF_ID?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

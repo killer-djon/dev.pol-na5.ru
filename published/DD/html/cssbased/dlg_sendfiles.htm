@@ -1,0 +1,26 @@
+<? capture name=sendAdd ?>
+	&nbsp;<? $ddStrings.sm_attachments_label ?>: <span id='sendFilesCount'>0</span> <? $ddStrings.sm_files_label ?> (<span id='sendFilesSize'>0 bytes</span>)
+	<BR>
+	<input type='checkbox' name='needCompress' onChange='' id='needCompress' value='1'><label style='display:inline' for='needCompress'><? $ddStrings.sm_compressfiles_label ?></label>
+<? /capture ?>
+<? include file="../../../common/html/cssbased/pageelements/ajax/send_dialog.htm"  prefix="send-files" dialogVar="FilesSendEmailDlg" sendAdd=$smarty.capture.sendAdd ?>
+
+<script>
+	var FilesSendEmailDlg = new CommonSendDialog("send-files-content");
+	FilesSendEmailDlg.strings = {
+		cancelBtn: CommonStrings.cancelBtn,
+		sendBtn: "<? $kernelStrings.shsd_send_btn ?>",
+		title: "<? $ddStrings.sm_page_title ?>",
+		subject: "Send files",
+		emptyemailMessage: '<? $ddStrings.dd_screen_emptyemail_message ?>'
+	};
+	FilesSendEmailDlg.defaultMessage = "<? $kernelStrings.shsd_entermessage_text ?>";
+	FilesSendEmailDlg.height = 432;
+	FilesSendEmailDlg.strings.andLabel = "<? $kernelStrings.wg_and_label ?>";
+	FilesSendEmailDlg.strings.moreItemLabel = "<? $ddStrings.ddlist_morefile_label ?>";
+	FilesSendEmailDlg.strings.moreItemsLabel = "<? $ddStrings.ddlist_morefiles_label ?>";
+	FilesSendEmailDlg.strings.maxAttachmetsLimitError = "<? $ddStrings.sm_maxattachmentlimit_message ?>";
+	
+	FilesSendEmailDlg.start ("send-files");	
+</script>
+<script language="JavaScript" src='../cssbased/dlg_sendfiles.js'></script>

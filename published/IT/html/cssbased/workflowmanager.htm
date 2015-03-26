@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+
+	</head>
+	<body>
+		<? wbs_pageLayout toolbar="wfm_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<table class="FormLayout">
+					<tr class="SeparatedRow">
+						<td><? wbs_label text=$itStrings.wfm_project_label for="project" ?></td>
+						<td>
+							<select name="P_ID" id="project" class="FormControl" style="width: 300px" onChange="this.form.submit()">
+								<? html_options values=$projectIDs selected=$P_ID output=$projectNames ?>
+							</select>
+						</td>
+					</tr>
+				</table>
+
+				<? wbs_note indented=true smallFont=false ?><? $itStrings.wfm_page_hint ?><? /wbs_note ?>
+
+				<? if $projectExists ?>
+					<? wbs_note noteType=tips indented=true ?>
+						<? $itStrings.wfm_note1_text ?><br>
+						<? $itStrings.wfm_note2_text|htmlsafe:true:true ?>
+					<? /wbs_note ?>
+
+					<table class="SimpleList">
+						<thead>
+							<tr>
+								<th scope="col" width="10"><? $itStrings.wfm_id_title ?></th>
+								<th scope="col"><? $itStrings.wfm_task_title ?></th>
+								<th scope="col"><? $itStrings.wfm_summary_title ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<? foreach from=$fullWorkList item=work name=workLoop ?>
+								<tr>
+									<td><? $work.PW_ID ?></td>
+									<td><? $work.PW_DESC|htmlsafe:true:true ?></td>
+									<td><? conditionalLink href=$work.URL text=$work.transitions ?></td>
+								</tr>
+							<? foreachelse ?>
+								<tr class="NoRecords">
+									<td colspan="3"><? $kernelStrings.ul_norecords_text ?></td>
+								</tr>
+							<? /foreach ?>
+						</tbody>
+					</table>
+				<? /if ?>
+
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

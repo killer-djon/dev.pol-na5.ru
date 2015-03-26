@@ -1,0 +1,90 @@
+<? wbs_splitterPanelHeader
+	caption=$kernelStrings.app_treefolders_text
+	id="FoldersHeadersPanel"
+	active=true
+	headerControls="../../../common/html/cssbased/pageelements/ajax/catalog_folder.close.htm"
+?>
+
+<? wbs_splitterScrollableArea width=$treePanelWidth ?>
+	<?include file="../../../common/html/cssbased/pageelements/ajax/catalog_folder.htm" hideRecyced=1 onTreeNodeMoved="dd_onTreeNodeMoved" showFolderControls=1 addFolderLabel=$kernelStrings.app_treeaddfolder_title deleteFolderLabel=$kernelStrings.app_treedelfolder_text enableDD=true enableEdit=true ?>
+<? /wbs_splitterScrollableArea ?>
+
+
+
+<script>
+	document.onFoldersTreeLoad = function () {
+		foldersTree.searchPrefix = "catalog.php?searchString=";
+		foldersTree.linkPrefix = 'catalog.php?curDF_ID=';
+		var treeDDManager = new TreeDDManager ();
+		treeDDManager.init (
+			foldersTree, 
+			{
+				nodeMovedUrl: "../ajax/folder_move.php", 
+				treeLoaderUrl: '../ajax/tree.folders.php', 
+				linkPrefix: 'catalog.php?curDF_ID='
+			}
+		);
+		
+		var treeEditManager = new TreeEditManager ();
+		treeEditManager.init (
+			foldersTree,
+			{
+				renameUrl: "../ajax/folder_rename.php",
+				typesUrl: {shdd: "../ajax/share_rename.php", wg: "../../../WG/html/ajax/wg_rename.php"}
+			}		
+		);
+		
+		foldersTree.selectLink = function (wgId) {
+			var sharesNode = foldersTree.getSharesNode ();
+			sharesNode.on("expand", onWidgetSelectExpanded);
+			sharesNode.selectWidgetId = wgId;
+			sharesNode.collapse ();
+			sharesNode.expand ();
+		}
+		
+		foldersTree.getSharesNode = function() {
+			if (foldersTree.sharesNode == null) {
+				var sharesNode = new Ext.tree.AsyncTreeNode({text: '<? $ddStrings.dd_screen_mylinks_label ?>', iconCls: "shared-folder", allowDrag: false, allowDrop: false, id: "SHARES", link: "links.php?" });
+				sharesNode.loader = new Ext.tree.TreeLoader({dataUrl:'../ajax/tree.shared_files.php'});
+				sharesNode.loader.baseParams.forUser = "<? $currentUserEnc ?>";
+				
+				foldersTree.sharesNode = sharesNode;
+				foldersTree.getRootNode().appendChild (sharesNode);
+			}
+			return foldersTree.sharesNode;
+		}
+		
+		foldersTree.removeSharesNode = function() {
+			var sharesNode = foldersTree.sharesNode;
+			if (sharesNode != null) {
+				sharesNode.parentNode.removeChild(sharesNode);
+				foldersTree.sharesNode = null;
+			}
+		}
+		
+		<? if !$disableServiceFunctions ?>
+			<? if $lastSearchString ?>
+				var searchNode = foldersTree.getSearchNode ("<? $lastSearchString ?>");
+				<? if $searchString ?>
+					searchNode.select ();
+				<? /if ?>
+			<? /if ?>
+			
+			<? if $shddWidgets ?>
+				var sharesNode = foldersTree.getSharesNode ();
+				//sharesNode.expand ();
+				var node = null;
+			<? /if ?>
+			
+			<? if $canWidgets ?>		
+				var widgetsNode = foldersTree.getWidgetsNode ();
+				widgetsNode.attributes.link = "../../../WG/html/scripts/widgets.php?app=DD";
+				widgetsNode.loader.baseParams.forUser = "<? $currentUserEnc ?>";
+				widgetsNode.loader.baseParams.fapp = "DD";
+				//widgetsNode.expand ();
+			<? /if ?>
+		<? /if ?>
+	}	
+	
+
+</script>

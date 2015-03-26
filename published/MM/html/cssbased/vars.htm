@@ -1,0 +1,23 @@
+<? wbs_note displayNoteMarker=false ?><? $mmStrings.amn_vars_comment_text ?><? /wbs_note ?>
+
+<? foreach from=$cmVars item=cmVar key=cmKey ?>
+	<table class="SimpleList ReportTable" width="100%">
+		<thead>
+			<tr>
+				<td colspan="2">
+					<? $contactSectionsNames.$cmKey.NAME ?> [<a href="#" onclick="return toggleVisibility( '<? $cmKey ?>' );" id="<? $cmKey ?>Tgl"><? if $blockVisible.$key ?><? $mmStrings.amn_vars_hide_link?><? else ?><? $mmStrings.amn_vars_show_link?><? /if ?></a>]
+					<div id="<? $cmKey ?>Comment" <? if $blockVisible.$key ?> <? else ?>style="display:none;"<? /if ?>><small>(<? $contactSectionsNames.$cmKey.COMMENT ?>)</small></div>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td style="padding: 0!important">
+					<div id="<? $cmKey ?>Block" <? if $blockVisible.$key ?> <? else ?>style="display:none;"<? /if ?>>
+						<? include file="../../../common/html/cssbased/pageelements/varlist.htm" width='100%' height='95px' varList=$cmVar targetControl="TEXTCTRL" onClick="insertTemplateVar"?>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<? /foreach ?>

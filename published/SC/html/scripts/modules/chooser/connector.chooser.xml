@@ -1,0 +1,9 @@
+<Connector>
+	<Class>
+		<Name>Chooser</Name>
+		<File>class.chooser.php</File>
+		<Title>ПОдбор товаров</Title>
+		<Description></Description>
+		<SingleInstallation>true</SingleInstallation>
+	</Class>
+</Connector>

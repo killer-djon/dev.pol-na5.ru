@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<WBSAPPLICATION>
+	<APPLICATION APP_ID="PD" SORTORDER="15" NAME="app_name_long" UI_NAME="app_name_short">
+		<PARENTS>
+			<PARENT APP_ID="AA"/>
+		</PARENTS>
+		<EVENT_HANDLERS>
+			<HANDLER APP_ID="AA" NAME="onDeleteUser" HANDLER_PROC="pd_onDeleteUser" HANLDER_SCRIPT="pd_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="AA" NAME="onRemoveUser" HANDLER_PROC="pd_onRemoveUser" HANLDER_SCRIPT="pd_dbfunctions_cmn.php"/>
+			<HANDLER APP_ID="AA" NAME="onDeleteCurrency" HANDLER_PROC="pd_onDeleteCurrency" HANLDER_SCRIPT="pd_dbfunctions_cmn.php"/>
+		</EVENT_HANDLERS>
+		<MAIL_NOTIFICATIONS>
+			<NOTIFICATION ID="OnFolderUpdate" NAME="notify_onfolderupdate_name"/>
+		</MAIL_NOTIFICATIONS>
+	</APPLICATION>
+</WBSAPPLICATION>

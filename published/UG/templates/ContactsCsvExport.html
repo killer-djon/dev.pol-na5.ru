@@ -1,0 +1,89 @@
+<form action="?mod=contacts&act=csv&export=1&action=export&mode={{$mode}}" method="post" name="csvExport" id="csvExport">
+<input type="hidden" name="contacts" id="contacts" value="" />
+<input type="hidden" name="current" id="current" value="" />
+<input type="hidden" name="export" id="export" value="1" />
+{{foreach from=$params item=v key=n}}
+<input type="hidden" name="{{$n}}" value="{{$v}}" />
+{{/foreach}}
+
+<div class="colorblock export">
+<table class="select-users"><tr>
+	<td>
+		<p id="input_selected_wrapper"><label class="m-header"><input type="radio" name="from" value="1" id="input_selected" />
+			[`Selected`] (<span id="selected_count"></span>[` contacts`])</label></p>
+	</td>
+	{{if $mode}}
+    <td>
+		<p><label class="m-header"><input type="radio" name="from" value="2" id="input_total" />
+			<input type="hidden" name="mode" value="{{$mode}}" />
+			[`All`]
+			(<span id="total_count"></span>[` contacts`])
+		</label></p>
+	</td>
+	{{/if}}
+</tr></table>
+
+<p class="nolabel">[`Choose columns you want to include into export file`]:</p>
+<div class="export-select-container">
+<table>
+<tr>
+	<td><h4>[`Included`]</h4><div class="select-container"><select id="ex_in" name="fields[]" size="8" style="width: 250px;" multiple="multiple"></select></div></td>
+	<td width="30" align="center" valign="middle" style="vertical-align: middle">
+	<div id="groups_control" class="control-btns">
+    	<div class="wbs-move-btn disable" id="ex_btn-up"><a id="ex_link_up" href="#">&uarr;</a></div>
+		<div class="wbs-move-btn disable" id="ex_btn-down"><a id="ex_link_down" href="#">&darr;</a></div>
+		<div class="wbs-move-btn" id="ex_btn-left"><a onclick="moveSelect('ex_out', 'ex_in', 'doExportBtn', true);" href="#">&larr;</a></div>
+		<div class="wbs-move-btn" id="ex_btn-right"><a onclick="moveSelect('ex_in', 'ex_out', 'doExportBtn', true);" href="#">&rarr;</a></div>
+	</div>
+	</td>
+	<td><h4>[`Not included`]</h4><div class="select-container"><select id="ex_out" size="8" style="width: 250px;" multiple="multiple"></select></div></td>
+</tr>
+</table>
+
+<p>[`Delimiter between columns`]:
+<select name="delimiter">
+{{foreach from=$delimiters item=d key=k}}
+<option value="{{$k}}">{{$d[1]}}</option>
+{{/foreach}}
+</select></p></div>
+</div>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	showMultiSelect(['ex_in', {{$fields}}], ['ex_out', []], 'doExportBtn', true);
+});
+$("#ex_link_up").click(function () {
+	$("#ex_in option:selected").insertBefore($("#ex_in option:selected:first").prev());
+});
+$("#ex_link_down").click(function () {
+	$("#ex_in option:selected").insertAfter($("#ex_in option:selected:last").next());
+});
+$("#ex_in").change(function () {
+	setLeft();
+});
+$("#ex_out").change(function () {
+	setRight();
+});
+$("#ex_in").click(function () {
+	setLeft();
+});
+$("#ex_out").click(function () {
+	setRight();
+});
+function setLeft() {
+	$("#ex_btn-right").removeClass("disable");
+	$("#ex_btn-up").removeClass("disable");
+	$("#ex_btn-down").removeClass("disable");
+	$("#ex_btn-left").addClass("disable");
+	$("#ex_out").val(0);
+}
+function setRight() {
+	$("#ex_btn-left").removeClass("disable");
+	$("#ex_btn-up").addClass("disable");
+	$("#ex_btn-down").addClass("disable");
+	$("#ex_btn-right").addClass("disable");
+	$("#ex_in").val(0);
+}
+
+</script>

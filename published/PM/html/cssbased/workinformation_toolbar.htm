@@ -1,0 +1,34 @@
+<? if !$workData.P_STATUS && !$workData.PW_STATUS ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" onClick="fillSelectedLists( new Array('assigned_users[]') );" ?>
+	<? /wbs_toolbarItem ?>
+	
+	<? if $action == ACTION_NEW ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_buttonSetButton caption=$pmStrings.amr_addanother_btn name="saveaddbtn" onClick="fillSelectedLists( new Array('assigned_users[]') );" ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+	
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+<? if $action != "new" && !$workData.P_STATUS ?>
+	<? if !$workData.PW_STATUS ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$pmStrings.amt_complete_btn name="finwbtn" onClick="return confirmFinish()" ?>
+		<? /wbs_toolbarItem ?>
+	<? else ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$pmStrings.amt_return_btn name="cancelbtn" ?>
+		<? /wbs_toolbarItem ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$pmStrings.amt_resume_btn name="rpnwbtn" onClick="return confirmReopen()" ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+<? elseif $workData.P_STATUS ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$pmStrings.app_name_short name="cancelbtn" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>

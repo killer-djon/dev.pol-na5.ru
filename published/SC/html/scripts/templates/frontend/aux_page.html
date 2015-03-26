@@ -1,0 +1,12 @@
+<h1>{$page_name}</h1>
+
+<div class="textseo">
+
+	{if $smarty.get.ukey eq 'specialoffers'}
+		{cpt_product_lists list_id='rootproducts' block_height='' overridestyle=''}
+	{else}
+		{$aux_page}
+	{/if}
+
+</div>
+

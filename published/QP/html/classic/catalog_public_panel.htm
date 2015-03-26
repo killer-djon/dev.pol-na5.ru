@@ -1,0 +1,10 @@
+<? if $properties.tree_wrap  == 1 ?>
+	<? assign var=linkWrap value=true ?>
+<? else ?>
+	<? assign var=linkWrap value=true ?>
+<? /if ?>
+<table height="100%" width="100%" class="treeCatalogRow">
+	<tr valign=top>
+		<td><?include file="../../../QP/html/classic/catalog_folder.htm" hideRecyced=1 hideCheckbox=1 showFolderControls=1 addFolderLabel=$kernelStrings.app_treeaddfolder_title deleteFolderLabel=$kernelStrings.app_treedelfolder_text hideFolderIcons=$properties.tree_toc_pageicons linkWrap=$linkWrap ?><td>
+	</tr>
+</table>

@@ -1,0 +1,195 @@
+{if $product_info ne NULL}
+
+{if $product_info.slug}
+{assign var=_product_url value="?productID=`$product_info.productID`&product_slug=`$product_info.slug`"|set_query_html}
+{else}
+{assign var=_product_url value="?productID=`$product_info.productID`"|set_query_html}
+{/if}
+
+
+
+
+	<h1>{$selected_category.name|escape:'html'}</h1>
+	
+	<div class="product-detailed">
+		
+		<h4>{$product_info.name|escape:'html'}</h4>
+		
+		<div class="product-images">
+			
+			<div class="big-image">				
+				{if !$printable_version&&$product_info.big_picture && ($product_info.big_picture!=$product_info.picture)}					
+					<a href='{$smarty.const.URL_PRODUCTS_PICTURES}/{if $product_info.big_picture}{$product_info.big_picture|escape:'url'}{else}{$product_info.picture|escape:'url'}{/if}' class="lytebox" data-lyte-options="group:productimages" data-title="{$product_info.name|escape:'html'}">
+						<img id='img-current_picture' border='0' src="{$smarty.const.URL_PRODUCTS_PICTURES}/{$product_info.picture|escape:'url'}" title="{$page_title|escape:'html'}" alt="{$page_title|escape:'html'}" >
+						<div class="lupa-img"></div>
+					</a>
+					
+				{else}
+					<a href="{$smarty.const.URL_PRODUCTS_PICTURES}/{$product_info.picture|escape:'url'}" class="lytebox" title="{$page_title|escape:'html'}">
+						<img id='img-current_picture' border='0' src="{$smarty.const.URL_PRODUCTS_PICTURES}/{$product_info.picture|escape:'url'}" title="{$page_title|escape:'html'}" alt="{$page_title|escape:'html'}" >		
+					</a>
+				{/if}		
+			</div>
+			
+			<div class="all-images">
+				{foreach from=$all_product_pictures item=_picture name=frpict}
+					{if $_picture.photoID != $product_info.photoID}
+						{counter name=_pict_num assign=_pict_num}
+						
+						<a class="lytebox" href='{$smarty.const.URL_PRODUCTS_PICTURES}/{if $_picture.enlarged}{$_picture.enlarged|escape:'url'}{else}{$_picture.filename|escape:'url'}{/if}' data-lyte-options="group:productimages" data-title="{$product_info.name|escape:'html'}">
+							<img src='{$smarty.const.URL_PRODUCTS_PICTURES}/{$_picture.thumbnail|escape:'url'}' border='0' alt="{$product_info.name|escape:'html'}" title="{$product_info.name|escape:'html'}" >
+							<div class="lupa-img"></div>
+						</a>
+					{/if}
+				{/foreach}	
+			</div>
+			
+		</div>
+		
+		
+		<div class="product-info">
+			
+			<div class="sidebar left-sidebar">
+				<h4>ХАРАКТЕРИСТИКИ</h4>
+					{if $product_info.product_code}
+						<div class="block-option">
+							<div class="option-name">
+								{"prdset_product_code"|translate}:
+							</div>
+							
+							<div class="option-value">	
+								{$product_info.product_code|escape:'html'}
+							</div>
+						</div>
+					{/if}	
+				{counter name='select_counter' start=0 skip=1 print=false assign='select_counter_var'}
+				{section name=i loop=$product_extra}
+					
+					{if ($product_extra[i].option_type eq 0) && ($product_extra[i].option_value != '') }
+					<div class="block-option"> 
+						<div class="option-name">{$product_extra[i].name}:</div>
+						<div class="option-value" rel="{$product_extra[i].optionID}">{$product_extra[i].option_value}</div>
+					</div>	
+					
+					{else}
+					
+					{section name=k loop=$product_extra[i].option_show_times}
+						<div class="block-option">
+							<div class="option-name">
+								{$product_extra[i].name}
+									{if $product_extra[i].option_show_times > 1 }
+									({counter name=option_show_times}):
+								{else}:{/if}
+							</div>
+						
+							<div class="option-value">
+								{counter name=select_counter}
+								{section name=j loop=$product_extra[i].values_to_select}
+									{$product_extra[i].values_to_select[j].option_value}
+								{/section}
+							</div>							
+							
+						</div>
+					{/section}
+					
+					{/if}
+				{/section}
+				{* products prices *}
+				
+				<div class="block-option second">
+					<div class="option-name">
+						Цена кв.м.:
+					</div>
+					<div class="option-value">
+						{if $currencies_count ne 0 && $product_info.Price > 0}
+						
+						{if $product_info.list_price > 0 && $product_info.list_price > $product_info.Price && $product_info.Price > 0} 
+						<span class="regularPrice">{$product_info.list_priceWithUnit}</span> 
+						{/if}
+					
+						<span class="totalPrice">{$product_info.PriceWithUnit} <span class="unit">РУБ/М<sup>2</sup></span> </span>
+					
+						{* you save *}
+						{if $product_info.list_price > 0 && $product_info.list_price > $product_info.Price && $product_info.Price > 0} 
+						<div>
+							<span class="youSaveLabel">{"str_you_save"|translate}:</span>
+							<span class="youSavePrice">{$product_info[14]} ({$product_info[15]}%)</span>
+						</div>
+						{/if}
+						{/if}
+					</div>
+				</div>
+
+				<div class="block-option second">
+					<div class="option-name">{"lbl_cart_product_quantity"|translate}: </div>
+					
+					<div class="option-value">
+						<input type="text" name="count_per" value="10" size="3" /> Кв.м.
+					</div>
+				</div>
+				<div class="option-separator block-option"></div>
+				
+				<div class="block-option second">
+					<div class="option-name">Итого упаковок:</div>
+					<div class="option-value counts_metr"></div>
+				</div>
+				
+				<div class="block-option second">
+					<div class="option-name">Итого кв.м.:</div>
+					<div class="option-value counts_metr_total"></div>
+				</div>
+				
+				<div class="block-option second">
+					
+					<div class="option-name">Всего к оплате:</div>
+					<div class="option-value counts_price"><span class="totalPrice">{$product_info.PriceWithUnit} </span> <span class="unit">РУБ</span> </div>
+				</div>
+					 
+				<div class="add-to-cart">
+					{if $widget}
+					{assign var=_form_action_url value="&view=noframe&external=1"}
+					{/if}
+					
+					<form action='{"?ukey=cart`$_form_action_url`"|set_query_html}' method="post" rel="{$product_info.productID}" {if $widget}target="_blank"{/if}>
+						<input name="action" value="add_product" type="hidden" >
+						<input type="hidden" name="product_qty" class="product_qty" value="" />
+						<input name="productID" value="{$product_info.productID}" type="hidden" >
+						<input class="_price" value="{$product_info.PriceWithOutUnit|escape:'html'}" type="hidden" >
+						<input type="hidden" name="product_price" class="product_price" value="">
+					{assign var=_cnt value=''}	 
+
+					
+					<input value="" rel="{$product_info.name|escape:'html'}" type="submit" alt="{'str_add_to_cart_string'|translate}" title="{"str_add_to_cart_string"|translate}" class="add2cart_handler" />
+					</form>
+				</div>
+			
+			</div>
+			
+			<div class="sidebar right-sidebar">
+				<h4>ОПИСАНИЕ</h4>
+				<div class="intro-text">
+					{$product_info.brief_description}
+				</div>
+				
+				<h4>Заказ укладки</h4>
+				<div class="offers-block">
+					<a href="#" class="call-me" rel="send_ukladka"><img src="{$smarty.const.URL_IMAGES}/offers_img.png" alt="Заказать укладку" /></a>
+					
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		<div class="related_products">
+			<h3>Сопутствующие товары</h3>
+			{related_categories categories='1522, 1621'}
+			{if $related_categories_count > 0}
+				{include file="related_categories.tpl.html"}	
+			{/if}
+			
+		</div>
+		
+	</div>
+
+{/if}

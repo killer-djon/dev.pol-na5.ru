@@ -1,0 +1,44 @@
+<div style="clear:both"></div>
+<div class="orders">
+	<h4>[`Assets`]</h4>
+	<p>
+	WAOS:
+	{{foreach from=$apps item=app name=appsLoop}}
+		{{$app.TITLE}}{{if $app.count>0}} ({{$app.count}}){{/if}}{{if !$smarty.foreach.appsLoop.last}},{{/if}}
+	{{foreachelse}}
+		[`no`]
+	{{/foreach}}
+	</p>
+	<p>
+	WAHOST:
+	{{foreach from=$wahost item=wah name=wahLoop}}
+		{{$wah.ACC_NAME}} / {{$wah.DB_KEY}}
+		{{if $wah.ACC_PLAN == 'FREE'}}
+			(<span style="color:green;">Free</span>)
+		{{else}}
+			({{$wah.plan}},
+			{{if $wah.expired}}<span style="color:red;">expired</span>{{else}}exp. {{$wah.ACC_BILLING_DATE|date_format}}{{/if}}){{/if}}{{if !$smarty.foreach.wahLoop.last}},{{/if}}
+	{{foreachelse}}
+		[`no`]
+	{{/foreach}}
+	</p>
+	<p>
+	ARHOST:
+	{{foreach from=$arhost item=arh name=arhLoop}}
+		{{$arh.MTAA_DOMAIN}}
+		({{$arh.plan}}, {{$arh.MTAA_SERVER_ID}},
+		{{if $arh.expired}}<span style="color:red;">expired</span>{{else}}exp. {{$arh.MTAA_EXPIRE_DATE|date_format}}{{/if}}){{if !$smarty.foreach.arhLoop.last}},{{/if}}
+	{{foreachelse}}
+		[`no`]
+	{{/foreach}}
+	</p>
+	<p>
+	DOMAINS:
+	{{foreach from=$domains item=dom name=domLoop}}
+		{{$dom.MTDR_DOMAIN_NAME}}
+		({{if $dom.expired}}<span style="color:red;">[`expired`]</span>{{elseif $dom.new}}<span style="color:green;">[`not registered`]</span>{{else}}exp. {{$dom.MTDR_EXPIRE_DATE|date_format}}{{/if}}){{if !$smarty.foreach.domLoop.last}},{{/if}}
+	{{foreachelse}}
+		[`no`]
+	{{/foreach}}
+	</p>
+</div>

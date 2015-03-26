@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script language="JavaScript">
+<!--
+
+	function submitForm( obj )
+	{
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value != "" )
+			obj.form.submit();
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr valign="bottom"> 
+      <td align="left"><table border="0" cellspacing="2" cellpadding="0">
+          <tr> 
+            <td> 
+              <? $itStrings.iss_project_label|cat:":" ?>
+              &nbsp; </td>
+            <td valign="middle"><select name="P_ID" class="control" style="width: 400px"  onChange="submitForm(this)">
+                <? html_options values=$project_ids selected=$P_ID output=$project_names ?>
+              </select></td>
+          </tr>
+          <tr> 
+            <td> 
+              <? $itStrings.iss_view_label|cat:":" ?>
+            </td>
+            <td valign="middle"><select name="V_ID" class="control" style="width: 400px" onChange="this.form.submit()">
+                <? html_options values=$viewIDs selected=$V_ID output=$viewNames ?>
+              </select></td>
+          </tr>
+        </table></td>
+      <td align="right"><input type="hidden" name="prevV_ID" value="<? $V_ID?>"> <input type="hidden" name="prevP_ID" value="<? $P_ID?>"> 
+        <input type="hidden" name="firstIndex" value="<? $firstIndex ?>">
+        <? if $col_count > 6 ?>
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td class="formField"> 
+              <? $itStrings.iss_find_label|cat:":" ?>
+              &nbsp; </td>
+            <td class="default"><select name="searchCOL_ID" onChange="this.form.submit()">
+                <? html_options values=$col_ids output=$col_names ?>
+              </select> </td>
+          </tr>
+        </table><? /if ?></td>
+    </tr>
+    <tr> 
+      <td colspan="2" align="right" class="default"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5" border="0"></td>
+    </tr>
+  </table>
+  <? if $reportLoaded ?>
+  <? if $rowNum ?>
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="complexList_nopadding">
+			<!-- Table Head -->
+			<tr class="head"> 
+			  <th rowspan="2" align="left" nowrap> 
+				<? $titleColName ?>
+			  </th>
+			  
+      <th align="left" nowrap class="smallhead noRightBorder" colspan="<? $colNum ?>"><nobr> 
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+			<? if $prev_pageLink ?>
+					<td align="right" width="15"><? conditionalLink href=$prev_pageLink text=#prev_img#?></td>		
+			<? /if ?>
+            <td align="center"><nobr><strong><? $titleRowName ?></strong></nobr></td>
+			<? if $next_pageLink ?>
+				<td align="right" width="15"><? conditionalLink href=$next_pageLink  text=#next_img#?></td>
+			<? /if ?>
+          </tr>
+        </table></nobr></th>
+			</tr>
+			<tr class="head"> 
+				<? foreach from=$colNames item=colName name=colLoop?>
+					<th width="70" align="center" nowrap class="smallhead <? if $smarty.foreach.colLoop.last ?>noRightBorder<? /if ?>"><nobr><span title="<? $colName.long?>"><? $colName.short ?></span></nobr></th>
+				<? /foreach ?>
+			</tr>
+			<!-- Table Head -->
+			<? foreach from=$rowNames item=rowName key=rowID  ?>
+			<tr <? if ($rowName.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+			  <td style="padding-left: 5px">
+				<? $rowName.name ?>
+			  </td>
+				<? foreach from=$colNames item=colName key=colID?>			
+			      <td align="center" style="padding-left: 5px"><a href="<? $reportData.$rowID.$colID.url ?>" target="_blank"><? $reportData.$rowID.$colID.data ?></a></td>
+				<? /foreach ?>
+			</tr>
+			<? /foreach ?>
+		  </table>
+		<? else ?>
+			<p>No report data found</p>
+		<? /if ?>
+	  <? /if ?>
+  <? else ?>
+  <? /if ?>
+  <input name="edited" type="hidden" id="edited" value="1">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

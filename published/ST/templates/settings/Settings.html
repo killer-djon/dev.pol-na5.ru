@@ -1,0 +1,26 @@
+<div class="ui-block-content"><h1>[`General`]</h1>
+<ul class="indent-block">
+<li>
+<h4>[`Manual adding`]</h4>
+<p><label>
+<input type="checkbox" id="manual-adding" {{if $settings.manual}}checked="checked"{{/if}} /> [`Allow "Add a new request" button to add new requests manually.`]
+</label>
+</p>
+</li>
+</ul>
+</div>
+<script type="text/javascript">
+$("#manual-adding").click(function () {
+	var v = $(this).is(":checked") ? 1 : 0;
+	$.post("?m=settings&act=save", {name:"manual", value:v}, function (response) {
+		if (response.status == 'OK') {
+			if (v) {
+				$("#new-request").show()
+			} else {
+				$("#new-request").hide()
+			}
+		}
+	}, "json");
+	
+});
+</script>

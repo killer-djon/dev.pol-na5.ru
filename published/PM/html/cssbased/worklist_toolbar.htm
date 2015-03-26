@@ -1,0 +1,28 @@
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$pmStrings.pm_modproject_btn menu=$projectMenu ?>
+<? /wbs_toolbarItem ?>
+
+<? if $projectData.SCREEN != 1 ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$pmStrings.pm_task_menu menu=$taskMenu  ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$pmStrings.pm_view_menu menu=$intervalMenu  ?>
+<? /wbs_toolbarItem ?>
+
+
+
+<? if $canReports ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$kernelStrings.app_reports_menu menu=$reportsMenu ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+<? if $projectData.SCREEN != 1 ?>
+	<li class='TBItem print-view' id="ToolbarItem10">
+		<a alt='<? $pmStrings.pm_printer_label ?>' title='<? $pmStrings.pm_printer_label ?>' href='<? $printURL ?>' target='_blank' class=""><img src='../../../common/html/res/images/print.gif'/><? $pmStrings.pm_printer_label ?></a>
+	</li>
+<? /if ?>

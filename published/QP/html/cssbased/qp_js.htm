@@ -1,0 +1,81 @@
+<script language="JavaScript">
+<!--
+
+	window.CustomSplitterHeightHandler = function (splitterHeight)
+	{
+
+		if ( SplitterInfo.LeftPanelVisible )
+		{
+			var FoldersPanel = document.getElementById( 'FoldersHeadersPanel' );
+
+			var Content = document.getElementById( 'SplitterLeftScrollableContent' );
+
+			var TotalHeight = splitterHeight - FoldersPanel.offsetHeight;
+
+			var OffsetHeight = Content.offsetHeight;
+
+			SplitterInfo.LeftPanelContent.style.height = TotalHeight + 'px';
+		}
+
+		var RightPanelHeader = document.getElementById( 'RightPanelHeader' );
+		var ListHeader = document.getElementById( 'ListHeaderContainer' );
+		var ListFooter = document.getElementById( 'ListFooterContainer' );
+
+		var ListHeaderHeight = 0;
+		if ( ListHeader )
+			ListHeaderHeight = ListHeader.offsetHeight;
+
+		var ListFooterHeight = 0;
+		if ( ListFooter )
+		{
+			ListFooterHeight = ListFooter.offsetHeight;
+			ListFooter.style.visibility = 'visible';
+		}
+
+		rphHeight = (RightPanelHeader == null) ? 0 : RightPanelHeader.offsetHeight;
+		SplitterInfo.RightPanelContent.style.height = splitterHeight - rphHeight - ListHeaderHeight - ListFooterHeight + 'px';
+	}
+
+	function confirmBookDeletion()
+	{
+		return confirm( "<? $qpStrings.app_bookdelete_message ?>" );
+	}
+
+	function confirmDeletion()
+	{
+		var ret;
+
+		ret = confirm( "<? $qpStrings.app_screen_pagedel_message ?>" );
+
+		<? if $hasItChilds ?>
+			if ( ret )
+				return confirm( "<? $qpStrings.app_screen_subpages_delete_message ?>" );
+			else
+				return ret;
+		<? else ?>
+			return ret;
+		<? /if ?>
+	}
+
+	function submitFolder( obj )
+	{
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 ) {
+			return false;
+		}
+
+		obj.form.submit();
+	}
+
+	function findCurrentFolder()
+	{
+		obj = document.getElementById("<? $currentFolder ?>");
+		if ( obj ) {
+			obj.scrollIntoView();
+		}
+	}
+
+	RegisterOnLoad( function(){ SplitterScrollPanel( '<? $currentFolder ?>' ) } );
+
+//-->
+</script>

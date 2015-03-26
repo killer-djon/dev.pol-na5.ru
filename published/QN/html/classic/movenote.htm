@@ -1,0 +1,99 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "qn_classic_styles.css"|stylesetitem:"classic":$styleSet:"QN" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl(objName) {
+	 var obj = MM_findObj(objName); 
+	 if (obj)
+		obj.focus( );
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function confirmFolderDelete( contactNumber )
+{
+	if ( !contactNumber )
+		return confirm('<? $qn_loc_str[10] ?>');
+	else
+		if ( confirm('<? $qn_loc_str[10] ?>') )
+			return confirm('<? $qn_loc_str[11] ?>')
+		else return false;
+}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl('folderdata[QNF_NAME]');">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=$showDeleteBtn?>
+  <? if $showDeleteBtn ?>
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr> 
+		  <td class="pageTopPanel"> 
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="deletebtn" caption=$qn_loc_str[9] formname="form" space_right=5 button_menu=$addMenu onClick="return confirmFolderDelete("|cat:$contactCount|cat:")"?>
+		  </td>
+		</tr>
+	  </table>
+	  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? /if ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <? include file="../../../common/html/classic/formframe_begin.htm"?>	
+  <table border="0" cellspacing="2" cellpadding="0">
+          <tr>
+            <td class="label">
+              <? $qn_loc_str[43]|cat:":" ?>
+            </td>
+            <td class="readonly_control"><? $folderName ?></td>
+          </tr>
+          <tr> 
+            <td class="label"> 
+              <? conditionalOutput invalidField=$invalidField field=DEST_FOLDER text=#invalidFieldHighlight# ?>
+              <? $qn_loc_str[44]|cat:":" ?>
+            </td>
+            <td><select name="destFolderID" class="control">
+                <? html_options values=$folderIDs selected=$destFolderID output=$folderNames ?>
+              </select></td>
+          </tr>
+        </table>
+    <? include file="../../../common/html/classic/formframe_end.htm" extraLine=true?>
+    <table border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td height="7" colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$qn_loc_str[20] formname="form" space_left=5 space_right=10 ?>
+              <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$loc_str[20] formname="form"?>
+            </td>
+            <td align="right">&nbsp; </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <? /if ?>
+  <input type="hidden" name="action" value="<?$action?>">
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="curFolderID" value="<?$curFolderID?>">
+  <input type="hidden" name="currentPage" value="<?$currentPage?>">
+  <input type="hidden" name="notes" value="<?$notes?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

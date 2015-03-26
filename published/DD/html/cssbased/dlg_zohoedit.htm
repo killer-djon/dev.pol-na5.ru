@@ -1,0 +1,137 @@
+<div id="confirmDialog" style="display:none;">
+    <div class="x-window-header"><? $ddStrings.dd_zoho_edit ?></div>
+	<div class="x-window-body">
+		<div style="padding:10px;"><? $ddStrings.dd_zohoedit_warning ?></div>
+		<div style="padding:10px; padding-top: 0px; padding-bottom: 15px"><input type="checkbox" name='autoload' value='1' onclick="setAutoload(this.checked)"><? $ddStrings.dd_zohoedit_dontshow ?></div>
+	</div>
+</div>
+
+
+
+<style>
+#DDpum li:hover a {color:#06F;}
+#DDpum li:hover {background:#FFFFD1;}
+#DDpum .disabled:hover {background:#FFF;cursor:default;}
+.zohoEdit form{
+display:inline;
+float:right;
+margin:0pt;
+padding:0pt;
+}
+</style>
+<script>
+	var thisFolderRights = <?$thisFolderRights?>;
+	<?if $versionControlEnabled != ''?>
+		var versionControlEnabled = <?$versionControlEnabled?>;
+	<?else?>
+		var versionControlEnabled = '';
+	<?/if?>
+	var ddStrings = {
+		dd_noassignments_label	 : "MENU",
+		dd_assignmentsopen_label : "Open",
+		dd_assignmentsedit_label : "Edit Description",
+		dd_assignmentsdlod_label : "Download",
+		dd_assignmentsdelt_label : "Delete",
+		dd_assignmentsmail_label : "Send Email",
+		dd_assignmentshist_label : "Show History",
+		dd_assignmentsflco_label : "Check Out",
+		dd_assignmentsflci_label : "Check In",
+		sv_screen_save_btn 		 : "<?$ddStrings.sv_screen_save_btn?>",
+		sv_screen_cancel_btn	 : "<?$ddStrings.sv_screen_cancel_btn?>"
+	};
+/**
+* objId - id in database
+* dload - download URL
+* vhist - version history URL
+* vhcnt - version history count
+*/
+function ShowAssignmentsPanel (fromEl, usersCount, usersStr, recordId, objId, dload, vhist, vhcnt) {
+	if (!document.assignmentsPanel) {
+		document.assignmentsPanel = new Ext.ux.AsgmtMenu ({});
+	}
+	
+	if (document.assignmentsPanel.rendered) {
+		document.assignmentsPanel.update (usersCount, usersStr, recordId, objId, dload, vhist, vhcnt);
+		document.assignmentsPanel.show (fromEl);
+	} else {
+		document.assignmentsPanel.show (fromEl);
+		document.assignmentsPanel.rendered = true;
+		document.assignmentsPanel.update (usersCount, usersStr, recordId, objId, dload, vhist, vhcnt);			
+	}
+}
+function morelink(id_hide,id_show,id_morelink) {
+	$(id_morelink).style.display 	= 'none';
+	$(id_hide).style.display 		= 'none';
+	$(id_show).style.display 		= 'block';
+}
+
+//---
+function setCookie (name, value, expires, path, domain, secure) {
+	document.cookie = name + "=" + escape(value) +
+		((expires) ? "; expires=" + expires : "") +
+		((path) ? "; path=" + path : "") +
+		((domain) ? "; domain=" + domain : "") +
+		((secure) ? "; secure" : "");
+}
+function getCookie(name) {
+	var cookie = " " + document.cookie;
+	var search = " " + name + "=";
+	var setStr = null;
+	var offset = 0;
+	var end = 0;
+	if (cookie.length > 0) {
+		offset = cookie.indexOf(search);
+		if (offset != -1) {
+			offset += search.length;
+			end = cookie.indexOf(";", offset)
+			if (end == -1) {
+				end = cookie.length;
+			}
+			setStr = unescape(cookie.substring(offset, end));
+		}
+	}
+	return(setStr);
+}
+
+function checkAutoload(LOCATION) {
+	var load = getCookie('autoload');
+	if (load == 1) {
+		zohoEdit = window.open(LOCATION, 'Zoho', 'location,top=0');
+		zohoEdit.focus();
+	} else {
+		confirmDialog(LOCATION);
+	}
+}
+function setAutoload(value) {
+	setCookie('autoload', value ? 1 : 0);
+}
+//---
+
+var wnd;
+function confirmDialog(LOCATION) {
+	wndlocation = LOCATION;
+	if(!wnd){
+		wnd = new Ext.Window({
+			el:'confirmDialog', layout:'fit', closeAction:'hide',
+			width:350, height:185, resizable:false, modal: true, 
+
+			buttons: [{
+				text:'<? $kernelStrings.app_ok_btn ?>',
+				handler: function(){
+					zohoEdit = window.open(wndlocation, 'Zoho', 'resizable=yes,location,top=0');
+					wnd.hide();
+					zohoEdit.focus();
+				}
+			},{
+				text: '<? $kernelStrings.app_cancel_btn ?>',
+				handler: function(){
+					wnd.hide();
+				}
+			}]
+		});
+	}
+	wnd.show();
+}
+
+function zohoEdit(URL) {}
+</script>

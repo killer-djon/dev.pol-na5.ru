@@ -1,0 +1,59 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<link href="../../common/reports/print_styles.css" rel="stylesheet" type="text/css"> 
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default" bgcolor="white">
+<? if !$fatalError ?>
+	<table cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td class=title><? $projData.C_NAME|truncate:30|cat:". "|cat:$projData.P_DESC|htmlsafe:true:true ?></td>
+		</tr>
+		<tr>
+			<td><? $pmStrings.pm_manager_label|cat:": "|cat:$managerName?></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="complexList">
+	   <tr class="head">
+		<th align="left" class=list_rightBorder width=10><? $pm_loc_str.amr_it_label ?></th>
+		<th align="left" class=list_rightBorder><? $pm_loc_str.pm_summary_title ?></th>
+		<? foreach name="userSec" from=$users item=user key=userID ?>
+		  <th class=list_rightBorder width="70" align="center" valign="middle"><nobr><? $user ?></nobr></th>
+		<? /foreach ?>
+	  </tr>
+	  <? section name=workSec loop=$project_works ?>
+	  <tr<? if ($smarty.section.workSec.index % 2) != 0 ?> bgcolor="#F7F7F7"<? /if ?>> 
+		<td valign="top" class=list_rightBorder><? $project_works[workSec].PW_ID ?></td>
+		<td valign="top" class=list_rightBorder><? $project_works[workSec].PW_DESC ?></td>
+		<? foreach key=userID item=userData from=$users ?>
+		  <td valign="middle" align="center">
+			<? switchedOutput str1="<img src='../../common/html/classic/images/checked.gif' width=16 height=16 border=0>" str2="&nbsp;" val=$project_works[workSec].ASGN.$userID true_val=1 ?>
+		  </td>
+		<? /foreach ?>
+	  </tr>
+	  <? sectionelse ?>
+	  <tr align="center"> 
+		<td colspan="<? $totalColCount ?>" class="default">
+		  <? $kernelStrings.app_noentrieis_text ?>
+		</td>
+	  </tr>
+	  <?/section?>
+	<tr>
+		<td class=listFooter align=right valign=top>&nbsp;</td>
+		<td class=listFooter align=right valign=top><? $pm_loc_str.pm_total_label ?></td>
+		<? if $prevLink ?><td class=listFooter valign="top">&nbsp;</td><? /if ?>
+		<? foreach key=userID item=userData from=$users ?>
+			<td class=listFooter align=center><? $userAssignments[$userID]|sureecho ?></td>
+		<? /foreach ?>
+		<? if $nextLink ?><td class=listFooter valign="top">&nbsp;</td><? /if ?>
+	</tr>
+	</table>
+
+<? /if ?>
+</body>
+</html>

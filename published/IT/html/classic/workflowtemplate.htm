@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "styles/it.css"|stylesetitem:"classic":$styleSet:"IT" ?>" rel="stylesheet" type="text/css"><script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td class="pageTopPanel"> 
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="returnbtnctrl" caption=$itStrings.app_return_btn formname="form" space_right=#toolbarSmallSpace#?>
+        <img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="deletebtnctrl" caption=$kernelStrings.app_delete_btn formname="form" space_right=#toolbarSmallSpace# space_left=#toolbarSmallSpace#?>
+        <img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left">
+        <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="setasdefaultbtn" caption=$itStrings.wt_setasdefault_btn formname="form" space_right=#toolbarSmallSpace# space_left=#toolbarSmallSpace#?>
+      </td>
+    </tr>
+  </table>
+  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <p class="pageSubheader">
+    <strong><? $templateData.ITT_NAME ?></strong>
+  </p>
+  <? include file="../../../common/html/classic/formframe_begin.htm"?>	
+  <table width="100" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td colspan="<? math equation="x+1" x=$colNum ?>" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="10"><img src="<? "images/transitionschema/blockleft.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="10" height="25" ></td>
+                  <td align="center" background="<? "images/transitionschema/blockbg.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" ><strong><font color="#000000"> 
+                    <? $startStatusName ?>
+                    </font></strong></td>
+                  <td width="10"><img src="<? "images/transitionschema/blockright.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="10" height="25" ></td>
+                </tr>
+              </table></td>
+          </tr>
+          <? foreach key=rowIndex item=rowData from=$chartData ?>
+          <tr> 
+            <td> 
+              <? if $rowIndex % 2 == 0 && $rowIndex != 0 && $lastRow != $rowIndex ?>
+              <? math assign=dataIndex equation="x/2" x=$rowIndex ?>
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="3"><img src="<? "images/transitionschema/stateblockleft.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="5" height="30" ></td>
+                  <td valign="middle" background="<? "images/transitionschema/stateblockbg.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" class="smallFont"> 
+                    <table border="0" cellspacing="0" cellpadding="0">
+                      <tr> 
+                        <td valign="middle"><img src="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_DELETE true_val=1 str1="images/transitionschema/trans_delete.gif"|stylesetitem:"classic":$styleSet:"IT" str2="images/transitionschema/trans_no_delete.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" align="absmiddle" width="21" height="20" alt="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_DELETE true_val=1 str1=$itStrings.wt_candelete_label str2=$itStrings.wt_cannotdelete_label ?>"><img src="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_EDIT true_val=1 str1="images/transitionschema/trans_modify.gif"|stylesetitem:"classic":$styleSet:"IT" str2="images/transitionschema/trans_no_modify.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" align="absmiddle" width="21" height="20" alt="<? switchedOutput val=$transSchema[$dataIndex].ITS_ALLOW_EDIT true_val=1 str1=$itStrings.wt_canedit_label str2=$itStrings.wt_cannotedit_label ?>"><img src="<? switchedOutput val=$transSchema[$dataIndex].ALLOW_ASSIGNMENT true_val=1 str1="images/transitionschema/trans_assign.gif"|stylesetitem:"classic":$styleSet:"IT" str2="images/transitionschema/trans_no_assign.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" align="absmiddle" width="21" height="20" alt="<? switchedOutput val=$transSchema[$dataIndex].ALLOW_ASSIGNMENT true_val=1 str1=$itStrings.wt_asgntallowed_label str2=$itStrings.wt_asgntnotallowed_label ?>">&nbsp;</td>
+                        <td align="left"><nobr>
+                          <? $transSchema[$dataIndex].ITS_STYLE|cat:$transSchema[$dataIndex].ITS_STATUS|cat:"</b></font>" ?>
+                          &nbsp;<br>
+                          <span class="smallFont"> 
+                          <? if $transSchema[$dataIndex].ITS_ASSIGNMENTOPTION <> "" || $transSchema[$dataIndex].U_ID_ASSIGNED <> "" ?>
+                          <? $itStrings.wt_to_label|cat:":&nbsp;" ?>
+                          <? if $transSchema[$dataIndex].U_ID_ASSIGNED ?>
+                          <? $transSchema[$dataIndex].U_ID_ASSIGNED?>
+                          &nbsp; 
+                          <? /if ?>
+                          <? if $transSchema[$dataIndex].ITS_ASSIGNMENTOPTION ?>
+                          <? "("|cat:$transSchema[$dataIndex].ITS_ASSIGNMENTOPTION|cat:")"?>
+                          <? /if ?>
+                          <? /if ?>
+                          </span></nobr></td>
+                      </tr>
+                    </table></td>
+                  <td width="9"><img src="<? "images/transitionschema/stateblockright.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="10" height="30" ></td>
+                </tr>
+              </table>
+              <? /if ?>
+            </td>
+            <? if $rowIndex != 0 ?>
+            <? foreach key=columnIndex item=colData from=$rowData ?>
+            <td <?if !$colData.PARITY ?>bgcolor="<? #tableSubHeaderColor# ?>"<?/if?>>
+				<? if $colData.DEFAULT ?>
+					<? assign var=defImage value="_default" ?>
+				<? else ?>
+					<? assign var=defImage value="" ?>
+				<? /if ?>
+				<img src="<? "images/transitionschema/"|cat:$colData.CELLTYPE|cat:$defImage|cat:".gif"|stylesetitem:"classic":$styleSet:"IT" ?>" >
+			</td>
+            <? /foreach ?>
+            <? /if ?>
+          </tr>
+          <? /foreach ?>
+          <tr> 
+            <td colspan="<? math equation="x+1" x=$colNum ?>" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="10"><img src="<? "images/transitionschema/blockleft.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="10" height="25" ></td>
+                  <td align="center" background="<? "images/transitionschema/blockbg.gif"|stylesetitem:"classic":$styleSet:"IT" ?>">
+                    <? $endStatusName ?>
+                    </td>
+                  <td width="10"><img src="<? "images/transitionschema/blockright.gif"|stylesetitem:"classic":$styleSet:"IT" ?>" width="10" height="25" ></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+  <? include file="../../../common/html/classic/formframe_end.htm"?>
+  <? else ?>
+  <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <input name="edited" type="hidden" value="1">
+  <input name="P_ID" type="hidden" value="<? $P_ID ?>">
+  <input name="PW_ID" type="hidden" value="<? $PW_ID ?>">
+  <input name="ITT_ID" type="hidden" value="<? $ITT_ID?>">
+  <input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

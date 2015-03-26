@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule ^m(.{32})-(.*)$ ./html/scripts/getfolderfile_link.php?sl=$1&DB_KEY=$2 [L,QSA]
+RewriteRule ^f(.{32})-(.*)$ ./2.0/folder_link.php?sl=$1&DB_KEY=$2 [L,QSA]
+</IfModule>

@@ -1,0 +1,36 @@
+<div class="ui-block-content"><h1>[`Email boxes`]</h1>
+<ul class="indent-block">
+<li>
+{{if $sources.email}}
+<div class="sources"><table style="width:70%;">
+	{{foreach from=$sources.email key=id item=s name=source}}
+	<tr {{if $smarty.foreach.sources.iteration is odd}}class="odd"{{/if}} {{if $s.value eq $default_email[$s.language] }}style=""{{/if}}>
+		
+		<td class="source-name">
+			<a href="#/sources/edit/{{$s.id}}/">{{$s.name}}</a>
+		</td>
+        <td class="source-value">
+			{{$s.value}}
+		</td>
+        
+        <!--td class="edit-links"><a href=""><a href="#/sources/edit/{{$s.id}}/">[`Edit`]</a><a href="#/sources/delete/{{$s.id}}/">[`Delete`]</a></td-->
+       <!-- <td class="source-info">
+            <span>{{if $s.language eq 'eng'}}[`English`]{{/if}}{{if $s.language eq 'rus'}}[`Russian`]{{/if}}{{if $s.value eq $default_email[$s.language] }}, [`default for outgoing messages`]{{/if}}</span>
+        </td>-->
+	</tr>	
+	{{/foreach}}
+</table></div>
+{{else}}
+<p>
+&lt;[`you have no email boxes to receive requests by email`]&gt;
+</p>
+{{/if}}
+{{if !$wahost}}
+<p class="wbs-text-button"><a class="history" href="#/sources/add/" ><span class="link-text">[`Create email box`]</span><span class="icon-text">&rarr;</span></a></p>
+{{else}}
+<p class="wbs-text-button"><a class="history" href="#/sources/add/inner/" ><span class="link-text">[`Create a new email box`] @{{$hostname}}</span></a><span class="icon-text">&rarr;</span></p>
+<p class="wbs-text-button"><a class="history" href="#/sources/add/" ><span class="link-text">[`Connect to existing email box`]</span></a> [`(e.g. youraddress@gmail.com)`]<span class="icon-text">&rarr;</span></p>
+{{/if}}
+</li>
+</ul>
+</div>

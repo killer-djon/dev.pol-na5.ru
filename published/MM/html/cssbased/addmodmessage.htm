@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<? wbs_initLayout toolbar=true htmlArea=true htmlAreaIE6CSS=false ?>
+
+	<link href="../../../MM/html/cssbased/res/mm.css" rel="stylesheet" type="text/css"/>
+
+	<script src="../../../common/html/includes/controls/varlist.js"></script>
+
+	<script language="JavaScript" type="text/JavaScript">
+	<!--
+
+	function processButton( button )
+	{
+		<? if $mode && $curScreen == 0 ?>
+			onSubmitEditor();
+		<? /if ?>
+		return processTextButton( button, 'form' );
+	}
+
+	function onSubmitEditorLocal( )
+	{
+		<? if $mode && $curScreen == 0 ?>
+			onSubmitEditor();
+		<? /if ?>
+		return true;
+	}
+
+	function confirmGenHtml()
+	{
+		return true;
+	}
+
+
+	CurrentMessageField = "messageData[MMM_SUBJECT]";
+
+	function confirmDelete()
+	{
+		return confirm( "<? $deleteConfirmMessage ?>" );
+	}
+
+	function focusControl( controlID )
+	{
+		CurrentMessageField = controlID;
+		return true;
+	}
+
+	function blurControl( controlID )
+	{
+	//	CurrentMessageField = "";
+		return true;
+	}
+
+	function processWindowResize()
+	{
+		var Columns = document.getElementById('MessageLayout');
+		Columns.style.width = Columns.parentNode.offsetWidth + "px";
+	}
+
+	function toggleVisibility( id )
+	{
+		var el = document.getElementById( id+"Block" );
+		var cm = document.getElementById( id+"Comment" );
+		var tgl = document.getElementById( id+"Tgl" );
+
+		if ( el )
+		{
+
+			if ( el.style.display == 'none' )
+			{
+				tgl.textContent = "<? $mmStrings.amn_vars_hide_link?>";
+				tgl.innerText = "<? $mmStrings.amn_vars_hide_link?>";
+
+				cm.style.display = el.style.display = '';
+			}
+			else
+			{
+				tgl.textContent = "<? $mmStrings.amn_vars_show_link?>";
+				tgl.innerText = "<? $mmStrings.amn_vars_show_link?>";
+
+				cm.style.display = el.style.display = 'none';
+			}
+		}
+
+		return false;
+	}
+
+	<? if $curScreen == 0?>
+
+	function insertTemplateVar( varName, targetID )
+	{
+		insertHTML( varName );
+	}
+
+	<? else ?>
+
+	function insertTemplateVar( varName, targetID )
+	{
+		if ( CurrentMessageField == "" )
+			CurrentMessageField = "messageData[MMM_SUBJECT]"
+
+		vcl_insertVar( varName, CurrentMessageField );
+	}
+
+	<? /if ?>
+	//-->
+</script>
+</head>
+
+<body onLoad="<? if $mode && $curScreen == 0 ?> initEditor(); <? /if ?> autoFocusFormControl( '<? $invalidField ?>', 'messageData' );">
+
+<? wbs_pageLayout toolbar="amm_toolbar.htm" fullWidthContent=true ?>
+
+<? wbs_errorBlock ?>
+
+	<? if !$fatalError ?>
+
+		<? wbs_tabBar tabs=$tabs header="addmod_header.htm" ?>
+			<? include file="addmodmsg_bottom.htm" ?>
+		<? /wbs_tabBar ?>
+
+	<? /if ?>
+
+	<input type="hidden" name="action" value="<?$action?>">
+	<input type="hidden" name="MMF_ID" value="<?$MMF_ID?>">
+
+	<input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>">
+	<input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>">
+	<input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>">
+	<input name="IMAGE_FILES" type="hidden" value="<? $IMAGE_FILES ?>">
+
+	<input type=hidden name=curScreen value="<? $curScreen ?>">
+
+	<input name="messageData[MMM_ID]" type="hidden" value="<? $messageData.MMM_ID ?>">
+	<input name="messageData[MMM_STATUS]" type="hidden" value="<? $messageData.MMM_STATUS ?>">
+	<input name="messageData[MMM_IMAGES]" type="hidden" value="<? $messageData.MMM_IMAGES ?>">
+
+<? /wbs_pageLayout ?>
+
+</body>
+</html>

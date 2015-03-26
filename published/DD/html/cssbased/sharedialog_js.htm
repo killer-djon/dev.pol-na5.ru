@@ -1,0 +1,149 @@
+<script src='../../../common/html/cssbased/pageelements/ajax/share_dialog.js'></script>
+
+<script>
+	
+	/*ShareDialog.strings = new Array ();
+	
+	ShareDialog.onBeforeShareStep = function (type) {
+		if (type == "folder") {
+			shareNameInput.dom.value = currentFolderName;
+		}
+		if (type == "files") {
+			if (currentSelectedFiles.length > 2)
+				shareNameInput.dom.value = currentSelectedFiles[0].filename + " <? $ddStrings.shdd_and_label ?> " + (currentSelectedFiles.length-1) + " <? $ddStrings.shdd_morefiles_label ?>";
+			if (currentSelectedFiles.length == 2)
+				shareNameInput.dom.value = currentSelectedFiles[0].filename + " <? $ddStrings.shdd_and_label ?> 1 <? $ddStrings.shdd_morefile_label ?>";
+			if (currentSelectedFiles.length == 1)
+				shareNameInput.dom.value = currentSelectedFiles[0].filename;
+		}	
+	}*/
+	
+	DDShareDialog = function() {
+	}
+	
+	DDShareDialog.prototype = new CommonShareDialog;
+	
+	DDShareDialog.prototype.tryShare = function () {
+		var wgName = this.shareNameInput.dom.value;
+		if (wgName == null || wgName == "")
+			return alert("<? $ddStrings.shdd_emptyname_error ?>");
+		
+		var selectedFilesIds = new Array ();
+		if (this.currentSelectedFiles != null)
+			for (i = 0; i < this.currentSelectedFiles.length; i++)
+				selectedFilesIds.push (this.currentSelectedFiles[i].id);
+		if (this.currentType == this.TYPE_FOLDER)
+			selectedFilesIds = new Array ();
+		if (this.currentType == this.TYPE_FILES)
+			this.currentFolderId = null;
+			
+		AjaxLoader.doRequest ("../ajax/share_create.php", this.tryShareCompleted,
+			{folder: this.currentFolderId, 'files[]': selectedFilesIds, wgName: wgName, viewMode: this.viewMode}, {scope: this});
+	}
+	
+	DDShareDialog.prototype.tryShareCompleted = function (response, options) {
+		var result = Ext.decode(response.responseText);
+		if(result.success) {
+			sharesNode = foldersTree.getSharesNode();
+			sharesNode.loader.on ("load", function() {
+				sharesNode.expand ();
+				var newNode = foldersTree.getNodeById("shdd-" + result.wgId);
+				if (newNode != null) { 
+					newNode.select ();
+					foldersTree.loadSelectedNode();
+				}
+				sharesNode.loader.purgeListeners();
+			});
+			sharesNode.reload ();
+		} else {
+			alert(result.errorStr);
+		}
+		this.dialog.hide ();
+	}
+	
+	
+	
+	
+	var ShareDialog = new DDShareDialog ();
+	ShareDialog.strings.title = "<? $ddStrings.shdd_dialog_title ?>";
+	ShareDialog.strings.nextBtn = "<? $ddStrings.shdd_next_btn ?>";
+	ShareDialog.strings.cancelBtn = "<? $ddStrings.shdd_cancel_btn ?>";
+	ShareDialog.strings.createBtn = "<? $ddStrings.shdd_create_btn ?>";
+	ShareDialog.strings.andLabel = "<? $ddStrings.shdd_and_label ?>";
+	ShareDialog.strings.moreFileLabel = "<? $ddStrings.shdd_morefile_label ?>";
+	ShareDialog.strings.moreFilesLabel = "<? $ddStrings.shdd_morefiles_label ?>";
+	
+	
+	
+	
+	
+	
+	
+	
+	var deletedWgId;
+	function deleteWidget (wgId) {
+		if (!confirm("<? $ddStrings.shdd_delete_confirm ?>"))
+			return;
+		
+		deletedWgId = wgId;
+		AjaxLoader.doRequest ("../ajax/share_delete.php", deleteWidgetHandler, {wgId: wgId});
+	}
+	
+	function deleteWidgetHandler (response, options) {
+		var result = Ext.decode(response.responseText);
+		if(result.success) {
+			var sharesNode = foldersTree.getSharesNode ();
+			
+			var deletedNode = foldersTree.getNodeById("shdd-" + result.wgId);
+			var siblingNode = deletedNode.previousSibling;
+			if (!siblingNode)
+				siblingNode = deletedNode.nextSibling;
+			if (siblingNode)
+				siblingNode.select();
+			deletedNode.parentNode.removeChild(deletedNode);
+				
+			if (sharesNode.childNodes.length == 0) {
+				foldersTree.root.childNodes[0].select ();
+				foldersTree.removeSharesNode ();
+			} 
+			
+			foldersTree.loadSelectedNode ();
+		} else {
+			alert(result.errorStr);
+		}
+	}
+	
+	var oldSrc = null;
+	function changeWidgetViewMode (wgId, viewMode) {
+		if (document.getElementById("previewFrame").src != "")
+			oldSrc = document.getElementById("previewFrame").src;
+		document.getElementById("previewFrame").src= "";
+		AjaxLoader.doRequest ("../ajax/share_changeview.php", changeWidgetViewModeHandler, {wgId: wgId, viewMode: viewMode});
+	}
+	
+	function changeWidgetViewModeHandler (response, options) {
+		var result = Ext.decode(response.responseText);
+		if(result.success)
+			document.getElementById("previewFrame").src = oldSrc;
+		else
+			alert(result.errorStr);
+	}
+	
+</script>
+
+<div class="x-hidden" id='share-dlg-content'>
+  <div id='select-tab' style='padding: 10px'>
+		<? $ddStrings.shdd_whatshare_label ?>
+		<BR><BR>
+		<input id='share-type-files' onClick='ShareDialog.selectType()' name='shareType' value='files' style='margin-right: 10px' type='radio'>
+		<label style='display:inline' for='share-type-files'><? $ddStrings.shdd_selectedfiles_label ?>(<span id='share-files-count'>3</span>)</label>
+		<BR>
+		<input id='share-type-folder' onClick='ShareDialog.selectType()' name='shareType' value='folder' style='margin-right: 10px' type='radio'>
+		<label style='display:inline' for='share-type-folder'><? $ddStrings.shdd_entirefolder_label ?></label>
+	</div>
+	<div id='share-tab' style='padding: 10px; display: none'>
+		<? $ddStrings.shdd_createname_label ?>:
+		<BR>
+		<textarea id='share-name-input' style='width: 95%;' rows=2></textarea>
+	</div>
+</div>

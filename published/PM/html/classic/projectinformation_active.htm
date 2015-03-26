@@ -1,0 +1,197 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script> 
+<script language="JavaScript">
+<!--
+	function MM_findObj(n, d) { //v4.0
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && document.getElementById) x=document.getElementById(n); return x;
+	}
+ 
+    function focusControl(objName) {
+      var obj = MM_findObj(objName); 
+      if (obj) {
+      obj.focus( );
+     }
+    }
+
+	function confirmDelete( string )
+	{
+		return confirm( string );
+	}
+
+	function confirmDeletion()
+	{
+		var Object = MM_findObj( "works_count" );
+		var count = Object.value;
+
+		return !( !confirmDelete( "<? $pmStrings.amp_projdel_message ?>" ) || ( count > 0 && !confirmDelete( "<? $confirmation_string ?>" )) );			
+	}
+
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default" onLoad="focusControl('projectData[P_DESC]'); markArrayField( '<? $invalidField ?>', 'projectData' )">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+<? if $action != "new" ?>
+	<?assign var=noSpace value=1?>
+<? else ?>
+	<?assign var=noSpace value=0?>
+<? /if ?>
+<? include file="../../../common/html/classic/header.htm" nospace=$noSpace?>
+<? if $action != "new" ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>		
+		  <td class="pageTopPanel"> 
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="clspbtn" caption=$pmStrings.amp_complete_btn formname="form" onClick="return confirm('"|cat:$pmStrings.amp_projcomplete_message|cat:"')" space_right=#toolbarSmallSpace#?>
+			<img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="delpbtn" caption=$pmStrings.amp_delete_btn formname="form" onClick="return confirmDeletion()" space_left=#toolbarSmallSpace#?>
+		  </td>
+		</tr>
+	</table>
+	<? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+<? /if ?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+<? if !$fatalError ?>
+	  <table border="0" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td> <table width="100%" border="0" cellpadding="0" cellspacing="0">
+			  <tr> 
+				<td colspan="2" class="default"> 
+					<? include file="../../../common/html/classic/formframe_begin.htm"?>	
+					 <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+						<td valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="2">
+						  <tr>
+							<td colspan="2" align="right" class="formSection">
+							  <nobr><? conditionalOutput invalidField=$invalidField field=P_DESC text=#invalidFieldHighlight# ?>
+                              <? $pmStrings.app_description_label ?></nobr>
+                            </td>
+						  </tr>
+                            <tr> 
+                              <td>
+								<textarea name="projectData[P_DESC]" rows="3" cols="50" class="control"><? $projectData.P_DESC|htmlsafe_textarea:$edited ?></textarea>
+							  </td>
+                            </tr>
+						 </table>
+						 </td>
+					  </tr>
+					  <tr>
+					    <td>&nbsp;</td>
+					  </tr>
+					  <tr>
+                        <td><table border="0" cellspacing="2" cellpadding="0" width="100%">
+                            <tr> 
+                              <td align="right" class="label"> 
+							   <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=C_ID
+								text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.app_customer_label|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default" width="100%">
+  			  		            <select name="projectData[C_ID]" class="control" style="width:100%">
+		                          <? html_options values=$customers_ids selected=$projectData.C_ID output=$customers_names ?>
+		                        </select>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=U_ID_MANAGER
+								text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.app_manager_label|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default">
+  			  		            <select name="projectData[U_ID_MANAGER]" class="control" style=" width: 100%">
+		                          <? html_options values=$managers_ids selected=$projectData.U_ID_MANAGER output=$managers_names ?>
+		                        </select>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=P_BILLABLE text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amp_billable_label|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td class="default" width="100%">
+				  		        <input type="checkbox" name="projectData[P_BILLABLE]" value="1"
+								<? switchedOutput str1="checked" str2="" val=$projectData.P_BILLABLE true_val=1 ?>>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr>
+                                <? conditionalOutput invalidField=$invalidField field=P_STARTDATE text=#invalidFieldHighlight#  ?>
+                                <? $pmStrings.amp_startdate_label|cat:":" ?>
+								</nobr>
+                              </td>
+                              <td width="100%">								
+								<table cellpadding="0" cellspacing="0" border="0" width="100%">
+									<tr>
+										<td><input name="projectData[P_STARTDATE]" type="text" class="control" value="<? $projectData.P_STARTDATE ?>" maxlength="10" style=" width: 99%"></td>
+										<td> <?include file="../../../common/html/classic/calendar.tpl" name=projectData[P_STARTDATE]?></td>
+									</tr>									
+								</table>
+							  </td>
+                            </tr>
+                          </table></td>
+                       </tr>
+                    </table>
+						<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true?>
+					</td>
+				    </tr>
+ 				    <tr>
+			          
+            <td colspan="2" class="default"> 
+              <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=5 space_right=10 ?>
+              <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+            </td>
+			        </tr>
+			<? if $action != "new" ?>
+					<tr>
+						<td colspan=2>&nbsp;</td>
+					</tr>
+			        <tr>
+			          <td colspan="2" class="smallFont">
+				        <hr width="100%" size="1" noshade>
+						<nobr>
+				        <? $pmStrings.amp_lastmidified_label ?>&nbsp;<? $projectData.P_MODIFYUSERNAME ?>&nbsp;
+				        <? $projectData.P_MODIFYDATETIME ?>
+						</nobr>
+				      </td>
+			        </tr>
+			<? /if ?>
+			</table></td>
+		</tr>
+	  </table> 
+  <? else ?>
+  <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <input name="edited" type="hidden" id="edited" value="1">
+  <input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>">
+  <input name="action" type="hidden" id="action" value="<? $action ?>">
+  <input name="opener" type="hidden" value="<? $opener ?>">
+  <input name="folder" type="hidden" id="folder" value="<? $folder ?>">
+  <input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>">
+  <input name="works_count" type="hidden" id="works_count" value="<? $works_count ?>">
+  <input name="projectData[P_ID]" type="hidden" id="projectData[P_ID]" value="<? $projectData.P_ID ?>">
+  <input name="projectData[P_MODIFYUSERNAME]" type="hidden" id="projectData[P_MODIFYUSERNAME]" value="<? $projectData.P_MODIFYUSERNAME|htmlsafe:true:true ?>">
+  <input name="projectData[P_MODIFYDATETIME]" type="hidden" id="projectData[P_MODIFYDATETIME]" value="<? $projectData.P_MODIFYDATETIME ?>">
+  <input type="hidden" name="btndummy">
+  <?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+  
+  <? /strip ?>
+</body>
+</html>

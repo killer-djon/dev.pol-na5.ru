@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+	<channel>
+		<title>Блог / Новости ― Интернет магазин напольных покрытий</title>
+		<link>http://pol-na5.ru/blog/</link>
+		<description><![CDATA[Блог / Новости]]></description>
+		<lastBuildDate>Mon, 03 Feb 2014 01:09:31 +0400</lastBuildDate>
+
+		<item>
+			<title>Мы открылись!</title>
+			<description><![CDATA[Здесь вы можете написать информацию о вашем новом интернет-магазине, а также отправить эту новость вашим клиентам по электронной почте.]]></description>
+			<content:encoded><![CDATA[Здесь вы можете написать информацию о вашем новом интернет-магазине, а также отправить эту новость вашим клиентам по электронной почте.]]></content:encoded>
+			<pubDate>Fri, 18 Apr 2008 14:20:48 +0400</pubDate>
+			<link>http://pol-na5.ru/blog/1/</link>
+			<guid>http://pol-na5.ru/blog/1/</guid>
+		</item>
+
+	</channel>
+</rss>

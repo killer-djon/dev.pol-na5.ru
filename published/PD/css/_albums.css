@@ -1,0 +1,118 @@
+	div {
+		/* outline: 1px solid yellow; */
+	}
+	* {
+		font-family: 'Trebuchet MS';
+	}
+	
+	#hor-info-panel {
+		height: 70px;
+		background-color: yellow;
+	}
+	#menu-level1 {
+		overflow: hidden;
+		height: 25px;
+	}
+	#menu-level2 {
+		overflow: hidden;
+		height: 25px;
+		background-color: #ccc;
+	}
+	ul.menu-level {
+		width: 100%;
+		list-style: none;
+		list-style-type: none;
+		list-style-position:outside;
+		
+		  
+				
+	}
+	.menu-level li {
+		float: left;
+		margin: 5px 40px 5px 5px ;
+		font-size: 1em;
+	}
+	
+	#rigth-info-panel {
+		width: 198px;
+		float: right;
+		border-left: 1px solid #CCC;
+	}
+	#main-content {
+		height: 100%;
+		position: relative;
+	}
+	#rigth-info-panel {
+		height: 100%;
+		overflow: auto;
+	}
+	#main {
+		height: 500px;
+	}
+	#footer-info-panel {
+		z-index: 100;
+		right: 20px;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 25px;
+		background-color: #fff;
+		filter:alpha(opacity=75);
+		-moz-opacity: 0.75;
+		opacity: 0.75;
+		border-top: 1px solid #ccc;		
+	}
+	
+
+	#wbs-popup-bg {
+		position: fixed;
+		z-index:100;
+		top: 0px;
+		left: 0px;
+		height:100%;
+		width:100%;
+	}
+	.wbs-popup {
+		position: absolute;
+		background-color: #fff;
+		border: 4px solid #525252;
+		padding: 10px;
+		z-index:102;
+		top: 50%;
+		left: 50%;
+		height:400px;
+		width:500px;
+	}	
+		
+	.overlay-bg {
+		background-color:#000;
+		filter:alpha(opacity=75);
+		-moz-opacity: 0.75;
+		opacity: 0.75;
+	}
+		
+	* html .wbs-popup { /* ie6 hack */
+	     position: absolute;
+	     height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+	}	
+	
+	.album-thumb {
+		width: 256px;
+		height: 224px;	
+	}
+	.album-thumb input {
+		
+		padding: 0;
+	}
+	.rigth-panel-block{
+		border-bottom: 1px solid #CCCCCC;
+	}
+	
+	.sidebar-btn {
+	}
+	
+	.sidebar-btn-disable {
+		text-decoration: none;
+		color: black;
+	}
+	

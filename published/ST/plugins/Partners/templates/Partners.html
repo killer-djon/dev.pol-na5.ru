@@ -1,0 +1,25 @@
+<div style="clear:both"></div>
+<div class="orders">
+	<h4>[`Partner`]</h4>
+	<p>
+		[`REFERRAL:`]
+	{{if $referal}}
+		[`orders:`] {{$referal.bonus.count}},
+		[`total earnings:`] {{$referal.bonus.summ}}{{if $referal.balance}}
+			{{$referal.balance.currency}}{{/if}},
+		[`current balance:`] {{$referal.balance.summ}}
+			{{if $referal.balance}} {{$referal.balance.currency}}{{/if}}
+	{{else}}
+		[`no`]
+	{{/if}}
+	</p>
+	<p>
+		[`RESELLER:`]
+	{{if $reseller}}
+		[`licenses transferred to others:`] {{$reseller.count}}<!-- ({{$reseller.summ}}) -->
+	{{else}}
+		[`no`]
+	{{/if}}
+	</p>
+
+</div>

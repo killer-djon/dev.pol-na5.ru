@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body>
+		<? wbs_pageLayout ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td>
+								<table class="FormLayout" width="100%">
+									<tr>
+										<td><? wbs_label fieldName="P_DESC" for="description" text=$pmStrings.app_description_label ?></td>
+									</tr>
+									<tr class="SeparatedRow">
+										<td><? $projectData.P_DESC|htmlsafe_textarea:$edited ?></td>
+									</tr>
+								</table>
+
+								<table class="NameValueList">
+									<tr>
+										<td><? wbs_label fieldName="C_ID" for="customer" text=$pmStrings.app_customer_label ?></td>
+										<th><? $projectData.C_NAME ?></th>
+									</tr>
+
+									<tr>
+										<td><? wbs_label fieldName="U_ID_MANAGER" for="manager" text=$pmStrings.app_manager_label ?></td>
+										<th><? $projectData.P_MANAGER ?></th>
+									</tr>
+
+									<tr>
+										<td><? wbs_label fieldName="P_BILLABLE" for="billable" text=$pmStrings.amp_billable_label ?></td>
+										<th><? wbs_statusImage value=$projectData.P_BILLABLE onValue=1 align="center" ?></th>
+									</tr>
+
+									<tr>
+										<td><? wbs_label fieldName="P_STARTDATE" for="startdate" text=$pmStrings.amp_startdate_label ?></td>
+										<th><? $projectData.P_STARTDATE ?></th>
+									</tr>
+
+									<tr>
+										<td><? wbs_label fieldName="P_STARTDATE" for="startdate" text=$pmStrings.pm_completedate_label ?></td>
+										<th><? $projectData.P_ENDDATE ?></th>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton caption=$pmStrings.amp_close_btn name="cancelbtn"?>
+							<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout?>
+
+				<? wbs_note displayNoteMarker=false width="530px" ?>
+					<? $pmStrings.amp_lastmidified_label ?>&nbsp;<? $projectData.P_MODIFYUSERNAME ?>&nbsp;<? $projectData.P_MODIFYDATETIME ?>
+				<? /wbs_note ?>
+			<? /if ?>
+
+			<input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>"/>
+			<input name="opener" type="hidden" value="<? $opener ?>"/>
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="../../common/reports/print_styles.css" rel="stylesheet" type="text/css">
+<link href="it_styles.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<p class="header1"><? $pageTitle ?></p>
+<? if !$ISSF_ID ?>
+	<? assign var="pageTitle" value=$pageTitle ?>
+<? else ?>
+	<? assign var="pageTitle" value=$pageTitle|cat:" <span class=smallFont>("|cat:$filterInfo|cat:")</span>" ?>
+<? /if ?>
+<? strip ?>
+<? if !$fatalError ?>
+<? if $filterInfo != "" ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><? $itStrings.il_filter_label|cat:": "|cat:$filterInfo?></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<? /if ?>	
+<? if $P_ID != "" ?>
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><strong><? $projectName ?></strong></td>
+  </tr>
+  <tr> 
+    <td><? $itStrings.il_manager_label|cat:": "|cat:$managerName ?></td>
+  </tr>
+  <tr>
+    <td><span class="separator" style="height: 3; width: 2 px">&nbsp;</span></td>
+  </tr>
+<? /if ?>
+</table>
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td><span class="separator" style="height: 2; width: 2 px">&nbsp;</span></td>
+		</tr>
+	  </table>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top: 1px solid #B1B1B1; border-left: 1px solid #B1B1B1; border-right: 1px solid #B1B1B1; border-bottom: 1px solid #B1B1B1">
+    <? section name=issueSec loop=$issueList ?>
+    <? if $issueList[issueSec].ROW_TYPE == 0 ?>
+    <tr> 
+      <td valign="top" width="100%">
+	  	<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+          <tr > 
+            <td width="35" align="right" valign="top" class="smallFont"> 
+               <strong><? $issueList[issueSec].PRIORITY_NAME ?>&nbsp;</strong>
+            </td>
+            <td width="5" valign="top" class="smallFont"><nobr><font color="black"> 
+              <? $issueList[issueSec].DISPLAY_NUM?>
+              </font></nobr></td>
+            <td width="5" class="smallFont"><span class="separator" style="height: 2; width: 2 px">&nbsp;</span></td>
+            <td class="smallFont">
+              <? "["|cat:$issueList[issueSec].I_STATUSCURRENT|cat:"] " ?> 
+              <? "["|cat:$issueList[issueSec].I_STARTDATE|cat:"] " ?>
+              <? $issueList[issueSec].I_DESC?>
+			  <? $listRecord.I_DESC|cat:" ("|cat:$itStrings.il_authorfield_title|cat:": "|cat:$issueList[issueSec].U_ID_AUTHOR|cat:")" ?>
+			   <? " "|cat:$issueList[issueSec].ATTACHEDFILES?>
+
+ 				<? include file="transloginline.htm" ?>
+
+			</td>
+            
+          <td align="right" valign="top" class="smallFont"><nobr> 
+            <? $issueList[issueSec].U_ID_SENDER?>
+            <img src="images/small_arrow.gif" width="9" height="8">
+            <? $issueList[issueSec].U_ID_ASSIGNED?>
+            </nobr></td>
+          </tr>
+        </table>
+				</td>
+    </tr>
+    <?else?>
+    <? if $smarty.section.issueSec.iteration > 1 ?>
+    <tr> 
+      <td valign="top" height="2"><span class="separator" style="height: 2; width: 2 px">&nbsp;</span></td>
+    </tr>
+    <? /if ?>
+    <tr align="left" bgcolor="#F0F0F0"> 
+      <td bgcolor="#F0F0F0">
+	  	<table width="100%" border="0" cellspacing="0" cellpadding="0"  style="<? if !$smarty.section.issueSec.last ?> border-bottom: 1px <? switchedOutput val=$issueList[issueSec].EXPANDSTATUS true_val="expanded" str2=" solid " str1=" none "?> #B1B1B1;<? /if ?><? if !$smarty.section.issueSec.first ?> border-top: 1px solid #B1B1B1<? /if ?>">
+          <tr> 
+            <td valign="top" style="padding-left: 2px"> 
+              <? $issueList[issueSec].PW_ID|cat:". "?>
+              <? $issueList[issueSec].PW_DESC ?>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <? /if ?>
+    <? sectionelse ?>
+    <tr align="center"> 
+      <td> 
+        <? $kernelStrings.app_noentrieis_text ?>
+      </td>
+    </tr>
+    <? /section?>
+  </table>
+<? else ?>
+	<? $errorStr ?>
+<? /if ?>
+<? /strip ?>
+</body>
+</html>

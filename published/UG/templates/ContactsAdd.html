@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>[`Add a new contact`]</title>
+{{csscombine file="`$url.css`contact-edit.css"}}
+	{{$url.css}}users-common.css
+	{{$url.css}}users-edit.css
+{{/csscombine}}
+<link rel="stylesheet" type="text/css" href="{{$url.common}}css/datepicker.css" />
+<script type="text/javascript" src="{{$url.common}}js/jquery.js"></script>
+{{jscombine file="`$url.js`contact-add.js"}}
+	{{$url.common}}js/datepicker.js
+	{{$url.common}}js/wbs-common.js
+	{{$url.js}}users-edit.js
+{{/jscombine}} 
+{{if $user_lang=='rus'}}<script type="text/javascript" src="{{$url.common}}js/datepicker-rus.js"></script>{{/if}}
+<script type="text/javascript">
+	WbsData.set({'url.common' : "{{$url.common}}"});
+	WbsData.set({countries:{{$countries}}});
+	document.typeId = {{$typeId}};
+	{{if $admin}}document.isContactAdmin = 1;{{/if}}
+</script>
+
+<style type="text/css">
+table.contact td.contacts_main {padding: 0}
+</style>
+
+</head>
+<body style="overflow:hidden;">
+<div id="header">
+	<div id="toolbar_new" class="contact-tools">
+		<div class="backlink">
+			<span>&larr;</span><a id="back-url" href="{{$back_url}}" onClick="if (parent && parent.document.app) {if (parent.document.app.getCurrentFolder().Id) {parent.document.app.table.reloadView(); parent.document.app.closeSubframe(); return false} else {parent.document.app.selectFolder('ANALYTICS');}}">[`Back`] {{if $back_title}} — {{$back_title|escape:'html'}}{{/if}}</a>
+		</div>
+   </div>
+</div>
+<div id="scroll" style="position:relative">
+<table id="sub-main-content" class="contact" cellpadding="0" cellspacing="0" border="0" style="height: 100%">
+  <tr>
+  	<td class="contacts_main add-contact">
+  		<div class="wrap-scroller" id="ajax_result" style="display: none">
+			<h2>{{$add_type_name}}</h2>
+			
+			<div class="usertop">
+			   <table class="contact" cellspacing="0" cellpadding="0" border="0">
+			     <tr>
+			      <td class="contacts group" id="CONTACT">
+				   <div class="large inline l" id="display_name"><div class="edit" title="Click to edit"><b>{{$name}}</b></div></div>
+			
+				   <div id="editMain"></div>
+				   <div style="clear:both; height:10px">&nbsp;</div>
+				  </td>
+				</tr>
+			   </table>
+			</div>
+
+			{{foreach name=groups from=$fields item = g}}
+			{{if $smarty.foreach.groups.index}}
+			{{if $smarty.foreach.groups.index == 1}}
+			<a class="remove-link" onClick="UserControl.viewAll(); $(this).remove()" href="javascript:void(0)">[`Display all fields`]</a>
+			{{/if}}
+			<div id="group{{$smarty.foreach.groups.index}}" class="group"><div class="title"><a class="title click" title="Click to edit">{{$g.name}}</a></div></div>
+			{{/if}}
+			{{/foreach}}
+			
+			<div id="FOLDER" class="group"><div class="title" ></div></div>
+			<div class="group" id="block_save_main">
+				<input type="button" value="[`Save`]" onClick="UserControl.save()" />
+				<input type="button" value="[`Save and add another`]" class = "save_next" />	
+				<input type="button" value="[`Cancel`]" onClick="if (parent) {$('#back-url').click()} else {location.href = 'index.php'}"/>
+			</div>
+		</div>
+	</td>
+	<td class="user_rightbar">
+<div class="rigth-panel-block noactiveblock">
+    <ul class="light-right-menu">
+	{{foreach from=$add_type_links item=t}}
+		<li class="type"><a href="{{$t.url}}"><img src="{{$url.img}}contact-type16.{{$t.id}}.gif" /> {{$t.title}}</a></li>
+	{{/foreach}}
+		<li class="import"><a href="?mod=contacts&act=csv&import=1"><img src="{{$url.img}}import16.gif" /> [`Import contacts`]</a></li></ul></div>
+    {{if $admin}}
+	<div class="customize-link">
+        <a href="?mod=construct&type_id={{$typeId}}">[`Customize fields`]</a>
+    </div>
+    {{/if}}
+	</td>
+	
+</tr>
+</table>
+</div>
+
+<div id="popup" style="display: none;"></div>
+<script type="text/javascript">
+var UserControl;
+var resize = function () {
+	$("#scroll").height($(window).height() - $("#header").height());
+};
+$(document).ready(resize);
+$(window).resize(resize);	
+
+$(document).ready(function () {
+	UserControl = new WbsEditUser({super_main_fields: {{$super_main_fields}}, saveSuccess: function (response) {location.href = "index.php?mod=users&C_ID=" + response.data}, edit: true, {{if !$smarty.get.all}}requiredOnly: true,{{/if}} noImage:true, editAll: true, main_fields: {{$main_fields}}, groups: {{$js}}, contact: "{{$contact_id}}", saveUrl: "?mod=contacts&act=add&ajax=1", photoField: "{{$photo_field}}"});
+	$(".DateField").datepicker({
+		yearRange: '1900:2050', 
+		closeAtTop: false, 
+		buttonImage: "{{$url.common}}img/calendar.gif", 
+		buttonImageOnly: true, 
+		showOn: "button", 
+		showOtherMonths: true, 
+		firstDay: 1, 
+		dateFormat: '{{$dateFormat}}'
+	});
+	$("#ajax_result").show();
+	$("#edit_{{$first_field}} > div.edit > input").select();
+});
+
+$(".save_next").click(function () {
+	UserControl.config.saveSuccess = function (response) {
+		location.href = location.href + ($("#display_all").is(":hidden") ? "&all=1" : "") + (response.folder ? "&folder=" + response.folder : "");
+	}; 
+	UserControl.save();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<div class="ui-block-content">
+<h1>[`Assignment template`]</h1>
+
+<form id="form-template-assign" action="?m=settings&act=save">
+	<input type="hidden" name="name" value="assign_template" />
+	<div class="wbs-editor">{{$template}}</div>
+    <button onclick="$('#form-template-assign').submit()">[`Save`]</button>
+</form>
+
+</div>
+<script type="text/javascript">
+$(".wbs-editor").wbsEditor({name:"value", fill:true});
+$("#form-template-assign").submit(function () {
+	$.post($(this).attr('action'), $(this).serialize(), function (response) {
+		
+	}, "json");
+	return false;
+});
+</script>
+

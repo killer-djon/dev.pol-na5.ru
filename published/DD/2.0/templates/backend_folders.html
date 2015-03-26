@@ -1,0 +1,45 @@
+<link rel='stylesheet' type='text/css' href='<? $preproc->getCommonUrl("templates/css/tables.css") ?>'>
+
+<? include file=$preproc->getCommonPath("templates/elements/mainscreen_complex.htm") ?>
+
+<script>
+	registerOnLoad (function() {
+		var container = new WbsFlexContainer ({
+			elem: $("main-container"), 
+			headerElem: $("main-header"), 
+			contentElem: $("main-content"),
+			footerElem: $("main-footer")
+		});
+		container.resize();
+	});
+</script>
+
+
+
+<div id='main-container' style=''>
+
+	<div id='main-header'>
+		<div style='padding-left: 20px; padding-top: 10px; padding-bottom: 10px'><h1 style=''><? lbl_dd_backend_folders->lbl_available_folders ?></h1></div>
+	</div>
+
+	<div id='main-content'>
+		<table cellspacing=0 cellpadding=0 width="100%" class='wbs-html-grid'>
+			<thead>
+				<tr>
+					<td><? lbl_dd_backend_folders->column_folder_name ?></td>
+					<td align='center' width="10%"><? lbl_dd_backend_folders->column_rights ?></td>
+					<td align='center' width="10%"><? lbl_dd_backend_folders->column_files ?></td>
+					<!--td align='center' width="10%">Shared</td-->
+				</tr>
+			</thead>
+			
+			<? include file="backend_folders_node.html" node=$rootNode level=0 ?>
+		</table>
+	</div>
+
+	<div id='main-footer'>
+		<div class='footer'>
+	 		<? $statData.files_count ?> <? lbl_dd_backend_folders->lbl_files_in ?> <? $statData.folders_count ?> <? lbl_dd_backend_folders->lbl_folders ?>
+	 	</div>
+	</div>
+</div>

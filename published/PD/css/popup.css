@@ -1,0 +1,27 @@
+html, body, form, h2, ul, li, p  { margin:0; padding:0;}
+body { overflow:hidden;
+background:#fff;
+border-color:#D7DBDE #F7FAFD #F9FBFE #C6C9CC;
+border-style:solid;
+border-width:1px;
+font-family:'Trebuchet MS','Lucida Grande',Verdana,Arial,Sans-Serif;
+}
+img { border:none;}
+input { font-size:1em;}
+
+.imageLinks { padding:10px;font-size:0.9em;}
+.imageLinks textarea, .imageLinks label {  display:block; } 
+.imageLinks label { font-size:0.95em; float:left; margin-right:0.5em; }
+.imageLinks label.l-header { margin-top:0.5em;}
+.im-size { font-weight:bold;}
+.imageLinks textarea { color:#555; background:#fafafa; background:#FFFFFF none repeat scroll 0 0;
+border-color:#999 #ccc #ccc #999;
+border-style:solid;
+border-width:1px;font-size:0.85em; height:6em;width:100%; float:left; overflow-x:hidden;}
+.imageLinks p { 
+overflow:hidden;
+margin:0;
+padding:5px 0 0 10px;  clear:both; font-size:1em;}
+.greybord { border-top:1px solid #EEEEEE;  font-size:0px; line-height:1px; clear:both; margin:0 0 10px 0;}
+.imageLinksSize {padding:0 20px 5px 10px; overflow:hidden; }
+.div-popup-close { position:absolute;}

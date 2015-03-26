@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="addmodissue_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_note smallFont=false displayNoteMarker=false ?><? $projName ?><? /wbs_note ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td><? wbs_label for="task" text=$itStrings.ami_task_label ?></td>
+							<td>
+								<select id="task" name="PW_ID" class="FormControl" onChange="this.form.submit()">
+										<? html_options values=$works_ids selected=$PW_ID output=$works_names ?>
+								</select> 
+							</td>
+						</tr>
+
+						<tr>
+							<td><? wbs_label for="priority" text=$itStrings.ami_priority_label ?></td>
+							<td>
+								<select name="issuedata[I_PRIORITY]" class="FormControl" id="priority">
+									<? html_options values=$priority_ids selected=$issuedata.I_PRIORITY output=$priority_names ?>
+								</select>
+							</td>
+						</tr>
+
+						<tr>
+							<td><? wbs_label for="assignee" text=$itStrings.ami_assignto_label fieldName="U_ID_ASSIGNED" ?></td>
+							<td>
+								<? if !$noAssigneeAllowed ?>
+									<select id="assignee" name="issuedata[U_ID_ASSIGNED]" class="FormControl">
+										<? html_options values=$assignment_ids selected=$issuedata.U_ID_ASSIGNED output=$assignment_names ?>
+									</select> 
+								<? else ?>
+									N/A
+								<?/if?>
+							</td>
+						</tr>
+
+						<tr class="SeparatedRow">
+							<td><? wbs_label for="status" text=$itStrings.ami_status_label ?></td>
+							<td>
+								<select name="issuedata[I_STATUSCURRENT]" class="FormControl" id="status" onChange="this.form.submit()">
+									<? html_options values=$allowedStatusIDs selected=$issuedata.I_STATUSCURRENT output=$allowedStatusNames ?>
+								</select>
+							</td>
+						</tr>
+					</table>
+
+					<table class="FormLayout">
+						<tr>
+							<td class="FormSection"><? wbs_label skipColon=true for="description" text=$itStrings.ami_description_label fieldName="I_DESC" ?></td>
+						</tr>
+						<tr>
+							<td><textarea name="issuedata[I_DESC]" id="description" style="width: 600px" rows="6" class="FormControl" 
+							wrap=physical><? $issuedata.I_DESC|htmlsafe_textarea:$edited ?></textarea></td>
+						</tr>
+
+						<tr>
+							<td class="FormSection"><? $itStrings.ami_files_label ?></tr>
+						</tr>
+
+						<? if $attachedFiles ?>
+							<tr class="SeparatedRow">
+								<td>
+									<table class="SimpleList" width="400">
+										<tbody>
+											<? foreach from=$attachedFiles item=fileData key=fileName name=fileLoop?>
+												<tr <? if $smarty.foreach.fileLoop.last ?>class="SeparatedRow"<? /if ?>>
+													<td width="10"><input name="<? $fileData.delcbName ?>[]" type="checkbox" value="<? $fileData.delcbValue ?>"/></td>
+													<td><? $fileName|cat:" ("|cat:$fileData.size|cat:")" ?></td>
+												</tr>
+											<? /foreach ?>
+										</tbody>
+									</table>
+									<? wbs_button caption=$kernelStrings.app_deletefiles_btn name="deletefilesbtn" ?>
+								</td>
+							</tr>
+						<? /if ?>
+
+						<tr>
+							<td>
+								<ul class="Stack">
+									<li>
+										<input name="issuefile" type="file" class="FormControl" size="30"/>
+									</li>
+									<li><? wbs_button caption=$kernelStrings.app_attachfiles_btn name="attachbtn" ?></li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><? wbs_note displayNoteMarker=true indented=true?><? $limitStr ?><? /wbs_note ?></td>
+						</tr>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+							<? wbs_buttonSet ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" ?>
+								<? wbs_buttonSetButton caption=$itStrings.ami_addanother_btn name="saveaddbtn" ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+							<? /wbs_buttonSet ?>
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+
+			<? /if ?>
+
+			<input name="action" type="hidden" value="<? $action ?>"/>
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+			<input name="listPW_ID" type="hidden" value="<? $listPW_ID ?>"/>
+			<input name="issuedata[U_ID_SENDER]" type="hidden" value="<? $issuedata.U_ID_SENDER ?>"/>
+			<input name="issuedata[I_NUM]" type="hidden" value="<? $issuedata.I_NUM ?>"/>
+			<input name="issuedata[I_ID]" type="hidden" value="<? $issuedata.I_ID ?>"/>
+			<input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>"/>
+			<input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>"/>
+			<input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>"/>
+			<input name="searchCriteria" type="hidden" value="<? $searchCriteria ?>"/>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

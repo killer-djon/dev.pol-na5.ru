@@ -1,0 +1,24 @@
+<div id="send_ukladka" title="Заказать укладку" data-width="600">
+	<p class="validateTips">Поля отмеченные знаком <font color="red">*</font>обязательны для заполнения</p>
+	<form name="form-send_ukladka" method="post" action="{''|set_query_html}">
+		<input type="hidden" name="action" value="ukladka" />
+		
+		<div class="rowElem">
+			<label for="user_name">Ваше имя <font color="red">*</font>:</label>
+			<input type="text" id="user_name" title="Ваше имя" name="user_name" value="" />
+		</div>
+		<div class="rowElem">
+			<label for="user_email">Ваш Email <font color="red">*</font>:</label>
+			<input type="text" id="user_email" name="user_email" value="" />
+		</div>
+		<div class="rowElem">
+			<label for="user_phone">Номер телефона :</label>
+			<input type="text" id="user_phone" name="user_phone" value="" />
+		</div>
+		<div class="rowElem">
+			<label for="user_msg">Коментарий к заказу:</label>
+			<textarea name="user_msg" id="user_msg" rows="3"></textarea>
+		</div>
+	</form>
+	
+</div>

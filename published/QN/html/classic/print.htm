@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+
+<script language="JavaScript" type="text/JavaScript">
+	function returnToAB()
+	{
+		location.href=location.href="quicknotes.php<? if $trans_sid ?><? "?"|cat:$session_name|cat:"="|cat:$session_id ?><? /if ?>";
+	}
+
+	function processForm( formObj )
+	{
+		formObj =  document.forms[0];
+
+		formObj.target="_blank";
+		formObj.submit();
+		returnToAB();
+	}
+
+	function cancelForm( formObj )
+	{
+		returnToAB();
+	}
+</script>
+
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+	<table cellpadding=0 cellspacing=4 border=0>
+		<tr>
+			<td><? $qnStrings.ps_screen_print_label|cat:":" ?></td>
+		</tr>
+		<tr>
+			<td style="height: 5px"></td>
+		</tr>
+		<tr>
+			<td style="padding-left: 20px"><input type=radio <? switchedOutput val=$printMode true_val=0 str1="checked " ?> name=printMode value=0>&nbsp;<? $qnStrings.ps_screen_selected_label|cat:" ("|cat:$showSelected|cat:")" ?></td>
+		</tr>
+		<? if $folderCount ?>
+			<tr>
+				<td style="padding-left: 20px">
+					<table cellpadding=0 cellspacing=0 border=0>
+						<tr>
+							<td><input type=radio <? switchedOutput val=$printMode true_val=1 str1="checked " ?> name=printMode value=1>&nbsp;</td>
+							<td><? $qnStrings.ps_screen_folder_label|cat:":&nbsp;" ?></td>
+							<td>
+								<select class="control" name="curQNF_ID">
+									<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$currentFolder showAnyRights=true?>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		<? /if ?>
+		<tr>
+			<td style="padding-left: 20px"><input type=radio <? switchedOutput val=$printMode true_val=2 str1="checked " ?>  name=printMode value=2>&nbsp;<? $qnStrings.ps_screen_entire_label ?></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><? $qnStrings.ps_screen_select_template|cat:":" ?>	&nbsp; <select class="control" name="template_id">
+									  <? html_options values=$templates_ids selected=$current_template  output=$templates_names ?>
+								</select>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+
+    <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$qnStrings.ps_screen_print_btn formname="form" space_right=10 link="javascript:processForm(this.form);"?>
+    <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"  link="javascript:cancelForm(this.form);"?>
+  <? /if ?>
+  <input type="hidden" name="action" value="<?$action?>">
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="curFolderID" value="<?$curFolderID?>">
+  <input type="hidden" name="QNF_ID" value="<? $QNF_ID ?>">
+  <input type="hidden" name="currentPage" value="<?$currentPage?>">
+  <input type="hidden" name="doclist" value="<?$doclist?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

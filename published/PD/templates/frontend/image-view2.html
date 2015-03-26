@@ -1,0 +1,38 @@
+{{ if ( count($imageList) > 0 ) }}
+
+	<script src="{{ $p->getJsFrontUrl() }}/image-view2.js"></script>
+	
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr class="view2-content">
+		<td width="{{ $foto_size+20 }}px">
+        <div class="left-block">
+        	<div class="photo">
+        	{{ if ( $view_oreginal == 1 ) }}
+				<div class="save-orig"><a target="_blank" href="{{ $imageItem.HASH }}">[`download original image`]<img src="{{ $p->getImageUrl() }}/new_window_icon.gif" /></a></div>
+			{{ /if }}
+        	</div>
+        	{{ if ( count($imageList) > 1 ) }}
+        	<div class="pager"><span class="left">&larr;</span><span class="right">&rarr;</span></div>
+        	{{ /if }}
+        	{{ if ( $view_oreginal == 1 ) }}
+				<div style="text-align:center"><a class="hash_url" target="_blank" href="#">[`download original image`]<img class="window" src="{{ $p->getImageUrl() }}/new_window_icon.gif" /></a></div>
+			{{ /if }}	
+        	<div id="desc" class="image-desc" style="margin-top:5px;"></div>
+        </div>
+		</td>
+		<td class="right-block">
+			{{ foreach from=$imageList item=imageItem  }}
+				<div class="image-list-float" style="width: {{ $foto_thumb }}px; height: {{ $foto_thumb }}px;">
+					<img src_hash="{{ $imageItem.HASH }}" src_orig="{{ $imageItem.IMG_URL_1024 }}" src="{{ $imageItem.IMG_URL }}" style="width: {{ $foto_thumb }}px; height: {{ $foto_thumb }}px;"/>
+					<div class="desc_photo" style="display: none;">{{ $imageItem.PL_DESC }}</div>
+				</div>
+			{{ /foreach }}
+		</td>
+	</tr></table>
+    <br clear="all" />
+		
+{{ else }}
+<div class="empty_content">
+	<p>[`There are no photos in this album.`].</p> 
+</div>
+{{ /if }} 		

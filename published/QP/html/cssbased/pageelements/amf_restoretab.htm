@@ -1,0 +1,24 @@
+<? assign folderNameLabel=$qpStrings.amb_bookname_label ?>
+
+<table class="FormLayout">
+	<tr>
+		<tr>
+			<td><? wbs_label for="file" fieldName="file" text=$qpStrings.rst_file_label ?></td>
+			<td><input class="FormControl" type="file" name="file" id="file" ></td>
+		</tr>
+	</tr>
+	<tr class="SeparatedRow">
+		<td><? wbs_label for="textid" fieldName="QPB_TEXTID" text=$qpStrings.amb_textid_label ?></td>
+		<td>
+			<input type="text" class="FormControl" id="textid" name="folderData[QPB_TEXTID]" value="<? $folderData.QPB_TEXTID|htmlsafe:true:true ?>" maxlength="255" />
+			<? wbs_note displayNoteMarker=false width="500px" smallFont=true ?><? $qpStrings.app_text_id_note?><? /wbs_note ?>
+		</td>
+	</tr>
+</table>
+
+<? wbs_note smallFont=false width="500px" indented=true ?>
+	<ol>
+		<li><? $qpStrings.app_treeaddfolderperms_text ?></li>
+		<li><? $kernelStrings.app_treeaddfolderparent_text ?></li>
+	</ol>
+<? /wbs_note ?>

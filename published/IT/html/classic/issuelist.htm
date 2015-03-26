@@ -1,0 +1,247 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "it_styles.css"|stylesetitem:"classic":$styleSet:"IT" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+	function MM_findObj(n, d) { //v4.0
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	  d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && document.getElementById) x=document.getElementById(n); return x;
+	}
+
+	function confirmCopy() {
+		if ( !treeCheckSelection( '<? $itStrings.il_emptycopy_message ?>' ) )
+			return false;
+			
+
+		return true;
+	}
+
+	function confirmMove() {
+		if ( !treeCheckSelection( '<? $itStrings.il_emptymove_message ?>' ) )
+			return false;
+			
+
+		return true;
+	}
+
+	function confirmRemind() {
+		if ( !treeCheckSelection( '<? $itStrings.il_emptyremind_message ?>' ) )
+			return false;
+			
+
+		return true;
+	}
+
+	function confirmDelete() {
+		if ( !treeCheckSelection( '<? $itStrings.il_emptydelete_message ?>' ) )
+			return false;
+
+		return confirm( '<? $itStrings.il_deleteconfirm_message ?>' );
+	}
+
+	function confirmSend() {
+		if ( !treeCheckSelection( '<? $itStrings.il_emptysend_message ?>' ) )
+			return false;
+
+		thisForm = document.forms[0];
+
+		// Check task belonging
+		//
+		prevPWValue = null;
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'checkbox') 
+				if (thisForm.elements[i].checked) {
+					el = thisForm.elements[i];
+
+					if ( el.name.substr( 0, 8 ) != 'document' )
+						continue;
+
+					len = el.name.length;
+
+					I_ID = el.name.substr( 9, len-10 );
+					PWName = "PW["+I_ID+"]";
+
+					obj = MM_findObj(PWName);
+					if ( prevPWValue == null )
+						prevPWValue = obj.value;
+
+					if ( prevPWValue != obj.value ) {
+						alert('<? $itStrings.il_invtaskssend_message ?>');
+						return false;
+					}
+					prevPWValue = obj.value;
+			}
+
+		<? if !$userIsProjman ?>
+		// Check status belonging
+		//
+		prevTSValue = null;
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'checkbox') 
+				if (thisForm.elements[i].checked) {
+					el = thisForm.elements[i];
+					if ( el.name.substr( 0, 8 ) != 'document' )
+						continue;
+
+					len = el.name.length;
+
+					I_ID = el.name.substr( 9, len-10 );
+					TSName = "TS["+I_ID+"]";
+
+					obj = MM_findObj(TSName);
+					if ( prevTSValue == null )
+						prevTSValue = obj.value;
+
+					if ( prevTSValue != obj.value ) {
+						alert('<? $itStrings.il_invissuestatussend_message ?>');
+						return false;
+					}
+					prevTSValue = obj.value;
+			}
+
+		// Check ADC 
+		//
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'checkbox') 
+				if (thisForm.elements[i].checked) {
+					el = thisForm.elements[i];
+					if ( el.name.substr( 0, 8 ) != 'document' )
+						continue;
+
+					len = el.name.length;
+
+					I_ID = el.name.substr( 9, len-10 );
+					ADCName = "ADC["+I_ID+"]";
+
+					obj = MM_findObj(ADCName);
+
+					if ( obj.value == 0 ) {
+						alert('<? $itStrings.il_invissuesforbsend_message ?>');
+						return false;
+					}
+			}
+		<? /if ?>
+
+		return true;
+	}
+
+	function selectIssues( PW_ID, thisObj )
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'hidden') {
+				el = thisForm.elements[i];
+				len = el.name.length;
+
+				if ( el.name.substr( 0, 4 ) == "TASK" ) {
+					elPW_ID = el.value;
+
+					if ( elPW_ID != PW_ID )
+						continue;
+					
+					I_ID = el.name.substr( 5, len-6 );
+					
+					docName = "document["+I_ID+"]";
+					obj = MM_findObj(docName);
+					
+					if ( obj )
+						obj.checked = thisObj.checked;
+				}
+			}
+	}
+
+	function checkAdd()
+	{
+		<? if $workComplete ?>
+			alert( "<? $itStrings.il_addcompltask_message ?>" );
+			return false;
+		<? /if ?>
+
+		return true;
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+	<? assign var="descLen" value=$viewdata.DESCLENGTH ?>
+	<? if !$ISSF_ID ?>
+		<? assign var="pageTitle" value=$pageTitle ?>
+	<? else ?>
+		<? assign var="pageTitle" value=$pageTitle ?>
+	<? /if ?>
+	<? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+	<input type="hidden" name="btndummy">
+
+	<? if $deleteStatus == 1 ?>
+		<input type="hidden" name="savedDocList" value="<? $savedDocList ?>">
+		<input type="hidden" name="savedP_ID" value="<? $P_ID ?>">
+
+		<script language="JavaScript">
+				if ( confirm('<? $itStrings.il_invworkflissuedel_message ?>'+'\n\n'+'<? $itStrings.il_deleteforbconfirm_message ?>') )
+					processTextButton('deleteanywaybtn', 'form');
+		</script>
+	<? elseif $deleteStatus == 2 ?>
+		<script language="JavaScript">
+			alert( '<? $itStrings.il_unabletodelissues_message ?>' );
+		</script>
+	<? /if ?>
+	<!-- toolbar -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>			
+			<td class="pageTopPanel">
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="addIssueBtn" caption=$itStrings.il_addissue_btn formname="form" space_right=#toolbarSmallSpace# onClick="return checkAdd()"?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$itStrings.il_issue_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$issueMenu popupMenuIndex=15000 menuIcon=1 showTopBar=1 menuClass="btnText" freeWidth=1 ?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$itStrings.il_view_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$viewMenu popupMenuIndex=15001 menuIcon=1 showTopBar=1 menuClass="btnText" checkboxes=1?>
+				<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$itStrings.il_filters_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$filtersMenu popupMenuIndex=15002 menuIcon=1 showTopBar=1 menuClass="btnText"?>
+			</td>
+		</tr>
+	</table>	
+	<? include file="../../../common/html/classic/toppanel_fix.htm" nospace=1 noleftspace=1 ?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+
+		<? assign var=rightTopPanel value="../../../IT/html/classic/issuelist_right.htm" ?>
+		<? assign var=leftPanel value="../../../IT/html/classic/issuelist_left.htm" ?>
+		<? assign var=rightPanelHeader value=$curFilterName|truncate:30 ?>
+		<? assign var=leftPanelLinkTitle value=$kernelStrings.app_treeavailfolders_name ?>
+		<? assign var=hideBottomPanel value=true ?>
+		<? assign var=extraTopPanel value="../../../IT/html/classic/issuelist_top.htm" ?>
+		<? assign var=leftPanelWidth value="20%" ?>
+		<? assign var=rightPanelWidth value="80%" ?>
+		<? assign var=hideFoldersHint value=$itStrings.il_hidefilters_hint ?>
+		<? assign var=showFoldersHint value=$itStrings.il_showfilters_hint ?>
+		<? assign var=numDocumentsLabel value=$itStrings.il_records_label ?>
+		<? assign var=hidePages value=true ?>
+
+		<? if $hideLeftPanel && $searchString == "" ?>
+			<? assign var=topPanelFile value="../../../IT/html/classic/filterSelector.htm" ?>
+			<? assign var=foldersImage value="javascript:processTextButton('showFoldersBtn', 'form')" ?>
+		<? /if ?>
+
+		<? include file="../../../common/html/classic/tree_templates/folder_document_view.htm" leftPanelHeader=$itStrings.il_filters_title ?>
+
+	<? /if ?>
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="PREV_P_ID" value="<? $PREV_P_ID ?>">
+	<input type="hidden" name="PREV_PW_ID" value="<? $PREV_PW_ID ?>">
+	<? include file="../../../common/html/classic/pagefooter.htm" norightspace=1 ?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

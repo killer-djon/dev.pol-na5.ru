@@ -1,0 +1,68 @@
+<div id='history-<? $listRecord.PW_ID ?>_<?$listRecord.I_ID?>' issueId="<? $listRecord.PW_ID ?>_<? $listRecord.I_ID ?>" class="it_TransitionLog" style="display: none">
+	<table class="TransitionLogTable" id="H<?$listRecord.I_ID?>">
+		<? foreach from=$listRecord.TRANSITION_LOG item=transLogData ?>
+			<? if !$transLogData.MODIFYRECORD ?>
+				<tr id='MainTr'>
+					<!--td><? $transLogData.DISPLAY_NUM ?></td-->
+					<td class="NoBreak">
+						<span class='Date'><? $transLogData.ITL_DATETIME_UF ?></span>
+					</td>
+					<td>
+						<? $transLogData.STATUS_COLOR ?><? $transLogData.ITL_STATUS|htmlsafe:true:true ?></b></font>
+						<span class='Sender'>
+						<? $transLogData.SENDER_NAME ?> <img src="../../../common/html/classic/images/small_arrow.gif" width="9" height="8"> <? $transLogData.ASSIGNED_NAME ?>
+						</span>
+					</td>
+				</tr>
+				<? if $transLogData.ITL_DESC != "" ?>
+					<tr>
+						<td>&nbsp</td>
+						<td>
+						<b><? $itStrings.il_comments_text ?></b>: <? $transLogData.ITL_DESC|htmlsafe:true:true ?></td>
+					<tr>
+				<? /if ?>
+				<? if $transLogData.FILE_DATA ?>
+					<tr>
+						<td>&nbsp</td>
+						<td><em><? $transLogData.FILE_DATA ?></em></td>
+					<tr>
+				<? /if ?>
+			<? elseif $transLogData.ITL_DESC == 'cmnt' ?>
+				<tr id='MainTr'>
+					<!--td><? $transLogData.DISPLAY_NUM ?></td-->
+					<td><span class='Date'><? $transLogData.ITL_DATETIME_UF ?></span></td>
+					<td>
+						<b><? $itStrings.is_comment_text ?></b> <span class='Sender'><? $transLogData.SENDER_NAME ?></span><br>
+						<? $transLogData.ITL_OLDCONTENT|htmlsafe:true:true ?>
+					</td>
+				</tr>
+			<? else ?>
+				<tr id='MainTr'>
+					<!--td><? $transLogData.DISPLAY_NUM ?></td-->
+					<td><span class='Date'><? $transLogData.ITL_DATETIME_UF ?></span></td>
+					<td>
+						<b><? $itStrings.is_modified_text ?></b> <span class='Sender'><? $transLogData.SENDER_NAME ?></span><br>
+						<? $transLogData.ITL_OLDCONTENT|htmlsafe:true:true ?>
+					</td>
+				</tr>
+			<? /if ?>
+		<? /foreach ?>
+	</table>
+	<input type="hidden" id="ITL_ID-<?$listRecord.I_ID?>" name="comment[ITL_ID]" value="<?$listRecord.I_ID?>">
+	<input type="hidden" id="ITL_STATUS-<?$listRecord.I_ID?>" name="comment[ITL_STATUS]" value="<?$transLogData.ITL_STATUS?>">
+	<input type="hidden" id="U_ID_SENDER-<?$listRecord.I_ID?>" name="comment[U_ID_SENDER]" value="<?$currentUser?>">
+	<input type="hidden" id="ITS_STATUS-<?$listRecord.I_ID?>" name="comment[ITS_STATUS]" value="<?$transLogData.ITL_STATUS?>">
+	<input type="hidden" id="SENDER_NAME-<?$listRecord.I_ID?>" value="<?$transLogData.SENDER_NAME?>">
+	<input type="hidden" id="I_ID-<?$listRecord.I_ID?>" name="comment[I_ID]" value="<?$listRecord.I_ID?>">
+	<div id="ACF-<?$listRecord.I_ID?>" style="display:none;padding-left:5px;padding-bottom:5px;">
+		<a href="javascript:void(0)" onclick="toggleComment('<?$listRecord.I_ID?>',0)" href="#" class="Blue"><?$itStrings.it_Comment_Add_Title?></a><br>
+		<textarea id="COMMENT-<?$listRecord.I_ID?>" name="comment[comment]" style="height: 100px; width: 500px"></textarea><br>
+		<a href="javascript:void(0)" onclick="addComment('<?$listRecord.I_ID?>')" href="#" class="Blue"><?$itStrings.it_Comment_Save?></a>&nbsp;
+		<a href="javascript:void(0)" onclick="toggleComment('<?$listRecord.I_ID?>',0)" href="#" class="Blue"><?$itStrings.it_Comment_Cancel?></a>
+	</div>
+	<div id="ACD-<?$listRecord.I_ID?>" style="padding-left:5px;padding-bottom:5px;">
+		<a href="javascript:void(0)" onclick="toggleComment('<?$listRecord.I_ID?>',1)" href="#" class="Blue"><?$itStrings.it_Comment_Add_Title?></a>
+	</div>
+
+<!--	<a href="javascript:void(0)" onclick='document.forms["comment"].submit();' href="#">Send</a>-->
+</div>

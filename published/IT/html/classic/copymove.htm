@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "it_styles.css"|stylesetitem:"classic":$styleSet:"IT" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+	<? include file="../../../common/html/classic/header.htm"?>
+	<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+	<? if !$fatalError ?>
+		<? if !$missedStatusesFound ?>
+			<table cellpadding=0 cellspacing=2 border=0>
+				<tr>
+					<td><? $itStrings.cm_form_text ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="smallFont" valign=top>
+						<strong>&nbsp;&nbsp;<? $kernelStrings.app_tips_label|cat:":&nbsp;" ?></strong>
+					</td>
+					<td class="smallFont" valign=top>
+						<? $itStrings.cm_note1_text|htmlsafe:true:true ?><br>
+						<? $itStrings.cm_note2_text|htmlsafe:true:true ?>
+					</td>
+				</tr>
+				<tr colspan=2><td style="height: 5px"></td></tr>
+			</table>
+			<? include file="../../../common/html/classic/formframe_begin.htm"?>	
+				<table cellpadding=0 cellspacing=2 border=0>
+					<tr>
+						<td><? $label|cat:":&nbsp;" ?></td>
+						<td>
+							<select name=destTask style="width: 360px">
+								<? foreach from=$taskList key=taskID item=taskData ?>
+									<option <? if $taskID == $destTask ?>selected<?/if?> value="<? $taskID ?>" <? if $taskData.TYPE==0 ?>class="disabledCBItem"<? /if ?>><? $taskData.NAME?></option>
+								<? /foreach ?>
+							</select>
+						</td>
+					</tr>
+				</table>
+			<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true ?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_ok_btn formname="form" space_right=10 space_left=5 ?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+		<? else ?>
+			<table cellpadding=0 cellspacing=2 border=0 width=500>
+				<tr>
+					<td><? $itStrings.cm_replacementform_text ?></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<table cellpadding=0 cellspacing=2 border=0>
+				<? foreach from=$missedStatuses_displ item=srcStatus key=statusKey ?>
+					<tr>
+						<td>
+							<? conditionalOutput invalidField=$invalidField field=$statusKey text=#invalidFieldHighlight# ?>
+							<? $itStrings.cm_status_label|cat:" \""|cat:$srcStatus|htmlsafe:true:true|cat:"\" "|cat:$itStrings.cm_replacewith_label|cat:"&nbsp;" ?>
+						</td>
+						<td>
+							<select name="replacement[<? $statusKey ?>]">
+								<? html_options values=$destStatus_ids selected=$replacement.$statusKey output=$destStatus_names ?>
+							</select>
+						</td>
+					</tr>
+				<? /foreach ?>
+			</table>
+			<table cellpadding=0 cellspacing=2 border=0 width=500>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<input name="destPW_ID" type="hidden" value="<? $destPW_ID ?>">
+			<input name="destP_ID" type="hidden" value="<? $destP_ID ?>">
+			<input name="missedStatuses" type="hidden" value="<? $missedStatuses ?>">
+			<input name="missedStatusesFound" type="hidden" value="<? $missedStatusesFound ?>">
+			<? include file="../../../common/html/classic/button.htm" align="left" name="finishbtn" caption=$kernelStrings.app_ok_btn formname="form" space_right=10 ?>
+			<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+		<? /if ?>
+	<? /if ?>
+	<input name="edited" type="hidden" value="1">
+	<input name="P_ID" type="hidden" value="<? $P_ID ?>">
+	<input name="destP_ID" type="hidden" value="<? $destP_ID ?>">
+	<input name="destPW_ID" type="hidden" value="<? $destPW_ID ?>">
+	<input name="docList" type="hidden" value="<? $docList ?>">
+	<input name="PW_ID" type="hidden" value="<? $PW_ID ?>">
+	<input name="op" type="hidden" value="<? $op ?>">
+	<input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

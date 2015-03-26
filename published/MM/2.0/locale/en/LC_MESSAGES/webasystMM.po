@@ -1,0 +1,600 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:113
+#: Z:\published\MM\2.0\templates\viewmessage.html:113
+msgid "From"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:32
+msgid "Priority"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:130
+msgid "To"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:142
+msgid "Copy"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:109
+msgid "BCC"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:148
+msgid "Lists"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:159
+msgid "Subject"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:131
+msgid "Add image"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:160
+msgid "Attach file"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:198
+msgid "Schedule later sending"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:170
+msgid "Schedule sending on this date"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:180
+msgid "Cancel later sending"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:187
+msgid "Send"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:188
+msgid "Save as a draft"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:211
+msgid "Cancel"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:210
+msgid "Save"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:234
+msgid "Loading..."
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:244
+msgid "Upload image"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:275
+msgid "Insert variable"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:289
+msgid "Recipient's parameters"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:294
+msgid "My personal parameters"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:299
+msgid "Company"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:321
+msgid "Unsubscribe"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:311
+msgid "Unsubscribe link"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:447
+msgid "Close"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:428
+msgid "show more..."
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:433
+msgid "not found"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:64
+msgid "Attachments"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:79
+msgid "This messages will be sent on"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:81
+msgid "Cancel sending and save as a draft"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:85
+msgid "The message could not be sent as scheduled. Please refer to your account administrator."
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:94
+msgid "Sent"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:97
+msgid "recipient(s) successfully"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:101
+msgid "error(s)"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:117
+msgid "Priority:"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:155
+msgid "Date"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:105
+msgid "Primary name"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/files_list.html:17
+msgid "Delete"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/files_list.html:38
+msgid "Attach one more file"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:34
+msgid "High"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:35
+msgid "Normal"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:36
+msgid "Low"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:385
+msgid "all folders"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:14
+msgid "Show Folders"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:21
+msgid "Search"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:28
+msgid "Find"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:47
+msgid "Messages found"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:74
+msgid "no subject"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:94
+msgid "Folder"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:116
+msgid "Show more..."
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:12
+msgid "Bounced"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:23
+msgid "Selected contact lists contain"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:27
+msgid "recipient(s)."
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:27
+msgid "Selected contact lists now contain"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:29
+msgid "They may contain a different amount of recipients on the date of actual sending"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:119
+msgid "low"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:121
+msgid "normal"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:123
+msgid "high"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/selecttemplate.html:13
+msgid "templates not found"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/selecttemplate.html:18
+msgid "Select template"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/selecttemplate.html:31
+msgid "OK"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:87
+msgid "Can't find contact(s)"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:259
+msgid "Total uploads size can't be more than %s MB"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:105
+msgid "Please specify future date/time"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:124
+msgid "ACCOUNT LIMIT: Daily quota for outgoing messages has been exceeded: %s"
+msgstr ""
+
+#: /home/www/qa/wa/published/MM/2.0/templates/viewmessage.html:111
+msgid "Received"
+msgstr ""
+
+#: /home/www/qa/wa/published/MM/2.0/mm_sendmail.php:257
+msgid "Total size of attachments can not be exceed %s MB"
+msgstr ""
+
+#: /home/www/qa/wa/published/MM/2.0/templates/sendform.js:56
+msgid "Original Message"
+msgstr ""
+
+#: /home/www/qa/wa/published/MM/2.0/templates/sendform.js:182
+msgid "Incorrect recipient address"
+msgstr ""
+
+#: /home/www/qa/wa/published/MM/2.0/templates/sendform.js:188
+msgid "Sending"
+msgstr ""
+
+#: /home/www/qa/wa/published/MM/2.0/templates/sendform.js:190
+msgid "Preparing recipients list"
+msgstr ""
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:2
+msgid "app_longname_lastname"
+msgstr "Last Name"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:3
+msgid "app_longname_midname"
+msgstr "Middle Name"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:4
+msgid "app_longname_nickname"
+msgstr "Nickname"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:5
+msgid "app_longname_homeph"
+msgstr "Home"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:6
+msgid "app_longname_workph"
+msgstr "Work"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:7
+msgid "app_longname_mobileph"
+msgstr "Mobile"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:8
+msgid "app_longname_fax"
+msgstr "Fax"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:9
+msgid "app_longname_pager"
+msgstr "Pager"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:10
+msgid "app_longname_homecity"
+msgstr "City"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:11
+msgid "app_longname_perspage"
+msgstr "Personal Web Page"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:12
+msgid "app_longname_birthday"
+msgstr "Birthday"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:13
+msgid "app_longname_company"
+msgstr "Company"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:14
+msgid "app_longname_department"
+msgstr "Department"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:15
+msgid "app_longname_jobtitle"
+msgstr "Job Title"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:16
+msgid "app_longname_workstreet"
+msgstr "Street Address"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:17
+msgid "app_longname_officelocation"
+msgstr "Office Location"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:18
+msgid "app_longname_buspage"
+msgstr "Business Web Page"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:19
+msgid "app_longname_notes"
+msgstr "Notes"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:2
+msgid "app_longname_firstname"
+msgstr "First Name"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:3
+msgid "app_longname_workfax"
+msgstr "Business Fax"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:4
+msgid "app_longname_homestreet"
+msgstr "Street Address"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:5
+msgid "app_longname_homestate"
+msgstr "State"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:6
+msgid "app_longname_homepostcode"
+msgstr "Postal Code"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:7
+msgid "app_longname_homecountry"
+msgstr "Country"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:8
+msgid "app_longname_workcity"
+msgstr "City"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:9
+msgid "app_longname_workstate"
+msgstr "State"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:10
+msgid "app_longname_workpostcode"
+msgstr "Postal Code"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:11
+msgid "app_longname_workcountry"
+msgstr "Country"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:30
+msgid "app_longname_email"
+msgstr "Email"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:32
+msgid "Company Name"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:33
+msgid "Company Street Address"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:34
+msgid "Company City"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:35
+msgid "Company State"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:36
+msgid "Company Zip"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:37
+msgid "Company Country"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:38
+msgid "Company Contact Name"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:39
+msgid "Company Contact Email"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:40
+msgid "Company Contact Phone"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:41
+msgid "Company Contact Fax"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.js:187
+msgid "Incorrect sender address"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:16
+msgid "Draft"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:17
+msgid "Pending"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:21
+msgid "Template"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:25
+msgid "Folder Drafts"
+msgstr "Drafts"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:26
+msgid "Folder Pending"
+msgstr "Pending"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:30
+msgid "Folder Sent"
+msgstr "Sent"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:29
+msgid "Folder Templates"
+msgstr "Templates"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:289
+msgid "Total upload size can not exceed %s MB"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:174
+msgid "Time"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:168
+msgid "January"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:168
+msgid "February"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:168
+msgid "March"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:169
+msgid "April"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:169
+msgid "May"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:169
+msgid "June"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:170
+msgid "July"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:170
+msgid "August"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:170
+msgid "September"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:171
+msgid "October"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:171
+msgid "November"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:171
+msgid "December"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Mon"
+msgstr "M"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Tue"
+msgstr "T"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Wed"
+msgstr "W"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Thu"
+msgstr "T"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Fri"
+msgstr "F"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Sat"
+msgstr "S"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Sun"
+msgstr "S"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:177
+msgid "Today"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:178
+msgid "wk."
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:179
+msgid "Week Number"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:181
+msgid "Previous Year"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:182
+msgid "Next Year"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:183
+msgid "Previous Month"
+msgstr ""
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:184
+msgid "Next Month"
+msgstr ""
+
+
+#: H:\wamp2\www\webasyst\published\MM\2.0\UploadImage.php:17
+msgid "The file doesn't have correct extension."
+msgstr ""

@@ -1,0 +1,58 @@
+<? assign var=style value="" ?>
+<table width="590" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td valign="top">
+			<table width="590" border="0" cellpadding="0" cellspacing="2">
+				<tr>
+					<td align="left"><nobr><? conditionalOutput invalidField=$invalidField field=P_DESC text=#invalidFieldHighlight# ?> <? $pmStrings.app_description_label|cat:":" ?></nobr></td>
+				</tr>
+				<tr>
+					<td><textarea name="projectData[P_DESC]" rows="3" cols="50" style="width: 590px" class="control"><? $projectData.P_DESC|htmlsafe_textarea:$edited ?></textarea></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="0" cellspacing="2" cellpadding="0" width="590">
+				<tr>
+					<td align="right"><nobr><? conditionalOutput invalidField=$invalidField field=C_ID text=#invalidFieldHighlight# ?><? $pmStrings.app_customer_label|cat:":" ?></nobr></td>
+					<td class="default" width="100%">
+						<select name="projectData[C_ID]" class="control" style="width:100%">
+							<? html_options values=$customers_ids selected=$projectData.C_ID output=$customers_names ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><nobr><? conditionalOutput invalidField=$invalidField field=U_ID_MANAGER text=#invalidFieldHighlight# ?><? $pmStrings.app_manager_label|cat:":" ?></nobr></td>
+					<td class="default">
+						<select name="projectData[U_ID_MANAGER]" class="control" style=" width: 100%" onChange="triggerManagerChange();">
+							<? html_options values=$managers_ids selected=$projectData.U_ID_MANAGER output=$managers_names ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><nobr><? conditionalOutput invalidField=$invalidField field=P_BILLABLE text=#invalidFieldHighlight#  ?><? $pmStrings.amp_billable_label|cat:":" ?></nobr></td>
+					<td class="default" width="100%">
+						<input type="checkbox" name="projectData[P_BILLABLE]" value="1"
+						<? switchedOutput str1="checked" str2="" val=$projectData.P_BILLABLE true_val=1 ?>>
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><nobr><? conditionalOutput invalidField=$invalidField field=P_STARTDATE text=#invalidFieldHighlight# ?><? $pmStrings.amp_startdate_label|cat:":" ?></nobr></td>
+					<td width="100%">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><input name="projectData[P_STARTDATE]" type="text" class="control" value="<? $projectData.P_STARTDATE ?>" maxlength="10">&nbsp;</td>
+								<td align="left"><?include file="../../../common/html/classic/calendar.tpl" name=projectData[P_STARTDATE]?></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

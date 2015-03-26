@@ -1,0 +1,41 @@
+<table class="FormLayout" width="100%">
+    <colgroup>
+        <col width="2%" />
+        <col width="98%" />
+    </colgroup>
+    <tr>
+        <td><input class="FormControl" type="radio" name="import_source" value="plaintext" <? if $importer_state.import_source eq 'plaintext' ?>checked="checked"<? /if ?> onClick="toogleImportSource(this.value);" /></td>
+        <td><? wbs_label text=$pmStrings.import_tasks_source_text ?>
+            <select class="FormControl" name="text_csv_delimiter" <? if $importer_state.import_source neq 'plaintext' ?>disabled="disabled"<? /if ?>>
+                <option value="0">&lt;<? $pmStrings.import_tasks_csv_delim_auto ?>&gt;</option>
+                <option value="1"><? $pmStrings.import_tasks_csv_delim_semi ?></option>
+                <option value="2"><? $pmStrings.import_tasks_csv_delim_comma ?></option>
+                <option value="3"><? $pmStrings.import_tasks_csv_delim_tab ?></option>
+            </select>
+            <a hreh="javascript: void(0);" id="help-link" style="cursor: pointer;"><? $kernelStrings.app_helplink_text ?></a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <textarea class="FormControl" name="import_source_plaintext" rows="15" cols="80" <? if $importer_state.import_source neq 'plaintext' ?>disabled="disabled"<? /if ?>><? if $importer_state.import_source eq 'plaintext' ?><? $importer_state.import_source_data ?><? /if ?></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><input class="FormControl" type="radio" name="import_source" value="file" <? if $importer_state.import_source eq 'file' ?>checked="checked"<? /if ?> onClick="toogleImportSource(this.value);" /></td>
+        <td><? wbs_label text=$pmStrings.import_tasks_source_file ?></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input class="FormControl" type="file" name="import_source_file" size="30" <? if $importer_state.import_source neq 'file' ?>disabled="disabled"<? /if ?>/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <? wbs_label text=$pmStrings.import_tasks_file_encoding ?>&nbsp;
+            <select class="FormControl" name="file_encoding" <? if $importer_state.import_source neq 'file' ?>disabled="disabled"<? /if ?>>
+                <? html_options values=$iconv_encoding_charsets output=$iconv_encoding_charsets selected=$importer_state.file_encoding ?>
+            </select>
+        </td>
+    </tr>
+    <tr>
+</table>

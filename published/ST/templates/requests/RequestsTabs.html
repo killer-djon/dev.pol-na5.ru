@@ -1,0 +1,51 @@
+<div class="ticket-tabs tabs">
+   <ul class="tabs-nav">
+            <li id="tabs-request" class="tabs-selected"><a href="#"><span>[`Request`]</span></a></li>
+            {{if $contact}}
+			{{foreach from=$tab_items item=item}}
+				{{$item.html}}
+			{{/foreach}}            
+            {{/if}}
+    </ul>
+</div>
+
+
+<div id="contact-panel-content" style="display:none">
+<a id="other-requests" href="#">[`Other requests`] ({{$other_requests}})</a>
+{{foreach from=$panel_items item=item}}
+	{{$item.html}}
+{{/foreach}}
+</div>
+
+
+<script type="text/javascript">
+	{{foreach from=$panel_items item=item}}
+		{{$item.js}}
+	{{/foreach}}
+	{{foreach from=$tab_items item=item}}
+		{{$item.js}}
+	{{/foreach}}	
+	$('#other-requests').wbsPlugin({
+        name: 'otherrequests',
+        tab: 'tabs-request',
+        onClick: function(parent){
+            parent.load('?m=contacts&act=requests&id={{$contact}}&exclude={{$request.id}}');
+        }
+    });
+	
+    $('#tabs-request').wbsPlugin({
+        name: 'request',
+        tab: 'tabs-request',
+        onClick: function(parent){
+            $('#info-container').show();
+            $('.ticket-toolbar').show();
+			var content = $defaultContent.clone(true);
+			parent.replaceWith(content);
+			$('#ticket').height($(window).height() - $(".ticket-toolbar").outerHeight() - $("#tabs-toolbar").outerHeight()-58);
+        }
+    });
+
+	//$("#contact-panel").html($("#contact-panel-content").html());
+</script>
+
+{{$content}}

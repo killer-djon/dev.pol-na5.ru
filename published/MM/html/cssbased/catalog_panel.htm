@@ -1,0 +1,135 @@
+<? include file="../../../common/html/cssbased/pageelements/ajax/catalog_folder.htm" hideRecyced=1 showFolderControls=1 addFolderLabel=$kernelStrings.app_treeaddfolder_title deleteFolderLabel=$kernelStrings.app_treedelfolder_text enableDD=false enableEdit=true ?>
+
+<script language="JavaScript">
+
+	document.afterPageLoad = function()
+	{
+		try
+		{
+			var code=document.getElementById('executable_js');
+			if(code && code.innerHTML)
+				eval(code.innerHTML);
+		}
+		catch(e) { alert(e.message) }
+	}
+
+	document.onFoldersTreeLoad = function()
+	{
+		foldersTree.searchPrefix = "mailmaster.php?searchString=";
+		foldersTree.linkPrefix = 'mailmaster.php?curMMF_ID=';
+
+		var treeDDManager = new TreeDDManager ();
+		treeDDManager.init (
+			foldersTree, 
+			{
+				nodeMovedUrl: "../ajax/folder_move.php", 
+				treeLoaderUrl: '../ajax/tree.folders.php', 
+				linkPrefix: 'mailmaster.php?curMMF_ID='
+			}
+		);
+
+		var treeEditManager = new TreeEditManager ();
+		treeEditManager.init (
+			foldersTree,
+			{
+				renameUrl: "../ajax/folder_rename.php"				
+			}		
+		);
+
+		<? assign var=childNode value=0 ?>
+
+		<? if $inboxAccess ?>
+
+			if(<? $newTotal ?>)
+			{
+				var labelStyle = 'font-weight:bold';
+				var newTotal = '(<? $newTotal ?>)';
+			}
+			else
+			{
+				var labelStyle = '';
+				var newTotal = '';
+			}
+
+			if(foldersTree.indexNode == null)
+			{
+				var node = new Ext.tree.TreeNode({
+					text: '<span id="inboxRootLabel" style="' + labelStyle + '"><? $mmStrings.app_inbox_root_label ?></span>' +
+						'<span id="inboxRootNew" style="font-weight:bold">' + newTotal + '</span>',
+					iconCls: 'inbox-folder', allowDrag: false, allowDrop: false, id: 'INBOX',
+					link: 'mailmaster.php?action=commonList' });
+
+				foldersTree.getRootNode().insertBefore(node, foldersTree.getRootNode().childNodes[0]);
+
+				<? foreach from=$accounts item=account key=id ?>
+					node.appendChild(new Ext.tree.TreeNode({
+						text: '<span id="AccNameRow_<? $id|htmlsafe:true:true ?>"<? if $accountsInfo.$id.new ?> style="font-weight:bold"<? /if ?>><? $id|htmlsafe:true:true ?></span>' +
+							'<span id="AccNewRow_<? $id|htmlsafe:true:true ?>" style="font-weight:bold"><? if $accountsInfo.$id.new ?>(<? $accountsInfo.$id.new ?>)<? /if ?></span>',
+						iconCls: 'mailbox-folder', allowDrag: false, allowDrop: false, id: '<? $id ?>',
+						link: 'mailmaster.php?action=msgList&mailbox=<? $id|htmlsafe:true:true ?>' }));
+				<? /foreach ?>
+
+				node.expand();
+			}
+
+			<? if $accounts ?>
+
+				<? if $currentAccount ?>
+					var node = foldersTree.getNodeById('<? $currentAccount ?>');
+					node.select();
+				<? /if ?>
+
+				checkMail(1, '<? $connectLimit ?>');
+
+			<? /if ?>
+
+			<? assign var=childNode value=1 ?>
+
+		<? /if ?>
+
+
+		if(foldersTree.indexNode == null)
+		{
+			var node = new Ext.tree.TreeNode({
+				text: '<? $mmStrings.app_folder_template_name ?>',
+				iconCls: 'template-folder', allowDrag: false, allowDrop: false, id: 'templateBox',
+				link: 'mailmaster.php?action=virtualBox&box=templateBox' });
+			foldersTree.getRootNode().insertBefore(node, foldersTree.getRootNode().childNodes[<? $childNode ?>]);
+
+			var node = new Ext.tree.TreeNode({
+				text: '<? $mmStrings.app_folder_sent_name ?>',
+				iconCls: 'sent-folder', allowDrag: false, allowDrop: false, id: 'sentBox',
+				link: 'mailmaster.php?action=virtualBox&box=sentBox' });
+			foldersTree.getRootNode().insertBefore(node, foldersTree.getRootNode().childNodes[<? $childNode ?>]);
+
+			var node = new Ext.tree.TreeNode({
+				text: '<? $mmStrings.app_folder_pending_name ?>',
+				iconCls: 'pending-folder', allowDrag: false, allowDrop: false, id: 'pendingBox',
+				link: 'mailmaster.php?action=virtualBox&box=pendingBox' });
+			foldersTree.getRootNode().insertBefore(node, foldersTree.getRootNode().childNodes[<? $childNode ?>]);
+
+			var node = new Ext.tree.TreeNode({
+				text: '<? $mmStrings.app_folder_draft_name ?>',
+				iconCls: 'draft-folder', allowDrag: false, allowDrop: false, id: 'draftBox',
+				link: 'mailmaster.php?action=virtualBox&box=draftBox' });
+			foldersTree.getRootNode().insertBefore(node, foldersTree.getRootNode().childNodes[<? $childNode ?>]);
+		}
+		var node = new Ext.tree.TreeNode({
+			text: '<? $mmStrings.app_folder_search_name ?>',
+			iconCls: 'search-folder', allowDrag: false, allowDrop: false, id: 'searchFolderNode',
+			link: 'javascript:void(0)'
+		});
+		node.on('click', getSearchPage);
+		foldersTree.getRootNode().appendChild(node);
+
+		<? if $virtualBox ?>
+			var node = foldersTree.getNodeById('<? $virtualBox ?>');
+			node.select();
+		<? /if ?>
+
+		foldersTree.searchNodeIndex = -1;
+	}
+
+	var sendingMessages = {<? $sendingMessages ?>};
+
+</script>

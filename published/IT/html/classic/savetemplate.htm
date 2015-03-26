@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "styles/it.css"|stylesetitem:"classic":$styleSet:"IT" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl(objName) {
+	 var obj = MM_findObj(objName); 
+	 if (obj)
+		obj.focus( );
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="focusControl('templatedata[ITT_NAME]');">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=0 ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+	<? include file="../../../common/html/classic/formframe_begin.htm"?>	
+	<table border="0" cellspacing="2" cellpadding="0">
+          <tr>
+            <td class="label"> 
+              <? conditionalOutput invalidField=$invalidField field=CUR_ID text=#invalidFieldHighlight#  ?>
+              <? $itStrings.svt_templatename_label|cat:":" ?>
+            </td>
+            <td><input name="templatedata[ITT_NAME]" type="text" class="control" value="<? $templatedata.ITT_NAME ?>" size="30" maxlength="100"></td>
+          </tr>
+        </table>
+	<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true?>
+	<table border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td height="7" colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=5 space_right=10 ?>
+              <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+            </td>
+            <td align="right">&nbsp; </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <? else ?>
+  <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+  <? /if ?>
+  <input name="edited" type="hidden" value="1">
+  <input name="P_ID" type="hidden" value="<? $P_ID ?>">
+  <input name="PW_ID" type="hidden" value="<? $PW_ID ?>">
+  <input type="hidden" name="btndummy">
+  <input name="opener" type="hidden" value="<? $opener ?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

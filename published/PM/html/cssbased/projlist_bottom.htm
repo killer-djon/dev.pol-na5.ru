@@ -1,0 +1,26 @@
+<table width="97%" class="SimpleList">
+	<thead>
+		<tr>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=C_NAME ?><? $pmStrings.pl_customer_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=P_DESC ?><? $pmStrings.pl_summary_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=P_STARTDATE ?><? $pmStrings.pl_startdate_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col" class="AlignCenter"><? wbs_sortColumn status=$sorting field=P_BILLABLE ?><? $pmStrings.pl_billable_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=MANAGER_NAME ?><? $pmStrings.pl_manager_title ?><? /wbs_sortColumn ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?section name=projectSec loop=$projects?>
+			<tr class="<? wbs_oddItem index=$smarty.section.projectSec.index ?>">
+				<td><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].C_NAME ?></a></td>
+				<td><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].P_DESC ?></a></td>
+				<td><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].P_STARTDATE ?></a></td>
+				<td><a href="<? $projects[projectSec].ROW_URL ?>"><? wbs_statusImage align="center" value=$projects[projectSec].P_BILLABLE onValue=1 ?></a></td>
+				<td valign="top" class="default"><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].MANAGER ?></a></td>
+			</tr>
+		<?sectionelse?>
+			<tr class="NoRecords">
+				<td colspan="5" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+			</tr>
+		<?/section?>
+	</tbody>
+</table>

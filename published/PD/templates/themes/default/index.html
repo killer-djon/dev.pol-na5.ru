@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/reset.css' />
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/frontend.css' />
+<link rel='stylesheet' type='text/css' href='{{ $css }}' />
+
+<script src="{{ $p->getCommonUrl() }}/js/jquery.js"></script>
+<script src="{{ $p->getCommonUrl() }}/js/wbs-common.js"></script>
+
+{{assign var="path1" value=$p->getJsUrl() }}
+{{jscombine file="`$path1`/frontend-combine.js"  }}
+ {{ $p->getJsUrl() }}/jquery.hotkeys.js
+ {{ $p->getJsUrl() }}/jquery.disable.text.select.pack.js
+ {{ $p->getJsUrl() }}/frontend.js
+{{/jscombine}}
+<!-- 
+<script src="{{ $p->getJsUrl() }}/jquery.hotkeys.js"></script>
+<script src="{{ $p->getJsUrl() }}/jquery.disable.text.select.pack.js"></script>
+<script src="{{ $p->getJsUrl() }}/frontend.js"></script>
+ -->
+ 
+<script>
+	var ref = '{{ $ref }}';
+	var frontend = '{{ $frontend }}';
+</script>
+
+
+{{ if (!empty($album_name) && !empty($galery_name))  }}
+<title>{{ $album_name }} &mdash; {{ $galery_name }}</title>
+{{ else }}
+	{{ if !empty($album_name) }}<title>{{ $album_name }}</title>{{ /if }}
+	{{ if !empty($galery_name) }}<title>{{ $galery_name }}</title>{{ /if }}
+{{ /if }}
+</head>
+
+<body {{ if !empty($album_link) }}id="{{ $album_link }}" {{ /if }}>
+	<div id="head">{{ if $album_status == 1 }}<a href="{{ $album_list_link }}">[`Album list`]</a>&raquo;{{ /if }} </div>
+
+	{{ if ( $frontend == 1 || $frontend == 2 || $frontend == 3 ) }}	
+		{{ if (!empty($album_name))  }}
+		<h1>{{ $album_name }} </h1>
+		{{ /if }}
+	{{ else }}
+		{{ if (!empty($album_name)) && (!empty($galery_name))  }}
+		<h1>{{ $album_name }} &mdash; {{ $galery_name }}</h1>
+		{{ else }}
+			{{ if !empty($album_name) }}<h1>{{ $album_name }}</h1>{{ /if }}
+			{{ if !empty($galery_name) }}<h1>{{ $galery_name }}</h1>{{ /if }}
+		{{ /if }}
+	{{ /if }}	
+	{{ if !empty($album.PF_DATESTR) }}<div class="when">{{ $album.PF_DATESTR }}</div>{{ /if }}
+	{{ if !empty($album.PF_DESC) }}<div class="description">{{ $album.PF_DESC }}</div>{{ /if }}
+
+	{{ if ( $frontend != 2 && $pages != '' ) }}
+	<div class="pages">
+		<div class="pages-title">[`Pages`]:</div>
+		{{ $pages }}
+	</div>
+	{{ /if }}
+
+	<div id="content">
+		{{ $content }}
+	</div>
+
+	{{ if (  $pages != '' ) }}
+	<div class="pages">
+		<div class="pages-title">[`Pages`]:</div>
+		{{ $pages }}
+	</div>
+	{{ /if }}
+	
+	{{ if $powerBy }}
+	<div id="footer">[`Photos are published using <a href="#" style="text-decoration: none">WebAsyst Photos</a>`]</div>
+	{{ /if }}
+</body>
+</html>

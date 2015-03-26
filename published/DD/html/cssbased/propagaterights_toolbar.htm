@@ -1,0 +1,12 @@
+<? if !$noFolders ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton name="savebtn" caption=$ddStrings.paa_propagate_btn ?>
+	<? /wbs_toolbarItem ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+	<? /wbs_toolbarItem ?>
+<? else ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_ok_btn  ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>

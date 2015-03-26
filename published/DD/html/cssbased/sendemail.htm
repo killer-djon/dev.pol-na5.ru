@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+	<script language="JavaScript">
+	<!--
+
+		function initFocus()
+		{
+			<? if $invalidField ?>
+				focusFormControl('messageData[<? $invalidField ?>]');
+			<? else ?>
+				focusFirstFormControl();
+			<? /if ?>
+		}
+
+		function fillSelected()
+		{
+			arr = new Array('includedContacts[]');
+			fillSelectedLists( arr );
+		}
+
+		function setFileName( obj )
+		{
+			textField = findObj('messageData[ARCHIVENAME]');
+			if (textField && obj.checked && !textField.value.length)
+				textField.value = "attachment";
+		}
+
+	//-->
+	</script>
+</head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="sendemail_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<input type="hidden" name="doclist" value="<? $doclist?>">
+
+			<? if !$fatalError ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+				<? wbs_formContent ?>
+
+				<? if !$noSenderEmail ?>
+					<tr>
+						<td><? wbs_label for="messageData[PRIORITY]" text=$ddStrings.sm_priority_label ?></td>
+						<td>
+								<table cellpadding=0 cellspacing=0 border=0>
+									<tr>
+										<td>
+											<select name="messageData[PRIORITY]" id="messageData[PRIORITY]"  class="control" onChange="fillSelected(); this.form.submit()">
+												<? html_options values=$priorityValues selected=$messageData.PRIORITY output=$priorityNames ?>
+											</select>&nbsp;
+										</td>
+										<td>
+											<? if $messageData.PRIORITY == 0 ?>
+												<img src="../../../common/html/classic/images/lowpr.gif" width=16 height=16>
+											<? elseif $messageData.PRIORITY == 2 ?>
+												<img src="../../../common/html/classic/images/hipr.gif" width=16 height=16>
+											<? /if ?>
+										</td>
+									</tr>
+								</table>
+						</td>
+					</tr>
+				<? /if ?>
+					<tr class="SeparatedRow">
+					<td><? wbs_label for="" text=$ddStrings.sm_from_label ?></td>
+					<td><? $emailName|htmlsafe:true:true?>&nbsp;&lt;<? if !$noSenderEmail ?><? $emailAddress|htmlsafe:true:true ?><? else ?><font color=red><? $ddStrings.sm_nosenderemail_label ?></font><? /if ?>&gt;</td>
+				</tr>
+				<? if !$noSenderEmail ?>
+					<tr class="SeparatedRow">
+						<td valign=top><? wbs_label for="" fieldName='recipients' text=$ddStrings.sm_to_label ?></td>
+						<td>
+							<? wbs_dualComboBox leftCaption=$ddStrings.sm_included_label rightCaption=$ddStrings.sm_notincluded_label leftVariableName="includedContacts" rightVariableName="notincludedContacts" leftValues=$includedContacts leftNames=$includedContactsNames rightValues=$notincludedContacts rightNames=$notincludedContactsNames separated=true width=240 rows=5 ?>
+						</td>
+					</tr>
+					<tr>
+						<td valign=top><? wbs_label for="messageData[TOMORE]" fieldName='TOMORE' text=$ddStrings.sm_tomore_label ?></td>
+						<td>
+							<textarea name="messageData[TOMORE]" id="messageData[TOMORE]" cols="30" rows="2" class="control" style="width: 500px"><? $messageData.TOMORE|htmlsafe_textarea:$edited ?></textarea>
+						</td>
+					</tr>
+					<tr class="SeparatedRow">
+						<td>
+							<? wbs_label for="messageData[SUBJECT]" fieldName='SUBJECT' text=$ddStrings.sm_subject_label ?>
+						</td>
+						<td><input type=text name="messageData[SUBJECT]" id="messageData[SUBJECT]" value="<? $messageData.SUBJECT|htmlsafe:true:true ?>" class=control style="width: 500px"></td>
+					</tr>
+					<tr class="SeparatedRow">
+						<td valign=top>
+							<? wbs_label for="messageData[MESSAGE]" fieldName='MESSAGE' text=$ddStrings.sm_message_label ?>
+						</td>
+						<td>
+							<textarea name="messageData[MESSAGE]" id="messageData[MESSAGE]" cols="30" rows="5" class="control" style="width: 500px"><? $messageData.MESSAGE|htmlsafe_textarea:$edited ?></textarea>
+						</td>
+					</tr>
+
+					<!-- Attachments -->
+
+					<tr class="SeparatedRow">
+						<td colspan=2><hr size=1 noshade></td>
+					</tr>
+
+					<tr class="SeparatedRow">
+						<td valign=top>
+							<? wbs_label for="" text=$ddStrings.sm_attachments_label ?>
+						</td>
+						<td width=500>
+							<? foreach from=$fileList item=fileData ?>
+								<div style="float: left; padding-right: 5px; padding-top: 5px">
+									<table cellpadding=0 cellspacing=0 border=0>
+										<tr>
+											<td><img src="<? thumbnail fileName=$fileData->DL_FILENAME size=16 os=win ?>" align=absmiddle border=0 style="margin-right: 5px"></td>
+											<td><? $fileData->DL_FILENAME|htmlsafe:true:true|cat:" ("|cat:$fileData->DL_FILESIZE|cat:")" ?></td>
+										</tr>
+									</table>
+								</div>
+							<? /foreach ?>
+						</td>
+					</tr>
+					<tr class="SeparatedRow">
+					<tr>
+						<td>&nbsp;</td>
+						<td><? $totalFilesInfo ?></td>
+					</tr>
+					<? if $archivesSupported ?>
+						<tr>
+							<td></td>
+							<td valign=middle width=500>
+
+								<table cellpadding=2 cellspacing=0 border=0>
+									<tr>
+										<td><input type=checkbox value=1 name="messageData[COMPRESS]" id="messageData[COMPRESS]" <? switchedOutput val=$messageData.COMPRESS true_val=1 str1="checked" ?> onClick="setFileName(this)"></td>
+										<td align=right><? wbs_label for="messageData[COMPRESS]" text=$ddStrings.sm_compressfiles_label skipColon=true ?></td>
+									</tr>
+								</table>
+								<table cellpadding=2 cellspacing=0 border=0>
+									<tr>
+										<td align=right>
+											<? wbs_label for="messageData[ARCHIVENAME]" fieldName='ARCHIVENAME' text=$ddStrings.sm_filename_label ?>
+										</td>
+										<td>
+											<input type=text class=control style="width: 200px" name="messageData[ARCHIVENAME]" id="messageData[ARCHIVENAME]" value="<? $messageData.ARCHIVENAME|htmlsafe:true:true ?>">.zip
+										</td>
+									</tr>
+									<tr>
+										<td colspan=2 height=5></td>
+									</tr>
+								</table>
+
+								<b><? $kernelStrings.app_note_text|cat:": " ?></b><? $ddStrings.sm_compress_note ?>
+
+
+							</td>
+						</tr>
+					<? /if ?>
+				<? /if ?>
+
+				<tr>
+					<td colspan=2>&nbsp;</td>
+				</tr>
+						<? /wbs_formContent ?>
+
+							<? wbs_formButtonsPanel ?>
+									<? wbs_buttonSet ?>
+										<? if !$noSenderEmail ?>
+											<? wbs_buttonSetButton caption=$ddStrings.sm_send_btn name="savebtn" onClick="fillSelected()" ?>
+										<? /if ?>
+										<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+									<? /wbs_buttonSet ?>
+							<? /wbs_formButtonsPanel ?>
+
+					<? /wbs_formLayout?>
+
+		<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+				<? /wbs_buttonSet ?>
+		<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

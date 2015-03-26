@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="ccustomer_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent ?>
+						<tr>
+							<td>
+								<table class="FormLayout" width="100%">
+									<tr>
+										<td colspan="2"><? wbs_label fieldName="C_NAME" for="C_NAME" text=$pmStrings.amc_custname_title ?></td>
+									</tr>
+									<tr class="SeparatedRow">
+										<td colspan="2"><? $customerData.C_NAME?></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<table class="FormLayout" width="100%">
+									<tr>
+										<td class="FormSection" colspan="2"><? $pmStrings.amc_address_title ?></td>
+										<td class="FormSection" colspan="2"><? $pmStrings.amc_contperson_title ?></td>
+									</tr>
+									<tr>
+										<td><? wbs_label fieldName="C_ADDRESSSTREET" for="C_ADDRESSSTREET" text=$pmStrings.amc_streetaddress_title ?></td>
+										<th width="200"><? $customerData.C_ADDRESSSTREET|htmlsafe:true:true ?></th>
+
+										<td><? wbs_label fieldName="C_CONTACTPERSON" for="C_CONTACTPERSON" text=$pmStrings.amc_contname_title ?></td>
+										<th width="200"><? $customerData.C_CONTACTPERSON|htmlsafe:true:true ?></th>
+									</tr>
+									<tr>
+										<td><? wbs_label fieldName="C_ADDRESSCITY" for="C_ADDRESSCITY" text=$pmStrings.amc_city_title ?></td>
+										<th><? $customerData.C_ADDRESSCITY|htmlsafe:true:true ?></th>
+
+										<td><? wbs_label fieldName="C_EMAIL" for="C_EMAIL" text=$pmStrings.amc_email_title ?></td>
+										<th><? $customerData.C_EMAIL|htmlsafe:true:true ?></th>
+									</tr>
+
+									<tr>
+										<td><? wbs_label fieldName="C_ADDRESSSTATE" for="C_ADDRESSSTATE" text=$pmStrings.amc_state_title ?></td>
+										<th><? $customerData.C_ADDRESSSTATE|htmlsafe:true:true ?></th>
+
+										<td><? wbs_label fieldName="C_PHONE" for="C_PHONE" text=$pmStrings.amc_phone_title ?></td>
+										<th><? $customerData.C_PHONE|htmlsafe:true:true ?></th>
+									</tr>
+
+									<tr>
+										<td><? wbs_label fieldName="C_ADDRESSZIP" for="C_ADDRESSZIP" text=$pmStrings.amc_zip_title ?></td>
+										<th><? $customerData.C_ADDRESSZIP|htmlsafe:true:true ?></th>
+
+										<td><? wbs_label fieldName="C_FAX" for="C_FAX" text=$pmStrings.amc_fax_title ?></td>
+										<th><? $customerData.C_FAX|htmlsafe:true:true ?></th>
+									</tr>
+
+									<tr>
+										<td><? wbs_label fieldName="C_ADDRESSCOUNTRY" for="C_ADDRESSCOUNTRY" text=$pmStrings.amc_country_title ?></td>
+										<th><? $customerData.C_ADDRESSCOUNTRY|htmlsafe:true:true ?></th>
+
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+								</table>
+							</td>
+						</td>
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton caption=$pmStrings.amc_close_btn name="clsbtn" ?>
+						<? /wbs_buttonSet ?>
+
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+
+				<? wbs_note displayNoteMarker=false ?><? $pmStrings.amc_lastmodified_text ?>&nbsp;<? $customerData.C_MODIFYUSERNAME ?>&nbsp;<? $customerData.C_MODIFYDATETIME ?><? /wbs_note ?>
+
+			<? /if ?>
+
+			<input name="sorting" type="hidden" id="sorting" value="<? $sorting ?>"/>
+			<input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>"/>
+			<input name="customerData[C_ID]" type="hidden" id="customerData[C_ID]" value="<? $customerData.C_ID ?>"/>
+			<input name="customerData[C_MODIFYUSERNAME]" type="hidden" id="customerData[C_MODIFYUSERNAME]" value="<? $customerData.C_MODIFYUSERNAME|htmlsafe:true:true ?>"/>
+			<input name="customerData[C_NAME]" type="hidden" value="<? $customerData.C_NAME ?>"/>
+			<input name="customerData[C_MODIFYDATETIME]" type="hidden" id="customerData[C_MODIFYDATETIME]" value="<? $customerData.C_MODIFYDATETIME ?>"/>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

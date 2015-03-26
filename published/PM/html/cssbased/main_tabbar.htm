@@ -1,0 +1,97 @@
+<style>
+#TabbarTop td{
+ height: 28px;
+ padding: 3px 8px;
+ vertical-align: middle;
+}
+#TabbarTop td div{
+ padding: 3px 8px;
+}
+#TabbarTop td.current div{
+ height:28px;
+}
+#TabbarTop td.current{
+ padding-bottom: 0px;
+}
+#TabbarTop td a{
+ font-size: 1em;
+ color: black!important;
+ text-decoration: none!important;
+}
+#TabbarTop td.current a{
+ font-weight: bold;
+}
+
+<? if $screenApp && !$screenEmptyToolbar ?>
+	#Toolbar {height: 30px}
+	#Content {padding: 0px}
+<? /if ?>
+</style>
+<script>
+	function selectItScreen() {
+		var addUrl = "";
+		if (document.worksGrid) {
+			var selectedRecords = document.worksGrid.getSelectionModel().getSelections();	
+			if (selectedRecords.length > 0)
+				addUrl = "&selectedPW_ID=" + selectedRecords[0].id;		
+		}
+		window.location.href="worklist.php?screenApp=IT" + addUrl;
+	}
+</script>
+<div id="Toolbar">
+	<div id='TabbarTop'><div>
+	<table cellpadding="0" cellspacing="0"><tr>
+	<td>
+		<select nohide=true style='color: #999; border: 1px solid #999; font-size: 1.3em' name="projectData[P_ID]" id="project" onChange="submitForm(this)" >
+			<? html_options values=$projects_names_ids selected=$projectData.P_ID output=$projects_names ?>
+		</select>
+	</td>
+	<td <? if !$screenApp ?>class="current"<? /if ?> ><div class="sc_rnd_current"><a href="worklist.php"><? $pmStrings.pm_dd_tasks_tab ?></a></div></td>
+	<? if $installedIT ?><td <? if $screenApp=="IT" ?>class="current"<? /if ?> ><div class="sc_rnd_current"><a href="javascript:void(0)" onClick="selectItScreen(); return false;"><? $pmStrings.pm_it_issues_tab ?></a></div></td><? /if ?>
+	<td <? if $screenApp=="DD" ?>class="current"<? /if ?> ><div class="sc_rnd_current"><a href="worklist.php?screenApp=DD"><? $pmStrings.pm_dd_files_tab ?></a></div></td>
+	</tr></table>
+	</div></div>
+	<? if !$screenApp || $screenEmptyToolbar ?>
+		<div id='ToolbarIn' style='height: 35px'><ul>
+			<? if $screenEmptyToolbar ?><? include file="empty_toolbar.htm" ?><? else ?><? include file="worklist_toolbar.htm" ?><? /if ?>
+		</ul></div>
+	<? /if ?>
+</div>
+<script type="text/javascript">
+var BrowserDetect = {
+	init: function () {
+		this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+		this.version = this.searchVersion(navigator.userAgent)
+			|| this.searchVersion(navigator.appVersion)
+			|| "an unknown version";
+		this.OS = this.searchString(this.dataOS) || "an unknown OS";
+	},
+	searchString: function (data) {
+		for (var i=0;i<data.length;i++)	{
+			var dataString = data[i].string;
+			var dataProp = data[i].prop;
+			this.versionSearchString = data[i].versionSearch || data[i].identity;
+			if (dataString) {
+				if (dataString.indexOf(data[i].subString) != -1)
+					return data[i].identity;
+			}
+			else if (dataProp)
+				return data[i].identity;
+		}
+	},
+	searchVersion: function (dataString) {
+		var index = dataString.indexOf(this.versionSearchString);
+		if (index == -1) return;
+		return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+	},
+	dataBrowser: [
+		{
+			string: navigator.vendor,
+			subString: "Apple",
+			identity: "Safari"
+		}
+	],
+	dataOS : []
+};
+BrowserDetect.init();
+</script>

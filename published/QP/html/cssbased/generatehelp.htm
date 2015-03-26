@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+	</head>
+
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+			
+				<div style='padding-bottom: 15px; color: green; font-weight: bold'>
+					<? if $bookHelpSaved ?>
+						Help file saved
+					<? /if ?>
+				</div>
+				
+				<div style='padding-bottom: 15px'>
+					Help files will be generated for application <b><? $bookAppId ?></b>, language: <b><? $bookAppLanguage ?></b>
+					<span style='display: none'><input type='checkbox' checked value='1' name='clearstyles'>clear QP styles</span>
+				</div>
+				
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+
+			<? else ?>
+				<? wbs_button caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+			<? /if ?>
+
+			<input type="hidden" name="currentBookID" value="<?$currentBookID?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

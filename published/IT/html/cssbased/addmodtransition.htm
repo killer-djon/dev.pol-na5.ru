@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'transdata' )">
+		<? wbs_pageLayout toolbar="savecancel_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_note smallFont=false displayNoteMarker=false ?>
+					<? $projName ?><br>
+					<? $itStrings.is_task_label|cat:" #"|cat:$PW_ID|cat:":&nbsp;" ?>
+					<? $workDescr ?>
+				<? /wbs_note ?>
+
+				<? wbs_formLayout caption=$pageTitle ?>
+
+					<? wbs_formContent suppressTable=true ?>
+						<table class="FormLayout">
+							<? if $prevListItemCount && $transdata.ITS_NUM  != 1 && !$isEndState ?>
+								<tr>
+									<td><? wbs_label text=$itStrings.dws_placebefore_label for="plb" ?></td>
+									<td>
+										<select id="plb" name="transdata[ITS_PREVNUM]" class="FormControl">
+											<? html_options values=$prevnum_ids selected=$transdata.ITS_PREVNUM output=$prevnum_names ?>
+										</select>
+									</td>
+								</tr>
+							<? /if ?>
+							<tr class="SeparatedRow">
+								<td><? wbs_label text=$itStrings.dws_statusname_label for="stn" fieldName="ITS_STATUS" ?></td>
+								<td>
+									<? if $transdata.ITS_NUM  != 1 && !$isEndState ?>
+										<input name="transdata[ITS_STATUS]" type="text" id="stn" class="FormControl" value="<? $transdata.ITS_STATUS ?>" size="30" maxlength="20"/>
+									<? else ?>
+										<input type="hidden" name="transdata[ITS_STATUS]" value="<? $transdata.ITS_STATUS ?>"/>
+										<? $transdata.ITS_STATUS ?>
+									<? /if ?>
+								</td>
+							</tr>
+						</table>
+
+						<? if $transdata.ITS_NUM  != 1 ?>
+							<? if !$isEndState ?>
+								<table class="FormLayout">
+									<tr>
+										<td colspan=2 class="FormSection"><? $itStrings.dws_issueoptions_title ?></td>
+									</tr>
+									<tr>
+										<td class="Indent" width="10"><input type="checkbox" id="allowedit" name="transdata[ITS_ALLOW_EDIT]" value="1" <? wbs_checkboxStatus val=$transdata.ITS_ALLOW_EDIT true_val=1 ?>/></td>
+										<td><? wbs_label skipColon=true text=$itStrings.dws_canedit_label for="allowedit" ?></td>
+									</tr>
+									<tr class="SeparatedRow">
+										<td class="Indent" width="10"><input type="checkbox" id="allowdelete" name="transdata[ITS_ALLOW_DELETE]" value="1" <? wbs_checkboxStatus val=$transdata.ITS_ALLOW_DELETE true_val=1 ?>/></td>
+										<td><? wbs_label skipColon=true text=$itStrings.dws_candelete_label for="allowdelete" ?></td>
+									</tr>
+								</table>
+							<? /if ?>
+
+							<table class="FormLayout">
+								<? if !$isEndState ?>
+									<tr>
+										<td><? wbs_label text=$itStrings.dws_assignoption_label for="ao" ?></td>
+										<td>
+											<select id="ao" name="transdata[ITS_ASSIGNMENTOPTION]" class="FormControl">
+												<? html_options values=$aopt_ids selected=$transdata.ITS_ASSIGNMENTOPTION output=$aopt_names ?>
+											</select>
+										</td>
+									</tr>
+									<tr class="SeparatedRow">
+										<td><? wbs_label text=$itStrings.dws_assigdefault_label for="ad" fieldName="U_ID_ASSIGNED" ?></td>
+										<td>
+											<select name="transdata[U_ID_ASSIGNED]" class="FormControl" id="ad">
+												<? html_options values=$assignmentListIDs selected=$transdata.U_ID_ASSIGNED output=$assignmentListNames ?>
+											</select>
+										</td>
+									</tr>
+								<? /if ?>
+
+								<tr class="SeparatedRow">
+									<td><? wbs_label text=$itStrings.dws_color_label for=color ?></td>
+									<td>
+										<select name="transdata[ITS_COLOR]" class="FormControl" id="color">
+											<? html_options values=$color_ids selected=$transdata.ITS_COLOR output=$color_names ?>
+										</select>
+									</td>
+								</tr>
+							</table>
+						<? /if ?>
+
+						<? if !$isEndState ?>
+							<table class="SimpleList" width="100%">
+								<thead>
+									<tr>
+										<th colspan="3" scope="col"><? $itStrings.dws_allowedtransitions_title ?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<? foreach key=statusName item=statusData from=$possibleTransitions name=allowedStatuses ?>
+										<tr>
+											<td width="10"><input type="checkbox" name="allowedTransitions[]" value="<? $statusData.ITS_STATUS_ENCODED ?>" <? wbs_checkboxStatus val=$statusData.CHECKED true_val=1 ?>/></td>
+											<td width=10><input type="radio" name="transdata[ITS_DEFAULT_DEST_ENCODED]" value="<? $statusData.ITS_STATUS_ENCODED ?>" <? wbs_checkboxStatus val=$transdata.ITS_DEFAULT_DEST_ENCODED true_val=$statusData.ITS_STATUS_ENCODED ?>/></td>
+											<td>
+												<? $statusData.ITS_COLOR ?>
+												<? $statusName ?>
+											</td>
+										</tr>
+									<? /foreach ?>
+								</tbody>
+							</table>
+
+							<? wbs_note noteType="tips" indented=true width="350px" ?>
+								<? $itStrings.dws_note1_text|htmlsafe:true:true ?><br>
+								<? $itStrings.dws_note2_text|htmlsafe:true:true ?>
+							<? /wbs_note ?>
+						<? /if ?>
+
+					<? /wbs_formContent ?>
+
+					<? wbs_formButtonsPanel ?>
+
+						<? wbs_buttonSet ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" ?>
+							<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+
+							<? if $allowDelete && $transdata.ITS_NUM  != 1 && !$isEndState ?>
+								<? wbs_buttonSetButton align=right caption=$kernelStrings.app_delete_btn name="deletebtn" onClick="return confirm('"|cat:$itStrings.dws_delstate_message|cat:"')"?>
+							<? /if ?>
+						<? /wbs_buttonSet ?>
+
+					<? /wbs_formButtonsPanel ?>
+
+				<? /wbs_formLayout ?>
+
+			<? /if ?>
+
+			<input name="action" type="hidden" value="<? $action ?>"/>
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+			<input name="PW_ID" type="hidden" value="<? $PW_ID ?>"/>
+			<input name="transdata[P_ID]" type="hidden" value="<? $transdata.P_ID ?>"/>
+			<input name="transdata[PW_ID]" type="hidden" value="<? $transdata.PW_ID ?>"/>
+			<input name="transdata[ITS_NUM]" type="hidden" value="<? $transdata.ITS_NUM ?>"/>
+			<input name="sorting" type="hidden" value="<? $sorting ?>"/>
+			<input name="transdata[PREV_PREVNUM]" type="hidden" value="<? $transdata.PREV_PREVNUM ?>"/>
+			<input name="searchCriteria" type="hidden" value="<? $searchCriteria ?>"/>
+			<input name="opener" type="hidden" value="<? $opener ?>"/>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

@@ -1,0 +1,2013 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: webasyst\n"
+"POT-Creation-Date: 2010-05-20 18:51+0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:211
+msgid "Loading"
+msgstr "Загрузка"
+
+#: D:\www\webasyst\published\ST\js\source\page.js:130
+msgid "ID"
+msgstr "ID"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:81
+msgid "Source"
+msgstr "Источник"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsSidebar.html:9
+msgid "Date"
+msgstr "Дата"
+
+#: D:\www\webasyst\published\ST\js\source\page.js:130
+msgid "Client"
+msgstr "Клиент"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:161
+msgid "Subject"
+msgstr "Тема"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsSidebar.html:13
+msgid "Status"
+msgstr "Статус"
+
+#: D:\www\webasyst\published\ST\js\source\page.js:130
+msgid "Assigned user"
+msgstr "Назначенный пользователь"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:283
+msgid "Search results for "
+msgstr "Результаты поиска для"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:82
+msgid "All open"
+msgstr "Все открытые"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.core.js:271
+msgid "Field"
+msgstr "Поле"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.core.js:271
+msgid "is required"
+msgstr "должно быть заполнено"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.core.js:292
+msgid "One of this fields should not be empty"
+msgstr "Одно из этих полей должно быть заполнено"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:39
+msgid "Bold"
+msgstr "Полужирный"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:40
+msgid "Italic"
+msgstr "Курсив"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:41
+msgid "Underline"
+msgstr "Подчеркивание"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:18
+msgid "Strikestrough"
+msgstr "Зачеркивание"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:21
+msgid "Font"
+msgstr "Шрифт"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:22
+msgid "Font size"
+msgstr "Размер шрифта"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:44
+msgid "Font color"
+msgstr "Цвет шрифта"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:45
+msgid "Background color"
+msgstr "Цвет фона"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:170
+msgid "Enter link address:"
+msgstr "Введите адрес ссылки:"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:263
+msgid "Attach file"
+msgstr "Приложить файл"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:290
+msgid "Delete file"
+msgstr "Удалить файл"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:500
+msgid "Edit link"
+msgstr "Редактировать адрес ссылки"
+
+#: D:\www\webasyst\published\ST\templates\contacts\ContactsRequests.html:1
+msgid "Requests"
+msgstr "Запросы"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.grid.js:244
+msgid "Show"
+msgstr "Показать"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:332
+msgid "open"
+msgstr "открытые"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:332
+msgid "all"
+msgstr "все"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.grid.js:243
+msgid "Pages"
+msgstr "Страницы"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.grid.js:251
+msgid "requests on page"
+msgstr "запросов на странице"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.grid.js:300
+msgid "end of the list"
+msgstr "конец списка"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:33
+msgid "Open in new window"
+msgstr "Открыть в новом окне"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:28
+msgid "Id"
+msgstr "Номер"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:102
+msgid "From"
+msgstr "От кого"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsSidebar.html:17
+msgid "Assigned"
+msgstr "Назначен"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:135
+msgid "Search by name"
+msgstr "Поиск по имени"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.searchlist.js:70
+msgid "All folders"
+msgstr "Все папки"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.searchlist.js:95
+msgid "Select"
+msgstr "Выбрать"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:175
+msgid "Cancel"
+msgstr "Отмена"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:23
+msgid "My requests"
+msgstr "Мои запросы"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:583
+msgid "Unread"
+msgstr "Непрочитан"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:99
+msgid "Waiting verification"
+msgstr "Ожидают подтверждения"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:100
+msgid "Trash"
+msgstr "Корзина"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:85
+msgid "Not assigned"
+msgstr "Исполнитель не назначен"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:95
+msgid "by status"
+msgstr "по статусам"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:97
+msgid "Archive (closed requests)"
+msgstr "Архив (закрытые запросы)"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:131
+msgid "Assignments"
+msgstr "Назначения"
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:1
+msgid "Email boxes"
+msgstr "Email ящики"
+
+#: D:\www\webasyst\published\ST\templates\forms\Forms.html:1
+msgid "Forms"
+msgstr "Формы"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:77
+msgid "Classifiers"
+msgstr "Классификаторы"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:147
+msgid "Users"
+msgstr "Пользователи"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:150
+msgid "Settings"
+msgstr "Настройки"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:185
+msgid "Folders"
+msgstr "Папки"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:254
+msgid "Search by request number or client's name"
+msgstr "Поиск по номеру запроса или имени клиента"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:12
+msgid "Search"
+msgstr "Искать"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:2
+msgid "Add a new request"
+msgstr "Добавить новый запрос"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:315
+msgid "Refresh"
+msgstr "Обновить"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:328
+msgid "requests"
+msgstr "запросов"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:245
+msgid "hide details"
+msgstr "скрыть подробности"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:241
+msgid "show details"
+msgstr "показать подробно"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:35
+msgid "Close"
+msgstr "Закрыть"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:427
+msgid "Maximize"
+msgstr "Развернуть"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:46
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsSidebar.html:54
+msgid "Reload page"
+msgstr "Перегрузить страницу"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:152
+msgid "To"
+msgstr "Кому"
+
+#: D:\www\webasyst\published\ST\templates\users\Users.html:7
+msgid "Save"
+msgstr "Сохранить"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:733
+msgid "not specified"
+msgstr "не указано"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:772
+msgid "Change classifiers"
+msgstr "Изменить классификаторы"
+
+#: D:\www\webasyst\published\ST\lib\actions\requests\STRequestsSave.controller.php:20
+msgid "Action can not be accomplished because another user has changed this request status."
+msgstr "Действие не может быть выполнено, потому что другой пользователь изменил статус запроса."
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesAdd.action.php:8
+msgid "Add a new source"
+msgstr "Добавить новый источник"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:11
+msgid "Edit source"
+msgstr "Редактировать источник"
+
+#: D:\www\webasyst\published\ST\lib\classes\STRequest.class.php:22
+msgid "Request not found."
+msgstr "Запрос не найден."
+
+#: D:\www\webasyst\published\ST\lib\classes\STTicket.class.php:67
+msgid "%ds"
+msgstr "%dсек"
+
+#: D:\www\webasyst\published\ST\lib\classes\STTicket.class.php:69
+msgid "%dm"
+msgstr "%dмин"
+
+#: D:\www\webasyst\published\ST\lib\classes\STTicket.class.php:78
+msgid "%dh %dm"
+msgstr "%dч %dмин"
+
+#: D:\www\webasyst\published\ST\lib\classes\STTicket.class.php:80
+msgid "%dd %dh"
+msgstr "%dдн %dч"
+
+#: D:\www\webasyst\published\ST\lib\classes\STTicket.class.php:82
+msgid "%dd"
+msgstr "%dдн"
+
+#: D:\www\webasyst\published\ST\lib\classes\STTicket.class.php:84
+msgid "%dm %dd"
+msgstr "%dмес %dдн"
+
+#: D:\www\webasyst\published\ST\lib\classes\STTicket.class.php:87
+msgid "%dy %dd"
+msgstr "%dг %dдн"
+
+#: D:\www\webasyst\published\ST\lib\classes\STTicket.class.php:15
+msgid "Ticket not found."
+msgstr "Запрос не найден."
+
+#: D:\www\webasyst\published\ST\plugins\ContactNotes\STContactNotesPlugin.class.php:18
+msgid "Notes"
+msgstr "Заметки"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:22
+msgid "Orders"
+msgstr "Заказы"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:4
+msgid "Add new classifier"
+msgstr "Добавить новый классификатор"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:9
+msgid "Edit"
+msgstr "Редактировать"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:53
+msgid "Delete"
+msgstr "Удалить"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:367
+msgid "allow multiple selection (check boxes)"
+msgstr "разрешен множественный выбор (флажки)"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:547
+msgid "single selection only (radio buttons)"
+msgstr "разрешен выбор одного элемента (радиокнопки)"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:38
+msgid "requests are linked to element"
+msgstr "запросов связано с элементом"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:50
+msgid "Link requests with other element after deletion"
+msgstr "После удаления связать запросы с другим элементом"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:41
+msgid "Delete element and leave requests unlinked"
+msgstr "Удалить элемент и оставить запросы не связанными"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:49
+msgid "requests are linked to elements of this classifier"
+msgstr "запросов связано с элементами этого классификатора"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:52
+msgid "Delete classifier and leave requests unlinked"
+msgstr "Удалить классификатор и оставить запросы не связанными"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:60
+msgid "Classifier name"
+msgstr "Имя классификатора"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:235
+msgid "Add"
+msgstr "Добавить"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:76
+msgid "Add element"
+msgstr "Добавить элемент"
+
+#: D:\www\webasyst\published\ST\templates\classes\Classes.html:454
+msgid "Select element"
+msgstr "Выбрать элемент"
+
+#: D:\www\webasyst\published\ST\templates\forms\Forms.html:5
+msgid "\"Request Form\" will appear as a simple form into which people will enter their name, email address, and request text."
+msgstr "\"Форма запроса\" представляет собой простую форму, в которой необходимо ввести имя, email адрес и текст запроса."
+
+#: D:\www\webasyst\published\ST\templates\forms\Forms.html:6
+msgid "Using two lines of code you will be able to add this form to your website."
+msgstr "С помощью пары строк кода вы сможете разместить эту форму на своем веб-сайте."
+
+#: D:\www\webasyst\published\ST\templates\forms\Forms.html:7
+msgid "Information entered by visitors will be posted to your request list."
+msgstr "Информация, введенная клиентами, будет отправлена в ваш список запросов."
+
+#: D:\www\webasyst\published\ST\templates\forms\Forms.html:25
+msgid "no forms available"
+msgstr "нет доступных форм"
+
+#: D:\www\webasyst\published\ST\templates\forms\Forms.html:28
+msgid "Create a new request form"
+msgstr "Создать новую форму запроса"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsAdd.html:2
+msgid "Add a new form"
+msgstr "Добавить новую форму"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsAdd.html:7
+msgid "Form name"
+msgstr "Имя формы"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:204
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:17
+msgid "Fields"
+msgstr "Поля"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:19
+msgid "After submit"
+msgstr "После отправки формы"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:27
+msgid "Client's name"
+msgstr "Имя клиента"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:32
+msgid "Email address"
+msgstr "Адрес электронной почты"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:37
+msgid "Select classifiers you want to include in the form"
+msgstr "Выберите классификаторы, которые необходимо добавить в форму"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:55
+msgid "Request summary"
+msgstr "Тема запроса"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:60
+msgid "Request text"
+msgstr "Текст запроса"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:66
+msgid "CAPTCHA"
+msgstr "CAPTCHA"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:76
+msgid "Caption"
+msgstr "Заголовок"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:80
+msgid "Caption text color"
+msgstr "Цвет текста заголовка"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:106
+msgid "change"
+msgstr "изменить"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:89
+msgid "Caption background color"
+msgstr "Цвет фона заголовка"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:99
+msgid "Form width"
+msgstr "Ширина формы"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:103
+msgid "Form background color"
+msgstr "Цвет фона формы"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:111
+msgid "Button"
+msgstr "Кнопка"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:116
+msgid "Language"
+msgstr "Язык"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:124
+msgid "System messages and default field names will appear in this language."
+msgstr "Системные сообщения и стандартные имена полей будут показаны на этом языке"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:131
+msgid "Once user clicks submission button in this form:"
+msgstr "Когда пользователь нажимает кнопку отправки:"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:132
+msgid "Stay on the form page and display this message:"
+msgstr "Оставаться на странице формы и показать сообщение:"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:136
+msgid "Redirect to another page:"
+msgstr "Перейти на другую страницу:"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:140
+msgid "Incorrect URL"
+msgstr "Неверный формат ссылки"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:145
+msgid "To enable \"Send email\" function you have to add Email field in this form."
+msgstr "Для активации функции \"Отправить email\" вы должны добавить поле Email в эту форму"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:146
+msgid "Send email to user"
+msgstr "Отправить email клиенту"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:166
+msgid "From (Name)"
+msgstr "От кого (Имя)"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:170
+msgid "From (Email)"
+msgstr "От кого (Email)"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:195
+msgid "Insert a confirmation link into this message"
+msgstr "Вставьте ссылку подтверждения в текст сообщения"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:4
+msgid "Customize"
+msgstr "Настроить"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:13
+msgid "Link to this form"
+msgstr "Ссылка на форму"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:13
+msgid "open in new window"
+msgstr "открыть в новом окне"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:16
+msgid "HTML to embed in website or blog"
+msgstr "HTML для добавления на сайт или блог"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:17
+msgid "Method 1 (&lt;iframe&gt;)"
+msgstr "Метод 1 (&lt;iframe&gt;)"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:20
+msgid "Method 2 (javascript and &lt;form&gt;)"
+msgstr "Метод 2 (javascript and &lt;form&gt;)"
+
+#: D:\www\webasyst\published\ST\templates\layouts\RequestSingle.html:5
+msgid "Support Tracker"
+msgstr "Поддержка"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:170
+msgid "Knowledge Base"
+msgstr "База знаний"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:13
+msgid "Browse"
+msgstr "Содержание"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:178
+msgid "Add a page"
+msgstr "Добавить страницу"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:291
+msgid "Main"
+msgstr "Главная"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:200
+msgid "Select Knowledge Base"
+msgstr "Выберите Базу знаний"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:202
+msgid "All internal Knowledge Bases"
+msgstr "Все локальные Базы знаний"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:216
+msgid "Search text"
+msgstr "Искать текст"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:232
+msgid "Add answer on frequently asked questions to Knowledge Base"
+msgstr "Добавить ответ на часто задаваемые вопросы в Базу знаний"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:235
+msgid "Knowledge Base Book"
+msgstr "Книга Базы знаний"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:246
+msgid "Title"
+msgstr "Заголовок"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:54
+msgid "Text"
+msgstr "Текст"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:259
+msgid "Check this page as \"Published\""
+msgstr "Отметить страницу как опубликованную"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:213
+msgid "Send"
+msgstr "Отправить"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:268
+msgid "The page has been successfully added"
+msgstr "Страница была успешно добавлена"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:270
+msgid "Add another page"
+msgstr "Добавить еще одну страницу"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:373
+msgid "no pages found"
+msgstr "страницы не найдены"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:402
+msgid "Attachments"
+msgstr "Вложения"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:452
+msgid "Show more..."
+msgstr "Далее..."
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:455
+msgid "no search results"
+msgstr "поиск не дал результатов"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:463
+msgid "Search results"
+msgstr "Результаты поиска"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:483
+msgid "Please select a book"
+msgstr "Пожалуйста, выберите книгу"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:485
+msgid "Please enter a title"
+msgstr "Пожалуйста, укажите заголовок"
+
+#: D:\www\webasyst\published\ST\templates\knowledge\Knowledge.html:487
+msgid "Please enter a text"
+msgstr "Пожалуйста, введите текст"
+
+#: D:\www\webasyst\published\ST\templates\layouts\Back.html:17
+msgid "Back to requests list"
+msgstr "Возврат к списку запросов"
+
+#: D:\www\webasyst\published\ST\templates\layouts\Back.html:23
+msgid "Tickets"
+msgstr "Запросы"
+
+#: D:\www\webasyst\published\ST\templates\layouts\Back.html:24
+msgid "Tools and Settings"
+msgstr "Инструменты и Настройки"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:3
+msgid "Back to request #"
+msgstr "Назад к запросу №"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:8
+msgid "Orders by"
+msgstr "Заказы клиента"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:12
+msgid "Created"
+msgstr "Создан"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:12
+msgid "Product ID"
+msgstr "Код продукта"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:12
+msgid "Status ID"
+msgstr "Статус"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:12
+msgid "Amount"
+msgstr "Сумма"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:27
+msgid "Total (PAID only)"
+msgstr "Итого (только PAID)"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalInfo.html:85
+msgid "Back to request list"
+msgstr "Назад к списку запросов"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:168
+msgid "Attachment(s)"
+msgstr "Вложения"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalInfo.html:69
+msgid "Reopen request"
+msgstr "Переоткрыть запрос"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:29
+msgid "Sent"
+msgstr "Отправлен"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:49
+msgid "Just sent!"
+msgstr "Только что отправлен!"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:51
+msgid "We are working on this."
+msgstr "Мы работаем над запросом."
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:51
+msgid "Thank you for your patience!"
+msgstr "Спасибо за ожидание!"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:53
+msgid "Closed"
+msgstr "Закрыт"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:60
+msgid "Sending date/time is designated as GMT (Greenwich Mean Time)"
+msgstr "Дата/время отправки указано по Гринвичу (GMT)"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:65
+msgid "You did not send any request yet."
+msgstr "Вы еще не отправили ни одного запроса."
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:152
+msgid "Please fill summary and text fields."
+msgstr "Пожалуйста, введите тему и текст запроса."
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:153
+msgid "Summary"
+msgstr "Тема"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:8
+msgid "client not specified"
+msgstr "клиент не указан"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:14
+msgid "Create"
+msgstr "Создать"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:15
+msgid "Name"
+msgstr "Имя"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:19
+msgid "Email"
+msgstr "Email"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:59
+msgid "This field is required"
+msgstr "Поля обязательно для заполнения"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:64
+msgid "Assign to"
+msgstr "Назначить исполнителя"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:110
+msgid "Add request"
+msgstr "Добавить запрос"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsAdd.html:264
+msgid "Request was created succefully"
+msgstr "Запрос был успешно создан"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:5
+msgid "Back to list"
+msgstr "Возврат к списку"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:13
+msgid "more actions"
+msgstr "другие действия"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:32
+msgid "Toggle bottom panel"
+msgstr "Скрыть/показать нижнюю панель"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:67
+msgid "Minimize"
+msgstr "Свернуть"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:70
+msgid "Expand"
+msgstr "Развернуть"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:144
+msgid "select"
+msgstr "выбрать"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:207
+msgid "Copy"
+msgstr "Копия"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:158
+msgid "Bcc"
+msgstr "Скрытая копия"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:216
+msgid "Find answer in Knowledge base"
+msgstr "Найти ответ в Базе знаний"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:228
+msgid "Send notification"
+msgstr "Отправить email-уведомление"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:384
+msgid "Please, fill required fields."
+msgstr "Пожалуйста, заполните обязательные поля"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:449
+msgid "Change assigment"
+msgstr "Изменить назначение"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:452
+msgid "Assign"
+msgstr "Назначить"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsHeader.html:521
+msgid "Request has been deleted."
+msgstr "Запрос был удален."
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:19
+msgid "Orders: no access"
+msgstr "Заказы: нет доступа"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:30
+msgid "Show order list"
+msgstr "Показать список заказов"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:32
+msgid "Orders: no orders"
+msgstr "Заказы: нет заказов"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsSidebar.html:5
+msgid "Number"
+msgstr "Номер"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:87
+msgid "added manually by user"
+msgstr "добавлен пользователем"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:90
+msgid "added manually by user from cabinet"
+msgstr "добавлен пользователем из личного кабинета"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:96
+msgid "Form"
+msgstr "Форма"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:119
+msgid "Form ID"
+msgstr "ID формы"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:155
+msgid "Cc"
+msgstr "Копия"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:280
+msgid "Display original message"
+msgstr "Показать цитируемый текст"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:283
+msgid "Hide original message"
+msgstr "Скрыть цитируемый текст"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsSidebar.html:10
+msgid "ago"
+msgstr "назад"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsSidebar.html:44
+msgid "Change"
+msgstr "Сменить"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsSidebar.html:48
+msgid "Knowledge base"
+msgstr "База знаний"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsTabs.html:3
+msgid "Request"
+msgstr "Запрос"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsTabs.html:14
+msgid "Other requests"
+msgstr "Другие запросы"
+
+#: D:\www\webasyst\published\ST\templates\settings\Settings.html:1
+msgid "General"
+msgstr "Основные настройки"
+
+#: D:\www\webasyst\published\ST\templates\settings\Settings.html:4
+msgid "Manual adding"
+msgstr "Ручное добавление"
+
+#: D:\www\webasyst\published\ST\templates\settings\Settings.html:6
+msgid "Allow \"Add a new request\" button to add new requests manually."
+msgstr "Разрешить кнопку \"Добавить новый запрос\" для ручного добавления запросов"
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:19
+msgid "no sources available"
+msgstr "нет доступных источников"
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:22
+msgid "Create a new email box"
+msgstr "Создать новый email ящик"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:1
+msgid "Customize email box"
+msgstr "Редактировать email ящик"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:6
+msgid "Name & Email"
+msgstr "Имя и Email"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:7
+msgid "Signature"
+msgstr "Подпись"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:8
+msgid "Receipt"
+msgstr "Квитанция"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:9
+msgid "Subscription"
+msgstr "Подписка"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:23
+msgid "Incoming mail server"
+msgstr "Сервер входящей почты"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:25
+msgid "My mail server is a"
+msgstr "Для доступа к серверу использовать"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:30
+msgid "server"
+msgstr "соединение"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:34
+msgid "Server"
+msgstr "Сервер"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:41
+msgid "My server requires a secure connection (SSL)"
+msgstr "Мой сервер требует безопасное соединение (SSL)"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:45
+msgid "Port"
+msgstr "Порт"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:86
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:90
+msgid "Password"
+msgstr "Пароль"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:57
+msgid "Outgoing mail server"
+msgstr "Сервер исходящей почты"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:61
+msgid "My server requires authentication"
+msgstr "Мой сервер требует аутентификацию"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:73
+msgid "Use same settings as my incoming mail server"
+msgstr "Использовать такие же настройки, как на сервере входящей почты"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:81
+msgid "Login using"
+msgstr "Аккаунт пользователя"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:119
+msgid "Send a receipt to client upon receiving new request"
+msgstr "Отправлять уведомление клиенту о получении нового запроса"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:141
+msgid "Add new clients to this folder"
+msgstr "Добавлять новых клиентов в папку"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:143
+msgid "select folder"
+msgstr "выбрать папку"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:151
+msgid "Every time you receive a message from a new Email address which does not exist in your Contacts database"
+msgstr "Каждый раз, когда вы получаете сообщение с email-адреса, который отсутствует в вашей базе Контактов"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:157
+msgid "Enable automatic confirmation request"
+msgstr "Разрешить автоматическое подтверждение запросов"
+
+#: D:\www\webasyst\published\ST\templates\users\Users.html:2
+msgid "Assignment template"
+msgstr "Шаблон назначения"
+
+# States & Actions
+msgid "Accept to process"
+msgstr "Принять в обработку"
+
+msgid "Change assignment"
+msgstr "Изменить назначение"
+
+msgid "Specify classifiers"
+msgstr "Установить классификаторы"
+
+msgid "Add comment"
+msgstr "Добавить комментарий"
+
+msgid "Reply"
+msgstr "Ответить"
+
+msgid "Forward"
+msgstr "Переслать"
+
+msgid "Close without reply"
+msgstr "Закрыть без ответа"
+
+msgid "Reopen"
+msgstr "Открыть повторно"
+
+msgid "Restore"
+msgstr "Восстановить"
+
+msgid "Remove forever"
+msgstr "Удалить навсегда"
+
+msgid "Revoke this request"
+msgstr "Отменить этот запрос"
+
+msgid "Confirmation by client"
+msgstr "Подтверждение клиентом"
+
+msgid "Accepting without confirmation"
+msgstr "Прием без подтверждения"
+
+msgid "Sender = Client (open requests)"
+msgstr "Отправитель = Клиент (открытые запросы)"
+
+msgid "Sender = Client (closed requests)"
+msgstr "Отправитель = Клиент (закрытые запросы)"
+
+msgid "Sender != Client (open requests)"
+msgstr "Отправитель не является клиентом (открытые запросы)"
+
+msgid "Sender != Client (closed requests)"
+msgstr "Отправитель не является клиентом (закрытые запросы)"
+
+msgid "accepts to process"
+msgstr "принимает в обработку"
+
+msgid "changes assignment"
+msgstr "изменяет назначение"
+
+msgid "specifies classifiers"
+msgstr "устанавливает классификаторы"
+
+msgid "adds comment"
+msgstr "добавляет комментарий"
+
+msgid "replies to client"
+msgstr "отвечает клиенту"
+
+msgid "forwards"
+msgstr "пересылает"
+
+msgid "closes without reply"
+msgstr "закрывает без ответа"
+
+msgid "reopens request"
+msgstr "повторно открывает запрос"
+
+msgid "deletes request"
+msgstr "удаляет запрос"
+
+msgid "restores request"
+msgstr "восстанавливает запрос"
+
+msgid "revokes request"
+msgstr "отменяет запрос"
+
+msgid "confirmed by client"
+msgstr "подтвержден клиентом"
+
+msgid "writes"
+msgstr "пишет"
+
+msgid "Deleted"
+msgstr "Удален"
+
+msgid "Pending"
+msgstr "Ожидает"
+
+msgid "New"
+msgstr "Новый"
+
+msgid "Discussion"
+msgstr "Обсуждение"
+
+msgid "Replied"
+msgstr "Закрыт"
+
+msgid "Reopened"
+msgstr "Переоткрыт"
+
+msgid "Canceled"
+msgstr "Отменен"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:176
+msgid "Choose email box from which return messages will be sent"
+msgstr "Выберите ящик, из которого будут отправляться ответные сообщения"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:151
+msgid "Every time you receive a message from a new Email address which does not exist in your Contacts database,"
+msgstr "Каждый раз, когда вы получаете сообщение с email-адреса, который отсутствует в вашей базе Контактов,"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:152
+msgid "Support Tracker will send an automatic confirmation request to this Email address."
+msgstr "Поддержка будет посылать на этот email-адрес письмо для подтвержения запроса."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:153
+msgid "This request will contain a special link, which must be used by the owner of this Email address to confirm their original message."
+msgstr "Это письмо будет содержать специальную ссылку, по которой следует нажать владельцу email-адреса для подтверждения оригинального запроса."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:154
+msgid "This is a good option that will guard you from a potential spam."
+msgstr "Данная опция позволит защитить вас от потенциального спама."
+
+msgid "My profile"
+msgstr "О себе"
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:15
+msgid "default"
+msgstr "по умолчанию"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:26
+msgid "English"
+msgstr "Английский"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:27
+msgid "Russian"
+msgstr "Русский"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:33
+msgid "Check email as default for this language"
+msgstr "Установить этот email-ящик для выбранного языка"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:302
+msgid "Words"
+msgstr "Слова"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:303
+msgid "in request"
+msgstr "в запросах"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:304
+msgid "in reply"
+msgstr "в ответах"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:305
+msgid "in reply and discussion"
+msgstr "в ответах и обуждениях"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:289
+msgid "Advanced"
+msgstr "Расширенный поиск"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:295
+msgid "Advanced search"
+msgstr "Расширенный поиск"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:39
+msgid "No access"
+msgstr "Нет доступа"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:266
+msgid "from"
+msgstr "отправитель"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:264
+msgid "contact ID = "
+msgstr "контакт ID = "
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:272
+msgid "subject"
+msgstr "тема"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:277
+msgid "words"
+msgstr "слова"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:13
+msgid "Description"
+msgstr "Описание"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:13
+msgid "Payment"
+msgstr "Оплата"
+
+#: D:\www\webasyst\published\ST\templates\orders\Orders.html:13
+msgid "Shipped"
+msgstr "Отгружен"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:39
+msgid "Client requests:"
+msgstr "Запросы клиента:"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:40
+msgid "Show client requests list"
+msgstr "Показать все запросы клиента"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:42
+msgid "Client requests: no other requests"
+msgstr "Запросы клиента: нет других запросов"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.request.js:270
+msgid "Select contact"
+msgstr "Выбор контакта"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.searchlist.js:81
+msgid "Search by name or email"
+msgstr "Поиск по имени или email"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:174
+msgid "Contacts"
+msgstr "Контакты"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.request.js:151
+msgid "Display request history in"
+msgstr "Показывать историю запроса в"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:18
+msgid "Strikeout"
+msgstr "Зачеркнутый"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:25
+msgid "Font Color"
+msgstr "Цвет шрифта"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:26
+msgid "Background Color"
+msgstr "Цвет фона"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:28
+msgid "Left Justify"
+msgstr "По левому краю"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:28
+msgid "Center"
+msgstr "По центру"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:28
+msgid "Right Justify"
+msgstr "По правому краю"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:29
+msgid "Bullets"
+msgstr "Маркированный список"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:29
+msgid "Numbered List"
+msgstr "Нумерованный список"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:31
+msgid "Insert Link"
+msgstr "Добавить ссылку"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:31
+msgid "Remove Link"
+msgstr "Удалить ссылку"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:31
+msgid "Horizontal Rule"
+msgstr "Горизонтальная линия"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.searchlist.js:86
+msgid "no contacts"
+msgstr "нет контактов"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.searchlist.js:155
+msgid "Use Ctrl+click or Shift+click to select multiple contacts"
+msgstr "Используйте Ctrl+click или Shift+click для выбора нескольких контактов"
+
+#: D:\www\webasyst\published\ST\lib\actions\requests\STRequestsInfo.action.php:185
+msgid "Contact Id"
+msgstr "Номер контакта"
+
+#: D:\www\webasyst\published\ST\lib\actions\requests\STRequestsSave.controller.php:199
+msgid "Original request"
+msgstr "Оригинальный запрос"
+
+#: D:\www\webasyst\published\ST\templates\personal\PersonalList.html:74
+msgid "No requests."
+msgstr "Нет запросов."
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:23
+msgid "Other requests from this client"
+msgstr "Другие запросы от этого клиента"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:23
+msgid "show all"
+msgstr "показать все"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:25
+msgid "Other requests from this client: none"
+msgstr "Другие запросы от этого клиента: нет"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:174
+msgid "<span>Search</span>"
+msgstr "<span>Поиск</span>"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:117
+msgid "This signature will appear on replies sent to clients from this email address"
+msgstr "Эта подпись будет добавляться внизу каждого сообщения, исходящего с этого адреса"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.request.js:146
+msgid "descending order of records"
+msgstr "обратном порядке записей"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.request.js:148
+msgid "ascending order of records"
+msgstr "прямом порядке записей"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.ui.editor.js:33
+msgid "Remove Format"
+msgstr "Удалить форматирование"
+
+#: D:\www\webasyst\published\ST\plugins\Shop\templates\Shop.html:4
+msgid "Order status"
+msgstr "Статус заказа"
+
+#: D:\www\webasyst\published\ST\plugins\Shop\templates\Shop.html:13
+msgid "Order time"
+msgstr "Заказ оформлен"
+
+#: D:\www\webasyst\published\ST\plugins\Shop\templates\Shop.html:21
+msgid "This person did not place orders in the store yet"
+msgstr "Контакт с этим адресом еще ничего не заказывал в магазине"
+
+#: D:\www\webasyst\published\ST\plugins\Shop\templates\Shop.html:23
+msgid "This person is not a customer of the online store"
+msgstr "Контакт не является покупателем"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:354
+msgid "and"
+msgstr "и"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:267
+msgid "client name"
+msgstr "имя клиента"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:272
+msgid "client email"
+msgstr "email клиента"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:277
+msgid "client Id"
+msgstr "номер клиента"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:312
+msgid "in"
+msgstr "в"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:301
+msgid "request"
+msgstr "запросе"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:305
+msgid "discussion"
+msgstr "обсуждениях"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:312
+msgid "request and discussion"
+msgstr "ответах и обсуждениях"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:326
+msgid "user"
+msgstr "пользователь"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:320
+msgid "replied to request"
+msgstr "ответил на запрос"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:321
+msgid "performed other actions"
+msgstr "выполнял другие действия"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:343
+msgid "or"
+msgstr "или"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:305
+msgid "Client name"
+msgstr "Имя клиента"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:306
+msgid "Client email"
+msgstr "Email клиента"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:307
+msgid "Client Id"
+msgstr "Номер клиента"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:311
+msgid "in subject"
+msgstr "в теме"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:312
+msgid "in request text"
+msgstr "в тексте запроса"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:313
+msgid "in replies and discussions"
+msgstr "в ответах и обсуждениях"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:317
+msgid "User"
+msgstr "Пользователь"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:310
+msgid "request text"
+msgstr "тексте запроса"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:310
+msgid "replies and discussion"
+msgstr "ответах и обсуждениях"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.request.js:149
+msgid "oldest entries first"
+msgstr "старые записи наверху"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.request.js:150
+msgid "newest entries first"
+msgstr "новые записи наверху"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.request.js:153
+msgid "Sort request history"
+msgstr "Сортировка истории запроса"
+
+#: D:\www\webasyst\published\ST\plugins\Orders\templates\OrdersInfo.html:34
+msgid "Orders: none"
+msgstr "Заказы: нет"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:33
+msgid "Check this email box as default for selected language"
+msgstr "Этот главный email-ящик для выбранного языка (default)"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.widgets.js:303
+msgid "&lt;anyone&gt;"
+msgstr "&lt;любой&gt;"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:3
+msgid "Data from MT"
+msgstr "Данные из MT"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:9
+msgid "Company"
+msgstr "Компания"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:13
+msgid "Phone"
+msgstr "Телефон"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:17
+msgid "Address"
+msgstr "Адрес"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:21
+msgid "Juridical address"
+msgstr "Юридический адрес"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:25
+msgid "Details"
+msgstr "Подробно"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:27
+msgid "INN"
+msgstr "ИНН"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:29
+msgid "KPP"
+msgstr "КПП"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:32
+msgid "Bank account"
+msgstr "Банковский счет"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:35
+msgid "Bank name"
+msgstr "Банк"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:38
+msgid "BIK"
+msgstr "БИК"
+
+#: D:\www\webasyst\published\ST\plugins\CustomerInfo\templates\Info.html:41
+msgid "Bank coraccount"
+msgstr "Кор. счет банка"
+
+#: D:\www\webasyst\published\ST\plugins\Notes\templates\Notes.html:3
+msgid "Notes about client"
+msgstr "Заметки о клиенте"
+
+#: D:\www\webasyst\published\ST\plugins\Notes\templates\Notes.html:69
+msgid "Add note"
+msgstr "Добавить заметку"
+
+#: D:\www\webasyst\published\ST\plugins\Notes\templates\Notes.html:88
+msgid "added by"
+msgstr "добавлен"
+
+#: D:\www\webasyst\published\ST\plugins\Notes\templates\Notes.html:126
+msgid "There are no notes about this client."
+msgstr "Нет заметок об этом клиенте."
+
+#: D:\www\webasyst\published\ST\plugins\Shop\templates\Shop.html:14
+msgid "#"
+msgstr "№"
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:27
+msgid "Create email box"
+msgstr "Создать email ящик"
+
+#: D:\www\webasyst\published\ST\plugins\Notes\templates\Notes.html:69
+msgid "Add a note"
+msgstr "Добавить заметку"
+
+#: D:\www\webasyst\published\ST\plugins\Notes\templates\Notes.html:131
+msgid "Notes about this client: none"
+msgstr "Заметки об этом клиенте: нет"
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:18
+msgid "default for outgoing messages"
+msgstr "по умолчанию для исходящих сообщений"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:11
+msgid "Delete this email box"
+msgstr "Удалить этот email ящик"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:58
+msgid "Default outgoing email for selected language"
+msgstr "Ящик по умолчанию для выбранного языка"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:59
+msgid "Clients whose default language matches the above choice will receive responses to their requests from this email address."
+msgstr "Этот email ящик будет использован в качестве исходящего (From) для отправки сообщений клиентам, говорящим на выбранном языке, если вы получили запросы от этих клиентов из их личных кабинетов (не по email)."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:223
+msgid "New requests being sent to email_address will not be delivered to Helpdesk application anymore."
+msgstr "Новые запросы, отправленные на адрес адрес_ящика, более не будут появляться в списке запросов в приложении \"Поддержка\"."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:224
+msgid "But the email box itself will stay on its mail server and will be available through other mail client programs."
+msgstr "При этом сам ящик останется на своем почтовом сервере и будет доступен из других почтовых клиентов."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:226
+msgid "Requests previously delivered to this email address will stay in Helpdesk application."
+msgstr "Запросы, ранее поступившие на адрес адрес_ящика, останутся в приложении \"Поддержка\"."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:228
+msgid "Delete email box"
+msgstr "Удалить email ящик"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:35
+msgid "Request Id"
+msgstr "Номер запроса"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:36
+msgid "Request source"
+msgstr "Источник запроса"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:37
+msgid "Request subject"
+msgstr "Тема запроса"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:39
+msgid "Request history"
+msgstr "История запроса"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:41
+msgid "REQUEST_LIST_URL"
+msgstr "REQUEST_LIST_URL"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsEdit.html:18
+msgid "View"
+msgstr "Вид"
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:5
+msgid "Delete form"
+msgstr "Удалить форму"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:14
+msgid "Anti-spam"
+msgstr "Анти-спам"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:33
+msgid "Selection will be default language  for clients sending their first request to this email address."
+msgstr "Этот язык будет устанавливаться как язык по умолчанию для новых клиентов, которые пришлют запрос на данный электронный адрес."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:200
+msgid "Send an automatic confirmation reply to requests received from unknown email addresses"
+msgstr "Отправлять запрос на подтверждение при получении сообщений с неизвестных адресов"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:202
+msgid "This automatic reply will be sent to senders of requests received from email addresses which do not exist in your client database. Such an auto-reply can contain a special link which a client should click to confirm his/her first request. You may include additional instructions for your clients in this message."
+msgstr "На любое сообщение поступившее с неизвестного адреса, которого нет в вашей базе данных Контактов, будет автоматически отправлен ответный запрос на подтверждение. Этот запрос может содержать специальную ссылку, по которой отправитель должен перейти для подтверждения, а также дополнительные инструкции, которые вы добавите в текст запроса."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:237
+msgid "Requests previously delivered to"
+msgstr "Запросы, ранее поступившие на адрес"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:237
+msgid "will stay in Helpdesk application."
+msgstr "останутся в приложении \"Поддержка\"."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:244
+msgid "You can use following variables in the signature text. These variables will be replaced in every outgoing message with their corresponding values."
+msgstr "В тексте допускается использование переменных из списка ниже. Во время отправки сообщения переменные динамически заменяются на соответствующие им значения. "
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:254
+msgid "more variables"
+msgstr "еще переменные"
+
+#: D:\www\webasyst\published\ST\templates\requests\RequestsInfo.html:26
+msgid "Total requests from this client"
+msgstr "Всего запросов от этого клиента"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:38
+msgid "Request number"
+msgstr "Номер запроса"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:41
+msgid "Email box where request was received"
+msgstr "Email ящик, на который запрос был получен"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:42
+msgid "Request history available for client. Includes original request, reply, reopening and following replies."
+msgstr "История запроса, доступная для клиента. Включает оригинальный запрос, ответ, повторные открытия запроса клиентом и ответы."
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:49
+msgid "Please note that after you delete the form, link and HTML code associated with this form will stop functioning."
+msgstr "После удаления формы, ссылка и HTML код связанные с этой формой перестанут работать."
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:50
+msgid "Be careful if you have this form embedded on your website or blog."
+msgstr "Убедитесь, что все ссылки на эту формы с вашего веб-сайта или блога также удалены."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:244
+msgid "You can add the variables provided below to the message text. Variables are automatically replaced with their values before being sent to a client."
+msgstr "В тексте допускается использование переменных из списка ниже. Во время отправки сообщения переменные динамически заменяются на соответствующие им значения."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:251
+msgid "Recipient variables"
+msgstr "Переменные получателя"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:257
+msgid "Sender (current user) variables"
+msgstr "Переменные отправителя (текущего пользователя)"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:43
+msgid "Link to 'My requests' tab in client's personal cabinet."
+msgstr "Ссылка на закладку \"Мои запросы\" в личном кабинете клиента."
+
+#: D:\www\webasyst\published\ST\templates\forms\FormsInfo.html:50
+msgid "Make sure all references to this form from your website or blog are also deleted."
+msgstr "Убедитесь, что все ссылки на эту формы с вашего веб-сайта или блога также удалены."
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:453
+msgid "New form"
+msgstr "Запрос в службу поддержки"
+
+#: D:\www\webasyst\published\ST\lib\actions\sources\STSourcesEdit.action.php:47
+msgid "Confirmation link"
+msgstr "Ссылка для подтверждения"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:167
+msgid "Number of requests can not exceed"
+msgstr "Количество запросов не должно превышать"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:167
+msgid "ACCOUNT LIMIT"
+msgstr "ОГРАНИЧЕНИЕ АККАУНТА"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:168
+msgid "Upgrade account"
+msgstr "Изменить тарифный план"
+
+msgid "My personal page at "
+msgstr "Мой личный кабинет на сайте "
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:388
+msgid "Empty this folder"
+msgstr "Очистить эту папку"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:390
+msgid "All requests will be removed and you will not be able to restore them."
+msgstr "Все запросы будут удалены без возможности восстановления."
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:391
+msgid "Remove requests?"
+msgstr "Удалить запросы?"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:397
+msgid "Yes"
+msgstr "Да"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:400
+msgid "No"
+msgstr "Нет"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.request.js:490
+msgid "Error"
+msgstr "Ошибка"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:168
+msgid "Please refer to your account administrator."
+msgstr "Пожалуйста, обратитесь к администратору вашего аккаунта."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:234
+msgid "New requests being sent to"
+msgstr "Новые запросы, отправленные на адрес"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:234
+msgid "will not be delivered to Helpdesk application anymore."
+msgstr ", более не будут появляться в списке запросов в приложении \"Поддержка\"."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:234
+msgid " will not be delivered to Helpdesk application anymore."
+msgstr ", более не будут появляться в списке запросов в приложении \"Поддержка\"."
+
+#: D:\www\webasyst\published\ST\lib\actions\requests\STRequestsCheck.controller.php:24
+msgid "Error occurred while checking"
+msgstr "Произошла ошибка при обращении к"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbsst.min.js:222
+msgid "Search by request number or client|s name"
+msgstr "Поиск по номеру запроса или имени клиента"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbsst.min.js:222
+msgid "Search by request number or client1s name"
+msgstr "Поиск по номеру запроса или имени клиента"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:145
+msgid "Regards"
+msgstr "С уважением"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:263
+msgid "Support Team"
+msgstr "Служба поддержки"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:197
+msgid "Please use"
+msgstr "Используйте"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:197
+msgid "your personal page"
+msgstr "ваш личный кабинет"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:197
+msgid "to view, reopen or create new requests."
+msgstr "для просмотра, повторного открытия или создания новых запросов."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:185
+msgid "Your message has been received by our technical team and queued into our customer support tracking system."
+msgstr "Ваш запрос получен и поставлен в очередь на обработку."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:187
+msgid "Your request ID:"
+msgstr "Номер запроса:"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:189
+msgid "Be assured that your request will be processed shortly, and you will receive a personal reply from one of our representatives soon."
+msgstr "Мы ответим вам в ближайшее время."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:260
+msgid "Thank you!"
+msgstr "Спасибо!"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:195
+msgid "NOTE: This is an automated message to confirm receipt of your request. Please do not reply to this message!"
+msgstr "Это автоматическое уведомление о получении запроса. Пожалуйста, не отвечайте на это сообщение!"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:252
+msgid "We have just received a request from your email address."
+msgstr "Пожалуйста, подтвердите ваш запрос."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:254
+msgid "To confirm your request, please follow this link:"
+msgstr "Для этого просто перейдите по ссылке: "
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:257
+msgid "NOTE: Your request will be accepted only after confirmation."
+msgstr "ВНИМАНИЕ: Ваш запрос будет принят к обработке только после подтверждения."
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:258
+msgid "Confirmation is required due to high volume of SPAM we receive. This is one-time action. After you confirm, we will add your email address to our contact database, and all future requests from you will be automatically accepted and queued into our customer support tracking system."
+msgstr "Подтверждение необходимо в связи с большим количеством спама, приходящим на наш адрес. После того, как вы подтвердите запрос, ваш электронный адрес будет добавлен в нашу базу данных и все последующие запросы с этого адреса будут автоматически приниматься к обработке."
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:404
+msgid "Empty trash"
+msgstr "Очистить корзину"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:415
+msgid "Folder is empty"
+msgstr "Папка пуста"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbsst.min.js:174
+msgid "Confirmation"
+msgstr "Подтверждение"
+
+#: D:\www\webasyst\published\ST\js\source\wbs\wbs.controller.js:36
+msgid "Helpdesk"
+msgstr "Поддержка"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:218
+msgid "To receive requests by email:"
+msgstr "Для получения запросов по электронной почте:"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:220
+msgid "In <a href=\"#/sources/\">Settings / Email boxes</a> section you can setup other email addresses to receive requests."
+msgstr "В разделе <a href=\"#/sources/\">Настройки / Email ящики</a> вы можете создать другие адреса для получения запросов."
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:221
+msgid "To receive requests via web form:"
+msgstr "Для получения запросов через веб-форму:"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:222
+msgid "In <a href=\"#/forms/\">Settings / Forms</a> section create a web form and embed it into your website."
+msgstr "В разделе <a href=\"#/forms/\">Настройки / Формы</a> создайте веб-форму и разместите ее на своем сайте."
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:219
+msgid "Send an email to"
+msgstr "Отправьте письмо на адрес"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:219
+msgid "and it will appear in request list on this page."
+msgstr "— оно появится в списке запросов на этой странице."
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:32
+msgid "Connect to existing email box"
+msgstr "Подключиться к существующему почтовому ящику"
+
+msgid "no subject"
+msgstr "без темы"
+
+msgid "SSL is disabled in your PHP configuration. Please contact your server administrator."
+msgstr "SSL выключен в вашей настройке PHP. Пожалуйста, обратитесь к администратору вашего сервера."
+
+msgid "This email address already exists (possibly create by WebAsyst Mail application)."
+msgstr "Этот адрес уже существует (возможно, создан в приложении WebAsyst Почта)."
+
+#: D:\www\webasyst\published\ST\templates\forms\Forms.html:5
+msgid "WebAsyst Help Desk allows you to quickly create a form and using couple of html code lines embed it into your website."
+msgstr "WebAsyst Поддержка позволяет быстро создать форму и с помощью пары строк кода добавить ее на ваш веб-сайт."
+
+#: D:\www\webasyst\published\ST\templates\forms\Forms.html:6
+msgid "A message which visitors of your site will send via this form will be added to the list of requests in the same way as requests received by email."
+msgstr "Текст запроса, который посетители сайта отправят через такую форму, попадет в WebAsyst Поддержку в единый список запросов, туда же куда поступают и почтовые сообщения."
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:25
+msgid "you have no email boxes to receive requests by email"
+msgstr "у вас нет email ящиков для получения запросов по электронной почте"
+
+#: D:\www\webasyst\published\ST\templates\sources\Sources.html:32
+msgid "(e.g. youraddress@gmail.com)"
+msgstr "(напр. youraddress@mail.ru)"
+
+#: D:\www\webasyst\published\ST\templates\index\Index.html:238
+msgid "You have no sources to get new requests: email box or web form"
+msgstr "У вас нет ни одного источника поступления запросов: email ящик или веб-форма"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:197
+msgid "Your message has been queued into our customer support tracking system"
+msgstr "Ваш запрос поставлен в очередь на обработку"
+
+#: D:\www\webasyst\published\ST\templates\sources\SourcesEdit.html:256
+msgid "Please confirm your request"
+msgstr "Пожалуйста, подтвердите запрос"
+
+msgid "Owners of a <b>WebAsyst Shop-Script license</b> are qualified to purchase the new <a href=\"#helpdesk/\">WebAsyst Help Desk </a> application at a special discounted price <b>of $179</b> (regular price is $229)."
+msgstr "Для владельцев <b>лицензий WebAsyst Shop-Script</b> новое приложение <a href=\"#helpdesk/\">WebAsyst Поддержка </a> доступно по специальной сниженной цене <b>4650 руб.</b> (стандартная цена 5950 руб.)."
+
+msgid "Note"
+msgstr "Внимание"
+
+msgid "The special offer is valid through <b>July 15, 2010</b> (only {{$wbs_d}} days left)."
+msgstr "специальное предложение действует до <b>15 июля 2010г</b> (осталось {{$wbs_d}} дней)."
+
+msgid "<a href=\"#buy/?app=helpdesk\">Buy WebAsyst Help Desk now!</a>"
+msgstr "<a href=\"#buy/?app=helpdesk\">Купить скрипты WebAsyst Поддержка</a>"
+
+msgid "Reply to client"
+msgstr "Ответить клиенту"
+
+msgid "Reply to support"
+msgstr "Ответить в суппорт"
+
+#: D:\wamp\www\webasyst\published\ST\lib\actions\requests\STRequestsHeader.action.php:101
+msgid "$1"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Activity\templates\Activity.html:3
+msgid "Activity"
+msgstr "Активы"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:21
+msgid "no"
+msgstr "нет"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:3
+msgid "Partners"
+msgstr "Партнер"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:5
+msgid "REFERAL:"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:7
+msgid "orders"
+msgstr "заказы"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:8
+msgid "bonus"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:10
+msgid "balance"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:17
+msgid "RESELLER:"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:19
+msgid "licenses"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\templates\layouts\RequestSingle.html:5
+msgid "Help Desk"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\templates\sources\SourcesEdit.html:153
+msgid "This signature will appear on replies sent to clients from this email address:"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Activity\templates\Activity.html:3
+msgid "Assets"
+msgstr "Активы"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:3
+msgid "Partner"
+msgstr "Партнер"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Activity\templates\Activity.html:39
+msgid "expired"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Activity\templates\Activity.html:39
+msgid "not registered"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:5
+msgid "REFERRAL:"
+msgstr ""
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:7
+msgid "orders:"
+msgstr "заказы:"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:8
+msgid "total earnings:"
+msgstr "заработок итого:"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:10
+msgid "current balance:"
+msgstr "текущий баланс:"
+
+#: D:\wamp\www\webasyst\published\ST\plugins\Partners\templates\Partners.html:19
+msgid "licenses transferred to others:"
+msgstr "лицензий передано другим:"
+
+msgid "<span class=\"assign\">To</span>"
+msgstr "<span class=\"assign\">Кого</span>"
+
+msgid "assigns"
+msgstr "назначает"
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Order ID"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Order structure"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/orders/Orders.html:13
+msgid "Payment option"
+msgstr ""
+
+#: /home/www/sites/wa/published/ST/templates/requests/RequestsInfo.html:118
+msgid "noname"
+msgstr ""

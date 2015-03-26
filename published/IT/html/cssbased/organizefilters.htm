@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+
+		<script language="JavaScript">
+		<!--
+
+			function confirmDelete()
+			{
+				if ( !treeCheckSelection( '<? $itStrings.ogf_emptydel_message ?>' ) )
+					return false;
+			
+				return true;
+			}
+
+		//-->
+		</script>
+	</head>
+	<body>
+		<? wbs_pageLayout toolbar="filterstoolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<? wbs_note noteType=tips ?><? $itStrings.ogf_tip_text ?><? /wbs_note ?>
+
+				<table class="SimpleList" width="500">
+					<thead>
+						<tr>
+							<th scope="col" colspan=2><? $itStrings.ogf_filter_title ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<? foreach from=$recentFilters item=curFilter key=curKey name="filterLoop"?>
+							<tr class="<? wbs_oddItem index=$smarty.foreach.filterLoop.iteration ?>">
+								<td width="10"><input type="checkbox" name="document[]" value="<? $curKey?>"/></td>
+								<td><a href="<? $curFilter.1 ?>"><? $curFilter.0 ?></a></td>
+							</tr>
+						<? foreachelse ?>
+							<tr class="NoRecords">
+								<td colspan="2"><? $kernelStrings.ul_norecords_text ?></td>
+							</tr>
+						<? /foreach ?>
+					</tbody>
+				</table>
+
+			<? /if ?>
+
+			<input name="P_ID" type="hidden" value="<? $P_ID ?>"/>
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

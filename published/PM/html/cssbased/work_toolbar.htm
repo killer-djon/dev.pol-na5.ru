@@ -1,0 +1,27 @@
+<? if $workData.U_STATUS || $workData.P_STATUS ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$pmStrings.amt_return_btn name="clsbtn" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+
+<? if $action != "new" && !$workData.P_STATUS ?>
+	<? if !$workData.PW_STATUS ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$pmStrings.amt_complete_btn name="finwbtn" onClick="return confirmFinish()" ?>
+		<? /wbs_toolbarItem ?>
+	<? else ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$pmStrings.amt_return_btn name="cancelbtn" onClick="return confirmFinish()" ?>
+		<? /wbs_toolbarItem ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$pmStrings.amt_resume_btn name="rpnwbtn" onClick="return confirmReopen()" ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+<? /if ?>
+
+<? if $action != "new" && !$workData.U_STATUS && !$workData.P_STATUS ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$pmStrings.amt_delete_btn name="delwbtn" onClick="return confirmDelete()" ?>
+	<? /wbs_toolbarItem ?>
+<? /if ?>
+

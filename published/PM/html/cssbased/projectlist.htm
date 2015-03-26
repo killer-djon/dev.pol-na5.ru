@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+
+	</head>
+	<body>
+		<? wbs_pageLayout toolbar="projlist_toolbar.htm" ?>
+			<? if !$fatalError ?>
+
+				<input name="sorting" type="hidden" id="sorting" value="<? $sorting|mime_encode ?>">
+				<input name="folder" type="hidden" value="<? $folder ?>">
+				<? if $pagesNum < 2 ?>
+					<input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>">
+				<? /if ?>
+
+				<? assign var=footer value=null ?>
+				<? if $showPageSelector ?>
+					<? assign var=footer value="projlist_footer.htm" ?>
+				<? /if ?>
+
+				
+					<? wbs_errorBlock ?>
+
+					<? include file="projlist_bottom.htm" ?>
+				
+
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

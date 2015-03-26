@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=false ?>
+
+		<? include file="../../../QP/html/cssbased/amt_js.htm" ?>
+	</head>
+	<body onLoad="initVars(); autoFocusFormControl( '<? $invalidField ?>', 'messageData' );">
+
+	<? wbs_pageLayout toolbar="amt_toolbar.htm" ?>
+
+	<? wbs_errorBlock ?>
+
+		<? if !$fatalError ?>
+
+		<table class="FormLayout"
+			<tr>
+				<td>
+					<nobr><? wbs_label for="themeData[QPT_NAME]" fieldName="QPT_NAME" text=$qpStrings.qpt_themename_title skipColon=false ?></nobr>
+				</td>
+				<td align=left width=100%>
+					<input type=text class="FormControl" name="themeData[QPT_NAME]" id="themeData[QPT_NAME]" maxlength="50" value="<? $themeData.QPT_NAME|htmlsafe:true:true|trunc_str:50 ?>">
+				</td>
+			</tr>
+			<tr>
+		</table>
+
+		<? wbs_note displayNoteMarker=true smallFont=false ?>
+			<? $qpStrings.pub_screen_modtheme_note ?>
+		<? /wbs_note ?>
+
+		<table>
+		<td colspan=2 align=left>
+
+				<table cellspacing=0 cellpadding=0 border=0>
+				<tr>
+					<td width=1%>&nbsp;</td>
+					<td>&nbsp;&nbsp;</td>
+					<td><? $qpStrings.pub_screen_preview_title|cat:":" ?></td>
+				</tr>
+				<tr>
+					<td>
+
+					<? wbs_verticalTabForm basePath="../../../QP/html/cssbased" activeTab=$activeTab tabs=$tabs width="330px" height="330px" name="optTabs" ?>
+
+						<? wbs_formButtonsPanel ?>
+
+							<? wbs_buttonSet ?>
+
+								<? wbs_buttonSetButton caption=$kernelStrings.app_save_btn name="savebtn" onClick=$onSave ?>
+								<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+
+							<? /wbs_buttonSet ?>
+
+						<? /wbs_formButtonsPanel ?>
+
+					<? /wbs_verticalTabForm ?>
+
+				</td>
+				<td>&nbsp;&nbsp;</td>
+				<td valign=top><iframe name="preview" id="preview" src="" width="350" height="350" scrolling="none" align="top" frameborder="0" style="border: 5px solid #c0c0c0;"> </iframe></td>
+				</tr>
+				</table>
+			</td>
+			</tr>
+		</table>
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+		<input type="hidden" name="action" value="<?$action?>">
+		<input type="hidden" name="QPT_ID" value="<?$QPT_ID?>">
+		<input type="hidden" name="type" value="<?$type?>">
+		<input type="hidden" name="newtype" value="<?$newtype?>">
+		<input type="hidden" id="colorchooser" name="colorchooser" value="">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

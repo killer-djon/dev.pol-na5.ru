@@ -1,0 +1,55 @@
+<script type="text/javascript" src="{$smarty.const.URL_JS}/category.js"></script>
+{* simple search *}
+<div class="categories-page search-result">
+<h3>Результаты поиска</h3>
+
+
+{if $products_to_show_count > 0}
+
+	<p>{"srch_found"|translate} <b>{$products_found}</b> {"srch_products_plural"|translate}</p>
+
+{if $string_product_sort}
+	<div class="products_sort">
+		Сортировать по: <select name="sorting" onchange="window.location = this.value">
+		{section name=i loop=$string_product_sort}		
+			<option value='/search/?searchstring={$smarty.get.searchstring}&sort={$string_product_sort[i][0]}&direction=ASC' {if $smarty.get.sort == $string_product_sort[i][0]}selected{/if}>{$string_product_sort[i][2]}</option>
+		{/section}
+		</select>
+	</div>
+{/if}
+
+	
+{*
+@features "Products comparison"
+*}
+	{if $smarty.const.CONF_ALLOW_COMPARISON_FOR_SIMPLE_SEARCH}
+	{include file="comparison_products_button.html"}
+	{/if}
+{*
+@features
+*}
+
+
+	<div class="catalog">
+		{section name=i1 loop=$products_to_show max=$products_to_show_count}
+			<div class="block-catalog-brief">{include file="product_brief.html" product_info=$products_to_show[i1]}</div>
+		{/section}
+	</div>
+
+	{if $search_navigator}<div class="paginate">{$search_navigator}</div>{/if}
+
+{*
+@features "Products comparison"
+*}
+	{if $smarty.const.CONF_ALLOW_COMPARISON_FOR_SIMPLE_SEARCH}
+	{include file="comparison_products_button.html"}
+	{/if}
+{*
+@features
+*}
+
+{else}
+	<p>{"srch_no_matches_found"|translate}
+{/if}
+
+</div>

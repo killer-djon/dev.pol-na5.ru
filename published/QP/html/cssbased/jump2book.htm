@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="jmpbook_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+		<table class="SimpleList" width=100%>
+		<thead>
+			<tr>
+			<th>
+				<? $qpStrings.qpb_name_title ?>
+			</th>
+			<th>
+				<? $qpStrings.qpb_id_title ?>
+			</th>
+			<th width="1%" class="NoBreak">
+				<? $qpStrings.qpb_rights_title ?>
+			</th>
+			<th width="1%" class="NoBreak">
+				<? $qpStrings.qpb_published_title ?>
+			</th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+
+	<? foreach from=$books item=book key=tplIndex name=tpl ?>
+		<tr class="<? wbs_oddItem index=$smarty.foreach.tpl.iteration ?>">
+			<td><a href="<? $book->ROW_URL ?>"><? $book->NAME|htmlsafe:true:true ?></a></td>
+			<td><a href="<? $book->ROW_URL ?>"><? $book->QPB_TEXTID ?></a></td>
+			<td width="1%" class="NoBreak"><a href="<? $book->ROW_URL ?>"><? $book->RIGHTS_STRING ?></a></td>
+			<td width="1%" class="NoBreak"><a href="<? $book->ROW_URL ?>"><? wbs_statusImage value=$book->QPB_PUBLISHED onValue=1 ?></a></td>
+		</tr>
+	<?foreachelse?>
+		<tr class="NoRecords">
+			<td colspan="4">
+				<? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?>
+			</td>
+		</tr>
+	<?/foreach ?>
+		</tbody>
+
+		<tfoot>
+			<tr><td colspan=4><? $bookCount ?> <? $qpStrings.jmp_screen_bookcount_msg ?></td></tr>
+		</tfoot>
+
+	</table>
+
+	<? /if ?>
+
+		<input name="folder" type="hidden" value="<? $folder ?>">
+		<input name="sorting" type="hidden" value="<? $sorting?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

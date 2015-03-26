@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl(objName) {
+	var obj = MM_findObj(objName);
+	if (obj)
+		obj.focus( );
+}
+
+function MM_findObj(n, d) { //v4.01
+	var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+	function confirmDelete()
+	{
+		var ret;
+
+		ret = confirm( "<? $qpStrings.app_screen_pagedel_message ?>" );
+
+		<? if $hasItChilds ?>
+			if ( ret )
+				return confirm( "<? $qpStrings.app_screen_subpages_delete_message ?>" );
+			else
+				return ret;
+		<? else ?>
+			return ret;
+		<? /if ?>
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="initEditor()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+<? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td class="pageTopPanel">
+		<? if !$fatalError ?>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_right=#toolbarSmallSpace# onClick="onSubmitEditor();" ?>
+		<? /if ?>
+		<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form" onClick="onSubmitEditor();" ?>
+</td>
+</tr>
+</table>
+<? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+
+<? if !$fatalError ?>
+
+<? assign var=folderNameLabel value=$kernelStrings.app_treefurfldname_title ?>
+<? assign var=selectedID value=$parentFolderID ?>
+<? assign var=showAnyRights value=true ?>
+<? assign var=denyNoAccess value=true ?>
+<? assign var=parentFolderLabel value=$qpStrings.amn_treeparentlevel_text ?>
+<? assign var=folderSelectorEvent value="changeFolder(this)" ?>
+<? assign var=denyNoAccess value=true ?>
+
+<table border="0" cellspacing="0" cellpadding="0" width="99%" height=90%>
+<tr>
+<td width=85% valign=top>
+
+	<table border="0" cellspacing="2" cellpadding="2" width="95%">
+	<tr>
+		<td valign="top">
+			<textarea name="themeData[QPT_HEADER]" id="themeData[QPT_HEADER]" class="control" rows="25" style="width: 99%; visibility: hidden;"><? $themeData.QPT_HEADER|htmlsafe_textarea:$edited ?></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<br>
+			<b><? $kernelStrings.app_note_text|cat:":" ?></b> <? $qpStrings.qpt_variable_note ?>
+			<br>&nbsp;
+			<table border="0" cellspacing="2" cellpadding="2" width="100%">
+			<tr bgcolor=c0c0c0><td width=20%><small><b><? $qpStrings.qpt_variable_name?></td><td><small><b><? $qpStrings.qpt_variable_descr ?></td></tr>
+			<tr></tr>
+			<tr><td valign=top ><nobr><a href="#" onclick="insertHTML('%BOOKNAME%');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">%BOOKNAME%</a></nobr></td><td><small><? $qpStrings.qpt_variable_bookname ?></td></tr>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+</td>
+<td valign=top>
+
+			<b><? $qpStrings.amn_screen_images_title ?></b><br><br>
+
+			<div style="overflow: auto; width: 100%; height: 450px; <? $extraTocStyle ?>" id="leftscrolldiv">
+			<table border="0" cellspacing="2" cellpadding="0">
+
+<? if $action == "edit" ?>
+			<tr>
+				<td>
+
+					<table border="0" cellspacing="0" cellpadding="0">
+
+					<? assign var="flag" value=0 ?>
+					<? foreach from=$attachedFiles item=fileData  key=fileName?>
+					<? assign var="flag" value=1 ?>
+					<tr>
+					<td valign="top" rowspan=2><input name="<? $fileData.delcbName ?>[]" type="checkbox" value="<? $fileData.delcbValue ?>">&nbsp;</td>
+					<td align=center>
+						<? if $fileData.old == 1 ?>
+						<a href="#" onclick="insertHTML('<? $fileData.URL ?>');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">
+						<? /if ?>
+						<img src="<? $fileData.THUMB_URL?>" border=0 style="border: black 1px dotted;">
+						<? if $fileData.old == 1 ?>
+						</a>
+						<? /if ?>
+						</nobr></td><td><small><br>
+					</tr>
+					<tr>
+					<td align=center>
+						<? if $fileData.old == 1 ?>
+						<a href="#" onclick="insertHTML('<? $fileData.URL ?>');" style="font-size: 8pt; text-decoration: none;">
+						<? else ?>
+						<small>
+						<? /if ?>
+						<? $fileName|truncate:20:"..." ?><br> <? $fileData.DIMS.0 ?>x<? $fileData.DIMS.1 ?> (<? $fileData.size?>)
+
+						<? " <br>("|cat:|cat:")" ?>
+						<? if $fileData.old == 1 ?>
+						</a>
+						<? else ?>
+						</small>
+						<? /if ?>
+						</nobr>
+					</td>
+					<td><small>
+					</td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<? /foreach ?>
+					</table>
+				</td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			</table>
+			</div>
+<? if $flag == 1 ?>
+			<br>
+			<? include file="../../../common/html/classic/button.htm" align="center" name="deletefilesbtn" caption=$qpStrings.amn_deleteimages_btn formname="form" onClick="onSubmitEditor();" buttonWidth=120 ?>
+			<hr noshade width=90%>
+<? /if ?>
+			<? include file="../../../common/html/classic/button.htm" align="center" name="addfilesbtn" caption=$qpStrings.amn_addimages_btn formname="form" onClick="onSubmitEditor();" buttonWidth=120?>
+<? else ?>
+
+			<? $qpStrings.amn_screen_images_message ?>
+
+<? /if ?>
+
+			<br><br>
+</td>
+</tr>
+</table>
+<? /if ?>
+<input type="hidden" name="action" value="<?$action?>">
+<input type="hidden" name="btndummy">
+<input type="hidden" name="edited" value="1">
+
+<input type="hidden" name="QPT_ID" value="<?$QPT_ID?>">
+
+<input name="themeData[QPT_ID]" type="hidden" value="<? $themeData.QPT_ID ?>">
+<input name="themeData[QPT_UNIQID]" type="hidden" value="<? $themeData.QPT_UNIQID ?>">
+
+<input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>">
+<input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>">
+<input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>">
+
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

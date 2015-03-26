@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true htmlArea=true ?>
+
+			<link href="../../../QP/html/cssbased/res/qp.css" rel="stylesheet" type="text/css"/>
+
+			<script language="JavaScript">
+			<!--
+			function focusControl(objName) {
+				var obj = MM_findObj(objName);
+				if (obj)
+					obj.focus( );
+			}
+
+			function MM_findObj(n, d) { //v4.01
+				var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+				d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+				if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+				for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+				if(!x && d.getElementById) x=d.getElementById(n); return x;
+			}
+
+				function confirmDelete()
+				{
+					var ret;
+
+					ret = confirm( "<? $qpStrings.app_screen_pagedel_message ?>" );
+
+					<? if $hasItChilds ?>
+						if ( ret )
+							return confirm( "<? $qpStrings.app_screen_subpages_delete_message ?>" );
+						else
+							return ret;
+					<? else ?>
+						return ret;
+					<? /if ?>
+				}
+
+			//-->
+			</script>
+
+	</head>
+	<body onLoad="initEditor(); autoFocusFormControl( '<? $invalidField ?>', 'messageData' );">
+
+	<? wbs_pageLayout toolbar="amp_toolbar.htm" ?>
+
+	<? wbs_errorBlock ?>
+
+		<? if !$fatalError ?>
+
+
+<? assign var=folderNameLabel value=$kernelStrings.app_treefurfldname_title ?>
+<? assign var=selectedID value=$parentFolderID ?>
+<? assign var=showAnyRights value=true ?>
+<? assign var=denyNoAccess value=true ?>
+<? assign var=parentFolderLabel value=$qpStrings.amn_treeparentlevel_text ?>
+<? assign var=folderSelectorEvent value="changeFolder(this)" ?>
+<? assign var=denyNoAccess value=true ?>
+
+	<table class="FormLayout">
+	<? if $action == "new" ?>
+		<tr class="SeparatedRow">
+			<td><? $parentFolderLabel|cat:":&nbsp;" ?></td>
+			<td><select name="parentFolderID" class="FormControl"
+			<? if $updateOnFolderChange ?><? if $folderSelectorEvent == "" ?>onChange="this.form.submit()"<? else ?>onChange="<? $folderSelectorEvent ?>"<? /if ?><? /if ?>>
+				<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$parentFolderID showAnyRights=true denyNoAccess=true ?>
+			</select></td>
+		</tr>
+	</table>
+	<? else ?>
+		<? wbs_formCaption text=$thisFolderName|htmlsafe ?>
+	<? /if ?>
+
+<table class="mm_columnsTable">
+	<tr>
+		<td>
+			<table class="FormLayout" width="100%">
+			<tr>
+				<td >
+					<? wbs_label for="folderData[QPF_TITLE]"  fieldName=QPF_TITLE text=$qpStrings.app_title_field skipColon=false ?>
+				</td>
+					<td><input class="FormControl" name="folderData[QPF_TITLE]" id="folderData[QPF_TITLE]" type="text" class="FormControl" value="<? $folderData.QPF_TITLE ?>" maxlength="250" style="width: 99%"></td>
+			</tr>
+			<tr>
+				<td valign=top>
+					<? wbs_label for="folderData[QPF_TEXTID]"  fieldName=QPF_TEXTID text=$qpStrings.amn_textid_label skipColon=false ?>
+				</td>
+				<td>
+					<input type=text class="FormControl" id="folderData[QPF_TEXTID]" name="folderData[QPF_TEXTID]" value="<? $folderData.QPF_TEXTID|htmlsafe:true:true ?>" maxlength="50"  style="width: 99%"><br>
+					<? wbs_note displayNoteMarker=false smallFont=true?><? $qpStrings.app_text_id_note?><? /wbs_note ?>
+				</td>
+			</tr>
+			<tr>
+				<td >
+					<? wbs_label for="folderData[QPF_CONTENT]"  fieldName=QPF_CONTENT text=$qpStrings.app_content_field skipColon=false ?>
+				</td>
+				<td >
+					<textarea class="FormControl" name="folderData[QPF_CONTENT]" id="folderData[QPF_CONTENT]" class="FormControl" rows="25" style="width: 99%; visibility: hidden;"><? $folderData.QPF_CONTENT|htmlsafe_textarea:$edited ?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td >
+					<? wbs_label for="folderData[QPF_PUBLISHED]"  fieldName=QPF_PUBLISHED text=$qpStrings.qpb_published_field skipColon=false ?>
+				</td>
+				<td>
+					<input type=checkbox value=1 class="FormControl" id="folderData[QPF_PUBLISHED]" name="folderData[QPF_PUBLISHED]" <? switchedOutput val=$folderData.QPF_PUBLISHED true_val=1 str1="checked" ?>>
+				</td>
+			</tr>
+			<tr align="left">
+				<td colspan="2" valign="middle" class="FormSection" >
+					<? $qpStrings.amn_screen_meta_section ?>
+				</td>
+			</tr>
+			<tr>
+				<td >
+					<? wbs_label for="folderData[QPF_DESCRIPTION]"  fieldName=QPF_DESCRIPTION text=$qpStrings.app_description_field skipColon=false ?>
+				</td>
+				<td  width="100%">
+				<textarea name="folderData[QPF_DESCRIPTION]" id="folderData[QPF_DESCRIPTION]" class="FormControl" rows="2" style="width: 99%;"><? $folderData.QPF_DESCRIPTION|htmlsafe_textarea:$edited ?></textarea></td>
+			</tr>
+			<tr>
+				<td >
+					<? wbs_label for="folderData[QPF_KEYWORDS]"  fieldName=QPF_KEYWORDS text=$qpStrings.app_keywords_field skipColon=false ?>
+				</td>
+				<td  width="100%">
+				<textarea name="folderData[QPF_KEYWORDS]" id="folderData[QPF_KEYWORDS]" class="FormControl" rows="2" style="width: 99%;"><? $folderData.QPF_KEYWORDS|htmlsafe_textarea:$edited ?></textarea></td>
+			</tr>
+			<tr align="left">
+				<td colspan="2" class="FormSection" >
+					<? $qpStrings.amn_screen_aux_section ?>
+				</td>
+			</tr>
+			<tr>
+				<td >
+					<? wbs_label for="folderData[QPF_AUX1]" fieldName=QPF_AUX1 text=$qpStrings.app_aux1_field skipColon=false ?>
+				</td>
+				<td  width="100%">
+				<textarea name="folderData[QPF_AUX1]" id="folderData[QPF_AUX1]" class="FormControl" rows="2" style="width: 99%;"><? $folderData.QPF_AUX1|htmlsafe_textarea:$edited ?></textarea></td>
+			</tr>
+			<tr>
+				<td >
+					<? wbs_label for="folderData[QPF_AUX2]" fieldName=QPF_AUX2 text=$qpStrings.app_aux2_field skipColon=false ?>
+				</td>
+				<td  width="100%">
+				<textarea name="folderData[QPF_AUX2]" id="folderData[QPF_AUX2]" class="FormControl" rows="2" style="width: 99%;"><? $folderData.QPF_AUX2|htmlsafe_textarea:$edited ?></textarea></td>
+			</tr>
+			<tr>
+				<td >
+					<? wbs_label for="folderData[QPF_AUX3]" fieldName=QPF_AUX3 text=$qpStrings.app_aux3_field skipColon=false ?>
+				</td>
+				<td  width="100%">
+				<textarea name="folderData[QPF_AUX3]"  id="folderData[QPF_AUX3]" class="FormControl" rows="2" style="width: 99%;"><? $folderData.QPF_AUX3|htmlsafe_textarea:$edited ?></textarea></td>
+			</tr>
+			</table>
+
+	</td>
+	<td class="mm_rightColumn ValignTop" align=right width="160px" >
+		<? if $action == "edit" ?>
+			<? wbs_noteBlock width="160px" caption=$qpStrings.amn_screen_images_title class=mm_ImageSetBlock ?>
+
+				<? wbs_scrollableArea height="350px" width="160px" class="mm_ImageSetScroller SimpleReport_BorderBottom"?>
+
+					<? assign var="flag" value=0 ?>
+
+					<? foreach from=$attachedFiles item=fileData  key=fileName?>
+						<? assign var="flag" value=1 ?>
+
+						<div class="mm_thumbnail">
+							<table class="mm_Table">
+								<tr>
+									<td rowspan=2><input name="<? $fileData.delcbName ?>[]" type="checkbox" value="<? $fileData.delcbValue ?>"></td>
+									<td>
+										<? if $fileData.old == 1 ?>
+											<a href="#" onclick="insertHTML('<? $fileData.URL ?>');" style="font-size: 8pt; text-decoration: none; font-weight: bold;">
+										<? /if ?>
+											<img src="<? $fileData.THUMB_URL?>" border=0 style="border: black 1px dotted;">
+										<? if $fileData.old == 1 ?>
+											</a>
+										<? /if ?>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<? if $fileData.old == 1 ?>
+											<a href="#" onclick="insertHTML('<? $fileData.URL ?>');" style="font-size: 8pt; text-decoration: none;">
+										<? else ?>
+											<small>
+										<? /if ?>
+											<? $fileName|truncate:20:"..." ?><br> <? $fileData.DIMS.0 ?>x<? $fileData.DIMS.1 ?> (<? $fileData.size?>)
+											<? " <br>("|cat:|cat:")" ?>
+											<? if $fileData.old == 1 ?></a><? else ?></small><? /if ?>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+					<? /foreach ?>
+
+				<? /wbs_scrollableArea ?>
+
+			<? /wbs_noteBlock ?>
+
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="addfilesbtn" caption=$qpStrings.amn_addimages_btn onClick="onSubmitEditor();" ?>
+				<? if $flag == 1 ?>
+					<div style='width:30px'>&nbsp;<div>
+					<BR>
+						<? wbs_buttonSetButton name="deletefilesbtn" caption=$qpStrings.amn_deleteimages_btn onClick="onSubmitEditor();" ?>
+					
+				<? /if ?>
+			<? /wbs_buttonSet ?>
+
+		<? else ?>
+			<? wbs_noteBlock width="160px" caption=$qpStrings.amn_screen_images_title ?>
+				<? wbs_note displayNoteMarker=false ?><? $qpStrings.amn_screen_images_message ?><? /wbs_note ?>
+			<? /wbs_noteBlock ?>
+		<? /if ?>
+	</td>
+</tr>
+</table>
+
+		<? /if ?>
+
+		<input type="hidden" name="action" value="<?$action?>">
+		<input type="hidden" name="QPF_ID" value="<?$QPF_ID?>">
+		<input type="hidden" name="QPF_ID_PARENT" value="<?$QPF_ID_PARENT?>">
+		<input type="hidden" name="currentBookID" value="<?$currentBookID?>">
+		<input type="hidden" name="opener" value="<?$opener?>">
+		<input name="folderData[QPF_ID]" type="hidden" value="<? $folderData.QPF_ID ?>">
+		<input name="folderData[QPB_ID]" type="hidden" value="<? $folderData.QPB_ID ?>">
+		<input name="folderData[QPF_SORT]" type="hidden" value="<? $folderData.QPF_SORT ?>">
+		<input name="folderData[QPF_UNIQID]" type="hidden" value="<? $folderData.QPF_UNIQID ?>">
+		<input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>">
+		<input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>">
+		<input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>">
+		<input type="hidden" name="searchString" value="<?$searchString?>">
+
+	<? /wbs_pageLayout ?>
+
+</body>
+</html>

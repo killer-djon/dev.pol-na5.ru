@@ -1,0 +1,24 @@
+	<table border="0" cellspacing="2" cellpadding="0" width=100%>
+	<tr>
+		<td valign="top" class="label">
+			<? conditionalOutput invalidField=$invalidField field=QPB_PUBLISHED text=#invalidFieldHighlight#  ?>
+			<? $qpStrings.qpb_published_field|cat:": " ?>
+		</td>
+		<td>
+			<input type=checkbox value=1 name="folderData[QPB_PUBLISHED]" <? switchedOutput val=$folderData.QPB_PUBLISHED true_val=1 str1="checked" ?>>
+		</td>
+	</tr>
+<!--	<tr>
+		<td valign="top" class="label" colspan=2>
+			<br>
+			<? $qpStrings.qp_bookurl_info|cat:": " ?>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="label" colspan=2>
+			<a href="<? $publishedUrl ?>" target=_blank><? $publishedUrlHTML ?></a>
+		</td>
+	</tr>
+-->	
+	</table>
+

@@ -1,0 +1,16 @@
+<script type="text/javascript" src="{$smarty.const.URL_JS}/product_detailed.js"></script>
+{if $widget}
+	{assign var=_ext_url value="&view=noframe&external=1"}
+{/if}
+<form rel="{$product_info.productID}" action='{""|set_query_html}' method="post">
+<input name="productID" value="{$product_info.productID}" type="hidden" >
+<input class="product_price" value="{$product_info.price_incurr|escape:'html'}" type="hidden" >
+<input class="product_list_price" value="{$product_info.list_price_incurr|escape:'html'}" type="hidden" >
+
+{if $product_info ne NULL || $CPT_CONSTRUCTOR_MODE}
+
+{include file="product_info.html"}
+
+{/if}
+
+</form>

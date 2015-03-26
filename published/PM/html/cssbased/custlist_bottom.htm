@@ -1,0 +1,36 @@
+<table class="SimpleList" width="100%">
+	<thead>
+		<tr>
+			<th scope="col" width="10">&nbsp;</th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=C_NAME ?><? $pmStrings.cl_custname_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=C_ADDRESSSTREET ?><? $pmStrings.cl_address_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=C_ADDRESSCITY ?><? $pmStrings.cl_city_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=C_ADDRESSSTATE ?><? $pmStrings.cl_state_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=C_ADDRESSCOUNTRY ?><? $pmStrings.cl_country_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=C_PHONE ?><? $pmStrings.cl_phone_title ?><? /wbs_sortColumn ?></th>
+			<th scope="col"><? wbs_sortColumn status=$sorting field=C_CONTACTPERSON ?><? $pmStrings.cl_contname_title ?><? /wbs_sortColumn ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<? section name=customerSec loop=$customers ?>
+		<tr class="<? wbs_oddItem index=$smarty.section.customerSec.index ?>">
+			<td width="10">
+				<input type=checkbox name="document[<? $customers[customerSec].C_ID ?>]" value=1>
+				<input type=hidden name="AN[<? $customers[customerSec].C_ID ?>]" value="<? $customers[customerSec].ACTIVE_NUM ?>"/>
+				<input type=hidden name="TN[<? $customers[customerSec].C_ID ?>]" value="<? $customers[customerSec].TOTAL_NUM ?>"/>
+			</td>
+			<td><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_NAME ?></a></td>
+			<td width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_ADDRESSSTREET ?></a></td>
+			<td width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_ADDRESSCITY ?></a></td>
+			<td width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_ADDRESSSTATE ?></a></td>
+			<td width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_ADDRESSCOUNTRY ?></a></td>
+			<td width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_PHONE ?></a></td>
+			<td width="100"><a href="<? $customers[customerSec].ROW_URL ?>"><? $customers[customerSec].C_CONTACTPERSON ?></a></td>
+		</tr>
+		<? sectionelse ?>
+			<tr class="NoRecords">
+				<td colspan="8" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+			</tr>
+		<? /section ?>
+	</tbody>
+</table>

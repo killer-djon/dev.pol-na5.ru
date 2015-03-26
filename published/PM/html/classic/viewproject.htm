@@ -1,0 +1,122 @@
+<html>
+<head>
+<title><? $pageTitle ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script> 
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="default" >
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+<? include file="../../../common/html/classic/header.htm" nospace=0?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+<? if !$fatalError ?>
+	  <table border="0" cellpadding="0" cellspacing="0">
+		<tr> 
+		  <td> <table width="100%" border="0" cellpadding="0" cellspacing="0">
+			  <tr> 
+				<td colspan="2" class="default"> 
+					<? include file="../../../common/html/classic/formframe_begin.htm"?>
+					 <table width="100%" border="0" cellspacing="0" cellpadding="0">
+					  <tr>
+  						<td valign="top"> <table width="100%" border="0" cellpadding="0" cellspacing="2">
+						  <tr>
+							<td width="100%" colspan="2" align="right" class="formSection">
+                                <nobr><? $pmStrings.app_description_label ?></nobr>
+                            </td>
+						  </tr>
+                            <tr> 
+                              <td class="readonly_control" width="100%">
+							    <? $projectData.P_DESC ?>
+							  </td>
+                            </tr>
+						 </table>
+						 </td>
+					  </tr>
+					  <tr>
+					    <td>&nbsp;</td>
+					  </tr>
+                      <tr> 
+                        <td><table border="0" cellspacing="2" cellpadding="0">
+                            <tr> 
+                              <td align="right" class="label"> 
+							    <nobr> <? $pmStrings.app_customer_label|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control" width="250">
+							    <nobr><? $projectData.C_NAME|htmlsafe:true:true ?></nobr>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.app_manager_label|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control" width="100%">
+							    <nobr><? $projectData.P_MANAGER|htmlsafe:true:true ?></nobr>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.amp_billable_label|cat:":" ?></nobr>
+                              </td>
+                              <td width="100%">
+								<? switchedOutput str1=#checkedImg# str2="" val=$projectData.P_BILLABLE true_val=1 ?>
+							  </td>
+                            </tr>
+                            <tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.amp_startdate_label|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control" width="100%">
+							    <nobr><? $projectData.P_STARTDATE ?></nobr>
+							  </td>
+                            </tr>
+							<tr> 
+                              <td align="right" class="label"> 
+                                <nobr><? $pmStrings.cmp_compldate_label|cat:":" ?></nobr>
+                              </td>
+                              <td class="readonly_control" width="100%">
+							    <nobr><? $projectData.P_ENDDATE|sureecho ?></nobr>
+							  </td>
+                            </tr>
+                          </table></td>
+                       </tr>
+                    </table>
+					<? include file="../../../common/html/classic/formframe_end.htm" extraLine=true?>
+					</td>
+			  </tr>
+			  <tr>
+			    
+            <td align="left" colspan="2" class="default"> 
+              <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$pmStrings.amp_close_btn formname="form" space_left=5 space_right=10 ?>
+            </td>
+			  </tr>
+				<tr>
+					<td colspan=2>&nbsp;</td>
+				</tr>
+			  <tr>
+	            <td colspan="2" class="smallFont">
+			    <? if $action != "new" ?>
+				  <hr width="100%" size="1" noshade>
+				  <nobr><? $pmStrings.amp_lastmidified_label ?>&nbsp;<? $projectData.P_MODIFYUSERNAME ?>&nbsp;
+				  <? $projectData.P_MODIFYDATETIME ?></nobr>
+				<? else ?> &nbsp;
+				<? /if ?>
+				</td>
+			  </tr>
+			</table></td>
+		</tr>
+	  </table> 
+  <? else ?>
+  <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$pmStrings.amp_close_btn formname="form" space_left=5 space_right=10 ?>
+  <? /if ?>
+  <input name="edited" type="hidden" id="edited" value="1">
+  <input name="currentPage" type="hidden" id="currentPage" value="<? $currentPage ?>">
+  <input name="opener" type="hidden" value="<? $opener ?>">
+  <input name="P_ID" type="hidden" value="<? $P_ID ?>">
+  <input type="hidden" name="btndummy">
+  <?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+  
+  <? /strip ?>
+</body>
+</html>

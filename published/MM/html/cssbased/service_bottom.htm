@@ -1,0 +1,15 @@
+<? if $curScreen == 0?>
+	<? if $senders ?>
+		<ul class="list">
+			<? foreach from=$senders item=sender key=id ?>
+				<li><a href=addmodsender.php?action=edit&MMS_ID=<? $sender.MMS_ID ?>><? $sender.MMS_FROM|htmlsafe:true:true ?> &lt;<? $sender.MMS_EMAIL|htmlsafe:true:true ?>&gt;</a></li>
+			<? /foreach ?>
+		</ul>
+	<? else ?>
+		<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+			<? $mmStrings.sv_nosenders_text ?>
+			<BR><BR>
+			<? $mmStrings.sv_nosenders_comment ?>
+		<? /wbs_note ?>
+	<? /if ?>
+<? /if ?>

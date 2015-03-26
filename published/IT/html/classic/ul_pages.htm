@@ -1,0 +1,19 @@
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="treeNumDocumentsCell" valign=middle>
+			<? $itStrings.il_tasks_label|cat:": "|cat:$workNum|cat:"&nbsp;&nbsp;&nbsp;" ?>
+			<? $itStrings.il_issues_label|cat:": "|cat:$issueNum ?>
+			<?if $showPageSelector ?>
+				&nbsp;&nbsp;&nbsp;
+				<? $kernelStrings.app_pages_text|cat:": " ?>
+				<? foreach from=$pages item=page_item ?>
+					<? if $currentPage != $page_item[0] ?>
+						<a href="<? $page_item[1] ?>"><? $page_item[0] ?></a> 
+					<? else ?>
+						<? $page_item[0]|cat:" " ?>
+					<? /if ?>
+				<? /foreach ?>
+			<?/if?>
+		</td>
+	</tr>
+</table>

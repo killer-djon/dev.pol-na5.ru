@@ -1,0 +1,110 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- 
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/backend.css'>
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/popup.css'>
+ -->
+ {{assign var="path1" value=$p->getCssUrl() }}
+{{csscombine file="`$path1`/popup-combine.css"  }}
+ {{$p->getCssUrl()}}/backend.css
+ {{$p->getCssUrl()}}/popup.css
+{{/csscombine}}
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.cookie.js"></script>
+<script>
+
+	$(function(){
+		$(window).keydown(function(e){
+	    	if (e.keyCode == 27) {
+	    		window.parent.closePopup();
+	    	}
+	    });
+		
+		var oldSize = $.cookie('sizeOneView') || 144;
+		$('input[type=radio]').click(function(){			
+			var size = $(this).val();
+			$.cookie('sizeOneView', size);
+			$('input[value='+size+']').attr('checked', 'checked');
+			
+			$('textarea').each(function(){
+				var size = $('input:checked').val();
+				var re1 = new RegExp("\.[0-9]+\.(jpg|png|gif)", "gi");
+				var re2 = new RegExp("\/[0-9]+($|\n)", "gi");
+				
+				var val = $(this).val().replace(re1, '.'+size+'.$1');
+				val = val.replace(re2, '/'+size+'$1');
+				
+				$(this).val(val);
+			});
+			
+			oldSize = size;
+		});
+
+		$('input[value='+oldSize+']').click();
+		
+		$('textarea').clickToSelect();
+	});
+
+	(function($) {
+		 $.extend($.fn, { 
+	        // Select a text range in a textarea
+	        selectRange: function(start, end){
+	            // use only the first one since only one input can be focused
+	            if ($(this).get(0).createTextRange) {
+	                var range = $(this).get(0).createTextRange();
+	                range.collapse(true);
+	                range.moveEnd('character',   end);
+	                range.moveStart('character', start);
+	                range.select();
+	            }
+	            else if ($(this).get(0).setSelectionRange) {
+	                $(this).bind('focus', function(e){
+	                    e.preventDefault();
+	                }).get(0).setSelectionRange(start, end);
+	            }
+	            return $(this);
+	        },
+	        
+	        clickToSelect: function() {
+	        	this.each(function(){
+	        		$(this).click(function(){
+	        			var $self = $(this);
+	        			$self.selectRange( 0, $self.val().length );
+	        		});
+	        	});
+	        }
+		 });
+	})(jQuery);
+
+</script>
+<div class="window-header">
+	<h2>[`Links to photos`]:</h2>
+</div>
+<div class="photo-desc-conteiner" style="height:375px; overflow:hidden;">
+{{ if ( $linkList ) }}
+
+<div class="imageLinks">
+<div class="imageLinksSize">
+    <label class="im-size">[`Image size`]:</label>
+		<label><input name="linklist_r" type="radio" value="96"/>96</label>
+		<label><input name="linklist_r" type="radio" value="144" checked="checked"/>144</label>
+		<label><input name="linklist_r" type="radio" value="256"/>256</label>
+		<label><input name="linklist_r" type="radio" value="512"/>512</label>
+		<label><input name="linklist_r" type="radio" value="750"/>750</label>
+		<label><input name="linklist_r" type="radio" value="970"/>970</label>
+	</div>
+	<p><label for="linklist" class="l-header">[`Links to selected photos (for email and IM)`]:</label></p>
+	
+	<p><textarea id="linklist">{{ $linkList }}</textarea></p>
+	<p><label for="linkhtml" class="l-header">[`HTML (for websites and blogs)`]:</label></p>
+	<p><textarea id="linkhtml">{{ $linksHTML }}</textarea></p>
+	<p><label for="linkbbcode" class="l-header">[`BBcode (forums)`]:</label></p>
+	<p><textarea id="linkbbcode">{{ $linksBBcode }}</textarea></p>
+</div>
+{{ else }}
+
+	<p class="noselect">[`No images selected`].</p>
+{{ /if }}</div>
+
+
+<div class="save-or-close" style="padding-top:0;"><a href="javascript:window.parent.closePopup();">[`close`]</a></div>
+<a href="javascript:window.parent.closePopup();"  id="album-settings-close" ><img src="img/close.gif" width="16" height="16" /></a>

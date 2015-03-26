@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<? wbs_initLayout ?>
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function MMM_findObj(n, d) { //v4.01
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+		d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MMM_findObj(n,d.layers[i].document);
+	  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+
+	function checkFolderRights( operation )
+	{
+		obj = MMM_findObj("curMMF_ID");
+		if ( !obj )
+			return true;
+
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 || obj.options[selected].value == 0 ) {
+			switch ( operation ) {
+				case 0 :
+				case 1 : alert( '<? $kernelStrings.app_treenocopymoverights_message ?>' ); break;
+				case 3 : alert( '<? $kernelStrings.app_treenocopytorights_message ?>' ); break;
+				case 4 : alert( '<? $kernelStrings.app_treenomovetofldrights_message ?>' ); break;
+			}
+
+			return false;
+		}
+
+		if ( obj.options[selected].value == -2 ) {
+			alert( '<? $kernelStrings.app_treesavecopymove_message ?>' );
+			return false;
+		}
+
+		if ( obj.options[selected].value == -3 ) {
+			alert( '<? $kernelStrings.app_treeselectfolder_message ?>' );
+			return false;
+		}
+
+		return true;
+	}
+//-->
+</script>
+
+</head>
+<body onLoad="autoFocusFormControl( '<? $invalidField ?>', '' )">
+
+<? wbs_pageLayout ?>
+	<? wbs_errorBlock ?>
+
+	<? if !$fatalError ?>
+
+		<? if $folderCount ?>
+
+			<? if $folderName && ($operation == 0 || $operation == 1) ?>
+				<? wbs_note displayNoteMarker=false smallFont=false ?>
+					<? $docNum|cat:" "|cat:$mmStrings.cm_screen_form_label ?>
+				<? /wbs_note ?>
+			<? /if ?>
+
+
+			<? wbs_formLayout ?>
+				<? wbs_formContent ?>
+				<tr>
+					<td><? $kernelStrings.app_treefrom_text|cat:":&nbsp;" ?></td>
+					<td><strong><? $folderName|htmlsafe:true:true|trunc_str:50 ?></strong></td>
+				</tr>
+				<tr <? if $operation == 3 || $operation == 4 ?>class="SeparatedRow"<? /if ?>>
+					<td><? $kernelStrings.app_treeto_text|cat:":&nbsp;" ?></td>
+					<td>
+						<select class="FormControl" name="curMMF_ID" style="width: 300px">
+							<? include file="../../../common/html/classic/tree_templates/tree_folders_selector.htm" selectedID=$currentFolder showAnyRights=true denyNoAccess=true showPromt=true ?>
+						</select>
+					</td>
+				</tr>
+
+				<? if $operation == 3 || $operation == 4 ?>
+				<tr>
+				<td colspan=2>
+					<table class="FormControl">
+					<tr>
+						<td><input type=radio value=COPY name=accessInheritance id=accessInheritance <? switchedOutput val=$accessInheritance true_val=COPY str1="checked" ?>></td>
+						<td>
+							<? wbs_label for="accessInheritance" fieldName="accessInheritance" text=$kernelStrings.app_treekeepaccess_text skipColon=true ?>
+						</td>
+					</tr>
+					<tr>
+						<td><input type=radio value=INHERIT name=accessInheritance id=accessInheritance2 <? switchedOutput val=$accessInheritance true_val=INHERIT str1="checked" ?>></td>
+						<td>
+							<? wbs_label for="accessInheritance2" fieldName="accessInheritance" text=$kernelStrings.app_treeinheritaccess_text skipColon=true ?>
+						</td>
+					</tr>
+					</table>
+				</td>
+				</tr>
+				<? else ?>
+					<input type="hidden" name="accessInheritance" value="<? $accessInheritance ?>">
+				<? /if ?>
+				<? /wbs_formContent ?>
+
+				<? wbs_formButtonsPanel ?>
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton name="savebtn" caption=$saveCaption onClick="return checkFolderRights("|cat:$operation|cat:")" ?>
+						<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+					<? /wbs_buttonSet ?>
+				<? /wbs_formButtonsPanel ?>
+
+			<? /wbs_formLayout ?>
+
+		<? else ?>
+				<? wbs_note displayNoteMarker=false smallFont=false ?>
+					<? $kernelStrings.app_treenofolders_message ?>
+				<? /wbs_note ?>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+		<? /if ?>
+
+	<? else ?>
+		<? wbs_buttonSet ?>
+			<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+		<? /wbs_buttonSet ?>
+	<? /if ?>
+
+	<input type="hidden" name="doclist" value="<?$doclist?>">
+	<input type="hidden" name="searchString" value="<?$searchString?>">
+	<input type="hidden" name="MMF_ID" value="<?$MMF_ID?>">
+	<input type="hidden" name="operation" value="<?$operation?>">
+	<input type="hidden" name="inboxMode" value="<?$inboxMode?>">
+
+<? /wbs_pageLayout ?>
+
+</body>
+</html>

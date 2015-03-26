@@ -1,0 +1,259 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "it_styles.css"|stylesetitem:"classic":$styleSet:"IT" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script language="JavaScript">
+<!--
+	function confirmLink( text ) 
+	{
+			return confirm( text );
+	}
+	
+	var lastButtonPressed = -1;
+	
+	function confirmDelete(  ) 
+	{
+		if ( this.lastButtonPressed == -1 ) return true;
+		
+		if ( this.lastButtonPressed ==  1 )  
+			return confirm( "<? $itStrings.is_deletetask_message ?>" );
+	}
+	
+	function registerBtnClick( btnType ) 
+	{
+		this.lastButtonPressed = btnType;
+		
+		return true;	
+	}	
+//-->
+</script></head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" onSubmit="return confirmDelete()">
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>			
+      <td class="pageTopPanel"> 
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="cancelbtn" caption=$itStrings.is_return_btn formname="form" space_right=#toolbarSmallSpace#?>
+			  <? if $rights ?>
+              <? if $ALLOW_MODIFY || $ALLOW_DELETE || $allowedTransitionsCount ?>
+              <img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+              <? /if ?>
+              <? if $ALLOW_MODIFY ?>
+              <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="modifybtn" caption=$itStrings.is_modify_btn formname="form" space_right=#toolbarSmallSpace# space_left=#toolbarSmallSpace#?>
+              <?/if ?>
+              <? if $ALLOW_DELETE ?>
+              <? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="deletebtn" caption=$itStrings.is_delete_btn formname="form" space_right=#toolbarSmallSpace# onClick="return confirm('"|cat:$itStrings.is_deletetask_message|cat:"')" ?>
+              <? /if ?>
+              <? if $ALLOW_MODIFY || $ALLOW_DELETE ?>
+              <img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+              <? /if ?>
+			  <? /if ?>
+            </td>
+		    <? if $rights ?>
+            <? if $sendURL ?>
+				<td>
+					<? include file="../../../common/html/classic/toolbar_button.htm" align="left" link=$sendURL caption=$itStrings.is_forward_btn formname="form" space_right=#toolbarSmallSpace# space_left=#toolbarSmallSpace#?>
+				</td>
+            <? /if ?>
+			<? /if ?>
+          </tr>
+        </table>
+        
+      </td>
+		</tr>
+	</table>	
+  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <table border="0" cellspacing="1" cellpadding="1">
+    <tr> 
+      <td align="left" valign="top" width=500><strong> 
+        <? $projName  ?>
+        </strong> </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top"> 
+        <? $itStrings.is_task_label|cat:" #"|cat:$PW_ID|cat:":&nbsp;" ?>
+        <? $workName|wordwrap:50:"<br>"   ?>
+      </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" class="smallFont"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+    </tr>
+  </table>
+  <? include file="../../../common/html/classic/thick_formframe_begin.htm"?>	
+  <table width="500" border="0" cellspacing="2" cellpadding="0">
+          <tr> 
+            <td align="right" valign="top" class="label"> 
+              <? $itStrings.is_issue_label|cat:" #:" ?>
+            </td>
+            <td width="150" class="readonly_control"> 
+              <? $issuedata.DISPLAY_NUM ?>
+            </td>
+            <td align="right" valign="top" class="label"> 
+              <? $itStrings.is_curstatus_label|cat:":" ?>
+            </td>
+            <td class="readonly_control"> 
+              <? mime_decode  string=$issuedata.STATUS_COLOR ?>
+              <? $issuedata.I_STATUSCURRENT|htmlsafe:true:true ?>
+            </td>
+          </tr>
+          <tr> 
+            <td align="right" valign="top" class="label"> 
+              <? $itStrings.is_priority_label|cat:":" ?>
+            <td width="150" class="readonly_control"> 
+              <? $issuedata.I_PRIORITY|htmlsafe:true:true ?>
+            </td>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr> 
+            <td colspan="4"  align="right"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+          </tr>
+          <tr> 
+            <td  align="right" valign="top" class="label"> 
+              <? $itStrings.is_dateopen_label|cat:":" ?>
+            </td>
+            <td class="readonly_control"> 
+              <? $issuedata.I_STARTDATE ?>
+            </td>
+            <td align="right" valign="top" <? if $issuedata.I_CLOSEDATE ?>class="label"<?/if?>> 
+              <? if $issuedata.I_CLOSEDATE ?>
+			  	<? $itStrings.is_closedate_label|cat:":" ?>
+              <? /if ?>
+            </td>
+            <td <? if $issuedata.I_CLOSEDATE ?>class="readonly_control"<?/if?>>
+              <? $issuedata.I_CLOSEDATE ?>
+            </td>
+          </tr>
+          <tr> 
+            <td  align="right" valign="top" class="label"> 
+              <? $itStrings.is_assignedto_label|cat:":" ?>
+            </td>
+            <td class="readonly_control"> 
+              <? mime_decode  string=$issuedata.U_ID_ASSIGNED?>
+            </td>
+            <td align="right" valign="top">&nbsp;</td>
+            <td >&nbsp;</td>
+          </tr>
+        </table>
+        <table width="500" border="0" cellpadding="0" cellspacing="2">
+          <tr> 
+            <td align="left" valign="top" ><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+          </tr>
+          <tr> 
+            <td align="left" valign="top" class="formSection" > 
+              <? $itStrings.is_description_label ?>
+            </td>
+          </tr>
+          <tr> 
+            <td align="left" valign="top" class="readonly_control" > 
+			  <span class="smallFont">
+	              <? $issuedata.I_DESC?>
+			  </span>
+            </td>
+          </tr>
+          <? if $issuedata.I_DUEDATE != ""?>
+          <? /if?>
+          <? if $issuedata.I_CLOSEDATE != ""?>
+          <? /if ?>
+          <? if $issuedata.I_DESC != "" ?>
+          <? /if ?>
+          <? if $attachedFiles != ""?>
+          <tr> 
+            <td align="right" valign="top"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+          </tr>
+          <tr> 
+            <td align="right" valign="top" class="formSection"> 
+              <? $itStrings.is_attachments_label?>
+            </td>
+          </tr>
+          <tr> 
+            <td align="left" valign="top" class="readonly_control"> 
+              <? $attachedFiles?>
+            </td>
+          </tr>
+          <? /if ?>
+        </table>
+  <? include file="../../../common/html/classic/thick_formframe_end.htm"?>	
+		<table width="525" border="0" cellspacing="1" cellpadding="0" class=issue_transitionLog>
+			<tr> 
+				<td colspan="3" >&nbsp;</td>
+			</tr>
+			<tr> 
+				<td colspan="3" ><hr align="left" width="525" size="1" noshade></td>
+			</tr>
+			<tr> 
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		<table width="525" border="0" cellspacing="1" cellpadding="0">
+			<tr> 
+				<td><b><? $itStrings.il_issuehistory_label ?></b></td>
+			</tr>
+			<tr> 
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		
+		<table width="525" border="0" cellspacing="1" cellpadding="0" class=issue_transitionLog>
+			<? foreach from=$logData item=transLogData ?>
+				<? if !$transLogData.MODIFYRECORD ?>
+					<tr>
+						<td valign=top><? $transLogData.ITL_ID ?></td>
+						<td valign=top align=left><nobr>&nbsp;[<? $transLogData.ITL_DATETIME ?>]&nbsp;</nobr></td>
+						<td valign=top>
+							<nobr>[<? mime_decode string=$transLogData.STATUS_COLOR ?><? $transLogData.DISPLAY_STATUS|htmlsafe:true:true ?></b></font>]:
+							<? $transLogData.U_ID_SENDER ?> <img src="../../../common/html/classic/images/small_arrow.gif" width="9" height="8"> <? $transLogData.U_ID_ASSIGNED ?></nobr>
+						</td>
+					</tr>
+					<? if $transLogData.ITL_DESC != "" ?>
+						<tr>
+							<td valign=top colspan=2>&nbsp;</td>
+							<td valign=top><? $itStrings.il_comments_text|cat:": "|cat:$transLogData.ITL_DESC|htmlsafe:true:true ?></td>
+						<tr>
+					<? /if ?>
+					<? if $transLogData.FILE_DATA ?>
+						<tr>
+							<td valign=top colspan=2>&nbsp;</td>
+							<td valign=top><? $transLogData.FILE_DATA ?></td>
+						<tr>
+					<? /if ?>
+				<? else ?>
+					<tr>
+						<td valign=top><? $transLogData.ITL_ID ?></td>
+						<td valign=top><nobr>&nbsp;[<? $transLogData.ITL_DATETIME ?>]&nbsp;</nobr></td>
+						<td valign=top>
+							[<? $itStrings.is_modified_text ?>]: <? $transLogData.U_ID_SENDER ?><br>
+							<? $transLogData.ITL_OLDCONTENT|htmlsafe:true:true ?>
+						</td>
+					</tr>
+				<? /if ?>
+			<? /foreach ?>
+		</table>
+  <? /if ?>
+  <input name="edited" type="hidden" id="edited" value="1">
+  <input name="I_ID" type="hidden" value="<? $I_ID ?>">
+  <input name="P_ID" type="hidden" value="<? $P_ID ?>">
+  <input name="listPW_ID" type="hidden" value="<? $listPW_ID ?>">
+  <input name="PW_ID" type="hidden" value="<? $PW_ID ?>">
+  <input name="searchCriteria" type="hidden" value="<? $searchCriteria ?>">
+  <input type="hidden" name="btndummy">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+
+<? /strip ?>
+</body>
+</html>

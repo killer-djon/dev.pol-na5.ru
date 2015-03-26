@@ -1,0 +1,26 @@
+
+{{ if ( count($albumList) > 0 ) }}
+
+
+		<ul class="album-list">
+			{{ foreach from=$albumList item=albumItem  }}
+			<li>
+				<div class="album_image">
+					<a href="{{ $album_list_link }}{{ $albumItem.PF_LINK }}">
+					{{ if ( $albumItem.IMG_URL != "" ) }}
+						<img src="{{ $albumItem.IMG_URL }}" />
+					{{ /if }}
+					</a></div><div class="albumname"><a href="{{ $album_list_link }}{{ $albumItem.PF_LINK }}">{{ $albumItem.PF_NAME }}</a><span class="countphotos">({{ $albumItem.PHOTOS_COUNT }})</span>
+				</div>
+				<div class="albumdate">{{ $albumItem.PF_DATESTR }}</div>
+				
+			</li>
+			{{ /foreach }}
+		</ul>
+        <br clear="all" />
+        
+{{ else }}
+<div class="empty_content">
+	<p>[`There are no published albums in the gallery`].</p> 
+</div>
+{{ /if }} 

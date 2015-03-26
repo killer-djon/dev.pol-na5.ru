@@ -1,0 +1,340 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	translate.btn_delete = '{"prfilter_delete"|transcape}';
+	translate.cnfrm_areyousure = '{"cnfrm_areyousure"|translate}';
+	translate.addtotemplate = '{"prfilter_addtotemplate"|transcape}';
+	translate.editname = '{"prfilter_editname"|transcape}';
+	translate.visibledefault = '{"prfilter_visibledefault"|transcape}';
+	translate.expand = '{"prfilter_expand"|transcape}';
+	translate.collapse = '{"prfilter_collapse"|transcape}';
+	translate.showallcategoryies = '{"prfilter_showallcategoryies"|transcape}';
+	translate.hideallcategoryies = '{"prfilter_hideallcategoryies"|transcape}';
+	translate.remove = '{"prfilter_remove"|transcape}';
+	translate.empty = '{"prfilter_empty"|transcape}';
+	var conf_full_shop_url = "{$smarty.const.CONF_FULL_SHOP_URL|escape:'html'}";
+	{if $template.template_json}var template_load = '{$template.template_json}';{else}var template_load = false;{/if}
+</script>			
+<script type="text/javascript" src="{$smarty.const.URL_JS}/JsHttpRequest.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/niftycube.js"></script>
+<script type='text/javascript' src='{$smarty.const.URL_JS}/widget_checkout.js'></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/prfilter/prfilter_admin.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/prfilter/jquery.base64.min.js"></script>
+<link href="{$smarty.const.URL_CSS}/prfilter_admin.css" rel="stylesheet" type="text/css" />
+
+
+<h1 class="breadcrumbs">	
+{if $excluded}
+	<a href='{"?ukey=prfilter_admin"|set_query}'>{"prfilter_prfilter"|translate}</a>
+	&raquo;
+	<a href='{"?ukey=prfilter_admin&optionID=`$optionID`"|set_query}'>{"prfilter_path_params"|translate|replace:'%OPTION_NAME%':$option_name}</a>
+	&raquo;
+	{"prfilter_path_params_excluded"|translate|replace:'%VARIANT_NAME%':$variant.option_value}
+{elseif $option_name == null}
+	{"prfilter_prfilter"|translate}
+{else}
+	<a href='{"&optionID="|set_query}'>{"prfilter_prfilter"|translate}</a>
+	&raquo;
+	{"prfilter_path_params"|translate|replace:'%OPTION_NAME%':$option_name}
+{/if}
+</h1>
+
+<p></p>
+<ul id="edmod">
+	<li class="tab" style="float:right;" ><a href='{"?ukey=prfilter_admin&action=delete_all"|set_query_html}' class="confirm_action" title='{"prfilter_removeallQ"|translate}'>{"prfilter_removeall"|translate}</a></li>
+	<li class="tab current" ><a href='{"?ukey=prfilter_admin"|set_query_html}'>{"prfilter_menu_options"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_templates"|set_query_html}'>{"prfilter_menu_templates"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_export_excel"|set_query_html}'>{"prfilter_menu_export"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_import_excel"|set_query_html}'>{"prfilter_menu_import"|translate}</a></li>
+</ul>
+<script type="text/javascript">Nifty("li.tab","top same-height");</script>
+	
+	
+	
+{if $excluded}
+	<p>{"prfilter_excluded_description"|translate|replace:'%OPTION_NAME%':$option_name}</p>
+	
+	{$MessageBlock}
+	
+	<form action="{''|set_query_html}" method="post">
+		<input name="action" value="save_valuesblock" type="hidden" />
+		<input type="hidden" name="variantID" value="{$variantID}" />
+		<table class="prfilter-excluded-table" cellpadding="0" cellspacing="0">
+			{section name=i loop=$options}{if $options[i].values|@count > 0 && $options[i].optionType ne 'slider'}
+			<tr><td><a href="javascript:void(0);" class="prfilter-excluded-title"><img src="images_common/plus.gif" border="0"><span>{$options[i].name}</span></a>
+			{if $options[i].exist_params} 
+				{assign var="valuesCount" value=$options[i].values|@count}
+				<i class="prfilter-excluded-title-i">
+					{"prfilter_excluded_notempty"|translate|replace:'%EXIST_PARAMS%':$options[i].exist_params|replace:'%COUNT%':$valuesCount}
+				</i>
+			{/if}
+			</td></tr>
+			<tr><td class="prfilter-excluded-item">
+				{if $options[i].values|@count > 1}
+					&nbsp;&nbsp;<label><input type="checkbox" name="checkall"> {"prfilter_selectall"|translate}</label><br>
+				{/if}
+				{section name=j loop=$options[i].values}
+					&nbsp;&nbsp;<label><input type="checkbox" name="param_{$options[i].values[j].variantID}" value="{$options[i].values[j].variantID}" {if $options[i].values[j].excluded eq 1}checked{/if}> {$options[i].values[j].option_value}</label><br>
+				{/section}
+			</td></tr>	
+			{/if}{/section}
+		</table>
+		<div class="prfilter-save"><input type="submit" value='{"prfilter_save"|translate}' /></div>	
+	</form>
+
+{elseif $option_name == null}
+	<p>{"prfilter_options_description"|translate}</p>
+
+	{$MessageBlock}
+	
+	<form action="{''|set_query_html}" method="post">
+		<input name="action" value="save_options" type="hidden" />
+		<div class="prfilter-categoryes">
+			<span class="prfilter-notsaved"><span>*</span>{"prfilter_info_notsaved"|translate}</span>
+			<a href="javascript:void(0);" class="prfilter-category-toogle"><img src="images_common/plus.gif" border="0"> {"prfilter_ecallcategories"|translate}</a>
+			<a href="javascript:void(0);" class="prfilter-category-add">{"prfilter_addcategory"|translate}</a>
+	
+			<div class="prfilter-category prfilter-category-new">
+				<span class="prfilter-category-title"><span></span> <i>{"prfilter_empty2"|translate}</i></span>
+				<a href="javascript:void(0);" class="prfilter-icon prfilter-icon-edit prfilter-category-edit" title='{"prfilter_editname"|translate}'></a>
+				<div class="prfilter-category-edit-input">
+					{html_text name="category_name_%lang%" values="" table=$smarty.const.PRODUCT_OPTIONS_CATEGORYES_TABLE  style="width:350px"}
+					<input type="button" name="save_categoryname" value='{"prfilter_save"|translate}' /> 
+					<input type="button" name="cancel_categoryname" value='{"prfilter_cancel"|translate}' />
+				</div>
+			</div>	
+			<div id="prfilter-categoryes-new"></div>
+			
+			<div id="prfilter-categoryes">
+				{foreach from=$categoryes item=_category}
+					<div class="prfilter-category" categoryID="{$_category.categoryID}">
+						{assign var="CategoryCount" value=0}{foreach from=$options item=_row}{if $_category.categoryID eq $_row.optionCategory}{assign var="CategoryCount" value=$CategoryCount+1}{/if}{/foreach}
+					
+						<a href='{"action=delete_option_categoryes&categoryID=`$_category.categoryID`"|set_query_html}' class="confirm_action prfilter-category-remove" title='{"cnfrm_areyousure"|translate}'><img src="images_common/remove.gif" alt='{"btn_delete"|translate}' /></a>
+						{if $CategoryCount >0}
+						<a href="javascript:void(0);" class="prfilter-category-title"><img src="images_common/plus.gif" border="0"><span>{$_category.category_name|default:"No title"}</span></a>
+						{else}
+						<span class="prfilter-category-title"><span>{$_category.category_name|default:"No title"}</span> <i>{"prfilter_empty2"|translate}</i></span>
+						{/if}
+						<a href="javascript:void(0);" class="prfilter-icon prfilter-icon-edit prfilter-category-edit" title='{"prfilter_editname"|translate}'></a>
+						<div class="prfilter-category-edit-input">
+							{html_text dbfield="category_name" name="category_name_%lang%_`$_category.categoryID`" values=$_category table=$smarty.const.PRODUCT_OPTIONS_CATEGORYES_TABLE style="width:350px"} 
+							<input type="button" name="save_categoryname" value='{"prfilter_save"|translate}' /> 
+							<input type="button" name="cancel_categoryname" value='{"prfilter_cancel"|translate}' />
+						</div>
+						
+						{if $CategoryCount >0}
+							<table class="prfilter-category-list" cellpadding="0" cellspacing="0" width="100%">
+								{foreach from=$options item=_row}{if $_category.categoryID eq $_row.optionCategory}
+								<tr >{include file="backend/prfilter/prfilter_item.html" _row=$_row categoryes=$categoryes}</tr>
+								{/if}{/foreach}
+							</table>	
+						{/if}
+					</div>	
+				{/foreach}
+			</div>	
+			
+			<div class="prfilter-category" categoryID="0">
+				{assign var="noneCategory" value=0}{foreach from=$options item=_row}{if !$_row.optionCategory}{assign var="noneCategory" value=$noneCategory+1}{/if}{/foreach}
+				{if $noneCategory >0}
+					<a href="javascript:void(0);" class="prfilter-category-title"><img src="images_common/plus.gif" border="0"><span>{"prfilter_noncategory"|translate}</span></a>
+					<table class="prfilter-category-list" cellpadding="0" cellspacing="0" width="100%">
+						{foreach from=$options item=_row}{if !$_row.optionCategory}
+						<tr >{include file="backend/prfilter/prfilter_item.html" _row=$_row categoryes=$categoryes}</tr>
+						{/if}{/foreach}
+					</table>	
+				{else}
+					<span class="prfilter-category-title"><span>{"prfilter_noncategory"|translate}</span> <i>{"prfilter_empty2"|translate}</i></span>
+				{/if}
+			</div>	
+			
+		</div>
+		
+		<table class="prfilter-category-list prfilter-new-item" cellpadding="0" cellspacing="0">
+			<tr class="thead">
+				<td class="name">{"prfilter_captionnewcategoryname"|translate}:</td>
+				<td class="sort">{"prfilter_sortC"|translate}:</td>
+				<td class="options"></td>
+			</tr>
+			<tr>
+				<td class="name">{html_text name="name_%lang%" values="" table=$smarty.const.PRODUCT_OPTIONS_TABLE  style="width:350px"}</td>
+				<td class="sort"><input type="text" name="sort_order" value="" size="3" /></td>
+				<td class="options">
+					<a href="javascript:void(0);" class="prfilter-editoption-link" >{"prfilter_additionally"|translate}</a>
+					<div class="prfilter-editoption" >
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr><td colspan="2" class="nopadding">{"prfilter_descrition_title"|translate}</td></tr>
+							<tr><td colspan="2" class="nopadding">{html_textarea name="description_title" values='' style="width: 280px;" }</td></tr>
+							<tr><td colspan="2" class="nopadding">{"prfilter_descrition_text"|translate}</td></tr>
+							<tr><td colspan="2" class="nopadding">{html_textarea name="description_text" values='' style="width: 280px; height:63px;" }</td></tr>
+							<tr>
+								<td>{"prfilter_category"|translate}:</td>			
+								<td>
+									<select name="optionCategory" style="width:90px"  class="prfilter-categoryes-select">
+										<option value="0" >---</option>
+										{foreach from=$categoryes item=_row2}
+										<option value="{$_row2.categoryID}" >{$_row2.category_name}</option>
+										{/foreach}
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>{"prfilter_optiontype"|translate}:</td>			
+								<td>
+									<select name="optionType" style="width:90px"  class="optionType" optID="add">
+										<option value="simple" >{"prfilter_optiontype_simple"|translate}</option>
+										<option value="slider" >{"prfilter_optiontype_slider"|translate}</option>
+										<option value="single" >{"prfilter_optiontype_single"|translate}</option>
+									</select>
+								</td>
+							</tr>
+							<tr style="display:none" id="add_slider_step_tr" >
+								<td>{"prfilter_optionstep"|translate}:</td>
+								<td><input type="text" name="slider_step" value="1" size="3" style="width:50px" /></td>
+							</tr>
+							<tr style="display:none" id="add_slider_prefix_tr" >
+								<td>{"prfilter_optionstepprefix"|translate}:</td>
+								<td>{html_text name="slider_prefix" values="" table=$smarty.const.PRODUCT_OPTIONS_TABLE  style="width:50px;"}</td>
+							</tr>	
+							<tr><td colspan="2" align="center"><br><a href="javascript:void(0);"  class="prfilter-editoption-close"  >{"prfilter_closewindow"|translate}</a></td></tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+		</table>		
+		
+		<div class="prfilter-save"><input type="submit" value='{"prfilter_prfilter_save"|translate}' /></div>
+	
+	</form>
+{else}
+	{if $option_type eq 'single'}
+		{assign var="option_type_tr" value="prfilter_params_description_sin"|translate}
+	{elseif $option_type eq 'slider'}
+		{assign var="option_type_tr" value="prfilter_params_description_sli"|translate}
+	{else}
+		{assign var="option_type_tr" value="prfilter_params_description_sim"|translate}
+	{/if}
+	<p>{"prfilter_params_description"|translate|replace:'%OPTION_NAME%':$option_name|replace:'%OPTION_TYPE%':$option_type_tr}</p>
+	
+	{$MessageBlock}
+	
+	<form action="{''|set_query_html}" method="post"  enctype="multipart/form-data">
+		<input name="action" value="save_values" type="hidden" />
+		<input type="hidden" name="optionID" value="{$optionID}" />
+		<span class="prfilter-notsaved"><span>*</span>{"prfilter_info_notsaved"|translate}</span>
+		<table class="prfilter-params-list" cellpadding="0" cellspacing="0" width="100%">
+		{section name=i loop=$values}
+		<tr >
+			<td class="name">
+				{html_text dbfield="option_value" name="option_value_%lang%_`$values[i].variantID`" values=$values[i] style="width:350px"}
+			</td>
+			<td class="sort">
+				<input type="text" name="sort_order_{$values[i].variantID}" value="{$values[i].sort_order}" size="3" />
+			</td>
+			<td class="options">
+				<a href="javascript:void(0);" class="prfilter-editoption-link" >{"prfilter_additionally"|translate}</a>
+				<div class="prfilter-editoption" >
+					<table cellpadding="0" cellspacing="0" width="100%">
+						<tr><td colspan="2" class="nopadding">{'prfilter_descrition_title'|translate}</td></tr>
+						<tr><td colspan="2" class="nopadding">{html_textarea dbfield="description_title" name="description_title_%lang%_`$values[i].variantID`" values=$values[i] style="width:280px"}</td></tr>			
+						<tr><td colspan="2" class="nopadding">{'prfilter_descrition_text'|translate}</td></tr>
+						<tr><td colspan="2" class="nopadding">{html_textarea dbfield="description_text" name="description_text_%lang%_`$values[i].variantID`" values=$values[i] style="width:280px; height:63px;"}</td></tr>
+						{if $option_type eq 'simple'}
+						<tr><td>{'prfilter_remomended'|translate}:</td><td class="prfilter-editoption-td">
+							<select name="recomended_{$values[i].variantID}"  style="width:50px">
+								<option value="1" {if $values[i].recomended eq '1'}selected{/if}>{'prfilter_yes'|translate}</option>
+								<option value="0" {if $values[i].recomended eq '0'}selected{/if}>{'prfilter_no'|translate}</option>
+							</select>
+						</td></tr>		
+						{/if}
+						{if $option_type ne 'slider'}
+						{if $values[i].picture ne ""}
+						<tr><td>{'prfilter_image'|translate}</td><td>	
+							<a href='{"&action=delete_picture&variantID=`$values[i].variantID`"|set_query_html}' class="confirm_action" title='{"cnfrm_delete"|translate}' style="text-decoration:underline;">{'prfilter_image_remove'|translate}</a>
+						</td></tr><tr><td></td><td><div class="prfilter-imageedit">
+							<div class="prfilter-editoption-image"><img src="{$smarty.const.URL_PRODUCTS_PICTURES}/filters/{$values[i].picture|escape:'url'}" /></div>
+						</div></td></tr>
+						{/if}
+						<tr><td colspan="2">{if $values[i].picture eq ""}{'prfilter_image'|translate}<br>{/if}
+							<input type="file" name="image_{$values[i].variantID}" width=50 accept="image/png, image/jpeg"/>
+							<div class="prfilter-notice">
+								{'prfilter_image_description'|translate}
+							</div>
+						</td></tr>	
+						{/if}
+						<tr><td colspan="2" align="center"><br><br><a href="javascript:void(0);"  class="prfilter-editoption-close"  >{'prfilter_closewindow'|translate}</a></td></tr>
+					</table>
+				</div>
+			</td>
+			{if $option_type ne 'slider'}
+			<td class="variants">
+				<a href="{"&optionID=`$optionID`&variantID=`$values[i].variantID`"|set_query_html}&excluded=yep" class="prfilter-editvariants-link">{'prfilter_excluded_params'|translate} ({$values[i].count_excluded|default:0})</a>
+			</td>	
+			<td class="info-image">
+				{if $values[i].picture ne ""}<div class="prfilter-info-image"  title="{'prfilter_yesimage'|translate}"><img src="{$smarty.const.URL_PRODUCTS_PICTURES}/filters/{$values[i].picture|escape:'url'}" /></div>
+				{else}<div class="prfilter-info-image prfilter-info-image-empty">{'prfilter_noimage'|translate}</div>{/if}
+			</td>
+			{/if}
+			<td class="info">
+				{if $option_type eq 'simple'}<div class="prfilter-icon prfilter-icon-{if $values[i].recomended ne '1'}not{/if}recomended" title='{"prfilter_remomended"|translate}: {if $values[i].recomended eq "1"}{"prfilter_yes"|translate}{else}{"prfilter_no"|translate}{/if}'></div>{/if}
+				{if $values[i].description_title }
+					<div class="prfilter-icon prfilter-icon-title" title='{"prfilter_description_titleyes"|translate}'></div>
+				{/if}
+				{if $values[i].description_text }
+					<div class="prfilter-icon prfilter-icon-desc" title='{"prfilter_description_textyes"|translate}'></div>
+				{/if}
+			</td>
+			<td class="remove">
+				<a href='{"&action=delete_variant&variantID=`$values[i].variantID`"|set_query_html}' class="confirm_action" title='{"cnfrm_delete"|translate}'><img alt='{"btn_delete"|translate}' src="images_common/remove.gif" /></a>
+			</td>			
+		</tr>	
+		{sectionelse}<tr ><td class="empty">{"prfilter_empty"|translate}</td></tr>			
+		{/section}		
+		</table>		
+		
+		<table class="prfilter-category-list prfilter-new-item" cellpadding="0" cellspacing="0">
+			<tr class="thead">
+				<td class="name">{"prfilter_captionnewparam"|translate}:</td>
+				<td class="sort">{"prfilter_sortC"|translate}:</td>
+				<td class="options"></td>
+			</tr>
+			<tr>
+				<td class="name">{html_text name="option_value" values=""   style="width:350px"}</td>
+				<td class="sort"><input type="text" name="sort_order" value="" size="3" /></td>
+				<td class="options">
+					<a href="javascript:void(0);" class="prfilter-editoption-link" >{"prfilter_additionally"|translate}</a>
+					<div class="prfilter-editoption" >
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr><td colspan="2" class="nopadding">{'prfilter_descrition_title'|translate}</td></tr>
+							<tr><td colspan="2" class="nopadding">{html_textarea name="description_title" values='' style="width: 280px;" }</td></tr>
+							<tr><td colspan="2" class="nopadding">{'prfilter_descrition_text'|translate}</td></tr>
+							<tr><td colspan="2" class="nopadding">{html_textarea name="description_text" values='' style="width: 280px; height:63px;" }</td></tr>
+							{if $option_type eq 'simple'}
+							<tr><td>{'prfilter_remomended'|translate}</td><td>
+									<select name="recomended"  style="width:90px">
+										<option value="1">{'prfilter_yes'|translate}</option>
+										<option value="0">{'prfilter_no'|translate}</option>
+									</select>
+								</td>
+							</tr>
+							{/if}
+							{if $option_type ne 'slider'}
+							<tr>
+								<td colspan="2">
+									{'prfilter_image'|translate}<br>
+									<input type="file" name="image" accept="image/png, image/jpeg" />
+									<div class="prfilter-notice">{'prfilter_image_description'|translate}</div>
+								</td>
+							</tr>
+							{/if}
+							<tr><td colspan="2" align="center"><br><a href="javascript:void(0);"  class="prfilter-editoption-close"  >{'prfilter_closewindow'|translate}</a></td></tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+		</table>	
+		
+		<div class="prfilter-save"><input type="submit" value='{"prfilter_prfilter_save"|translate}' /></div>
+		
+	</form>
+{/if}

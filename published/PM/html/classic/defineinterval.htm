@@ -1,0 +1,147 @@
+<html>
+<head>
+<title> 
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="<? "../classic/stylesets/"|cat:$styleSet|cat:"/pm_styles.css" ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+
+<script language="JavaScript">
+<!--
+
+	function MM_findObj(n, d) { //v4.0
+		var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+		d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+		if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+		for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+		if(!x && document.getElementById) x=document.getElementById(n); return x;
+	}
+
+	function setBoundsMode( control, value )
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ ) 
+			if (thisForm.elements[i].type == 'radio')
+				if ( thisForm.elements[i].name == control && thisForm.elements[i].value == value ) {
+					thisForm.elements[i].checked = true;
+					break;
+				}
+	}
+
+//-->
+</script>
+
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form" >
+  <? include file="../../../common/html/classic/header.htm"?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+
+	<table cellspacing=0 cellpadding=0 border=0>
+		<tr>
+			<td valign=top>
+				<table cellspacing=0 cellpadding=0 border=0>
+					<tr>
+						<td><? $pmStrings.dvi_start_label|cat:":" ?></td>
+					</tr>
+					<tr>
+						<td style="padding-left: 20px; padding-top: 5px">
+							<table cellspacing=0 cellpadding=0 border=0>
+								<tr>
+									<td><input type=radio name=startMode value=0 <? switchedOutput val=$startMode true_val=0 str1="checked " ?>></td>
+									<td>&nbsp;<? $pmStrings.dvi_firstmonth_label ?></td>
+								</tr>
+								<tr>
+									<td><input type=radio name=startMode value=1 <? switchedOutput val=$startMode true_val=1 str1="checked " ?>></td>
+									<td><? conditionalOutput invalidField=$invalidField field=start text=#invalidFieldHighlight# ?>&nbsp;
+										<select name=startDate_month onChange="setBoundsMode( 'startMode', 1 );">
+											<? html_options values=$monthList_ids selected=$startDate_month output=$monthList_names ?>
+										</select>&nbsp;
+										<select name=startDate_year onChange="setBoundsMode( 'startMode', 1 );">
+											<? html_options values=$years selected=$startDate_year output=$years ?>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td><? $pmStrings.dvi_end_label|cat:":" ?></td>
+					</tr>
+					<tr>
+						<td style="padding-left: 20px; padding-top: 5px">
+							<table cellspacing=0 cellpadding=0 border=0>
+								<tr>
+									<td><input type=radio name=endMode value=0 <? switchedOutput val=$endMode true_val=0 str1="checked " ?>></td>
+									<td>&nbsp;<? $pmStrings.dvi_endmonth_label ?></td>
+								</tr>
+								<tr>
+									<td><input type=radio name=endMode value=1 <? switchedOutput val=$endMode true_val=1 str1="checked " ?>></td>
+									<td><? conditionalOutput invalidField=$invalidField field=end text=#invalidFieldHighlight# ?>&nbsp;
+										<select name=endDate_month onChange="setBoundsMode( 'endMode', 1 );">
+											<? html_options values=$monthList_ids selected=$endDate_month output=$monthList_names ?>
+										</select>&nbsp;
+										<select name=endDate_year onChange="setBoundsMode( 'endMode', 1 );">
+											<? html_options values=$years selected=$endDate_year output=$years ?>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				<table>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_ok_btn formname="form" space_right=10 ?>
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"?>
+			</td>
+			<td width=20 class=list_rightBorder>&nbsp;</td>
+			<td valign=top>
+				<table cellspacing=0 cellpadding=0 border=0>
+					<tr>
+						<td colspan=2 class=formSection><? $pmStrings.dvi_recdefint_title ?>&nbsp;</td>
+					</tr>
+					<? foreach from=$intervals key=int item=interval ?>
+						<tr>
+							<td><input type=checkbox name="int[<? $int ?>]" value=1></td>
+							<td><nobr>&nbsp;<? $interval.name ?>&nbsp;</nobr></td>
+						</tr>
+					<? foreachelse ?>
+						<tr>
+							<td colspan=2>&nbsp;</td>
+						</tr>
+						<tr>
+							<td colspan=2 align=center><nobr><? $pmStrings.dvi_nointervals_text ?></nobr></td>
+						</tr>						
+					<? /foreach ?>
+					<tr>
+						<td colspan=2 align=right>&nbsp;</td>
+					</tr>
+					<? if $intervalsNum ?>
+						<tr>
+							<td colspan=2><? include file="../../../common/html/classic/button.htm" align="left" name="deletebtn" caption=$kernelStrings.app_delete_btn formname="form" space_left=5 ?></td>
+						</tr>
+					<? /if ?>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+  <? /if ?>
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="edited" value=1>
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

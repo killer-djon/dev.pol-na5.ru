@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script language="JavaScript">
+<!--
+function focusControl(objName) {
+	 var obj = MMM_findObj(objName);
+	 if (obj)
+		obj.focus( );
+}
+
+function MMM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MMM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function confirmDelete()
+{
+	return confirm( "<? $mmStrings.amn_screen_messagedel_message ?>" );
+}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="initEditor();" onunload="update_textarea()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+  <? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+  <? include file="../../../common/html/classic/toppanel_fix.htm" ?>
+  <? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+  <? if !$fatalError ?>
+  <table border="0" cellspacing="0" cellpadding="0" width=80%>
+  <tr>
+    <td>
+		<table border="0" cellspacing="2" cellpadding="0" width="99%" align=center>
+		  <tr>
+            <td valign="top" class="label">
+              <? conditionalOutput invalidField=$invalidField field=MMM_SUBJECT text=#invalidFieldHighlight#  ?>
+              <? $mmStrings.app_subject_field|cat:": " ?>
+            </td>
+            <td><input name="messageData[MMM_SUBJECT]" type="text" class="control" value="<? $messageData.MMM_SUBJECT ?>" maxlength="50" style="width: 99%"></td>
+          </tr>
+			<tr>
+	            <td valign="top" class="label"><nobr><? $mmStrings.amn_message_type_label ?>:</nobr></td>
+				<td>
+					<? include file="../../../MM/html/classic/picker.htm" pickArray=$msgTypeNames arrayName=messageData selName="MSGTYPE" value="html" ?>
+				</td>
+			</tr>
+          <tr>
+            <td valign="top" class="label">
+              <? conditionalOutput invalidField=$invalidField field=MMM_CONTENT text=#invalidFieldHighlight#  ?>
+              <? $mmStrings.app_content_field|cat:": " ?>
+            </td>
+
+            
+            <td width="100%">
+            <? if $messageData.MMM_STATUS == 0 || $messageData.MMM_STATUS == 100 ?>
+            	<textarea name="messageData[MMM_CONTENT]" id="messageData[MMM_CONTENT]" class="control" rows="10" style="width: 99%"><? $messageData.MMM_CONTENT|htmlsafe_textarea:$edited ?></textarea>
+           	<? else ?>
+				<? $messageData.MMM_CONTENT|htmlsafe_textarea:$edited ?>
+           	<? /if ?>
+            </td>
+          </tr>
+
+          <? if $action == "new" ?>
+          <tr>
+          <td></td>
+          <td>
+				<input type="radio" name="messageData[MMM_STATUS]" value="0" checked>&nbsp;<? $mmStrings.app_draft_status ?><br>
+				<input type="radio" name="messageData[MMM_STATUS]" value="100">&nbsp;<? $mmStrings.app_template_status ?><br>
+          </td>
+          </tr>  
+		  <? /if ?>
+        </table>
+		<BR><BR>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>
+					  <? if $messageData.MMM_STATUS == 0 ?>
+						  <? include file="../../../common/html/classic/button.htm" align="left" name="sendbtn" caption=$mmStrings.app_send_btn formname="form" space_right=10  onClick="onSubmitEditor();"?>
+					  <? /if ?>
+
+	                  <? include file="../../../common/html/classic/button.htm" align="left" name="savebtn" caption=$kernelStrings.app_save_btn formname="form" space_left=5 space_right=10  onClick="onSubmitEditor();"?>
+					 
+					  <? if $messageData.MMM_STATUS == 0 && $action != "new"?>
+						  <? include file="../../../common/html/classic/button.htm" align="left" name="savetplbtn" caption=$mmStrings.amn_screen_saveastpl_btn formname="form" space_right=10  onClick="onSubmitEditor();"?>
+					  <? /if ?>
+					  <? if $messageData.MMM_STATUS != 0 ?>
+						  <? include file="../../../common/html/classic/button.htm" align="left" name="composefromthisbtn" caption=$mmStrings.amn_screen_composenew_btn formname="form" space_right=10  onClick="onSubmitEditor();"?>
+					  <? /if ?>
+					  
+                    <? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_cancel_btn formname="form"  onClick="onSubmitEditor();"?>
+                  </td>
+                  <td align="right">
+				  	<? if $action == 'edit' ?>
+                    <? include file="../../../common/html/classic/button.htm" align="right" name="deleteNoteBtn" caption=$mmStrings.amn_screen_delnote_btn formname="form" onClick="return confirmDelete()"?>
+					<? /if ?>
+                  </td>
+                </tr>
+              </table>
+	   </td>
+    </tr>
+  </table>
+  <? /if ?>
+  <input type="hidden" name="action" value="<?$action?>">
+  <input type="hidden" name="btndummy">
+  <input type="hidden" name="edited" value="1">
+  <input type="hidden" name="MMF_ID" value="<?$MMF_ID?>">
+  <input type="hidden" name="currentPage" value="<?$currentPage?>">
+  <input name="PAGE_ATTACHED_FILES" type="hidden" value="<? $PAGE_ATTACHED_FILES ?>">
+  <input name="PAGE_DELETED_FILES" type="hidden" value="<? $PAGE_DELETED_FILES?>">
+  <input name="RECORD_FILES" type="hidden" value="<? $RECORD_FILES ?>">
+  <input name="messageData[MMM_ID]" type="hidden" value="<? $messageData.MMM_ID ?>">
+  <input type="hidden" name="searchString" value="<?$searchString?>">
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

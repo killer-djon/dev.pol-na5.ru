@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>[`Bulk editing`]</title>
+<link rel="stylesheet" type="text/css" href="{{$url.css}}users-common.css" />
+<link rel="stylesheet" type="text/css" href="{{$url.common}}css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="{{$url.common}}css/editablegrid.css" />
+<script type="text/javascript" src="{{$url.common}}js/jquery.js"></script>
+{{jscombine file="`$url.js`contact-multiedit.js"}}
+	{{$url.common}}js/datepicker.js
+	{{$url.common}}js/wbs-common.js
+	{{$url.common}}js/jquery.tablesorter.js
+	{{$url.common}}js/jquery.wbs.popup.js
+	{{$url.common}}js/jquery.wbs.editablegrid.js
+{{/jscombine}}
+
+<script type="text/javascript">
+var getInputValue = function(node){ 
+	var selected =  $('option.selected',$(node));
+	if (selected.length>0) {
+    	return $(selected).val().toString();
+    } else {
+		var input =  $(':input:first',$(node));
+		if (input.length>0) {
+	    	return $(':input:first',$(node)).val().toString();
+	    } else {
+			return '';
+	    }
+    }
+} 
+$(document).ready(function() {
+	var fields = $();
+	$('#batchedit').html('<span style="margin-left:25px" class="loading-msg">[`Loading...`]</span><img src="{{$url.common}}img/loading.gif" />');
+	
+	$.get("index.php?mod=contacts&act=multieditlist&contacts={{$contacts}}&ajax=1", {} , function (response) {
+		if (response.status == 'OK') {
+			var contacts = response.data.contacts;
+			$.get("index.php?mod=contacts&act=multieditfields&f={{$f}}&ajax=1", {} , function (response) {
+				if (response.status == 'OK') {
+					$('#batchedit').html('');
+					var all_fields = response.data.all_fields;
+					var visible_fields = response.data.visible_fields;
+					var hidden_fields = response.data.hidden_fields;
+				    
+					fields.editableGrid({
+						containerId: 'batchedit',
+						save_action_url: 'index.php?mod=contacts&act=multisave&ajax=1',
+						"save_msg": '[`Save changes`]',
+						"save_fields_msg": '[`Save`]',
+						"apply_msg": '[`Apply`]',
+						"cancel_msg": '[`Cancel`]',
+						"close_msg": '[`Close`]',
+						"delete_msg": '[`Delete`]',
+						"replace_msg": '[`Bulk replacement in columns`]',
+						"invalid_email_msg": '[`Incorrect email`]',
+						"invalid_url_msg": '[`Invalid URL`]',
+						"invalid_date_msg": '[`Incorrect date`]',
+						"required_field_msg": '[`Required field`]',
+						"customize_columns_msg": '[`Customize visible columns`]',
+						"visible_columns_msg": '[`Visible columns`]',
+						"hidden_columns_msg": '[`Hidden columns`]',
+						"redirect_msg": '[`Saving was successful. Redirecting to contacts list, please wait...`]',
+						"error_msg": '[`Please correct errors.`]',
+						'replace_info_msg': '[`For bulk replacement in a whole column, enter a new value and click "Apply".`]',
+						"all_fields": all_fields,
+						"visible_fields": visible_fields,
+						"hidden_fields": hidden_fields,
+						"contacts": contacts,
+						saveCallback: function(message){
+							if (parent && parent.document.app) {
+								 	parent.document.app.table.reloadView(); 
+								 	parent.document.app.closeSubframe(); 
+							} else {
+								 	location.href = "index.php";
+							}
+						},
+						callback: function(){
+							$(".DateField").datepicker({
+								  yearRange: '1900:2050', 
+								  closeAtTop: false, 
+								  buttonImage: "{{$url.common}}img/calendar.gif", 
+								  buttonImageOnly: true, 
+								  showOn: "button", 
+								  showOtherMonths: true, 
+								  firstDay: 1, 
+								  dateFormat: '{{$dateFormat}}'
+							});
+							$('#batchedit table').tablesorter({
+								textExtraction: getInputValue, 
+								dateFormat: '{{$dateFormat}}',
+								widgets: ['zebra']
+							});
+						}
+					});
+					fields.init();
+					$('#change_fields_button').click(function(){
+						fields.changeFields();
+					});
+					$('#multi_edit_button').click(function(){
+						fields.multiEdit();
+					});
+					/*$('#add_row_button').click(function(){
+						fields.addRow();
+					});*/
+				}
+			}, "json");
+		}
+	}, "json");
+	
+	$('#back_url').click(function(){
+		 if (parent && parent.document.app) {
+		 	parent.document.app.table.reloadView(); 
+		 	parent.document.app.closeSubframe(); 
+		 } else {
+		 	location.href = "index.php";
+		 }
+	});
+});
+</script>
+
+</head>
+<body>
+<div id="header">
+	<div id="toolbar_new" class="contact-tools">
+	  <div class="backlink" style="width:175px; float:left">
+	    <span>&larr;</span><a href="index.php" id="back_url">[`Back`]</a>
+	  </div>
+	  <div id="info-message" style="margin-left:175px; padding-top: 10px; display:none">
+	    <div class="info-message with-close"><div class="info-message-close"><a onClick="jQuery('#info-message div.info-message').hide();" href="javascript:void(0)">[`Close`]</a></div> [`All changes are automatically applied`]</div>
+	  </div>
+	  <br style="clear: left" />  		  
+	</div>
+</div>
+<div id="content" style="overflow:auto">
+	<h2>[`Bulk editing`]</h2>
+	<div id="container">
+	<div class="change_fields"><a href="javascript:void(0)" id="change_fields_button">[`Customize visible columns`]</a></div>
+    <div class="multi_edit"><a href="javascript:void(0)" id="multi_edit_button">[`Bulk replacement in columns`]</a></div>
+	<div style="clear:both"></div>
+
+		<form id="batchedit_form">
+			<div id="batchedit"></div>
+		</form>
+	</div>
+</div>
+<div id="popup" style="display: none;" class="wbs-iframe-popup wbs-dlg">
+	<div class="content" style="display: none; height: 100%;">		
+	</div>
+	<div id="progress" style="display: none;">
+		<img src="/published/CM/img/ajax-loader.gif" />
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	var resize = function () {
+		$("#content").height($(window).height() - $("#header").height());
+	};
+	$(document).ready(resize);
+	$(window).resize(resize);
+</script>
+
+</body>
+</html>

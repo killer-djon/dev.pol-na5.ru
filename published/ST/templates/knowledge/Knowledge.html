@@ -1,0 +1,535 @@
+<style>
+/*#kb_content*/
+ul.treeCatalogRow {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+ul.treeCatalogRow li {
+    list-style: none
+}
+
+.kb-header { height:42px; position:relative; padding-left:58px; line-height:42px;background:lemonchiffon; border-bottom:solid 1px #f5f0c6; margin-bottom:5px; font-weight:bold; color:#787878; font-size:12pt;}
+.kb-close { position:absolute; right:5px; top:5px;}
+.kb-icon { position:absolute; left:17px; top:5px;}
+
+.kbtable {position:relative; top:-1px; /*margin-bottom:-2px;*/}
+
+.kb_subheader {padding:10px 15px 0 15px; white-space:nowrap; border-bottom:1px solid #cccccc; height:32px;}
+.kb_story {padding:15px 15px 5px 15px; border-bottom:1px solid #cccccc; margin-bottom:10px; font-size:9pt;}
+.kb_caption {color:#5A6670; position:relative; top:5px;}
+.kb_control {padding-left:20px;}
+
+.highlight {background: gold}
+.r_btn_close {float:right; margin:5px;}
+
+.error_div {border: 2px solid indianred; padding: 5px 10px; line-height: 25px}
+.t2,.t3{
+	background:none repeat scroll 0 0 #F5F9FC;
+	border:1px solid #DAE1E5;
+	padding:10px;
+}
+#containerPlus_placeholder {position:absolute}
+#kb_content {
+    margin: 0px;
+    /*height:500px;
+    width:100%;*/
+    background-color: #fff;
+    text-align:left !important;
+    padding:0;
+}
+#kb_content iframe { }
+#kb_content, #kb_content td {
+    font-family:'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size: 11pt;
+    font-weight: normal;
+    color: #000000;
+    text-align:left;
+}
+#kb_content th, {
+    padding: 10px;
+}
+#kb_content table {border:none;}
+#kb_content td {padding:3px 4px; border:none;}
+#kb_content a {
+    /*color: #0099CC;*/
+    text-decoration: none;
+    position:relative;
+}
+#kb_content a:hover {
+    text-decoration: underline;
+}
+#kb_content .bookName {
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size:20pt;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    margin:0px 0 10px;
+}
+#kb_content .tocHdr {
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size: medium;
+    color:#595959;
+    background-color: #FFFFFF;
+    font-weight: normal;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 30px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+#kb_content .pageTitle {
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size: medium;
+    color: #FF6600;
+    background-color: #FFFFFF;
+    font-weight: normal;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 13px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#kb_content .tocLink {
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size:13px;
+    color: #0000ee;
+    background-color: #FFFFFF;
+    font-weight: normal;
+    text-align: right;
+    text-decoration:underline;
+    padding:0 0 0 10px;
+}
+#kb_content .tocLink a {background:url(../css/images/arr_tocontenttabl.gif) left 6px no-repeat;}
+#kb_content .treeCatalogRow {
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size: 11pt;
+    color: #0000ee;
+    background-color: #FFFFFF;
+    font-weight: normal;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+}
+#kb_content .treeCatalogRowCurrent {
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size: x-small;
+    color: ;
+    background-color: ;
+    font-weight: bolder;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+}
+#kb_content .treeCatalogRow a {
+    text-decoration:underline;
+    line-height:100%;
+}
+#kb_content .treeCatalogRowCurrent a {
+    color: #0000ee
+}
+#kb_content h1 {
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size: x-large;
+    color: #006699;
+    background-color: #FFFFFF;
+    font-weight: normal;
+    margin:0.7em 0;
+}
+
+#kb_content h2 {
+    font-family:'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size: 16pt;
+    color:#CC3300;
+    font-weight: bold;
+    margin:0.7em 0;
+}
+
+#kb_content h3 {
+    font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    font-size: 13pt;
+    color:#000;
+    background-color: #FFFFFF;
+    font-weight:bold;
+    margin:0.5em 0;
+
+
+}
+#kb_content hr {display:none;}
+#kb_content h4, h5, h6, h7, p, li {line-height:1.2em; margin:0.3em 0;}
+#kb_content blockquote {/*background:#ffebd7 url(../images/info.gif) 20px center no-repeat;*/ margin:10px 20px;}
+#kb_content ul {margin-left:30px; padding-left:0; list-style-type:disc; list-style-position:inside;}
+#kb_content p.tocLink.level3 {display:none;}
+#kb_content ol {list-style-position:inside; list-style-type:decimal;}
+#kb_content .page_light_table {text-align:center; border:solid 1px #aaa; border-collapse:collapse;}
+#kb_content .page_light_table td, .page_light_table th {border:solid 1px #aaa;}
+
+</style>
+<div class="ui-block-content" id="kb-wrapper">
+            <div class="kb-header">
+            	<img src="img/pages32.png" class="kb-icon"/>[`Knowledge Base`]
+                <button class="kb-close">[`Close`]</button>
+			</div>
+            
+        <div class="tabs">
+            <ul class="tabs-nav" style="margin-left:20px;">
+                <li rel="t1" id="browse-tab" class="tabs-selected"><a href="#">[`Browse`]</a></li>
+                <li rel="t2" id="search-tab"><a href="#">[`Search`]</a></li>
+                <li rel="t3" id="add-tab"><a href="#">[`Add a page`]</a></li>
+            </ul>
+        </div>
+            <div class="tabs-body">
+            <div class="t1">
+
+            <div class="kb_story"><b><a href="#" onclick="resetKbContent()">[`Main`]</a></b></div>
+            <div id="kb_content">
+                <div class="kb_page">
+                {{foreach from=$books item=book}}
+                    <div class="source_row">
+                        <a href="#" class="{{if $book.type eq 0}}outer_link{{/if}}" onclick="getFrontSource('{{if $book.type eq 0}}http{{else}}QP{{/if}}', '{{$book.data}}', '{{$book.title}}')">{{$book.title}}</a>
+                    </div>
+                {{/foreach}}
+				</div>
+            </div>
+			
+            </div>
+            <div class="t2" style="display:none">
+
+                <table width="100%">
+                    <tr><td>
+                        <label for="kb_search_select">[`Select Knowledge Base`]: </label>
+                        <select id="kb_search_select">
+                           <option value="{{foreach from=$books item=book}}{{if $book.type eq 1}}{{$book.search}},{{/if}}{{/foreach}}">[`All internal Knowledge Bases`]</option>
+                        {{foreach from=$books item=book}}
+						   {{if $book.type eq 1}}
+                           <option value="{{$book.search}}">{{$book.title}}</option>
+						   {{/if}}
+                        {{/foreach}}
+                        {{foreach from=$books item=book}}
+                           {{if $book.type eq 0}}
+                           <option value="!{{$book.search}}">{{$book.title}} (*)</option>
+                           {{/if}}
+                        {{/foreach}}
+                        </select>
+                    </td></tr>
+					<tr><td>
+                        <label for="kb_search_input">[`Search text`]: </label>
+                        <input type="text" id="kb_search_input" style="width:100%"/>
+                        <input type="hidden" id="kbPage" value="0"/>
+                    </td></tr>
+                    <tr><td id="search_btn">
+                        <input type="button" id="kb_search_button" value="[`Search`]"/>
+                    </td></tr>
+                </table>
+
+                <div id="kb_search_content" style="margin-top:10px;"></div>
+
+            </div>
+
+            <div class="t3" style="display:none">
+                <div id="kb_add_page">
+                    <div class="kb_row">
+                        [`Add answer on frequently asked questions to Knowledge Base`].
+                    </div>
+                    <div class="kb_row">
+                        [`Knowledge Base Book`]: &nbsp;
+                        <select id="kb_select">
+                           <option value="0">&lt;select&gt;</option>
+                        {{foreach from=$books item=book}}
+						   {{if $book.type eq 1}}
+                           <option value="{{$book.data}}">{{$book.title}}</option>
+                           {{/if}}
+                        {{/foreach}}
+                        </select>
+                    </div>
+                    <div class="kb_row">
+                        [`Title`]:
+                    </div>
+                    <div class="kb_row">
+                        <input type="text" id="kb_title" style="width:98%" />
+                    </div>
+                    <div class="kb_row">
+                        [`Text`]
+                    </div>
+                    <div class="kb_row">
+                        <div id="kb_add_text" rows="10" style="width: 98%"></div>
+                    </div>
+                    <div class="kb_row">
+                        <input type="checkbox" id="kb_published" checked>
+                        <label for="kbPublished">[`Check this page as "Published"`]</label>
+                    </div>
+                    <div class="kb_row">
+                        <input type="button" value="[`Send`]" onclick="addKbPage()" />
+                    </div>
+                </div>
+                
+                <div id="kb_page_added" style="display:none">
+                    <div class="kb_row">
+                        [`The page has been successfully added`].
+                        <br /><br />
+                        <input type="button" value="[`Add another page`]" onclick="
+                            $('#kb_page_added').hide(); $('#kb_add_page').show();" />
+                    </div>
+                </div>
+            </div>
+            </div>
+</div>
+<script>
+
+    var currentStory = Array();
+	$('#kb_add_text').wbsEditor({
+        fill:true, 
+        withFrame:true,
+        menuOffset:true, 
+        name:'text'
+    });
+	function processStory(type, id, label) {
+
+	    var len = currentStory.length;
+	    if(!currentStory[len-1] || currentStory[len-1]['id'] != id) {
+	
+	        var text = '<b><a href="#" onclick="resetKbContent()">[`Main`]</a></b>';
+	
+	        if(id) {
+	            var tmp = Array();
+	            for(i in currentStory) {
+	                if(currentStory[i]['id'] == id) {
+	                    break;
+	                } else {
+	                    tmp[i] = currentStory[i];
+	                    text += ' &gt; <a href="#" onclick="getFrontSource(\'' +
+	                        currentStory[i]['type'] + '\', \'' +
+	                        currentStory[i]['id'] + '\', \'' +
+	                        currentStory[i]['label'] +  '\')">' +
+	                        currentStory[i]['label'] + '</a>';
+	                }
+	            }
+	            currentStory = tmp;
+	            currentStory[len] = {'type': type, 'id': id, 'label': label};
+	
+	            text += '<span> &gt; ' + label + '</span>';
+	        }
+	        $('.kb_story').html(text);
+	    }
+	    $('#kb_wrapper').scrollTop(0);
+	}
+	
+	function resetKbContent() {
+	    $('#kb_content').html(kb_buffer);
+	    processStory(false, false, false);
+	    currentStory = Array();
+	    $('#kbPage').attr('value', 0);
+	    $('#ticketPage').attr('value', 0);
+	
+	    $('#kb_search_input').attr('value', '');
+	    $('#kb_search_content').html('');
+	    $('#kb_search_input').focus();
+	    
+	    $('div.t2').hide();
+	    $('div.t3').hide();
+	    $('div.t1').show();
+	    $('ul.tabs.tabs1 li').removeClass('tab-current');
+	    $('ul.tabs.tabs1 li.t1').addClass('tab-current');
+	}
+	
+	$('.tabs-nav li').click(function(){
+		$('.tabs-body > div').hide();
+		$('.'+$(this).attr('rel')).show();
+	})
+    $('.kb-close').button({text: false, icons: {
+        primary: 'ui-icon-closethick'
+    }}).click(function(){
+        $("button.knowledge").click();
+    })
+var book_id = 0;
+function getFrontSource(type, id, label) {
+
+    var text = '', link ='';
+    switch(type) {
+        case 'http':
+            text = '<iframe src="' + id + '" style="width:100%; height:100%"/>';
+            $('#kb_content').height($(window).height() - $('#kb_content').offset().top -10);
+            $('#kb_content').html(text);
+            processStory(type, id, label);
+            break;
+        case 'QP':
+       $.wbs.ajaxRequest({
+            url: '?m=knowledge&act=book',
+            data: {'id': id},
+            requestMethod: 'post',
+            callback: function(response) {
+                text = '<div class="kb_page">';
+                if(response[0] != '') {
+                    for(var i in response) {
+                        var offset = 20 * (response[i]['QPF_ID'].split('.').length - 2);
+                        text +=
+                            '<div class="source_row" style="padding-left:' + offset + 'px">' +
+                            '<a href="#" onclick="getFrontSource(\'page\', \'' +
+                            response[i]['QPB_ID'] + '~' + response[i]['QPF_TEXTID'] + '\', \'' +
+                            response[i]['QPF_NAME'] +'\')">' +
+                            response[i]['QPF_NAME'] + '</a></div>';
+                    }
+                } else {
+                    text += '<div class="src_row">&lt; [`no pages found`] &gt;</div>';
+                }
+                text += '</div>';
+                $('#kb_content').html(text);
+                processStory(type, id, label);
+            }
+        });
+            break;
+
+        case 'page':
+            var pageIds = id.split('~');
+
+	       $.wbs.ajaxRequest({
+	            url: '?m=knowledge&act=page',
+                requestMethod: 'post',
+	            data: {'QPB_ID': pageIds[0], 'QPF_TEXTID': pageIds[1]},
+	            callback: function(response) {
+                    if(response != '') {
+                        var attachments = '';
+                        book_id = pageIds[0];
+                       /* for(var i=0; i<response['QPF_ATTACHMENT'].length; i++) {
+                            attachments += '<span style="white-space:nowrap">' +
+                                '<input type="checkbox" id="cb_' + i + '" />' +
+                                '<a href="' + link + '&getQPAttach=1&id=' + id +
+                                '~' + response['QPF_ATTACHMENT'][i]['encodedName'] + '">' +
+                                response['QPF_ATTACHMENT'][i]['name'] +
+                                '</a> (' + response['QPF_ATTACHMENT'][i]['size'] + ')</span> &nbsp; ';
+                        }
+                        if(attachments) {
+                            attachments = '<b class="text_gray">[`Attachments`]:</b> ' + attachments;
+                        }*/
+
+                        $('#kb_content').html(
+                            '<div class="kb_page">' +
+                            '<div class="src_row">' +
+                            '<div class="src_text" id="src_text">' + response['QPF_CONTENT'] +
+                            '</div></div>' + attachments +
+                            '</div>'
+                        );
+                        processStory('page', id, response['QPF_NAME']);
+
+                        $('#kb_text').html(response['QPF_TEXT']);
+
+                        kb_attachments = response['QPF_ATTACHMENT'];
+                    }
+                }
+            });
+            break;
+
+        case 'search':
+
+            var kbPage = $('#kbPage').attr('value'),
+		     req = id.split('~')[0], 
+			 val = id.split('~')[1];
+            
+            currentStory = Array();
+            if (id.substr(0,1)!='!') {
+	            $.wbs.ajaxRequest({
+	                url: '?m=knowledge&act=search',
+	                requestMethod: 'post',
+	                data: {'searchString': id, 'kbPage': kbPage},
+	                callback: function(response) {
+                        $('#browse-tab a').click();
+	                    if(response['count']) {
+	                        var text = '';
+	                        for(var i in response['rows']) {
+	                            text +=
+	                                '<div class="src_row">' +
+	                                '<span class="src_name"><a href="#" onclick="' +
+	                                'getFrontSource(\'page\', \'' +
+	                                response['rows'][i]['QPB_ID'] + '~' + 
+	                                response['rows'][i]['QPF_TEXTID'] + '\', \'' +
+	                                response['rows'][i]['QPF_NAME'] + '\', \'search\')">' +
+	                                response['rows'][i]['name'] + '</a></span>' +
+	                                '<div class="src_text">' + response['rows'][i]['text'] + '</div></div>';
+	                        }
+	                        if(response['count'] > response['limit'] &&
+	                            ((++kbPage) * response['limit'] < response['count'])) {
+	
+	                            text += '<div class="src_row"><a href="#" onclick="return getNextPage(\''+type+'\', \''+id+'\', \''+label+'\')">[`Show more...`]</a></div>';
+	                        }
+	                    } else {
+	                        text = '<div class="err_row">&lt; [`no search results`] &gt;</div>';
+	                    }
+	                    processStory('search', id, "[`Search results`]");
+	                    $('#kb_content').html(text);
+	                }
+				});
+			} else {
+                $('#browse-tab a').click();
+				getFrontSource('http', req.substr(1).replace('%S%',val), "[`Search results`]");
+			}
+            $('#kb_search_input').attr('value', val);
+            break;
+    }
+}
+	
+function getNextPage(type, id, label) {
+    var kbPage = $('#kbPage').attr('value');
+    $('#kbPage').attr('value', ++kbPage);
+    getFrontSource(type, id, label);
+    return false;
+}
+
+function addKbPage() {
+
+    var book = $('#kb_select').val();
+    var title = $('#kb_title').attr('value');
+    var text = $('#kb_add_text').wbsEditor('getContent');
+    if(book == 0) {
+        alert('[`Please select a book`]');
+    } else if(!title) {
+        alert('[`Please enter a title`]');
+    } else if(!text) {
+        alert('[`Please enter a text`]');
+    } else {
+        $.wbs.ajaxRequest({
+            url: '?m=knowledge&act=addpage',
+            requestMethod: 'post',
+            data: {
+                'data[QPB_TEXTID]': book,
+                'data[QPF_TITLE]': title,
+                'data[QPF_TEXT]': text,
+                'data[QPF_PUBLISHED]': ($('#kb_published').attr('checked') ? 1 : 0)
+            },
+            callback: function(response) {
+                $('#kb_title').attr('value', '');
+                $('#kb_add_text').attr('value', '');
+                $('#kb_published').attr('checked', false);
+                $('#kb_add_page').hide();
+                $('#kb_page_added').show();
+                $('#kb_title').attr('value', '');
+                $('#kb_add_text').wbsEditor('setContent','');
+                $('#kb_published').attr('checked', false);
+				$('#kb_content').html(kb_buffer);
+	        }
+        });
+    }
+}
+
+    var kb_buffer = $('#kb_content').html();
+	$('a[href^="pageid"]').live('click', function(){
+		var href = $(this).attr('href');
+		href = href.replace("pageid:", "");
+		currentStory.pop();
+		//$('.kb_story span:last').remove();
+		getFrontSource('page', book_id+'~'+href, $(this).html());
+		return false;
+	})
+	$('#kb_search_input').keyup(function(){
+        $('#kb_search_input').removeClass('error');
+	});
+	$('#kb_search_button').click(
+		function(){
+			if ($('#kb_search_input').val()==''){
+				$('#kb_search_input').addClass('error');
+				return false;
+			}
+			$('#kbPage').attr('value', 0);
+            getFrontSource('search', $('#kb_search_select').attr('value')+'~'+$('#kb_search_input').attr('value'))
+		}
+	);
+</script>

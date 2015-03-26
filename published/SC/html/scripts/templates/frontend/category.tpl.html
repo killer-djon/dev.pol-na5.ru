@@ -1,0 +1,72 @@
+<script type="text/javascript" src="{$smarty.const.URL_JS}/category.js"></script>
+{* category view *}
+
+<div class="categories-page">
+	
+	<h1><span>{$selected_category.name|escape:'html'}</span> <a href="/psearch/" class="chooser"></a></h1>
+	
+		{if $subcategories_to_be_shown}
+		<div class="subcategories">
+			<h4>Коллекция</h4>
+			{section name=i loop=$subcategories_to_be_shown}
+				
+				{if $smarty.section.i.index is div by 3}<ul class="sections-catalog">{/if}
+				
+				{if $subcategories_to_be_shown[i][3]}
+					{assign var=_sub_category_url value="?categoryID=`$subcategories_to_be_shown[i][0]`&category_slug=`$subcategories_to_be_shown[i][3]`"|set_query_html}
+				{else}
+					{assign var=_sub_category_url value="?categoryID=`$subcategories_to_be_shown[i][0]`"|set_query_html}
+				{/if}
+				
+					<li class="section-title"><a href="{$_sub_category_url}">{$subcategories_to_be_shown[i][1]}</a></li>
+				
+				{if ($smarty.section.i.index+1) is div by 3}</ul>{/if}
+							 
+			{/section}
+		</div>	
+		{/if}
+
+	
+	
+{if $products_to_show}
+
+{if $string_product_sort}
+	<div class="products_sort">
+		Сортировать по: <select name="sorting" onchange="window.location = this.value">
+		{section name=i loop=$string_product_sort}		
+			<option value='/category/{$selected_category.slug}/?sort={$string_product_sort[i][0]}&direction=ASC' {if $smarty.get.sort == $string_product_sort[i][0]}selected{/if}>{$string_product_sort[i][2]}</option>
+		{/section}
+		</select>
+	</div>
+{/if}
+
+{include file="comparison_products_button.html"}
+	
+<div class="catalog">
+
+	{foreach from=$products_to_show item=product_item name=product_brief}
+	
+		<div class="block-catalog-brief">{include file="product_brief.html" product_info=$product_item}</div>
+	
+	{/foreach}
+
+</div>
+
+ 
+{if $catalog_navigator}<div class="paginate">{$catalog_navigator}</div>{/if}
+
+
+{else}
+
+	{if $search_with_change_category_ability && !$advanced_search_in_category}
+		&nbsp;
+	{else}
+		{if $advanced_search_in_category}
+			&nbsp;&nbsp;&nbsp;&nbsp;< {"srch_no_matches_found"|translate} >
+		{else}
+			&nbsp;&nbsp;&nbsp;&nbsp;< {"str_empty_category"|translate} >
+		{/if}
+	{/if}
+
+{/if}
+</div>

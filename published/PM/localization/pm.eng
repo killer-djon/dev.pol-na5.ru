@@ -1,0 +1,385 @@
+app_name_long	Common	Application Full name	Projects
+app_name_short	Common	Application Short name	Projects
+app_dbextraction_message	Common	Error getting data message	Error extracting %s from the database
+app_projectfield_message	Common	Error report Project column name	project
+app_completeproj_label	Common	Closed Project Complete label	Complete
+app_taskfield_message	Common	Task column name in the Error report	task
+app_asgmtfield_message	Common	Assignment column name in the Error report	assignment
+app_custfield_message	Common	Customer column name in the Error report	customer
+app_managerfield_message	Common	Manager column name in the Error report	manager
+app_description_label	Common	Description field label	Description
+app_customer_label	Common	Customer field label	Customer
+app_manager_label	Common	Manager field label	Manager
+app_maxciderr_message	Common	Error getting maximum customer ID message	Error getting maximum customer ID
+app_maxpiderr_message	Common	Error getting maximum project ID message	Error getting maximum project ID
+app_startenddateerr_message	Common	Project end date earlier when project start day message	Project start date must be earlier than end date
+app_endcurdateerr_message	Common	Project end date greater than the present date message	Project end date can not be greater than today
+app_maxwiderr_message	Common	Error getting maximum task ID message	Error getting maximum task ID
+app_usertaskerr_message	Common	Unable to Delete user assigned to open tasks message	Can not delete user assigned to open tasks
+app_usermanerr_message	Common	Unable to delete manager of the open project	Can not delete user who is manager of open projects
+app_removeusertaskerr_message	Common	Unable to delete user assigned to task assignments	Can not delete user with assignments to tasks
+app_userremovemanerr_message	Common	Unable to delete the manager of the project message	Can not delete user who is the manager of project
+app_curremove_err	Common	Unable to delete the currency in use	Unable to delete currency used in task cost estimate
+app_full_title	Common	Full rights mode title	Full
+app_task_title	Common	Task rights mode title	Write
+app_view_title	Common	View rights mode title	Read
+app_rightslegend_text	Common	User rights legend	User access rights are designated as:\n\nR (Read) - can view project and tasks\nW (Write) - can add/edit tasks to this project\nF (Full) - can add/edit tasks, project details and permissions
+app_projectrights_title	Common	Project rights title	Projects
+app_projectname_title	Common	Project name title	Project Name
+app_availprojects_title	Common	Available projects title	Available Projects
+app_rightview_name	Common	View right name	Read
+app_righttask_name	Common	Task right name	Write
+app_rightproject_name	Common	Project right name	Full
+app_noprojects_label	Common	No projects label	<no projects>
+app_projmanager_label	Common	Project manager label	-- project manager --
+app_vright_label	Common	View right label	Read
+app_vtright_label	Common	Read/Write right label	Read/Write
+app_vtpright_label	Common	Read/Write/Project right label	Read/Write/Full
+app_vrightshort_label	Common	Read right short label	R
+app_vtrightshort_label	Common	View/Task right short label	RW
+app_vtprightshort_label	Common	View/Task/Project right short label	RWF
+app_projlimit_message	Common	Project number limitation message	<b>ACCOUNT LIMIT</b>: Number of projects can not exceed %s.
+
+pm_screen_long_name	Project Manager	Project Manager page full name	Projects
+pm_screen_short_name	Project Manager	Project Manager page short name	Projects
+pm_invaddtask_message	Project Manager	Unable to add new projects without the manger status message	Only project manager is allowed to add task
+pm_comlpraddtask_message	Project Manager	Adding new projects to the closed projects list message	Can not add task to complete project
+pm_listseparator_item	Project Manager	 	-- <complete projects> --
+pm_noprojects_message	Project Manager	No projects exist message	No available projects.
+pm_noprojects_note	Project Manager	Note for the project manager screen	To add project, please use Project -> Add Project menu.
+pm_notasks_title	Project Manager	No tasks title	&lt;no tasks&gt;
+
+pm_selectuser_item	Project Manager	 	<select>
+pm_noassignemtns_message	Project Manager	No Assignments present message	no assignments
+pm_startdate_label	Project Manager	Start date label	Start Date
+pm_duedate_label	Project Manager	Due date label	Due Date
+pm_completedate_label	Project Manager	Complete date label	Complete Date
+pm_fittoproject_menu	Project Manager	Menu item View/Fit to project	Fit to Project
+pm_definterval_menu	Project Manager	Menu item View/Define Visible Interval	Define Visible Interval
+pm_hidecomplete_menu	Project Manager	Menu item View/Hide Complete Tasks	Hide Complete Tasks
+pm_showcomplete_menu	Project Manager	Menu item View/Show complete tasks	Show Complete Tasks
+pm_gantt_tab	Project Manager	Bookmark Gantt Chart	Gantt Chart
+pm_details_tab	Project Manager	Bookmark Details	Tasks
+pm_assignments_tab	Project Manager	Bookmark Assignments	Assignments
+pm_invprojedit_message	Project Manager	Cannot modify the project without being the project manager message	You must be Project Manager to modify project
+pm_ivnaddtask_message	Project Manager	Cannot add new tasks without being the project manager message	Only project manager is allowed to add task
+pm_addtask_btn	Project Manager	Add Task button	Add Task
+pm_modproject_btn	Project Manager	Modify Project button	Project
+pm_task_menu	Project Manager	Menu Item Task	Task
+pm_addtask_menu	Project Manager	Menu Item Add Task	Add Task
+pm_completetasks_menu	Project Manager	Menu Item Complete Tasks	Complete Task(s)
+pm_resumetasks_menu	Project Manager	Menu Item Resume Tasks	Resume Task(s)
+pm_deletetasks_menu	Project Manager	Menu Item Delete Tasks	Delete Task(s)
+pm_importtasks_menu	Project Manager	Menu Item Import Tasks	Import Task(s)
+pm_exporttasks_menu	Project Manager	Menu Item Export Tasks	Export Task(s)
+pm_view_menu	Project Manager	Menu item View	View
+pm_id_title	Project Manager	ID column	ID
+pm_summary_title	Project Manager	Task Summary column	Description
+pm_description_title	Project Manager	Description column	Description
+pm_start_title	Project Manager	Start column	Start
+pm_due_title	Project Manager	Due column	Due
+pm_complete_title	Project Manager	Complete column	Complete
+pm_billable_title	Project Manager	Billable column	Billable
+pm_assignments_title	Project Manager	Assignments column	Asgmt
+pm_cost_title	Project Manager	Cost column	Cost
+pm_status_title	Project Manager	Status column	Status
+pm_gantt_title	Project Manager	Gantt column	Gantt
+pm_totalcost_label	Project Manager	Total Cost line	Total Cost
+pm_finduser_label	Project Manager	Find User label	Find user
+pm_moreusers_hint	Project Manager	More users popup hint	More users...
+pm_total_label	Project Manager	Total line	Total
+pm_days_title	Project Manager	Column Days	Days
+pm_ganttcompletedate_label	Project Manager	Complete Day label in the Gantt diagram	Complete Date
+pm_intfirstmonth_text	Project Manager	First Month text in the interval name	First Month
+pm_intlastmonth_text	Project Manager	Last Month text in the interval name	Last Month
+pm_ganttchart_title	Project Manager	Gantt Chart report header	Gantt Chart
+pm_manager_label	Project Manager	Manager label	Manager
+pm_project_label	Project Manager	Project label	Project
+pm_noprojmanrights_message	Project Manager	No rights to modify project message	You must have Full access rights or be assigned as Project Manager to modify this project.
+pm_noaddmodtaskrights_message	Project Manager	No rights to add/modify task message	You have no access rights to add/edit tasks to this project.
+pm_plist_menu	Project Manager	Project list menu item	Project List
+pm_clist_menu	Project Manager	Customer list menu item	Customer List
+pm_edit_menu	Project Manager	Edit menu item	Edit Project
+pm_editrights_menu	Project Manager	Edit menu item	Customize Access Rights
+pm_complete_menu	Project Manager	Comlpete menu utem	Complete Project
+pm_resume_menu	Project Manager	Resume menu utem	Resume Project
+pm_delete_menu	Project Manager	Delete menu utem	Delete Project
+pm_rights_label	Project Manager	Rights label	Your access rights to this project
+pm_tasksemptyaction_message	Project Manager	Empty task selected message	You must select task(s) for this operation first.
+pm_tasksdeleteconfirm_message	Project List	Task deletion confirmation	Do you really want to delete selected task(s)?
+
+cl_screen_long_name	Customer List	Customer List page full name	Customer List
+cl_screen_short_name	Customer List	Customer List page full name	Customers
+cl_inactivelist_title	Customer List	Inactive Customer List page header	Inactive Customer List
+cl_inactivate_menu	Customer List	Menu item Customer/Inactivate Customer(s)	Inactivate Customer(s)
+cl_delete_menu	Customer List	Menu item Customer/Delete Customer(s)	Delete Customer(s)
+cl_import_menu	Customer List	Menu item Customer/Import...	Import...
+cl_reactivate_menu	Customer List	Menu item Customer/Reactivate Customer(s)	Reactivate Customer(s)
+cl_activecust_tab	Customer List	Bookmark Active Customers	Active Customers
+cl_inactivecust_tab	Customer List	Bookmark Inactive Customers	Inactive Customers
+cl_page_label	Customer List	Page label	Page
+cl_of_label	Customer List	of label	of
+cl_custname_title	Customer List	Customer Name column	Customer Name
+cl_address_title	Customer List	Address column	Address
+cl_city_title	Customer List	City column	City
+cl_state_title	Customer List	State column	State
+cl_country_title	Customer List	Country column	Country
+cl_phone_title	Customer List	Phone column	Phone
+cl_contname_title	Customer List	Contact Name column	Contact Name
+cl_emptyaction_message	Customer List	 	You must select customer(s) for this operation first
+cl_openinact_message	Customer List	Inactivating customer, which has open projects message	Can not inactivate customer. Some of selected customers have open project(s).
+cl_opendel_message	Customer List	Deleting customer, which has open projects message	Can not delete customer. Some of selected customers have project(s).
+cl_deleteconfirm_message	Customer List	Customer deletion confirmation	Do you really want to delete selected customer(s)?
+cl_addcust_btn	Customer List	Add Customer button	Add Customer
+cl_custmer_menu	Customer List	Customer... menu	Customer
+cl_custnum_label	Customer List	Customer number label	Customers
+pl_screen_long_name	Project List	Project List page full name	Project List
+pl_screen_short_name	Project List	Project List page full name	Projects
+pl_complprojlist_title	Project List	Complete Projects List header	Complete Project List
+pl_openprojects_tab	Project List	Open Project bookmark	Open Projects
+pl_completeprojects_tab	Project List	Complete Project book mark	Complete Projects
+pl_page_label	Project List	Page label	Page
+pl_of_label	Project List	of label	of
+pl_customer_title	Project List	Customer column	Customer
+pl_summary_title	Project List	Project summary column	Project summary
+pl_startdate_title	Project List	Start Date column	Start Date
+pl_billable_title	Project List	Billable column	Billable
+pl_manager_title	Project List	Manager column	Manager
+pl_addproj_btn	Project List	Add Project button	Add Project
+dvi_screen_title	Define Visible Interval	Page header	Define Visible Interval
+pl_projnum_label	Project List	Project number label	Projects
+dvi_start_label	Define Visible Interval	Start label	Start
+dvi_firstmonth_label	Define Visible Interval	First Month of Project radio button text	First Month of Project
+dvi_end_label	Define Visible Interval	End label	End
+dvi_endmonth_label	Define Visible Interval	Last Month of Project radio button text	Last Month of Project
+dvi_recdefint_title	Define Visible Interval	Recently Defined Intervals list header	Recently Defined Intervals
+dvi_nointervals_text	Define Visible Interval	Intervals not Defined text message	Intervals not defined
+dvi_startend_message	Define Visible Interval	Interval end date earlier than interval start date message	Interval start date must be earlier than end date
+
+amp_addproj_title	Add/Modify Project	Add page title	Add Project
+amp_editproj_title	Add/Modify Project	Edit page title	Edit Project
+amp_selectcust_item	Add/Modify Project	<select> menu item in customer list	<select>
+amp_selectmanager_item	Add/Modify Project	<select> menu item in manager list	<select>
+amp_screen_title	Add/Modify Project	Page header	Project Information
+amp_projdel_message	Add/Modify Project	Project deletion confirmation	This operation is not reversable. Do you really want to delete this project?
+amp_complete_btn	Add/Modify Project	Complete project button	Complete Project
+amp_projcomplete_message	Add/Modify Project	Complete project confirmation	Do you really want to complete project?
+amp_delete_btn	Add/Modify Project	Delete project button	Delete Project
+amp_billable_label	Add/Modify Project	Billable field label	Billable
+amp_startdate_label	Add/Modify Project	Start Date field label	Start Date
+amp_lastmidified_label	Add/Modify Project	Last modified by: text	Last Modified By:
+amp_resume_btn	Add/Modify Project	Resume Project button	Resume Project
+amp_resume_message	Add/Modify Project	Resuming project confirmation	Do you want to resume project?
+amp_close_btn	Add/Modify Project	Close button	Close
+amp_closedpage_title	Add/Modify Project	Closed Project page header	Project Information
+amp_startdateerr_message	Add/Modify Project	First task start date later than the project start date message	Project start date can not be later than first task start date
+amp_projdeltasks_message	Add/Modify Project	Deleting project containing tasks confirmation	This project has %s entry(ies) in task list. Do you want to delete this project and task list?
+amp_project_title	Add/Modify Project	Project tab title	Project
+amp_users_title	Add/Modify Project	Users tab title	Users
+amp_groups_title	Add/Modify Project	Groups tab title	Groups
+amp_addprojectuseraccess_text	Add/Modify Project	Add/Modify Project users tab text	Customize personal access rights to this project
+amp_addprojectgroupaccess_text	Add/Modify Project	Add/Modify Project groups tab text	Customize group access rights to this project
+amp_newproject_label	Add/Modify Project	New Project label	<new project>
+
+ct_notask_message	Complete Task	Task not found message	Task ID was not found - task does not exist
+ct_page_title	Complete Task	Page header	Complete Task
+ct_completedate_label	Complete Task	Complete Date label	Complete Date
+amt_curlisterr_message	Add/Modify Task	Error reading currency list message	Error getting currency list
+amt_pageedit_title	Add/Modify Task	Task Modifying page header	Edit Task
+amt_pageadd_title	Add/Modify Task	Adding Task page header	Add Task
+amt_complete_message	Add/Modify Task	Closing task confirmation	Do you really want to complete task?
+amt_resume_message	Add/Modify Task	Resuming task confirmation	Do you want to resume task?
+amt_delete_message	Add/Modify Task	Deleting task confirmation	Do you really want to delete task?
+amt_return_btn	Add/Modify Task	Bask to Task List button	Back to Task List
+amt_resume_btn	Add/Modify Task	Resume Task button	Resume Task
+amt_summary_label	Add/Modify Task	Task Summary field label	Task Summary
+amt_general_label	Add/Modify Task	General field label	General
+amr_it_label	Add/Modify Task	ID field label	ID
+amr_billable_label	Add/Modify Task	Billable filed label	This task is billable
+amr_cost_label	Add/Modify Task	Cost Estimate field label	Cost
+amr_costcur_label	Add/Modify Task	Cost Currency field label	Cost currency
+amr_startdate_label	Add/Modify Task	Start Date field label	Start Date
+amr_duedate_label	Add/Modify Task	Due Date field label	Due Date
+amr_completedate_label	Add/Modify Task	Complete Date field label	Complete Date
+amr_personnel_label	Add/Modify Task	Personnel label	Personnel
+amr_assigned_title	Add/Modify Task	Assigned list header	Assigned
+amr_notassigned_title	Add/Modify Task	Not Assigned list header	Not Assigned
+amr_addanother_btn	Add/Modify Task	Save and Add Another button	Save and Add Another
+amr_taskcomplete_label	Add/Modify Task	Task is complete label	This task is complete
+amt_taskstartdue_message	Common	Task due date earlier than task start date message	Task due date can not be earlier than start date
+amt_taskstartcomplete_message	Common	Task due date earlier than task start date message	Task complete date can not be earlier than start date
+amt_taskstartproj_message	Common	Task start date earlier than project start date message	Task start date can not be earlier than project start date
+amt_taskcompletetoday_message	Common	Task complete day	Task complete day can not be later than today
+amt_taskcompleteempty_message	Common	Task complete empty	Task Complete Date is empty
+amt_startenderr_message	Common	Task end date earlier than task start date message	Task end date can not be earlier than start date
+amt_complete_btn	Common	Complete Task button	Complete Task
+amt_delete_btn	Common	Delete Task button	Delete Task
+icl_errfilecopy_message	Import Customer List	Error copying File message	Error copying file
+icl_select_item	Import Customer List	<select> item in column list	<select>
+icl_page_title	Import Customer List	Page header	Import Customer List
+icl_filetip_text	Import Customer List	Tip text above file selection list	Imported file must be a valid text file with comma separated columns (.CSV file)
+icl_filefield_label	Import Customer List	File field label	File
+icl_continue_btn	Import Customer List	Continue button	Continue
+icl_columntip_text	Import Customer List	Tip text above Column Selection list	Please provide column correspondence between imported file and the Customer List
+icl_filecolumns_title	Import Customer List	Column in file list header	Column in file
+icl_importchecks_title	Import Customer List	Checkbox column header	Import
+icl_icrsccols_title	Import Customer List	Column match list header	Column in Customer List
+icl_importfirst_label	Import Customer List	Import first line checkbox label	Import first line
+icl_import_btn	Import Customer List	Import button	Import
+icl_nocolserr_message	Import Customer List	Importing without specifying the columns message	You must select at least one column to import
+icl_custnameerr_message	Import Customer List	Customer Name match not specified	You must specify correspondence for Customer Name column
+prs_screen_long_name	Project Statistics	Project Statistics page full name	Project Statistics
+prs_screen_short_name	Project Statistics	Project Statistics page full name	Statistics
+prs_taskcount_tab	Project Statistics	Task Column bookmark	Task Stats
+prs_estcost_tab	Project Statistics	Estimated Cost bookmark	Estimated Cost
+prs_assignments_tab	Project Statistics	Assignments bookmark	Assignments
+prs_project_title	Project Statistics	Project column	Project
+prs_taskcount_title	Project Statistics	Task Count column	Number of tasks
+prs_total_title	Project Statistics	Total column	Total
+prs_inprogress_title	Project Statistics	In Progress column	In Progress
+prs_complete_title	Project Statistics	Complete column	Complete
+prs_overdue_title	Project Statistics	Overdue column	Overdue
+prs_complete_separator	Project Statistics	Complete Projects splitter	Complete Projects
+prs_open_separator	Project Statistics	Open Project splitter	Open Projects
+prs_totalrow_title	Project Statistics	Total line	Total
+prs_estcost_title	Project Statistics	Estimated Cost column	Estimated Cost
+prs_billable_title	Project Statistics	Billable column	Billable
+prs_totalcost_title	Project Statistics	Estimated Cost list Total column	Total
+prs_moreusers_label	Project Statistics	More users label	More users...
+cmp_errproj_message	Complete Project	Error reading project label	Project ID was not found - project does not exist
+cmp_page_title	Complete Project	Page header	Complete Project
+cmp_compldate_label	Complete Project	Complete Date field label	Complete Date
+cmp_opentasks_text	Complete Project	Project has open tasks message	This project has open tasks.
+cmp_leaveopen_label	Complete Project	Leave open tasks radio button text	Leave open tasks
+cmp_setcompldate_label	Complete Project	Set Complete Date radio button text	Set Complete Date for open tasks as Project Complete Date
+cmp_projtaskdateerr_message	Complete Project	Task Complete Date earlier than Project Complete date message	Project Complete Date must be later than Task Complete Date
+amc_page_title	Add/Modify Customer	Page header	Customer Information
+amc_inactivate_btn	Add/Modify Customer	Inactive Customer button	Inactivate Customer
+amc_confirminactivate_message	Add/Modify Customer	Customer inactivation confirmation	Do you really want to inactivate customer?
+amc_delete_btn	Add/Modify Customer	Delete customer button	Delete Customer
+amc_deleteconfirm_message	Add/Modify Customer	Deleting customer confirmation	Do you really want to delete customer?
+amc_custname_title	Add/Modify Customer	Customer Name label	Customer Name
+amc_address_title	Add/Modify Customer	Address label	Address
+amc_streetaddress_title	Add/Modify Customer	Street Address label	Street Address
+amc_city_title	Add/Modify Customer	City label	City
+amc_state_title	Add/Modify Customer	State label	State
+amc_zip_title	Add/Modify Customer	ZIP label	ZIP
+amc_country_title	Add/Modify Customer	Country label	Country
+amc_contperson_title	Add/Modify Customer	Contact Person label	Contact Person
+amc_contname_title	Add/Modify Customer	Contact Name label	Contact Name
+amc_email_title	Add/Modify Customer	E-Mail label	E-Mail
+amc_phone_title	Add/Modify Customer	Phone label	Phone
+amc_fax_title	Add/Modify Customer	Fax label	Fax
+amc_lastmodified_text	Add/Modify Customer	Last Modified By: text	Last Modified By:
+amc_activate_btn	Add/Modify Customer	Activate Customer button	Activate Customer
+amc_activate_message	Add/Modify Customer	Customer activation confirmation	Do you want to activate customer?
+amc_close_btn	Add/Modify Customer	Close button	Close
+amc_invstatus_message	Add/Modify Customer	Unable to modify deleted customer message	Can not modify deleted customer
+amc_invopenproj_message	Add/Modify Customer	Unable to inactivate customer with open projects message	Can not inactivate customer with open projects
+amc_custprojdelete_message	Add/Modify Customer	Unable to delete  customer linked to project(s)	Can not delete customer linked to project(s)
+
+app_available_pages_name	Common	 Available Pages rights name	Available Pages
+app_available_functions_name	Common	 Available Functions	Available Functions
+
+app_cantools_label	Common	Can use tools rights	Can use Tools
+app_canreports_label	Common	Can use reports rights	Can use Reports
+app_canmanagecust_label	Common	Can use manage customers	Can manage customers
+app_canaddproject_label	Common	Can add project	Can add projects
+app_canprojectlist_label	Common	Can add project	Has access to Project List
+
+pm_dd_createfolder_btn	Files section	Create DD Folder button	Create Project Folder
+pm_dd_notfolder_note	Files section	Not folder	Pleaser refer to the manager of this project.
+pm_dd_empty_title	Files section	Title when no files section showed	Did you know?
+pm_dd_empty_comonmessage	Files section	Message 1 when no files section showed	You can create a folder linked to this project, upload files, create subfolders and organize files, and share files with other project' members.
+pm_dd_notinstalled_note	Files section	Not installed files note	You must add Files service first.
+pm_dd_notinstalledadmin_note	Files section	Not installed files note	Please refer to your system administrator.
+pm_dd_installservice_link	Files section	Install Files Link	Add Files service now
+
+pm_dd_tasks_tab	Project manager	Tasks tab	Projects and Tasks
+pm_dd_files_tab	Project manager	Files tab	Files
+pm_it_issues_tab	Project manager	Issues tab	Issues
+
+pm_printer_label	Project Manager	Printer-Friendly Version	Printer-Friendly Version
+pm_loading_label	Project Manager	loading label	Loading
+
+amt_assignmentstasks_caption	Projcect Manager	Assignments and Tasks	Assignments and Tasks
+amt_tasks_caption	Project Manager	Tasks	Tasks
+amt_assignments_caption	Project Manager	Tasks	Assignments
+pm_report_title	Project Manager	Print Title	WebAsyst Projects
+
+pm_addtask_title	Project Manager	Menu Item Add Task	Add Task
+pm_edittask_title	Project Manager	Menu Item Edit Task	Edit Task
+pm_week_label	Project Manager	Week	week
+pm_noassignmentsshort_label	Project Manager	No assignments	no
+pm_noassignments_label	Project Manager	No assignments	no assignments
+pm_assignmentsedit_label	Project Manager	Edit assignments label	edit
+
+
+pm_status_pending	Project manager	Work status	Pending
+pm_status_inprogress	Project manager	Work status	In Progress
+pm_status_overdue	Project manager	Work status	Overdue
+pm_status_complete	Project manager	Work status	Complete
+
+pm_projectcompleted_error	Project manager	project is complete error message	Can not perform this operation for completed project.
+
+import_tasks_screen_long_name	Import Tasks	Page title	Import Tasks
+import_tasks_source_text	Import Tasks	Source text	Import from the text delimited by
+import_tasks_source_file	Import Tasks	Source file	Import from the file
+import_tasks_btn_import	Import Tasks	Import button	Import
+import_tasks_err_invalid_first_line	Import Tasks	Error	Incorrect first line
+import_tasks_err_upload_file	Import Tasks	Error	Error uploading file
+import_tasks_import_prepare	Import Tasks	Second step title	Select columns map
+import_tasks_column_in_data	Import Tasks	--	Importing Column
+import_tasks_import_column	Import Tasks	--	Import
+import_tasks_column_in_tasks	Import Tasks	--	Project's Column
+import_tasks_btn_continue	Import Tasks	--	Continue
+import_tasks_err_column_not_defined	Import Tasks	--	Define map completely
+import_tasks_err_no_data	Import Tasks	--	No import data
+import_tasks_msg_success_processed	Import Tasks	--	{0} task(s) succefully added.
+import_tasks_msg_fails_processed	Import Tasks	--	{0} line(s) missed:
+import_tasks_btn_back	Import Tasks	--	Back
+import_tasks_wrn_duplicate_columns	Import Tasks	--	Seriated columns!
+import_tasks_import_results	Import Tasks	--	Results
+import_tasks_project_lbl	Import Tasks	--	Project
+import_tasks_csv_delim_auto	Import Tasks	--	auto
+import_tasks_csv_delim_semi	Import Tasks	--	Semicolon (;)
+import_tasks_csv_delim_comma	Import Tasks	--	Comma (,)
+import_tasks_csv_delim_tab	Import Tasks	--	Tab
+import_tasks_file_encoding	Import Tasks	--	Encoding
+import_tasks_msg_err_empty_line	Import Tasks	--	Line {0}: Empty line
+import_tasks_msg_err_invalid_columns_count	Import Tasks	--	Line {0}: Number of columns does  not match the number of column titles
+import_tasks_msg_err_incorrect_date_format	Import Tasks	--	Line {0}: Incorrect date format
+import_tasks_msg_err_not_exists_date	Import Tasks	--	Line {0}: Date does not exist
+import_tasks_msg_err_start_date_later_due_date	Import Tasks	--	Line {0}: Start Date can not be later than Due Date
+import_tasks_msg_err_start_date_later_cmpl_date	Import Tasks	--	Line {0}: Start Date can not be later than Complete Date
+import_tasks_msg_err_complete_date_later_today	Import Tasks	--	Line {0}: Complete Date can not be later than today
+import_tasks_msg_err_unknown	Import Tasks	--	Line {0}: Unknown error
+
+export_tasks_screen_long_name	Export Tasks	Page Title	Export Tasks
+export_tasks_select_source	Export Tasks	First step title	Export
+export_tasks_source_selected	Export Tasks	--	Selected Tasks ({0})
+export_tasks_source_project	Export Tasks	--	Entire Project
+export_tasks_out_encoding	Export Tasks	--	Encoding
+export_tasks_btn_export	Export Tasks	--	Export
+
+export_tasks_results_title	Export Tasks	--	Export Results
+export_tasks_download_pompt	Export Tasks	--	Please click the link below to download exported tasks
+export_tasks_exportfields_label	Export Tasks	--	Export Fields
+export_tasks_included_label	Export Tasks	--	Included
+export_tasks_notincluded_label	Export Tasks	--	Not Included
+export_tasks_wrn_no_columns	Export Tasks	--	Select one or more column
+export_tasks_download_lbl	Export Tasks	--	Download
+export_tasks_delimiter	Export Tasks	--	Delimiter
+
+lbl_currency	PM	--	Currency
+btn_cancel	PM	--	Cancel
+
+pm_startsin_note	Project Manager	Note	Starts in %d days
+pm_duein_note	Project Manager	Note	Due in %d days
+pm_inprogress_note	Project Manager	Note	In progress %d days
+pm_overdue_note	Project Manager	Note	Overdue %d days
+pm_completed_note	Project Manager	Note	Completed %d days ago
+pm_aheadschedule_note	Project Manager	Note	%d days ahead schedule
+pm_noassignments_label	Project Manager	No assignments	&lt;No Assignments&gt;
+pm_tasks_label	Project Manager	Tasks	Tasks
+pm_of_label	Project manager	of	of

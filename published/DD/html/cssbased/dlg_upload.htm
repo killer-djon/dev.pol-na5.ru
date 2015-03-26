@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="../../../common/html/res/swfupload/swfupload.css" type="text/css"/>
+<script type="text/javascript" src="../../../common/html/res/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="../../../common/html/res/swfupload/handlers.js"></script>
+<script type="text/javascript" src="../../../common/html/cssbased/pageelements/ajax/upload_dialog.js"></script>
+
+<script>
+	function ShowUploadDialog (btn) {
+		try {
+			if (ddUploadDlg.uploader.isLoaded)
+				ddUploadDlg.showDialog ();
+			else {
+				<? if $needUploadFiles ?>
+					alert("Please install Adobe Flash Player");
+				<? /if ?>
+				location.href = "<? $uploadLink ?>";
+			}
+		} catch (ex1) {
+			location.href = "<? $uploadLink ?>";
+		}
+	}
+	
+	var ddUploadDlg = new UploadDialog ("upload-dlg-content");
+	ddUploadDlg.uploadURL = "../../../../DD/html/ajax/file_upload.php";
+	ddUploadDlg.ieUploadURL = "../../../DD/html/ajax/file_upload.php";
+	ddUploadDlg.swfURL = "../../../common/html/res/swfupload/swfupload.swf";
+	ddUploadDlg.sessID = "<? $phpsessid ?>";
+	ddUploadDlg.strings.title = "<? $ddStrings.updlg_dialog_title ?>";
+	ddUploadDlg.standartButtons = false;
+	
+	ddUploadDlg.config.height = 375;
+	ddUploadDlg.config.width = 455;
+	ddUploadDlg.config.modal = true;
+	ddUploadDlg.config.resizable = false;
+	
+	ddUploadDlg.tabs.push (
+		{'id' : 'upload-dlg-select', 
+		 onShow: function (dialog) {
+		 	params = {folderID : document.getElementById("currentFolderId").value, PHPSESSID: "<? $phpsessid ?>"};
+		 	ddUploadDlg.uploader.setPostParams(params);
+		 	ddUploadDlg.displayCurrentState ();
+		 }
+		}	
+	);
+	
+	ddUploadDlg.pressCancel = function  () {
+		if (this.state == UploadDialog.STATE_PROCESS) {
+			this.state = UploadDialog.STATE_COMPLETED;
+			this.cancelQueue ();
+			processAjaxButton ("refresh");
+		} else {
+			this.hide ();
+		}
+	}
+	
+	ddUploadDlg.onAfterInit = function () {
+		this.initialize ();
+	
+		this.btnStart = new Ext.Button ({text: "<? $ddStrings.updlg_startupload_btn ?>", handler: this.startQueue, scope: this});
+		this.btnCancel = new Ext.Button ({text: "<? $kernelStrings.app_cancel_btn ?>", handler: this.pressCancel, scope: this});
+		
+		this.btnStart.render(document.body, 'btnStart');
+		this.btnCancel.render(document.body, 'btnCancel');
+		
+		this.uploader.messages = new Array ();
+		this.uploader.messages[500] = "<? $ddStrings.updlg_file_error_unknown ?>";
+		this.uploader.messages[502] = "<? $ddStrings.updlg_file_error_fileslimit ?>";
+		this.uploader.messages[503] = "<? $ddStrings.updlg_file_error_systemquota ?>";
+		this.uploader.messages[504] = "<? $ddStrings.updlg_file_error_userquota ?>";
+		this.uploader.messages[505] = "<? $ddStrings.updlg_file_error_checkout ?>";
+		
+		this.fullMessages = new Array ();
+		this.fullMessages[502] = '<? $fileLimitErrorMessage|escape:quotes ?>';
+		this.fullMessages[503] = '<? $noSpaceErrorMessage|escape:quotes ?>';
+		this.fullMessages[504] = '<? $userQuotaLimitMessage|escape:quotes ?>';
+		
+		ddUploadDlg.uploader.strings.pendingStr = "<? $ddStrings.updlg_statuspending_label ?>";
+		ddUploadDlg.uploader.strings.uploadingStr = "<? $ddStrings.updlg_statusuploading_label ?>";
+		ddUploadDlg.uploader.strings.completeStr = "<? $ddStrings.updlg_statuscomplete_label ?>";
+		
+		this.dialog.on("hide", function () {
+			ddUploadDlg.cancelQueue ();
+			ddUploadDlg.resetState ();
+		});
+	}
+	
+	
+	RegisterOnLoad (function () {
+		ddUploadDlg.flashInit ();
+	});
+	
+	<? if $needUploadFiles ?>
+		RegisterOnLoad (function () {
+			window.setTimeout (
+				ShowUploadDialog,
+				2000
+			);
+		});
+	<? /if ?>
+	
+</script>
+
+<style>
+	#FilesArea {background: #FFF; border: 1px solid #BBB; text-align: left; padding-left: 20px; padding-right: 20px; height: 205px; overflow: auto}
+	#FilesArea #blockSelectedFiles {margin-top:5px;}
+	#FilesArea #blockNoSelectedFiles {margin-top: 50px; text-align: center}
+	#FilesArea #blockAfterUpload {margin-top:5px; margin-top: 40px; text-align: center}
+</style>
+
+<div class="x-hidden" id='upload-dlg-content'>
+  <div id='upload-dlg-select-tab' style='padding: 10px'>
+		<div id='FilesArea'>
+			<div id='blockNoSelectedFiles'>
+				&lt;<? $ddStrings.updlg_nofilesselected_message ?>&gt;
+				<BR><BR>
+				<a href='javascript:void(0)' onClick='ddUploadDlg.selectFiles()'><b><? $ddStrings.updlg_selectfiles_label ?></b></a>
+				
+			</div>
+			
+			<div id='blockSelectedFiles' style='display: none'>
+				<a style='float:right' id='selectMoreLink' href='javascript:void(0)' onClick='ddUploadDlg.selectFiles()'><? $ddStrings.updlg_selectmore_label ?></a>
+				<span id='filesUploadingStr'><? $ddStrings.updlg_uploading_label ?></span> <span id='queueFilesCount'></span>&nbsp;<span id='filesSelectedStr'><? $ddStrings.updlg_filesselected_label ?>:</span>
+				<div id="flashUI1">
+					<div class="flash" id="fsUploadProgress1">
+					</div>
+				</div>
+			</div>
+			
+			<div id='blockAfterUpload' style='display: none; '>
+				<span id='completedFilesCount'>0</span> <? $ddStrings.updlg_filesuploaded_label ?>
+				<BR><BR>
+				<div id='errorFilesBlock'><span id='errorFilesCount'>0</span> <? $ddStrings.updlg_filesnotuploaded_label ?><BR><BR></div>
+				<a id='afterSelectMoreLink' style='font-weight: bold' href='javascript:void(0)' onClick='ddUploadDlg.selectFiles()'><? $ddStrings.updlg_afterselectmore_label ?></a>
+				<div id='blockLimitError'></div>
+			</div>
+		</div>
+		
+		<BR>
+		<div id='uploaderFooter' style='text-align: center; '>
+				<center><table cellspacing=0 cellpadding=0><tr><td><div id='btnStart'></div></td><td>&nbsp;</td><td><div id='btnCancel'></div></td></tr></table></center>
+				<!--span style='float:left' id='btnStart'></span>
+				<span style='float:left; margin-left: 10px' id='btnCancel'></span-->
+			<BR>
+			<div style='font-size: 0.8em'>
+				<? $ddStrings.updlg_oldlink1_message ?>
+				<a href="<? $uploadLink ?>"><? $ddStrings.updlg_oldlink2_message ?></a>
+			</div>
+		</div>
+	</div>
+</div>

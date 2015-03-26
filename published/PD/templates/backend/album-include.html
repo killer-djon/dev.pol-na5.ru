@@ -1,0 +1,42 @@
+<!-- 
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/reset.css'>
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/backend.css'>
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/wbs-elements.css'>
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/imgareaselect-default.css'>
+
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/wbs-common.js"></script>
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/wbs.js"></script>
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/wbs-elements.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.cookie.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.jeditable.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.imgareaselect.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.wbs.pager.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/slider.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/backend.js"></script>
+ -->
+{{assign var="path1" value=$p->getCssUrl() }}
+{{csscombine file="`$path1`/album-combine.css"  }}
+ {{ $p->getCssUrl() }}/reset.css
+ {{ $p->getCssUrl() }}/backend.css
+ {{ $p->getCssUrl() }}/wbs-elements.css
+ {{ $p->getCssUrl() }}/imgareaselect-default.css
+{{/csscombine}}
+
+{{assign var="path2" value=$p->getCommonUrl() }}
+{{jscombine file="`$path2`/js/pd-common-combine.js"  }}
+ {{$p->getCommonUrl()}}/js/wbs-common.js
+ {{$p->getCommonUrl()}}/js/wbs.js
+ {{$p->getCommonUrl()}}/js/wbs-elements.js
+{{/jscombine}}
+
+{{assign var="path3" value=$p->getJsUrl() }}
+{{jscombine file="`$path3`/album-combine.js"  }}
+ {{$p->getJsUrl() }}/jquery.cookie.js
+ {{$p->getJsUrl() }}/jquery.hotkeys.js
+ {{$p->getJsUrl() }}/jquery.jeditable.js
+ {{$p->getJsUrl() }}/jquery.imgareaselect.js
+ {{$p->getJsUrl() }}/jquery.wbs.pager.js
+ {{$p->getJsUrl() }}/slider.js
+ {{$p->getJsUrl() }}/backend.js?673
+{{/jscombine}}

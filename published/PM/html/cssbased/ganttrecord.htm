@@ -1,0 +1,29 @@
+<? math equation="x + y" x=$startOffset y=$duration assign=endOffset ?>
+
+<? if ( $endOffset > $ganttSettings.DAY_COUNT ) ?>
+	<? math equation="x-y" x=$ganttSettings.DAY_COUNT y=$startOffset assign=duration ?>
+<? /if ?>
+
+<? if (!$picheight) ?>
+	<? assign var=picheight value=5 ?>
+<? /if ?>
+
+<? if $ganttSettings.TODAY_INDEX > $startOffset && $ganttSettings.TODAY_INDEX <= $endOffset ?>
+
+	<? math equation="x - y" x=$ganttSettings.TODAY_INDEX y=$startOffset assign=startSpan ?>
+	<? math equation="x - y" x=$duration y=$startSpan assign=endSpan ?>
+
+	<? if $startSpan > 0 ?>
+		<td title="<? $work.title ?>" <? $mid_cell_style ?> background="<? $src ?>" <? if $ganttSettings.TODAY_INDEX > $startOffset?>class="pm_normalLineHeight pm_ganttTableTodayRight"<?else?>class="pm_normalLineHeight pm_ganttTableTodayLeft"<?/if?> colspan="<? $startSpan ?>"><img width="100%" height=<? $picheight ?> src="<? $src ?>">
+		</td>
+	<? /if ?>
+
+	<? if $endSpan > 0 ?>
+		<td class="pm_normalLineHeight" title="<? $work.title ?>" <? $mid_cell_style ?> background="<? $src ?>" colspan="<? $endSpan ?>"><img width="100%" height=<? $picheight ?> src="<? $src ?>"></td>
+	<? /if ?>
+
+<? else ?>
+	<? if $duration > 0 ?>
+		<td class="pm_normalLineHeight" title="<? $work.title ?>" <? $mid_cell_style ?> background="<? $src ?>" colspan="<? $duration ?>"><img width="100%" height=<? $picheight ?> src="<? $src ?>"></td>
+	<? /if ?>
+<? /if ?>

@@ -1,0 +1,51 @@
+<div class="ticket-toolbar"><div class="ticket-toolbar-bg">
+<div class="buttons">
+    <span class="backlink" id="back_to_orders"><a href="javascript:void(0)"><i>&larr;</i>[`Back to request #`]{{$request_id}}</a></span>
+</div></div>
+</div>
+<div class="ui-block-content" style="text-align:center;">
+{{if $has_access}}
+<h1 style="text-align:left">[`Orders by`] {{$contact}}</h1>
+<div class="departments tabl-wrapper">
+
+<table class="orders_list">
+	<thead>
+		<tr><th>[`Order ID`]</th><th>[`Date`]</th><th>[`Product ID`]</th><th>[`Order structure`]</th><th>[`Payment option`]</th><th>[`Status ID`]</th><th>[`Amount`]</th><th>[`Shipped`]</th></tr>
+	</thead>
+	<tbody>
+
+
+	{{foreach from=$orders item=ord name="ordersLoop"}}
+		{{assign var='url' value=$url.published|cat:'MT/html/scripts/orderdetails.php?MTO_ID='|cat:$ord.MTO_ID}}
+		<tr class="order_status_{{$ord.MTO_ORDER_STATUS}} {{if $smarty.foreach.ordersLoop.index is even}}Even{{else}}Odd{{/if}}">
+			<td><a href="{{$url}}" target="_blank">{{$ord.MTO_ID}}</a></td>
+            <td><a href="{{$url}}" target="_blank">{{$ord.MTO_DATE}}</a></td>
+			<td><a href="{{$url}}" target="_blank">{{$ord.MTP_ID}}</a></td>
+			<td><a href="{{$url}}" target="_blank">{{$ord.description}}</a></td>
+			<td><a href="{{$url}}" target="_blank">{{$ord.MTO_PAYMENT_OPTION}}</a></td>
+			<td><a href="{{$url}}" target="_blank">{{$ord.MTO_ORDER_STATUS}}</a></td>
+			<td style="text-align:right;"><a href="{{$url}}" target="_blank">{{$ord.MTO_AMOUNT}} {{$ord.MTO_CUR}}</a></td>
+			<td><a href="{{$url}}" target="_blank">{{$ord.MTO_SHIP_DATE}}</a></td>
+		</tr>
+	{{/foreach}}
+
+		<tr>
+			<td colspan="7" valign="top"><b>[`Total (PAID only)`]:</b></td>
+			<td align="right">
+			{{foreach from=$orders_total.amount item=amount key=curency}}
+				<b>{{$amount}} {{$curency}}</b><br />
+			{{/foreach}}
+			</td>
+		</tr>
+
+	</tbody>
+</table>
+</div>
+{{else}}
+<h1 style="text-align:left">[`No access`]</h1>
+{{/if}}
+</div>
+<script>
+	$('.backlink').css('margin-left', $('#leftPanel').width()+10)
+</script>
+

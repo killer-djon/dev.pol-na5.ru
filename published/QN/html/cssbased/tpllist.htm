@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout toolbar=true ?>
+
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+
+		<? wbs_pageLayout toolbar="tpllist_toolbar.htm" ?>
+
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+				<table class="SimpleList" width=100%>
+				<thead>
+					<tr>
+						<th><nobr><? $qnStrings.qnt_template_name_title ?></nobr></th>
+						<th><? $qnStrings.qnt_template_author_title ?></th>
+						<th width="1%" class="NoBreak"><? $qnStrings.qnt_template_lastmodified_title ?></th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+				<? foreach from=$tplList item=tpl name=tplLoop key=tplIndex ?>
+					<tr class="<? wbs_oddItem index=$smarty.foreach.tplLoop.index ?>">
+						<td><a href="<? $tpl.ROW_URL ?>"><? $tpl.QNT_NAME ?></a></td>
+						<td class="NoBreak"><? $tpl.QNT_MODIFYUSERNAME ?></td>
+						<td width="1%" class="NoBreak"><? $tpl.QNT_MODIFYDATETIME ?></td>
+					</tr>
+				<? foreachelse ?>
+					<tr class="NoRecords">
+						<td colspan="3">
+							<? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?>
+						</td>
+					</tr>
+				<? /foreach ?>
+
+				</tbody>
+				</table>
+
+				<? if ( $showPageSelector ) ?>
+					<? include file="../../../common/html/cssbased/pageelements/tree_page_list.htm" numDocumentsLabel=$qnStrings.qnt_tplnum_label numDocuments=$tplsNum ?>
+				<? /if ?>
+
+			<? /if ?>
+
+		<input name="folder" type="hidden" value="<? $folder ?>">
+		<input name="sorting" type="hidden" value="<? $sorting?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

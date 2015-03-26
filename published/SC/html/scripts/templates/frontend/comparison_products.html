@@ -1,0 +1,84 @@
+{* product comparation *}
+<h1><span>{"prd_product_comparison"|translate}</span><a href="/chooser/" class="chooser"></a></h1>
+
+<div class="clear-list-compare">
+	<form metod="post" action="/">
+        <input type="submit" class="clear_comparisson" value="Очистить список сравнения">
+    </form>
+</div>
+
+<div class="comparison-products">
+	
+	{section name=i loop=$products}
+	{assign var=_product_url value="?ukey=product&productID=`$products[i].productID`&product_slug=`$products[i].slug`"|set_query_html}
+	<div class="products-block">
+	
+		{if $products[i].thumbnail || $products[i].picture}
+		<div class="prdbrief_thumbnail">
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="center" valign="middle" style="width: {$smarty.const.CONF_PRDPICT_THUMBNAIL_SIZE}px; height: {$smarty.const.CONF_PRDPICT_THUMBNAIL_SIZE}px;">
+					<!-- Thumbnail -->
+					<a {$target} href='{$_product_url}'>
+	{if $products[i].thumbnail}
+						<img src="{$smarty.const.URL_PRODUCTS_PICTURES}/{$products[i].thumbnail|escape:'url'}" alt="{$products[i].name|escape:'html'}" title="{$products[i].name|escape:'html'}">
+	{elseif $products[i].picture}
+						<img src="{$smarty.const.URL_PRODUCTS_PICTURES}/{$products[i].picture|escape:'url'}" alt="{$products[i].name|escape:'html'}" title="{$products[i].name|escape:'html'}">
+	{/if}
+					</a>
+				</td>
+			</tr>
+		</table>
+		</div>
+		{/if}
+	
+		<div class="prdbrief_name">
+			<a href='{"?ukey=product&productID=`$products[i].productID`&product_slug=`$products[i].slug`"|set_query_html}'>
+				{$products[i].name|escape:'html'}
+			</a>
+		</div>
+		
+		{if $currencies_count ne 0 && $products[i].Price > 0}
+		<div class="prdbrief_price">
+			Цена: <span class="totalPrice">{$products[i].PriceWithUnit}</span> <span class="unit">Руб/Кв.м.</span>
+		</div>
+		{/if}
+		
+		{if $products[i].ordering_available && $products[i].Price>0 && ( $smarty.const.CONF_SHOW_ADD2CART eq 1 ) && ( $smarty.const.CONF_CHECKSTOCK==0 || $products[i].in_stock > 0 ) }
+			<div class="prdbrief_add2cart">		
+				<div class="carttext">
+				<input value="" type="submit" alt="{'str_add_to_cart_string'|translate}" title="{"str_add_to_cart_string"|translate}" class="add2cart_handler" />
+				</div>
+			</div>
+		{elseif $smarty.const.CONF_SHOW_ADD2CART eq 1 && $smarty.const.CONF_CHECKSTOCK && !$products[i].in_stock && $products[i].ordering_available}
+			<div class="prd_out_of_stock">{lbl_prd_out_of_stock}</div>
+		{/if}
+	
+	</div>
+	{/section}
+	
+</div>
+
+<div class="options-compare">
+	<div class="title">Характеристики</div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="compar-list">
+		<tr>
+			<td class="cmp_headers">Артикул: </td>
+			{section name=i loop=$products}
+				<td class="cmp_headers">{$products[i].product_code} </td>				
+			{/section}
+		</tr>
+	{section name=i loop=$definedOptions}
+		<tr>
+			<td class="cmp_headers">{$definedOptions[i].name}</td>
+			{counter name="_id" assign=_id}
+			{section name=j loop=$products}
+				<td class="option-value">
+					{$products[j][i]}
+				</td>
+			{/section}
+		</tr>
+	{/section}
+	</table>
+			
+</div>

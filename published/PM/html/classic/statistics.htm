@@ -1,0 +1,225 @@
+<? if $statData.SCREEN == 0 ?>
+<? assign var=prevType value="no" ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="complexList">
+	<tr class="head">
+		<th align="left" rowspan="2" nowrap><nobr><? $pmStrings.prs_project_title ?></nobr></th>
+		<th align="center" colspan="4" class="smallhead"><nobr><? $pmStrings.prs_taskcount_title ?></nobr></th>
+	</tr>
+	<tr class="head">
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_total_title ?></nobr></th>
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_inprogress_title ?></nobr></th>
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_complete_title ?></nobr></th>
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_overdue_title ?></nobr></th>
+	</tr>
+	<?section name=projectSec loop=$projects?>
+
+	<? if $projects[projectSec].CLOSED != $prevType ?>
+		<? assign var=prevType value=$projects[projectSec].CLOSED ?>
+		<? if $prevType ?>
+			<tr>
+				<td class=listSubheader colspan=5><? $pmStrings.prs_complete_separator ?></td>
+			<tr>
+		<? else ?>
+			<tr>
+				<td class=listSubheader colspan=5><? $pmStrings.prs_open_separator ?></td>
+			<tr>
+		<? /if ?>
+	<? /if ?>
+
+	<tr<? if ($smarty.section.projectSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+		<td valign="middle" class="default"><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].PROJECT_NAME ?></a></td>
+		<td align="center" valign="middle" class="default">
+		  <? switchedOutput str1=&nbsp; str2=$projects[projectSec].TOTAL_WORKS val=$projects[projectSec].TOTAL_WORKS true_val=0 ?>
+		</td>
+		<td align="center" valign="middle" class="default">
+		  <? switchedOutput str1=&nbsp; str2=$projects[projectSec].IN_PROGRESS_WORKS val=$projects[projectSec].IN_PROGRESS_WORKS true_val=0 ?>
+		</td>
+		<td align="center" valign="middle" class="default">
+		  <? switchedOutput str1=&nbsp; str2=$projects[projectSec].CLOSED_WORKS val=$projects[projectSec].CLOSED_WORKS true_val=0 ?>
+		</td>
+		<td align="center" valign="middle" class="default">
+		  <? switchedOutput str1=&nbsp; str2=$projects[projectSec].OVERDUE_WORKS val=$projects[projectSec].OVERDUE_WORKS true_val=0 ?>
+		</td>
+	</tr>
+	<?sectionelse?>
+	<tr align="center"<? if ($smarty.section.projectSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+		<td colspan="5" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+	</tr>
+	<?/section?>
+	<tr>
+	  <td align="left" class="listFooter"><? $pmStrings.prs_totalrow_title ?></td>
+	  <td align="center" class="listFooter"><? switchedOutput str1=&nbsp; str2=$statData.TOTAL_WORKS val=$statData.TOTAL_WORKS true_val=0 ?></td>
+	  <td align="center" class="listFooter"><? switchedOutput str1=&nbsp; str2=$statData.IN_PROGRESS_WORKS val=$statData.IN_PROGRESS_WORKS  true_val=0 ?></td>
+	  <td align="center" class="listFooter"><? switchedOutput str1=&nbsp; str2=$statData.CLOSED_WORKS val=$statData.CLOSED_WORKS  true_val=0 ?></td>
+	  <td align="center" class="listFooter"><? switchedOutput str1=&nbsp; str2=$statData.OVERDUE_WORKS val=$statData.OVERDUE_WORKS true_val=0 ?></td>
+	</tr>
+</table>
+<? /if ?>
+<? if $statData.SCREEN == 1 ?>
+<? assign var=prevType value="no" ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="complexList">
+	<tr class="head">
+		<th align="left" rowspan="2"><nobr><? $pmStrings.prs_project_title ?></nobr></th>
+		<th align="center" colspan="5" class="smallhead"><nobr><? $pmStrings.prs_estcost_title ?></nobr></th>
+	</tr>
+	<tr class="head">
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_billable_title ?></nobr></th>
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_totalcost_title ?></nobr></th>
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_inprogress_title ?></nobr></th>
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_complete_title ?></nobr></th>
+		<th align="center" class="smallhead"><nobr><? $pmStrings.prs_overdue_title ?></nobr></th>
+	</tr>
+	<?section name=projectSec loop=$projects?>
+
+	<? if $projects[projectSec].CLOSED != $prevType ?>
+		<? assign var=prevType value=$projects[projectSec].CLOSED ?>
+		<? if $prevType ?>
+			<tr>
+				<td class=listSubheader colspan=6><? $pmStrings.prs_complete_separator ?></td>
+			<tr>
+		<? else ?>
+			<tr>
+				<td class=listSubheader colspan=6><? $pmStrings.prs_open_separator ?></td>
+			<tr>
+		<? /if ?>
+	<? /if ?>
+
+	<tr<? if ($smarty.section.projectSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+		<td align="left" valign="middle" class="default"><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].PROJECT_NAME ?></a></td>
+		<td align="center" valign="middle" class="default">
+		  <? switchedOutput str1=#checkedImg# str2="" val=$projects[projectSec].BILLABLE true_val=1 ?>
+		</td>
+		<td align="right" valign="middle" class="default">
+		  <? foreach key=totalId item=totalArray from=$projects[projectSec].TOTAL_COST ?>
+			<? if $totalArray.COST != "" ?>
+			  <? $totalArray.COST?>&nbsp;<? $totalArray.CURRENCY ?><br>
+			<? /if ?>
+		  <? /foreach ?>
+		</td>
+		<td align="right" valign="middle" class="default">
+		  <? foreach key=progressId item=progressArray from=$projects[projectSec].IN_PROGRESS_COST ?>
+			<? if $progressArray.COST != "" ?>
+			  <? $progressArray.COST?>&nbsp;<? $progressArray.CURRENCY ?><br>
+			<? /if ?>
+		  <?/foreach ?>
+		</td>
+		<td align="right" valign="middle" class="default">
+		  <? foreach key=closedId item=closedArray from=$projects[projectSec].CLOSED_COST ?>
+			<? if $closedArray.COST != "" ?>
+			  <? $closedArray.COST?>&nbsp;<? $closedArray.CURRENCY ?><br>
+			<? /if ?>
+		  <?/foreach ?>
+		</td>
+		<td align="right" valign="middle" class="default">
+		  <? foreach key=overdueId item=overdueArray from=$projects[projectSec].OVERDUE_COST ?>
+			<? if $overdueArray.COST != "" ?>
+			  <? $overdueArray.COST?>&nbsp;<? $overdueArray.CURRENCY ?><br>
+			<? /if ?>
+		  <?/foreach ?>
+		</td>
+	</tr>
+	<?sectionelse?>
+	<tr align="center"<? if ($smarty.section.projectSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+		<td colspan="6" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+	</tr>
+	<?/section?>
+	<tr>
+	  <td colspan="5">&nbsp;</td>
+	</tr>
+	<tr>
+	  <td align="left" class="listFooter" valign=top><? $pmStrings.prs_totalcost_title ?></td>
+	  <td align="center" class="listFooter" valign=top><? switchedOutput str1=&nbsp; str2=$statData.BILLABLE val=$statData.BILLABLE true_val=0 ?></td>
+	  <td align="right" valign="top" class="listFooter">
+	  <? foreach key=currency item=totalCost from=$statData.TOTAL_COST ?>
+		<? if $totalCost ?>
+		  <? $totalCost ?>&nbsp;<? $currency ?><br>
+		<? /if ?>
+	  <? foreachelse ?>&nbsp;
+	  <? /foreach ?>
+	  </td>
+	  <td align="right" valign="top" class="listFooter">
+	  <? foreach key=currency item=in_progressCost from=$statData.IN_PROGRESS_COST ?>
+		<? if $in_progressCost ?>
+		  <? $in_progressCost ?>&nbsp;<? $currency ?><br>
+		<? /if ?>
+	  <? foreachelse ?>&nbsp;
+	  <? /foreach ?>
+	  </td>
+	  <td align="right" valign="top" class="listFooter">
+	  <? foreach key=currency item=closedCost from=$statData.CLOSED_COST ?>
+		<? if $closedCost ?>
+		  <? $closedCost ?>&nbsp;<? $currency ?><br>
+		<? /if ?>
+	  <? foreachelse ?>&nbsp;
+	  <? /foreach ?>
+	  </td>
+	  <td align="right" valign="top" class="listFooter">
+	  <? foreach key=currency item=overdueCost from=$statData.OVERDUE_COST ?>
+		<? if $overdueCost ?>
+		  <? $overdueCost ?>&nbsp;<? $currency ?><br>
+		<? /if ?>
+	  <? foreachelse ?>&nbsp;
+	  <? /foreach ?>
+	  </td>
+	</tr>
+</table>
+<? /if ?>
+<? if $statData.SCREEN == 2 ?>
+<? assign var=prevType value="no" ?>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="complexList">
+	<tr class="head">
+		<th align="left" ><nobr><? $pmStrings.prs_project_title ?></nobr></th>
+		<th width="100" align="center"><nobr><? $pmStrings.prs_totalcost_title ?></nobr></th>
+		<? if $prevLink ?>
+		<th width="15" align="left" valign="middle">
+		  <? conditionalLink href=$prevLink  text=#prev_img# title=$pmStrings.prs_moreusers_label ?>
+		</th>
+		<? /if?>
+		<? foreach name="userSec" from=$users item=user key=userID ?>
+			<th class=list_rightBorder width="70" align="center" valign="middle"><nobr><? $user ?></nobr></th>
+		<? /foreach ?>
+		<? if $nextLink ?>
+		<th width="15" align="right" valign="middle" ?>
+		  <? conditionalLink href=$nextLink text=#next_img# title=$pmStrings.prs_moreusers_label ?>
+		</th>
+		<? /if ?>
+	</tr>
+	<? section name=projectSec loop=$projects ?>
+
+	<? if $projects[projectSec].CLOSED != $prevType ?>
+		<? assign var=prevType value=$projects[projectSec].CLOSED ?>
+		<? if $prevType ?>
+			<tr>
+				<td class=listSubheader colspan=<? $totalColCount ?>><? $pmStrings.prs_complete_separator ?></td>
+			<tr>
+		<? else ?>
+			<tr>
+				<td class=listSubheader colspan=<? $totalColCount ?>><? $pmStrings.prs_open_separator ?></td>
+			<tr>
+		<? /if ?>
+	<? /if ?>
+
+	<tr<? if ($smarty.section.projectSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+		<td valign="middle" class="default"><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].PROJECT_NAME ?></a></td>
+		<td align="center" valign="middle" class="default">
+		  <? switchedOutput str1=&nbsp; str2=$projects[projectSec].TOTAL_ASSIGNMENTS val=$projects[projectSec].TOTAL_ASSIGNMENTS true_val=0 ?>
+		</td>
+		<? if $prevLink ?>
+		<td width="15" valign="middle">&nbsp;</td>
+		<? /if?>
+		<? foreach key=userId item=userData from=$users ?>
+		<td valign="middle" align="center">
+		  <? switchedOutput str1=#checkedImg# str2="" val=$projects[projectSec].ASGN.$userId true_val=1 ?>
+		</td>
+		<? /foreach ?>
+		<? if $nextLink ?>
+		<td width="15" valign="middle">&nbsp;</td>
+		<? /if?>
+	</tr>
+	<? sectionelse ?>
+	<tr align="center"<? if ($smarty.section.projectSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+		<td colspan="<? $totalColCount ?>" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+	</tr>
+	<?/section?>
+</table>
+<? /if ?>

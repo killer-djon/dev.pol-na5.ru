@@ -1,0 +1,72 @@
+<? assign var="descLen" value=$viewdata.DESCLENGTH ?>
+<? assign var=issueIndex value=0 ?>
+
+
+<table class="Grid it_IssueList">
+	<thead>
+		<tr>
+			<? foreach from=$columnNames item=colName key=colID name=headerLoop ?>
+				<th style="width: <? $it_list_columns_widths.$colID|cat:"px" ?>"><? if $colID != I_PRIORITY ?><? $colName ?><? else ?><img src="../../../common/html/cssbased/res/images/priority.gif" align=absmiddle><? /if ?></th>
+			<? /foreach ?>
+		</tr>
+	</thead>
+	<tbody>
+
+
+		<? foreach from=$issueList item=listRecord name=issueLoop key=rowIndex ?>
+
+			<? assign var=listIndex value=$smarty.foreach.issueLoop.iteration ?>
+
+			<? if $listRecord.ROW_TYPE == 1 ?>
+				<!-- task record -->
+
+				<? assign var=issueIndex value=0 ?>
+				<tr>
+					<td colspan="<? $visibleColumnNum ?>" class="it_NoPaddings">
+						<table class="it_TaskTable" width="100%">
+							<tbody>
+								<tr class="ListSubheader">
+									<!-- checkbox -->
+									<td width="10" class="ValignTop"><input type=checkbox name="selectAllDocsCB" onClick="selectIssues(<? $listRecord.PW_ID ?>, this)"></td>
+									<!-- task description -->
+									<td>
+										<? if $listRecord.editWorkURL ?>
+											<a href="javascript:void(0)" onClick="openIssuesWork('<? $listRecord.PW_ID ?>')"><? $itStrings.il_task_label|cat:" "|cat:$listRecord.PW_ID|cat:": "|cat:$listRecord.PW_DESC ?></a>
+										<? else ?>
+											<? $itStrings.il_task_label|cat:" "|cat:$listRecord.PW_ID|cat:": "|cat:$listRecord.PW_DESC ?>	
+										<? /if ?>
+										<span class="NormalWeight">[<em><a href="<? $listRecord.EXPANDLINK ?>"><small><? switchedOutput val=$listRecord.EXPANDSTATUS true_val="expanded" str2=$itStrings.il_showissues_label|cat:" ("|cat:$listRecord.issueNum|cat:")" str1=$itStrings.il_hideissues_label?></small></a></em>]</span>
+									</td>
+									<!-- add issue link -->
+									<td class="AlignRight ValignBottom NoBreak NormalWeight">
+										<? if !$listRecord.CLOSED ?>
+												<? if $userIsProjman ?>
+													[<em><a href="<? $listRecord.ITSSETUPLINK ?>"><small><? $itStrings.il_workflow_btn ?></small></a></em>]
+												<? /if ?>
+												[<em><a href="javascript:void(0)" onClick='return issueAddDialog("<? $listRecord.P_ID ?>-<? $listRecord.PW_ID ?>");'><small><? $itStrings.il_addissue_btn ?></small></a></em>]
+										<? else ?>
+											[<small><? $itStrings.il_completetask_label ?></small>]
+										<? /if ?>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			<? else ?>
+			<!-- issue record -->
+
+
+				<? include file="ilist_grid_row.htm" ?>
+
+				<? math equation="x+1" x=$issueIndex assign=issueIndex ?>
+
+			<? /if ?>
+
+		<? foreachelse ?>
+			<tr class="NoRecords">
+				<td colspan="<? $visibleColumnNum ?>"><? $itStrings.il_noissues_text|htmlsafe:true:true ?></td>
+			</tr>
+		<? /foreach ?>
+	</tbody>
+</table>

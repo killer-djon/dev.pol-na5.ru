@@ -1,0 +1,57 @@
+<div class="ui-block-content">
+
+<div id="forms-controls">
+<h1>{{$info.WG_DESC}}</h1>
+<a href="#/forms/delete/{{$info.WG_ID}}/" class="blacklink" style="float:right" id="delete-form-link">[`Delete form`]</a>
+<a href="#/forms/edit/{{$info.WG_ID}}/">[`Customize`]</a>
+</div>
+<div class="form-preview" style="text-align: left">
+<table width="100%">
+<tr>
+	<td width="50%">
+	<div class="align-center">
+		<iframe style="border: 1px solid #999" width="100%" height="450" id="previewFrame" name="previewFrame" src="{{$embed.previewSrc}}" frameborder="0"></iframe>
+	</div>	
+	</td>
+	<td width="50%" valign="top" class="widget-links">
+		[`Link to this form`] (<a href="{{$embed.src}}" target="_blank">[`open in new window`]</a>):<br />
+		<input readonly="readonly" class="selectable" type="text" value="{{$embed.src}}" /> <br />
+		<br />
+		<h4>[`HTML to embed in website or blog`]</h4>
+		<b>[`Method 1 (&lt;iframe&gt;)`]:</b><br />
+		<textarea readonly="readonly" class="selectable" rows="3">{{$embed.code}}</textarea>
+		<br /><br />
+		<b>[`Method 2 (javascript and &lt;form&gt;)`]:</b><br />
+		<textarea readonly="readonly" id="html-code" class="selectable">{{$embed.html|escape}}</textarea>
+		<br /><br />
+		<!--a href="{{$embed.typepadSrc}}" target="_blank"><img src="../WG/html/cssbased/installs/add_typepad.gif" /></a> 
+		<a target="_blank" href="http://fusion.google.com/add?moduleurl={{$embed.igoogleSrc}}"><img src="../WG/html/cssbased/installs/add_igoogle.gif" /></a-->
+	</td>
+</tr>
+</table>
+</div>
+<div class="form-edit">
+	{{include file="forms/FormsEdit.html"}}
+</div>
+</div>
+<script>
+	$('.widget-links textarea').click(function(){
+		$(this).select();
+	})
+	$('#delete-form-link').click(function(){
+		if (!$('#forms-controls .alertmsg').length){
+			var $alertDiv = $('<div class="alertmsg"/>'),
+			$deleteBtn = $('<button>[`Delete form`]</button>').button().click(function(){
+			  $.wbs.loadHash('#/forms/delete/{{$info.WG_ID}}/');
+			});
+			$cancelBtn = $('<button>[`Cancel`]</button>').button().click(function(){
+	          $alertDiv.remove();
+	        });
+			$alertDiv.append('<p>[`Please note that after you delete the form, link and HTML code associated with this form will stop functioning.`]<br />'+
+			'[`Make sure all references to this form from your website or blog are also deleted.`]</p>')
+	        $alertDiv.append($deleteBtn).append($cancelBtn);
+			$('#forms-controls').append($alertDiv);
+		}
+		return false;
+	})
+</script>

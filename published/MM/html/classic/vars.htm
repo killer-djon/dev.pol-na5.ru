@@ -1,0 +1,19 @@
+		<tr>
+			<td><small><? $mmStrings.amn_vars_comment_text ?></small></td>
+		</tr>
+		<tr>
+
+		<? foreach from=$cmVars item=cmVar key=cmKey ?>
+			<td colspan="2" valign="middle" class="formSection" >
+				<? $contactSectionsNames.$cmKey.NAME ?> [<a href="#" onclick="return toggleVisibility( '<? $cmKey ?>' );" id="<? $cmKey ?>Tgl"><? if $blockVisible.$key ?><? $mmStrings.amn_vars_hide_link?><? else ?><? $mmStrings.amn_vars_show_link?><? /if ?></a>]
+				<div id="<? $cmKey ?>Comment" <? if $blockVisible.$key ?> <? else ?>style="display:none;"<? /if ?>><small>(<? $contactSectionsNames.$cmKey.COMMENT ?>)</small></div>
+			</td>
+			</tr>
+			<tr>
+				<td valign=top style="padding-left: 2px;">
+					<div id="<? $cmKey ?>Block" <? if $blockVisible.$key ?> <? else ?>style="display:none;"<? /if ?>>
+					<? include file="../classic/varlist.htm" width='100%' height='95px' varList=$cmVar targetControl="TEXTCTRL" onClick="insertTemplateVar"?>
+					</div>
+				</td>
+			</tr>
+		<? /foreach ?>

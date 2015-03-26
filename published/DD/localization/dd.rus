@@ -1,0 +1,439 @@
+app_name_long	Common	Full Application Name	Файлы
+app_name_short	Common	Short Application Name	Файлы
+notify_onfolderupdate_name	Common	Email notification label On Folder Update	Уведомлять об обновлении папок
+app_desc_field	Common	Description field label	Описание
+app_type_field	Common	Type field label	Тип
+app_size_field	Common	Size field label	Размер
+app_uploaddate_field	Common	Upload Date field label	Дата
+app_addeddate_field	Common	Added Date field label	Добавлен
+app_by_label	Common	Added by label	
+app_owner_field	Common	Owner field label	Владелец
+app_modifieddate_field	Common	Modified Date field label	Изменен
+app_modifiedby_field	Common	Modified By field label	Изменил
+app_file_field	Common	File field label	Файл
+app_folder_field	Common	Folder field label	Папка
+app_nofolders_message	Common	Folder absence message	Папок для выполнения операции не найдено
+app_copyerr_message	Common	File copying error message	Не удалось скопировать файл
+app_delerr_message	Common	File deleting error message	Ошибка удаления файла
+app_mail_title	Common	E-mail header	Уважаемый(ая) %s,
+app_mail_info	Common	E-mail text	Этим сообщением мы уведомляем вас, что одна из папок сервиса ВебАсист Файлы была обновлена.
+app_mail_subject	Common	E-mail subject	Обновление папки
+app_mail_foldername	Common	Updated folder mark	Обновленная папка
+app_mail_addoperation	Common	Adding files message text	%s файл(ов) добавлено
+app_mail_deleteoperation	Common	Deleting Files message text	%s файл(ов) удалено
+app_mail_addfldoperation	Common	Adding folder message text	Добавлена папка
+app_mail_delfldoperation	Common	Deleting folder message text	Удалена папка
+app_onfolderupdate_label	Common	Notification of the folder update switch label	Уведомлять пользователя об обновлениях папок
+app_checkedin_label	Common	Checked in label	Разблокирован
+app_checkedout_label	Common	Checked out label	Заблокирован
+app_nozlib_message	Common	No Zlib library installed message	Для работы с архивами на вашем сервере должна быть установлена библиотека Zlib Compression Functions
+app_treefolders_text	Common	Folders text	Управление папками
+app_treefurfldname_title	Common	Folder Name column header on the Folders & Users Rights page	Папка
+app_readaccess_name	Common	Read access	Чтение
+app_writeaccess_name	Common	Read/Write access	Запись
+app_folderaccess_name	Common	Read/Write/Folder access	Папка
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Может создавать папки в корне
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Может видеть список пользователей, имеющих совместный доступ к папкам
+app_doclimit_message	Common	File numer limitation message	<b>ОГРАНИЧЕНИЕ</b>: Количество файлов не может превышать %s.
+app_available_pages_name	Common	 Available Pages rights name	Страницы сервиса
+app_available_functions_name	Common	 Available Functions	Функции сервиса
+app_notifications_section_name	Common	 Notifications section rights name	Уведомления
+app_treeavailflds_title	Common	Available Folders column header on the Folders & Users Rights page	Доступные папки
+app_cantools_label	Common	Can use tools rights	Имеет доступ к корзине и настройкам
+app_canreports_label	Common	Can use reports rights	Доступ к отчетам
+app_canwidgets_label	Common	Can use reports rights	Доступ к виджетам
+dd_screen_long_name	Document Depot	Quick Notes page full name	Файлы
+dd_screen_short_name	Document Depot	Document Depot page short name	Файлы
+dd_screen_addfiles_menu	Document Depot	Menu item File/Add File(s)	Добавить
+dd_screen_copyfiles_menu	Document Depot	Menu item File/Copy File(s)	Скопировать
+dd_screen_movefiles_menu	Document Depot	Menu item File/Move File(s)	Переместить
+dd_screen_deletefiles_menu	Document Depot	Menu item File/Delete File(s)	Удалить
+dd_screen_restore_menu	Document Depot	Menu item File/Restore	Восстановить
+dd_screen_grid_menu	Document Depot	Menu item View/Grid	Таблица
+dd_screen_list_menu	Document Depot	Menu item View/List	Список
+dd_screen_thumbnaillist_menu	Document Depot	Menu item View/Thumbnail List	Эскизы файлов
+dd_screen_thumbnailtile_menu	Document Depot	Menu item View/Thumbnail Tile	Плитка
+dd_screen_custview_menu	Document Depot	Menu item View/Customize View	Настроить вид
+dd_screen_recyclebin_menu	Document Depot	Menu tools/Recycle Bin	Корзина
+dd_screen_thumbnail_menu	Document Depot	Menu tools/Thumbnail	Эскизы
+dd_screen_versioncontrol_menu	Document Depot	Menu tools/Version Control	Контроль версий
+dd_screen_onlineedit_menu	Document Depot	Menu tools/Online editing Control	Онлайн редактирование
+dd_screen_toolsemail_menu	Document Depot	Menu tools/Email	Настроить Email
+dd_screen_summary_note	Document Depot	Available Folders label under the table	%s файл(ов) в %s доступных папках
+dd_screen_emptydel_message	Document Depot	Message when user tries to delete a file without selecting it	Пожалуйста, выберите файл(ы) для удаления.
+dd_screen_emptycheckin_message	Document Depot	Message when user tries to check in a file without selecting it	Пожалуйста, выберите файл(ы) для разблокирования.
+dd_screen_deletelockedjs_message	Document Depot	Delete checked out by another users message	Вы не можете удалить файл(ы) блокированные другими пользователями. Вы должны иметь право П (папка) для удаления этоих файлов.
+dd_screen_deletelockedjs_confirm	Document Depot	Delete checked out by another users confirm	Некоторые из выбранных файлов были заблокированы другими пользователями. Вы уверены, что хотите удалить эти файлы ?
+dd_screen_invcheckinrights_message	Document Depot	Message on the lack of rights to check in files	У вас нет прав разблокировать некоторые из выделенных файлов.
+dd_screen_confirmcheckin_message	Document Depot	Check in confirmation	Вы действительно хотите разблокировать выбранные файлы?
+dd_screen_checkinrighs_message	Document Depot	Check in rights message	Некоторые из выбранных файлов не могут быть разблокированы, так как они были заблокированы другими пользователями, либо вы не имеете прав на редактирование файлов в этой папке.
+dd_screen_invrights_message	Document Depot	Message on the lack of rights to move/delete files	У вас нет прав перемещать/удалять некоторые из выделенных файлов
+dd_screen_confirmdel_message	Document Depot	Deleting File(s) confirmation	Удалить выделенные файлы?
+dd_screen_emptyrestore_message	Document Depot	File recovery without selecting the files message	Пожалуйста, выберите файл(ы) для восстановления.
+dd_screen_emptycheckout_message	Document Depot	File check out without selecting the files message	Пожалуйста, выберите файл(ы), которые вы хотите заблокировать.
+dd_screen_emptycopy_message	Document Depot	File copying without selecting the files message	Пожалуйста, выберите файл(ы) для копирования.
+dd_screen_emptymove_message	Document Depot	File moving without selecting the files message	Пожалуйста, выберите файл(ы) для перемещения.
+dd_screen_emptyemail_message	Document Depot	Sending email without selecting the files message	Пожалуйста, выберите файл(ы) для отправки.
+dd_screen_flddelete_message	Document Depot	Folder deletion warning	Удалить выделенную папку?
+dd_screen_folder_menu	Document Depot	Menu Item Folder	Папка
+dd_screen_file_menu	Document Depot	Menu Item File	Файл
+dd_screen_view_menu	Document Depot	Menu Item View	Вид
+dd_screen_search_label	Document Depot	Search bar label	Поиск
+dd_screen_search_btn	Document Depot	Search button	Искать
+dd_screen_showfolders_btn	Document Depot	Show Folders button	Папки
+dd_sreen_searchresult_title	Document Depot	Search Results header	Результат поиска
+dd_sreen_summarydoc_title	Document Depot	Column in the Available Folders table	Файлы
+dd_screen_numdocs_label	Document Depot	Text under notes list	Файл(ов)
+dd_screen_noaccess_message	Document Depot	Folder access denied message	Доступ запрещен.\n\nВНИМАНИЕ: Чтобы настроить доступ к папкам, воспользуйтесь службой “Пользователи”. Если вы не видите указанного пункта в главном меню, то обратитесь к системному администратору.
+dd_screen_norights_message	Document Depot	Lack of rights on File modifying message	У вас нет прав работать с этим файлом
+dd_screen_openfld_hint	Document Depot	Hint on the link to the File list	Открыть каталог
+dd_screen_editfile_hint	Document Depot	Hint on the link to the File modifying	Изменить имя и описание файла
+dd_screen_nofiles_text	Document Depot	Empty folder text	<нет файлов>
+dd_screen_sorting_title	Document Depot	Sorting bar header	Сортировка
+dd_zoho_edit	Files	Zoho edit	Редактировать онлайн
+dd_zohoedit_warning	Files	Zoho edit warning	Онлайн редактирование работает на основе сервиса Zoho (<a target='_blank' href='http://www.zoho.com/'>www.zoho.com</a>).<BR>Документ будет отправлен на сервер Zoho.<BR>Вы согласны?
+dd_zohoedit_dontshow	Files	Zoho edit dont show	Больше не спрашивать
+dd_screen_namesorting_title	Document Depot	Link to sort by Filename	Имя файла
+dd_screen_uploadarchive_menu	Document Depot	Menu Upload Archive	Загрузить архив
+dd_screen_createarchive_menu	Document Depot	Menu Create Archive	Сжать и скачать
+dd_screen_sendemail_menu	Document Depot	Menu Send Email	Отправить файл(ы) в письме
+dd_screen_more_label	Document Depot	More label	подробнее...
+dd_screen_checkout_menu	Document Depot	Menu Check Out	Заблокировать
+dd_screen_checkin_menu	Document Depot	Menu Check In	Разблокировать
+dd_screen_fileproperties_hint	Document Depot	File Properties hint	История версий
+dd_screen_deletelocked_error	Document Depot	Error deleting locked file message	Файл %s не может быть удален, так как он заблокирован пользователем %s. Вы должны иметь право П (папка) для удаления этого файлы.
+dd_screen_propagate_menu	Document Depot	Folder/Propagate access rights menu	Доступ к подпапкам
+dd_poppan_upload_label	Document Depot	Upload label	Загрузить файлы
+dd_poppan_share_label	Document Depot	Upload label	Создать ссылку
+dd_screen_mylinks_label	Document Depot	My Links title	Мои ссылки
+dd_screen_emptysearchstring_error	Document Depot	Empty search string	Пожалуйста укажите поисковое слово
+dd_screen_link_select_files	Document Depot	Please select files you want to create Link	Пожалуйста выберите файлы для которых вы хотите создать ссылку
+rights_screen_long_name	Folders & Users Rights	Folders & Users Rights page full name	Папки и права пользователей
+rights_screen_short_name	Folders & Users Rights	Folders & Users Rights page short name	Папки и права пользователей
+sv_screen_long_name	Service	Service page full name	Сервис
+sv_screen_short_name	Service	Service page short name	Сервис
+sv_screen_recycle_label	Service	Recycle Bin tab title	Корзина
+sv_screen_nodest_message	Service	Deleted files recovery without selecting the destination folder message	Не указана конечная папка
+sv_screen_nodelrights_message	Service	Lack of rights on file deletion message	У вас нет прав удалять файлы из этой папки
+sv_screen_restore_btn	Service	Restore button	Восстановить
+sv_screen_delete_btn	Service	Delete button	Удалить
+sv_screen_deletedcol_title	Service	Deleted column label	Удален
+sv_screen_deletedbycol_title	Service	Deleted By column label	Удалил
+sv_screen_thumbnail_title	Service	Thumbnail tab title	Эскизы
+sv_screen_disablethumb_btn	Service	Disable Thumbnails button title	Отключить эскизы
+sv_screen_disablethumb_message	Service	Disable Thumbnails confirmation	Вы действительно хотите отключить эскизы?
+sv_screen_enablethumb_btn	Service	Enable Thumbnails button title	Включить эскизы
+sv_screen_enablethumb_message	Service	Enable Thumbnails confirmation	Включение эскизов может занять некоторое время на создание потерянных или восстановление испорченных файлов эскизов. Продолжить?
+sv_screen_thumbenabled_label	Service	Message about enabled thumbnails creating	Создание эскизов в данный момент&nbsp;
+sv_screen_emptydel_message	Service	Message when user tries to delete a file without selecting it	Пожалуйста, выберите файлы, которые вы хотите удалить.
+sv_screen_confirmdel_message	Service	Deleting File(s) confirmation	Выбранные файлы будут безвозвратно удалены. Продолжить?
+sv_screen_errdest_message	Service	Error message	Вы не можете восстановить файлы в <корень>. Пожалуйста, выберите папку.
+sv_screen_enabled_label	Service	Enabled label	включено
+sv_screen_disabled_label	Service	Enabled label	отключено
+sv_nogdmessage_message	Service	GD not found message	Для работы с эскизами на вашем сервере должны быть установлены следующие компоненты:\n\n1. GD Image Functions\n\nПожалуйста обратитесь к вашему системному администратору
+sv_disabledthumbs_note	Service	Disabled thumbnails button note	Выключение эскизов будет применено только к новым изображениям. Существующие эскизы не будут удалены.
+sv_enablethumbs_note	Service	Disabled thumbnails button note	Включение эскизов будет применяться только к новым изображениям.
+sv_totalimagesnum_label	Service	Total images number label	Общее количество изображений в вашей базе данных:
+sv_updatethumbs_btn	Service	Update thumbnails button	Обновить эскизы
+sv_updatethumbs_note	Service	Update thumbnails note	1. Процедура обновления эскизов действует только на те изображения, для которых эскизы еще не существуют.\n2. Обновление эскизов для большого количества файлов может занять много времени.
+sv_filesprocessed_label	Service	Files processed label	Файлов обработано
+sv_versioncontrol_tab	Service	Version Control tab	Контроль версий
+sv_onlineedit_tab	Service	Online editing tab	Онлайн редактирование
+sv_email_tab	Service	Email tab	Email
+sv_emailsettings_label	Service	Email propertis label	Имя и Email, которые будут использованы в исходящих сообщениях
+sv_emailname_label	Service	Email name label	Имя
+sv_emailaddress_label	Service	Email address label	Email
+sv_thumbnails_tab	Service	Thumbnails tab	Эскизы
+sv_enablevc_btn	Service	Enable Version Control label	Включить контроль версий
+sv_disablevc_btn	Service	Enable Version Control label	Отключить
+sv_vcenabled_label	Service	Message about enabled version control	Контроль версий в данный момент
+sv_vcstatusenabled_label	Service	Version control enabled status	включен
+sv_vcstatusdisabled_label	Service	Version control disabled status	отключен
+sv_duplicatefilesfound_message	Service	Duplicate files found message	Обнаружены файлы с повторяющимися именами.
+sv_duplicatefiles_note	Service	Duplicate files note	Для включения контроля версий вы должны переименовать или удалить повторяющиеся файлы
+sv_zohoeditnote_label	Service	Message about online edit	Онлайн редактирование работает на основе сервиса <a target='_blank' href='http://www.zoho.com'>Zoho</a> и применяется к следующим типам файлов: TXT, DOC, XLS, ODT, ODS.
+sv_zohoeditenable_label	Service	Online edit enable label	Разрешить онлайн редактирование с использованием сервисов Zoho
+sv_zohoeditstatusenabled_label	Service	Zoho edit enabled status	Онлайн редактирование файлов включено
+sv_zohoeditstatusdisabled_label	Service	Zoho edit disabled status	Онлайн редактирование файлов отключено
+sv_zohoeditKey_label	Service Zoho	zoho key label	Ключ
+sv_zohoeditKey_warning	Service Zoho	zoho key label	Поле ключ должно иметь значение
+sv_zohoeditKey_invalid_value	Service Zoho	zoho key label	Поле ключ содержит запрещённые символы
+sv_zohoeditKey_message	Service Zoho	zoho key label	Для использования функции онлайн-редактирования необходимо <a href="#" target="_blank">получить и ввести индивидуальный ключ Zoho</a>.
+sv_zohokey_note_label	Service	Message about online edit	<a href="#" target="_blank">Как получить ключ</a>
+sv_zohokey_not_found	Service	Message about online edit	Ключ Zoho не найден. Пожалуйста, обратитесь к администратору вашего аккаунта.
+sv_filename_column	Service	File Name column	Файл
+sv_created_column	Service	Created column	Создан
+sv_maxversionnum_label	Service	Maximum number of old versions label	Максимальное количество старых версий
+sv_unlimited_label	Service	 Unlimited label	неограничено
+sv_change_btn	Service	 Change button	Изменить
+sv_ftp_tab	Service	Service Ftp Folder tab name	FTP папка
+sv_ftp_contains_text	Service	FTP Folder contains following files (subfolders not included)	В FTP папке находятся следующие файлы (подпапки не включены)
+sv_ftp_selectfiles_note	Service	NOTE: Select files you want to copy from FTP folder to any available Files folder.	Отметьте файлы которые вы хотите скопировать из FTP папки в любую доступную
+sv_ftp_filename_title	Service	Filename	Имя файла
+sv_ftp_filesize_title	Service	Filename	Размер
+sv_ftp_datetime_title	Service	Filename	Дата
+sv_ftp_copy2folder_label	Service	Copy to Folder	Копировать в папку
+sv_ftp_copy_btn	Service	Copy	Копировать
+sv_ftp_back_btn	Service	Back To Ftp Folder	Вернуться
+sv_ftp_upload_error	Service	Message returned if error occurred when file has been uploading	Ошибка обработки файла <b>%s</b>.
+sv_ftp_add_screen_upload_success	Service	Message returned after successful file(s) uploading	Файл <b>%s</b> успешно добавлен.
+cm_screen_copy_title	Copy/Move	Header of the File copying in progress page	Копировать файлы
+cm_screen_move_title	Copy/Move	Header of the File moving in progress page	Переместить файлы
+cm_screen_copyfolder_title	Copy/Move	Header of the Folder copying in progress page	Копировать папку
+cm_screen_movefolder_title	Copy/Move	Header of the Folder moving in progress page	Переместить папку
+cm_screen_copy_btn	Copy/Move	Copying in progress button	Копировать
+cm_screen_move_btn	Copy/Move	Moving in progress button	Переместить
+cm_screen_filenum_label	Copy/Move	Text: number of files selected	файл(ов) выбрано
+cm_replace_error	Copy/Move	Replace error message	Файл %s заблокирован пользователем %s и не может быть заменен
+cv_screen_title	Customize View	Page header	Настроить вид
+cv_screen_form_label	Customize View	Label on top of the form	Выберите видимые колонки для вида “Таблица” (“Имя файла” отображается всегда):
+cv_screen_visible_list	Customize View	Visible Columns list header	Видимые
+cv_screen_hidden_list	Customize View	Hidden Columns list header	Скрытые
+cv_screen_notesnum_label	Customize View	 	Количество файлов на одной странице:
+cv_screen_displayicons_label	Customize View	Label "Display Icons"	Показывать значки (только для режимов “Таблица” и “Список”)
+cv_screen_applutoall_label	Customize View	Label "Apply selected view to all folders"	Применить выбранный вид ко всем папкам
+cv_screen_applutocurrent_label	Customize View	Label "Apply selected view to current folder only"	Применить выбранный вид к текущей папке
+cv_screen_viewopt_label	Customize View	Label "Once you change View option:"	Когда вы изменяете вид:
+cv_restrictdesc_label	Customize View	Restrict description label	Ограничить видимую длину описания файла до
+cv_characters_label	Customize View	Characters label	символов
+cv_restrict_note	Customize View	Restriction note	Оставьте это поле пустым чтобы отменить ограничение
+ur_screen_onfolderupdate_label	User Rights	Notification of the folder update switch label	Уведомлять пользователя об обновлениях папок
+mf_screen_long_name	Modify File	Page header	Изменить свойства файла
+mf_screen_filename_label	Modify File	File Name field label	Имя файла
+mf_screen_description_label	Modify File	Description field label	Описание
+mf_screen_nomodrights_message	Modify File	Lack of rights to modify a file message	У вас нет прав изменять файлы в этой папке
+mf_screen_invchars_message	Modify File	Wrong characters in file names message	Имя файла не должно содержать следующие символы: / \ ? : * < >
+mf_screen_version_label	Modify File	Version label	Версия №
+mf_screen_status_label	Modify File	Status label	Статус
+mf_screen_uploaded_label	Modify File	Uploaded label	Загружен
+mf_screen_replaced_label	Modify File	Replaced label	Заменен
+mf_screen_history_label	Modify File	History label	История
+mf_fileexists_message	Modify File	File already exists message	Файл с таким именем уже существует
+mv_versionhostiry_label	Modify File	Version History label	История версий
+r_screen_long_name	Restore	Page header	Восстановить в папку
+r_screen_norights_message	Restore	Lack of distractive rights message	У вас нет прав восстанавливать файлы в эту папку
+r_screen_form_label	Restore	Form label	Пожалуйста, щелкните на папке, в которую вы хотите восстановить выбранный файл(ы)
+r_screen_restore_btn	Restore	Restore button	Восстановить
+add_screen_norights_message	Add File	Lack of administrative rights message	У вас нет прав добавлять файлы в эту папку
+add_screen_copyerr_message	Add File	Error copying files message	Ошибка копирования файлов
+add_screen_long_name	Add File	Page header	Добавить файлы
+add_screen_nofiles_message	Add File	Submitting without selecting any files message	Вы должны выбрать хотя бы один файл
+add_screen_morefiles_label	Add File	 	Нажмите здесь, если хотите добавить больше файлов
+add_screen_add_btn	Add File	Add button	Добавить
+add_screen_upload_text	Add File	Text displayed while files are being added	Добавление файлов
+add_screen_uploadwait_text	Add File	Text displayed while files are being uploaded	Пожалуйста подождите пока мы загружаем ваши файлы.
+add_screen_upload_err_success	Add File	Message returned after successful file(s) uploading	Загрузка файла(ов) прошла успешно.
+add_screen_upload_err_maxfile_exceed	Add File	Message returned if the size of file to be uploaded exceeds one allowed by UPLOAD_MAX_FILESIZE directive	Размер файла превышает разрешенный директивой UPLOAD_MAX_FILESIZE в файле php.ini
+add_screen_upload_err_maxfilehtml_exceed	Add File	Message returned if the size of file to be uploaded exceeds one allowed in HTML form	Размер файла превышает разрешенный в описании HTML формы
+add_screen_upload_err_part	Add File	Message returned if only a part of file was uploaded	Файл загружен не полностью
+add_screen_upload_err_nofile	Add File	Message returned if file was not uploaded	Файл не был загружен
+add_screen_upload_err_tempmissed	Add File	Message returned if temporary folder is not available	Каталог временных файлов не доступен
+add_screen_upload_error	Add File	Message returned if error occurred when file has been uploading	Ошибка загрузки файла <b>%s</b>. %s.
+add_screen_upload_success	Add File	Message returned after successful file(s) uploading	Файл <b>%s</b> успешно добавлен.
+add_screen_upload_locked	Add File	Message returned if uploaded file was locked by another user	Файл <b>%s</b> не может быть добавлен (заблокирован пользователем %s).
+add_screen_zero_size	Add File	Message returned if uploaded file has zero length	Файлы не могут быть добавлены, так как один из них имеет нулевой размер.
+add_screen_upload_info	Add File	Common file upload status message	Файл <b>%s</b>: %s
+add_screen_filesexists_label	Add File	Following files already exists label	Следующие файлы уже существуют
+add_screen_checkout_label	Add File	Checked out label	Заблокирован
+add_screen_replace_label	Add File	Replace existing files label	Заменить существующие файлы (файлы, заблокированные другими пользователями будут пропущены)
+add_screen_skip_label	Add File	Skip existing files label	Пропустить существующие файлы
+add_screen_filename_title	Add File	File Name title	Файл
+add_screen_comment_title	Add File	Comment title	Комментарий
+add_screen_bulk_link	Add File	Bulk message	Новая загрузка файлов
+add_screen_bulk_requires	Add File	Bulk message	требуется
+fpp_comment_label	Add File	Comment title	Комментарий
+addfld_screen_errorfld_message	Add Folder	Error crating directory message	Не удалось создать папку
+ua_page_title	Upload Archive	Page Title	Загрузить архив
+ua_file_label	Upload Archive	File label	Файл
+ua_extractsubfolders_label	Upload Archive	Extract subfolders label	Извлечь подкаталоги
+ua_upload_btn	Upload Archive	Upload button	Загрузить
+ua_selectfile_message	Upload Archive	Select file message	Пожалуйста, выберите архив ZIP для загрузки
+ua_errorarchive_message	Upload Archive	Error reading archive message	Ошибка чтения архива
+ua_nofolderrights_message	Upload Archive	No folder rights message	У вас нет прав создавать подпапки в этой папке
+ua_archivesnotsupported_message	Upload Archive	Archives not supported message	Для работы с архивами на вашем сервере должны быть установлены следующие компоненты:\n\n1. Zlib Compression Functions\n\nПожалуйста обратитесь к вашему системному администратору
+ua_filefolders_label	Upload Archive	Files and folders label	Архив %s содержит %s файл(ов) в %s директории(ях)
+ua_requiredspace_label	Upload Archive	Required disk space label	Требуемое дисковое пространство: %s
+ua_availablespace_label	Upload Archive	Available disk space label	Доступное пространство: %s
+ua_imagesfound_label	Upload Archive	Images found label	Изображений найдено: %s
+ua_createthumbs_label	Upload Archive	Create thumbnails label	Создать эскизы для изображений
+ua_createthumbs_note	Upload Archive	Create thumbnails note	Создания эскизов для большого количество файлов может занять много времени
+ua_arciveuploaded_message	Upload Archive	Archive uploaded message	Архив %s успешно загружен
+ua_arciveuploaderror_message	Upload Archive	Archive uploading error message	Ошибка загрузки орхива %s: %s.
+ua_subfolders_label	Upload Archive	Subfolders created label	Папок создано
+ua_filesextracted_label	Upload Archive	Files extracted label	Всего файлов извлечено
+ua_imagesextracted_label	Upload Archive	Images extracted label	Извлечено изображений
+ua_thumbscreated_label	Upload Archive	Thumbnails created label	Создано эскизов
+ua_thumberrors_label	Upload Archive	Thumbnail errors label	Ошибок создания эскизов
+ua_nofolderrights_note	Upload Archive	No folder rights note	У вас нет прав создавать подпапки в этой папке. Все файлы, содержащиеся в папках архива будут извлечены в текущую папку.
+ua_fileformat_note	Upload Archive	File format note	Могут быть загружены только архивы ZIP (возможна иерархия папок)
+ua_partialupload_message	Upload Archive	Partially uploaded archive message	Архив %s был частично загружен:
+ua_upload_note	Upload Archive	Upload archive note	Функция Загрузки архива позволяет загрузить и автоматически извлечь файлы и папки из любого файла ZIP.
+ua_nospacerequired_note	Upload Archive	No required space note	Доступное дисковое пространство недостаточно для извлечения всех файлов из архива. Ваш архив будет распакован только частично. Для увеличения доступного дискового пространства вы должны подписаться на дополнительное пространство, либо удалить некоторые файлы и/или записи базы данных.
+ua_uploadarchive_text	Upload Archive	Text displayed while archive are being uploaded	Загрузка архива...
+ua_uploadwait_text	Upload Archive	Text displayed while archive are being uploaded	Пожалуйста подождите пока мы загружаем ваш архив...
+ua_existing_note	Upload Archive	Existing files note	Некоторые файлы могут уже существовать.
+ca_page_title	Create Archive	Page title	Сжать и скачать (сохранить)
+ca_createarchive_note	Create Archive	Create archive note	Вы можете создать архив ZIP и скачать его, либо сохранить в любую папку, в которой у вас есть права записи.
+ca_add_label	Create Archive	Add label	Добавить в архив
+ca_folder_label	Create Archive	Folder label	Папку
+ca_selectedfiles_label	Create Archive	Selected Files label	Выбранные файлы
+ca_includesubfolders_label	Create Archive	Include subfolders label	Включая подпапки
+ca_entiredd_label	Create Archive	Entire Document Depot label	Базу файлов целиком (включая иерархию папок)
+
+ca_creating_note	Create Archive	Create archive note	<br>1. Архивация большого количества данных может занять много времени.<br>2. Файлы размером больше 50 Мб не могут быть включены в архив.<br>3. Общий объем архивируемых файлов не может превышать 1 Гб.
+ca_createarchive_btn	Create Archive	Create archive button	Сжать
+ca_createarchive_text	Create Archive	Text displayed while archive are being prepared	Создание архива...
+ca_createwait_text	Create Archive	Text displayed while archive are being create	Идет подготовка к архивации...
+ca_pleasewait_text	Create Archive	Text displayed while archive are being create	Подождите, производится архивация ...
+ca_canselwait_text	Create Archive	Text displayed while archive are censeling archive	Происходит отмена архивации, подождите ...
+ca_cancel_text	Create Archive	Cancel	Отменить
+ca_sizeexceed_text	Create Archive	Exceed size of the archive	Превышен максимальный объем архивируемых данных
+ca_archiverror_text	Create Archive	Archive error	Ошибка архивации
+ca_archivecencel_text	Create Archive	Archive cenceled	Архивация прервана
+ca_compressed_text	Create Archive	File compressed	из %s файлов сжато
+ca_nonfiled_text	Create Archive	Files exsist	Сформированный архив не содержит ни одного файла
+ca_ignorefiles_text	Create Archive	Files ignor	Проигнорированны файлы из-за превышения лимита %s
+ca_skipbutton_text	Create Archive	Skip button	Пропустить эти файлы и продолжить
+
+ca_archivecreated_label	Create Archive	Archive created message	Архив был успешно создан:
+ca_filesadded_label	Create Archive	Files added label	%s файл(ов) было добавлено.
+ca_downloadarchive_btn	Create Archive	Download archive button	Скачать архив
+ca_filesize_label	Create Archive	File size label	Размер файла
+ca_saveinfolder_label	Create Archive	Save in folder label	Сохранить в папку
+ca_selectfolder_item	Create Archive	Select folder list item	<выберите>
+ca_filename_label	Create Archive	File name label	Имя файла
+ca_description_label	Create Archive	File description label	Описание
+ca_nodownloadrights_message	Create Archive	No rights to download message	У вас нет прав на скачивание этой папки
+ca_close_btn	Create Archive	Close button	Закрыть
+sm_page_title	Send Email	Page title	Отправить в письме
+sm_to_label	Send Email	Label To	Кому
+sm_subject_label	Send Email	Label Subject	Тема
+sm_message_label	Send Email	Label Message	Сообщение
+sm_send_btn	Send Email	Send button	Отправить
+sm_priority_label	Send Email	Priority label	Важность
+sm_hipriority_item	Send Email	High priority item	Высокая
+sm_normalpriority_item	Send Email	Normal priority item	Обычная
+sm_lowpriority_item	Send Email	Low priority item	Низкая
+sm_recnotset_message	Send Email	Error message	Вы должны указать получателей для этого сообщения.
+sm_recipientlimit_message	Send Email	Error message	Превышено ограничение количества получателей: %s
+sm_included_label	Send Email	Included label	Включенные
+sm_notincluded_label	Send Email	Not included label	Не включенные
+sm_tomore_label	Send Email	To (more) label	Кому (еще)
+sm_attachments_label	Send Email	Attachments label	Вложения
+sm_files_label	Send Email	Files label	файл(ов)
+sm_totalfileinfo_label	Send Email	Total files information	Всего: %s файл(ов) (%s)
+sm_compressfiles_label	Send Email	Compress files label	Сжать файлы
+sm_filename_label	Send Email	File name label	Имя файла
+sm_compress_note	Send Email	Compress note	Включите флажок Сжать файлы, если вы хотите, чтобы вложения были отправлены как архив ZIP, и введите имя для этого архива
+sm_invalidemail_message	Send Email	Invalid email message	Неверный формат электронного адреса: %s
+sm_errorsending_message	Send Email	Error sending email message	Ошибка отправки сообщения
+sm_from_label	Send Email	From label	От
+sm_nosenderemail_label	Send Email	No sender email label	адрес не указан
+sm_nosenderemail_message	Send Email	No sender email message	Адрес отправителя не указан
+fd_page_title	File	Page title	Файл
+fd_close_btn	File	Close button	Закрыть
+fpp_page_title	File Properties	Page Title	История версий
+fpp_deleteselected_btn	File Properties	Delete selected button	Удалить выбранные
+fpp_norights_message	File Properties	No rights message	У вас нет прав редактировать этот файл
+fpp_editfile_hint	File Properties	Edit file hint	Изменить имя и описание файла
+fpp_back_btn	File Properties	Back button	Вернуться в список файлов
+co_page_title	Check Out	Page Title	Заблокировать
+co_checkout_btn	Check Out	Check Out button	Заблокировать
+co_filelist_label	Check Out	File list label	Следующие файлы будут заблокированы
+co_checkedout_label	Check Out	Cheked Out label	Следующие файлы были успешно заблокированы
+co_invalidfiles_label	Check Out	Invalid Files label	Следующие файлы уже были заблокированы другими пользователями
+paa_page_title	Propagate Access Rights	Page Title	Распространить доступ на подпапки
+paa_note_text	Propagate Access Rights	Note text	Вы можете распространить данные права доступа на все подпапки, в которых вы имеете уровень прав П (папки).
+paa_propagate_btn	Propagate Access Rights	Propagate button	Распространить
+paa_norights_message	Propagate Access Rights	No access rights message	У вас нет прав распространять права доступа в этой папке
+paa_nofolders_message	Propagate Access Rights	No folders message	Папка не содержит подпапок, на которые вы бы могли распространить права.
+rep_page_title	Reports	Page title	Отчеты
+rep_norecords_label	Reports	No records label	<нет записей>
+rep_spacebyusers_title	Reports	Space by users report title	Дисковое пространство
+rep_spacebyusers_note	Reports	Space by users report note	Отчет показывает распределение дискового пространства, занятого файлами (с группировкой по владельцам).
+rep_sbuname_title	Reports	Space by users report name title	Пользователь
+rep_sbusize_title	Reports	Space by users report size title	Пространство
+rep_sbuquota_title	Reports	Space by users report quota title	Квота
+rep_backtorepors_btn	Reports	Back to reports button	Вернуться в отчеты
+rep_folderssummary_title	Reports	Folders Summary report title	Сводный отчет по папкам
+rep_folderssummary_note	Reports	Folders Summary report note	Полный список папок с суммарным количеством файлов в каждой папке и полным объемом дискового пространства, занятым папкой.
+rep_filetypestats_title	Reports	File types statistics report title	Типы хранимых файлов
+rep_filetypestats_note	Reports	File types statistics report note	Отчет показывает перечень всех типов файлов (JPG, GIF, PDF и т.д.), занятое каждым типом дисковое пространство и общее количество файлов каждого типа.
+rep_ftsfiletype_title	Reports	File types statistics file type title	Тип файла
+rep_ftsfilesize_title	Reports	File types statistics file size title	Размер
+rep_ftsfiles_title	Reports	File types statistics files title	Файлов
+rep_ftsunknown_label	Reports	File types statistics unknown file label	<неизвестный>
+rep_recentuploads_title	Reports	Recent Uploads report title	Недавние загрузки
+rep_recentuploads_note	Reports	Recent Uploads report note	Отчет показывает список файлов, которые были загружены за последние Х дней или за заданный интервал дат.
+rep_rcupfilename_title	Reports	Recent Uploads file name title	Файл
+rep_rcupuplago_title	Reports	Recent Uploads uploaded ago title	Дата загрузки
+rep_rcupusername_title	Reports	Recent Uploads user name title	Пользователь
+rep_last_label	Reports	Last label	Последние
+rep_days_label	Reports	Days label	дней
+rep_daterange_label	Reports	Date range label	Интервал дат, c
+rep_to_label	Reports	To label	по
+rep_show_btn	Reports	Show button	Показать
+rep_frequpd_title	Reports	Frequently updated files report title	Часто обновляемые файлы
+rep_frequpd_note	Reports	Frequently updated files report note	Если у вас включена функция контроля версий, то этот отчет полезен для определения файлов которые чаще всего обновляются и как много версий хранится в базе данных.
+rep_fsfilder_title	Reports	Folders summary folder title	Папка
+rep_fssize_title	Reports	Folders summary folder size	Размер
+rep_fsfiles_title	Reports	Folders summary folder files	Файлов
+rep_fuffilename_title	Reports	Frequently updated files filename title	Файл
+rep_fufversions_title	Reports	Frequently updated files versions title	Старых версий
+rep_fufusername_title	Reports	Frequently updated files username title	Владелец
+rep_totals_label	Reports	Totals label	Всего
+vc_page_title	Version Control	Page Title	Контроль версий
+vc_maxversions_label	Version Control	Maximum number of old versions label	Максимальное количество старых версий
+vc_maxversions_note	Version Control	Maximum number of old versions note	Загрузка новой версии файла выше указанного максимального количества будет переписывать самую старую версию файла
+vc_blankvalue_note	Version Control	Blank value note	Оставьте поле пустым, чтобы хранить все версии.
+emp_page_title	Email Parameters	Page title	Параметры Email
+emp_usermode_note	Email Parameters	User mode note	Использовать Имя и Email пользователя, отправляющего сообщение
+emp_formnote	Email Parameters	Form Note	Укажите Имя и Email отправителя, которые будут использованы в исходящих сообщениях
+emp_globalsetting_label	Email Parameters	Global settings label	Использовать одинаковое Имя и Email для всех сообщений
+ddlistlink_whatshare_label	DDList Link Dialog	What share question	Создать ссылку для:
+ddlistinplace_whatshare_label	DDList Inplace Dialog	What share question	Создать виджет для:
+ddlist_selectedfiles_label	DDList Dialog	Selected files	Выбранных файлов
+ddlist_entirefolder_label	DDList Dialog	Entire folder	Текущей папки
+ddlist_morefiles_label	DDList Dialog	файла(ов) дополнительно	файла(ов) дополнительно
+ddlist_morefile_label	DDList Dialog	more file	файл дополнительно
+sv_screen_adddescription_msg	Service	add description message	&lt;добавить описание&gt;
+
+
+updlg_dialog_title	File upload dialog	dialog title	Загрузка файлов
+updlg_file_error_unknown	File upload dialog	unknown error	Ошибка загрузки файла
+updlg_file_error_userquota	File upload dialog	user quota error	Вы превысили квоту на личное дисковое пространство.
+updlg_file_error_checkout	File upload dialog	file check out	Заблокирован другим пользователем.
+updlg_file_error_systemquota	File upload dialog	file check out	Превышен лимит доступного места на диске.
+updlg_file_error_fileslimit	File upload dialog	file check out	Превышено максимально допустимое количество файлов.
+
+updlg_nofilesselected_message	File upload dialog	no files selected	нет выбранных файлов
+updlg_selectmore_label	File upload dialog	select more	выбрать еще
+updlg_uploading_label	File upload dialog	uploading	Загрузка...
+updlg_filesselected_label	File upload dialog	files selected	файл(ов) выбрано
+updlg_filesuploaded_label	File upload dialog	files uploaded	файл(ов) успешно загружено
+updlg_filesnotuploaded_label	File upload dialog	files not uploaded	файл(ов) не загружено
+updlg_afterselectmore_label	File upload dialog	after select more link	загрузить еще файлы
+updlg_selectfiles_label	File upload dialog	select files	выберите файлы
+updlg_oldlink1_message	File upload dialog	old link first part	Если у вас возникли трудности при использовании этого загрузчика,
+updlg_oldlink2_message	File upload dialog	old link second part (link)	воспользуйтесь стандартной формой
+updlg_startupload_btn	File upload dialog	start upload button	Начать загрузку
+
+updlg_statuscomplete_label	File upload dialog	complete	Готов.
+updlg_statusuploading_label	File upload dialog	uploading	Загружается...
+updlg_statuspending_label	File upload dialog	pending	Ожидает...
+updlg_statuscancel_label	File upload dialog	cancel	Отменен.
+
+links_screen_name	Links	Links screen name	Что такое "Мои ссылки"?
+links_description_text	Links	Links description text	<b>Ссылка</b> - это веб-адрес, который вы можете создать для выбранных файлов. Затем эту ссылку вы можете отправить по электронной почте вашим друзьям, или просто запомнить адрес (да, вы можете создать легко запоминающийся адрес!), чтобы открыть свои файлы с любого компьютера.
+links_sample_label	Links	Sample label	Пример
+links_create_text	Links	Create text	Чтобы создать новую ссылку, перейдите в любую доступную папку, выберите файлы и воспользуйтесь командой создания ссылки в меню действий.
+links_availablelinks_label	Links	Availalbe links	Доступные ссылки
+
+app_mainprojectfolder_label	Common	Main project folder label	Главная папка проекта
+dd_projectsfiles_description	DD screen	projects files description	Эта секция включает папки, <b>связанные с проектами</b>.<br><ol><li><b>Чтобы создать папку проекта</b>, зайдите в сервис Проекты и используйте закладку Файлы.<li>Каждый проект может иметь <b>только одну главную папку</b> с неограниченным числом вложенных папок.<li><b>Права доступа</b> к папкам проекта наследуются из проекта и не могут быть настроены отдельно.</ol>
+dd_projectsfiles_name	DD screen	Project files name	Папки проектов
+sv_screen_download_btn	DD button	statusbar	Скачать
+sv_screen_save_btn	DD button	statusbar	Сохранить
+sv_screen_cancel_btn	DD button	statusbar	Отмена
+
+dd_new_folder	DD	New folder label	Новая папка

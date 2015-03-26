@@ -1,0 +1,23 @@
+<!--div id="ListFooterContainer" style="visibility: hidden">
+	<table id="TreePageListTable">
+		<thead>
+			<tr>
+				<td valign=middle>
+					<? $itStrings.il_tasks_label|cat:": "|cat:$workNum|cat:"&nbsp;&nbsp;&nbsp;" ?>
+					<? $itStrings.il_issues_label|cat:": <span id='issuesCount'>"|cat:$issueNum|cat:"</span>" ?>
+					<?if $showPageSelector ?>
+						&nbsp;&nbsp;&nbsp;
+						<? $kernelStrings.app_pages_text|cat:": " ?>
+						<? foreach from=$pages item=page_item ?>
+							<? if $currentPage != $page_item[0] ?>
+								<a href="javascript:void" onClick="AjaxLoader.loadPage('<? $page_item[1] ?>')"><? $page_item[0] ?></a> 
+							<? else ?>
+								<? $page_item[0]|cat:" " ?>
+							<? /if ?>
+						<? /foreach ?>
+					<?/if?>
+				</td>
+			</tr>
+		</thead>
+	</table>
+</div-->

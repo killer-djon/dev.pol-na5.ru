@@ -1,0 +1,50 @@
+	<div style="overflow: auto; width: 100%; height: 100%" id="rightscrolldiv">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="treeDocumentListTable">
+			<tr height=20>
+				<? if $numDocuments ?>
+					<th align="left" width="10px" style="width: 10px"><input type="checkbox" name="selectAllDocsCB" onClick="treeSelectAll(this)"></th>
+				<? /if ?>
+
+				<? foreach from=$visibleColumns item=columnID ?>
+					<? assign var=nameIndex value=$mm_columnNames[$columnID] ?>
+					<? assign var=columnName value=$mmStrings[$nameIndex] ?>
+
+					<? if $columnID == "ATTACHEDFILES" ?>
+						<th align=center width=15><img src="../../../MM/html/classic/images/attachment.gif" width=11 height=12></th>
+					<? elseif $columnID == "MMM_PRIORITY" ?>
+						<th align=center width=15><img border=0 src="../../../common/html/classic/images/priority.gif" align=absmiddle></th>
+					<? elseif $columnID == "MSGSTATUS" ?>
+						<th align="left"><? makeSortHeader URL=$genericLinkUnsorted fieldName='MMM_STATUS' curStatus=$sorting text=$columnName descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+					<? else ?>
+						<th align="left"><? makeSortHeader URL=$genericLinkUnsorted fieldName=$columnID curStatus=$sorting text=$columnName descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></th>
+					<? /if ?>
+				<? /foreach ?>
+
+			</tr>
+			<? foreach from=$notes key=note_ID item=messageData name=noteLoop ?>
+				<tr>
+					<? if $numDocuments ?>
+						<td align=left valign=top width="10px" style="width: 10px"><input type="checkbox" name="document[<?$messageData.MMM_ID?>]" value="<?$messageData.MMM_ID?>"><input type=hidden name="noterights[<?$messageData.MMM_ID?>]" value="<? $messageData.TREE_ACCESS_RIGHTS ?>"><input type=hidden name="noteimages[<?$messageData.MMM_ID?>]" value="<? $messageData.MMM_IMAGES ?>"><input type=hidden name="notetype[<?$messageData.MMM_ID?>]" value="<? $messageData.MMM_STATUS ?>"></td>
+					<? /if ?>
+
+					<? assign var=status value=$messageData.MMM_STATUS ?>
+					<? foreach from=$visibleColumns item=columnID ?>
+						<? if $columnID == "ATTACHEDFILES" ?>
+							<td valign=top><? if $messageData.$columnID  ?><img src="../../../MM/html/classic/images/attachment.gif" width=11 height=12 title="<? $messageData.ATTACHEDFILES_NOLINK|sureecho ?>"><? else ?>&nbsp;<? /if ?></td>
+						<? elseif $columnID == "MMM_PRIORITY" ?>
+							<td align=center width=15><? if $messageData.$columnID == 0 ?><img src="../../../MM/html/classic/images/lowpr.gif" width=11 height=12><? elseif $messageData.$columnID == 2 ?><img src="../../../MM/html/classic/images/highpr.gif" width=11 height=12><? else ?>&nbsp;<? /if ?></th>
+						<? elseif $columnID == "MMF_NAME" ?>
+							<td valign=top><a href="<? $messageData.FOLDER_URL ?>" style="color : <? $mm_statusColors.$status ?>"><? $mm_statusOpenTags.$status ?><? $messageData.$columnID|htmlsafe:true:true|truncate:$contentLimit:"..."|sureecho ?><? $mm_statusCloseTags.$status ?></a></td>
+						<? else ?>
+							<td valign=top <? if $columnID == "MMM_ID" ?>width="15"<? /if ?>><a href="<? $messageData.ROW_URL ?>" style="color : <? $mm_statusColors.$status ?>"><? $mm_statusOpenTags.$status ?><? $messageData.$columnID|strip|htmlsafe:true:true|sureecho ?><? $mm_statusCloseTags.$status ?></a></td>
+						<? /if ?>
+					<? /foreach ?>
+				</tr>
+			<? foreachelse ?>
+				<tr>
+					<td align="center" valign="middle" height=40 colspan="<? $numVisibleColumns ?>"><? $mmStrings.mmp_screen_norecords_label|htmlsafe:true:true ?></td>
+				</tr>
+			<? /foreach ?>
+		</table>
+		<? include file="../../../common/html/classic/tree_templates/tree_pages.htm" ?>
+	</div>

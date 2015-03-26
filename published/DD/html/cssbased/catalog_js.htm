@@ -1,0 +1,26 @@
+<? include file="../../../common/html/cssbased/pageelements/common_js.htm" ?>
+
+<script language="JavaScript">
+	DDStrings = {
+		dd_screen_deletelockedjs_message: "<? $ddStrings.dd_screen_deletelockedjs_message ?>",
+		dd_screen_deletelockedjs_confirm: "<? $ddStrings.dd_screen_deletelockedjs_confirm ?>",
+		dd_screen_emptydel_message: "<? $ddStrings.dd_screen_emptydel_message ?>",
+		dd_screen_invrights_message: "<? $ddStrings.dd_screen_invrights_message ?>",
+		dd_screen_confirmdel_message: "<? $ddStrings.dd_screen_confirmdel_message ?>",
+		dd_screen_emptycheckin_message: "<? $ddStrings.dd_screen_emptycheckin_message ?>",
+		dd_screen_invcheckinrights_message: "<? $ddStrings.dd_screen_invcheckinrights_message ?>",
+		dd_screen_confirmcheckin_message: "<? $ddStrings.dd_screen_confirmcheckin_message ?>",
+		dd_screen_emptycheckout_message: "<? $ddStrings.dd_screen_emptycheckout_message ?>",
+		dd_screen_emptyrestore_message: "<? $ddStrings.dd_screen_emptyrestore_message ?>",
+		dd_screen_emptycopy_message: "<? $ddStrings.dd_screen_emptycopy_message ?>",
+		dd_screen_emptymove_message: "<? $ddStrings.dd_screen_emptymove_message ?>",
+		dd_screen_invrights_message: "<? $ddStrings.dd_screen_invrights_message ?>",
+		dd_screen_flddelete_message: "<? $ddStrings.dd_screen_flddelete_message ?>"
+	};
+	
+	function CreateDDListLink (btn) {
+		document.dialogs["DDListLink"].showDialog(btn, "DDList", "Link", {viewMode: "<? $viewMode|default:0 ?>"});
+	}
+</script>
+
+<script language="JavaScript" src="../cssbased/catalog_js.js"></script>

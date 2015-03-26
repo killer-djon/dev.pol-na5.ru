@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>
+<? $pageTitle  ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $properties.codepage ?>">
+<style>
+<!--
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-color: <? $properties.plain_body_bg ?>;
+	background: <? $properties.plain_body_bg ?>;
+}
+body, td {
+	font-family: <? $properties.plain_body_ff ?>;
+	font-size: <? $properties.plain_body_fsz ?>;
+	font-weight: <? $properties.plain_body_fs ?>;
+	color: <? $properties.plain_body_fg ?>;
+}
+a {
+	color: <? $properties.plain_link_fg ?>;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+.bookName {
+	font-family: <? $properties.plain_bname_ff ?>;
+	font-size: <? $properties.plain_bname_fsz ?>;
+	font-weight: <? $properties.plain_bname_fs ?>;
+	color: <? $properties.plain_bname_fg ?>;
+	background-color: <? $properties.plain_bname_bg ?>;
+	background: <? $properties.plain_bname_bg ?>;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 13px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+}
+.tocHdr {
+	font-family: <? $properties.plain_tochdr_ff ?>;
+	font-size: <? $properties.plain_tochdr_fsz ?>;
+	color: <? $properties.plain_tochdr_fg ?>;
+	background-color: <? $properties.plain_tochdr_bg ?>;
+	background: <? $properties.plain_tochdr_bg ?>;
+	font-weight: <? $properties.plain_tochdr_fs ?>;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 13px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+}
+.pageTitle {
+	font-family: <? $properties.plain_ptitle_ff ?>;
+	font-size: <? $properties.plain_ptitle_fsz ?>;
+	color: <? $properties.plain_ptitle_fg ?>;
+	background-color: <? $properties.plain_ptitle_bg ?>;
+	background: <? $properties.plain_ptitle_bg ?>;
+	font-weight: <? $properties.plain_ptitle_fs ?>;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 13px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+}
+.tocLink {
+	font-family: <? $properties.plain_toclink_ff ?>;
+	font-size: <? $properties.plain_toclink_fsz ?>;
+	color: <? $properties.plain_toclink_fg ?>;
+	background-color: <? $properties.plain_toclink_bg ?>;
+	background: <? $properties.plain_toclink_bg ?>;
+	font-weight: <? $properties.plain_toclink_fs ?>;
+	text-align: <? $properties.plain_toclink_adjust ?>;
+}
+.treeCatalogRow {
+	font-family: <? $properties.plain_toc_ff ?>;
+	font-size: <? $properties.plain_toc_fsz ?>;
+	color: <? $properties.plain_toc_fg ?>;
+	background-color: <? $properties.plain_toc_bg ?>;
+	background: <? $properties.plain_toc_bg ?>;
+	font-weight: <? $properties.plain_toc_fs ?>;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.treeCatalogRowCurrent {
+	font-family: <? $properties.plain_toc_ff ?>;
+	font-size: <? $properties.plain_toc_fsz ?>;
+	color: <? $properties.plain_tocs_fg ?>;
+	background-color: <? $properties.plain_tocs_bg ?>;
+	background: <? $properties.plain_tocs_bg ?>;
+	font-weight: <? $properties.plain_toc_fs ?>;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.treeCatalogRow a {
+	color: <? $properties.plain_toc_fg ?>;
+}
+.treeCatalogRowCurrent a {
+	color: <? $properties.plain_toc_fg ?>
+}
+
+H1 {
+	font-family: <? $properties.plain_h1_ff ?>;
+	font-size: <? $properties.plain_h1_fsz ?>;
+	color: <? $properties.plain_h1_fg ?>;
+	background-color: <? $properties.plain_h1_bg ?>;
+	font-weight: <? $properties.plain_h1_fs ?>;
+}
+
+H2 {
+	font-family: <? $properties.plain_h2_ff ?>;
+	font-size: <? $properties.plain_h2_fsz ?>;
+	color: <? $properties.plain_h2_fg ?>;
+	background-color: <? $properties.plain_h2_bg ?>;
+	font-weight: <? $properties.plain_h2_fs ?>;
+}
+
+H3 {
+	font-family: <? $properties.plain_h3_ff ?>;
+	font-size: <? $properties.plain_h3_fsz ?>;
+	color: <? $properties.plain_h3_fg ?>;
+	background-color: <? $properties.plain_h3_bg ?>;
+	font-weight: <? $properties.plain_h3_fs ?>;
+}
+
+-->
+</style></head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+	<? if !$fatalError ?>
+
+	<? if $properties.plain_bname_visible == 1 ?>
+		<p class="bookName"><? $bookData.QPB_NAME|htmlsafe:true:true ?></p>
+	<? /if ?>
+
+	<? if $properties.plain_toc_visible == 1 ?>
+		<a name="TOC"></a>
+
+		<? if $properties.plain_tochdr_visible == 1 ?>
+			<p class="tocHdr"><? $qpStrings.qp_published_toc_title ?></p>
+		<? /if ?>
+
+		<?include file="../../../QP/html/classic/plain_tableofcontent.htm"  ?>
+		<? else ?>
+			<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+		<? /if ?>
+	<? /if ?>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<? foreach from=$contentList item=folderData  key=QPF_ID?>
+		<? if $properties.plain_pdelim_visible == 1 ?>
+		<tr>
+		<td>
+			<hr color="<? $properties.plain_pdelim_fg ?>" noshade width=100%>
+		</td>
+		</tr>
+		<? /if ?>
+		<? if $properties.plain_ptitle_visible == 1 ?>
+		<tr>
+			<td><p class="pageTitle"><a name="<? $QPF_ID ?>"></a><? $folderData.QPF_TITLE ?></p></td>
+		</tr>
+		<? /if ?>
+		<tr>
+		<td align=center>
+			<table border="0" cellspacing="0" cellpadding="0" width="98%">
+			<tr>
+			<td valign=top>
+				<table width="100%" height=1><tr><td></td></table>
+				<? $folderData.QPF_CONTENT ?>
+				<p></p>
+
+<? if $properties.plain_toclink_visible == 1 && $properties.plain_toc_visible == 1 ?>
+				<br><br>
+				<p class="tocLink"><a href="#TOC" class="tocLink"><? $qpStrings.qp_published_toc_title ?></a></p>
+				<p></p>
+<? /if ?>
+			</td>
+			</tr>
+			</table>
+		</td>
+		</tr>
+		<? /foreach ?>
+	</table>
+<? /strip ?>
+</body>
+</html>

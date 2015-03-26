@@ -1,0 +1,91 @@
+<style type="text/css">
+tr.large td {font-size: 18px}
+tr.large td input {height: 28px; font-size: 18px}
+table.create-login td {padding: 1px 3px}
+</style>
+<table class="create-login">
+<tr class="large">
+	<td align="right">[`Login name`]:</td>
+	<td><input type="text" class="enter" value="" id="login" /></td>
+</tr>
+<tr>
+	<td align="right">[`Password`]:</td>
+	<td><input type="password" class="enter" value="" id="password" /></td>
+</tr>
+<tr>
+	<td align="right">[`Confirm password`]:</td>
+	<td><input type="password" class="enter" value="" id="repassword" /></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<div style="padding:10px 0">
+<input style="margin-left:0; vertical-align:middle" type="checkbox" id="invite" /> [`Let this user create their own login name.`]
+</div>
+<div style="width: 400px; font-size: 80%; padding-bottom: 15px; display: none" id="invite_help">[`After you submit this form, we will create a special link which you will send to your user to complete registration.`]</div>
+</td>
+</tr>
+<tr id="tr_error" style="display:none">
+	<td>&nbsp;</td>
+	<td style="padding-bottom: 5px">
+		<div id="error_login" style="color: red; display:none"></div>
+		<div id="error_password" style="color: red; display:none"></div>
+	</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>
+<input type="button" value="[`Save`]" id="save_login" />
+<input type="button" value="[`Cancel`]" onClick="$('#popup').wbsPopupClose(); return false;" />
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+	$("#invite").click(function () {
+		if ($(this).is(":checked")) {
+			$(".create-login input.enter").val('').attr('disabled', 'disabled');
+			$("#invite_help").show();
+			$("#error_login").hide();
+		} else {
+			$(".create-login input.enter").attr('disabled', '').focus();
+			$("#invite_help").hide();
+		}
+	});	
+
+	$("#save_login").click(function () {
+		if ($("#password").val() != $("#repassword").val()) {
+			$("#tr_error").show();
+			$("#error_password").html("[`Passwords don't match.`]").show();
+			return false;
+		} 
+		var params = {C_ID: '{{$contact_id}}'};
+		if (!$("#invite").is(":checked")) {
+			params['info[U_ID]'] = $("#login").val();
+			params['info[U_PASSWORD]'] = $("#password").val();
+		}
+		$.post("?mod=users&act=settings&ajax=1", params, function (response) {
+			if (response.status == 'OK') {
+				location.href="?mod=users&C_ID={{$contact_id}}&tab=settings"
+			} else if (response.status == 'ERR') {
+				$("#tr_error").show();
+				$("#error_login").html(response.error[0].text).show();
+			}
+		}, "json");
+	});
+
+	$("table.create-login input[type=password]").focus(function () {
+		$("#error_password").hide();
+		if ($("#error_login").is(":hidden")) {
+			$("#tr_error").hide();
+		}
+	});
+
+	$("#login").focus(function () {
+		$("#error_login").hide();
+		if ($("#error_password").is(":hidden")) {
+			$("#tr_error").hide();
+		}
+	});
+
+</script>

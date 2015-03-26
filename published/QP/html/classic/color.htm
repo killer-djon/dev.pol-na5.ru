@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title></title>
+<style type="text/css">
+body { background:buttonface; margin:0; padding:0; }
+form { margin:0; padding:0; }
+#containerpreview td { background:buttonface; }
+#preview { background-color:#000000; padding:1px; height:21px; width:50px; }
+#ColorPreview { height:100%; width:100%; }
+#ColorHex { font-size:12px; background:buttonface; border:0; }
+#palettecolor { cursor:pointer; }
+#palettecolor td { width:10px; height:10px; }
+</style>
+</head>
+
+<body bgcolor="#284628" text="#ffffff" leftmargin="15" topmargin="15" marginheight="15" marginwidth="15" onLoad="Init();">
+
+
+<div align="center">
+
+<table border="0" cellspacing="1" cellpadding="1" name="clr">
+<tr>
+<script language="JavaScript"><!-- hide
+build();
+
+function Init()
+{
+	var field = "properties["+window.opener.document.getElementById("colorchooser").value+"]";
+
+	var str = window.opener.document.getElementById(field).value;
+
+	document.getElementById("change_color").value = str.substring( 1 );
+
+	document.title = opener.chooseColorTitle();
+}
+
+
+function submitChanges()
+{
+	var field = "properties["+window.opener.document.getElementById("colorchooser").value+"]";
+	var field_show = "properties["+window.opener.document.getElementById("colorchooser").value+"_show]";
+
+	var color =  ValidateColor( document.getElementById("change_color").value );
+
+	if ( color != null )
+	{
+		window.opener.document.getElementById(field).value = '#'+color;
+		window.opener.document.getElementById(field_show).value = '#'+color;
+		window.opener.document.getElementById(field_show).style.backgroundColor = '#'+color;
+		window.opener.updateText( window.opener.document.getElementById("colorchooser").value );
+	}
+
+	window.close();
+}
+
+function cancelChanges()
+{
+	window.close();
+}
+
+// preview color
+function vcl(color)
+{
+	document.getElementById("ColorPreview").style.backgroundColor = '#' + color;
+	document.getElementById("ColorHex").value = '#' + color;
+}
+
+function vcli()
+{
+	vcl( document.getElementById("change_color").value );
+	return true;
+}
+
+function cl(col){
+	document.getElementById("change_color").value = col;
+	vcl( document.getElementById("change_color").value );
+}
+
+function build(){
+	var d="0369CF";
+	var x=y=z=0;
+	var i=1;
+	var c,s1,s2;
+	while (i<217) {
+		c=d.substring(x,x+1)+d.substring(x,x+1)+d.substring(y,y+1)+d.substring(y,y+1)+d.substring(z,z+1)+d.substring(z,z+1);
+		if(i % 24 == 0 && i!=0){
+			s1="<td bgcolor='#"+c+"'><a href=\"#\" onClick='cl(\""+c+"\");' alt=\""+c+"\"><img src='../../../common/html/classic/images/5pixsep.gif' border='0' width='8' height='8' ></a></td>";
+			s2="</tr><tr>";
+		}else{
+			s1="<td bgcolor='#"+c+"'><a href=\"javascript:void(0);\" onClick='cl(\""+c+"\");' alt=\""+c+"\"><img src='../../../common/html/classic/images/5pixsep.gif' border=0 width=8 height=8></a></td>";
+			s2="</td>";
+		}
+		document.writeln(s1+s2);
+		x++;
+		i++;
+		if(x==6){
+			x=0;
+			y++;
+		}
+		if(y==6){
+			y=0;
+			z++;
+		}
+	}
+}
+
+// return valid color code
+function ValidateColor(string)
+{
+  string = string || '';
+  string = string + "";
+  string = string.toUpperCase();
+  var chars = '0123456789ABCDEF';
+  var out   = '';
+  // remove invalid color chars
+  for (var i=0; i<string.length; i++)
+  {
+    var schar = string.charAt(i);
+    if (chars.indexOf(schar) != -1) out += schar;
+  }
+  // check length
+  if (out.length != 6) return null;
+  return out;
+}
+// -->
+</script>
+</td></tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0" width=264>
+<tr>
+	<td colspan=2><hr noshade width=100%></td>
+</tr>
+<tr>
+<td align=left>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%" id="containerpreview">
+	<tr>
+		<td valign="middle"><div id="preview"><div id="ColorPreview"></div></div></td>
+		<td valign="middle" width="100%"><input type="text" name="ColorHex" id="ColorHex" value="" size=15></td>
+	</tr>
+	</table>
+</td>
+<td align=right>
+	<font color=black>#</font><input style="border: 1 solid #a0a0a0;" name="change_color" id="change_color" value="FFFFFF" size=7 maxlength="6" onKeyUp="return vcli();">
+</td>
+</tr>
+<tr>
+	<td colspan=2><hr noshade width=100%></td>
+</tr>
+</table>
+<input type=submit value="OK" style="border: 1 solid #a0a0a0; background-color: #ffffff; width: 60px;" onClick="submitChanges()">
+<input type=submit value="Cancel" style="border: 1 solid #a0a0a0; background-color: #ffffff; width: 60px;"  onClick="cancelChanges()">
+</body>
+</html>

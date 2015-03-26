@@ -1,0 +1,264 @@
+<html>
+<head>
+<!-- title>< ? $pageTitle ? ></title>
+<meta http-equiv="Content-Type" content="text/html; charset=< ? $html_encoding ? >" -->
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<link href="../../../common/html/classic/tree_templates/tree_styles.css" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+<script language="JavaScript">
+<!--
+	function checkMinRights( rights )
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ )
+			if (thisForm.elements[i].type == 'checkbox')
+				if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked ) {
+					MMM_ID = thisForm.elements[i].value;
+
+					var rightsObj = tree_MM_findObj( "noterights["+MMM_ID+"]" );
+					if (!rightsObj)
+						return false;
+
+					if ( rightsObj.value < rights )
+						return false;
+				}
+
+		return true;
+	}
+
+	function checkField( field, value, eq )
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ )
+			if (thisForm.elements[i].type == 'checkbox')
+				if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked )
+				{
+					MMM_ID = thisForm.elements[i].value;
+
+					var rightsObj = tree_MM_findObj( field+"["+MMM_ID+"]" );
+					if (!rightsObj)
+						return false;
+
+					if ( eq )
+					{
+						if ( rightsObj.value == value )
+							return true;
+					}
+					else
+					{
+						if ( rightsObj.value != value )
+							return true;
+					}
+				}
+
+		return false;
+	}
+
+	function checkSentImages( )
+	{
+		thisForm = document.forms[0];
+
+		for ( i = 0; i < thisForm.elements.length; i++ )
+			if (thisForm.elements[i].type == 'checkbox')
+				if ( thisForm.elements[i].name != "selectAllDocsCB" && thisForm.elements[i].checked )
+				{
+					MMM_ID = thisForm.elements[i].value;
+
+					var images = tree_MM_findObj( "noteimages["+MMM_ID+"]" );
+					if (!images)
+						return false;
+
+					var type = tree_MM_findObj( "notetype["+MMM_ID+"]" );
+					if (!type)
+						return false;
+
+					if ( images.value != '' && type.value == '3')
+						return true;
+				}
+
+		return false;
+	}
+
+	function confirmFolderDeletion()
+	{
+		return confirmDeletionAjax( '<? $mmStrings.mm_screen_flddelete_message ?>' );
+	}
+
+	function alertDelete()
+	{
+		 alert( '<? $kernelStrings.app_treenoflddelrights_message ?>' );
+		 return false;
+	}
+
+	function alertMove()
+	{
+		alert( '<? $kernelStrings.app_treenomovetosubfldrights_message ?>' );
+		return false;
+	}
+
+	function alertCopy()
+	{
+		alert( '<? $kernelStrings.app_treenocopyfldrights_message ?>' );
+		return false;
+	}
+
+	function alertAdd()
+	{
+		alert( '<? $kernelStrings.app_treenofldrights_message ?>' );
+		return false;
+	}
+
+	function alertAddRoot()
+	{
+		alert( '<? $kernelStrings.app_treenorootrights_message ?>' );
+		return false;
+	}
+
+	function alertModify()
+	{
+		alert( '<? $kernelStrings.app_treeinvcurfldrights_message ?>' );
+		return false;
+	}
+
+	function confirmSend()
+	{
+		if ( !treeCheckSelection( '<? $mmStrings.mm_screen_emptysend_message ?>' ) )
+			return false;
+
+		if ( checkField( 'notetype', '0', true ) )
+			return true;
+
+		alert( '<? $mmStrings.sm_onlydraft_error_text ?>');
+
+		return false;
+	}
+
+	function confirmCopy()
+	{
+		if ( !treeCheckSelection( '<? $mmStrings.mm_screen_emptycopy_message ?>' ) )
+			return false;
+
+		return true;
+	}
+
+	function confirmMove()
+	{
+		if ( !treeCheckSelection( '<? $mmStrings.mm_screen_emptymove_message ?>' ) )
+			return false;
+
+		if ( !checkMinRights( 1 ) ) {
+			alert( '<? $mmStrings.mm_screen_invrights_message ?>' );
+			return false;
+		}
+
+		return true;
+	}
+
+	function confirmDeletion()
+	{
+		if ( !treeCheckSelection( '<? $mmStrings.mm_screen_emptydel_message ?>' ) )
+			return false;
+
+		if ( !checkMinRights( 1 ) )
+		{
+			alert( '<? $mmStrings.mm_screen_invrights_message ?>' );
+			return false;
+		}
+
+		if ( checkSentImages( ) )
+			return confirm( '<? $mmStrings.mm_screen_confirmimgdel_message ?>\n<? $mmStrings.app_delete_anyway_text?>' );
+		else
+			return confirm( '<? $mmStrings.mm_screen_confirmdel_message ?>' );
+	}
+
+	function submitFolder( obj )
+	{
+		selected = obj.selectedIndex;
+		if ( obj.options[selected].value == -1 ) {
+			return false;
+		}
+
+		obj.form.submit();
+	}
+
+
+	function findCurrentFolder()
+	{
+		obj = document.getElementById("<? $currentFolder ?>");
+		if ( obj ) {
+			obj.scrollIntoView();
+		}
+	}
+
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class=noOverflow onLoad="initTreeDocumentView(); findCurrentFolder()">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+	<input type="hidden" name="btndummy">
+	<input type="hidden" name="edited" value="1">
+	<input type="hidden" name="curFolderID" value="<? $curFolderID ?>">
+	<input type="hidden" name="currentPage" value="<? $currentPage ?>">
+
+	<? assign var=toolbar value="../../../MM/html/classic/mm_toolbar.htm" ?>
+	<? assign var=headerHeight value=92 ?>
+
+
+	<? if !$fatalError ?>
+		<? if !$noAccessGranted ?>
+
+			<? assign var=rightPanelContent value="../../../MM/html/classic/msglist.htm" ?>
+			<? if $searchString != "" ?>
+				<? assign var=hideBottomPanel value=1 ?>
+				<? assign var=rightPanelHeader value=$mmStrings.mm_sreen_searchresult_title ?>
+			<? else ?>
+				<? assign var=rightPanelHeader value=$curFolderName|htmlsafe:true:true ?>
+			<? /if ?>
+
+			<? if $statisticsMode ?>
+				<? if $searchString == "" ?>
+					<? assign var=hideBottomPanel value=1 ?>
+					<? assign var=rightPanelHeader value=$kernelStrings.app_treeavailfolders_name ?>
+					<? assign var=rightPanelContent value="../../../common/html/classic/tree_templates/tree_folders_summary.htm" ?>
+					<? assign var=hidePages value=1 ?>
+					<? assign var=docsColumnName value=$mmStrings.mm_sreen_summarydoc_title ?>
+				<? /if ?>
+			<? /if ?>
+
+			<? if $hideLeftPanel && $searchString == "" ?>
+				<? assign var=topPanelFile value="../../../MM/html/classic/folderselector.htm" ?>
+				<? assign var=foldersImage value="javascript:processTextButton('showFoldersBtn', 'form')" ?>
+			<? /if ?>
+
+			<? assign var=hideBottomPanel value=1 ?>
+			<? assign var=topLevel value=true ?>
+			<? assign var=leftPanel value="../../../MM/html/classic/catalog_panel.htm" ?>
+			<? assign var=rightTopPanel value=$rightPanelContent ?>
+			<? assign var=rightBottomPanel value="../../../common/html/classic/tree_templates/tree_folder_users.htm"?>
+			<? assign var=leftPanelHeader value=$kernelStrings.app_treefolders_text?>
+			<? assign var=numDocumentsLabel value=$mmStrings.mm_screen_numdocs_label?>
+			<? assign var=leftPanelLinkTitle value=$kernelStrings.app_treeavailfolders_name?>
+
+
+			<? include file="../../../common/html/classic/tree_templates/folder_document_resizable_view.htm" ?>
+
+		<? else ?>
+			<? include file="../../../common/html/classic/header.htm" ?>
+			<? $mmStrings.mm_screen_noaccess_message|nl2br ?>
+			<?include file="../../../common/html/classic/pagefooter.htm" ?>
+		<? /if ?>
+	<? else ?>
+		<? include file="../../../common/html/classic/header.htm" ?>
+		<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr ?>
+		<?include file="../../../common/html/classic/pagefooter.htm" ?>
+	<? /if ?>
+
+</form>
+<? /strip ?>
+</body>
+</html>

@@ -1,0 +1,482 @@
+{{ if !$currentObject }}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<!-- title>Compose new message</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" -->
+	<link href="../../common/templates/elements/wbs_btn.css" rel="stylesheet" type="text/css">
+	<link href="../../MM/2.0/css/mm.css" rel="stylesheet" type="text/css">
+	<link href="../../MM/2.0/css/calendar.css" rel="stylesheet" type="text/css">
+	<script src="../../common/html/classic/styles/calendar.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div id="sendFormDiv" style="height: 100%">
+
+<form name="SendForm" enctype="multipart/form-data" method="post" action="mm_sendmail.php" target="bufferIframe">
+
+	<div id="sendFormHeader" class="top_form_compose">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+			<tr id="SendFrom" style="display:{{ $sendDisplay }}" nowrap>
+				<td width="1%" nowrap class="send_labels">
+					[`From`]:
+				</td>
+				<td width="70%" nowrap>
+					<select id="messageData[MMM_FROM]" name="messageData[MMM_FROM]">
+					{{ foreach from=$senders item=send_from }}
+						<option value="{{ $send_from|htmlsafe:true:true }}"{{ if $currentSender == $send_from }} selected{{ /if }}>
+						{{ $send_from|htmlsafe:true:true }}</option>
+					{{ /foreach}}
+					</select>
+					<span  class="send_labels" style="padding-left: 2em">[`Priority`]:</span>
+					<select name="messageData[MMM_PRIORITY]" id="prioritySelect">
+						<option value="1">[`high`]</option>
+						<option value="3" selected>[`normal`]</option>
+						<option value="5">[`low`]</option>
+					</select>
+				</td>
+				<td width="29%"></td>
+			</tr>
+
+			<tr id="SendTo" style="display:{{ $sendDisplay }}">
+				<td valign="top" class="send_labels" style="padding-top: 5px">[`To`]:</td>
+				<td width="70%" nowrap onkeypress="return enterAddress(event, 'messageData[MMM_TO]', 'SendSubTo')">
+					<div class="compose_td_conteiner">
+						<textarea name="messageData[MMM_TO]" id="messageData[MMM_TO]" class="autocomplete_input"
+							rows="2" style="width: 100%; font-family: Arial; font-size:13px; height: 36px; overflow-x: hidden"></textarea>
+						{{ if $CMfolders  }}
+						<div class="control_btn"
+							onclick="switchContactsMenu('messageData[MMM_TO]', 'ssc_contacts', this)">&nbsp;</div>
+						{{ /if }}
+					</div>
+				</td>
+				<td></td>
+			</tr>
+
+			<tr id="SendCC" style="display: none">
+				<td class="send_labels">[`Copy`]:</td>
+				<td onkeypress="return enterAddress(event, 'messageData[MMM_CC]', 'SendSubCC')">
+					<div class="compose_td_conteiner">
+						<input type="text"
+							name="messageData[MMM_CC]" id="messageData[MMM_CC]" class="autocomplete_input"
+							maxlength="250" style="width: 100%" value="" autocomplete="off">
+						{{ if $CMfolders }}
+						<div class="control_btn"
+							onclick="switchContactsMenu('messageData[MMM_CC]', 'ssc_contacts', this)"></div>
+						{{ /if }}
+					</div>
+				</td>
+				<td></td>
+			</tr>
+
+			<tr id="SendBCC" style="display: none">
+				<td class="send_labels">[`BCC`]:</td>
+				<td onkeypress="return enterAddress(event, 'messageData[MMM_BCC]', 'SendSubBCC')">
+					<div class="compose_td_conteiner">
+						<input type="text"
+							name="messageData[MMM_BCC]" id="messageData[MMM_BCC]" class="autocomplete_input"
+							maxlength="250" style="width: 100%" value="" autocomplete="off">
+						{{ if $CMfolders }}
+						<div class="control_btn"
+							onclick="switchContactsMenu('messageData[MMM_BCC]', 'ssc_contacts', this)"></div>
+						{{ /if }}
+					</div>
+				</td>
+				<td></td>
+			</tr>
+
+			<tr id="SendLists" style="display: none">
+				<td class="send_labels">[`Lists`]:</td>
+				<td>
+					<div class="compose_td_conteiner">
+						<input type="text" name="messageData[MMM_LISTS]" id="messageData[MMM_LISTS]"
+							maxlength="250" style="width: 100%" readonly
+							onclick="switchContactsMenu('messageData[MMM_LISTS]', 'ssc_lists', false)"
+							onkeypress="return false">
+						<div id="SendListsCtrl" class="control_btn"
+							onclick="switchContactsMenu('messageData[MMM_LISTS]', 'ssc_lists', this)"></div>
+					</div>
+				</td>
+				<td></td>
+			</tr>
+
+			<tr id="SendLinks" style="display:{{ $sendDisplay }}">
+				<td></td>
+				<td>
+					<span id="showCCLink" class="Link" style="padding-right: 10px" onclick="hideSendFormLink('showCCLink')">[`Copy`]</span>
+					<!-- span id="snds1">&nbsp;|</span -->
+					<span id="showBCCLink" class="Link" style="padding-right: 10px" onclick="hideSendFormLink('showBCCLink')">[`BCC`]</span>
+					<!-- span id="snds2">&nbsp;< ? if $lists ? >|< ? /if ? ></span -->
+					{{ if $lists }}
+					<span id="showListsLink" class="Link" onclick="hideSendFormLink('showListsLink');
+						switchContactsMenu('messageData[MMM_LISTS]', 'ssc_lists', false)">[`Lists`]</span>
+					{{ /if }}
+				</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td width="1%" class="send_labels">[`Subject`]:</td>
+				<td width="70%"><div class="compose_td_conteiner"><input type="text"
+					name="messageData[MMM_SUBJECT]" id="messageData[MMM_SUBJECT]"
+					value="" maxlength="250" style="width: 100%"
+					onkeypress="if(event.keyCode==13) return false"></div>
+				</td>
+				<td>
+<!--		   style="padding: 0 20px"
+					<div id="addImageDiv">
+						<div id="addImageInput" style="width: 20em">
+							<div class="fileInputContainer" id="addImageInputContainer">
+								<input type="file" name="image" class="file" onchange="addImage()">
+								<div class="visibleFileInput">[`Add image`]</div>
+							</div>
+						</div>
+						<span id="addImagePgBar" style="display: none"></span>
+					</div>
+-->
+				</td>
+			</tr>
+
+		</table>
+	</div>
+
+
+	<div class="Htmlarea_container" id="editor_table">
+		<iframe id="editorIframe" frameBorder="0" src="" style="display: none"></iframe>
+		<textarea name="messageData[MMM_CONTENT]" id="messageData[MMM_CONTENT]"
+			rows="10" style="width: 100%"></textarea>
+	</div>
+
+
+	<div id="sendFormFooter">
+
+		<div id="composeMessageFooter" style="display:{{ $sendDisplay }}">
+
+			<div id="uploadFilesDiv" style="padding-left: 10px">
+				<div id="uploadFilesList"></div>
+				<div id="uploadFileInput" style="width: 20em">
+					<div class="fileInputContainer">
+						<input type="file" name="file" class="file" onchange="uploadFile()">
+						<div class="visibleFileInput">[`Attach file`]</div>
+					</div>
+				</div>
+				<span id="uploadFilePgBar" style="display: none"></span>
+			</div>
+
+			<div id="sendLaterLink" class="Link" style="padding: 5px 0 0 10px"
+				onclick="showSendLaterMenu()">[`Schedule later sending`]</div>
+
+			<div id="sendLaterMenu" style="padding: 4px 10px 0 10px; display: none">
+				[`Schedule sending on this date`]:
+				<input type=text id="messageData[WHENDATE]" name="messageData[WHENDATE]" class=control
+					value="{{ $messageData.WHENDATE }}" maxlength="15" >
+				{{ include file="calendar.tpl" style="margin-left: 2px" name="messageData[WHENDATE]" }}
+				[`Time`]:
+				<select id="messageData[WHENTIME]" name="messageData[WHENTIME]" class=control>
+				{{ foreach from=$timeArray item=time }}
+					<option id="{{ $time }}" value="{{ $time }}"{{ if $messageData.WHENTIME == $time}} selected{{ /if }}>{{ $time }}</option>
+				{{ /foreach}}
+				</select>
+				<span class="Link" style="padding-left: 15px; color: indianred" onclick="cancelSendLaterMenu()">[`Cancel later sending`]</span>
+			</div>
+
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td style="padding: 10px" nowrap>
+						<a href="#" onclick="sendMessage(); return false" class="sendButton">[`Send`]</a>
+						<a href="#" onclick="saveToDraft(0); return false" class="sendButton">[`Save as a draft`]</a>
+						<a href="#" onclick="parent.backScreenOn(); return false" class="sendButton">[`Cancel`]</a>&nbsp;
+					</td>
+					<!--td style="padding-left: 5em" nowrap>
+						<div style="position: relative">
+							<div id="sendMoreSubmenu" class="btnTopSubmenu"
+								onmouseover="showMenu('sendMoreSubmenu')" onmouseout="hideMenu('sendMoreSubmenu')"
+								style="display: none">
+								<ul>
+									<li class="menuItem">
+										<a href="#" onclick="showSendLaterMenu(); return false">[`Schedule later sending`]</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</td -->
+				</tr>
+			</table>
+
+		</div>
+
+		<div id="composeTemplateFooter" style="padding: 10px 10px 20px 10px; display:{{ $templateDisplay }}">
+			<a href="#" onclick="saveToDraft(1); return false" class="sendButton">[`Save`]</a>
+			<a href="#" onclick="parent.backScreenOn(); return false" class="sendButton">[`Cancel`]</a>&nbsp;
+		</div>
+
+	</div>
+
+	<input type="hidden" id="action" name="action" value="">
+	<input type="hidden" id="status" name="status" value="{{ $message.MMM_STATUS }}">
+	<input type="hidden" id="toDraft" name="toDraft" value=0>
+	<input type="hidden" id="toTemplate" name="toTemplate" value=0>
+	<input type="hidden" id="currentMID" name="currentMID" value="{{ $message.MMM_ID }}">
+	<input type="hidden" id="currentFID" name="currentFID" value="{{ $message.MMF_ID }}">
+	<input type="hidden" id="deleteFile" name="deleteFile" value="">
+	<input type="hidden" id="userConfirmSend" name="userConfirmSend" value=0>
+	<input type="hidden" id="messageData[WHEN]" name="messageData[WHEN]" value="now">
+	{{ foreach from=$lists item=list }}
+	<input type="hidden" id="listsBox[{{ $list.CL_ID }}]" name="listsBox[{{ $list.CL_ID }}]" value=0>
+	{{ /foreach }}
+
+</form>
+
+</div>
+
+<div id="messageSentDiv" name="messageSentDiv" style="padding: 10px; display: none">
+	<span id="sendPgBarLabel" style="font-size: 1.2em; font-family: 'Trebuchet MS'; color: gray">[`Loading...`]</span><img
+		src="../../common/html/res/images/loading.gif">
+</div>
+
+<div id="sendLoadingBar" style="display: none">
+	<span style="font-size: 1.2em; font-family: 'Trebuchet MS'; color: gray">[`Loading...`]</span><img
+		src="../../common/html/res/images/loading.gif">
+</div>
+
+<div id="uploadImageDiv" style="display: none">
+	<form name="UploadImageForm" id="UploadImageForm" method="post"
+		enctype="multipart/form-data" action="UploadImage.php" target="bufferIframe">
+		<table class="dialog" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="title" style="font-family: small-caption,caption,sans-serif; font-size: x-small; -moz-user-select: none; cursor: default;">
+					[`Upload image`]
+				</td>
+				<td class="title">
+					<div class="buttonColor" align="center" title="[`Close`]"
+						style="margin: 2px; padding: 0pt; height: 12px; width: 11px; cursor: pointer; vertical-align: top; position: relative; float: right; background-color: transparent; font-size: 11px;"
+						onClick="document.body.removeChild(ge('uploadImageDiv'))">
+						&times;
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 style="padding-left: 1px">
+					<div id="UploadImageInput">
+						<input type="file" name="UploadImageFile" onChange="
+							var obj = ge('UploadImageInfo');
+							obj.innerHTML = _editor_loading_bar;
+							obj.style.display = '';
+							ge('UploadImageInput').style.display = 'none';
+							ge('UploadImageForm').submit();">
+					</div>
+					<div id="UploadImageInfo" style="padding: 0 0.2em; display: none"></div>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<div id="insertVariableDiv" style="display: none">
+	<table class="dialog" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="title" style="font-family: small-caption,caption,sans-serif; font-size: x-small; -moz-user-select: none; cursor: default;">
+				[`Insert variable`]
+			</td>
+			<td class="title">
+				<div class="buttonColor" align="center" title="[`Close`]"
+					style="margin: 2px; padding: 0pt; height: 12px; width: 11px; cursor: pointer; vertical-align: top; position: relative; float: right; background-color: transparent; font-size: 11px;"
+					onClick="ge('insertVariableDiv').style.display='none'">
+					&times;
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 style="padding-left: 1px" nowrap>
+				<div class="popupList" style="background: white; padding: 3px; margin: 3px; height: 20em; overflow-x: hidden; overflow-y: auto">
+
+					<div class="popupItemHeader">[`Recipient's parameters`]</div>
+					{{ foreach from=$contactVariables item=c_item key=c_var }}
+					<span class="popupLink" onclick="insertVariable('{{literal}}{{{/literal}}{{$c_var}}{{literal}}}{{/literal}}')">&#123;{{ $c_var }}&#125;</span>{{ $c_item }}<br>
+					{{ /foreach }}
+
+					<div class="popupItemHeader" style="padding-top: 3px; padding-right: 100px;">[`My personal parameters`]</div>
+					{{ foreach from=$myVariables item=my_item key=my_var }}
+					<span class="popupLink" onclick="insertVariable('{{literal}}{{{/literal}}{{$my_var}}{{literal}}}{{/literal}}')">&#123;{{ $my_var }}&#125;</span>{{ $my_item }}<br>
+					{{ /foreach }}
+
+					<div class="popupItemHeader" style="padding-top: 3px">[`Company`]</div>
+					{{ foreach from=$companyVariables item=c_item key=c_var }}
+					<span style="padding-right: 20px">
+						<span class="popupLink" onclick="insertVariable('{{literal}}{{{/literal}}{{$c_var}}{{literal}}}{{/literal}}')">&#123;{{ $c_var }}&#125;</span>{{ $c_item.0 }}
+					</span><br>
+					{{ /foreach }}
+
+					<div class="popupItemHeader" style="padding-top: 3px">[`Unsubscribe`]</div>
+					<span style="padding-right: 20px">
+						<span class="popupLink" onclick="insertVariable(ge('unsubscribeDiv').innerHTML)">
+							{UNSUBSCRIBE}
+						</span>
+						[`Unsubscribe link`]
+					</span>
+
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div id="unsubscribeDiv" style="display: none">
+	<a href="{UNSUBSCRIBE}" target="_blank">[`Unsubscribe`]</a>
+</div>
+
+<iframe id="bufferIframe" name="bufferIframe" src="" style="display: none"></iframe>
+
+</body></html>
+
+<script src="../../MM/2.0/js/{{ $js_url }}sendform.js" type="text/javascript"></script>
+
+<script language="JavaScript">
+	reloadMessageURL = '{{ $reloadMessageURL }}';
+	fillSendForm();
+
+	_editor_url	= '../../common/html/xinha/';
+	_editor_textarea = 'messageData[MMM_CONTENT]';
+	_editor_iframe = 'editorIframe'; // will be changed by editor !
+	_editor_lang = '{{ $EDITOR_LANGUAGE }}';
+	_editor_skin = 'blue-look';
+	_editor_loading_bar = ge('sendLoadingBar').innerHTML
+
+	if(parent.currentAction == 'template') // && !parent.currentMID)
+		displayFormElements(false);
+	else
+		displayFormElements(true);
+
+	var date_format = '{{ $dateformat }}';
+</script>
+<script src="../../common/html/xinha/XinhaCore.js" type="text/javascript"></script>
+<script src="../../common/html/xinha/XinhaConfig.js" type="text/javascript"></script>
+<!-- script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script -->
+<script src="../../common/js/jquery.js" type="text/javascript"></script>
+<!-- script src="../../common/js/jquery.wbs.popup.js" type="text/javascript"></script-->
+<script src="../../common/js/jquery.autocomplete.js" type="text/javascript"></script>
+
+<script language="JavaScript">
+	var time_diff = 0;
+	var n = new Date();
+	var u = new Date();
+	u.setTime(Date.parse('{{ $user_time }}'));
+	time_diff = u.getTime() - n.getTime();	
+
+	$(window).load(function ()
+	{
+		$('.autocomplete_input').autocomplete('{{ $c_autocompleteURL }}', {
+			value: function (elem) {
+				return elem.val().replace(/^(.+?[,;]\s*)?([^,;]+)?$/, "$2");
+			},
+			insert: function (elem, text) {
+				elem.val(elem.val().replace(/^(.+?[,;]\s*)?([^,;]+)?$/, "$1") + text+ ', ');
+			}, 
+			selection: '<span style="background: gold">$1</span>'
+		});
+	});
+</script>
+
+{{ /if }}
+
+{{ if $CMfolders || $lists }}
+
+<div id="SendSubContacts" style="display: none" class="popup_div">
+	<div id="ssc_contacts">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td>
+					<select name="currentObject" id="currentObject" style="border: 1px solid gray; width:305px;"
+						onChange="selectContactsFolder()">
+						<option value="-1">
+							&lt;[`all folders`]&gt;
+						</option>
+					{{ foreach from=$CMfolders item=cm_folder key=ID }}
+						{{ if $cm_folder.ID != 'ROOT' }}
+						<option value="{{ $cm_folder.ID }}" style="padding-left:{{ math equation="(x-1)*7+5" x=$cm_folder.OFFSET }}px">
+							{{ $cm_folder.NAME|htmlsafe:true:true|truncate:47:"..." }}
+						</option>
+						{{ /if }}
+					{{ /foreach }}
+					</select>
+				</td>
+				<td style="text-align: right; padding-right: 1em">
+					<span class="Link Close" onclick="
+						switchContactsMenu('messageData[MMM_LISTS]', 'ssc_lists', ge('SendListsCtrl'))
+					">[`Close`]</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="SearchSend">
+					<input type="text" name="searchSendContact" id="searchSendContact" value="" onkeypress="
+						if(event.keyCode==13) { doSearchContact(); return false }">&nbsp;
+					<input type="button" value="[`Search`]" onclick="doSearchContact()">
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<div id="contactsForInclude" style="overflow-y: auto; overflow-x: hidden">
+						{{ if $contactsForInclude }}
+							<table cellpadding="0" cellspacing="0" border="0">
+							{{ foreach from=$contactsForInclude item=contact key=id name=listLoop }}
+								{{ if $smarty.foreach.listLoop.index is odd }}{{ assign var=lineClass value='odd' }}
+								{{ else }}{{ assign var=lineClass value='even' }}{{ /if }}
+								<tr class="{{ $lineClass }}">
+									<td nowrap onclick="addAddress(currentInput, '', htmlDecode(ge('cont_{{ $id }}').innerHTML))"
+										onmouseover="this.className='OverList'"
+										onmouseout="this.className='OutList'">{{ $contactsForShow[$id] }}</td>
+									<td id="cont_{{ $id }}" style="display: none">{{ $contact }}</td>
+								</tr>
+							{{ /foreach }}
+							</table>
+							{{ if $showMore }}
+								<div style="padding: 0.2em">
+									<b>.&nbsp;.&nbsp;.</b><br>
+									<span class="Link" onclick="showMoreContacts()">
+										[`show more...`]
+									</span>
+								</div>
+							{{ /if }}
+						{{ else }}
+							&lt;[`not found`]&gt;
+						{{ /if }}
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="ssc_lists" style="overflow-y: auto; overflow-x: hidden; display:none"
+		onScroll="try {clearTimeout(hideMenuTimeout)} catch(e) {}">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td colspan=2 class="popupBackground" style="text-align: right; padding-right: 20px">
+					<span class="Link Close" onclick="
+						switchContactsMenu('messageData[MMM_LISTS]', 'ssc_lists', ge('SendListsCtrl'))
+					">[`Close`]</span>
+				</td>
+			</tr>
+			{{ foreach from=$lists item=list name=listLoop }}
+				{{ if $smarty.foreach.listLoop.index is odd }}{{ assign var=lineClass value='odd' }}
+				{{ else }}{{ assign var=lineClass value='even' }}{{ /if }}
+			<tr id="lists_tr_{{ $list.CL_ID }}" class="{{ $lineClass }}"
+				onmouseover="this.saveClass=this.className;this.className='OverList'"
+				onmouseout="this.className=this.saveClass">
+				<td><input type="checkbox" id="lists_box_{{ $list.CL_ID }}"
+					onclick="switchList('{{ $list.CL_ID }}', 1)"></td>
+				<td width="100%" id="lists_td_{{ $list.CL_ID }}" onclick="switchList('{{ $list.CL_ID }}', 0)">{{ $list.CL_NAME }}</td>
+			</tr>
+			{{ /foreach }}
+		</table>
+	</div>
+</div>
+
+{{ /if }}
+
+{{ if $currentObject }}
+<script type="text/javascript">
+	var obj = parent.document.getElementById('contactsForInclude');
+	obj.innerHTML = document.getElementById('contactsForInclude').innerHTML;
+</script>
+{{ /if }}

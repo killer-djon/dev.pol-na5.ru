@@ -1,0 +1,107 @@
+lbl_files	Files
+lbl_n_files	%d files
+lbl_file	File
+
+tab_folders	Folders
+tab_tools	Settings
+tab_search	Search
+tab_reports	Reports
+
+lbl_add_description	<add description>
+lbl_empty_description	<no description>
+btn_upload_files	Upload files
+lbl_view	View
+
+action_folder_new	Create new
+
+column_filename	Filename
+column_date	Date
+column_type	Type
+column_size	Size
+column_owner	Added by
+column_folder	Folder
+
+menu_selected_files	Actions with files
+selected_files_count	%d files selected
+action_create_link_to_files	Create a link to selected files
+
+action_link_create	Get link to this folder
+lbl_link_to_this_folder	Link to this folder
+lbl_nolink_to_this_folder	No link to this folder
+lbl_createlink	Create
+action_link_delete	Remove link
+action_customize_rights	Customize access rights
+action_create_widget	Create a widget
+
+title_copy_files	Copy files
+title_move_files	Move files
+
+lbl_file_description	File description
+
+action_edit_online	Edit online (Zoho)
+action_send_by_email	Send as attachment
+action_version_history	Old versions
+action_lock	Lock
+action_unlock	Unlock
+
+lbl_link_to_file	Link to this file
+lbl_locked_by	Locked by %s
+action_get_link_to_file	Get link to this file
+action_remove_link_to_file	Remove link
+lbl_none_versions	none
+
+action_open	Open
+action_download	Download
+
+ftp_folder	FTP Folder
+screen_recycle	Recycle bin
+lbl_no_files	<no files in this folder>
+lbl_no_finded_files	<no files found>
+
+lbl_root_folder	Root folder
+lbl_subfolder	Subfolder
+
+title_version_history	Old versions
+action_delete_selected	Delete selected
+message_delete_versions_confirm	Are you sure you want to delete selected files?
+message_notselected_versions	Please select files.
+lbl_version_info	%s added by: %s %s
+
+title_send_by_email	Send as attachment
+text_enter_message	<enter a message here>
+lbl_and_files	and more
+lbl_send_files_attachments	%d file(s) (%s)
+lbl_attachments	Attachments
+field_send_to	Send to
+field_send_to_comment	One Email address per line or delimited by semicolon (;)
+field_subject	Subject
+field_message	Message
+field_compress_files	Compress files
+
+action_send	Send
+
+lbl_current_folder	Current folder
+lbl_selected_files	Selected files (%d)
+
+message_empty_search_string	Please enter keywords to search
+
+lbl_viewsettings_records_on_page	Number of files on one page
+lbl_viewsettings_truncate_description	Restrict visible file description to
+lbl_viewsettings_symbols	symbols
+lbl_viewsettings_apply_viewmode	Once you change View option
+lbl_viewsettings_current_folder	Apply selected view to current folder only
+lbl_viewsettings_all_folders	Apply selected view to all folders
+
+lbl_upload_complete	Upload complete
+lbl_account_limit	ACCOUNT LIMIT
+lbl_error	ERROR
+
+lbl_actions_with_file	Actions with this file
+
+message_confirm_delete_files	Do you really want to delete these files?
+
+compress_as_zip_and_save	Compress as ZIP and save
+extract_from_zip	Extract from ZIP
+wait	Please, wait...
+action_save	Save
+message_zohokey_not_found	Zoho key not found. Please contact your account administrator.

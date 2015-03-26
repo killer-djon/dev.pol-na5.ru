@@ -1,0 +1,68 @@
+<? assign var="descLen" value=$viewdata.DESCLENGTH ?>
+<table title="" <? if $listRecord.I_ID ?>onmouseover='setIssueSelected(<? $listRecord.P_ID ?>, <? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>, true)' onmouseout='setIssueSelected(<? $listRecord.P_ID ?>, <? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>, false)'<? /if ?> class="Grid it_IssueList" id='<? $listRecord.P_ID|cat:"_"|cat:$listRecord.PW_ID|cat:"_"|cat:$listRecord.I_ID ?>' width="100%" border=0 style='border-top: 1px solid #DDD'>
+	<tbody>
+		<tr class="">
+			<?* if $manyProjects  ?>
+				<td style='background: #E9E9E9; width: 10px '>&nbsp;</td>
+			<? /if *?>
+		
+			<? if $listRecord.dummy ?>
+				<td class="ValignTop AlignCenter" colspan="<? $issueCols ?>"><small><? $itStrings.il_noissues_text|htmlsafe:true:true ?></small></td>
+			<? else ?>
+				<!-- checkbox -->
+				<td width="10" class="ValignTop it_NoPaddings">
+					<input issueDisplayNum='<? $listRecord.DISPLAY_NUM ?>' type=checkbox onClick='toggleIssueSelected(<? $listRecord.P_ID ?>, <? $listRecord.PW_ID ?>, <? $listRecord.I_ID ?>);' id='check_<? $listRecord.P_ID|cat:"_"|cat:$listRecord.PW_ID|cat:"_"|cat:$listRecord.I_ID ?>' name="document[<? $listRecord.I_ID ?>]" value=1/>
+					<input type=hidden name="PW[<? $listRecord.I_ID ?>]" value='<? $listRecord.P_ID|cat:"|"|cat:$listRecord.PW_ID ?>'/>
+					<input type=hidden name="TS[<? $listRecord.I_ID ?>]" value='<? $listRecord.CTATUS_CODE ?>'/>
+					<input type=hidden name="ADC[<? $listRecord.I_ID ?>]" value='<? $listRecord.ALLOWED_DESTS_COUNT ?>'/>
+					<input type=hidden name="TASK[<? $listRecord.I_ID ?>]" value='<? $listRecord.PW_ID ?>'/>
+				</td>
+				
+				<!-- priority marker -->
+				<td width="12" class="ValignTop it_NoPaddings">
+						<? if $listRecord.I_PRIORITY == 0 ?>
+							<img src="../../../common/html/cssbased/res/images/prlow_circle.gif">
+						<? elseif $listRecord.I_PRIORITY == 2 ?>
+							<img src="../../../common/html/cssbased/res/images/prhigh_circle.gif">
+						<? /if ?>
+				</td>
+				
+				<!-- id cell -->
+				<td width="20" class="ValignTop it_NoPaddings">
+					<? $listRecord.DISPLAY_NUM ?>
+				</td>
+				
+				<!-- issue content -->
+				<td class="ValignTop">
+					<? include file="issue_content.htm" ?>
+				</td>
+
+				<!-- forward menu -->
+				<td rowspan=2 width="0" align="right" valign="top" class="ValignTop" nowrap style='font-size: 0.8em; text-align: right; white-space: nowrap'>
+					<? math equation="x+1" x=$popupindex assign=popupindex ?>
+					<? if $viewdata.SHOWSTATUS ?>
+						<span title="<? $itStrings.il_statuscurrent_text|replace:"%state%":$listRecord.I_STATUSCURRENT|replace:"%date%":$listRecord.I_STATUSCURRENTDATE_UF ?>">
+							<span style='font-size: 1.1em'><? $listRecord.ROW_COLOR?><? $listRecord.I_STATUSCURRENT ?></b></font></span>
+						
+							<span style='margin-left: 3px; white-space: nowrap'><? $listRecord.I_STATUSCURRENTDATE_UF ?></span>
+						</span>
+						<BR>
+					<? /if ?>
+					
+					<span style='color: #666'>
+						<? if $viewdata.SHOWASSIGNEE ?>
+							<span style='white-space: nowrap'><? $itStrings.il_to_text|cat:": " ?>
+							<b style=''><? $listRecord.U_ID_ASSIGNED?></b></span>
+							<BR>
+						<? /if ?>
+						
+						<? if $viewdata.SHOWSENDER ?>
+							<? $itStrings.il_from_text|cat:": " ?>
+							<? $listRecord.U_ID_SENDER?>
+						<? /if ?>
+					</span>
+				</td>
+			<? /if ?>
+		</tr>
+	</tbody>
+</table>

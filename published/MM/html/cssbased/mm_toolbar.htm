@@ -1,0 +1,94 @@
+<div id="mainScreenToolbar">
+	<? if $searchString == "" ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_button caption=$mmStrings.mm_screen_folder_menu menu=$folderMenu ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+
+	<? wbs_toolbarItem ?>
+		<? wbs_button caption=$mmStrings.mm_screen_messages_menu menu=$fileMenu ?>
+	<? /wbs_toolbarItem ?>
+
+	<? if $canTools && $searchString == "" ?>
+		<? wbs_toolbarItem ?>
+			<? wbs_button caption=$kernelStrings.app_tools_menu menu=$toolsMenu ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+
+	<? wbs_toolbarItem ?>
+		<? wbs_button caption=$mmStrings.mm_screen_newmessage_btn onClick="getSendForm_2(0); return false" ?>
+	<? /wbs_toolbarItem ?>
+</div>
+<div id="msgViewToolbar" style="display: none">
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$mmStrings.mm_screen_long_name onClick="backScreenOn(); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem ?>
+		<? wbs_button caption=$mmStrings.app_reply_label menu=$replyMenu ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$mmStrings.app_forward_label onClick="getSendForm_2('forward'); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem?>
+		<? wbs_buttonSetButton caption=$mmStrings.amn_screen_delnote_btn onClick="processTextButton_2('delbtn', 'form'); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+</div>
+<div id="sendFormToolbar" style="display: none">
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$mmStrings.app_send_btn onClick="document.getElementById('sendFormIframe').contentWindow.sendMessage(); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$mmStrings.app_save_draft_btn onClick="document.getElementById('sendFormIframe').contentWindow.saveToDraft(0); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn onClick="backScreenOn(); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+</div>
+<div id="composeTemplateToolbar" style="display: none">
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$mmStrings.app_save_btn onClick="
+			document.getElementById('sendFormIframe').contentWindow.saveToDraft(1); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn onClick="backScreenOn(); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+</div>
+<div id="confirmSendToolbar" style="display: none">
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$mmStrings.app_send_btn onClick="document.getElementById('sendFormIframe').contentWindow.confirmSendMessage(); return false" ?>
+	<? /wbs_toolbarItem ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn onClick="document.getElementById('sendFormIframe').contentWindow.backToSendForm(); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+</div>
+<div id="sentMessageToolbar" style="display: none">
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$mmStrings.mm_sent_to_main_btn onClick="backScreenOn(); return false" ?>
+	<? /wbs_toolbarItem ?>
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$mmStrings.mm_sent_to_send_btn onClick="document.getElementById('sendFormIframe').contentWindow.backToSendForm(); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+</div>
+<div id="selectTemplateToolbar" style="display: none">
+
+	<? wbs_toolbarItem ?>
+		<? wbs_buttonSetButton caption=$kernelStrings.app_back_label|cat:" "|cat:$mmStrings.mm_screen_long_name onClick="backScreenOn(); return false" ?>
+	<? /wbs_toolbarItem ?>
+
+</div>

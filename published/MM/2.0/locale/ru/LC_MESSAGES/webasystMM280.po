@@ -1,0 +1,596 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:113
+msgid "From"
+msgstr "От кого"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:32
+msgid "Priority"
+msgstr "Приоритет"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:130
+msgid "To"
+msgstr "Кому"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:142
+msgid "Copy"
+msgstr "Копия"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:109
+msgid "BCC"
+msgstr "Скрытая"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:148
+msgid "Lists"
+msgstr "Списки"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:159
+msgid "Subject"
+msgstr "Тема"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:131
+msgid "Add image"
+msgstr "Добавить изображение"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:160
+msgid "Attach file"
+msgstr "Прикрепить файл"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:198
+msgid "Schedule later sending"
+msgstr "Запланировать отложенную рассылку"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:170
+msgid "Schedule sending on this date"
+msgstr "Запланировать рассылку на указанную дату"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:180
+msgid "Cancel later sending"
+msgstr "Отменить отложенную рассылку"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:187
+msgid "Send"
+msgstr "Отправить"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:188
+msgid "Save as a draft"
+msgstr "Сохранить как черновик"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:211
+msgid "Cancel"
+msgstr "Отмена"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:210
+msgid "Save"
+msgstr "Сохранить"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:234
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:244
+msgid "Upload image"
+msgstr "Загрузить изображение"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:275
+msgid "Insert variable"
+msgstr "Вставить переменную"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:289
+msgid "Recipient's parameters"
+msgstr "Параметры получателя"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:294
+msgid "My personal parameters"
+msgstr "Мои личные параметры"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:299
+msgid "Company"
+msgstr "Компания"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:321
+msgid "Unsubscribe"
+msgstr "Отписка"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:311
+msgid "Unsubscribe link"
+msgstr "Ссылка для отписки"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:447
+msgid "Close"
+msgstr "Закрыть"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:428
+msgid "show more..."
+msgstr "показать еще..."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:433
+msgid "not found"
+msgstr "не найдено"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:64
+msgid "Attachments"
+msgstr "Вложения"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:79
+msgid "This messages will be sent on"
+msgstr "Это сообщение будет отправлено"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:81
+msgid "Cancel sending and save as a draft"
+msgstr "Отменить отправку и сохранить как черновик"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:85
+msgid "The message could not be sent as scheduled. Please refer to your account administrator."
+msgstr "Это сообщение не было отправлено. Пожалуйста, обратитесь к администратору вашего аккаунта."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:94
+msgid "Sent"
+msgstr "Отправлено"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:97
+msgid "recipient(s) successfully"
+msgstr "получателей успешно"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:101
+msgid "error(s)"
+msgstr "ошибок"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:117
+msgid "Priority:"
+msgstr "Приоритет"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:155
+msgid "Date"
+msgstr "Дата"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:105
+msgid "Primary name"
+msgstr "Главное имя"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/files_list.html:17
+msgid "Delete"
+msgstr "Удалить"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/files_list.html:38
+msgid "Attach one more file"
+msgstr "Прикрепить еще файл"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:34
+msgid "High"
+msgstr "Высокий"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:35
+msgid "Normal"
+msgstr "Нормальный"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:36
+msgid "Low"
+msgstr "Низкий"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:385
+msgid "all folders"
+msgstr "все папки"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:14
+msgid "Show Folders"
+msgstr "Показать папки"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:21
+msgid "Search"
+msgstr "Поиск"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:28
+msgid "Find"
+msgstr "Найти"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:47
+msgid "Messages found"
+msgstr "Найдено сообщений"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:74
+msgid "no subject"
+msgstr "без темы"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:94
+msgid "Folder"
+msgstr "Папка"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/search.html:116
+msgid "Show more..."
+msgstr "Показать еще..."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:12
+msgid "Bounced"
+msgstr "Отвергнуто"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:23
+msgid "Selected contact lists contain"
+msgstr "Выбранные списки контактов содержат"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:27
+msgid "recipient(s)."
+msgstr "получателей"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:27
+msgid "Selected contact lists now contain"
+msgstr "Выбранные списки получателей сейчас содержат"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/messagesent.html:29
+msgid "They may contain a different amount of recipients on the date of actual sending"
+msgstr "Они могут содержать другое количество получателей на дату фактической отправки"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:119
+msgid "low"
+msgstr "низкий"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:121
+msgid "normal"
+msgstr "нормальный"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/viewmessage.html:123
+msgid "high"
+msgstr "высокий"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/selecttemplate.html:13
+msgid "templates not found"
+msgstr "шаблоны не найдены"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/selecttemplate.html:18
+msgid "Select template"
+msgstr "Выберите шаблон"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/selecttemplate.html:31
+msgid "OK"
+msgstr "Да"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:87
+msgid "Can't find contact(s)"
+msgstr "Не могу найти контакты"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:259
+msgid "Total uploads size can't be more than %s MB"
+msgstr "Общий размер загружаемых файлов не может превышать %s MB"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:105
+msgid "Please specify future date/time"
+msgstr "Пожалуйста, введите дату/время в будущем"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:124
+msgid "ACCOUNT LIMIT: Daily quota for outgoing messages has been exceeded: %s"
+msgstr "ОГРАНИЧЕНИЕ АККАУНТА: Превышена дневная квота на количество исходящих сообщений: %s"
+
+#: /home/www/qa/wa/published/MM/2.0/templates/viewmessage.html:111
+msgid "Received"
+msgstr "Получено"
+
+#: /home/www/qa/wa/published/MM/2.0/mm_sendmail.php:257
+msgid "Total size of attachments can not be exceed %s MB"
+msgstr "Общий размер вложений не может превышать %s MB"
+
+#: /home/www/qa/wa/published/MM/2.0/templates/sendform.js:56
+msgid "Original Message"
+msgstr "Оригинальное сообщение"
+
+#: /home/www/qa/wa/published/MM/2.0/templates/sendform.js:182
+msgid "Incorrect recipient address"
+msgstr "Неправильный адрес получателя"
+
+#: /home/www/qa/wa/published/MM/2.0/templates/sendform.js:188
+msgid "Sending"
+msgstr "Отправка"
+
+#: /home/www/qa/wa/published/MM/2.0/templates/sendform.js:190
+msgid "Preparing recipients list"
+msgstr "Подготовка списка получателей"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:2
+msgid "app_longname_lastname"
+msgstr "Фамилия"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:3
+msgid "app_longname_midname"
+msgstr "Отчество"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:4
+msgid "app_longname_nickname"
+msgstr "Псевдоним"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:5
+msgid "app_longname_homeph"
+msgstr "Домашний"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:6
+msgid "app_longname_workph"
+msgstr "Рабочий"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:7
+msgid "app_longname_mobileph"
+msgstr "Сотовый"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:8
+msgid "app_longname_fax"
+msgstr "Факс"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:9
+msgid "app_longname_pager"
+msgstr "Пейджер"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:10
+msgid "app_longname_homecity"
+msgstr "Город"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:11
+msgid "app_longname_perspage"
+msgstr "Личная страница"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:12
+msgid "app_longname_birthday"
+msgstr "День рождения"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:13
+msgid "app_longname_company"
+msgstr "Компания"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:14
+msgid "app_longname_department"
+msgstr "Отдел"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:15
+msgid "app_longname_jobtitle"
+msgstr "Должность"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:16
+msgid "app_longname_workstreet"
+msgstr "Улица"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:17
+msgid "app_longname_officelocation"
+msgstr "Офис"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:18
+msgid "app_longname_buspage"
+msgstr "Рабочая страница"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:19
+msgid "app_longname_notes"
+msgstr "Заметки"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:2
+msgid "app_longname_firstname"
+msgstr "Имя"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:3
+msgid "app_longname_workfax"
+msgstr "Рабочий Факс"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:4
+msgid "app_longname_homestreet"
+msgstr "Улица"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:5
+msgid "app_longname_homestate"
+msgstr "Регион"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:6
+msgid "app_longname_homepostcode"
+msgstr "Индекс"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:7
+msgid "app_longname_homecountry"
+msgstr "Страна"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:8
+msgid "app_longname_workcity"
+msgstr "Город"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:9
+msgid "app_longname_workstate"
+msgstr "Регион"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:10
+msgid "app_longname_workpostcode"
+msgstr "Индекс"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:11
+msgid "app_longname_workcountry"
+msgstr "Страна"
+
+#: /home/www/qa/wa/published/MM/2.0/contact.php:30
+msgid "app_longname_email"
+msgstr "Email"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/mm_sendmail.php:291
+msgid "Total upload size can not exceed %s MB"
+msgstr "Общий размер загружаемых файлов не может превышать %s Мб"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:32
+msgid "Company Name"
+msgstr "Название компании"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:33
+msgid "Company Street Address"
+msgstr "Адрес компании"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:34
+msgid "Company City"
+msgstr "Город"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:35
+msgid "Company State"
+msgstr "Область"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:36
+msgid "Company Zip"
+msgstr "Индекс"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:37
+msgid "Company Country"
+msgstr "Страна"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:38
+msgid "Company Contact Name"
+msgstr "Имя"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:39
+msgid "Company Contact Email"
+msgstr "Email"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:40
+msgid "Company Contact Phone"
+msgstr "Телефон"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/contact.php:41
+msgid "Company Contact Fax"
+msgstr "Факс"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.js:187
+msgid "Incorrect sender address"
+msgstr "Неправильный адрес отправителя"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:16
+msgid "Draft"
+msgstr "Черновик"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:17
+msgid "Pending"
+msgstr "Отложенное"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:21
+msgid "Template"
+msgstr "Шаблон"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:25
+msgid "Folder Drafts"
+msgstr "Черновики"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:26
+msgid "Folder Pending"
+msgstr "Отложенные"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:30
+msgid "Folder Sent"
+msgstr "Отправленные"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/_screen.init.php:29
+msgid "Folder Templates"
+msgstr "Шаблоны"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/templates/sendform.html:174
+msgid "Time"
+msgstr "Время"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:168
+msgid "January"
+msgstr "Январь"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:168
+msgid "February"
+msgstr "Февраль"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:168
+msgid "March"
+msgstr "Март"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:169
+msgid "April"
+msgstr "Апрель"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:169
+msgid "May"
+msgstr "Май"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:169
+msgid "June"
+msgstr "Июнь"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:170
+msgid "July"
+msgstr "Июль"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:170
+msgid "August"
+msgstr "Август"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:170
+msgid "September"
+msgstr "Сентябрь"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:171
+msgid "October"
+msgstr "Октябрь"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:171
+msgid "November"
+msgstr "Ноябрь"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:171
+msgid "December"
+msgstr "Декабрь"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Mon"
+msgstr "П"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Tue"
+msgstr "В"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Wed"
+msgstr "С"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Thu"
+msgstr "Ч"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Fri"
+msgstr "П"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Sat"
+msgstr "С"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:174
+msgid "Sun"
+msgstr "В"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:177
+msgid "Today"
+msgstr "Сегодня"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:178
+msgid "wk."
+msgstr "нед."
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:179
+msgid "Week Number"
+msgstr "Номер недели"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:181
+msgid "Previous Year"
+msgstr "Предыдущий год"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:182
+msgid "Next Year"
+msgstr "Следующий год"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:183
+msgid "Previous Month"
+msgstr "Предыдущий месяц"
+
+#: /var/www/wbs_dev_test/wbs.dev/webasyst/wbs/published/MM/2.0/sendform.php:184
+msgid "Next Month"
+msgstr "Следующий месяц"
+

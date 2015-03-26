@@ -1,0 +1,54 @@
+13.09.06 14:41:21  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:41:21  [none] 
+13.09.06 14:41:21 *** close log
+13.09.06 14:44:37  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:44:37  [none] 
+13.09.06 14:44:37 *** close log
+13.09.06 14:44:45  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:44:45  [none] 
+13.09.06 14:44:45 *** close log
+13.09.06 14:45:01  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:45:01  [none] 
+13.09.06 14:45:01 *** close log
+13.09.06 14:45:13  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:45:13  [none] 
+13.09.06 14:45:13 *** close log
+13.09.06 14:45:22  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:45:22  [none] 
+13.09.06 14:45:22 *** close log
+13.09.06 14:47:23  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:47:23  [none] 
+13.09.06 14:47:23 *** close log
+13.09.06 14:49:07  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:49:07  [none] 
+13.09.06 14:49:07 *** close log
+13.09.06 14:58:47  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.06 14:58:47  [none] 
+13.09.06 14:58:47 *** close log
+13.09.09 10:43:00  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.09 10:43:00  [none] 
+13.09.09 10:43:00 *** close log
+13.09.09 15:47:24  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.09 15:47:24  [none] 
+13.09.09 15:47:24 *** close log
+13.09.13 16:55:34  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.13 16:55:34  [none] 
+13.09.13 16:55:34 *** close log
+13.09.13 16:55:46  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+13.09.13 16:55:46  [none] 
+13.09.13 16:55:46 *** close log
+14.02.23 13:17:02  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+14.02.23 13:17:02  [none] 
+14.02.23 13:17:02 *** close log
+14.02.24 12:11:03  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+14.02.24 12:11:04  [none] 
+14.02.24 12:11:04 *** close log
+14.02.24 12:11:27  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+14.02.24 12:11:27  [none] 
+14.02.24 12:11:27 *** close log
+14.02.24 12:45:11  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+14.02.24 12:45:11  [none] 
+14.02.24 12:45:11 *** close log
+14.02.24 12:45:15  [update_check_error] a:2:{s:5:"fname";s:25:"http://my./cc/version.xml";s:7:"errCode";s:21:"err_read_version_file";}
+14.02.24 12:45:15  [none] 
+14.02.24 12:45:15 *** close log

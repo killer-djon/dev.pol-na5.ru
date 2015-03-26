@@ -1,0 +1,315 @@
+<div id="search_content">
+{{if !$smarty.get.list}}
+<h1>[`Smart search`]</h1> 
+{{/if}}
+<select class="value" id="selectfolder_id" style="display:none; width:184px" name="val">
+{{foreach from=$folders item=f}}
+<option value="{{$f.ID}}" style="padding-left: {{$f.OFFSET*7}}px">{{$f.NAME}}</option>
+{{/foreach}}
+</select>
+<select class="value" id="select-4" style="display:none; width:184px" name="val">
+{{foreach from=$users item=name key=id}}
+<option value="{{$id}}">{{$name}}</option> 
+{{/foreach}}
+</select>
+<select class="value" id="select-5" style="display:none; width:184px" name="val">
+{{foreach from=$apps item=name key=id}}
+<option value="{{$id}}">{{$name}}</option> 
+{{/foreach}}
+</select>
+<select class="value" id="selecttype_id" style="display:none; width:184px" name="val">
+{{foreach from=$types item=name key=id}}
+<option value="{{$id}}">{{$name}}</option> 
+{{/foreach}}
+</select>
+<select class="value" id="countries" style="display:none; width:184px" name="val">
+{{foreach from=$countries item=name key=id}}
+<option value="{{$id}}">{{$name}}</option> 
+{{/foreach}}
+</select>
+<form id="search_form" method="get" >
+<table id="advanced_search"><tbody>
+
+<tr id="add_cond"><td width="50px"></td><td colspan="4"><a href="javascript:void(0)" onClick="addCond(0, 1, 0, '')">[`Add search condition`]</a></td></tr>
+<tr>
+	<td class="d1" width="50px"></td>
+	<td colspan="4">
+	
+		{{if $list || $smarty.get.list}}
+		<input type="button" value="[`Save`]" onClick="search(-1)" />
+		<input type="button" value="[`Cancel`]" onClick="back()" />
+		{{else}}
+		<input type="button" value="[`Search`]" onClick="search()" />
+		{{/if}}
+	</td>
+</tr>
+</tbody></table>
+</form>
+</div>
+
+<script type="text/javascript">
+
+if (document.app) { 
+	document.app.search_type = 'smart';
+}
+var fields_temp = {{$fields}};
+var fields_sort = new Array();
+var fields = {};
+for (var i = 0; i < fields_temp.length; i++) {
+	fields_sort.push(fields_temp[i][0]);
+	fields[fields_temp[i][0]] = fields_temp[i];
+}
+var search_info = {{if $search}}{{$search}}{{else}}[]{{/if}};
+var condition_titles = {{$conditions}};
+var links = {1: '[`and`]',  2: '[`or`]'};
+var conditions = {
+		VARCHAR:[1, 2, 3, 4],
+		MOBILE:[1, 2, 3, 4],
+		EMAIL:[1, 2, 3, 4],
+		URL:[1, 2, 3, 4],
+		DATE:[5, 2, 6, 7],
+		TEXT:[1, 2, 3, 4],
+		NUMERIC: [8, 9, 10],
+		MENU:[1, 2, 3, 4],
+		SELECT: "[`Select`] &rarr;",
+		CHECKBOX: "[`Select`] &rarr;",
+		COUNTRY: "[`Select`] &rarr;"
+};
+
+function addCond(link, field, cond, val, is_first)
+{
+	var i;
+	var is_first = is_first | false;
+
+	if (!is_first && !link) {
+		link = jQuery("tr.s td select.link:first").val();
+	} 
+	str = '<tr class="s"><td>';
+	if (is_first) {
+		str += '&nbsp;';
+	} else {
+		str += '<select class="link" onChange="setLinks(this)" name="link">';
+		for (i in links) {
+		   str += '<option value="'+ i +'"' + (i == link ? ' selected' : '') + '>' + links[i] + '</option>';
+		}
+		str += '</select>';
+	}
+	str += '</td><td><select class="setCond" name="field" onChange="setConditions(this)">'
+	var f_exists = fields[field] != undefined;
+	for (var j = 0; j < fields_sort.length; j++) {
+		i = fields_sort[j];
+		if (typeof(fields[i]) == 'function') {
+			continue;
+		} 
+		if (!f_exists) {
+			field = i;
+			f_exists = true;
+		}
+		str += '<option value="' + fields[i][0] + '"'+ (fields[i][0] == field ? ' selected' : '') +'>' + fields[i][1] + '</option>'
+	}
+	str += '</select></td><td><select name="cond">';
+	for (var i = 0; i < conditions[fields[field][2]].length; i++) {
+		str += '<option value="'+ conditions[fields[field][2]][i] +'"'+ (conditions[fields[field][2]][i] == cond ? ' selected' : '') +'>' + condition_titles[conditions[fields[field][2]][i]] + '</option>'
+	}
+	str += '</select></td><td style="white-space:nowrap"><input class="value" name="val" type="text" value="" /></td><td>';
+	str += '<a class="delete-row" ' + (is_first ? 'style="display:none"' : '') +' href="javascript:void(0)" onclick="deleteCond(this)">[`delete`]</a>';
+	str += '</td></tr>'
+
+	if (!is_first) {
+		jQuery("#advanced_search a.delete-row:hidden").show();
+	}
+	$(str).insertBefore(jQuery('#add_cond'));
+	setConditions(jQuery("#add_cond").prev().find('select.setCond').get(0), cond, val);
+	document.app.resize();
+}
+
+function deleteCond(obj)
+{
+	jQuery(obj).parent().parent().remove();
+	if ($('#advanced_search a.delete-row').length == 1) {
+		$('#advanced_search a.delete-row').hide();
+	}
+	$('#advanced_search tr.s:first').children('td:first').empty();
+	document.app.resize();
+}
+
+function setLinks(obj)
+{
+	$("tr.s td select.link").val($(obj).val());
+}
+
+function setConditions(obj, cond, val)
+{
+	var index = $(obj).val();
+	if (typeof(conditions[fields[index][2]]) == 'string') {
+		str = '<div style="padding-top: 5px; text-align:center">' + conditions[fields[index][2]] + '</div>';
+	} else {
+		str = '<select name="cond">';
+		for (var i = 0; i < conditions[fields[index][2]].length; i++) {
+			str += '<option value="'+ conditions[fields[index][2]][i] +'" ' + (conditions[fields[index][2]][i] == cond ? 'selected' : '') + '>' + condition_titles[conditions[fields[index][2]][i]] + '</option>'
+		}
+		str += '</select>';
+	
+		var inp = $(obj).parent().parent().find("input");
+		if (fields[index][2] == 'DATE') {
+			inp.addClass('DateField');
+			inp.val(val);
+		} else {
+			inp.val(val);
+		}
+	
+		var changeCond = function () {
+			if ($(this).val() == 7) {
+				var sp = $('<span> — <input name="val" type="text" value="" /></span>');
+				inp.parent().append(sp);
+				if (val == undefined) {
+					val = '';
+				}
+				var v = val.split(' || ');
+				inp.val(v[0]);
+				sp.children('input').val(v[1]);
+				if (fields[index][2] == 'DATE') {
+					sp.children('input').datepicker({
+						yearRange: '1900:2050', 
+						closeAtTop: false, 
+						buttonImage: "{{$url.common}}img/calendar.gif", 
+						buttonImageOnly: true, 
+						showOn: "button", 
+						showOtherMonths: true, 
+						firstDay: 1, 
+						dateFormat: '{{$dateFormat}}'
+					});
+				}
+			} else {
+				if (val != undefined) {inp.val(val);}
+				inp.parent().children('span').remove();
+			}
+		};
+		str = $(str).change(changeCond);
+		$(str).each(changeCond);
+	}
+		
+	$(obj).parent().next().html(str);
+	if (fields[index][2] == 'DATE') {
+		inp.show().next('.value').remove();		
+		$(obj).parent().parent().find("input").datepicker({
+			yearRange: '1900:2050', 
+			closeAtTop: false, 
+			buttonImage: "{{$url.common}}img/calendar.gif", 
+			buttonImageOnly: true, 
+			showOn: "button", 
+			showOtherMonths: true, 
+			firstDay: 1, 
+			dateFormat: '{{$dateFormat}}'
+		});
+	} else if (fields[index][2] == 'SELECT' || fields[index][2] == 'CHECKBOX' || fields[index][2] == 'COUNTRY') {
+		var inp = $(obj).parent().parent().find("input");
+		inp.hide();
+		inp.nextAll().remove();
+		if (fields[index][2] == 'CHECKBOX') {
+			var html = '<select class="value" style="display:none; width:184px" name="val">' + 
+			'<option value="1">[`Yes`]</option>' + 
+			'<option value="0">[`No`]</option>' + 
+			'</select>';
+			var select = $(html)
+		} else if (fields[index][2] == 'COUNTRY') {
+			var select = $("#countries").clone();			
+		} else {
+			var select = $("#select" + fields[index][0]).clone();
+		}
+		if (val == undefined) val = '';
+		if (val.substr(-1) == '%') {
+			val = val.substr(0, val.length - 1);
+			var sub = true;
+		} else {
+			var sub = false;
+		}
+		select.removeAttr('id').show().insertAfter(inp);
+		if (fields[index][0] == 'folder_id') {
+			$('<label style="display:block; font-size:80%"><input '+ (sub ? 'checked="checked"' : '') +' style="vertical-align: middle" class="value" type="checkbox" /> [`including subfolders`]</label>').insertAfter(select);
+		}
+		select.val(val);
+	} else {
+		inp.unbind();
+		inp.show().next('.value').remove();
+		$(obj).parent().parent().find("img").remove();
+	}
+}
+
+function search(no_save) {
+	var no_save = no_save | 0;
+	var str = {};
+	var f = false;
+	$("#advanced_search tr.s").each(function (i) {
+		if ($(this).find("input.value").val().length || ($(this).find("select.value").length && $(this).find("select.value").val().length)) {
+			f = true;
+			str['info['+ i + '][link]'] = $(this).find("select[name='link']").val() | "";
+			str['info['+ i + '][field]'] = $(this).find("select[name='field']").val();
+			if ($(this).find("select[name='cond']").length) {
+				str['info['+ i + '][cond]'] = $(this).find("select[name='cond']").val();
+				if ($(this).find("select[name='cond']").val() == 7) {
+					var val = new Array(); 
+					jQuery(this).find("input[name='val']").each(function () {
+						val.push($(this).val());
+					});
+					str['info['+ i + '][val]'] = val.join(' || ');
+				} else {
+					str['info['+ i + '][val]'] = $(this).find("input.value").val();
+				}
+			} else {
+				str['info['+ i + '][cond]'] = 2;
+				var val = $(this).find("select.value").val();
+				if (str['info['+ i + '][field]'] == 'folder_id') {
+					if ($(this).find("input.value[type=checkbox]").is(":checked")) {
+						val += '%';
+					}
+				}
+				str['info['+ i + '][val]'] = val;				
+			}			
+		}
+	});
+	{{if $list}}
+		str['list'] = {{$list}};
+	{{/if}}
+	if (f) {
+		$("#loading_content").show();
+		$("#control-panel div.wbs-menu-btn:visible").hide().addClass('h');
+		$("#search_header").add(".wbs-table-footer").add("#view-settings-block").hide();
+		document.app.doSmartSearch(str, no_save);
+		results_load = function () {
+			$("#loading_content").hide();
+			$(".wbs-table-footer").show();
+			if (document.app.mode == 'search') {
+				$("#search_header").add("#view-settings-block").show();
+				$("#control-panel div.wbs-menu-btn.h").show();
+			}
+		}
+	}
+	return false;
+}
+
+document.createList = function () {
+	search(-1);
+}
+
+if (search_info.length) {
+	jQuery(document).ready(function () {
+		for (var j = 0; j < search_info.length; j++) {
+			addCond(search_info[j].link, search_info[j].field, search_info[j].cond, search_info[j].val, j == 0);
+		}
+	});
+} else {
+	addCond(0, 1, 0, "", true);
+}
+
+
+
+if (search_info.length > 0) {
+	{{if !$list}}
+		search(1);
+	{{/if}}
+	setTimeout(function () {
+		document.app.resize();
+	}, 1000);
+}
+</script>

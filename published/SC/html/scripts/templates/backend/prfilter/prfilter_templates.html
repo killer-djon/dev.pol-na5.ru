@@ -1,0 +1,297 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	translate.btn_delete = '{"prfilter_delete"|transcape}';
+	translate.addtotemplate = '{"prfilter_addtotemplate"|transcape}';
+	translate.editname = '{"prfilter_editname"|transcape}';
+	translate.visibledefault = '{"prfilter_visibledefault"|transcape}';
+	translate.expand = '{"prfilter_expand"|transcape}';
+	translate.collapse = '{"prfilter_collapse"|transcape}';
+	translate.showallcategoryies = '{"prfilter_showallcategoryies"|transcape}';
+	translate.hideallcategoryies = '{"prfilter_hideallcategoryies"|transcape}';
+	translate.remove = '{"prfilter_remove"|transcape}';
+	translate.empty = '{"prfilter_empty"|transcape}';
+	var conf_full_shop_url = "{$smarty.const.CONF_FULL_SHOP_URL|escape:'html'}";
+	{if $template.template_json}var template_load = '{$template.template_json}';{else}var template_load = false;{/if}
+</script>				
+<script type="text/javascript" src="{$smarty.const.URL_JS}/JsHttpRequest.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/niftycube.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_JS}/prfilter/prfilter_admin.js"></script>
+<script type='text/javascript' src='{$smarty.const.URL_JS}/widget_checkout.js'></script>
+<link href="{$smarty.const.URL_CSS}/prfilter_admin.css" rel="stylesheet" type="text/css" />
+
+<h1 class="breadcrumbs">
+{if !$template && !$templateAdd}
+	{"prfilter_templates"|translate}
+{else}
+	<a href='{"?ukey=prfilter_templates"|set_query}'>{"prfilter_templates"|translate}</a>
+	&raquo;
+	{if !$templateAdd}{"prfilter_template_edit"|translate|replace:'%TEMPLATENAME%':$template.templateName|escape:'html'}{else}{"prfilter_template_add"|translate}{/if}
+{/if}	
+</h1>
+
+<p></p>
+<ul id="edmod">
+	<li class="tab" style="float:right;" ><a href='{"?ukey=prfilter_admin&action=delete_all"|set_query_html}' class="confirm_action" title='{"prfilter_removeallQ"|translate}'>{"prfilter_removeall"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_admin"|set_query_html}'>{"prfilter_menu_options"|translate}</a></li>
+	<li class="tab current" ><a href='{"?ukey=prfilter_templates"|set_query_html}'>{"prfilter_menu_templates"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_export_excel"|set_query_html}'>{"prfilter_menu_export"|translate}</a></li>
+	<li class="tab" ><a href='{"?ukey=prfilter_import_excel"|set_query_html}'>{"prfilter_menu_import"|translate}</a></li>
+</ul>
+<script type="text/javascript">Nifty("li.tab","top same-height");</script>	
+	
+	
+	
+{if !$template && !$templateAdd}
+	<p>{"prfilter_templates_desc"|translate}</p>
+	{$MessageBlock}
+
+	<form action="{''|set_query_html}" class="ajaxform" method="post" enctype="multipart/form-data">
+	<input name="action" value="save_template_priority" type="hidden" />
+	
+		<table cellpadding="0" cellspacing="0" class="grid" id="tbl-prfilter">
+			<tr class="gridsheader"> 
+				<td>{"prfilter_templates_name"|translate}</td>
+				<td>{"prfilter_templates_enabled"|translate}</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			{section name=i loop=$templates}
+			<tbody class="dragable">
+				<tr>
+					<td class="handle">{$templates[i].templateName}</td>
+					<td align="center">
+						<input {if $templates[i].templateEnable}checked="checked"{/if} type="checkbox" disabled="disabled" />
+						<input type="hidden" class="field_priority" name="priority_{$templates[i].templateID}" value="{$smarty.section.i.index}" />
+					</td>
+					<td>
+						<a class="bluehref" href='{"&templateID=`$templates[i].templateID`"|set_query}'>{"prfilter_templates_edit"|translate}</a>
+					</td>
+					<td>
+						<a href='{"&action=delete_template&templateID=`$templates[i].templateID`"|set_query_html}' class="confirm_action" title='{"cnfrm_delete"|translate}'><img alt='{"btn_delete"|translate}' src="images_common/remove.gif" /></a>
+					</td>
+
+				</tr>
+			</tbody>	
+			{sectionelse}
+				<tr><td colspan=2>{"prfilter_templates_empty"|translate}</td></tr>	
+			{/section}
+		</table>
+		{include file="backend/sortable_table.html" table_id="tbl-prfilter"}
+	</form>	
+		
+	<div class="prfilter-save"><input value="{'prfilter_templates_add'|translate}" type="button" class="goto" rel='{"?ukey=prfilter_templates&add_template=yes"|set_query_html}' /></div>
+	
+{else}
+	
+	{$MessageBlock}
+	
+	<div class="prfilter-template">
+		<div class="prfilter-template-notform">	
+			<strong class="prfilter-template-strong">{"prfilter_templateitem_notuse"|translate}:</strong>
+			<div class="prfilter-template-sortable"><label class="prfilter-template-group"><input type="checkbox" checked class="prfilter-template-notuse-group" name="groupby_category" value="1" />{"prfilter_templateitem_groupbycategory"|translate}</label><br></div>	
+			<div class="prfilter-templates-notuse prfilter-template-sortable">
+				{if $options}
+				
+					<!-- ===== All categories ===== -->
+					{foreach from=$categoryes item=_category}
+					{assign var="CategoryCount" value=0}{foreach from=$options item=_row}{if $_category.categoryID eq $_row.optionCategory}{assign var="CategoryCount" value=$CategoryCount+1}{/if}{/foreach}
+					{if $CategoryCount >0}
+						<div class="prfilter-template-category" categoryID="{$_category.categoryID}">	
+						<div class="prfilter-template-categoryname">
+							{html_text dbfield="category_name" name="template[`$_category.categoryID`][name_%lang%]" values=$_category table=$smarty.const.PRODUCT_OPTIONS_CATEGORYES_TABLE  style="width:350px"}
+							<input type="button" name="save_categoryname" value='{"prfilter_save"|translate}' /> 
+							<input type="button" name="cancel_categoryname" value='{"prfilter_cancel"|translate}' />
+						</div>
+						<a href="javascript:void(0);" class="prfilter-template-category-title"><img src="images_common/plus.gif" border="0"><span>{$_category.category_name}</span></a>
+							<div class="prfilter-template-category-items-all">
+								{foreach from=$options item=_Option}
+								{if $_category.categoryID eq $_Option.optionCategory}	
+									{include file="backend/prfilter/prfilter_template_item.html" _Option=$_Option categoryID=$_category.categoryID}
+								{/if}
+								{/foreach}
+							</div>
+						</div>
+					{/if}
+					{/foreach}
+					
+					<!-- ===== Root category ===== -->
+					<div class="prfilter-template-category"  categoryID="0">
+						<div class="prfilter-template-categoryname">
+							{html_text dbfield="category_name" name="template[0][name_%lang%]" values=$nonNamedCategory style="width:350px"}
+							<input type="button" name="save_categoryname" value="{'prfilter_save'|translate}" /> 
+							<input type="button" name="cancel_categoryname" value="{'prfilter_cancel'|translate}" />
+						</div>
+						<a href="javascript:void(0);" class="prfilter-template-category-title"><img src="images_common/plus.gif" border="0"><span>{"prfilter_noncategory"|translate}</span></a>
+							<div class="prfilter-template-category-items-all">			
+							<div class="prfilter-template-category-item" optionID="productname" categoryID="0" visible="on">
+								<a href="javascript:void(0);" class="prfilter-templates-restore prfilter-icon-left" title="{'prfilter_templateitem_addtotemplete'|translate}"></a>
+								<div class="prfilter-template-category-item-title"> 
+									<a href="javascript:void(0);" class="prfilter-template-category-item-title-link"><img src="images_common/plus.gif" border="0"> {"prfilter_templateitem_productname"|translate}</a> 
+									<input type="hidden" name="" value="1" xname="[productname]" modifyname="yep" />
+								</div>
+								<table>
+								<tfoot>
+									<tr class="prfilter-templates-paramentr-additionally">
+										<td>
+											<a href="javasrcipt:void(0);" class="prfilter-templates-paramentr-additionally-link">{"prfilter_templateitem_additionally"|translate}</a><br>
+											<table cellpadding="0" cellspacing="0" width="100%" class="prfilter-template-editoption">
+											<tr><td>{"prfilter_templateitem_visibility"|translate}:</td><td>
+													<select name="" additionally="visibility" xname="[productname][visibility]" modifyname="yep">
+														<option value="true" >{"prfilter_expand"|translate}</option>
+														<option value="false" >{"prfilter_collapse"|translate}</option>
+													</select>
+											</td></tr>
+											</table>
+										</td>
+									</tr>
+								</tfoot>
+								</table>
+							</div>
+							<div class="prfilter-template-category-item" optionID="price" categoryID="0" visible="on">
+								<a href="javascript:void(0);" class="prfilter-templates-restore prfilter-icon-left" title="{'prfilter_templateitem_addtotemplete'|translate}" ></a>
+								<div class="prfilter-template-category-item-title"> 
+									<a href="javascript:void(0);" class="prfilter-template-category-item-title-link"><img src="images_common/plus.gif" border="0"> {"prfilter_templateitem_price"|translate}</a> 
+									<input type="hidden" name="" value="1" xname="[price]" modifyname="yep" />
+								</div>
+								
+								<table>
+								<tfoot>
+									<tr class="prfilter-templates-paramentr-additionally">
+										<td>
+											<a href="javasrcipt:void(0);" class="prfilter-templates-paramentr-additionally-link">{"prfilter_templateitem_additionally"|translate}</a><br>
+											<table cellpadding="0" cellspacing="0" width="100%" class="prfilter-template-editoption">
+											<tr><td>{"prfilter_templateitem_visibility"|translate}:</td><td>
+													<select name="" additionally="visibility" xname="[price][visibility]" modifyname="yep">
+														<option value="true" >{"prfilter_expand"|translate}</option>
+														<option value="false" >{"prfilter_collapse"|translate}</option>
+													</select>
+											</td></tr>
+											<tr><td>{"prfilter_templateitem_limits"|translate}:</td><td>
+													<select name="" xname="[price][limits]" modifyname="yep">
+														<option value="true" >{"prfilter_yes"|translate}</option>
+														<option value="false" >{"prfilter_no"|translate}</option>
+													</select>
+											</td></tr>
+											<tr><td>{"prfilter_templateitem_labels"|translate}:</td><td>
+													<select name="" xname="[price][labels]" modifyname="yep">
+														<option value="true" >{"prfilter_yes"|translate}</option>
+														<option value="false" >{"prfilter_no"|translate}</option>
+													</select>
+											</td></tr>
+											</table>
+										</td>
+									</tr>
+								</tfoot>
+								</table>
+							</div>
+							<div class="prfilter-template-category-item" optionID="instock" categoryID="0"  visible="on">
+								<a href="javascript:void(0);" class="prfilter-templates-restore prfilter-icon-left" title="{'prfilter_templateitem_addtotemplete'|translate}"></a>
+								<div class="prfilter-template-category-item-title"> 
+									<span class="prfilter-template-category-item-title-span">{"prfilter_templateitem_instock"|translate}</span> 
+									<input type="hidden" name="" value="1" xname="[instock]" modifyname="yep" />
+								</div>
+							</div>
+							
+							{foreach from=$options item=_Option}{if !$_Option.optionCategory}
+								{include file="backend/prfilter/prfilter_template_item.html" _Option=$_Option categoryID=0}
+							{/if}{/foreach}
+							</div>
+					</div>
+
+					
+					<!-- ===== New category ===== -->
+					<div class="prfilter-template-category prfilter-template-newcategory"  categoryID="">
+						<div class="prfilter-template-categoryname">
+							{html_text dbfield="category_name" name="template[%categoryID%][name_%lang%]" values=$newNameCategory style="width:350px"}
+							<input type="button" name="save_categoryname" value="{'prfilter_save'|translate}" /> 
+							<input type="button" name="cancel_categoryname" value="{'prfilter_cancel'|translate}" />
+						</div>
+						<a href="javascript:void(0);" class="prfilter-template-category-title"><img src="images_common/plus.gif" border="0"><span>{"prfilter_noncategory_name"|translate}</span></a>
+					</div>
+
+				{else}
+					<div class="prfilter-template-empty">{"prfilter_empty"|translate}</div>
+				{/if}
+			</div>
+		</div>
+		
+		<form action="{''|set_query_html}" method="post" class="prfilter-template-form">
+			<input name="action" value="save_template" type="hidden" />
+			<input name="templateID" value="{$template.templateID}" type="hidden" />
+			
+			<div class="prfilter-template-formsub">
+				<table cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td width="130px" nowrap><strong class="prfilter-template-strong">{"prfilter_templates_name"|translate}:</strong></td>
+					<td><input name="templateName" value="{$template.templateName|escape:'html'}" type="text"  class="prfilter-template-name" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<table cellpadding="0" cellspacing="0" width="100%" class="prfilter-template-formsub-more">
+						<tr>
+							<td width="30%" valign="top">
+								<label>
+									<input name="templateEnable" value="1" {if $template.templateEnable eq '1' || $templateAdd}checked{/if} type="checkbox" />
+									<strong class="prfilter-template-strong-inline">{"prfilter_templates_enabled"|translate}</strong>
+									<span class="prfilter-template-notice">{"prfilter_templates_enabled_desc"|translate}</span>
+								</label>
+							</td>
+							<td width="4%">&nbsp;</td>
+							<td width="30%" valign="top">
+								<label>
+									<input name="slidecategoryes" value="1" {if $template.template.slidecategoryes && $template.template.groupbycategory}checked{/if} type="checkbox" {if !$template.template.groupbycategory}disabled{/if} />
+									<strong class="prfilter-template-strong-inline">{"prfilter_templateitem_expandcategoryes"|translate}</strong>
+									<span class="prfilter-template-notice">{"prfilter_templateitem_expandcategoryes_desc"|translate}</span>
+								</label>
+							</td>
+							<td width="4%">&nbsp;</td>
+							<td width="30%" valign="top">
+								<label>
+									<input name="slideoptions" value="1" {if $template.template.slideoptions}checked{/if} type="checkbox" />
+									<strong class="prfilter-template-strong-inline">{"prfilter_templateitem_expandoptions"|translate}</strong>
+									<span class="prfilter-template-notice">{"prfilter_templateitem_expandoptions_desc"|translate}</span>
+								</label>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+
+				<tr class="prfilter-template-categoryes">
+					<td colspan="2">
+						<strong class="prfilter-template-strong prfilter-template-categoryes-title" countAllCategoryes="{$countCategoryes}">
+							{"prfilter_templateitem_applyedcount"|translate}:
+							<a href="javascript:void(0);" class="add-appended-parent-handler">{"prfilter_add"|transcape}</a>
+							<a href="javascript:void(0);" class="add-all-categoryes-handler">{"prfilter_addallcategoryes"|translate}</a>
+							<a href="javascript:void(0);" class="remove-all-categoryes-handler {if !$template.categoryes}remove-all-categoryes-hide{/if}">{"prfilter_removeallcategoryes"|translate}</a>
+						</strong>
+						<div id="appendedcategories-block">
+						{section name=j loop=$template.categoryes}
+							<div id="appended-category-{$template.categoryes[j].categoryID|escape:'html'}">
+								{$template.categoryes[j].path}
+								<input name="categoryes[]" value="{$template.categoryes[j].categoryID|escape:'html'}" type="hidden" />
+								<a href="javascript:void(0);" class="remove_appendedcategory_handler" categoryID="{$template.categoryes[j].categoryID|escape:'html'}" title="{'btn_delete'|translate}"><img src="images/remove.gif" border="0" hspace="6" alt="{'btn_delete'|translate}" /></a>
+							</div>
+						{/section}
+						</div>
+					</td>
+				</tr>
+				</table>	
+			</div>
+			
+			
+			<div class="prfilter-template-formsub-params">
+				<strong class="prfilter-template-strong">{"prfilter_templateitem_use"|translate}:</strong>
+				<div class="prfilter-template-addcategory-button"><a href="javascript:void(0);">{"prfilter_template_addcategory"|translate}</a></div>
+				<div class="prfilter-template-sortable"><label class="prfilter-template-group"><input type="checkbox" {if $template.template.groupbycategory}checked{/if} class="prfilter-template-inuse-group" name="groupbycategory" value="1" disabled />{"prfilter_templateitem_groupbycategory_inuse"|translate}</label><br></div>
+				<div class="prfilter-templates-inuse prfilter-template-sortable"><div class="prfilter-template-empty">{"prfilter_empty"|translate}</div></div>
+			</div>
+			
+			<div class="prfilter-save"><input value="{'prfilter_templateitem_save'|translate}" type="submit" /></div>
+		</form>
+			
+			
+	</div>
+		
+{/if}	

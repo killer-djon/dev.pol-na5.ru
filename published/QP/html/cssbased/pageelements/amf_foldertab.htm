@@ -1,0 +1,31 @@
+<? assign folderNameLabel=$qpStrings.amb_bookname_label ?>
+
+<table class="FormLayout">
+	<tr>
+		<td><? wbs_label for="FoderName" fieldName="DF_NAME" text=$folderNameLabel ?></td>
+		<td>
+			<? if !$protectFolderName ?>
+				<input type="text" class="FormControl" id="FolderName" name="folderData[DF_NAME]" value="<? $folderData.DF_NAME|htmlsafe:true:true ?>" maxlength="255" style="width: 300px"/>
+			<? else ?>
+				<b><? $folderData.DF_NAME|htmlsafe:true:true ?></b>
+				<input type=hidden name="folderData[DF_NAME]" value="<? $folderData.DF_NAME|htmlsafe:true:true ?>"/>
+			<? /if ?>
+		</td>
+	</tr>
+	<tr class="SeparatedRow">
+		<td><? wbs_label for="textid" fieldName="QPB_TEXTID" text=$qpStrings.amb_textid_label ?></td>
+		<td>
+			<input type="text" class="FormControl" id="textid" name="folderData[QPB_TEXTID]" value="<? $folderData.QPB_TEXTID|htmlsafe:true:true ?>" maxlength="255" style="width: 300px"/>
+			<? wbs_note displayNoteMarker=false width="500px" smallFont=true ?><? $qpStrings.app_text_id_note?><? /wbs_note ?>
+		</td>
+	</tr>
+</table>
+
+<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?><? $qpStrings.app_text_id_note?><? /wbs_note ?>
+
+<? wbs_note smallFont=false width="500px" indented=true ?>
+	<ol>
+		<li><? $qpStrings.app_treeaddfolderperms_text ?></li>
+		<li><? $kernelStrings.app_treeaddfolderparent_text ?></li>
+	</ol>
+<? /wbs_note ?>

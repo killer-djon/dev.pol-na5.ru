@@ -1,0 +1,93 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- 
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/backend.css'>
+<link rel='stylesheet' type='text/css' href='{{ $p->getCssUrl() }}/popup.css'>
+  -->
+{{assign var="path1" value=$p->getCssUrl() }}
+{{csscombine file="`$path1`/popup-combine.css"  }}
+ {{$p->getCssUrl()}}/backend.css
+ {{$p->getCssUrl()}}/popup.css
+{{/csscombine}}
+<script type="text/javascript" src="{{ $p->getCommonUrl() }}/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{{ $p->getJsUrl() }}/jquery.form.js"></script>
+
+<script src="{{ $p->getCommonUrl() }}/js/wbs-common.js"></script>
+
+<script>
+	$(function(){
+		$(window).keydown(function(e){
+	    	if (e.keyCode == 27) {
+	    		window.parent.closePopup();
+	    	}
+	    });
+		
+		$('#saveDesc').bind('submit', function() {
+
+			$('.save-or-close').empty().append('<div class="load_proccess"><img src="img/progress2.gif" /></div>');			
+			
+            $(this).ajaxSubmit({
+            	success: function(){
+					/*$('.save_all_complite').show().fadeOut(2000, function(){
+						window.parent.closePopup();
+					});*/
+					setTimeout(function(){
+						window.parent.closePopup();
+					}, 1000);
+				}
+            });
+        	
+            
+            return false;            
+        });
+
+
+        $('.savestatus input').click(function(){
+            var val = $(this).parent().parent().find('textarea').val();
+            var imageId = $(this).attr('uid');
+			
+			
+            $.post('backend.php?controller=album&action=changeDescElementSave&type=image&imageId='+imageId, {
+	                'elementDesc': val
+	            }, function() {
+		            $(this).next('span').show().fadeOut(2000, function(){ $(this).removeAttr("disabled") }.bind(this));		            
+	            }.bind(this)
+			);
+
+			return false;
+		});
+	});
+</script>
+
+<div class="window-header">
+	<h2>[`Edit photo descriptions`]</h2></div>
+
+<form id="saveDesc" action="backend.php?controller=album&action=changePhotoDescSave" method="post">
+<div class="photo-desc-conteiner">
+<div class="photo-desc-list">
+	
+	<p class="emtext" >[`Photo descriptions are displayed in the public part of your photo gallery. HTML tags are allowed.`]</p>
+	<ul>
+		{{ foreach from=$imageList item=image }}
+		<li class="all-photos">
+			<div class="photo">
+				{{ if !empty($image.IMG_URL) }}
+				<img src="{{ $image.IMG_URL }}" />
+				{{ /if }}
+			</div>
+			<div class="description"><textarea name="{{ $image.PL_ID }}">{{ $image.PL_DESC }}</textarea>
+			<p class="savestatus"><input uid="{{ $image.PL_ID }}" value="[`Save`]" type="submit"/><span class="save_complite" style="display: none;">[`Saved`]</span></p>
+            </div>
+		</li>
+		{{ /foreach }}
+	</ul>
+	
+</div>
+
+
+
+</div>
+<div class="save-or-close" style="border-top:solid 1px #eaeaea;">
+	<input value="[`Save all`]" type="submit"/ id="save_all">  [`or`] <a href="javascript:window.parent.closePopup();" >[`close without saving`]</a> <span class="save_all_complite" style="display: none;">[`Saved`]</span>
+</div>
+</form>
+<a href="javascript:window.parent.closePopup(); "  id="album-settings-close" ><img src="img/close.gif" width="16" height="16" /></a>

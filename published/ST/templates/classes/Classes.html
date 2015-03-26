@@ -1,0 +1,735 @@
+<script type="text/javascript" src="{{$url.js}}lib/jquery-ui/ui/jquery.ui.sortable.js"></script>
+
+<div class="ui-block-content">
+	<div class = "addClassTypeBtn" style="float:right;"><button>[`Add new classifier`]</button></div>
+	<h1 class="right-indent">[`Classifiers`]</h1>
+
+
+<div class='linksWrapper'>
+	<!--a href="javascript:void(0)" id="edit"><span class="ui-icon ui-icon-pencil"></span>[`Edit`]</a-->
+    <a href="javascript:void(0)" id="delete"><span class="ui-icon ui-icon-closethick"></span>[`Delete`]</a> 
+</div>
+
+<div class='categoryWrapper' style="position:relative">
+    <a href="javascript:void(0)" id="delete"><span class="ui-icon ui-icon-closethick"></span>[`Delete`]</a>
+</div>
+
+
+<div class="editClassTypeForm classes-form">
+    <input type="text" id="className" class="longfield"/>
+    <input type='radio' id='allowMultipleCheckbox' name="multipleRadio" value="0"/>
+    <label for='allowMultipleCheckbox'>[`allow multiple selection (check boxes)`]</label>
+    <input type='radio' id='disallowMultipleCheckbox' name="multipleRadio" value="1"/>
+    <label for='disallowMultipleCheckbox'>[`single selection only (radio buttons)`]</label>
+    <p class="button-wrapper">
+        <button class='saveBtn'>[`Save`]</button>
+        <button class='cancelBtn'>[`Cancel`]</button>
+    </p>
+</div>
+
+<div class="editClassForm classes-form">
+	<input type="text" id='className' class="longfield"/>
+	<button class='saveBtn'>[`Save`]</button>
+	<button class='cancelBtn'>[`Cancel`]</button>
+</div>
+
+<div class="deleteClassForm classes-form">
+	<div class="form-wrapper">
+		<p id='countMsg'><span class='reqNum emphasis-text'></span> [`requests are linked to element`] "<span class='reqTxt'></span>"</p>
+		<p><input type='radio' id='radioLink' name="radio1" checked/><label for='radioLink'>[`Link requests with other element after deletion`]</label></p>
+	    <p><select id='selectClasses'/></p>
+		<p><input type='radio' id='radioDelete' name="radio1"/><label for='radioDelete'>[`Delete element and leave requests unlinked`]</label></p>
+		<p><button id='deleteBtn' disabled="disabled">[`Delete`]</button>
+		<button id='cancelBtn'>[`Cancel`]</button></p>
+	</div>
+</div>
+
+<div class="deleteClassTypeForm classes-form ui-state-highlight">
+    <div class="form-wrapper">
+        <p id='countMsg'><span class='reqNum emphasis-text'></span> [`requests are linked to elements of this classifier`]</p>
+        <p><input type='radio' id='radioLink' name="radio1" checked/><label for='radioLink'>[`Link requests with other element after deletion`]</label></p>
+        <p><select id='selectClasses'/></p>
+        <p><input type='radio' id='radioDelete' name="radio1"/><label for='radioDelete'>[`Delete classifier and leave requests unlinked`]</label></p>
+        <p><button id='deleteBtn' disabled="disabled">[`Delete`]</button>
+        <button id='cancelBtn'>[`Cancel`]</button></p>
+    </div>
+</div>
+
+<div class="addClassTypeForm">
+	<div id='addClassDialog'>
+			<p class="input-with-label"><label for="addClassName">[`Classifier name`]</label>
+			<input type="text" name="addClassName" id="addClassTypeInput" class='ui-widget-content' /></p>
+			<div class="addClassDialogBtns">
+			    <button id="addClassTypeSaveBtn">[`Add`]</button>
+			    <button id="addClassTypeCancelBtn">[`Cancel`]</button>
+			</div>
+	</div>
+</div>
+
+<div class="addClassForm classes-form">
+    <input type="text" class="longfield" id='className'/>
+    <button id='saveBtn'>[`Save`]</button>
+    <button id='cancelBtn'>[`Cancel`]</button>
+</div>
+
+<div class="addClassLinkDiv">
+	<a href="javascript:void(0)" class='addClassLink'><span class="">[`Add element`] </span></a>
+</div>
+
+<ul class="classesListDiv">
+{{foreach from=$classTypes item=clType}}
+<li class="level0 ui-corner-top">
+<h4 class="ui-state-default ui-corner-top" rel="{{$clType.sorting}}">
+	<span class="classesSortHandle ui-icon ui-icon-crest"></span>
+	<span class="typeName">{{$clType.name}}    
+{{if $clType.multiple eq 1}}
+        <span class='allowMultipleSpan'>[`allow multiple selection (check boxes)`]</span>
+{{else}}
+        <span class='disallowMultipleSpan'>[`single selection only (radio buttons)`]</span>
+{{/if}}
+
+    </span>
+</h4>
+<input type="hidden" class="classTypeId" value="{{$clType.id}}"/>
+<input type="hidden" id="allowMultiple" value="{{$clType.multiple}}"/>
+<ul class="classesList">
+	{{foreach from=$clType.classes item=classes}}
+    <li class="ui-state-default" rel="{{$classes.sorting}}"><span class="classesSortHandle ui-icon ui-icon-crest"></span>
+{{if $clType.multiple eq 1}}
+        <input type="checkbox" disabled style="float:left">
+{{else}}
+        <input type="radio" disabled style="float:left">
+{{/if}}
+
+	<span class="classesName" rel="{{$classes.id}}">{{$classes.name}}</span></li>
+	{{/foreach}}
+</ul>
+</li>					
+{{/foreach}}
+</ul></div>
+<script>
+
+$.wbs.widgets.classesContainer = function(el){
+	
+	var $deletePaneAbstract = $(".deleteClassForm").clone();
+	$(".deleteClassForm").remove();
+	
+    var $deleteClassTypePaneAbstract = $(".deleteClassTypeForm").clone();
+    $(".deleteClassTypeForm").remove();
+	
+	var $editPaneAbstract = $(".editClassForm").clone();
+	$(".editClassForm").remove();
+	
+	var $editClassTypeAbstract = $(".editClassTypeForm").clone();
+	$(".editClassTypeForm").remove();
+	
+	var $addClassTypeFormAbstract = $(".addClassTypeForm");
+	$(".addClassTypeForm").hide();
+	
+	var $addClassFormAbstract = $(".addClassForm").clone();
+	$(".addClassForm").hide();
+	
+	var $wrapperAbstract = $(".linksWrapper").clone();
+	$(".linksWrapper").remove();
+	
+	var $wrapperCategoryAbstract = $(".categoryWrapper").clone();
+	$(".categoryWrapper").remove();
+	
+	var $addClassLinkDiv = $(".addClassLinkDiv").clone();
+	$(".addClassLinkDiv").remove();
+	
+    showEditClassForm = function($this){
+        var className = $('.classesName',$this).html();
+        $('.classesSortHandle',$this).hide();
+        $('.linksWrapper',$this).hide();
+        $this.addClass('ui-state-active');
+        var $editPane = $editPaneAbstract.clone(),
+            $editField = $('#className', $editPane).val(className);
+            $editField.change(function(){
+                if ($(this).val() == "") {
+                    $saveBtn.button( "disable" );
+                } else {
+                    $saveBtn.button( "enable" );    
+                }
+            });
+            $editField.keyup(function(event){
+                if (event.keyCode == '13') {
+                    $saveBtn.click();
+                }
+            })
+        var $saveBtn = $('.saveBtn', $editPane).click(
+                function(){
+                    $.post('?m=classes&act=save', {id: $('.classesName',$this).attr('rel'), name: $editField.val()}, function(data) {
+                        $('.linksWrapper',$this).remove();
+                        $editPane.remove();
+                        $this.removeClass('ui-state-active');
+                        $('.classesName',$this).append($editField.val());
+                        $('.classesSortHandle',$this).show();
+                    });
+                }
+            ),
+            $cancelBtn = $('.cancelBtn', $editPane).click(
+                function(){
+                    $('.linksWrapper',$this).remove();
+                    $editPane.remove();
+                    $this.removeClass('ui-state-active');
+                    $('.classesName',$this).append(className);
+                    $('.classesSortHandle',$this).show();
+                }
+            );
+        $('.classes-form',$this).remove();
+        $('.classesName',$this).empty().append($editPane);
+        $(':button').button()
+        $editField.focus();
+    }
+					
+	onOver = function(){
+	    var $this = $(this);
+	    $this.addClass('ui-state-highlight');
+	    if($('.classes-form',$this).length==0){
+	        var $wrapper = $wrapperAbstract.clone(),
+	            className = $('.classesName',$this).html().replace(/^\s\s*/, '').replace(/\s\s*$/, ''),
+	            /*$edit = $('#edit', $wrapper).click(
+				   function(){showEditClassForm($this)}
+	            ),*/
+	            $delete = $('#delete', $wrapper).click(
+	                    function(){
+	
+                            $('.classesName',$this).prev().hide();
+                            $('.classesSortHandle',$this).hide();
+	                        $('.linksWrapper',$this).hide();
+	                        $.post('?m=classes&act=requestscount',{id : $('.classesName',$this).attr('rel')},
+	                            function(data) {
+	                                var cnt = $.parseJSON(data).data;
+	                                if (cnt>0) {
+	                                $this.addClass('ui-state-active');
+	                                var $deletePane = $deletePaneAbstract.clone(), 
+	                                className = $('.classesName',$this).html(),
+	                                $radioLink = $("#radioLink",$deletePane), 
+	                                $radioDelete = $("#radioDelete",$deletePane);
+	                                $radioDelete.change(function() {
+	                                            $deleteBtn.button( "enable" )
+	                                        });
+									$radioLink.attr('checked',true);
+	                                $radioLink.change(function() {
+	                                    if ($select.val() == 'not_selected')
+	                                        $deleteBtn.button( "disable" )
+	                                        });
+	                                var $select = $("#selectClasses",$deletePane), 
+	                                    $deleteBtn = $("#deleteBtn",$deletePane).click(function() {
+	                                        var link = false;
+	                                        if ($radioLink.is(':checked')) link = $select.val();
+	                                            $.post('?m=classes&act=delete',{
+	                                                id : $('.classesName',$this).attr('rel'), link : link},
+	                                                function(data) {
+	                                                    $('.linksWrapper',$this).css('display','inline');
+	                                                    $wrapper.remove();
+	                                                    $this.remove();
+                                                        $('.classesSortHandle',$this).show();
+                                                        $('.classesName',$this).prev().show();
+                                                        sortClassesList($this)
+	                                                });
+	                                        }),
+	                                    $cancelBtn = $("#cancelBtn",$deletePane).click(function() {
+	                                            $('.linksWrapper',$this).css('display','inline');
+	                                            $wrapper.remove();
+	                                            $this.removeClass('ui-state-active');
+	                                            $deletePane.remove();
+	                                            $('.classesName',$this).append(className);
+                                                $('.classesSortHandle',$this).show();
+                                                $('.classesName',$this).prev().show();
+	                                        }),
+	                                    $count = $('#countMsg',$deletePane);
+	                                   $count.hide();
+	                                $('.reqNum',$count).html(cnt);
+                                    $('.reqTxt',$count).html(className);
+	                                $count.css('display','block');
+	                                $select.append("<option value='not_selected'>[`Select element`]</option>")
+	                                 $('li.level0','.classesListDiv').each(function() {
+                                        if ( $('li',$(this)).length>0 ) {
+											var $tmpCls = $('.typeName',$(this)).clone();
+											$tmpCls.find('.allowMultipleSpan, .disallowMultipleSpan').remove();
+	                                        $select.append("<option disabled='disabled'>"
+	                                                + $tmpCls.text()
+	                                                + "</option>");
+		                                    $('li',$(this)).each(function() {
+			                                    if ($(this).not($this).length)
+			                                        $select.append("<option value='"
+			                                                + $('.classesName',$(this)).attr('rel')+ "'>"
+			                                                + "&nbsp;&nbsp;"+$('.classesName',$(this)).html()
+			                                                + "</option>")
+											});
+										
+										}
+	                                })
+	 
+	                                $select.change(function() {
+	                                            if ($(this).val() == 'not_selected') {
+	                                                $deleteBtn.button( "disable" );
+	                                            } else {
+                                                    $deleteBtn.button( "enable" );
+												}
+	                                        })
+	
+	                                $('.classes-form',$this).remove();
+	                                if ($('.classesName',$this).html() == "")
+	                                    $('.classesName',$this).append(className);
+	
+	                                $('.classesName',$this).empty().append($deletePane);
+	                                
+	                               
+									
+	                                } else {
+	                                    $.post('?m=classes&act=delete',{
+	                                        id : $('.classesName',$this).attr('rel'), link : false},
+	                                        function(data) {
+	                                            $wrapper.remove();
+	                                            $this.remove();
+                                                sortClassesList($this)
+	                                        });
+	                                }
+                                    $(':button').button()
+	                            });
+	                    }
+	                );
+	        $(this).append($wrapper);
+	    }
+	},
+	onOut = function(){
+	    // $('.classesSortHandle',$this).css('visibility','hidden');
+	     $(this).addClass('ui-state-default');
+	    if($('.classes-form',$(this)).length==0 ){
+	        $(this).removeClass('ui-state-highlight');
+	        $('.linksWrapper',$(this)).remove();
+	    }
+	}
+	//$('.title h1').html('')
+	
+	var classTypeEdit = function(){
+        var $this = $(this),
+		    self = $(this).closest('li'),
+            $self = $(self),
+            className = $('h4 .typeName',$self);
+            className = className.clone().children().remove().end().text().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+			console.log(className);
+        var $editPane = $editClassTypeAbstract.clone(),
+            checked = $('#allowMultipleCheckbox',$self).val(),
+            $editField = $('#className', $editPane).val(className);
+            $editField.change(function(){
+                if ($(this).val() == "") {
+                    $saveBtn.button( "disable" );
+                } else {
+                    $saveBtn.button( "enable" );    
+                }
+            });
+            $editField.keyup(function(event){
+                if (event.keyCode == '13') {
+                    $saveBtn.click();
+                }
+            })
+        var $saveBtn = $('.saveBtn', $editPane).click(
+                function(){
+                    $.post('?m=classes&act=typessave', {
+                        id: $('.classTypeId',$self).val(), 
+                        name: $editField.val(),
+                        multiple: $('#allowMultipleCheckbox',$editPane).is(':checked')
+                        }, function(data) {
+                        $('h4',$self).append('<span class="typeName">'+$editField.val()+'</span>');
+                        if ($('#allowMultipleCheckbox',$editPane).is(':checked')) {
+                            $('h4 .typeName',$self).append(" <span class='allowMultipleSpan'>[`allow multiple selection (check boxes)`]</span>");
+                            
+                            $('.classesList input[type=radio]',$self).each(function(){
+                                $(this).replaceWith($('<input type="checkbox" disabled>'))
+                            })
+                            
+                        } else {
+                            $('h4 .typeName',$self).append(" <span class='disallowMultipleSpan'>[`single selection only (radio buttons)`]</span>");
+                            $('.classesList input[type=checkbox]',$self).each(function(){
+                                $(this).replaceWith($('<input type="radio" disabled>'))
+                            })
+                        }
+                        $editPane.replaceWith('<span class="classesSortHandle ui-icon ui-icon-crest"></span>');
+                        $self.removeClass('ui-state-active');
+						$('h4 .typeName',$self).click(classTypeEdit);
+                        //$('.classesSortHandle:first',$self).show();
+                    });
+                }
+            ),
+            $cancelBtn = $('.cancelBtn', $editPane).click(
+                function(){
+					$editPane.replaceWith($this);
+					$this.click(classTypeEdit);
+					
+					//console.log($this);
+                    /*
+                    $('h4',$self).append('<span class="typeName">'+className+'</span>');
+                    if (checked==1) {
+                       $('h4 .typeName',$self).append(" <span class='allowMultipleSpan'>[`allow multiple selection (check boxes)`]</span>");
+                    } else {
+                       $('h4 .typeName',$self).append(" <span class='disallowMultipleSpan'>[`single selection only (radio buttons)`]</span>");
+                    }
+                    $editPane.replaceWith('<span class="classesSortHandle ui-icon ui-icon-crest"></span>');
+                    $self.removeClass('ui-state-active');
+                    */
+                    //$editPane.remove();
+                    //$('.classesSortHandle:first',$self).show();
+                }
+            );
+        if ($('h4:last .allowMultipleSpan',$self).length>0) {
+            $('#allowMultipleCheckbox',$editPane).attr('checked','checked');
+            $('#disallowMultipleCheckbox',$editPane).removeAttr('checked');
+        } else {
+            $('#allowMultipleCheckbox',$editPane).removeAttr('checked');
+            $('#disallowMultipleCheckbox',$editPane).attr('checked','checked');
+        }
+        $('.classes-form',$('h4',$self)).remove();
+        $('h4',$self).empty()
+            //.append('<span class="classesSortHandle ui-icon ui-icon-crest"></span>')
+            .append($editPane);
+        $editField.focus();
+        $(':button').button()
+    }
+	$('.typeName').click(classTypeEdit);
+	
+	$('.classesName').click(function(event){
+	    if ($(event.target).hasClass("classesName"))
+		    showEditClassForm($(this).parent())
+	        //$('#edit',$(this).parent()).click();
+	})
+	
+	
+	onOverCategory = function(){
+	    var $this = $(this).parent();
+        if($('.classes-form',$this).length==0){
+            var $wrapper = $wrapperCategoryAbstract.clone();
+			$delete = $('#delete', $wrapper).click(
+                        function(){
+                            $('.classesSortHandle',$this).hide();
+                            $.post('?m=classes&act=requestscount',{type: $('.classTypeId',$this).val()},
+                                function(data) {
+                                    var cnt = $.parseJSON(data).data;
+                                    if (cnt>0) {
+		                            $('.categoryWrapper',$this).hide();
+                                    $this.addClass('ui-state-active');
+                                    var $deletePane = $deleteClassTypePaneAbstract.clone(), 
+                                    className = $('.classesName',$this).html(),
+                                    $radioLink = $("#radioLink",$deletePane), 
+                                    $radioDelete = $("#radioDelete",$deletePane);
+                                    $radioDelete.change(function() {
+                                                $deleteBtn.button( "enable" )
+                                            });
+                                    $radioLink.attr('checked',true);
+                                    $radioLink.change(function() {
+                                        if ($select.val() == 'not_selected')
+                                            $deleteBtn.button( "disable" )
+                                            });
+                                    var $select = $("#selectClasses",$deletePane), 
+                                        $deleteBtn = $("#deleteBtn",$deletePane).click(function() {
+                                            var link = false;
+                                            if ($radioLink.is(':checked')) link = $select.val();
+                                                $.post('?m=classes&act=deleteclasstype',{
+                                                    id : $('.classTypeId',$this).val(), 
+													link : link},
+                                                    function(data) {
+                                                        $wrapper.remove();
+                                                        $this.removeClass('ui-state-active');
+                                                        $('.classesList', $this).children().appendTo(
+														  $('.classesList', $('.classTypeId[value="'+link+'"]').parent())
+														);
+                                                        $this.remove();
+                                                        sortCategoriesList($this)
+                                                        $('.classesSortHandle',$this).show();
+                                                    });
+                                            }),
+                                        $cancelBtn = $("#cancelBtn",$deletePane).click(function() {
+                                                $wrapper.remove();
+                                                $this.removeClass('ui-state-active');
+                                                $deletePane.remove();
+                                                $('.classesSortHandle',$this).show();
+                                            }),
+                                        $count = $('#countMsg',$deletePane);
+                                        $count.hide();
+                                    $('.reqNum',$count).html(cnt);
+                                    $count.css('display','block');
+									$select.append("<option value='not_selected'>[`Select element`]</option>")
+									$('li.level0','.classesListDiv').each(function() {
+                                        if ($(this).not($this).length)
+                                        if ( $('li',$(this)).length>0 ) {
+                                            var $tmpCls = $('.typeName',$(this)).clone();
+                                            $tmpCls.find('.allowMultipleSpan, .disallowMultipleSpan').remove();
+                                            $select.append("<option disabled='disabled'>"
+                                                    + $tmpCls.text()
+                                                    + "</option>");
+                                            $('li',$(this)).each(function() {
+                                                    $select.append("<option value='"
+                                                            + $('.classesName',$(this)).attr('rel')+ "'>"
+                                                            + "&nbsp;&nbsp;"+$('.classesName',$(this)).html()
+                                                            + "</option>")
+                                            });
+                                        }
+                                    })
+    
+                                    $select.change(function() {
+                                                if ($(this).val() == 'not_selected') {
+                                                    $deleteBtn.button( "disable" );
+                                                } else {
+                                                    $deleteBtn.button( "enable" );
+                                                }
+                                            })
+    
+                                    $('.classes-form',$this).remove();
+                                    if ($('.classesName',$this).html() == "")
+                                        $('.classesName',$this).append(className);
+    
+                                    $('.classesList',$this).before($deletePane);
+                                    } else {
+                                        $.post('?m=classes&act=deleteclasstype',{
+                                            id : $('.classTypeId',$this).val(),  link : false},
+                                            function(data) {
+                                                $wrapper.remove();
+                                                $this.remove();
+                                                sortCategoriesList($this)
+                                            });
+                                    }
+								$(':button').button()
+                                });
+                        }
+                    );
+            $(this).append($wrapper);
+		}
+	    $this.addClass('ui-state-active');
+	},
+	onOutCategory = function(){
+	    var $this = $(this).parent();
+	    if ($('.classes-form',$this).length==0){
+	        $this.removeClass('ui-state-active');
+	        $('.categoryWrapper',$this).remove();
+	    }
+	}
+	
+	var $addBtn = $(".addClassTypeBtn button");
+	$addBtn.button({
+	    icons: {
+	        primary: 'ui-icon-plus'
+	    }
+	});
+	
+	$addClassTypeForm = $addClassTypeFormAbstract;
+	$addClassTypeDialog = $("#addClassDialog", $addClassTypeForm);
+	
+	$("#addClassTypeInput").keyup(function(event){
+	    if (event.keyCode == '13') {
+	        $('#addClassTypeSaveBtn').click();
+	    }
+	})
+	$('#addClassTypeSaveBtn').button().click(function(){
+	    if ($("#addClassTypeInput").val() != ''){
+	
+            $addClassTypeDialog.wbsPopup('close');
+	        $("#addClassTypeInput").focus();
+	        $.post('?m=classes&act=typesadd', { name: $("#addClassTypeInput").val(), sorting: $categoriesList.children('li').length + 1}, function(data) {
+	            data = $.parseJSON(data);
+	            if (data.status == "OK") {
+	                var $this = $(
+	                    "<li class='level0 ui-corner-top'><h4 class='ui-state-default ui-corner-top' rel='"+($categoriesList.children('li').length + 1)+"'><span class='classesSortHandle ui-icon ui-icon-crest'></span><span class='typeName'>"+$("#addClassTypeInput").val()+"</span></h4>"+
+	                    "<input type='hidden' value='"+data.data+"' class='classTypeId' />"+
+	                    "<input type='hidden' value='0' class='allowMultiple' />"+
+	                    "<ul class='classesList'></ul></li>"
+	                )
+	                $('.classesListDiv').append($this);
+	                var $addLink = $addClassLinkDiv.clone();
+	                $('a', $addLink).attr('rel', data.data);
+	                $('a', $addLink).click(addLinkFunction);
+	                $this.append($addLink);
+	                $('#pageContainer')[0].scrollTop = $('#pageContainer')[0].scrollHeight;
+                    $('h4', $this).hover(onOverCategory,onOutCategory)
+                    $('h4 .typeName',$this)
+					   .append(" <span class='disallowMultipleSpan'>[`single selection only (radio buttons)`]</span>")
+					   .click(classTypeEdit);
+	            } else {
+	                alert(data.error);
+	            }
+	            $("#addClassTypeInput").val('');
+	        });
+	    } else {
+	        $("#addClassTypeInput").focus()
+	    }
+	}) 
+	
+	$('#addClassTypeCancelBtn').button().click(function(){
+	    $addClassTypeDialog.wbsPopup('close');
+	})
+	$addBtn.width(160);
+	$addBtn.click(function(){
+	    if (!$addClassTypeDialog.hasClass('ui-popup')){
+	        $addClassTypeDialog.wbsPopup({
+	            parent: $addBtn,
+				fitParent: true,
+	            open: function(){
+	                $("#addClassTypeInput").focus();
+	            }
+	        });
+	        $addClassTypeDialog.wbsPopup('open');
+	    }
+	});
+	
+	var $classesList = $('.classesList');
+	var $categoriesList = $('.classesListDiv');
+	var sortCategoriesList = function(el){
+        var ids = '';
+        el.parent().children('li').each(function(n){
+            $('h4',this).attr('rel', n+1);
+            ids += $('.classTypeId',this).val()+',';
+        });
+        $.post('?m=classes&act=typessave', {ids: ids});
+	}
+    var sortClassesList = function(el){
+        var ids = '';
+        el.parent().children('li').each(function(n){
+            $(this).attr('rel', n+1);
+            ids += $('.classesName',this).attr('rel')+',';
+        }); 
+        $.post('?m=classes&act=save', {ids: ids});
+    }
+	
+	$categoriesList.sortable({
+	    cursor:'ns-resize', 
+	    axis: 'y',
+	    handler: 'h4',
+	    stop: function(event, ui) {
+	        /*var $new = $old = 0;
+	        $('li', ui.item.parent()).each(function(i){
+	            if (! $(this).not(ui.item).length ) {
+	                var $h4This = $('h4',this),
+	                    h4ThisPrevRel = parseInt($('h4',$(this).prev()).attr('rel'));
+	                    $old = $h4This.attr('rel');
+	                if ( h4ThisPrevRel>0 ) {
+	                    if ($old > h4ThisPrevRel){
+	                        $new = h4ThisPrevRel+1;
+	                    } else {
+	                        $new = h4ThisPrevRel;
+	                    }
+	                } else {
+	                    $new = parseInt($('h4',$(this).next()).attr('rel'));
+	                }
+	            }
+	        })
+	        
+	        $.post('?m=classes&act=typessave', {id: $('.classTypeId', ui.item).val(), sorting_new: $new, sorting_old: $old});
+	    
+	        ui.item.parent().children('li').each(function(n){
+	            $('h4',this).attr('rel', n+1);
+	        });
+			*/
+			sortCategoriesList(ui.item);
+			
+	        $(ui.item).removeClass('ui-state-active');
+	        $(ui.item).attr('style','');
+	        $('.linksWrapper',$(this)).remove();
+	    }
+	});
+	
+	$classesList.sortable({
+	    cursor:'ns-resize', 
+	    axis: 'y',
+	    stop: function(event, ui) {
+	        /*
+             var $new = $old = 0;
+	         $('li', ui.item.parent()).each(function(i){
+	            if (! $(this).not(ui.item).length ) {
+	                var $this = $(this),
+	                    thisPrevRel = parseInt($(this).prev().attr('rel'));
+	                    $old = $this.attr('rel');
+	                if ( thisPrevRel>0 ) {
+	                    if ($old > thisPrevRel){ 
+	                        $new = thisPrevRel+1;
+	                    } else {
+	                        $new = thisPrevRel;
+	                    }
+	                } else {
+	                    $new = parseInt($(this).next().attr('rel'));
+	                }
+	            }
+	        })*/
+                
+            sortClassesList(ui.item);
+			
+	       // $.post('?m=classes&act=save', {id: $('.classesName', ui.item).attr('rel'), sorting_new: $new, sorting_old: $old});
+
+	        
+	        $(ui.item).addClass('ui-state-highlight');
+	        $(ui.item).attr('style','');
+	        $('.linksWrapper',$(this)).remove();
+	    }
+	});
+	var addLinkFunction = function(){
+	    var $addClassPane = $addClassFormAbstract.clone(),
+	    $this = $(this),
+	    $thisClone = $this.clone(true);
+	    $addField = $("#className",$addClassPane),
+	    $saveBtn = $('#saveBtn',$addClassPane).click(
+	        function(){
+	            var $parent = $addClassPane.closest('.addClassLinkDiv').parent();
+	            $.post('?m=classes&act=add', {
+	                name: $addField.val(), 
+	                type_id: $this.attr('rel'), 
+	                sorting: $('li', $parent).length + 1
+	            },
+	            function(data) {
+	                //$newLine = $('span.classesName:first').parent().clone();
+					
+					multiple = $('.allowMultipleSpan',$parent).length;
+					$newLine = $('<li class="ui-state-default">'+
+					'<span class="classesSortHandle ui-icon ui-icon-crest"></span>'+
+					(multiple ? '<input type="checkbox" disabled style="float:left">':
+					'<input type="radio" disabled style="float:left">')+
+					'<span class="classesName"></span></li>');
+	
+	                $newLine.attr('rel',$('li', $parent).length + 1);
+	                $('.classesName',$newLine).attr('rel',$.parseJSON(data).data).html($addField.val());
+	                $('.classesList', $parent).append($newLine);
+	                $newLine.hover(onOver,onOut);
+	                $addClassPane.replaceWith($thisClone);
+					
+                    $('.classesName',$newLine).click(
+                       function(event){
+					   	if ($(event.target).hasClass('classesName'))
+					   	   showEditClassForm($(event.target).parent())
+					   }
+                    );
+					
+	                $classesList.sortable('refresh');
+	            });
+	        }
+	    );
+	
+	    $addField.keyup(function(event){
+	        if (event.keyCode == '13') {
+	            $saveBtn.click();
+	        }
+	    })
+	    $cancelBtn = $('#cancelBtn',$addClassPane).click(
+	        function(){
+	            $addClassPane.replaceWith($thisClone);
+	        }
+	    );
+	$this.replaceWith($addClassPane);
+	$addField.focus();
+	$(':button').button()
+	}
+	$classesList.each(function(){
+	    var $link = $addClassLinkDiv.clone();
+	    $('a', $link).attr('rel', $('.classTypeId', $(this).parent()).val());
+	    $(this).after($link);
+	})
+	
+	$('.classesListDiv > li').each(function(){
+	    var self = $(this);
+	    $('.addClassLink', self).click(addLinkFunction);
+	})
+	
+	
+	$categoriesList.children('li').children('h4').hover(onOverCategory,onOutCategory)
+	$classesList.children('li').hover(onOver,onOut)
+}
+</script>

@@ -1,0 +1,58 @@
+
+	<div class="single-article">
+	
+		<h1>
+			{$Article.ArticleTitle|default:'pgn_articles'|translate}
+			&nbsp;<a href="{"?ukey=`$smarty.const.CONF_ARTCLE_URL`&rss=rss"|set_query_html}"><img src="{$smarty.const.URL_IMAGES_COMMON}/rss-feed.png" alt="RSS 2.0"  style="padding-left:10px;"></a>
+			
+				{section name=i loop=$product_category_path}
+					{if $product_category_path[i].CategoryID}
+						<a class="all-articles" href='{"?ukey=`$smarty.const.CONF_ARTCLE_URL`&CategoryID=`$product_category_path[i].CategoryID`&CategorySlug=`$product_category_path[i].CategorySlug`"|set_query_html}'>{$product_category_path[i].CategoryTitle|escape:'html'|default:"(no name)"}</a>
+					{/if}
+					
+				{/section}
+			
+		</h1>
+	
+		<div class="single-content">
+			
+			<div class="single-date">
+				Дата публикации: {$Article.ArticleDate|date_format:"%e %B %Y"|replace:"January":"Января"|replace:"February":"Февраля"|replace:"March":"Марта"|replace:"April":"Апреля"|replace:"May":"Мая"|replace:"June":"Июня"|replace:"July":"Июля"|replace:"August":"Августа"|replace:"September":"Сентября"|replace:"October":"Октября"|replace:"November":"Ноября"|replace:"December":"Декабря"}
+			</div>
+			
+			<div class="main-wrap-single">
+				<div class="img">
+					{if $Article.ArticleDefaultBigPicture}
+						<img alt="{$Article.ArticleTitle|escape:html}" src="{$smarty.const.URL_ARTICLES_PICTURES}/{$Article.ArticleDefaultBigPicture|escape:'url'}" alt="" class="ArticlePost-image"/>
+					{/if}
+				</div>
+				<div class="article-text">
+					{$Article.ArticleDescription}
+				</div>
+			</div>
+		</div>
+	
+	</div>
+	
+<div class="articles-list">	
+	{if $Article.ArticleArticles}
+		<h3 class="ArticlePost-caption">{"pgn_recommended_reading"|translate}</h3>
+		<div class="post_block ArticlePost-article" style="padding:10px">
+		{section name=j loop=$Article.ArticleArticles}
+			
+			<ul class="seo-text">
+				<li class="menu-point">
+					<span class="point">{$smarty.section.j.index_next}</span>
+					<span class="text">
+						<a href="{"?ukey=`$smarty.const.CONF_ARTCLE_URL`&CategoryID=`$Article.ArticleArticles[j].CategoryID`&CategorySlug=`$Article.ArticleArticles[j].CategorySlug`&postID=`$Article.ArticleArticles[j].ArticleID`&postSlug=`$Article.ArticleArticles[j].ArticleSlug`"|set_query_html}">{$Article.ArticleArticles[j].ArticleTitle}</a>
+						<span class="date">
+							от: {$Article.ArticleArticles[j].ArticleDate|date_format:"%e %B %Y"|replace:"January":"Января"|replace:"February":"Февраля"|replace:"March":"Марта"|replace:"April":"Апреля"|replace:"May":"Мая"|replace:"June":"Июня"|replace:"July":"Июля"|replace:"August":"Августа"|replace:"September":"Сентября"|replace:"October":"Октября"|replace:"November":"Ноября"|replace:"December":"Декабря"}
+						</span>
+					</span>
+				</li>
+			</ul>
+			
+		{/section}
+		</div>
+	{/if}	
+</div>

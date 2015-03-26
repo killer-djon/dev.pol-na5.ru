@@ -1,0 +1,29 @@
+<? wbs_toolbarItem?>
+	<? wbs_button caption=$itStrings.il_refresh_btn ajax=true name="refreshbtn" ?>
+<? /wbs_toolbarItem ?>
+
+<? if !$noProjects ?>
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$itStrings.il_issue_menu menu=$issueMenu ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$itStrings.il_view_menu menu=$viewMenu ?>
+	<? /wbs_toolbarItem ?>
+
+	<? wbs_toolbarItem?>
+		<? wbs_button caption=$itStrings.il_filters_menu menu=$filtersMenu ?>
+	<? /wbs_toolbarItem ?>
+
+	<? if $canTools ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$itStrings.il_workflow_menu menu=$toolsMenu ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+
+	<? if $canReports ?>
+		<? wbs_toolbarItem?>
+			<? wbs_button caption=$kernelStrings.app_reports_menu menu=$reportsMenu ?>
+		<? /wbs_toolbarItem ?>
+	<? /if ?>
+<? /if ?>

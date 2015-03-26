@@ -1,0 +1,3 @@
+<?php
+	mysql_query("ALTER TABLE `MMCACHE` ADD `MMC_REPLY_TO` VARCHAR( 128 ) NULL AFTER `MMC_FROM`");
+?>

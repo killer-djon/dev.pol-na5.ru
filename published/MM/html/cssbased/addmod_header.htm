@@ -1,0 +1,6 @@
+<table class="FormLayout">
+	<tr>
+		<td><? wbs_label for="messageData[MMM_SUBJECT]" text=$mmStrings.app_subject_field skipColon=false ?></td>
+		<td><input class="FormControl" name="messageData[MMM_SUBJECT]" id="messageData[MMM_SUBJECT]" onFocus="focusControl('messageData[MMM_SUBJECT]')" onBlur="blurControl('messageData[MMM_SUBJECT]')" type="text" class="control" value="<? $messageData.MMM_SUBJECT|htmlsafe:true:true ?>" maxlength="250" style="width: 400px" <? if !$mode ?>readonly<? /if ?>></td>
+	</tr>
+</table>

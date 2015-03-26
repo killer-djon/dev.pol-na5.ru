@@ -1,0 +1,98 @@
+<? if !$fatalError ?>
+<div style="overflow: auto; width: 100%; height: 100%" id="rightscrolldiv">
+<br>
+<table border="0" cellspacing="0" cellpadding="0" width="99%" height=90% align=center>
+<tr>
+<td valign=top>
+
+<? if !$statisticsMode ?>
+
+<table border="0" cellspacing="2" cellpadding="2" height="100%"  width="100%">
+<tr height=93%>
+<td valign=top style="BORDER-BOTTOM: #cccccc 1px dashed;">
+	<table border="0" cellspacing="2" cellpadding="2" width="100%" >
+	<tr>
+		<td colspan=2>
+			<p></p>
+			<? $folderData.QPF_CONTENT ?>
+			<p></p>
+		</td>
+	</tr>
+	</table>
+</td>
+</tr>
+<tr height=7%>
+<td valign=bottom>
+	<table style="BORDER-RIGHT: #cccccc 1px outset; BORDER-TOP: #cccccc 1px outset; BACKGROUND-IMAGE: none; VERTICAL-ALIGN: top; BORDER-LEFT: #cccccc 1px outset; WIDTH: 100%; BORDER-BOTTOM: #cccccc 1px outset; BORDER-COLLAPSE: collapse; TEXT-ALIGN: left; cssFloat: none" cellspacing="1" cellpadding="1" rules="all" border="1" frame="box">
+	<tr align="left">
+		<td colspan="2" valign="middle" class="label" width=50%>
+			<b><small><? $qpStrings.qp_screen_meta_title ?></small></b>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="label" width=10%>
+		<small><? $qpStrings.app_title_field|cat:": " ?>
+		</td>
+		<td valign="top">
+		<small><? $folderData.QPF_TITLE|htmlsafe:true:true ?></td>
+	</tr>
+	<tr>
+		<td valign="top" class="label">
+		<small><? $qpStrings.app_description_field|cat:": " ?>
+		</td>
+		<td valign="top">
+		<small><? $folderData.QPF_DESCRIPTION|htmlsafe ?></td>
+	</tr>
+	<tr>
+		<td valign="top" class="label">
+		<small><? $qpStrings.app_keywords_field|cat:": " ?>
+		</td>
+		<td valign="top">
+		<small><? $folderData.QPF_KEYWORDS|htmlsafe ?></td>
+	</tr>
+	<tr>
+		<td colspan="2" valign="middle"  class="label" width=50%>
+			<b><small><? $qpStrings.qp_screen_info_title ?></small></b>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" class="label" width=10%>
+		<small><? $qpStrings.amn_textid_label|cat:": " ?>
+		</td>
+		<td valign="top">
+		<small><? $folderData.QPF_TEXTID|htmlsafe:true:true ?></td>
+	</tr>
+	<tr>
+		<td valign="top" class="label">
+			<small><nobr><? $qpStrings.qp_screen_lastmodified_label|cat:": " ?></nobr>
+		</td>
+		<td valign="top">
+			<small><? $folderData.QPF_MODIFYUSERNAME ?> <? $folderData.ModifiedDateTime ?>
+		</td>
+	</tr>
+	<tr>
+	</tr>
+	<tr>
+	</table>
+</td>
+</tr>
+</table>
+
+<? else ?>
+
+	<table border="0" cellspacing="2" cellpadding="2" width="200" height=100%>
+	<tr>
+		<td align="center" valign=middle>
+			&nbsp;
+		</td>
+	</tr>
+	</table>
+
+<? /if ?>
+
+</td>
+</tr>
+</table>
+
+</div>
+<? /if ?>

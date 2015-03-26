@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout splitter=true toolbar=true needExt=true ?>
+		<script src="../../../common/html/classic/tree_templates/tree_functions.js"></script>
+		<script src='../../../common/html/cssbased/pageelements/ajax/common_dialog.js'></script>
+		<? include file="catalog_js.htm" ?>
+		<? if !$disableServiceFunctions ?>
+			<? include file='../../../common/html/cssbased/pageelements/ajax/widgets.htm' ?>
+		
+			<? include file="dlg_uploader.htm" ?>
+			<? include file="dlg_list.htm" ?>
+			<? include file="../../../common/html/cssbased/pageelements/ajax/sharesenddialog_js.htm" ?>
+			<? include file="../../../common/html/cssbased/pageelements/ajax/shareurldialog_js.htm" ?>
+			<? include file="../../../common/html/cssbased/pageelements/ajax/createwidgetdialog_js.htm"  ?>
+		<? /if ?>
+		<? include file="dlg_zohoedit.htm" ?>
+		
+		<? include file="dlg_upload.htm" ?>		
+		<script src='../../../common/html/cssbased/pageelements/ajax/send_dialog.js'></script>
+		
+		<? include file="dlg_sendfiles.htm" ?>
+		
+
+	</head>
+	<body>
+
+	<? wbs_pageLayout toolbar="dd_toolbar.htm" ?>
+
+	<? wbs_errorBlock ?>
+
+		<? if !$fatalError ?>
+
+			<? assign var=numDocumentsLabel value=$ddStrings.dd_screen_numdocs_label ?>
+			<? assign var=leftPanelLinkTitle value=$kernelStrings.app_treeavailfolders_name ?>
+
+			<? wbs_splitter ?>
+
+			
+				<? wbs_splitterLeftPanel width=$treePanelWidth hide=$treePanelHide ?>
+					<? include file="../../../DD/html/cssbased/catalog_panel.htm" ?>
+				<? /wbs_splitterLeftPanel ?>
+				
+				
+				<? wbs_splitterRightPanel width=$treePanelWidth ?>
+					<? include file="catalog_rightpanel.htm" ?>
+				<? /wbs_splitterRightPanel ?>
+				
+
+			<? /wbs_splitter ?>
+
+		<? /if ?>
+
+	<? /wbs_pageLayout ?>
+	</body>
+</html>

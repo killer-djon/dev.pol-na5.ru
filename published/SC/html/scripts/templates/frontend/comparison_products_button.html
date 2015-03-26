@@ -1,0 +1,13 @@
+{* up comparison product button *}
+{if ($PAGE_VIEW ne 'vkontakte') && ($PAGE_VIEW ne 'facebook')}
+{if $show_comparison > 0 && $products_to_show}
+
+	<div class="comparison">
+		<form action='{"?categoryID=&category_slug=&ukey=product_comparison"|set_query}' method="post">
+			<input type="hidden" value='' class="comparison_products" name='comparison_products' >
+			<input value='' class="hndl_submit_prds_cmp compar-button" onclick='submitProductsComparison();' type="button" >
+		</form>
+	</div>
+
+{/if}
+{/if}

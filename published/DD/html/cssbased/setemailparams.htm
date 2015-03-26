@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script language="JavaScript">
+		<!--
+
+			function setEmailMode( control, value )
+			{
+				thisForm = document.forms[0];
+
+				for ( i = 0; i < thisForm.elements.length; i++ )
+					if (thisForm.elements[i].type == 'radio')
+						if ( thisForm.elements[i].name == control && thisForm.elements[i].value == value )
+						{
+							thisForm.elements[i].checked = true;
+							break;
+						}
+			}
+
+		//-->
+		</script>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="setemailparams_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+			<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+				<? $ddStrings.emp_formnote|cat:":" ?>
+			<? /wbs_note ?>
+
+			<? wbs_formLayout caption=$pageTitle ?>
+
+			<? wbs_formContent ?>
+				<tr>
+					<td><input class="FormControl" type=radio name="emailSettings[mode]" id="emailSettings[mode1]" value=GLOBAL <? switchedOutput val=$emailSettings.mode true_val=GLOBAL str1="checked " ?>></td>
+					<td colspan=2><? wbs_label for="emailSettings[mode]" text=$ddStrings.emp_globalsetting_label ?></td>
+				</tr>
+				<tr class="SeparatedRow">
+					<td></td>
+					<td>
+						<table cellpadding=0 cellspacing=2 border=0>
+							<tr>
+								<td colspan=2 height=5></td>
+							</tr>
+							<tr>
+								<td>
+									<? wbs_label for="name" text=$ddStrings.sv_emailname_label ?>
+								</td>
+								<td>
+									<input class="FormControl" onchange="setEmailMode('emailSettings[mode]', 'GLOBAL')" type=text value="<? $emailSettings.name|htmlsafe:true:true ?>" name="emailSettings[name]" style="width: 200px">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<? wbs_label for="email" text=$ddStrings.sv_emailaddress_label ?>
+								</td>
+								<td>
+									<input class="FormControl" onchange="setEmailMode('emailSettings[mode]', 'GLOBAL')" type=text value="<? $emailSettings.email|htmlsafe:true:true ?>" name="emailSettings[email]" style="width: 200px">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr class="SeparatedRow">
+					<td><input class="FormControl" type=radio name="emailSettings[mode]" id="emailSettings[mode2]" value=USER <? switchedOutput val=$emailSettings.mode true_val=USER str1="checked " ?>></td>
+					<td><? wbs_label for="emailSettings[mode2]" text=$ddStrings.emp_usermode_note SkipColon=true ?></td>
+				</tr>
+
+			<? /wbs_formContent ?>
+
+			<? wbs_formButtonsPanel ?>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="savebtn" caption=$kernelStrings.app_save_btn ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+
+			<? /wbs_formButtonsPanel ?>
+
+			<? /wbs_formLayout ?>
+
+			<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

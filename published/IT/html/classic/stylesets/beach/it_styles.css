@@ -1,0 +1,190 @@
+/* List view */
+
+.issueList {
+	border-bottom: 1px solid #BAB09B;
+}
+
+.issueList td a {
+	color: #000000;
+}
+
+.issueList td {
+	font-family: Verdana, Arial, sans-serif;
+}
+
+/* Task records */
+
+.issueList_task {
+	background: #F1ECE0;
+	font-size: 10pt;
+	border-bottom: 2px solid #BAB09B; 
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.issueList_task_complete {
+	background: #E3DBC9;
+}
+
+.issueList_task_bottom {
+	border-top: 2px solid #BAB09B;
+	border-bottom: none;
+}
+
+.issueList_task_middle_bottom {
+	border-top: 2px solid #BAB09B; 
+	border-bottom: none;
+}
+
+.issueList_task_middle {
+	border-top: 2px solid #BAB09B; 
+	border-bottom: 2px solid #BAB09B; 
+}
+
+.issueList_task_nobord {
+	border-bottom: none;
+}
+
+/* Issue records */
+
+.issueList_issue td {
+	font-family: Verdana, Arial, sans-serif;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	font-size: 8pt;
+}
+
+.issuelist_issue_prImg {
+	margin-top: 2px;
+}
+
+.issuelist_issue_bottom {
+	border-bottom: 1px dotted #E1E1E1;
+	font-size: 8pt;
+}
+
+.issuelist_issue_bottom_rightBorder {
+	border-bottom: 1px dotted #E1E1E1;
+	border-right: 1px solid #D8D0BD;
+	font-size: 8pt;
+}
+
+.issuelist_issue_middle {
+	font-size: 8pt;
+}
+
+.issuelist_issue_middle_rightBorder {
+	border-right: 1px solid #D8D0BD;
+	font-size: 8pt;
+}
+
+.issuelist_issue_cell {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-size: 8pt;
+}
+
+.issuelist_issue_cell a {
+	font-size: 8pt;
+}
+.issuelist_issue_cell a:hover {
+	text-decoration: none;
+}
+
+.issueList_link {
+	color: #3A76B1;
+}
+
+.issueList_smallfont {
+	font-size: 8pt;
+}
+
+.issueList_files {
+	color: #000000;
+}
+
+.issueList_files_a {
+	color: #3A76B1;
+}
+
+.issueList_link_smallfont {
+	color: #000000;
+	font-size: 8pt;
+}
+
+.issueList_link_smallfont_a {
+	color: #3A76B1;
+	font-size: 8pt;
+}
+
+.issueList_transitionLog
+{
+	padding-left: 23px;
+	padding-top: 5px;
+}
+
+.issueList_transitionLog a
+{
+	font-size: 8pt!important;
+	color: #3A76B1!important;
+}
+
+.issue_transitionLog td
+{
+	font-size: 8pt!important;
+}
+
+/* Grid view */
+
+.issueList_gridHeader {
+	background: #F5EBD6;
+}
+
+.issueList_gridHeader_rightBorder {
+	border-right: 1px solid #9B9B9B;
+}
+
+.issueList_gridHeader td {
+	padding: 2px;
+	border-bottom: 1px solid #9B9B9B;
+	font-weight: bold;
+}
+
+.issueList_pages {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 8pt;
+}
+
+.issueList_pages a {
+	font-size: 8pt;
+	color: #3A76B1;
+}
+
+/* Filters */
+
+.filterCell {
+	padding-left: 1px;
+	padding-right: 10px;
+	padding-bottom: 8px;
+}
+
+.filterCell a {
+	color: #000000;
+}
+
+.cb_filterCell {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 8px;
+}
+
+/* Copy/move page */
+
+.disabledCBItem {
+	background: #F1ECE0;
+}

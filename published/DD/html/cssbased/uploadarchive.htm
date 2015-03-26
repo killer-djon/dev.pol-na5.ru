@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+			<script language="JavaScript" type="text/JavaScript">
+
+				function initFocus()
+				{
+					<? if $invalidField ?>
+						focusFormControl('<? $invalidField ?>');
+					<? else ?>
+						focusFirstFormControl();
+					<? /if ?>
+				}
+
+				function onUpload()
+				{
+					thisForm = document.forms[0];
+
+					var fileFound = false;
+					for ( i = 0; i < thisForm.elements.length; i++ )
+						if (thisForm.elements[i].name.substr(0, 4) == "file")
+							if ( thisForm.elements[i].value != "" )
+							{
+								fileFound = true;
+								break;
+							}
+
+					if ( !fileFound )
+					{
+						alert( "<? $ddStrings.ua_selectfile_message ?>" );
+						return false;
+					}
+
+					if ( document.getElementById )
+					{
+						var addFileCell = document.getElementById( 'addfilecell' );
+						if (addFileCell)
+							addFileCell.style.display = "none";
+
+						var attachMessageCell = document.getElementById( 'attachmessagecll' );
+						if (attachMessageCell)
+							attachMessageCell.style.display = "inline";
+					}
+
+					processTextButton( 'uploadbtn', 'form' );
+
+					return false;
+				}
+
+			</script>
+	</head>
+	<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'folderData' )">
+		<? wbs_pageLayout toolbar="uploadarchive_toolbar.htm" ?>
+
+		<input type="hidden" name="DF_ID" value="<? $DF_ID ?>">
+
+		<? wbs_errorBlock ?>
+
+		<? if !$fatalError ?>
+
+		<? if $archiveSupported ?>
+
+				<? if !$fileLoaded && !$operationFinished ?>
+
+						<div ID="addfilecell">
+
+								<? wbs_formCaption text=$folderName ?>
+
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<? $ddStrings.ua_upload_note ?>
+								<? /wbs_note ?>
+
+								<? wbs_formLayout caption=$pageTitle ?>
+								<? wbs_formContent ?>
+
+									<tr class="SeparatedRow">
+										<td>
+											<? wbs_label for="file" fieldName="file" text=$ddStrings.ua_file_label skipColon=false ?>
+										</td>
+										<td><input class="FormControl"  id=file type=file name=file style="width: 250px"></td>
+									</tr>
+									<tr>
+										<td colspan=2>
+											<? wbs_note displayNoteMarker=true width="500px" smallFont=false ?>
+												<? $ddStrings.ua_fileformat_note ?>
+											<? /wbs_note ?>
+										</td>
+									</tr>
+
+								<? if $versionControlEnabled ?>
+									</table>
+									<table class="FormLayout">
+										<tr class="SeparatedRow">
+											<td colspan="2"><? $ddStrings.ua_existing_note?></td>
+										</tr>
+										<tr>
+											<td style="padding-left: 10px">
+												<input class="FormControl" type=radio name="existingFileOperation" value="replace" <? switchedOutput val=$existingFileOperation true_val=replace str1="checked" ?>>
+											</td>
+											<td>
+												&nbsp;<? $ddStrings.add_screen_replace_label?>
+											</td>
+										</tr>
+										<tr class="SeparatedRow">
+											<td style="padding-left: 10px; width: 10px">
+												<input class="FormControl" type=radio name="existingFileOperation" value="skip" <? switchedOutput val=$existingFileOperation true_val=skip str1="checked" ?>>
+											</td>
+											<td>
+												&nbsp;<? $ddStrings.add_screen_skip_label?>
+											</td>
+										</tr>
+								<? /if ?>
+
+							<? /wbs_formContent ?>
+
+							<? wbs_formButtonsPanel ?>
+									<? wbs_buttonSet ?>
+										<? wbs_buttonSetButton caption=$ddStrings.ua_upload_btn onClick="return onUpload()" ?>
+										<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+									<? /wbs_buttonSet ?>
+							<? /wbs_formButtonsPanel ?>
+
+							<? /wbs_formLayout?>
+
+							</div>
+
+							<div ID="attachmessagecll" style="display:none">
+
+								<? wbs_formCaption text=$ddStrings.ua_uploadarchive_text ?>
+
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<? $ddStrings.ua_uploadwait_text ?>
+								<? /wbs_note ?>
+
+								<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+									<img src="../cssbased/images/progress.gif" >
+								<? /wbs_note ?>
+
+								<? wbs_buttonSet ?>
+									<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn"?>
+								<? /wbs_buttonSet ?>
+
+							</div>
+
+				<? elseif !$operationFinished ?>
+					<!-- Page 2 - setup parameters -->
+					<input type=hidden name=fileLoaded value=1>
+					<input type=hidden name=destPath value="<? $destPath ?>">
+					<input type=hidden name=filesInfo value="<? $filesInfo ?>">
+					<input type=hidden name=imagesLabel value="<? $imagesLabel ?>">
+					<input type=hidden name=requiredSpaceLabel value="<? $requiredSpaceLabel ?>">
+					<input type=hidden name=origFileName value="<? $origFileName ?>">
+
+					<? if $versionControlEnabled ?>
+						<input type=hidden name=existingFileOperation value="<? $existingFileOperation ?>">
+					<? /if ?>
+
+					<? if $availableSpaceLabel ?>
+						<input type=hidden name=availableSpaceLabel value="<? $availableSpaceLabel ?>">
+					<? /if ?>
+
+					<input type=hidden name=archiveInfo value="<? $archiveInfo_packed ?>">
+
+					<? wbs_formCaption text=$folderName ?>
+
+					<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+						<? $filesInfo ?>
+					<? /wbs_note ?>
+
+					<? if $archiveInfo.folders ?>
+						<? if $hasFolderRights ?>
+							<table class="FormLayout">
+								<tr class="SeparatedRow">
+									<td><input class="FormControl" type=checkbox id=extractSubdirs name=extractSubdirs value=1 <? wbs_checkboxStatus val=$extractSubdirs true_val=1 ?>></td>
+									<td> <? wbs_label for="extractSubdirs" text=$ddStrings.ua_extractsubfolders_label skipColon=true ?></td>
+								</tr>
+							</table>
+						<? else ?>
+							<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+								<? $ddStrings.ua_nofolderrights_note ?>
+							<? /wbs_note ?>
+						<? /if ?>
+					<? /if ?>
+
+					<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+						<? $requiredSpaceLabel ?>
+					<? /wbs_note ?>
+
+					<? if $availableSpaceLabel ?>
+						<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+							<? $availableSpaceLabel ?>
+						<? /wbs_note ?>
+							<? if $notEnoughSpaceMessage ?>
+									<? wbs_note displayNoteMarker=true width="500px" smallFont=false ?>
+										<? $notEnoughSpaceMessage ?>
+									<? /wbs_note ?>
+							<? /if ?>
+						<? /if ?>
+
+					<? if $thumbnailEnabled == "ENABLED" ?>
+
+									<? wbs_hr width="200px" ?>
+
+									<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+										<? $imagesLabel ?>
+									<? /wbs_note ?>
+
+									<? if $archiveInfo.images ?>
+										<table class="FormLayout">
+											<tr class="SeparatedRow">
+											<td>
+													<td><input class="FormControl" type=checkbox id=createThumbs name=createThumbs value=1 <? wbs_checkboxStatus val=$createThumbs true_val=1 ?>></td>
+													<td> <? wbs_label for="createThumbs" text=$ddStrings.ua_createthumbs_label skipColon=true ?></td>
+											</tr>
+										</table>
+
+										<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+											<? $ddStrings.ua_createthumbs_note ?>
+										<? /wbs_note ?>
+
+									<? /if ?>
+								</td>
+							</tr>
+						</table>
+					<? /if ?>
+
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton caption=$kernelStrings.app_ok_btn name="savebtn" ?>
+						<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" ?>
+					<? /wbs_buttonSet ?>
+
+				<? elseif $operationFinished ?>
+
+						<? wbs_note displayNoteMarker=false smallFont=false ?>
+							<? $statusText ?>
+						<? /wbs_note ?>
+
+						<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+							<? $error|htmlsafe:true:true ?>
+						<? /wbs_note ?>
+
+						<table class="NameValueList">
+						<tr>
+								<td><? $ddStrings.ua_subfolders_label|cat:": " ?></td>
+								<th scope="col"><? $resultStats.foldersCreated ?></th>
+						</tr>
+						<tr>
+								<td><? $ddStrings.ua_filesextracted_label|cat:": " ?></td>
+								<th scope="col"><? $resultStats.filesAdded ?></th>
+						</tr>
+						<? if $thumbnailEnabled == "ENABLED" ?>
+							<tr>
+									<td><? $ddStrings.ua_imagesextracted_label|cat:": " ?></td>
+									<th scope="col"><? $resultStats.imagesAdded ?></th>
+							</tr>
+
+							<? if $createThumbs ?>
+
+							<? math equation="x-y" x=$resultStats.imagesAdded y=$resultStats.imageErrors assign=thumbsCreated ?>
+								<tr>
+										<td><? $ddStrings.ua_thumbscreated_label|cat:": " ?></td>
+										<th scope="col"><? $thumbsCreated ?></th>
+								</tr>
+								<? if $resultStats.imageErrors ?>
+										<tr class="SeparatedRow">
+												<td><? $ddStrings.ua_thumberrors_label|cat:": " ?></td>
+												<th scope="col"><? $resultStats.imageErrors ?></th>
+										</tr>
+								<? /if ?>
+							<? /if ?>
+						<? /if ?>
+						</table>
+
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_ok_btn  ?>
+					<? /wbs_buttonSet ?>
+
+				<? /if ?>
+			<? else ?>
+				<table cellpadding=0 cellspacing=0 border=0>
+					<tr>
+						<td><? $ddStrings.ua_archivesnotsupported_message|htmlsafe:true:true ?></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+				<? /wbs_buttonSet ?>
+			<? /if ?>
+
+		<? else ?>
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn  ?>
+				<? /wbs_buttonSet ?>
+		<? /if ?>
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

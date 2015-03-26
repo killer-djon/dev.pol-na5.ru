@@ -1,0 +1,50 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  <td class="default">
+    <? if $showPageSelector ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr> 
+		<td align="right"><table border="0" cellspacing="0" cellpadding="0">
+		<tr> 
+		<td align="right" valign="middle">
+		  <? $pmStrings.pl_page_label|cat:":&nbsp;" ?>
+		</td>
+		<td><select name="currentPage" class="control" onChange="this.form.submit()">
+			<? html_options values=$pages selected=$currentPage output=$pages ?>
+		  </select></td>
+		<td align="right" valign="middle">
+		  <? "&nbsp;"|cat:$pmStrings.pl_of_label|cat:" "|cat:$pagesNum ?>
+		</td>
+	  </tr>
+	</table></td>
+	</tr>
+	<tr>
+		<td align="right"><img src="../../../common/html/classic/images/5pixsep.gif" width="5" height="5"></td>
+	</tr>
+	</table>
+	<? /if ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+			<th align="left"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="C_NAME" curStatus=$sorting ?>"><? $pmStrings.pl_customer_title ?></a> <? makeSortImg fieldName="C_NAME" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="P_DESC" curStatus=$sorting ?>"><? $pmStrings.pl_summary_title ?></a> <? makeSortImg fieldName="P_DESC" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="100"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="P_STARTDATE" curStatus=$sorting ?>"><? $pmStrings.pl_startdate_title ?></a> <? makeSortImg fieldName="P_STARTDATE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="60"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="P_BILLABLE" curStatus=$sorting ?>"><? $pmStrings.pl_billable_title ?></a> <? makeSortImg fieldName="P_BILLABLE" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr></th>
+			<th align="left" width="100"><nobr><a href="<? makeSortLink URL=$genericLinkUnsorted fieldName="MANAGER_NAME" curStatus=$sorting ?>"><? $pmStrings.pl_manager_title ?></a> <? makeSortImg fieldName="MANAGER_NAME" curStatus=$sorting  descImg=#sortImgDesc# ascImg=#sortImgAsc# ?></nobr>
+		<?section name=projectSec loop=$projects?>
+		<tr<? if ($smarty.section.projectSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+			<td valign="top" class="default" ><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].C_NAME ?></a></td>
+			<td valign="top" class="default"><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].P_DESC ?></a></td>
+			<td valign="top" class="default" width="100"><nobr><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].P_STARTDATE ?></a></nobr></td>
+			<td align="center" valign="top" class="default" width="60"><nobr><a href="<? $projects[projectSec].ROW_URL ?>">
+			<? switchedOutput str1=#checkedImg# str2="" val=$projects[projectSec].P_BILLABLE true_val=1 ?>
+			</a></nobr></td>
+			<td valign="top" class="default" width="100"><nobr><a href="<? $projects[projectSec].ROW_URL ?>"><? $projects[projectSec].MANAGER ?></a></nobr></td>
+		</tr>
+		<?sectionelse?>
+		<tr align="center"<? if ($smarty.section.customerSec.index % 2) != 0 ?> bgcolor="<? #oddRowsColor#?>"<? /if ?>> 
+			<td colspan="5" class="default"><? $kernelStrings.app_noentrieis_text|htmlsafe:true:true ?></td>
+		</tr>
+		<?/section?>
+	</table>
+  </td>
+  </tr>
+</table>

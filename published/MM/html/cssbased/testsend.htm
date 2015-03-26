@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<? wbs_initLayout ?>
+
+		<script language="JavaScript">
+		<!--
+
+		function onSendingMesages( btnid )
+		{
+			thisForm = document.forms[0];
+
+			if ( document.getElementById )
+			{
+				var error = document.getElementById( 'ErrorBlock' );
+				if ( error )
+					error.style.display = "none";
+
+				var addFileCell = document.getElementById( 'optionscell' );
+				if (addFileCell)
+					addFileCell.style.display = "none";
+
+				var attachMessageCell = document.getElementById( 'waitingcell' );
+				if (attachMessageCell)
+					attachMessageCell.style.display = "inline";
+			}
+
+			processTextButton(  btnid, 'form' );
+
+			return false;
+		}
+
+//-->
+</script>
+</head>
+<body onLoad="autoFocusFormControl( '<? $invalidField ?>', 'messageData' )">
+		<? wbs_pageLayout toolbar="testsend_toolbar.htm" ?>
+			<? wbs_errorBlock ?>
+
+			<? if !$fatalError ?>
+
+			<? if !$messagesSent ?>
+
+				<div id="optionscell">
+
+					<? if $doclistCount != 1?>
+						<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+							<? $messageCount ?> <? $mmStrings.sm_messages_label ?>	<? if $messageCount != $doclistCount ?> (<? $mmStrings.sm_tplsent_excluded_text ?>) <? /if ?>
+						<? /wbs_note ?>
+					<? /if ?>
+
+					<? foreach from=$messageList item=message ?>
+						<? if $messageCount == 1 && $doclistCount == 1?>
+							<? wbs_formCaption text=$message.MMM_SUBJECT|htmlsafe:true:true ?>
+						<? else ?>
+							<b><? $message.MMM_SUBJECT|htmlsafe:true:true ?></b><br>
+						<? /if ?>
+					<? /foreach ?>
+
+					<? if $doclistCount != 1?>
+						<br>
+					<? /if ?>
+
+					<? wbs_formLayout ?>
+						<? wbs_formContent ?>
+
+						<? if !$noSenderEmail ?>
+						<tr class="SeparatedRow">
+							<td>
+								<? wbs_label for="messageData[PRIORITY]" fieldName="PRIORITY" text=$mmStrings.sm_priority_label skipColon=false ?>
+							<td>
+								<table cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td>
+										<select name="messageData[PRIORITY]" id="messageData[PRIORITY]" class="FormControl">
+											<? html_options values=$priorityValues selected=$messageData.PRIORITY output=$priorityNames ?>
+										</select>
+									</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<? /if ?>
+						<tr class="SeparatedRow">
+							<td><? wbs_label for="messageData[SENDER]" fieldName="SENDER" text=$mmStrings.sm_from_label skipColon=false ?></td>
+							<td><? if $noSenderEmail ?><font color=red><? $mmStrings.sm_nosenderemail_label ?></font><? else ?>
+									<select id="messageData[SENDER]" name="messageData[SENDER]" class="FormControl">
+										<? html_options values=$senderIds selected=$messageData.SENDER output=$senderNames ?>
+									</select>
+								<? /if ?>
+							</td>
+						</tr>
+						<tr class="SeparatedRow">
+							<td valign=top align=right><input type=checkbox name='messageData[SENDTOME]' id='messageData[SENDTOME]' value='1' <? if $messageData.SENDTOME=='1' ?>checked<? /if ?> class="FormControl">&nbsp;</td>
+							<td>
+								<? wbs_label for="messageData[SENDTOME]" fieldName="SENDTOME" text=$mmStrings.sm_test_sendyourself_text skipColon=false ?>&nbsp; <B><? $myEmail|htmlsafe:true:true ?></B>
+							</td>
+						</tr>
+
+						<? if !$noSenderEmail ?>
+							<tr>
+								<td valign=top>&nbsp;</td>
+								<td>
+									<? wbs_label for="messageData[TOMORE]" fieldName="TOMORE" text=$mmStrings.sm_test_additional_text skipColon=false ?>
+								</td>
+							</tr>
+							<tr class="SeparatedRow">
+								<td valign=top>&nbsp;</td>
+								<td>
+									<textarea id="messageData[TOMORE]" name="messageData[TOMORE]" cols="60" rows="4" class="FormControl" style="width: 100%"><? $messageData.TOMORE|htmlsafe_textarea:$edited ?></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td valign=top>&nbsp;</td>
+								<td>
+									<? wbs_note displayNoteMarker=true width="500px" smallFont=false indented=true ?>
+										<? $mmStrings.sm_test_notes|htmlsafe:true:true?>
+									<? /wbs_note ?>
+								</td>
+							</tr>
+						<? /if ?>
+
+				<? /wbs_formContent ?>
+				<? wbs_formButtonsPanel ?>
+					<? wbs_buttonSet ?>
+						<? wbs_buttonSetButton name="savebtn" caption=$mmStrings.app_send_btn onClick="return onSendingMesages('savebtn');" ?>
+						<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+					<? /wbs_buttonSet ?>
+				<? /wbs_formButtonsPanel ?>
+			<? /wbs_formLayout ?>
+			</div>
+			<div  ID="waitingcell" style="display:none">
+				<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+					<? $mmStrings.sm_sendingwait_text ?>
+				<? /wbs_note ?>
+
+				<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+					<img src="../cssbased/images/progress.gif" >
+				<? /wbs_note ?>
+
+				<? wbs_buttonSet ?>
+					<? wbs_buttonSetButton caption=$kernelStrings.app_cancel_btn name="cancelbtn" link="catalog.php" ?>
+				<? /wbs_buttonSet ?>
+			</div>
+
+			<? else ?>
+				<p class="header2"><? $mmStrings.sm_sending_stat_text ?></p>
+
+				<table border="0" cellspacing="0" cellpadding="0" WIDTH=500>
+				<? foreach from=$statArray item=stat ?>
+					<tr>
+						<td colspan=3><B><? $stat.MESSAGE.MMM_ID ?>.&nbsp;<? $stat.MESSAGE.MMM_SUBJECT|htmlsafe:true:true ?></B></td>
+					</tr>
+					<? if $stat.NOTSENT ?>
+						<tr><td colspan=3><? $stat.NOTSENT ?></td></tr>
+					<? else ?>
+						<tr><td>&nbsp;&nbsp;</td><td>Sent:</td><td><? $stat.SENTCOUNT ?></td></tr>
+						<tr>
+							<td WIDTH=10></td><td><? if $stat.BOUNCEDCOUNT != 0 ?><a href=# onClick="return toggleVisibility('bounced<? $stat.MESSAGE.MMM_ID ?>');"><? /if ?>Bounced<? if $stat.BOUNCEDCOUNT != 0 ?><a href=# onClick="return toggleVisibility('bounced<? $stat.MESSAGE.MMM_ID ?>');"></a><? /if ?>:</td><td><? $stat.BOUNCEDCOUNT ?></td>
+						</tr>
+						<tr>
+						<td></td>
+						<td style="display:none" id="bounced<? $stat.MESSAGE.MMM_ID ?>" colspan=2>
+						<small>
+						<? foreach from=$stat.BOUNCED item=bounced ?>
+						<? $bounced|htmlsafe:true:true ?><br>
+						<? /foreach ?>
+						</small>
+					</td>
+					</tr>
+					<? /if ?>
+				<tr><td>&nbsp;</td></tr>
+				<? /foreach ?>
+
+				</table>
+
+				<? include file="../../../common/html/classic/button.htm" align="left" name="cancelbtn" caption=$kernelStrings.app_ok_btn formname="form"?>
+			<? /if ?>
+
+		<? else ?>
+			<? wbs_buttonSet ?>
+				<? wbs_buttonSetButton name="cancelbtn" caption=$kernelStrings.app_cancel_btn ?>
+			<? /wbs_buttonSet ?>
+		<? /if ?>
+
+		<input type="hidden" name="MMF_ID" value="<? $MMF_ID ?>">
+		<input type="hidden" name="action" value="<?$action?>">
+		<input type="hidden" name="opener" value="<? $opener ?>">
+		<input type="hidden" name="doclist" value="<? $doclist?>">
+
+		<? /wbs_pageLayout ?>
+	</body>
+</html>

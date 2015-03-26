@@ -1,0 +1,430 @@
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function fillSendForm()
+	{
+		sendDisplayOn({'sendFormDiv':1});
+		if(parent.currentAction == 'reply')
+		{
+			document.getElementById('messageData[MMM_TO]').value = parent.msgParams['from'];
+			document.getElementById('messageData[MMM_SUBJECT]').value = 'Re: ' + parent.msgParams['subject'];
+			document.getElementById(_editor_iframe).contentWindow.document.body.innerHTML =
+				'<br><br><div style="padding-left: 5px; border-left: 2px solid gray">' +
+				'----- <? $mmStrings.app_originalmsg_label ?> -----<br>' +
+				'<b><? $mmStrings.app_from_field ?>:</b> ' + stripAddress(parent.msgParams['from']) + '<br>' +
+				'<b><? $mmStrings.app_to_field ?>:</b> ' + stripAddress(parent.msgParams['to']) + '<br>\n' +
+				'<b><? $mmStrings.sm_senddate_label ?>:</b> ' + stripAddress(parent.msgParams['date']) + '<br>\n' +
+				'<b><? $mmStrings.app_subject_field ?>:</b> ' + parent.msgParams['subject'] + '<br><br>' +
+				parent.msgParams['content'] + '</div>';
+		}	else {
+			document.getElementById('messageData[MMM_TO]').value = '';
+			document.getElementById('messageData[MMM_CC]').value = '';
+			document.getElementById('messageData[MMM_BCC]').value = '';
+			document.getElementById('messageData[MMM_LISTS]').value = '';
+			document.getElementById('messageData[MMM_SUBJECT]').value = '';
+			document.getElementById('userConfirmSend').value = 0;
+			document.getElementById(_editor_iframe).contentWindow.document.body.innerHTML = '';
+		}
+		if(typeof(doClear) == 'undefined')
+			UploadedFilesBuff = document.getElementById('UploadFilesDiv').innerHTML;
+		else if(doClear)
+		{
+			doClear = false;
+			document.getElementById('UploadFilesDiv').innerHTML = UploadedFilesBuff;
+			document.getElementById('action').value = 'clear';
+			document.SendForm.submit();
+		}
+		currentContactPage = 0;
+	}
+	function prepareSendForm()
+	{
+		document.getElementById('SendSubContacts').style.display =
+		document.getElementById('SendCC').style.display =
+		document.getElementById('SendBCC').style.display =
+		document.getElementById('SendLists').style.display = 'none';
+		document.getElementById('showLink').style.display =
+		document.getElementById('showCCLink').style.display =
+		document.getElementById('showBCCLink').style.display =
+		document.getElementById('showListsLink').style.display =
+		document.getElementById('snds1').style.display =
+		document.getElementById('snds2').style.display = '';
+		self.scrollTo(0, 0);
+	}
+
+	function stripAddress(str) {return str.replace(/</g,'< ').replace(/>/g,' >')}
+	function editorWait() {waiting = window.setInterval('editorReady()', 1000)}
+	function editorReady()
+	{
+		if(_editor_iframe != 'EditorIFrame')
+		{
+			try {window.clearInterval(waiting)} catch(e) {};
+			fillSendForm();
+		}
+	}
+	function uploadFile()
+	{
+		doClear = true;
+		document.getElementById('UploadFileInput').style.display = 'none';
+		document.getElementById('UploadFilePgBar').style.display = '';
+		document.getElementById('action').value = 'file';
+		document.SendForm.submit();
+	}
+	function deleteUploadedFile(file)
+	{
+		document.getElementById('UploadFileInput').style.display = 'none';
+		document.getElementById('UploadFilePgBar').style.display = '';
+		document.getElementById('action').value = 'delete';
+		document.getElementById('deleteFile').value = file;
+		document.SendForm.submit();
+	}
+
+	function doSendMessage(showSendingBar)
+	{
+		var re = /[\.\-_a-z0-9]+?@[\.\-a-z0-9]+?\.[a-z0-9]{2,}/i;
+		var toDraft = document.getElementById('toDraft').value;
+		if(!toDraft && !document.getElementById('messageData[MMM_TO]').value.match(re) &&
+			!document.getElementById('messageData[MMM_CC]').value.match(re) &&
+			!document.getElementById('messageData[MMM_BCC]').value.match(re) &&
+			!document.getElementById('messageData[MMM_LISTS]').value
+		)
+			alert('<? $mmStrings.snd_toincorrect_error ?>');
+		else
+		{
+			if(toDraft == 0)
+			{
+				if(showSendingBar || !document.getElementById('messageData[MMM_LISTS]').value)
+					document.getElementById('messageSentDiv').innerHTML =
+						'<? $mmStrings.snd_sending_label ?><img src="../../../common/html/res/images/loading.gif">'
+				else
+					document.getElementById('messageSentDiv').innerHTML =
+					'<? $mmStrings.snd_prepare_send_label ?><img src="../../../common/html/res/images/loading.gif">'
+			}
+			else
+				document.getElementById('messageSentDiv').innerHTML = parent.getLoadingBar();
+			sendDisplayOn({'messageSentDiv':1});
+
+			document.getElementById('action').value = 'send';
+			document.SendForm.submit();
+		}
+	}
+
+	function sendMessage()
+	{
+		document.getElementById('toDraft').value = 0;
+		doSendMessage();
+	}
+
+	function confirmSendMessage()
+	{
+		document.getElementById('userConfirmSend').value = 1;
+		doSendMessage(1);
+	}
+
+	function saveToDraft()
+	{
+		document.getElementById('toDraft').value = 1;
+		doSendMessage();
+	}
+
+	function subSel(key, name)
+	{
+		for(var i=1; i<=send_sublen; i++)
+		{
+			if(i == key)
+				document.getElementById('ssm'+name+i).className = 'OverList';
+			else
+				document.getElementById('ssm'+name+i).className = 'OutList';
+		}
+	}
+	function showMenu(id)
+	{
+		document.getElementById(id).style.display='';
+		document.getElementById('SendSubContacts').style.display='none';
+	}
+	function hideMenu(id) { document.getElementById(id).style.display='none' }
+	function delayedHideMenu(id) { hideMenuTimeout = setTimeout("hideMenu('" + id + "')", 300) }
+
+	function addAddress(inp_id, sub_id, new_addr)
+	{
+		var inp_addr = document.getElementById(inp_id).value;
+		var addr = splitAddress(inp_addr);
+		var str = addr[0];
+
+		if(testString(new_addr, inp_addr))
+			str = inp_addr;
+		else
+		{
+			if(str)
+				str += new_addr + ', ';
+			else
+				str = new_addr + ', ';
+		}
+		document.getElementById(inp_id).value = str;
+		if(sub_id)
+		{
+			document.getElementById(inp_id).focus();
+			hideMenu(sub_id);
+		}
+	}
+
+	function enterAddress(event, inp_id, sub_id)
+	{
+		if(event.keyCode==13)
+		{
+			if(curSendAddr)
+				addAddress(inp_id, sub_id, curSendAddr);
+			return false;
+		}
+		return true;
+	}
+
+	function testString(needle, haystack)
+	{
+		var re = new RegExp(needle, 'i');
+		return re.test(haystack);
+	}
+
+	function splitAddress(str)
+	{
+		var old_str = str.replace(/^(.+?[,;]\s*)?([^,;]+)?$/, "$1");
+		var new_str = str.replace(/^(.+?[,;]\s*)?([^,;]+)?$/, "$2");
+		return Array(old_str, new_str);
+	}
+
+	function switchSubmenu(sub_id)
+	{
+		var sub = document.getElementById(sub_id);
+		if(sub.style.display) sub.style.display = '';
+		else sub.style.display = 'none';
+	}
+
+	function htmlDecode(str)
+	{
+		str=str.replace(/&amp;/gi, '&');
+		str=str.replace(/&quot;/gi, '"');
+		str=str.replace(/&#039;/g, "'");
+		str=str.replace(/&lt;/gi, '<');
+		str=str.replace(/&gt;/gi, '>');
+		return str;
+	}
+	function htmlEncode(str)
+	{
+		str=str.replace(/</gi, '&lt;');
+		str=str.replace(/>/gi, '&gt;');
+		return str;
+
+		str=str.replace(/'/g, '&#039;');
+		str=str.replace(/&/gi, '&amp;');
+		str=str.replace(/"/gi, '&quot;');
+		return str;
+	}
+
+	function jsClearEntity(str)
+	{
+		str = str.replace(/'/g, "'+String.fromCharCode(39)+'");
+		str = str.replace(/"/g, "'+String.fromCharCode(34)+'");
+		return str;
+	}
+
+	function hideLayer(layer)
+	{
+		document.getElementById(layer).style.display = 'none';
+		document.getElementById('messageData[WHENDATE]').value = '';
+		document.getElementById('messageData[WHENTIME]').value = '00:00';
+	}
+	function showLayer(layer) { document.getElementById(layer).style.display = 'block' }
+
+	function stripTags(str) {return str.replace(/<.*?>/g,'')}
+
+	function switchContactsMenu(inpId, partId)
+	{
+		var src = document.getElementById('SendSubContacts');
+		if(src.style.display)
+		{
+			SetComboBoxesVisibility(false);
+
+			try {clearTimeout(hideMenuTimeout)} catch(e) {};
+
+			var inp = document.getElementById(inpId);
+			var pos = getAbsolutePos(inp);
+
+			src.style.top = pos.y + inp.offsetHeight - 1 + 'px';
+			src.style.left = pos.x + 'px';
+			document.getElementById('SendSubContacts').style.width = inp.offsetWidth + 20 + 'px';
+			src.style.display = '';
+
+			currentInput = inpId;
+			noHideFlag = true;
+		}
+		else
+		{
+			src.style.display = 'none';
+			SetComboBoxesVisibility(true);
+		}
+
+		switchSubContacts(partId)
+	}
+
+	function SetComboBoxesVisibility(visible)
+	{
+		return;
+
+		if(!IsIE())
+			return;
+
+		c = document.getElementsByTagName('select');
+
+		for(i=0; i<c.length; i++)
+		{
+			if (c[i] == null) continue;
+			if (c[i].getAttribute('nohide') != null)
+				continue;
+			c[i].style.visibility = (!visible)? 'hidden':'visible';
+		}
+	}
+
+	function IsIE() {return window.navigator.appName == "Microsoft Internet Explorer"}
+
+	function getAbsolutePos(el)
+	{
+		var r = { x: el.offsetLeft, y: el.offsetTop };
+		if(el.offsetParent)
+		{
+			var tmp = getAbsolutePos(el.offsetParent);
+			r.x += tmp.x;
+			r.y += tmp.y;
+		}
+		return r;
+	}
+
+	document.onclick = windowClickEventExplorer;
+	noHideFlag = false;
+	function windowClickEventExplorer(e)
+	{
+		if(noHideFlag)
+		{
+			noHideFlag = false;
+			return;
+		}
+		e = e||event;
+		var target = e.target||e.srcElement;
+		var parent = target;
+
+		var obj = document.getElementById('SendSubContacts');
+		while(parent.parentNode && parent!=obj)
+		 parent = parent.parentNode;
+		if(!parent || parent!=obj)
+			obj.style.display = 'none';
+	}
+
+	function backToSendForm()
+	{
+		sendDisplayOn({'sendFormDiv':1}, {'sendFormToolbar':1, 'sendFormIframe':1});
+		document.getElementById('userConfirmSend').value = 0;
+	}
+
+	function doSearchContact()
+	{
+		document.getElementById('bufferIframe').src =
+			'getsendform.php?currentObject=' + document.getElementById('currentObject').value +
+			'&searchString=' + document.getElementById('searchSendContact').value;
+		document.getElementById('contactsForInclude').innerHTML = parent.getLoadingBar();
+	}
+
+	var sendDisplayElements = Array('sendFormDiv', 'messageSentDiv');
+
+	function sendDisplayOn(thisElements, parentElements)
+	{
+		if(thisElements)
+			for(var i=0; i<sendDisplayElements.length; i++)
+			{
+				if(typeof(thisElements[sendDisplayElements[i]]) == 'undefined')
+					document.getElementById(sendDisplayElements[i]).style.display = 'none';
+				else
+					document.getElementById(sendDisplayElements[i]).style.display = '';
+			}
+		if(parentElements)
+			parent.displayOn(parentElements); //{toolBar:1, 'sendFormIframe':1});
+	}
+
+	function switchList(listID, isBox)
+	{
+		var inp = document.getElementById('messageData[MMM_LISTS]');
+		var box = document.getElementById('box_'+listID);
+		var listName = document.getElementById('td_'+listID).innerHTML + ', ';
+		var val = inp.value;
+		var re = new RegExp(listName);
+
+		if(isBox)
+			box.checked = !box.checked;
+
+		if(box.checked)
+		{
+			box.checked = false;
+			val = val.replace(re, '');
+		}
+		else
+		{
+			box.checked = true;
+			val += listName;
+		}
+		inp.value = val;
+	}
+
+	function switchSubContacts(doOn)
+	{
+		if(doOn == 'ssc_contacts')
+		{
+			document.getElementById('ssc_lists').style.display = 'none';
+			document.getElementById('ssc_contacts').style.display = '';
+		} else {
+			document.getElementById('ssc_contacts').style.display = 'none';
+			document.getElementById('ssc_lists').style.display = '';
+		}
+	}
+	function showMoreContacts()
+	{
+		currentContactPage++;
+		document.getElementById('bufferIframe').src =
+			'getsendform.php?currentObject=' + document.getElementById('currentObject').value +
+			'&currentPage=' + currentContactPage;
+		document.getElementById('contactsForInclude').innerHTML = parent.getLoadingBar();
+		cancelEventExplorer = true;
+		noHideFlag = true;
+	}
+
+	function hideSendFormLink(name)
+	{
+		if(name == 'showCCLink')
+		{
+			document.getElementById(name).style.display='none';
+			document.getElementById('snds1').style.display='none';
+			if(document.getElementById('showCCLink').style.display && document.getElementById('showBCCLink').style.display && document.getElementById('showListsLink').style.display)
+				document.getElementById('showLink').style.display='none';
+			document.getElementById('SendCC').style.display=''
+		}
+		else if(name == 'showBCCLink')
+		{
+			document.getElementById(name).style.display='none';
+			document.getElementById('snds1').style.display='none';
+			if(document.getElementById('showCCLink').style.display)
+				document.getElementById('snds2').style.display='none';
+			if(document.getElementById('showCCLink').style.display && document.getElementById('showBCCLink').style.display && document.getElementById('showListsLink').style.display)
+				document.getElementById('showLink').style.display='none';
+			document.getElementById('SendBCC').style.display=''
+		}
+		else if(name == 'showListsLink')
+		{
+			document.getElementById(name).style.display='none';
+			document.getElementById('snds2').style.display='none';
+			if(document.getElementById('showCCLink').style.display && document.getElementById('showBCCLink').style.display && document.getElementById('showListsLink').style.display)
+				document.getElementById('showLink').style.display='none';
+			document.getElementById('SendLists').style.display = ''
+		}
+	}
+
+	function resizeIframe()
+	{
+	}
+
+//-->
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><? $title ?></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="<? $preproc->getPublishedUrl('DD/2.0/css/folder_link.css') ?>" />
+</head>
+
+<body>
+
+<script type="text/javascript">
+	function changeView(value) {
+		var url = location.href;
+		url = url.replace(/view=[^&](.*)/, "view=" + value);
+		if (url == location.href)
+			url += ((url.indexOf("?") > -1) ? "&" : "?") + "view=" + value;
+		location.href = url;
+	}
+</script>
+
+<? if $is_hosted ?>
+<div class="ServiceBlock"><a href='<? lbl_dd_public->service_link ?>'><p class="ServiceLogo"><img class="ServiceImg" src="<? $preproc->getPublishedUrl('DD/2.0/img/DD40.gif') ?>" width="40" height="40"/><b>web</b><em>Asyst</em> <? lbl_dd_public->service_title ?></p>
+<p class="ServiceSubscribe"><? lbl_dd_public->service_desc ?></p></a></div>
+<? /if ?>
+
+<h2 class="FolderName"><? $title ?></h2>
+
+<div class="FolderContainer">
+  <? if $views ?>
+  	
+  	<div class="ViewMode">
+	  	<? lbl_dd_public->lbl_view ?>:
+	    <select onChange='changeView(this.value)' name='view'>
+	    	<? foreach from=$views key=cView item=cLabel ?>
+	    		<option <? if $cView==$view?>selected="selected"<? /if ?> value='<? $cView ?>'><? $cLabel ?></option>
+	    	<? /foreach ?>
+	    </select>
+	  </div>
+	 <? /if ?>
+  <table class="FilesTable" cellpadding="0" cellspacing="0" border="0"  id="<?$view?>">
+  	<? if $view == "grid" ?>
+  		<tr class="Title">
+        <td>&nbsp;</td>
+        <td width="*"><? lbl_dd_template_backend->column_filename ?></td>
+        <td width="50" class="SubFile"><? lbl_dd_template_backend->column_type ?></td>
+        <td width="100" align='right' class="SubFile"><? lbl_dd_template_backend->column_size ?></td>
+      </tr>  		  	
+  	<? /if ?>
+    <tbody>
+    	<? if $view == "tiles" ?><tr><td><? /if ?>
+	    <? foreach from=$files item=file ?>
+	    	<? include file="folder_link_item.html" ?>
+			<? /foreach ?>
+			<? if $view == "tiles" ?></td></tr><? /if ?>
+    </tbody>
+	</table>
+</div>
+<div class="BottomBlock"><?if $is_hosted ?> <? lbl_dd_public->service_footer ?> <?/if?></div>
+</body>
+</html>

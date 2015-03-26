@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>
+<? $pageTitle ?>
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<? $html_encoding ?>">
+<link href="<? "styles.css"|stylesetitem:"classic":$styleSet ?>" rel="stylesheet" type="text/css">
+<script src="../../../common/html/classic/styles/WebSubMenu.js"></script>
+<script src="../../../common/html/classic/styles/popupmenu.js"></script>
+<script src="../../../common/html/includes/controls/varlist.js"></script>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<? strip ?>
+<form action="<? $formLink ?>" method="post" enctype="multipart/form-data" name="form">
+
+<? include file="../../../common/html/classic/header.htm" nospace=1 ?>
+<? include file="../../../common/html/classic/toppanel_fix.htm" nospace=1 noleftspace=1 ?>
+<? include file="../../../common/html/classic/errblock.htm" errorStr=$errorStr margins=20 ?>
+
+<? if !$fatalError ?>
+		<? include file="../../../common/html/classic/tabbar_templates/tabbar_view.htm" bottom_part="../../../MM/html/classic/service_bottom.htm" ?>
+<? /if ?>
+
+<input type="hidden" name="edited" value="1">
+<input type=hidden name=curScreen value=<? $curScreen ?>>
+<input type="hidden" name="btndummy">
+
+<?include file="../../../common/html/classic/pagefooter.htm"?>
+</form>
+<? /strip ?>
+</body>
+</html>

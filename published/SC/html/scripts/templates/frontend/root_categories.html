@@ -1,0 +1,27 @@
+<div class="catalog">
+	
+	{foreach from=$root_categories item=_cat name=_fr}
+		<div class="catalog-delimiter">
+			{foreach name=sub_cat_list from=$root_categories_subs[$_cat.categoryID] item=_subcat}
+				
+				<div class="block-catalog">
+			
+					<a href='{"?categoryID=`$_subcat.categoryID`&category_slug=`$_subcat.slug`"|set_query_html}' class="img-catalog">
+						{category_picture limit=5 categoryID=$_subcat.categoryID}
+					
+					
+						<div class="product-name">
+							<div class="title">{$_subcat.name|escape:'html'}</div>	
+							<!-- <div>{$_subcat.countryName}</div> -->
+							<div>{$_cat.name}</div>
+						</div>
+					</a>
+				</div>
+				
+			{/foreach}
+		</div>
+	{/foreach}
+	
+	
+	
+</div>

@@ -1,0 +1,44 @@
+<? if $curScreen == 0?>
+
+<? if $accounts ?>
+
+<table>
+
+<? foreach from=$accounts item=account key=id ?>
+
+	<tr>
+
+		<td>
+			<a href=<? $hrefPage ?>?action=edit&MMA_ID=<? $account.MMA_ID ?>
+				<? if $account.MMA_INTERNAL ?> style="color:green" <? /if ?>>
+				<? $account.MMA_NAME|htmlsafe:true:true ?>
+				&lt;<? $account.MMA_EMAIL|htmlsafe:true:true ?>&gt;</a>
+		</td>
+
+		<td style="padding: 0 1em">
+			<a href=<? $hrefPage ?>?action=edit&MMA_ID=<? $account.MMA_ID ?>
+				style="color: forestgreen">Edit</a>
+		</td>
+
+		<td>
+			<a href=<? $hrefPage ?>?action=delete&MMA_ID=<? $account.MMA_ID ?>
+				style="color: indianred">Delete</a>
+		</td>
+
+	</tr>
+
+<? /foreach ?>
+
+</table>
+
+<? else ?>
+
+<? wbs_note displayNoteMarker=false width="500px" smallFont=false ?>
+	<? $mmStrings.acc_noaccounts_text ?>
+	<BR><BR>
+	<? $mmStrings.acc_noaccounts_comment ?>
+<? /wbs_note ?>
+
+<? /if ?>
+
+<? /if ?>

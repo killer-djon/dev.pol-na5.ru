@@ -1,0 +1,12 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>			
+		<td class="pageTopPanel">
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" name="refreshbtn" caption=$itStrings.il_refresh_btn formname="form" space_right=#toolbarSmallSpace# ?>
+			<img src="<? "images/buttons/top_separator.gif"|stylesetitem:"classic":$styleSet ?>" border="0" align="left"> 
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$itStrings.il_issue_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$issueMenu popupMenuIndex=15000 menuIcon=1 showTopBar=1 menuClass="btnText" freeWidth=1 ?>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$itStrings.il_view_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$viewMenu popupMenuIndex=15001 menuIcon=1 showTopBar=1 menuClass="btnText" checkboxes=1?>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$itStrings.il_filters_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$filtersMenu popupMenuIndex=15002 menuIcon=1 showTopBar=1 menuClass="btnText"?>
+			<? include file="../../../common/html/classic/toolbar_button.htm" align="left" caption=$itStrings.il_workflow_menu formname="form" space_right=#toolbarSmallSpace# button_menu=$processMenu popupMenuIndex=15003 menuIcon=1 showTopBar=1 menuClass="btnText"?>
+		</td>
+	</tr>
+</table>

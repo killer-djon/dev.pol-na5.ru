@@ -1,0 +1,426 @@
+app_name_long	Common	Application full name	Mail
+app_name_short	Common	Application short name	Mail
+app_id_field	Common	ID field label	ID
+app_priority_field	Common	Priority field label	Priority
+app_attachment_field	Common	Attachment field label	Attachment
+app_subject_field	Common	Subject field label	Subject
+app_content_field	Common	Content field label	Content
+app_status_field	Common	Status field label	Status
+app_file_field	Common	File field label	File
+app_author_field	Common	Author field label	Author
+app_modifiedby_field	Common	Modified By field label	Modified By
+app_sendby_field	Common	Sent By field label	Sent By
+app_createdate_field	Common	Create Date field label	Created
+app_modifieddate_field	Common	Modify Date field label	Modify Date
+app_senddate_field	Common	Sent Date field label	Sent
+app_folder_field	Common	Folder field label	Folder
+app_from_field	Common	From field label	From
+app_to_field	Common	To field label	To
+app_sentto_field	Common	Sent To field label	To
+app_encoding_field	Common	Encoding field label	Encoding
+app_variables_field	Common	Variables field label	Variables
+app_messageid_field	Common	Message-Id field	Message-Id
+app_returnpath_field	Common	Return-Path field	Return-Path
+app_replyto_field	Common	Reply-To	Reply-To
+app_draft_status	Common	Draft status	Draft
+app_pending_status	Common	Pending status	Pending
+app_sending_status	Common	Sending status	Sending
+app_sent_status	Common	Sent status	Sent
+app_template_status	Common	Template status	Template
+app_error_status	Common	Draft status	Sent
+app_text_type	Common	Text type	Text
+app_html_type	Common	HTML type	HTML
+app_send_menu	Common	Send Menu Label	Send...
+app_sendtest_menu	Common	Send Test Menu Label	Send Test...
+app_send_btn	Common	Send Button Label	Send
+app_high_priority	Common	High Priority	high
+app_normal_priority	Common	Normal Priority	normal
+app_low_priority	Common	Low Priority	low
+app_group_label	Common	GROUP label	GROUP
+app_list_label	Common	LIST label	LIST
+app_nosubject_text	Common	<no subject> title	<no subject>
+app_delete_anyway_text	Common	Delete Anyway confirmation	Do you want to delete anyway?
+app_recipients_exceeeded	Common	Maximum number of recipients exceeded	Number of Recipients: %d of %d (Maximum number of recipients has been exceeded)
+app_mail_footer	Common	Footer automatically added to message	\nThis message was sent from {COMPANY_NAME} to {C_EMAILADDRESS}.\nYou can unsubscribe from any future mailings using the link below. We respect your privacy and all unsubscribe requests.\n
+app_mail_footer_link	Common	Link in mail footer	Manage Your Subscription
+app_access_violation_error	Common	Access Violation	Access violation error.
+app_attachment_size_error	Common	Attachments size exceeded error	Total size of attachment(s) can not exceed %s KB
+app_screen_norecords_label	Common	No messages in folder	<no messages>
+app_treerightslegend_text	Common	User rights legend	User access rights are designated as:\n\nR (Read) - can list and read messages in this folder\nW (Write) - can add/modify messages in this folder\nF (Folder) - can add/modify messages, folders and permissions
+app_attachmentfree_size_error	Common	Attachments size exceeded error	<b>ACCOUNT LIMIT</b>: Total size of attachment(s) can not exceed %s KB.
+
+mm_screen_long_name	Mail Master	Mail Master page full name	Messages
+mm_screen_short_name	Mail Master	Mail Master page short name	Messages
+mm_screen_addnote_menu	Mail Master	Menu item Message/Compose Message	Compose new...
+mm_screen_copynote_menu	Mail Master	Menu item Message/Copy Message(s)	Copy...
+mm_screen_movenote_menu	Mail Master	Menu item Message/Move Message(s)	Move...
+mm_screen_addtpl_menu	Mail Master	Menu item Message/Create Template	Compose new template
+mm_screen_deletenote_menu	Mail Master	Menu item Message/Delete Message(s)	Delete
+mm_screen_sendnote_menu	Mail Master	Menu item Message/Send Message(s)	Send
+mm_screen_print_menu	Mail Master	Menu item Message/Print	Print...
+mm_screen_composetpl_menu	Mail Master	Menu item Message/Compose from Template	Compose from template...
+mm_screen_custview_menu	Mail Master	Menu item View/Columns	Columns...
+mm_screen_summary_note	Mail Master	Label under Available Folders table	%s message(s) in %s accessible folder(s)
+mm_screen_inbox_summary_note	Mail Master	Label under Inbox Summary table	%s messages in %s mail boxes
+mm_screen_flddelete_message	Mail Master	Folder deletion confirmation	Messages in this folder will be permanently deleted. Are you sure?
+mm_screen_emptysend_message	Mail Master	Message sending without selecting the files message	You must select message(s) for this operation first.
+mm_screen_emptycopy_message	Mail Master	Message copying without selecting the files message	You must select message(s) for this operation first.
+mm_screen_emptymove_message	Mail Master	Message moving without selecting the files message	You must select message(s) for this operation first.
+mm_screen_invrights_message	Mail Master	Lack of administrative rights to move/delete files	You have no rights to move/delete some of selected messages.
+mm_screen_emptydel_message	Mail Master	Message deletion without selecting any files message	You must select message(s) for this operation first.
+mm_screen_confirmdel_message	Mail Master	Message deletion conformation	Do you really want to delete selected message(s)?
+mm_screen_confirmimgdel_message	Mail Master	Message with images deletion confirmation	Some messages contain images. If you delete them, recipients will not be able to see images in their copies of these messages, because images are downloaded from the Mail Master each time the message is read.
+mm_screen_messages_menu	Mail Master	Message menu	Message
+mm_screen_view_menu	Mail Master	View menu	View
+mm_screen_search_label	Mail Master	Search bar label	Search
+mm_screen_search_btn	Mail Master	Search button	Go
+mm_sreen_searchresult_title	Mail Master	Search results header	Search Results
+
+mm_sreen_summarydoc_title	Mail Master	Column in Available Folders table	Messages
+mm_screen_numdocs_label	Mail Master	Text under the list of messages	Message(s)
+mm_screen_noaccess_message	Mail Master	No access to folders message	Access denied.\n\nNOTE: To setup an access to Mail Master folders please go to the "Message/Folders & User Rights" menu item. If you do not see this item in your menu - refer to your system administrator.
+mm_screen_folder_menu	Mail Master	Folder menu	Folder
+mm_screen_showfolders_btn	Mail Master	Show Folders button	Folders
+mm_screen_sorting_title	Document Depot	Sorting bar header	Sorting
+mm_screen_files_label	Mail Master	Files label	File(s)
+
+amn_screen_norights_message	Add/Modify Message	Lack of administrative rights to modify messages	You have no rights to work with this message
+amn_screen_add_title	Add/Modify Message	Compose Message page header	Compose Message
+amn_screen_view_title	Add/Modify Message	View Message page header	View Message
+amn_screen_add_tpl_title	Add/Modify Message	Edit Template page header	Edit Template
+amn_screen_cr_tpl_title	Add/Modify Message	Create Template page header	Create Template
+amn_screen_modify_title	Add/Modify Message	Modify Message page header	Modify Message
+amn_screen_notedel_message	Add/Modify Message	Deleting Message conformation	You really want to delete this message?
+amn_screen_saveclose_btn	Add/Modify Message	Save and Close button	Save and Close
+amn_screen_close_btn	Add/Modify Message	Close button	Close
+amn_screen_saveastpl_btn	Add/Modify Message	Save As Template button	Save as Template...
+amn_screen_saveascopy_btn	Add/Modify Message	Create Copy button	Create Copy...
+amn_screen_saveasmsg_btn	Add/Modify Message	Create Message button	Create Message...
+amn_screen_saveandcrtpl_btn	Add/Modify Message	Save And Create Template button	Save And Create Template
+amn_screen_composenew_btn	Add/Modify Message	Compose New Message	Compose New
+amn_screen_files_field	Add/Modify Message	Attached files field label	Attached Files
+amn_screen_variables_field	Add/Modify Message	Contact Manager Variables	Contact Manager Variables
+amn_screen_delnote_btn	Add/Modify Message	Delete Message button	Delete
+amn_screen_noaddrights_message	Add/Modify Message	Lack of administrative rights to add messages message	You have no rights to add messages into this folder
+amn_screen_nodelrights_message	Add/Modify Message	Lack of administrative rights to delete messages message	You have no rights to modify or delete this message
+amn_recipientsnum_label	Add/Modify Message	Number of Recipients label	Number of Recipients
+amn_recipientslist_label	Add/Modify Message	Recipient List label	Recipient List
+amn_email_label	Add/Modify Message	Email label	Email
+amn_template_menu	Add/Modify Message	Template menu	Template
+amn_tab_html_label	Add/Modify Message	HTML tab name	HTML
+amn_tab_text_label	Add/Modify Message	Text tab name	Text
+amn_tab_attach_label	Add/Modify Message	Attachments tab name	Attachments
+amn_tab_summary_label	Add/Modify Message	Summary tab name	Summary
+amn_tab_stat_label	Add/Modify Message	Sending Report tab name	Sending Report
+amn_deleteimages_btn	Add/Modify Message	Attached images delete label	Delete
+amn_addimages_btn	Add/Modify Message	Attached images label	Add
+amn_screen_images_title	Add/Modify Message	Image section title	Images
+amn_screen_images_message	Add/Modify Message	Add images info message appearing on the unsaved page	To add images to this message you must save it first.
+amn_generate_from_html_btn	Add/Modify Message	Add images info message appearing on the unsaved page	Create text version from HTML
+amn_from_html_message	Add/Modify Message	Existing plain text will be replaced	Existing plain text will be replaced. Continue?
+amn_auto_text_message	Add/Modify Message	Text about automatic creation of text version on sending	Plain text part of your message will be automatically created from HTML when you will send this message. Alternatively, you can manually enter a plain text version using the editor box below.
+amn_text_note_message	Add/Modify Message	Text about limitations of text version	The plain text version can not include images, text formatting or hyperlinks, though provides maximum compatibility with virtually every email client program.
+amn_nocontent_text	Add/Modify Message	No Content	<no content>
+amn_noattachments_text	Add/Modify Message	No Attachments	<no attachments>
+amn_screen_messagedel_message	Add/Modify Message	Message deletion confirmation	Do you really want to delete this message?
+amn_screen_messageimgdel_message	Add/Modify Message	Message deletion confirmation	This message contains images. If you delete it, recipients will not be able to see images in their copies of this message, because images are downloaded from the Mail Master each time the message is read.
+amn_sending_stat_text	Add/Modify Message	Sending statistics	Sending Statistics
+amn_senddate_field	Add/Modify Message	Send Date field label	Send Date
+amn_cancelsending_menu	Add/Modify Message	Cancel Sending menu item	Cancel Sending
+amn_vars_comment_text	Add/Modify Message	Variables comment	You can insert variables into your message which will be dynamically substituted by the actual values at the time when you will send this message. To insert variable into your message, place cursor in the text where you want to insert variable and click its label in the list below or type it in the message (including leading and ending brace symbols, e.g. {NAME}).
+amn_vars_contact_name	Add/Modify Message	Recipient Contact Variables title	Recipient Contact Variables
+amn_vars_my_contact_name	Add/Modify Message	My Contact Variables title	My Contact Variables
+amn_vars_company_name	Add/Modify Message	Company Variables title	Company Variables
+amn_vars_contact_comment	Add/Modify Message	Contact Variables comment	will be substituted by the values specified in the contact entry for every recipient of your message
+amn_vars_my_contact_comment	Add/Modify Message	My Contact Variables comment	will be substituted by the values from your personal contact entry
+amn_vars_company_comment	Add/Modify Message	Company Variables comment	will be substituted by the values from Company Information page
+amn_vars_show_link	Add/Modify Message	Show variables link	show
+amn_vars_hide_link	Add/Modify Message	Hide variables link	Hide
+amn_of_text	Add/Modify Message	of	of
+amn_maxrecipients_exc_text	Add/Modify Message	Maximum recipients number has been exeeded	Maximum recipients number has been exeeded
+amn_notsent_error	Add/Modify Message	This message has not been sent	This message has not been sent
+
+cm_screen_copy_title	Copy/Move	Message Copying in progress page header	Copy Messages
+cm_screen_move_title	Copy/Move	Message Moving in progress page header	Move Messages
+cm_screen_copyfolder_title	Copy/Move	Folder Copying in progress page header	Copy folder
+cm_screen_movefolder_title	Copy/Move	Folder Moving in progress page header	Move folder
+cm_screen_copy_btn	Copy/Move	Copying in progress button	Copy
+cm_screen_move_btn	Copy/Move	Moving in progress button	Move
+cm_screen_form_label	Copy/Move	Label above the form	message(s) selected
+cm_screen_copyerr_message	Copy/Move	Error copying file message	Error copying file
+cm_screen_makedirerr_message	Copy/Move	Error creating folder message	Error creating folder
+
+rights_screen_long_name	Folders & Users Rights	Folders & User Rights page full name	Folders & User Rights
+rights_screen_short_name	Folders & Users Rights	Folders & User Rights page short name	Folders & User Rights
+
+cv_screen_title	Customize View	Page header	Customize Columns
+cv_screen_form_label	Customize View	Label above the form	Select columns to display in the list of messages:
+cv_screen_visible_list	Customize View	Visible Columns list header	Visible Columns
+cv_screen_hidden_list	Customize View	Hidden Columns list header	Hidden Columns
+cv_screen_messagesnum_label	Customize View	Number of messages on one page selection label	Number of messages on one page:
+
+sm_screen_title	Send Message	Send Message screen title	Send Message(s)
+sm_page_title	Send Email	Page title	Send Email
+sm_to_label	Send Email	Label To	To
+sm_subject_label	Send Email	Label Subject	Subject
+sm_message_label	Send Email	Label Message	Message
+sm_send_btn	Send Email	Send button	Send
+sm_priority_label	Send Email	Priority label	Priority
+sm_hipriority_item	Send Email	High priority item	High
+sm_normalpriority_item	Send Email	Normal priority item	Normal
+sm_lowpriority_item	Send Email	Low priority item	Low
+sm_recnotset_message	Send Email	No recipients error message	You must specify at least one recipient for this message.
+sm_recipientlimit_message	Send Email	Recipients limit exceeded error message	Limit number of recipients has been exceeded: %s
+sm_included_label	Send Email	Included label	Included
+sm_notincluded_label	Send Email	Not included label	Not Included
+sm_tomore_label	Send Email	To (more) label	To (more)
+sm_attachments_label	Send Email	Attachments label	Attachments
+sm_totalfileinfo_label	Send Email	Total files information	Total: %s file(s) (%s)
+sm_filename_label	Send Email	File name label	Filename
+sm_invalidemail_message	Send Email	Invalid email message	Invalid email address format: %s
+sm_errorsending_message	Send Email	Error sending email message	Error sending email
+sm_from_label	Send Email	From label	From
+sm_nosenderemail_message	Send Email	No sender email message	 Sender Email address is not specified
+sm_messages_label	Send Email	Number of messages selected label	message(s) selected
+sm_usersgroup_text	Send Email	USER GROUPS menu item	USER GROUPS
+sm_lists_text	Send Email	LISTS menu item	LISTS
+sm_folders_text	Send Email	Name of FOLDERS options group	--- FOLDERS ---
+sm_onlydraft_error_text	Send Email	Error message that appears when no one draft message was selected for send	You can not send Templates and Sent messages. Use Compose from Template command to create new message from template.
+sm_notpending_error_text	Send Email	Error message that appears when pending message send	You can not send messages that have Pending status.
+sm_tplsent_excluded_text	Send Email	Templates and Sent messages exluded form send list text	Templates and Sent messages excluded
+sm_sending_text	Send Email	Sending text	Sending
+sm_sendingwait_text	Send Email	Message is for waiting while messages being sending	Please wait while we are sending messages.
+sm_gathering_info_wait_text	Send Email	Message is for waiting while gathering recipient email list	Please wait while we are preparing recipient email list.
+sm_email_counts_text	Send Email	Text for show how many contacts gathered	Your recipient list contains %d entries.
+sm_sendnow_label	Send Email	Send Now radio buttom label	Send Now
+sm_sendlater_label	Send Email	Send Later radio buttom label	Send Later
+sm_senddate_label	Send Email	Send Date field label	Date
+sm_sendtime_label	Send Email	Send Time field label	Time
+sm_send_servertime_note	Send Email	Server Time text	Current date/time: %s
+sm_sending_stat_text	Send Email	Sending Statistics	Sending Statistics
+sm_send_datetime_label	Send Email	Send Date/Time label	Send Date/Time
+sm_send_now_text	Send Email	Now time	NOW
+sm_send_asoon_text	Send Email	adjourn	as soon as possible
+sm_date_select_error	Send Email	Past date error	Please specify future date/time
+
+sm_event_insert_error	Send Email	Insert event error	Failed event creation
+
+sm_recipientslist_label	Send Email	Recipient List	Recipient List
+sm_max_recipient_text	Send Email	Maximum number of recipients limit for one message note text	Maximum number of recipients limit for one message
+sm_max_daily_recipient_text	Send Email	Daily quota for outgoing messages note text	Daily quota for outgoing messages
+sm_limitation_text	Send Email	Account limitation text	Your account has following limitations
+sm_already_sent_text	Send Email	Message already sent	Messages already sent
+sm_after_sent_text	Send Email	Will be sent after sending this message text	Will be sent after sending this message
+sm_of_daily_quota	Send Email	of daily quota percentage text	of daily quota
+sm_send_later_warning	Send Email	Warning about future sending	Please note that this message(s) will be sent only if recipient limit and daily quota on the date of sending will not be exceeded.
+sm_recipient_exceeded_message	Send Email	Recipients limit exceeded error message	Limit number of recipients has been exceeded: %s
+sm_daily_quotaexceeded_message	Send Email	Daily recipients limit exceeded error message	Daily quota for outgoing messages has been exceeded: %s
+sm_expirationdate_text	Send Email	Fututre date must be less than expiration hosting date	Send date can not be later than expiration date of your account: %s
+sm_unlimited_text	Send Email	Unlimited quota text	Unlimited
+sm_today_stat_text	Send Email	Today Statistics text	Statistics for Today
+sm_sendnow_limitation_error	Send Email	Send Now limitation exceeded error	Send NOW limitation exceeded: %s recipients.
+sm_sendnow_limitation_text	Send Email	Send Now limitation text	If you click Send button below, your message will be queued for later sending (as soon as possible).
+sm_contacts_email_text	Send Email	Only contacts with existing E-Mail appear in the box above.	Only contacts with existing E-Mail appear.
+
+sm_dailylimitfree_message	Send Email	Free account daily recipients limit exceeded error message	<b>ACCOUNT LIMIT</b>: Daily quota for outgoing messages has been exceeded: %s.
+sm_recipientlimitfree_message	Send Email	Free account recipients limit exceeded error message	<b>ACCOUNT LIMIT</b>: Number of recipients has been exceeded: %s.
+sm_sendnowfree_message	Send Email	Free account Send Now limitation text	<b>ACCOUNT LIMIT</b>: Send NOW limitation exceeded: %s recipients.
+
+sm_test_screen_name	Send Email	Test Send: Screen Name	Send Test Message(s)
+sm_test_sendyourself_text	Send Email	Test Send: Send To Yourself	Send to yourself
+sm_test_additional_text	Send Email	Test Send: Additional Recipients text	Additional recipients (enter email addresses in the box below)
+sm_test_notes	Send Email	Test Send: Notes	1. Use semicolon (;) to separate multiple email addresses\n2. Not more than 5 recipients to Test Message
+sm_test_noemail_error	Send Email	Test Send: If no one email specified	You must specify at least one recipient email address
+sm_test_emailcount_error	Send Email	Test Send: Maxmiumum number of recipients has been exceeded	Maximum number of recipients has been exceeded
+sm_test_email_missing_text	Send Email	Test Send: Email missing	<Email adress missing>
+
+ai_screen_addimage_title	Add images Page	Screen title	Add Image
+ai_screen_addimagefile_title	Add images Page	Add image from file	Add image from file
+ai_screen_moreimages_label	Add images	More images label	To upload more files, click here
+ai_screen_add_btn	Add images	Add images button	Add
+ai_screen_upload_text	Add images	More images label	Adding images
+ai_screen_uploadwait_text	Add images	More images label	Please wait while we are adding images...
+ai_screen_nofiles_message	Add Images	Submitting without selecting any images message	You must select at least one image file to add
+
+sv_screen_long_name	Service	Service screen long name	Customize Email Sender
+sv_screen_short_name	Service	Service screen short name	Customize Email Sender
+sv_tab_sender_label	Service	Tab Sender label	Sender
+sv_addsender_btn	Service	Add Sender Button	Add Sender
+sv_nosenders_text	Service	No senders defined message	No senders defined.
+sv_nosenders_comment	Service	No senders defined comment message	NOTE: You can create multiple sender accounts and specify From, Reply-To, Return-Path and Encoding properties that will be used in outgoing messages.
+ams_screen_add_name	Add/Modify Sender	Add Sender screen name	Add Sender
+ams_screen_edit_name	Add/Modify Sender	Edit Sender screen name	Edit Sender
+ams_name_label	Add/Modify Sender	From Name label	From Name
+ams_from_label	Add/Modify Sender	From Email label	From Email
+ams_replyto_label	Add/Modify Sender	Reply-To label	Reply-To
+ams_returnpath_label	Add/Modify Sender	Return-Path label	Return-Path
+ams_encoding_label	Add/Modify Sender	Encoding label	Encoding
+ams_delete_btn	Add/Modify Sender	Delete Sender button	Delete Sender
+ams_senderdel_message	Add/Modify Sender	Sender deletion confirmation	Sender will be deleted. Are you sure?
+ams_language_label	Add/Modify Sender	Language listbox label	Language
+ams_language_comment	Add/Modify Sender	Language listbox comment	Select the language that will be used to display Unsubscribe notice at the bottom of every outgoing message.
+
+sa_screen_tpl_title	Save as Template	Page header	Save as Template
+sa_savein_text	Save as Template	Save in Folder label	Save in Folder
+sa_screen_copy_title	Save as Template	Add Message page header	Create Copy
+
+ft_screen_name	Compose From Template	Page header	Compose from Template
+ft_select_tpl_label	Compose From Template	Select template label	Select Template
+ft_notpls_text	Compose From Template	No templates message	No templates found.
+
+app_treefolders_text	Common	Folders text	Available Actions with Folders
+app_treefurfldname_title	Common	Folder Name column header on the Folders & Users Rights page	Folder Name
+app_readaccess_name	Common	Read access	Read
+app_writeaccess_name	Common	Read/Write access	Write
+app_folderaccess_name	Common	Read/Write/Folder access	Folder
+app_treerootfolders_label	Common	Can create root folders in the user rights settings label	Can create root folders
+app_treeflduserscb_label	Common	Label for "can show other users" checkbox	Can see other users' permissions
+
+app_available_pages_name	Common	 Available Pages rights name	Available Pages
+app_available_functions_name	Common	 Available Functions	Available Functions
+app_notifications_section_name	Common	 Notifications section rights name	Notifications
+app_treeavailflds_title	Common	Available Folders column header on the Folders & Users Rights page	Available Folders
+
+app_cantools_label	Common	Can use tools rights	Can use Tools
+app_canreports_label	Common	Can use reports rights	Can use Reports
+msg_already_sent	msg	setm mails	Today already sent
+msg_sent_another	msg	setm anoth	You can send another
+
+acc_screen_long_name	Mail accounts	Mail accounts screen long name	Mail Accounts
+acc_screen_short_name	Mail accounts	Mail accounts short name	Mail Accounts
+acc_tab_label	Mail accounts	Tab Account label	Account
+acc_add_label	Mail accounts	Add Account Button	Add mail box
+acc_next_btn	Mail accounts	Add Account Button	Continue
+acc_noaccounts_text	Mail accounts	No accounts defined message	No accounts defined.
+acc_noaccounts_comment	Mail accounts	No accounts defined comment message	NOTE: You can add multiple accounts for incoming mail that will be used to receive Email messages in your Inbox folder.
+acc_internal_label	Mail accounts	Add internal account radio button	Create new Email address on the WebAsyst mail server
+acc_external_label	Mail accounts	Add external account radio button	Create mail box for your Email address located on a remote mail server
+acc_external_comment	Mail accounts	Add external account comment message	youraddress@yahoo.com
+app_example_comment	Mail master	Example	Example
+ama_screen_add_name	Add/Modify Account	Add Account screen name	Create new account
+ama_screen_edit_name	Add/Modify Account	Edit Account screen name	Edit mail box
+ama_name_label	Add/Modify Account	Edit Account screen name	Name
+ama_email_label	Add/Modify Account	Edit Account screen name	Email
+ama_server_label	Add/Modify Account	Server label	Incoming mail server
+ama_login_label	Add/Modify Account	Login label	Username
+ama_password_label	Add/Modify Account	Password label	Password
+ama_port_label	Add/Modify Account	Port label	Port
+ama_protocol_label	Add/Modify Account	Protocol label	Your mail server is a
+ama_protocol_tail	Add/Modify Account	Protocol tail	server.
+ama_save_label	Add/Modify Account	Save label	Leave a copy of messages on server
+ama_security_label	Add/Modify Account	Security label	Your server requires a secure connection (SSL)
+ama_access_label	Add/Modify Account	Security label	Enable POP3 access to this account
+ama_delete_btn	Add/Modify Account	Delete Account button	Delete Account
+acc_dbexist_error	Add/Modify Account	DB exists	Mail box with this address already exists
+acc_inputemail_error	Add/Modify Account	Incorrect input	Incorrect Email address
+acc_delete_btn	Add/Modify Account	Delete Account button	Delete
+acc_edit_btn	Add/Modify Account	Delete Account button	Edit settings
+acc_confirm_delete	Mail accounts	Confirm delete account	Do you really want to delete this mail box?
+acc_int_delete_note	Mail accounts	Confirm delete internal account note	NOTE: All messages will be removed.
+acc_ext_delete_note	Mail accounts	Confirm delete external account note	NOTE: All messages are safe. They are residing at a remote mail server and will NOT be deleted.
+acc_change_label	Modify Account	Change label	Change
+acc_change_name_label	Modify Account	Change name label	Edit name
+acc_prompt_label	Modify Account	Prompt label	Do you want to access this email from MS Outlook or other mail programs?
+acc_params_label	Modify Account	Params label	To customize access to this email from MS Outlook or other mail programs, use following settings:
+acc_open_access_link	Modify Account	Open access link	Open POP/IMAP access
+acc_close_access_link	Modify Account	Close access link	Revoke POP/IMAP access
+acc_ports_protocols_label	Modify Account	Show ports/protocols label	110 (for POP) or 143 (for IMAP)
+acc_add_info	Add Account	Add account info	Creating mail boxes linked to remote mail servers allows you to gather in your single WebAsyst account all messages which you receive in your boxes at different mail systems, e.g. @aol.com, @gmail.com, @yahoo.com. It allows you to access all your correspondence from the same place. At the same time you may continue using proprietary web clients of these mail systems, as well as desktop mail programs like Thunderbird or Microsoft Outlook.
+
+ama_email_comment	Add/Modify Account	Email comment	Enter existing email address for which you want to create new mail box
+ama_name_comment	Add/Modify Account	Name comment	When sending from this address, will be used as a sender name
+ama_extend_comment	Add/Modify Account	Extend comment	To fill in the form below you may need your mail server documentation related to POP/IMAP settings.
+ama_login_comment	Add/Modify Account	Login comment	Usually the same as your email address, or just a first part of address (before @ sign)
+ama_smtp_server_label	Add/Modify Account	SMTP server label	Outgoing mail (SMTP)
+ama_pop_imap_label	Add/Modify Account	POP or IMAP label	POP or IMAP
+
+msg_connect_error	Get Messages	POP3/IMAP open error	No response from server "%s"
+msg_login_error	Get Messages	POP3/IMAP login error	Incorrect login/password
+
+app_canaccessinbox_label	Common	Can access "Inbox" label	Can access "Inbox"
+
+app_inbox_root_label	Folders	Inbox folders root label	Inbox
+app_mymessages_root_label	Folders	My Messages folders root label	My Messages
+app_inbox_summary_title	Inbox	Available Mail Accounts summary page title	Inbox
+app_inbox_summary_namecol	Inbox	Available Mail Accounts summary name column	Mail boxes
+app_inbox_summary_msgcol	Inbox	Available Mail Accounts summary messages column	Messages
+app_inbox_summary_newcol	Inbox	Available Mail Accounts summary new messages column	New
+app_size_field	Common	Size field label	Size
+app_date_field	Common	Received field label	Date
+app_received_field	Common	Received field label	Received
+app_sent_field	Common	Sent field label	Sent
+app_tosend_field	Common	To send field label	To send
+app_created_field	Common	Created field label	Created
+app_cc_field	Common	CC field label	Copy
+app_bcc_field	Common	BCC field label	Blind copy
+app_reply_label	Toolbar	Reply message label	Reply
+app_reply_to_sender_label	Toolbar	Reply to sender label	Reply to sender
+app_reply_to_all_label	Toolbar	Reply to all label	Reply to all
+app_forward_label	Toolbar	Forward message label	Forward
+app_savecopy_label	Send Form	Save Copy label	Save answer in folder
+app_originalmsg_label	Send Form	Original Message label	Original Message
+app_checkingmail_label	Messages List	Checking mail progress bar label	Checking mail
+app_received_status	Common	Received status	Received
+app_attach_file_label	Mail Master	Attach file label	Attach file
+app_attach_size_error	Common	Attachments size error	Total size of attachment(s) can not exceed %s
+app_attach_exist_error	Common	Attachment exist error	The file "%s" is already uploaded
+app_attach_ext_error	Common	Attachment ext error	The file "%s" has incorrect extension
+app_upload_image_label	Common	Upload Image label	Upload image
+app_lists_field	Common	Lists field label	Lists
+app_contacts_field	Common	Contacts field label	Contacts
+
+mm_screen_checkmail_btn	Mail Master	Check Mail button	Check mail
+mm_screen_back_btn	Mail Master	Message Body Back button	Back
+mm_screen_newmessage_btn	Mail Master	Create New Message button	Compose message
+snd_screen_newmessage_name	Mail Master	Create New Message label	Compose message
+snd_screen_newtemplate_name	Mail Master	Create New Message label	Compose template
+snd_screen_sent_name	Mail Master	Message Sent label	Message sent
+snd_sent_list_header	Mail Master	Sent List header	Message sent
+snd_toincorrect_error	Mail Master	Recipient address incorrect error	Recipient(s) address is incorrect
+snd_confirm_send_later	Mail Master	Recipients maximum warning	Number of recipients is more than %s. This message is queued for sending.
+
+snd_prepare_send_label	Mail Master	Prepare send label	Preparing recipients list...
+snd_confirm_send_number	Mail Master	Recipients number show	Your message will be sent to %s recipient(s)
+snd_sending_label	Mail Master	Sending label	Sending...
+
+mm_msgbody_attach_label	Mail Master	Message Body attachments label	Attachments
+
+msg_screen_short_name	Message Viewer	Message Viewer page short name	Message
+msg_notfound_error	Message Viewer	Message not found error	Message not found
+
+app_create_account_limit	Mail Master	Create account limit	<b>ACCOUNT LIMIT:</b> Maximum number of mail boxes for your billing plan can not exceed %s.
+
+app_show_label	Common	Show label	Show
+app_save_draft_btn	Common	Send as Draft button	Save as draft
+app_save_btn	Common	Send as Draft button	Save
+
+mm_sent_to_main_btn	Sent	Sent Message back to main screen button	Back to messages list
+mm_sent_to_send_btn	Sent	Sent Message back to send form button	Back to send form
+
+app_sub_close_link	Common	Submenu close link	Close
+app_sub_show_more_link	Common	Submenu show more link	show more...
+app_sub_not_found_label	Common	Submenu not found label	&lt;not found&gt;
+app_sub_all_folders_label	Common	Submenu all folders label	&lt;all folders&gt;
+
+app_folder_draft_name	Common	Folder draft name	Drafts
+app_folder_pending_name	Common	Folder pending name	Pending
+app_folder_sent_name	Common	Folder sent name	Sent
+app_folder_template_name	Common	Folder unsorted name	Templates
+app_folder_unsorted_name	Common	Folder unsorted name	Unsorted
+app_folder_search_name	Common	Folder search name	Search
+
+app_disk_quota_warning	Common	Disk quota warning	Available storage space for this mail account is reaching the limit. Please delete messages you no longer need or move them to other available folders.
+
+app_unavailable_email	Common	Unavailable email	Incorrect Email address
+
+app_send_btn	Common	Send button	Send
+app_save_draft_btn	Common	Save as draft button	Save as a draft
+
+app_treeaddfolder_title	Common	Add folder title	Create new
+app_treemodfolder_title	Common	Modify folder title	Customize access rights
+app_treerenamefolder_title	Common	Rename folder title	Rename
+app_treemovefld_text	Common	Move folder title	Move...
+app_treedelfolder_text	Common	Delete folder title	Delete
+
+mm_big_size_confirm_1	Mail Master	Big message open confirm	The size of this message more than
+mm_big_size_confirm_2	Mail Master	Big message open confirm	MB. Continue?
